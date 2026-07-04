@@ -1,6 +1,6 @@
 # 진행 상황 & 남은 작업
 
-배포 중: **https://suiko.atah.io** (커스텀 도메인, `docs/CNAME`) / KR만 (`docs/kr.html`), GitHub Pages(`docs/` 폴더 기준)
+배포 중: **https://suiko.atah.io** (커스텀 도메인, `docs/CNAME`), GitHub Pages(`docs/` 폴더 기준) — KR(`docs/kr.html`)·JP(`docs/jp.html`) 모두 서비스, 하나의 공유 디스크 이미지(`docs/final-shared.img`) 사용
 
 ## 완료
 
@@ -18,10 +18,11 @@
 
 ## 남은 작업
 
-### 1. JP 빌드
-- `original/jp/`(GENSE.OLD 계열, 1997 원본 정본)를 KR과 동일한 방식으로 Win95 이미지에 설치해 JP 베이스 이미지 제작 (`tools/build-image.js`, `tools/strip-image.js` 재사용, MIDI 매퍼 베이킹도 동일 절차 반복)
-- `docs/jp.html` 신설 — `kr.html`과 구조는 동일, 이미지 경로(`final-jp.img`)와 로고/타이틀만 교체. 페이지 자체는 URL로만 분리(`kr.html`/`jp.html`), 별도 허브 페이지 없음
-- **세이브 호환 검증**: KR/JP 세이브 포맷이 같다고 확인됨(사용자 보장, `suiko-save.js`도 이미 언어 독립적 IndexedDB 키 사용) — 실제로 KR에서 저장 → JP 페이지에서 로드, 반대 방향도 확인 필요
+### 1. JP 빌드 — 완료
+- 이미지 하나(`docs/final-shared.img`)에 `C:\GENSE`(KR, HWANSE.EXE)와 `C:\GENSEJP`(JP, GENSE.EXE)를 같이 담는 구조로 확정(~90MB Windows 설치 중복 회피). `tools/build-jp-image.js`로 `GENSEJP` 폴더 생성(exe/fld/미디/PCM 데이터 + `SAVEDATA`를 KR과 동일한 6개 빈 슬롯으로 시딩 — 우리 저장 로직은 기존 슬롯 파일만 덮어쓰고 새로 할당하지 않기 때문)
+- `docs/jp.html` 신설 — `kr.html`과 구조 동일, `window.SUIKO_LANG='jp'`만 다름. `docs/suiko-lang.js`가 부팅 직전 `WIN.INI`의 `load=`를 언어별 실행 파일로 패치, `docs/suiko-save.js`도 언어별 `SAVEDATA` 경로(`GENSE/SAVEDATA` vs `GENSEJP/SAVEDATA`)를 사용하되 IndexedDB 키는 언어 독립적이라 KR↔JP 세이브 호환 확인됨
+- **일본어 폰트**: 게임 내 텍스트 두부 현상 확인 후 사용자 제공 폰트(`original/font/ja.ttf`, "Ume Gothic O5", 코드페이지 932) 설치. Win95 폰트는 `WINDOWS\FONTS`+레지스트리(`SYSTEM.DAT`)로 관리되고 앱은 폰트 이름이 아니라 charset으로 선택(HWANSE.EXE/GENSE.EXE 어디에도 폰트 이름 문자열 없음 확인) — MIDI 매퍼 때와 같은 방식으로 실제 에뮬레이터에서 Control Panel로 수동 설치 후 "Export Hard Drive"로 캡처, `tools/bake-fonts.js`로 폰트 파일+`SYSTEM.DAT`를 베이스 이미지에 베이킹. JP 정상 렌더링 확인됨
+- **한국어 폰트**: 같은 절차로 `original/font/ko.ttf`("KoddiUD OnGothic", 코드페이지 949, 기존 `GULIM.TTC`와 동일 코드페이지)도 설치해봤으나 KR 게임은 여전히 기존 `GULIM.TTC`로 렌더링됨 — Win95가 코드페이지 기준으로 폰트를 고르기 때문에 같은 코드페이지 내 우선순위(`SYSTEM.DAT`의 `AssocSystemFont` 등)를 못 바꾼 것으로 추정. **사용자 판단으로 보류 확정** — KR은 GULIM 유지, ko.ttf는 이미지에 설치는 되어 있으나 실제로 안 쓰임. 필요해지면 `AssocSystemFont` 레지스트리 값 직접 수정 또는 `GULIM.TTC` 파일 자체를 ko.ttf 내용으로 덮어쓰는 방법(파일명 유지, 포인터 안 건드림) 시도 가능
 
 ### 2. KR 정식 번역 오타·오역 수정
 - 웹 관련 작업이 아니라 **게임 데이터 자체**(`original/kr/HWANSE.EXE` 및/또는 `GENSE.FLD`)에 내장된 기존 정식 한글 번역의 오타·오역을 찾아 고치는 작업. 새 번역이 아니라 기존 번역의 부분 수정
