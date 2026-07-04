@@ -1,9 +1,11 @@
 # 환세취호전 웹 에뮬레이터 (suiko-web-v2)
 
+**▶ [바로 플레이](https://suiko.atah.io/kr.html)**
+
 ## 개요
 
-환세취호전(幻世酔虎伝) 웹 에뮬레이터 재구축 프로젝트.
-[suiko-web](https://github.com/flvrdoyster/suiko-web)의 후속으로, 에뮬레이터 백엔드와 세이브 데이터 구조를 새로이 다시 설계.
+Compile이 Windows 95로 발매한 환세취호전(幻世酔虎伝)의 웹 에뮬레이터 프로젝트. 
+[suiko-web](https://github.com/flvrdoyster/suiko-web)의 후속으로, 에뮬레이터 백엔드와 세이브 데이터 구조를 새로이 다시 설계함.
 
 ---
 
