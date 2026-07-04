@@ -136,13 +136,11 @@ class MyClass {
             return eval(eval_string);
         }
 
+        // suiko-web-v2: settingsModal/importModal/loginModal/mobileDiv/mobileButtons were
+        // deleted from kr.html (unused login/cloud/import/export/mobile-touch UI — see
+        // ROADMAP.md) so binding rivets to them here would throw on the now-null element.
         rivets.bind(document.getElementById('maindiv'), { data: this.rivetsData });
-        rivets.bind(document.getElementById('importModal'), { data: this.rivetsData });
-        rivets.bind(document.getElementById('loginModal'), { data: this.rivetsData });
-        rivets.bind(document.getElementById('settingsModal'), { data: this.rivetsData });
         rivets.bind(document.getElementById('divInstructions'), { data: this.rivetsData });
-        rivets.bind(document.getElementById('mobileDiv'), { data: this.rivetsData });
-        rivets.bind(document.getElementById('mobileButtons'), { data: this.rivetsData });
         
 
         this.detectBrowser();

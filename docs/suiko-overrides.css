@@ -34,12 +34,6 @@ canvas { width: 640px; height: 480px; }
   #canvasDiv { width: 100vw; }
 }
 
-/* Text logo (no logo artwork yet) sized to fit the .logo bounding box from style.css. */
-.logo-text {
-  grid-column: 2; justify-self: center;
-  font-size: 1.15em; font-weight: 700; color: rgba(204, 204, 204, 1); letter-spacing: .03em;
-}
-
 /* The doswasmx engine's own demo UI stays in the DOM (rivets binds to it, and some of
    its modals/dropdowns are reused later — see ROADMAP.md item 1), but none of it is
    part of this page's visual layout. */
