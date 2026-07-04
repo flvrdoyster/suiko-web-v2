@@ -19,9 +19,21 @@ body:has(#canvasDiv) { min-height: 0; }
 /* This game is 640x480 (4:3), not gensei-pc98's PC-98 640x400 (16:10). No !important:
    it must NOT beat the mobile @media rule below (that's what broke phone sizing). */
 canvas { width: 640px; height: 480px; }
+/* The unconditional #canvasDiv rule above (position:relative, margin:12px 0) is an
+   author style, which beats the UA stylesheet's own fullscreen rule (position:fixed,
+   inset:0, width/height:100%) that would otherwise stretch+center this element over the
+   whole screen. Without re-asserting those here, the div stays in normal document flow
+   at its pre-fullscreen size/position — which is what was pushing the canvas left. */
+/* !important here too: the base rule's "display: inline-block !important" otherwise
+   still wins on `display` even though :fullscreen has higher specificity — !important
+   beats specificity, so both sides need it for the more-specific rule to actually win.
+   Without this, position/inset applied (stretching the div over the viewport) but the
+   div never actually became a flex container, so the canvas sat at its default
+   top/left position inside that box instead of being centered — the "leans left" bug. */
 #canvasDiv:fullscreen,
 #canvasDiv:-webkit-full-screen {
-  display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 1);
+  position: fixed; inset: 0; margin: 0; width: 100vw; height: 100vh;
+  display: flex !important; align-items: center; justify-content: center; background: rgba(0, 0, 0, 1);
 }
 #canvasDiv:fullscreen canvas,
 #canvasDiv:-webkit-full-screen canvas {
