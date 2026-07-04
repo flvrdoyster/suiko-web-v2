@@ -1,0 +1,49 @@
+/* suiko-web-v2 deltas on top of the shared gensei-pc98 style.css.
+   Keep this file as small as possible — anything that isn't specific to running
+   doswasmx (vs. gensei-pc98's NP2kai) belongs in style.css so the two stay in sync. */
+
+/* doswasmx hardcodes the id "canvasDiv" (resizeCanvas/fullscreen/mobile-mode logic in
+   script.js) so it can't be renamed to style.css's "canvas-wrap" — give it the exact
+   same role/appearance instead. */
+#canvasDiv {
+  position: relative;
+  display: inline-block;
+  border: 0;
+  margin: 12px 0;
+}
+body:has(#canvasDiv) { min-height: 0; }
+
+/* This game is 640x480 (4:3), not gensei-pc98's PC-98 640x400 (16:10). */
+canvas { width: 640px; height: 480px; }
+#canvasDiv:fullscreen,
+#canvasDiv:-webkit-full-screen {
+  display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 1);
+}
+#canvasDiv:fullscreen canvas,
+#canvasDiv:-webkit-full-screen canvas {
+  width: min(100vw, 133.33vh);
+  height: min(100vh, 75vw);
+  image-rendering: pixelated;
+}
+#canvasDiv:fullscreen #toast,
+#canvasDiv:-webkit-full-screen #toast {
+  font-size: 2.4vmin; padding: 1.2vmin 2.4vmin; border-radius: 0.6vmin; bottom: 2.4vmin;
+}
+@media (max-width: 680px) {
+  canvas { width: 100vw; height: calc(100vw * .75); }
+  #canvasDiv { width: 100vw; }
+}
+
+/* Text logo (no logo artwork yet) sized to fit the .logo bounding box from style.css. */
+.logo-text {
+  grid-column: 2; justify-self: center;
+  font-size: 1.15em; font-weight: 700; color: rgba(204, 204, 204, 1); letter-spacing: .03em;
+}
+
+/* The doswasmx engine's own demo UI stays in the DOM (rivets binds to it, and some of
+   its modals/dropdowns are reused later — see ROADMAP.md item 1), but none of it is
+   part of this page's visual layout. */
+#maindiv, #divInstructions, #githubDiv, #menuDiv, #mobileDiv, #mobileButtons,
+#settingsModal, #importModal, #loginModal, .modal-backdrop {
+  display: none !important;
+}

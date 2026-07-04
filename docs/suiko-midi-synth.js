@@ -7034,20 +7034,20 @@ var require_suiko_midi_synth_src = __commonJS({
     var synth = null;
     var ready = false;
     var ctx = null;
+    var gainNode = null;
     var pending = [];
-    var box = document.createElement("div");
-    box.style.cssText = "position:fixed;top:8px;left:8px;z-index:99999;background:rgba(0,0,0,.8);color:#0f0;font:13px monospace;padding:8px 12px;border-radius:6px;pointer-events:none;white-space:pre";
-    box.textContent = "SC-55: loading\u2026";
-    window.addEventListener("DOMContentLoaded", () => document.body.appendChild(box));
     var msgCount = 0;
     function status(s) {
-      box.textContent = s;
+      const el = document.querySelector("#overlay .status");
+      if (el) el.textContent = s;
     }
     async function setup() {
       ctx = new AudioContext();
       await ctx.audioWorklet.addModule(PROCESSOR_URL);
       synth = new WorkletSynthesizer(ctx);
-      synth.connect(ctx.destination);
+      gainNode = ctx.createGain();
+      synth.connect(gainNode);
+      gainNode.connect(ctx.destination);
       status("SC-55: downloading soundfont (9MB)\u2026");
       const sf = await (await fetch(SOUNDFONT_URL)).arrayBuffer();
       status("SC-55: loading soundfont\u2026");
@@ -7094,7 +7094,6 @@ var require_suiko_midi_synth_src = __commonJS({
       } else {
         pending.push({ sysex: false, data: msg });
       }
-      if (msgCount % 10 === 0) status("SC-55: playing \u2014 " + msgCount + " msgs");
     }
     function onByte(b) {
       b &= 255;
@@ -7154,6 +7153,11 @@ var require_suiko_midi_synth_src = __commonJS({
       },
       close: function() {
         console.log("[SuikoMidi] MIDI closed");
+      },
+      // exposed so suiko-audio.js's mute button can silence the SC-55 synth via gain
+      // (not ctx.suspend(), which browsers can auto-resume on the next user gesture)
+      getGain: function() {
+        return gainNode;
       }
     };
     console.log("[SuikoMidi] SC-55 synth handler installed");

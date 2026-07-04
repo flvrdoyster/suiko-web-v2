@@ -1,4 +1,6 @@
-// suiko-web-v2 UI glue — wires the clean start overlay / top-bar to the doswasmx engine.
+// suiko-web-v2 boot glue — wires the start overlay + top-bar buttons to the doswasmx
+// engine. gamepad.js (copied from gensei-pc98, unmodified) handles the virtual gamepad,
+// mobile auto-activation, and the top-bar collapse button already.
 (function () {
   'use strict';
   function $(id) { return document.getElementById(id); }
@@ -33,14 +35,9 @@
       myApp.loadRom(true); // boot Win95 + auto-launch the game
     });
 
-    // top-bar fullscreen → reuse doswasmx's fullscreen (targets the canvas container)
     var fs = $('btn-fullscreen');
     if (fs) fs.addEventListener('click', function () {
       if (window.myApp && myApp.fullscreen) myApp.fullscreen();
-      else {
-        var d = $('canvasDiv');
-        if (d && d.requestFullscreen) d.requestFullscreen();
-      }
     });
   });
 })();
