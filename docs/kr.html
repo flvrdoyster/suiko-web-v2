@@ -97,12 +97,9 @@
         </div>
     </div>
     
-    <h6 id="githubDiv" class="githubDiv card-title mt-4 text-center" style="display: none;">
-        <a href="https://github.com/nbarkhina/doswasmx" target="_blank">
-            View source on GitHub
-            <img src="github_logo.png" style="height: 25px; padding-bottom: 5px; padding-left: 10px;">
-        </a>
-    </h6>
+    <!-- doswasmx's own "View source on GitHub" link (id="githubDiv") was removed here —
+         script.js's $('#githubDiv').show()/.hide() calls are jQuery, safe no-ops on a
+         missing element. Our own credits live in footer.js (data-emulator="dos"). -->
 
 
 
