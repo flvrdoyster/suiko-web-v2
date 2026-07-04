@@ -4,16 +4,20 @@
 
 /* doswasmx hardcodes the id "canvasDiv" (resizeCanvas/fullscreen/mobile-mode logic in
    script.js) so it can't be renamed to style.css's "canvas-wrap" — give it the exact
-   same role/appearance instead. */
+   same role/appearance instead. The one lock we do need: doswasmx boots with
+   $('#canvasDiv').show(), which writes inline display:block and would left-align the
+   canvas — keep it inline-block so the body's flex centering still applies. Sizing is
+   otherwise plain CSS (this file loads after style.css, so these just win by order). */
 #canvasDiv {
   position: relative;
-  display: inline-block;
+  display: inline-block !important;
   border: 0;
   margin: 12px 0;
 }
 body:has(#canvasDiv) { min-height: 0; }
 
-/* This game is 640x480 (4:3), not gensei-pc98's PC-98 640x400 (16:10). */
+/* This game is 640x480 (4:3), not gensei-pc98's PC-98 640x400 (16:10). No !important:
+   it must NOT beat the mobile @media rule below (that's what broke phone sizing). */
 canvas { width: 640px; height: 480px; }
 #canvasDiv:fullscreen,
 #canvasDiv:-webkit-full-screen {
@@ -32,6 +36,15 @@ canvas { width: 640px; height: 480px; }
 @media (max-width: 680px) {
   canvas { width: 100vw; height: calc(100vw * .75); }
   #canvasDiv { width: 100vw; }
+}
+
+/* Landscape on a touch device: a phone in landscape is usually wider than 680px, so it
+   would otherwise fall back to the fixed 640x480 and get cropped top/bottom on short
+   viewports. Drive by HEIGHT instead (100% of the viewport, 4:3 width) so the whole
+   screen is visible. Portrait doesn't match this, so it keeps the width-driven rule. */
+@media (orientation: landscape) and (pointer: coarse) {
+  canvas { width: calc(100vh * 4 / 3); height: 100vh; }
+  #canvasDiv { width: auto; }
 }
 
 /* The doswasmx engine's own demo UI stays in the DOM (rivets binds to it, and some of

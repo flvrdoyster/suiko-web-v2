@@ -189,10 +189,14 @@ class MyClass {
                 this.iosVersion = parseInt(iosVersion);
             } catch (err) { }
         }
-        if (window.innerWidth < 600 || this.iosMode)
-            this.rivetsData.mobileMode = true;
-        else
-            this.rivetsData.mobileMode = false;
+        // suiko-web-v2: doswasmx's own mobileMode branch (setupMobileMode()) drives a
+        // separate touch UI (#mobileA/#mobileB/#divTouchSurface/#mobileCanvas etc.) that
+        // we removed in favor of gensei-pc98's virtual gamepad + responsive CSS — those
+        // elements no longer exist, so setupMobileMode() would throw on a null element
+        // (setupMobileControls -> getElementById('divTouchSurface').addEventListener)
+        // and silently abort the rest of configureEmulator(), including resizeCanvas()
+        // and $('#canvasDiv').show() — the canvas would never appear. Always false here.
+        this.rivetsData.mobileMode = false;
 
         // firefox only supports 250 megs??
         if (navigator.userAgent.toLocaleLowerCase().includes('firefox'))
@@ -1478,12 +1482,11 @@ class MyClass {
     }
 
     resizeCanvas(){
-        let ratio = this.frameHeight / this.frameWidth;
-        
-        if (this.rivetsData.mobileMode)
-            document.getElementById('canvasDiv').style.height = this.canvasWidth * ratio + 'px';
-        else
-            document.getElementById('canvasDiv').style.height = this.canvasHeight + 'px';
+        // suiko-web-v2: doswasmx sized #canvasDiv by writing an inline style.height here
+        // (from canvasHeight / zoom buttons / localStorage). We size the canvas purely in
+        // CSS (style.css + suiko-overrides.css, fixed 4:3) like gensei-pc98 does; letting
+        // this write an inline height fought that CSS and shifted the layout (footer moved)
+        // the moment boot called it. No-op now — sizing is CSS-only.
     }
 
     saveDrive()

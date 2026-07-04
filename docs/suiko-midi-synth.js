@@ -7038,8 +7038,7 @@ var require_suiko_midi_synth_src = __commonJS({
     var pending = [];
     var msgCount = 0;
     function status(s) {
-      const el = document.querySelector("#overlay .status");
-      if (el) el.textContent = s;
+      if (window.showToast) window.showToast(s, 0);
     }
     async function setup() {
       ctx = new AudioContext();
