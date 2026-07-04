@@ -1,3 +1,6 @@
 .DS_Store
 node_modules/
 dist/
+
+# local doswasmx upstream clone used for reference/rebuild (not project content)
+.vendor-tmp/
