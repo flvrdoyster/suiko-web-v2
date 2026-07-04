@@ -1064,9 +1064,13 @@ class MyClass {
         this.sendDosControls = Module.cwrap('neil_send_dos_controls', null, 
             ['string','string','string','array','number','string','string']); //arrays are always unsigned byte arrays
 
-        // suiko-web-v2: inject the player's saved C:\GENSE\SAVEDATA into the in-FS disk
-        // image before boot (SAVEDATA-only persistence via fat16.js — see suiko-save.js),
-        // then keep it synced during play. Replaces doswasmx's whole-disk save.
+        // suiko-web-v2: one shared image holds both KR and JP game folders (see
+        // tools/build-jp-image.js) — patch WIN.INI's load= to this page's language
+        // before boot (suiko-lang.js), then inject the player's saved
+        // C:\GENSE(JP)\SAVEDATA into the in-FS disk image (SAVEDATA-only persistence via
+        // fat16.js — see suiko-save.js), and keep it synced during play. Replaces
+        // doswasmx's whole-disk save.
+        if (window.SuikoLang) window.SuikoLang.patchLanguage(this.base_name);
         if (window.SuikoSave) await window.SuikoSave.injectSaveData(this.base_name);
 
         Module.callMain();

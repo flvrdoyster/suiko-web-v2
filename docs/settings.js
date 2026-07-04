@@ -1,6 +1,6 @@
 var DOSWASMSETTINGS = {
     CLOUDSAVEURL: "",
-    DEFAULTIMG: "final-kr.img"
+    DEFAULTIMG: "final-shared.img"
 }
 
 var rando = Math.floor(Math.random() * Math.floor(100000));

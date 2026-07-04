@@ -13,8 +13,10 @@
   var DB_NAME = 'suiko-web-v2';
   var STORE = 'saves';
   var KEY = 'savedata';
-  var SAVE_DIR = 'GENSE/SAVEDATA';
+  var SAVE_DIR_BY_LANG = { kr: 'GENSE/SAVEDATA', jp: 'GENSEJP/SAVEDATA' };
   var POLL_MS = 8000;
+
+  function saveDir() { return SAVE_DIR_BY_LANG[window.SUIKO_LANG] || SAVE_DIR_BY_LANG.kr; }
 
   function openDB() {
     return new Promise(function (resolve, reject) {
@@ -67,10 +69,10 @@
       var files = saved.map(function (f) {
         return { name: f.name, data: new Uint8Array(f.data), times: f.times ? new Uint8Array(f.times) : null };
       });
-      var res = Fat16.injectDirFiles(img, SAVE_DIR, files);
+      var res = Fat16.injectDirFiles(img, saveDir(), files);
       Module.FS.writeFile(path, res.image);
       // seed lastChecksum so the first poll doesn't re-save unchanged data
-      lastChecksum = checksum(Fat16.extractDirFiles(res.image, SAVE_DIR));
+      lastChecksum = checksum(Fat16.extractDirFiles(res.image, saveDir()));
       console.log('[suiko-save] restored', files.length - res.skipped.length, 'save files',
         res.skipped.length ? '(skipped: ' + res.skipped.join(',') + ')' : '');
       if (window.showToast) window.showToast('세이브 데이터를 복원했습니다.');
@@ -84,7 +86,7 @@
     var files;
     try {
       var img = Module.FS.readFile(imgPath(baseName));
-      files = Fat16.extractDirFiles(img, SAVE_DIR);
+      files = Fat16.extractDirFiles(img, saveDir());
     } catch (e) { return Promise.resolve(); } // image not mounted yet, etc.
     var csum = checksum(files);
     if (csum === lastChecksum) return Promise.resolve();

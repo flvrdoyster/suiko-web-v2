@@ -388,9 +388,56 @@ function zeroFreeClusters(bytes) {
   return zeroed;
 }
 
+// Write one 32-byte 8.3 directory entry (name, attr, firstCluster, size) at `slotOff`.
+function writeDirEntry(ctx, slotOff, name8_3, attr, firstCluster, size) {
+  for (let i = 0; i < 11; i++) ctx.img[slotOff + i] = name8_3.charCodeAt(i);
+  ctx.img[slotOff + 11] = attr;
+  for (let i = 12; i < 26; i++) ctx.img[slotOff + i] = 0;
+  ctx.img[slotOff + 26] = firstCluster & 0xff;
+  ctx.img[slotOff + 27] = (firstCluster >> 8) & 0xff;
+  ctx.img[slotOff + 28] = size & 0xff;
+  ctx.img[slotOff + 29] = (size >> 8) & 0xff;
+  ctx.img[slotOff + 30] = (size >> 16) & 0xff;
+  ctx.img[slotOff + 31] = (size >> 24) & 0xff;
+}
+
+// Find a free 32-byte slot (0x00 = end of directory, 0xE5 = deleted) in a directory's
+// cluster chain (or the fixed root if firstCluster is 0).
+function findFreeSlot(ctx, dirCluster) {
+  const regions = dirRegions(ctx, dirCluster);
+  for (const { off, size } of regions) {
+    for (let i = 0; i < size; i += 32) {
+      const first = ctx.img[off + i];
+      if (first === 0x00 || first === 0xe5) return off + i;
+    }
+  }
+  throw new Error('no free directory slot');
+}
+
+// Create a new empty subdirectory (8.3 name only) inside `dirPath`. Returns a NEW image.
+function createDir(bytes, dirPath, name) {
+  const copy = bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes);
+  const ctx = openImage(copy);
+  const parentCluster = resolveDir(ctx, dirPath);
+  if (parentCluster === null) throw new Error('directory not found: ' + dirPath);
+
+  const [newCluster] = allocateClusters(ctx, 1);
+  const clusOff = clusterOffset(ctx, newCluster);
+  ctx.img.fill(0, clusOff, clusOff + ctx.bytesPerCluster);
+  // "." and ".." are literal-dot 8.3 names, NOT run through name83()'s "last dot is the
+  // extension" logic — that would encode "." as an empty name and ".." as ".", which
+  // decode back as bogus/blank directory entries (found via a listDir() ghost-entry bug).
+  writeDirEntry(ctx, clusOff, '.          '.slice(0, 11), ATTR_DIRECTORY, newCluster, 0);
+  writeDirEntry(ctx, clusOff + 32, '..         '.slice(0, 11), ATTR_DIRECTORY, parentCluster, 0);
+
+  const slotOff = findFreeSlot(ctx, parentCluster);
+  writeDirEntry(ctx, slotOff, name83(name), ATTR_DIRECTORY, newCluster, 0);
+  return copy;
+}
+
 const api = {
   openImage, listDir, resolveDir, readFileEntry, extractDirFiles, injectDirFiles,
-  createFile, deletePath, zeroFreeClusters,
+  createFile, createDir, deletePath, zeroFreeClusters,
 };
 
 if (typeof module !== 'undefined' && module.exports) module.exports = api;
