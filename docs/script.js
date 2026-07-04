@@ -1064,10 +1064,17 @@ class MyClass {
         this.sendDosControls = Module.cwrap('neil_send_dos_controls', null, 
             ['string','string','string','array','number','string','string']); //arrays are always unsigned byte arrays
 
+        // suiko-web-v2: inject the player's saved C:\GENSE\SAVEDATA into the in-FS disk
+        // image before boot (SAVEDATA-only persistence via fat16.js — see suiko-save.js),
+        // then keep it synced during play. Replaces doswasmx's whole-disk save.
+        if (window.SuikoSave) await window.SuikoSave.injectSaveData(this.base_name);
+
         Module.callMain();
         this.configureEmulator();
         this.findSavestateInDatabase();
         this.rivetsData.beforeEmulatorStarted = false;
+
+        if (window.SuikoSave) window.SuikoSave.startAutoSave(this.base_name);
         
     }
 

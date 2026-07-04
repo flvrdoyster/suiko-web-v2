@@ -56,5 +56,15 @@ for (let i = 0; i < base.length; i++) if (base[i] !== changed[i]) diffBytes++;
 console.log(`total image bytes changed by 1-slot edit: ${diffBytes}`);
 check(diffBytes > 0 && diffBytes <= 8192, 'change is confined to <= one 8KB cluster');
 
+// 4. Directory date-time (offsets 13..25) survives an extract→inject round trip, so a
+//    restored save keeps its own save time instead of the base image's timestamp.
+check(files.every((f) => f.times && f.times.length === 13), 'extract returns 13-byte times');
+const newTimes = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]); // arbitrary stamp
+const retimed = files.map((f, i) => (i === 0 ? { name: f.name, data: f.data, times: newTimes } : f));
+const { image: tsChanged } = Fat16.injectDirFiles(base, SAVE_DIR, retimed);
+const slot1After = Fat16.extractDirFiles(tsChanged, SAVE_DIR).find((f) => f.name.toUpperCase() === 'SAVEDAT1.DAT');
+check(Buffer.compare(Buffer.from(slot1After.times), Buffer.from(newTimes)) === 0,
+  'injected times are written back to the directory entry');
+
 console.log(failures === 0 ? '\nALL PASS' : `\n${failures} FAILURE(S)`);
 process.exit(failures === 0 ? 0 : 1);
