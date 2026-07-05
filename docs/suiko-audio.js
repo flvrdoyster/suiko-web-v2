@@ -27,11 +27,19 @@
 
   // Audio still needs a user gesture to leave the browser's autoplay-blocked state at
   // least once; that's a one-time unlock, separate from our own mute state.
+  //
+  // Deliberately unconditional (no `ctx.state === 'suspended'` gate): after a mobile tab
+  // is backgrounded and comes back, an AudioContext — especially an AudioWorklet-based one
+  // like the SC-55 synth's, which doswasmx (gensei-pc98's PC-98 emulator) doesn't have —
+  // can end up reporting `state === 'running'` while no audio is actually flowing (a known
+  // WebKit/mobile "zombie context" quirk after a media-session interruption). Gating on
+  // the state check skipped calling resume() in exactly that case. resume() on an
+  // already-running context is a harmless no-op, so there's no downside to always calling it.
   function unlockAudioContexts() {
-    if (window.myApp && myApp.audioContext && myApp.audioContext.state === 'suspended') myApp.audioContext.resume();
+    if (window.myApp && myApp.audioContext) myApp.audioContext.resume();
     if (window.SuikoMidi && SuikoMidi.getGain && SuikoMidi.getGain()) {
       var ctx = SuikoMidi.getGain().context;
-      if (ctx && ctx.state === 'suspended') ctx.resume();
+      if (ctx) ctx.resume();
     }
   }
 
@@ -47,11 +55,17 @@
     showMuteButton();
   };
 
+  // Multiple redundant triggers on purpose: which of these actually fires (and whether a
+  // programmatic resume() call outside a trusted user gesture even takes effect) varies
+  // by mobile browser, so layer several rather than rely on just one.
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden) resumeAudio();
   });
+  window.addEventListener('pageshow', resumeAudio);
+  window.addEventListener('focus', resumeAudio);
   document.addEventListener('click', resumeAudio);
   document.addEventListener('keydown', resumeAudio);
+  document.addEventListener('touchstart', resumeAudio, { passive: true });
 
   function initMute() {
     var btn = document.getElementById('btn-mute');
