@@ -5,3 +5,6 @@ original/
 
 # local doswasmx upstream clone used for reference/rebuild (not project content)
 .vendor-tmp/
+
+# KR 정식 번역 오타 패치 작업물 — 빌드 산출물만 제외(원본은 original/에 이미 gitignore됨)
+kr-patch/build/

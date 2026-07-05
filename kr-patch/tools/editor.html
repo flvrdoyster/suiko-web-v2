@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>KR 패치 에디터 — 환세취호전</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, 'Malgun Gothic', sans-serif; margin: 0; background: #1a1a1a; color: #ddd; }
+  header { padding: 10px 16px; background: #222; border-bottom: 1px solid #444; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  header h1 { font-size: 15px; margin: 0; color: #eee; white-space: nowrap; }
+  .tabs { display: flex; gap: 4px; }
+  .tabs button { padding: 6px 12px; background: #333; border: 1px solid #555; color: #ccc; cursor: pointer; border-radius: 4px; font-size: 13px; transition: background 0.1s, transform 0.05s; }
+  .tabs button:hover { background: #3d3d3d; }
+  .tabs button:active { transform: scale(0.95); }
+  .tabs button.active { background: #4a6fa5; color: #fff; border-color: #7aa0d8; box-shadow: inset 0 0 0 1px #7aa0d8; font-weight: 600; }
+  input[type=text] { background: #2a2a2a; border: 1px solid #555; color: #eee; padding: 6px 8px; border-radius: 4px; }
+  #search { flex: 1; min-width: 160px; }
+  #status { font-size: 12px; color: #999; }
+  main { display: flex; }
+  #listCol { flex: 1; padding: 12px 16px; min-width: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 6px 8px; border-bottom: 1px solid #444; color: #999; font-weight: 500; }
+  td { padding: 6px 8px; border-bottom: 1px solid #2a2a2a; vertical-align: top; }
+  tr.changed { background: rgba(70,130,90,0.12); }
+  .offset { font-family: monospace; color: #888; white-space: nowrap; }
+  .name-slot { font-size: 11px; color: #777; }
+  .orig { color: #ccc; white-space: pre-wrap; }
+  .fixed-input { width: 100%; background: #2a2a2a; border: 1px solid #555; color: #fff; padding: 4px 6px; border-radius: 3px; font-size: 13px; }
+  .fixed-input.mismatch { border-color: #c55; background: #3a1e1e; }
+  .fixed-input.ok-changed { border-color: #5a5; }
+  .bytelen { font-size: 11px; color: #888; margin-top: 2px; }
+  .bytelen.bad { color: #e77; }
+  .rowbtn { padding: 3px 10px; font-size: 12px; border-radius: 3px; border: 1px solid #555; background: #333; color: #ccc; cursor: pointer; transition: background 0.1s, transform 0.05s; }
+  .rowbtn:hover { background: #444; }
+  .rowbtn:active { transform: scale(0.93); }
+
+  #jpPanel { width: 340px; flex-shrink: 0; background: #202020; border-left: 1px solid #444; padding: 12px; position: sticky; top: 0; align-self: flex-start; max-height: 100vh; overflow-y: auto; }
+  #jpPanel h3 { margin: 0 0 4px; font-size: 13px; color: #ccc; }
+  #jpPanel .hint { font-size: 11px; color: #888; margin-bottom: 10px; line-height: 1.5; }
+  #jpSearchBox { width: 100%; }
+  #jpResults { margin-top: 10px; }
+  #jpResults .hit { margin-bottom: 12px; padding: 8px; background: #2a2a2a; border-radius: 4px; font-size: 12px; }
+  #jpResults .hit .match { color: #ffd479; font-weight: bold; }
+</style>
+</head>
+<body>
+<header>
+  <h1>KR 패치 에디터</h1>
+  <div class="tabs" id="tabs"></div>
+  <input type="text" id="search" placeholder="텍스트 검색...">
+  <span id="status"></span>
+</header>
+<main>
+  <div id="listCol">
+    <table>
+      <thead><tr><th style="width:90px">오프셋</th><th>원문</th><th style="width:36%">수정</th><th style="width:60px"></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div id="jpPanel">
+    <h3>JP 검색</h3>
+    <div class="hint">KR/JP는 원문 순서가 서로 다르게 배치돼 있어(같은 오프셋/인덱스 대응 아님) — 이름·키워드로 직접 검색해서 대조.</div>
+    <input type="text" id="jpSearchBox" placeholder="이름/키워드로 검색...">
+    <div id="jpResults"></div>
+  </div>
+</main>
+
+<script>
+const SECTIONS = [
+  { key: 'dialogue', label: '대사' },
+  { key: 'labels', label: '이름/라벨' },
+];
+let data = null;
+let curSection = 'dialogue';
+
+function byteLen(s) {
+  // rough CP949 byte-length estimate for live feedback; server re-validates exactly.
+  let n = 0;
+  for (const ch of s) n += ch.codePointAt(0) <= 0x7f ? 1 : 2;
+  return n;
+}
+function requiredLength(section, e) {
+  return e.length;
+}
+
+async function load() {
+  data = await fetch('/api/translation').then(r => r.json());
+  renderTabs();
+  render();
+}
+
+function renderTabs() {
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = '';
+  for (const s of SECTIONS) {
+    const btn = document.createElement('button');
+    btn.textContent = `${s.label} (${data[s.key].length})`;
+    btn.className = s.key === curSection ? 'active' : '';
+    btn.onclick = () => { curSection = s.key; render(); };
+    tabs.appendChild(btn);
+  }
+}
+
+function filtered() {
+  const q = document.getElementById('search').value.trim();
+  return data[curSection].filter((e) => !q || e.text.includes(q) || (e.fixed || '').includes(q));
+}
+
+function render() {
+  const list = filtered();
+  document.getElementById('status').textContent = `${data[curSection].length}건 중 ${list.length}건 표시`;
+
+  const tbody = document.getElementById('rows');
+  tbody.innerHTML = '';
+  const frag = document.createDocumentFragment();
+  for (const e of list) frag.appendChild(renderRow(e));
+  tbody.appendChild(frag);
+}
+
+function renderRow(e) {
+  const tr = document.createElement('tr');
+  if (e.fixed) tr.className = 'changed';
+
+  const tdOff = document.createElement('td');
+  tdOff.className = 'offset';
+  tdOff.textContent = '0x' + e.offset.toString(16);
+
+  const tdOrig = document.createElement('td');
+  tdOrig.className = 'orig';
+  tdOrig.textContent = e.text;
+
+  const tdFixed = document.createElement('td');
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'fixed-input';
+  input.value = e.fixed || '';
+  input.placeholder = e.text;
+  const bytesDiv = document.createElement('div');
+  bytesDiv.className = 'bytelen';
+  const need = requiredLength(curSection, e);
+  // 'labels' slots include trailing full-width-space padding as part of `text` (see
+  // hwanse-names.js) — the server pads a shorter replacement back out automatically, so a
+  // shortfall isn't an error here the way it is for 'dialogue' ('@'-terminated, no padding
+  // concept, must match exactly).
+  function willAutoPad(got) {
+    return curSection === 'labels' && got < need && (need - got) % 2 === 0;
+  }
+  function updateByteInfo() {
+    const val = input.value || e.text;
+    const got = byteLen(val);
+    const autoPad = input.value && willAutoPad(got);
+    const mismatch = got !== need && !autoPad;
+    bytesDiv.textContent = autoPad ? `${got} / ${need} 바이트 (전각공백 자동 패딩됨)` : `${got} / ${need} 바이트`;
+    bytesDiv.classList.toggle('bad', mismatch);
+    input.classList.toggle('mismatch', mismatch && input.value);
+    input.classList.toggle('ok-changed', !mismatch && input.value && input.value !== e.text);
+  }
+  input.addEventListener('input', updateByteInfo);
+  updateByteInfo();
+  tdFixed.append(input, bytesDiv);
+
+  const tdSave = document.createElement('td');
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'rowbtn';
+  saveBtn.textContent = '저장';
+  saveBtn.onclick = async () => {
+    // NOT .trim()'d: leading/trailing spaces (half- or full-width 　) are often meaningful
+    // game content here (right-aligned rank labels, "지옥　다리후리기"-style compounds),
+    // not incidental input formatting — trimming silently discarded a leading 　 the user
+    // had deliberately typed and broke their edit.
+    const fixed = input.value;
+    if (fixed) {
+      const got = byteLen(fixed);
+      if (got !== need && !willAutoPad(got)) {
+        alert(`바이트 길이가 안 맞음: ${got} (필요: ${need}). 저장 안 함.`);
+        return;
+      }
+    }
+    const res = await fetch('/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ section: curSection, offset: e.offset, fixed }),
+    });
+    const body = await res.json();
+    if (!res.ok) { alert('저장 실패: ' + body.error); return; }
+    e.fixed = body.fixed;
+    input.value = e.fixed;
+    updateByteInfo();
+    tr.className = e.fixed ? 'changed' : '';
+    saveBtn.textContent = '저장됨';
+    setTimeout(() => saveBtn.textContent = '저장', 1000);
+  };
+  tdSave.appendChild(saveBtn);
+
+  tr.append(tdOff, tdOrig, tdFixed, tdSave);
+  return tr;
+}
+
+document.getElementById('search').addEventListener('input', () => { render(); });
+
+let jpTimer = null;
+document.getElementById('jpSearchBox').addEventListener('input', (e) => {
+  clearTimeout(jpTimer);
+  const q = e.target.value.trim();
+  jpTimer = setTimeout(async () => {
+    const results = document.getElementById('jpResults');
+    if (!q) { results.innerHTML = ''; return; }
+    const res = await fetch('/api/jp-search?q=' + encodeURIComponent(q)).then(r => r.json());
+    results.innerHTML = `<div style="color:#999;font-size:12px;margin-bottom:8px">대사 ${res.total}건, 이름/라벨 ${res.labelHits.length}건 매치</div>`;
+    for (const hit of res.results) {
+      const div = document.createElement('div');
+      div.className = 'hit';
+      div.innerHTML = hit.lines.map(l => `<div class="${l.isMatch ? 'match' : ''}">${l.text.replace(/</g,'&lt;')}</div>`).join('');
+      results.appendChild(div);
+    }
+    if (res.labelHits.length) {
+      const div = document.createElement('div');
+      div.className = 'hit';
+      div.innerHTML = res.labelHits.map(l => `<div class="match">${l.text.replace(/</g,'&lt;')}</div>`).join('');
+      results.appendChild(div);
+    }
+  }, 250);
+});
+
+load();
+</script>
+</body>
+</html>
