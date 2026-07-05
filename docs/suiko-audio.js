@@ -43,6 +43,28 @@
     }
   }
 
+  // doswasmx's own sound effects run through a ScriptProcessorNode (myApp.pcmPlayer,
+  // set up once in script.js's initAudio()), not the AudioWorklet the SC-55 synth uses.
+  // ScriptProcessorNode has a known WebKit/mobile bug: after a background/foreground
+  // cycle, ctx.resume() succeeds and ctx.state goes back to 'running', but the node's
+  // onaudioprocess callback simply never fires again — the context is alive, the node is
+  // dead. resume() alone can't fix that; the only way out is to throw the node away and
+  // create a fresh one with the same callback, reconnected into the graph. Doing this on
+  // every click/keydown (unlike unlockAudioContexts()) would churn nodes needlessly during
+  // normal play, so it's wired to only the actual "returning from background" triggers.
+  function revivePcmPlayer() {
+    if (!window.myApp || !myApp.audioContext || !myApp.pcmPlayer || !myApp.gainNode) return;
+    var oldNode = myApp.pcmPlayer;
+    var handler = oldNode.onaudioprocess;
+    var bufferSize = oldNode.bufferSize;
+    oldNode.disconnect();
+    oldNode.onaudioprocess = null;
+    var fresh = myApp.audioContext.createScriptProcessor(bufferSize, 2, 2);
+    fresh.onaudioprocess = handler;
+    fresh.connect(myApp.gainNode);
+    myApp.pcmPlayer = fresh;
+  }
+
   var muteShown = false;
   function showMuteButton() {
     if (muteShown) return;
@@ -59,9 +81,9 @@
   // programmatic resume() call outside a trusted user gesture even takes effect) varies
   // by mobile browser, so layer several rather than rely on just one.
   document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) resumeAudio();
+    if (!document.hidden) { resumeAudio(); revivePcmPlayer(); }
   });
-  window.addEventListener('pageshow', resumeAudio);
+  window.addEventListener('pageshow', function () { resumeAudio(); revivePcmPlayer(); });
   window.addEventListener('focus', resumeAudio);
   document.addEventListener('click', resumeAudio);
   document.addEventListener('keydown', resumeAudio);
