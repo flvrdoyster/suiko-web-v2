@@ -41,12 +41,12 @@
   // Enable Start once the doswasmx WASM module has initialised.
   if (start) {
     start.disabled = true;
-    showToast('엔진 로딩 중…', 0);
+    showToast('에뮬레이터를 불러오는 중입니다.', 0);
     var poll = setInterval(function () {
       if (engineReady()) {
         clearInterval(poll);
         start.disabled = false;
-        showToast('준비 완료 — 시작을 누르세요', 0);
+        showToast('에뮬레이터를 불러왔습니다.', 0);
       }
     }, 300);
 

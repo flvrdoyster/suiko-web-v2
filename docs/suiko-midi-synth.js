@@ -7047,9 +7047,9 @@ var require_suiko_midi_synth_src = __commonJS({
       gainNode = ctx.createGain();
       synth.connect(gainNode);
       gainNode.connect(ctx.destination);
-      status("SC-55: downloading soundfont (9MB)\u2026");
+      status("\uc0ac\uc6b4\ub4dc\ud3f0\ud2b8\ub97c \ub2e4\uc6b4\ub85c\ub4dc \ud558\uace0 \uc788\uc2b5\ub2c8\ub2e4.");
       const sf = await (await fetch(SOUNDFONT_URL)).arrayBuffer();
-      status("SC-55: loading soundfont\u2026");
+      status("\uc0ac\uc6b4\ub4dc\ud3f0\ud2b8\ub97c \ubd88\ub7ec\uc624\ub294 \uc911\uc785\ub2c8\ub2e4.");
       await synth.soundBankManager.addSoundBank(sf, "main");
       await synth.isReady;
       ready = true;
@@ -7060,11 +7060,11 @@ var require_suiko_midi_synth_src = __commonJS({
         }
       }
       pending.length = 0;
-      status("SC-55: ready \u2014 waiting for MIDI");
+      status("\uc0ac\uc6b4\ub4dc\ud3f0\ud2b8\ub97c \ubd88\ub7ec\uc654\uc2b5\ub2c8\ub2e4.");
     }
     setup().catch((e) => {
       console.error(e);
-      status("SC-55 error: " + e.message);
+      status("\uc0ac\uc6b4\ub4dc\ud3f0\ud2b8\ub97c \ubd88\ub7ec\uc624\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4.");
     });
     function resume() {
       if (ctx && ctx.state === "suspended") ctx.resume();
