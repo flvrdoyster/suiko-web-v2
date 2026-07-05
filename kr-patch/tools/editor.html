@@ -69,6 +69,7 @@
 const SECTIONS = [
   { key: 'dialogue', label: '대사' },
   { key: 'labels', label: '이름/라벨' },
+  { key: 'fonts', label: '폰트' },
 ];
 let data = null;
 let curSection = 'dialogue';
@@ -80,7 +81,7 @@ function byteLen(s) {
   return n;
 }
 function requiredLength(section, e) {
-  return e.length;
+  return section === 'fonts' ? e.maxLength : e.length;
 }
 
 async function load() {
@@ -141,18 +142,27 @@ function renderRow(e) {
   // 'labels' slots include trailing full-width-space padding as part of `text` (see
   // hwanse-names.js) — the server pads a shorter replacement back out automatically, so a
   // shortfall isn't an error here the way it is for 'dialogue' ('@'-terminated, no padding
-  // concept, must match exactly).
+  // concept, must match exactly). 'fonts' is a fixed-size NUL-padded LOGFONT face-name
+  // buffer (see hwanse-font.js) — any length up to the max fits, no padding needed.
   function willAutoPad(got) {
     return curSection === 'labels' && got < need && (need - got) % 2 === 0;
+  }
+  function fits(got) {
+    return curSection === 'fonts' ? got <= need : got === need || willAutoPad(got);
   }
   function updateByteInfo() {
     const val = input.value || e.text;
     const got = byteLen(val);
-    const autoPad = input.value && willAutoPad(got);
-    const mismatch = got !== need && !autoPad;
-    bytesDiv.textContent = autoPad ? `${got} / ${need} 바이트 (전각공백 자동 패딩됨)` : `${got} / ${need} 바이트`;
+    const ok = fits(got);
+    const mismatch = input.value && !ok;
+    if (curSection === 'fonts') {
+      bytesDiv.textContent = `${got} / ${need} 바이트 (최대)`;
+    } else {
+      const autoPad = input.value && willAutoPad(got) && got !== need;
+      bytesDiv.textContent = autoPad ? `${got} / ${need} 바이트 (전각공백 자동 패딩됨)` : `${got} / ${need} 바이트`;
+    }
     bytesDiv.classList.toggle('bad', mismatch);
-    input.classList.toggle('mismatch', mismatch && input.value);
+    input.classList.toggle('mismatch', mismatch);
     input.classList.toggle('ok-changed', !mismatch && input.value && input.value !== e.text);
   }
   input.addEventListener('input', updateByteInfo);
@@ -171,8 +181,8 @@ function renderRow(e) {
     const fixed = input.value;
     if (fixed) {
       const got = byteLen(fixed);
-      if (got !== need && !willAutoPad(got)) {
-        alert(`바이트 길이가 안 맞음: ${got} (필요: ${need}). 저장 안 함.`);
+      if (!fits(got)) {
+        alert(`바이트 길이가 안 맞음: ${got} (필요: ${curSection === 'fonts' ? '<= ' : ''}${need}). 저장 안 함.`);
         return;
       }
     }

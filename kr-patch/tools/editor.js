@@ -21,6 +21,7 @@ const HTML_PATH = path.join(__dirname, 'editor.html');
 
 const HWANSE_TEXT = require('./hwanse-text.js');
 const HWANSE_NAMES = require('./hwanse-names.js');
+const HWANSE_FONT = require('./hwanse-font.js');
 
 const PORT = parseInt(process.argv[2], 10) || 8182;
 
@@ -33,13 +34,17 @@ function saveTranslation(t) {
   fs.renameSync(tmp, TRANS_PATH);
 }
 
-// Returns the byte length a `fixed` replacement must exactly match for a given section/entry.
+// Returns the byte length a `fixed` replacement must fit within for a given section/entry.
+// 'fonts' is a fixed-size NUL-padded buffer (LOGFONT lfFaceName) — a shorter name is fine,
+// it just needs to fit; 'dialogue'/'labels' are byte-length-exact slots (see padToFit()).
 function requiredLength(section, entry) {
-  return entry.length;
+  return section === 'fonts' ? entry.maxLength : entry.length;
 }
 
 function encodeFor(section, text) {
-  const encode = section === 'labels' ? HWANSE_NAMES.encodeCp949 : HWANSE_TEXT.encodeCp949;
+  const encode = section === 'labels' ? HWANSE_NAMES.encodeCp949
+    : section === 'fonts' ? HWANSE_FONT.encodeCp949
+    : HWANSE_TEXT.encodeCp949;
   return encode(text);
 }
 
@@ -114,11 +119,11 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'POST' && url.pathname === '/api/save') {
       const body = JSON.parse(await readBody(req));
       const { section, offset, fixed } = body;
-      if (!['dialogue', 'labels'].includes(section)) {
+      if (!['dialogue', 'labels', 'fonts'].includes(section)) {
         return send(res, 400, { error: 'bad section' });
       }
       const t = loadTranslation();
-      const entry = t[section].find((e) => e.offset === offset);
+      const entry = (t[section] || []).find((e) => e.offset === offset);
       if (!entry) return send(res, 404, { error: 'entry not found' });
 
       let toSave = fixed || '';
@@ -126,9 +131,12 @@ const server = http.createServer(async (req, res) => {
         const need = requiredLength(section, entry);
         toSave = padToFit(section, toSave, need);
         const got = encodeFor(section, toSave).length;
-        if (got !== need) {
+        // 'fonts' just needs to fit the fixed NUL-padded buffer; everything else must
+        // match the slot exactly (see requiredLength()/padToFit()).
+        const ok = section === 'fonts' ? got <= need : got === need;
+        if (!ok) {
           return send(res, 400, {
-            error: `byte length mismatch: need ${need}, got ${got}`,
+            error: `byte length ${section === 'fonts' ? 'exceeds' : 'mismatch'}: need ${section === 'fonts' ? '<= ' : ''}${need}, got ${got}`,
             need,
             got,
           });

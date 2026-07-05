@@ -88169,12 +88169,6 @@
       "fixed": "환세취호전 ver.1.1"
     },
     {
-      "offset": 338036,
-      "length": 6,
-      "text": "굴림체",
-      "fixed": ""
-    },
-    {
       "offset": 352705,
       "length": 4,
       "text": "뼬뼬",
@@ -90500,6 +90494,14 @@
       "offset": 1106325,
       "length": 17,
       "text": " 가　열리지　않음",
+      "fixed": ""
+    }
+  ],
+  "fonts": [
+    {
+      "offset": 338036,
+      "maxLength": 32,
+      "text": "굴림체",
       "fixed": ""
     }
   ]

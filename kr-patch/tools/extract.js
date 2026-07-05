@@ -26,6 +26,7 @@ const crypto = require('crypto');
 
 const DIALOGUE = require('./hwanse-text.js');
 const NAMES = require('./hwanse-names.js');
+const FONT = require('./hwanse-font.js');
 const JP_TEXT = require('./gense-text.js');
 const JP_NAMES = require('./gense-names.js');
 
@@ -46,18 +47,19 @@ function fail(msg) {
   process.exit(1);
 }
 
-// Carries over `fixed` from a previous run's entries, matched by (offset, length), so
+// Carries over `fixed` from a previous run's entries, matched by a key (offset+length by
+// default; fonts use offset+maxLength since they don't have a `length` field), so
 // re-extraction after an extractor tweak doesn't wipe out review work already saved via
 // the editor. Reports any previously-fixed entry that no longer has a matching slot.
-function mergeFixed(oldEntries, newEntries, label) {
+function mergeFixed(oldEntries, newEntries, label, keyOf = (e) => `${e.offset}:${e.length}`) {
   if (!oldEntries) return newEntries;
   const oldByKey = new Map();
   for (const e of oldEntries) {
-    if (e.fixed) oldByKey.set(`${e.offset}:${e.length}`, e.fixed);
+    if (e.fixed) oldByKey.set(keyOf(e), e.fixed);
   }
   const matchedKeys = new Set();
   const merged = newEntries.map((e) => {
-    const key = `${e.offset}:${e.length}`;
+    const key = keyOf(e);
     const fixed = oldByKey.get(key);
     if (fixed !== undefined) matchedKeys.add(key);
     return { ...e, fixed: fixed || '' };
@@ -66,12 +68,11 @@ function mergeFixed(oldEntries, newEntries, label) {
   if (orphaned.length) {
     console.warn(
       `\n⚠ ${label}: ${orphaned.length} previously-fixed entr${orphaned.length === 1 ? 'y' : 'ies'} ` +
-      `no longer match any extracted offset+length — their edits were NOT carried over:`
+      `no longer match any extracted slot — their edits were NOT carried over:`
     );
     for (const k of orphaned.slice(0, 20)) {
-      const [offset, length] = k.split(':');
-      const old = oldEntries.find((e) => e.offset === Number(offset) && e.length === Number(length));
-      console.warn(`  0x${Number(offset).toString(16)} [${length}] fixed=${JSON.stringify(old.fixed)}`);
+      const old = oldEntries.find((e) => keyOf(e) === k);
+      console.warn(`  key=${k} fixed=${JSON.stringify(old.fixed)}`);
     }
     if (orphaned.length > 20) console.warn(`  ... and ${orphaned.length - 20} more`);
     console.warn('Resolve these by hand (re-apply the edit at its new offset) before proceeding.\n');
@@ -90,7 +91,14 @@ const krBuf = fs.readFileSync(krExePath);
 const dialogue = DIALOGUE.extract(krBuf);
 const excludeMask = new Uint8Array(krBuf.length);
 for (const e of dialogue) for (let i = e.offset; i < e.offset + e.length; i++) excludeMask[i] = 1;
+// Exclude the LOGFONT face-name field(s) before labels runs, so the generic label
+// extractor doesn't ALSO capture "굴림체" as its own (undersized, 6-byte) entry —
+// hwanse-font.js models the true 32-byte NUL-padded slot instead. See hwanse-font.js.
+for (const { offset, maxLength } of FONT.FONT_FIELDS) {
+  for (let i = offset; i < offset + maxLength; i++) excludeMask[i] = 1;
+}
 const labels = NAMES.extract(krBuf, excludeMask);
+const fonts = FONT.extract(krBuf);
 
 for (const list of [dialogue, labels]) {
   list.sort((a, b) => a.offset - b.offset);
@@ -103,6 +111,7 @@ for (const list of [dialogue, labels]) {
 
 let rebuilt = DIALOGUE.build(krBuf, dialogue);
 rebuilt = NAMES.build(rebuilt, labels);
+rebuilt = FONT.build(rebuilt, fonts);
 if (Buffer.compare(rebuilt, krBuf) !== 0) {
   fail('round-trip check failed: rebuilding with unchanged entries did not reproduce the original file byte-for-byte. Refusing to write translation.json.');
 }
@@ -110,15 +119,17 @@ if (Buffer.compare(rebuilt, krBuf) !== 0) {
 const existing = loadExisting(outKrPath);
 const mergedDialogue = mergeFixed(existing && existing.dialogue, dialogue, 'dialogue');
 const mergedLabels = mergeFixed(existing && existing.labels, labels, 'labels');
+const mergedFonts = mergeFixed(existing && existing.fonts, fonts, 'fonts', (e) => `${e.offset}:${e.maxLength}`);
 
 const translation = {
   source_file: path.basename(krExePath),
   source_md5: crypto.createHash('md5').update(krBuf).digest('hex'),
   dialogue: mergedDialogue.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '' })),
   labels: mergedLabels.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '' })),
+  fonts: mergedFonts.map((e) => ({ offset: e.offset, maxLength: e.maxLength, text: e.text, fixed: e.fixed || '' })),
 };
 fs.writeFileSync(outKrPath, JSON.stringify(translation, null, 2));
-console.log(`wrote ${path.relative(ROOT, outKrPath)}: dialogue=${dialogue.length}, labels=${labels.length} (round-trip OK)`);
+console.log(`wrote ${path.relative(ROOT, outKrPath)}: dialogue=${dialogue.length}, labels=${labels.length}, fonts=${fonts.length} (round-trip OK)`);
 
 // --- JP (read-only reference) ---
 if (!fs.existsSync(jpExePath)) fail(`JP exe not found: ${jpExePath}`);
