@@ -46044,43 +46044,43 @@
       "offset": 947240,
       "length": 12,
       "text": "술을　마신후",
-      "fixed": ""
+      "fixed": "술을　마시고"
     },
     {
       "offset": 947256,
       "length": 14,
       "text": "얼근히취함이나",
-      "fixed": ""
+      "fixed": "모드를　알딸딸"
     },
     {
       "offset": 947274,
       "length": 20,
       "text": "만취함　모드로　바꿔",
-      "fixed": ""
+      "fixed": "또는　비틀비틀로　　"
     },
     {
       "offset": 947298,
       "length": 16,
       "text": "사용하는　특기．",
-      "fixed": ""
+      "fixed": "바꾸는　특기　　"
     },
     {
       "offset": 947318,
       "length": 14,
       "text": "노주를　마신후",
-      "fixed": ""
+      "fixed": "노주를　마시고"
     },
     {
       "offset": 947336,
       "length": 18,
       "text": "얼근히취함　모드나",
-      "fixed": ""
+      "fixed": "모드를　알딸딸이나"
     },
     {
       "offset": 947358,
       "length": 16,
       "text": "만취함으로　바꿈",
-      "fixed": ""
+      "fixed": "비틀비틀로　바꿈"
     },
     {
       "offset": 947378,
@@ -46092,19 +46092,19 @@
       "offset": 947398,
       "length": 16,
       "text": "특급주를　마신후",
-      "fixed": ""
+      "fixed": "특급주를　마시고"
     },
     {
       "offset": 947418,
       "length": 18,
       "text": "얼근히취함　모드나",
-      "fixed": ""
+      "fixed": "모드를　알딸딸이나"
     },
     {
       "offset": 947440,
       "length": 16,
       "text": "만취함으로　바꿈",
-      "fixed": ""
+      "fixed": "비틀비틀로　바꿈"
     },
     {
       "offset": 947460,
@@ -46116,19 +46116,19 @@
       "offset": 947480,
       "length": 14,
       "text": "화주를　마신후",
-      "fixed": ""
+      "fixed": "화주를　마시고"
     },
     {
       "offset": 947498,
       "length": 18,
       "text": "얼근히취함　모드나",
-      "fixed": ""
+      "fixed": "모드를　알딸딸이나"
     },
     {
       "offset": 947520,
       "length": 16,
       "text": "만취함으로　바꿈",
-      "fixed": ""
+      "fixed": "비틀비틀로　바꿈"
     },
     {
       "offset": 947540,
@@ -46146,19 +46146,19 @@
       "offset": 947580,
       "length": 18,
       "text": "얼근히취함　모드나",
-      "fixed": ""
+      "fixed": "모드를　알딸딸이나"
     },
     {
       "offset": 947602,
       "length": 16,
       "text": "만취함으로　바꿈",
-      "fixed": ""
+      "fixed": "비틀비틀로　바꿈"
     },
     {
       "offset": 947622,
       "length": 14,
       "text": "곤드레　주의！",
-      "fixed": ""
+      "fixed": "곤드레는　위험"
     },
     {
       "offset": 947640,
@@ -48066,7 +48066,7 @@
       "offset": 954132,
       "length": 18,
       "text": "맨손으로　싸워야만",
-      "fixed": ""
+      "fixed": "맨손으로　싸우는게"
     },
     {
       "offset": 954154,
@@ -48090,7 +48090,7 @@
       "offset": 954206,
       "length": 18,
       "text": "마실수록　강해진다",
-      "fixed": ""
+      "fixed": "마실수록　강해지는"
     },
     {
       "offset": 954228,
@@ -48108,7 +48108,7 @@
       "offset": 954274,
       "length": 16,
       "text": "이지방의　토산주",
-      "fixed": ""
+      "fixed": "지방의　향토주　"
     },
     {
       "offset": 954294,
@@ -48120,19 +48120,19 @@
       "offset": 954312,
       "length": 16,
       "text": "알콜　도수　높은",
-      "fixed": ""
+      "fixed": "알콜도수가　높아"
     },
     {
       "offset": 954332,
       "length": 18,
       "text": "맛있는　술　한입에",
-      "fixed": ""
+      "fixed": "맛있다　한　모금에"
     },
     {
       "offset": 954354,
       "length": 18,
       "text": "꿀꺽하는　것도？！",
-      "fixed": ""
+      "fixed": "뻗어버릴　수도!?　"
     },
     {
       "offset": 954376,
@@ -48192,7 +48192,7 @@
       "offset": 954560,
       "length": 22,
       "text": "방어효과　따봉인　도복",
-      "fixed": ""
+      "fixed": "방어효과가　높은　도복"
     },
     {
       "offset": 954586,
@@ -48294,7 +48294,7 @@
       "offset": 954930,
       "length": 16,
       "text": "초　파워의　손톱",
-      "fixed": ""
+      "fixed": "파워풀한　손톱　"
     },
     {
       "offset": 954950,
@@ -48312,7 +48312,7 @@
       "offset": 954984,
       "length": 12,
       "text": "일격필충！！",
-      "fixed": ""
+      "fixed": "일격필중！！"
     },
     {
       "offset": 955000,
@@ -48426,7 +48426,7 @@
       "offset": 955372,
       "length": 18,
       "text": "실용성은　왕따봉！",
-      "fixed": ""
+      "fixed": "실용성은　대폭상승"
     },
     {
       "offset": 955394,
@@ -48588,7 +48588,7 @@
       "offset": 955910,
       "length": 6,
       "text": "평소복",
-      "fixed": ""
+      "fixed": "평상복"
     },
     {
       "offset": 955920,
@@ -48600,19 +48600,19 @@
       "offset": 955944,
       "length": 16,
       "text": "경쾌함과　강함을",
-      "fixed": ""
+      "fixed": "가벼움과　강함을"
     },
     {
       "offset": 955964,
       "length": 20,
       "text": "지닌　실용적인　갑옷",
-      "fixed": ""
+      "fixed": "겸한　실용적인　갑옷"
     },
     {
       "offset": 955988,
       "length": 14,
       "text": "닌자　정통복장",
-      "fixed": ""
+      "fixed": "닌자　정석복장"
     },
     {
       "offset": 956006,
@@ -48660,7 +48660,7 @@
       "offset": 956148,
       "length": 22,
       "text": "믿음직한　로봇의　모습",
-      "fixed": ""
+      "fixed": "그　모습은　마치　로봇"
     },
     {
       "offset": 956174,
@@ -48768,7 +48768,7 @@
       "offset": 956552,
       "length": 12,
       "text": "야，기분좋다",
-      "fixed": ""
+      "fixed": "음　기분좋군"
     },
     {
       "offset": 956568,
@@ -48780,7 +48780,7 @@
       "offset": 956584,
       "length": 14,
       "text": "얼근해진　상태",
-      "fixed": ""
+      "fixed": "알딸딸한　상태"
     },
     {
       "offset": 956602,
@@ -48804,7 +48804,7 @@
       "offset": 956666,
       "length": 16,
       "text": "완전히　올라와서",
-      "fixed": ""
+      "fixed": "완전히　취해버려"
     },
     {
       "offset": 956686,
@@ -48834,7 +48834,7 @@
       "offset": 956782,
       "length": 18,
       "text": "슈퍼호모드　발동！",
-      "fixed": ""
+      "fixed": "슈퍼호랑이　모드！"
     },
     {
       "offset": 956804,
@@ -48846,25 +48846,25 @@
       "offset": 956824,
       "length": 14,
       "text": "완전히　취해서",
-      "fixed": ""
+      "fixed": "기어코　꽐라가"
     },
     {
       "offset": 956842,
       "length": 18,
       "text": "맛이　가버린　상태",
-      "fixed": ""
+      "fixed": "된　인사불성　상태"
     },
     {
       "offset": 956864,
       "length": 12,
       "text": "맛이　갔군？",
-      "fixed": ""
+      "fixed": "드디어　발정"
     },
     {
       "offset": 956880,
       "length": 18,
       "text": "…평소에　그런가？",
-      "fixed": ""
+      "fixed": "…평소도　그런가？"
     },
     {
       "offset": 956902,
@@ -49884,13 +49884,13 @@
       "offset": 960322,
       "length": 10,
       "text": "데드드래곤",
-      "fixed": ""
+      "fixed": "데스드래곤"
     },
     {
       "offset": 960336,
       "length": 6,
       "text": "두개골",
-      "fixed": ""
+      "fixed": "도올　"
     },
     {
       "offset": 960346,
@@ -56052,31 +56052,31 @@
       "offset": 1029992,
       "length": 24,
       "text": "아타호는　술만　장비하면",
-      "fixed": ""
+      "fixed": "아타호는　술을　장비하면"
     },
     {
       "offset": 1030020,
       "length": 30,
       "text": "전투중에「마시다」라는　행동이",
-      "fixed": ""
+      "fixed": "전투　중에「마신다」는　행동을"
     },
     {
       "offset": 1030054,
       "length": 14,
       "text": "가능하게　됐다",
-      "fixed": ""
+      "fixed": "할수있게　됐다"
     },
     {
       "offset": 1030076,
       "length": 36,
       "text": "술을　마시면　모드가「얼근히취함」，",
-      "fixed": ""
+      "fixed": "술을　마시면　모드가「알딸딸」이나　"
     },
     {
       "offset": 1030116,
       "length": 32,
       "text": "「만취함」，「정신없이취함」으로",
-      "fixed": ""
+      "fixed": "「비틀비틀」，「부어라마셔라」로"
     },
     {
       "offset": 1030152,
