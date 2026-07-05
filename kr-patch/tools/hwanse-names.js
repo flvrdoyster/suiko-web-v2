@@ -80,18 +80,19 @@ function isUpper(b) {
   return b >= 0x41 && b <= 0x5a;
 }
 
-// Scans [off, off+len) for a Latin-letter run that looks like coincidental stat-byte
-// noise rather than real text — shorter than 3 bytes, mixed-case ("sZnPdd"), or containing
-// 3+ identical consecutive letters ("xxxddd" is two back-to-back triples of that shape)
-// all matched noise empirically, while every real example found was a single
+// Scans [off, off+len) for the FIRST Latin-letter run that looks like coincidental
+// stat-byte noise rather than real text — shorter than 3 bytes, mixed-case ("sZnPdd"), or
+// containing 3+ identical consecutive letters ("xxxddd" is two back-to-back triples of
+// that shape) all matched noise empirically, while every real example found was a single
 // consistently-cased whole word ("ver") with no repeated-letter run. See module doc
 // comment and kr-patch/docs/NOTES.md.
 //
-// Returns the offset where the noise run starts, or -1 if the span is clean. A caller
-// truncates the entry there instead of discarding the whole span — a real name
-// immediately followed by noise (no invalid byte in between, e.g. "대폭발　　　　　xxxddd")
-// would otherwise lose its real portion too.
-function findNoiseStart(buf, off, len) {
+// Returns [start, end) of the noise run, or null if the span is clean. The caller doesn't
+// just truncate at `start` — noise can precede real text too (a leading digit+letter from
+// the previous record's stat bytes, e.g. "9A인민복" where "9A" is noise and "인민복" is a
+// real name that would otherwise be discarded along with it), so the span on *both* sides
+// of the noise run needs to be considered separately. See emitCleanEntries().
+function findNoiseRun(buf, off, len) {
   let i = off;
   while (i < off + len) {
     const l = charLenAt(buf, i);
@@ -108,13 +109,13 @@ function findNoiseStart(buf, off, len) {
         runLen++;
         j++;
       }
-      if (runLen < 3 || mixedCase || maxRepeat >= 3) return i;
+      if (runLen < 3 || mixedCase || maxRepeat >= 3) return [i, j];
       i = j;
       continue;
     }
     i += l || 1;
   }
-  return -1;
+  return null;
 }
 
 function countHangul(buf, off, len) {
@@ -132,24 +133,37 @@ function inNumericTable(off) {
   return NUMERIC_TABLE_RANGES.some(([s, e]) => off >= s && off < e);
 }
 
+// Emits clean sub-spans of [start, end), splitting around every noise run found inside
+// (noise can appear before, after, or between real text — see findNoiseRun()).
+function emitCleanEntries(buf, start, end, entries) {
+  if (end <= start) return;
+  const noise = findNoiseRun(buf, start, end - start);
+  if (!noise) {
+    if (countHangul(buf, start, end - start) >= 2) {
+      const text = decodeCp949(buf.subarray(start, end));
+      if (text) entries.push({ offset: start, length: end - start, text });
+    }
+    return;
+  }
+  const [noiseStart, noiseEnd] = noise;
+  emitCleanEntries(buf, start, noiseStart, entries);
+  emitCleanEntries(buf, noiseEnd, end, entries);
+}
+
 function extract(buf, excludeMask) {
   const entries = [];
   let i = DATA_RAW;
   let segStart = i;
   while (i < DATA_END) {
     if ((excludeMask && excludeMask[i]) || inNumericTable(i)) {
+      emitCleanEntries(buf, segStart, i, entries);
       segStart = i + 1;
       i++;
       continue;
     }
     const len = charLenAt(buf, i);
     if (len === 0) {
-      const noiseAt = findNoiseStart(buf, segStart, i - segStart);
-      const trueEnd = noiseAt >= 0 ? noiseAt : i;
-      if (trueEnd > segStart && countHangul(buf, segStart, trueEnd - segStart) >= 2) {
-        const text = decodeCp949(buf.subarray(segStart, trueEnd));
-        if (text) entries.push({ offset: segStart, length: trueEnd - segStart, text });
-      }
+      emitCleanEntries(buf, segStart, i, entries);
       segStart = i + 1;
       i++;
       continue;

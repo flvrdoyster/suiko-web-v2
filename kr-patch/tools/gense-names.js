@@ -58,9 +58,11 @@ function isUpper(b) {
 // Same noise guard as hwanse-names.js: a Latin-letter run shorter than 3 bytes, mixed-case,
 // or containing 3+ identical consecutive letters ("xxxddd"), was always coincidental
 // stat-byte noise in the KR file; applying the same rule here since the record format is
-// shared. Returns the offset where the noise starts (a caller truncates there instead of
-// discarding the whole span — see hwanse-names.js's findNoiseStart for why), or -1 if clean.
-function findNoiseStart(buf, off, len) {
+// shared. Returns [start, end) of the first noise run, or null if clean — noise can
+// precede real text too (e.g. a leading digit+letter from the previous record's stat
+// bytes), so the caller splits and re-checks both sides rather than just truncating the
+// tail. See hwanse-names.js's findNoiseRun()/emitCleanEntries() for the full rationale.
+function findNoiseRun(buf, off, len) {
   let i = off;
   while (i < off + len) {
     const l = charLenAt(buf, i);
@@ -77,13 +79,13 @@ function findNoiseStart(buf, off, len) {
         runLen++;
         j++;
       }
-      if (runLen < 3 || mixedCase || maxRepeat >= 3) return i;
+      if (runLen < 3 || mixedCase || maxRepeat >= 3) return [i, j];
       i = j;
       continue;
     }
     i += l || 1;
   }
-  return -1;
+  return null;
 }
 
 function countJapanese(buf, off, len) {
@@ -97,24 +99,35 @@ function countJapanese(buf, off, len) {
   return count;
 }
 
+function emitCleanEntries(buf, start, end, entries) {
+  if (end <= start) return;
+  const noise = findNoiseRun(buf, start, end - start);
+  if (!noise) {
+    if (countJapanese(buf, start, end - start) >= 2) {
+      const text = decodeCp932(buf.subarray(start, end));
+      if (text) entries.push({ offset: start, length: end - start, text });
+    }
+    return;
+  }
+  const [noiseStart, noiseEnd] = noise;
+  emitCleanEntries(buf, start, noiseStart, entries);
+  emitCleanEntries(buf, noiseEnd, end, entries);
+}
+
 function extract(buf, excludeMask) {
   const entries = [];
   let i = DATA_RAW;
   let segStart = i;
   while (i < DATA_END) {
     if (excludeMask && excludeMask[i]) {
+      emitCleanEntries(buf, segStart, i, entries);
       segStart = i + 1;
       i++;
       continue;
     }
     const len = charLenAt(buf, i);
     if (len === 0) {
-      const noiseAt = findNoiseStart(buf, segStart, i - segStart);
-      const trueEnd = noiseAt >= 0 ? noiseAt : i;
-      if (trueEnd > segStart && countJapanese(buf, segStart, trueEnd - segStart) >= 2) {
-        const text = decodeCp932(buf.subarray(segStart, trueEnd));
-        if (text) entries.push({ offset: segStart, length: trueEnd - segStart, text });
-      }
+      emitCleanEntries(buf, segStart, i, entries);
       segStart = i + 1;
       i++;
       continue;
