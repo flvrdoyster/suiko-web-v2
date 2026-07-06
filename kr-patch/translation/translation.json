@@ -53542,28 +53542,28 @@
       "offset": 945222,
       "length": 12,
       "text": "불　청　객　",
-      "fixed": "",
+      "fixed": "돌연한　방문",
       "confirmed": false
     },
     {
       "offset": 945238,
       "length": 12,
       "text": "의외의　재회",
-      "fixed": "",
+      "fixed": "의외의　재회",
       "confirmed": false
     },
     {
       "offset": 945254,
       "length": 12,
       "text": "자객　침입　",
-      "fixed": "",
+      "fixed": "계획된　자객",
       "confirmed": false
     },
     {
       "offset": 945270,
       "length": 16,
       "text": "고양이귀　권법녀",
-      "fixed": "",
+      "fixed": "고양이귀　여권사",
       "confirmed": false
     },
     {
@@ -53571,13 +53571,13 @@
       "length": 12,
       "text": "호랑이　동굴",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 945306,
       "length": 16,
       "text": "대격돌　무술대회",
-      "fixed": "",
+      "fixed": "대격돌　무투대회",
       "confirmed": false
     },
     {
@@ -53585,13 +53585,13 @@
       "length": 14,
       "text": "최강　맹호전설",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 945344,
       "length": 14,
       "text": "의문의　던전　",
-      "fixed": "",
+      "fixed": "의문의　미궁　",
       "confirmed": false
     },
     {
@@ -53599,7 +53599,7 @@
       "length": 16,
       "text": "기술　레벨업！　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 945466,
@@ -75312,7 +75312,7 @@
       "offset": 1144020,
       "length": 8,
       "text": "　아타호",
-      "fixed": "",
+      "fixed": "아타호　",
       "confirmed": false
     },
     {
@@ -75460,13 +75460,13 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144536,
       "length": 22,
       "text": "「으응　누구신가…？！",
-      "fixed": "",
+      "fixed": "「으음　누구신지？　　",
       "confirmed": false
     },
     {
@@ -75474,20 +75474,20 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144580,
       "length": 14,
       "text": "「아∼아저씨！",
-      "fixed": "",
+      "fixed": "「오　아저씨！",
       "confirmed": false
     },
     {
       "offset": 1144598,
       "length": 16,
       "text": "　건강하시네요！",
-      "fixed": "",
+      "fixed": "　건강하셨군요　",
       "confirmed": false
     },
     {
@@ -75495,20 +75495,20 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144634,
       "length": 10,
       "text": "「뭐라고？",
-      "fixed": "",
+      "fixed": "「뭐라고？",
       "confirmed": false
     },
     {
       "offset": 1144648,
       "length": 24,
       "text": "　손자는　아직　안왔어！",
-      "fixed": "",
+      "fixed": "　손자는　아직　안　왔네",
       "confirmed": false
     },
     {
@@ -75516,34 +75516,34 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144706,
       "length": 20,
       "text": "　건강해　보인다구요",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144738,
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144746,
       "length": 8,
       "text": "「으응？",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144758,
       "length": 14,
       "text": "　미안해여！！",
-      "fixed": "",
+      "fixed": "　미안하구먼！",
       "confirmed": false
     },
     {
@@ -75551,13 +75551,13 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144794,
       "length": 14,
       "text": "「망령나셨나…",
-      "fixed": "",
+      "fixed": "「노망나셨나…",
       "confirmed": false
     },
     {
@@ -75565,20 +75565,20 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144828,
       "length": 12,
       "text": "「뭣이라고！",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1144844,
       "length": 22,
       "text": "　난　아직　건강혀！！",
-      "fixed": "",
+      "fixed": "　난　아직　쌩쌩혀！！",
       "confirmed": false
     },
     {
@@ -76789,7 +76789,7 @@
       "offset": 1149452,
       "length": 24,
       "text": "　않은，호랑이　동굴같은",
-      "fixed": "",
+      "fixed": "　않은，호랑이동굴　같은",
       "confirmed": false
     },
     {
@@ -90586,7 +90586,7 @@
       "offset": 1348832,
       "length": 36,
       "text": "　『불타는　마검』은　호랑이　동굴，",
-      "fixed": "　『불타는마검』은　호랑이　동굴，　",
+      "fixed": "　『불타는마검』은　호랑이동굴，　　",
       "confirmed": false
     },
     {
@@ -103454,8 +103454,8 @@
       "offset": 564906,
       "length": 16,
       "text": "폭발직전　　　　",
-      "fixed": "폭발직전　　　　",
-      "confirmed": false
+      "fixed": "",
+      "confirmed": true
     },
     {
       "offset": 564930,
