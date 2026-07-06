@@ -535,14 +535,6 @@ class MyClass {
                     }, 100);
                 }
 
-                //save the hard disk every time we restart/shutdown
-                if (!myClass.rivetsData.loggedIn)
-                {
-                    setTimeout(() => {
-                        myClass.saveDrive();    
-                    }, 100);
-                }
-
                 //we are back to the dos shell
                 myClass.rivetsData.isoMounted = false;
                 myClass.rivetsData.floppyMounted = false;
@@ -854,19 +846,18 @@ class MyClass {
             else if (this.rivetsData.initialInstallation || !this.rivetsData.loggedIn)
             {
 
-                if (this.rivetsData.dblistDisks.length == 0)
+                // suiko-web-v2: DEFAULTIMG always wins over a cached dblistDisks entry,
+                // so players get the current final-shared.img instead of a stale disk.
+                if (this.rivetsData.settings.DEFAULTIMG)
                 {
-                    if (this.rivetsData.settings.DEFAULTIMG)
-                    {
-                        this.load_file(this.rivetsData.settings.DEFAULTIMG);
-                    }
-                    else
-                    {
-                        //this means it is their initial windows installation
-                        this.img_loaded = true;
-                        this.rivetsData.initialInstallation = true;
-                        this.LoadEmulator();
-                    }
+                    this.load_file(this.rivetsData.settings.DEFAULTIMG);
+                }
+                else if (this.rivetsData.dblistDisks.length == 0)
+                {
+                    //this means it is their initial windows installation
+                    this.img_loaded = true;
+                    this.rivetsData.initialInstallation = true;
+                    this.LoadEmulator();
                 }
                 else
                 {
@@ -874,7 +865,7 @@ class MyClass {
                     this.loadFromDatabase(SaveTypes.Disk);
                 }
 
-            }            
+            }
             else
             {
                 this.load_file(this.base_url + this.base_name + '.img');
@@ -1498,12 +1489,6 @@ class MyClass {
         // CSS (style.css + suiko-overrides.css, fixed 4:3) like gensei-pc98 does; letting
         // this write an inline height fought that CSS and shifted the layout (footer moved)
         // the moment boot called it. No-op now — sizing is CSS-only.
-    }
-
-    saveDrive()
-    {
-        let bytes = Module.FS.readFile('/' + this.base_name + '.img'); //this is a Uint8Array
-        this.saveToDatabase(bytes, SaveTypes.Disk);
     }
 
     readFromLocalStorage(localStorageName, name){
