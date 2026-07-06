@@ -37,6 +37,12 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   우회(모바일 UX는 gensei-pc98 가상 게임패드+반응형 CSS 전담). 부팅 후 레이아웃 흔들림
   (`resizeCanvas()` 인라인 스타일) 수정. 가로 모드 캔버스 잘림 → 뷰포트 높이 기준 4:3 계산
   추가. iOS Chrome·모바일 가로/세로 실기 테스트 완료.
+- **정사각형 화면비 대응**: 태블릿 분할화면처럼 뷰포트가 정사각형에 가까워지면, 위 높이 기준
+  계산(`calc(100vh * 4 / 3)`)만으로는 너비가 100vw를 넘어 잘릴 수 있음 → `suiko-overrides.css`의
+  `canvas`/`.top-bar`/`.disk-panel` 폭 계산을 `min(100vw, calc(100vh * 4 / 3))`(높이는
+  `min(100vh, calc(100vw * 3 / 4))`)로 양쪽 축을 clamp해 어느 쪽도 넘치지 않게 수정. 취호전은
+  640×480(4:3)이라 `4/3`·`3/4` 사용 — gensei-pc98(640×400, 8:5)의 `8/5`·`5/8`을 그대로 옮기면
+  화면비가 깨지니 주의.
 - **JP 빌드**: 이미지 하나에 `C:\GENSE`(KR)와 `C:\GENSEJP`(JP)를 같이 담는 구조(90MB Windows
   설치 중복 회피). `tools/build-jp-image.js`로 `GENSEJP` 생성. `docs/jp.html`은 `kr.html`과
   구조 동일, `window.SUIKO_LANG='jp'`만 다름 — `suiko-lang.js`가 부팅 직전 WIN.INI `load=`를
