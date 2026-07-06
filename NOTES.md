@@ -7,8 +7,7 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 
 - **엔진**: doswasmx(nbarkhina/DosWasmX, MIT) 커스텀 재빌드. `src/gui/sdlmain.cpp`의
   `MIDI_RawOutByte`/`MIDI_Available` 스텁을 패치해 MIDI 바이트를 `window.SuikoMidi.raw()`로
-  브리지. 재빌드 절차는 메모리 `suiko-web-v2-wasm-rebuild` 참고(emsdk 3.1.49 +
-  caiiiycuk/binaryen-fwasm-exceptions의 macOS wasm-opt 필요).
+  브리지. 재빌드에는 emsdk 3.1.49 + caiiiycuk/binaryen-fwasm-exceptions의 macOS wasm-opt 필요.
 - **MIDI 사운드폰트**: Win95 MIDI 매퍼를 "External MIDI Port"로 설정하면 브리지를 타고 JS의
   spessasynth로 흘러 SC-55.sf3(9MB, 원본 sf2 53MB에서 변환)로 렌더링. 매퍼 기본값은 베이스
   이미지의 `SYSTEM.DAT`에 베이킹돼있어 부팅만 하면 자동 적용됨.
@@ -66,6 +65,7 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 ### 기술 노트: HWANSE.EXE 텍스트 구조
 
 **확정된 사실**
+
 - 텍스트는 `GENSE.FLD`가 아니라 **`HWANSE.EXE`의 PE `.data` 섹션**(raw offset
   `0x03A000`~`0x157E00`)에 CP949 인라인 리터럴로 있다. JP(`GENSE.EXE`)도 동일 구조.
 - 라인 종결자는 리터럴 `'@'`(0x40) 바이트, NUL이 아님. 전각 공백·구두점을 문장 안에 그대로 씀.
@@ -120,11 +120,7 @@ GULIM 그대로 렌더링됨. 원인 미확정(등록명 불일치 / GDI가 조�
 ## 남은 작업
 
 - KR 번역 오타·오역 수정 계속 (위 참고, 종료 시점 없음)
-- `.vendor-tmp/`(doswasmx 소스 클론, gitignored)는 재빌드 필요시 대비 로컬 보존 — 절차는
-  메모리 `suiko-web-v2-wasm-rebuild` 참고
+- `.vendor-tmp/`(doswasmx 소스 클론, gitignored)는 재빌드 필요시 대비 로컬 보존
 
 ## 참고 자료
-- 계획 원본: `~/.claude/plans/harmonic-dancing-gem.md`
-- 프로젝트 결정사항 메모리: `suiko-web-v2-project`, `suiko-web-v2-original-files`,
-  `suiko-web-v2-save-structure`, `suiko-web-v2-wasm-rebuild` (Claude 메모리 디렉토리)
-- 커밋/푸시는 사용자가 명시적으로 요청할 때만 (메모리 `feedback-commit-push-explicit-only`)
+- 커밋/푸시는 사용자가 명시적으로 요청할 때만 진행
