@@ -5193,7 +5193,7 @@
       "offset": 349728,
       "length": 12,
       "text": "습득했다！！",
-      "fixed": "",
+      "fixed": "습득했다　　",
       "confirmed": false
     },
     {
@@ -15385,7 +15385,7 @@
       "offset": 447474,
       "length": 28,
       "text": "「기공대회복」을　습득했다！",
-      "fixed": "",
+      "fixed": "「기공대회복」을　습득했다　",
       "confirmed": false
     },
     {
@@ -28237,7 +28237,7 @@
       "offset": 577330,
       "length": 14,
       "text": "습득했습니다！",
-      "fixed": "",
+      "fixed": "습득했다　　　",
       "confirmed": false
     },
     {
@@ -35524,7 +35524,7 @@
       "offset": 644532,
       "length": 24,
       "text": "「쾌진격」을　습득했다！",
-      "fixed": "",
+      "fixed": "「쾌진격」을　습득했다　",
       "confirmed": false
     },
     {
@@ -38947,7 +38947,7 @@
       "offset": 658386,
       "length": 12,
       "text": "습득했다！！",
-      "fixed": "",
+      "fixed": "습득했다　　",
       "confirmed": false
     },
     {
@@ -41348,7 +41348,7 @@
       "offset": 685492,
       "length": 28,
       "text": "「맹호룬룬권」을　습득했다！",
-      "fixed": "",
+      "fixed": "「맹호룬룬권」을　습득했다　",
       "confirmed": false
     },
     {
@@ -44401,7 +44401,7 @@
       "length": 26,
       "text": "　그중　무투대회　안내장도",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 780694,
@@ -44582,7 +44582,7 @@
       "offset": 781392,
       "length": 32,
       "text": "「무투대회　안내서와　신청용지」",
-      "fixed": "",
+      "fixed": "「무투대회　안내와　참가신청서」",
       "confirmed": false
     },
     {
@@ -44590,7 +44590,7 @@
       "length": 24,
       "text": "즉…「무투대회　안내장」",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 781456,
@@ -45465,7 +45465,7 @@
       "length": 28,
       "text": "　무투대회　안내장이　왔었지",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 784844,
@@ -46151,7 +46151,7 @@
       "length": 28,
       "text": "　무투대회　안내장이　왔었지",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 787538,
@@ -55586,7 +55586,7 @@
       "offset": 952728,
       "length": 20,
       "text": "참가신청서겸　안내서",
-      "fixed": "",
+      "fixed": "참가신청서겸　안내장",
       "confirmed": false
     },
     {
@@ -64826,7 +64826,7 @@
       "offset": 1027582,
       "length": 10,
       "text": "습득했다！",
-      "fixed": "",
+      "fixed": "습득했다　",
       "confirmed": false
     },
     {
@@ -64861,7 +64861,7 @@
       "offset": 1027766,
       "length": 12,
       "text": "습득했다！！",
-      "fixed": "",
+      "fixed": "습득했다　　",
       "confirmed": false
     },
     {
@@ -67318,7 +67318,7 @@
       "offset": 1059456,
       "length": 12,
       "text": "습득했다！！",
-      "fixed": "",
+      "fixed": "습득했다　　",
       "confirmed": false
     },
     {
@@ -67402,7 +67402,7 @@
       "offset": 1059816,
       "length": 12,
       "text": "습득했다！！",
-      "fixed": "",
+      "fixed": "습득했다　　",
       "confirmed": false
     },
     {
@@ -74521,7 +74521,7 @@
       "offset": 1140736,
       "length": 30,
       "text": "　주인장　화장실은　어디있나？",
-      "fixed": "",
+      "fixed": "　주인장　화장실은　어디있어？",
       "confirmed": false
     },
     {
@@ -76992,7 +76992,7 @@
       "offset": 1150264,
       "length": 14,
       "text": "「어，이방이…",
-      "fixed": "",
+      "fixed": "「엇，이　방이",
       "confirmed": false
     },
     {
@@ -78070,7 +78070,7 @@
       "offset": 1154306,
       "length": 30,
       "text": "「맹호의　포효」를　기억해냈다",
-      "fixed": "",
+      "fixed": "「맹호의울부짖음」을　떠올렸다",
       "confirmed": false
     },
     {
@@ -86190,7 +86190,7 @@
       "offset": 1331078,
       "length": 16,
       "text": "「수고들했습니다",
-      "fixed": "",
+      "fixed": "「수고들　했어요",
       "confirmed": false
     },
     {
@@ -91125,7 +91125,7 @@
       "offset": 1350980,
       "length": 22,
       "text": "무론，앙케이트와　같이",
-      "fixed": "",
+      "fixed": "물론，앙케이트와　같이",
       "confirmed": false
     },
     {
@@ -96445,7 +96445,7 @@
       "offset": 1372234,
       "length": 28,
       "text": "　안면백조권（顔面百爪拳）！",
-      "fixed": "",
+      "fixed": "　안면백조권！　　　　　　　",
       "confirmed": false
     },
     {
@@ -97747,7 +97747,7 @@
       "offset": 1377508,
       "length": 30,
       "text": "　주인장은　모르시오（무게）！",
-      "fixed": "",
+      "fixed": "　주인장은　모르시오？　　　　",
       "confirmed": false
     },
     {
