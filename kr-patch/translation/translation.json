@@ -244,7 +244,7 @@
       "offset": 254966,
       "length": 32,
       "text": "…분명　여기가「호랑이굴」입구죠",
-      "fixed": "",
+      "fixed": "…분명　여기가「호랑이동굴」입구",
       "confirmed": false
     },
     {
@@ -300,7 +300,7 @@
       "offset": 260042,
       "length": 32,
       "text": "「응．그런　소문을　듣고　왔는데",
-      "fixed": "",
+      "fixed": "「응　그런　소문을　듣고　왔는데",
       "confirmed": false
     },
     {
@@ -342,14 +342,14 @@
       "offset": 260232,
       "length": 24,
       "text": "　괜한　솜씨자랑하려거든",
-      "fixed": "",
+      "fixed": "　괜한　솜씨자랑은　말고",
       "confirmed": false
     },
     {
       "offset": 260260,
       "length": 30,
       "text": "　애초에　그만두는게　좋을껄！",
-      "fixed": "",
+      "fixed": "　애초에　그만두는게　좋을걸！",
       "confirmed": false
     },
     {
@@ -797,7 +797,7 @@
       "offset": 262274,
       "length": 22,
       "text": "　푸줏간　주인인가？）",
-      "fixed": "",
+      "fixed": "　정육점　주인인가？）",
       "confirmed": false
     },
     {
@@ -1336,7 +1336,7 @@
       "offset": 312004,
       "length": 28,
       "text": "　다른　건　얼마나　되는　지",
-      "fixed": "",
+      "fixed": "　다른　건　얼마나　되는지　",
       "confirmed": false
     },
     {
@@ -1679,7 +1679,7 @@
       "offset": 313312,
       "length": 20,
       "text": "１５Ｇ를　줏어버렸다",
-      "fixed": "",
+      "fixed": "１５Ｇ를　주워버렸다",
       "confirmed": false
     },
     {
@@ -1812,7 +1812,7 @@
       "offset": 314016,
       "length": 36,
       "text": "안에서　몬스타가　얼굴을　내밀었다！",
-      "fixed": "",
+      "fixed": "안에서　몬스터가　얼굴을　내밀었다！",
       "confirmed": false
     },
     {
@@ -2281,7 +2281,7 @@
       "offset": 315932,
       "length": 18,
       "text": "「…아자씨，요새…",
-      "fixed": "",
+      "fixed": "「…아저씨，요새…",
       "confirmed": false
     },
     {
@@ -3758,7 +3758,7 @@
       "offset": 343474,
       "length": 22,
       "text": "　천천히　즐기시지요．",
-      "fixed": "",
+      "fixed": "　천천히　즐기시지요　",
       "confirmed": false
     },
     {
@@ -7510,7 +7510,7 @@
       "offset": 389856,
       "length": 26,
       "text": "　겁장이에게는　볼일없다！",
-      "fixed": "",
+      "fixed": "　겁쟁이에게는　볼일없다！",
       "confirmed": false
     },
     {
@@ -10779,7 +10779,7 @@
       "offset": 403526,
       "length": 26,
       "text": "　정말，좋은　승부였잖아．",
-      "fixed": "",
+      "fixed": "　정말，좋은　승부였잖아　",
       "confirmed": false
     },
     {
@@ -12018,7 +12018,7 @@
       "offset": 408612,
       "length": 30,
       "text": "「달인의　무투복」을　발견했다",
-      "fixed": "",
+      "fixed": "「달인의무투복」을　발견했다　",
       "confirmed": false
     },
     {
@@ -12046,7 +12046,7 @@
       "offset": 408764,
       "length": 34,
       "text": "「달인의　무투복」을　손에　넣었다",
-      "fixed": "",
+      "fixed": "「달인의무투복」을　손에　넣었다　",
       "confirmed": false
     },
     {
@@ -12116,7 +12116,7 @@
       "offset": 409096,
       "length": 30,
       "text": "「달인의　무투복」을　발견했다",
-      "fixed": "",
+      "fixed": "「달인의무투복」을　발견했다　",
       "confirmed": false
     },
     {
@@ -12144,7 +12144,7 @@
       "offset": 409242,
       "length": 34,
       "text": "「달인의　무투복」을　손에　넣었다",
-      "fixed": "",
+      "fixed": "「달인의무투복」을　손에　넣었다　",
       "confirmed": false
     },
     {
@@ -12887,7 +12887,7 @@
       "length": 32,
       "text": "정육점　사내는「인도의　날개」를",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 437100,
@@ -13831,7 +13831,7 @@
       "offset": 440908,
       "length": 16,
       "text": "　섞여있습니다．",
-      "fixed": "",
+      "fixed": "　섞여있습니다　",
       "confirmed": false
     },
     {
@@ -14405,7 +14405,7 @@
       "offset": 443268,
       "length": 26,
       "text": "「팬톰크로우」를　발견했다",
-      "fixed": "",
+      "fixed": "「팬텀클로」를　발견했다　",
       "confirmed": false
     },
     {
@@ -14433,7 +14433,7 @@
       "offset": 443400,
       "length": 26,
       "text": "「팬톰크로우」를　입수했다",
-      "fixed": "",
+      "fixed": "「팬텀클로」를　입수했다　",
       "confirmed": false
     },
     {
@@ -15070,7 +15070,7 @@
       "offset": 445876,
       "length": 18,
       "text": "　원인이　됩니다．",
-      "fixed": "",
+      "fixed": "　원인이　됩니다　",
       "confirmed": false
     },
     {
@@ -17093,7 +17093,7 @@
       "offset": 454220,
       "length": 30,
       "text": "「나찰의　흉인」을　발견했다！",
-      "fixed": "",
+      "fixed": "「나찰의흉인」을　발견했다！　",
       "confirmed": false
     },
     {
@@ -17114,7 +17114,7 @@
       "offset": 454336,
       "length": 32,
       "text": "「나찰의　흉인」을　손에　넣었다",
-      "fixed": "",
+      "fixed": "「나찰의흉인」을　손에　넣었다　",
       "confirmed": false
     },
     {
@@ -18052,7 +18052,7 @@
       "offset": 458862,
       "length": 28,
       "text": "「호랑이　투의」를　내밀었다",
-      "fixed": "",
+      "fixed": "「호랑이투의」를　내밀었다　",
       "confirmed": false
     },
     {
@@ -20201,7 +20201,7 @@
       "offset": 516972,
       "length": 32,
       "text": "「쳇，사람이　말하면　들어야지．",
-      "fixed": "",
+      "fixed": "「쳇，사람이　말하면　들어야지　",
       "confirmed": false
     },
     {
@@ -20257,7 +20257,7 @@
       "offset": 517224,
       "length": 26,
       "text": "　수면약을　이용한　수술…",
-      "fixed": "",
+      "fixed": "　수면제를　이용한　수술…",
       "confirmed": false
     },
     {
@@ -20292,7 +20292,7 @@
       "offset": 517374,
       "length": 34,
       "text": "　수면약은　워낙　희귀한　거라서요",
-      "fixed": "",
+      "fixed": "　수면제는　워낙　희귀한　거라서요",
       "confirmed": false
     },
     {
@@ -20306,7 +20306,7 @@
       "offset": 517438,
       "length": 16,
       "text": "「수면약？　혹시",
-      "fixed": "",
+      "fixed": "「수면제？　혹시",
       "confirmed": false
     },
     {
@@ -20362,7 +20362,7 @@
       "offset": 517638,
       "length": 24,
       "text": "　이제『마취　대작전』을",
-      "fixed": "",
+      "fixed": "　이제『마취대작전』을　",
       "confirmed": false
     },
     {
@@ -20383,7 +20383,7 @@
       "offset": 517710,
       "length": 30,
       "text": "「…어떻게　할지늠　모르겠지만",
-      "fixed": "",
+      "fixed": "「…어떻게　할지는　모르겠지만",
       "confirmed": false
     },
     {
@@ -20439,7 +20439,7 @@
       "offset": 517918,
       "length": 16,
       "text": "「수면비약이라…",
-      "fixed": "",
+      "fixed": "「수면제라…　　",
       "confirmed": false
     },
     {
@@ -21307,7 +21307,7 @@
       "offset": 521610,
       "length": 20,
       "text": "　겁장이　아저씨！！",
-      "fixed": "",
+      "fixed": "　겁쟁이　아저씨！！",
       "confirmed": false
     },
     {
@@ -23400,7 +23400,7 @@
       "offset": 529800,
       "length": 28,
       "text": "「호랑이　투의」를　입수했다",
-      "fixed": "",
+      "fixed": "「호랑이투의」를　입수했다　",
       "confirmed": false
     },
     {
@@ -24471,7 +24471,7 @@
       "offset": 535918,
       "length": 28,
       "text": "침착하게　진행하면　됩니다．",
-      "fixed": "",
+      "fixed": "침착하게　진행하면　됩니다　",
       "confirmed": false
     },
     {
@@ -24548,7 +24548,7 @@
       "offset": 536282,
       "length": 34,
       "text": "대신　ＭＰ가　조금씩　회복됩니다．",
-      "fixed": "",
+      "fixed": "대신　ＭＰ가　조금씩　회복됩니다　",
       "confirmed": false
     },
     {
@@ -24583,7 +24583,7 @@
       "offset": 536464,
       "length": 34,
       "text": "　그건　실전에서　익히도록　하게．",
-      "fixed": "",
+      "fixed": "　그건　실전에서　익히도록　하게　",
       "confirmed": false
     },
     {
@@ -24982,7 +24982,7 @@
       "offset": 545704,
       "length": 26,
       "text": "밝히는　길을　걸으려　함．",
-      "fixed": "",
+      "fixed": "밝히는　길을　걸으려　함　",
       "confirmed": false
     },
     {
@@ -25843,7 +25843,7 @@
       "offset": 567188,
       "length": 20,
       "text": "조무래기와는　달라．",
-      "fixed": "",
+      "fixed": "조무래기와는　달라　",
       "confirmed": false
     },
     {
@@ -28615,7 +28615,7 @@
       "offset": 579262,
       "length": 26,
       "text": "몸안에　마수를　봉인했다．",
-      "fixed": "",
+      "fixed": "몸안에　마수를　봉인했다　",
       "confirmed": false
     },
     {
@@ -34754,7 +34754,7 @@
       "offset": 641434,
       "length": 28,
       "text": "「쿵푸　드레스」를　발견했다",
-      "fixed": "",
+      "fixed": "「쿵푸드레스」를　발견했다　",
       "confirmed": false
     },
     {
@@ -34782,7 +34782,7 @@
       "offset": 641572,
       "length": 28,
       "text": "「쿵푸　드레스」를　입수했다",
-      "fixed": "",
+      "fixed": "「쿵푸드레스」를　입수했다　",
       "confirmed": false
     },
     {
@@ -38618,7 +38618,7 @@
       "offset": 656972,
       "length": 18,
       "text": "「이봐요　아자씨！",
-      "fixed": "",
+      "fixed": "「이봐요　아저씨！",
       "confirmed": false
     },
     {
@@ -38695,7 +38695,7 @@
       "offset": 657256,
       "length": 10,
       "text": "「아자씨…",
-      "fixed": "",
+      "fixed": "「아저씨…",
       "confirmed": false
     },
     {
@@ -39640,7 +39640,7 @@
       "offset": 678578,
       "length": 20,
       "text": "　정말　굉장했었지．",
-      "fixed": "",
+      "fixed": "　정말　굉장했었지　",
       "confirmed": false
     },
     {
@@ -40445,7 +40445,7 @@
       "offset": 681838,
       "length": 32,
       "text": "「호랑이　투의」를　손에　넣었다",
-      "fixed": "",
+      "fixed": "「호랑이투의」를　손에　넣었다　",
       "confirmed": false
     },
     {
@@ -40788,14 +40788,14 @@
       "offset": 683188,
       "length": 32,
       "text": "　대책도　세우지　못하고　있죠．",
-      "fixed": "",
+      "fixed": "　대책도　세우지　못하고　있죠　",
       "confirmed": false
     },
     {
       "offset": 683224,
       "length": 32,
       "text": "　수면제는　희긔품이라서요！！！",
-      "fixed": "",
+      "fixed": "　수면제는　희귀품이라서요！！！",
       "confirmed": false
     },
     {
@@ -42587,7 +42587,7 @@
       "offset": 771548,
       "length": 30,
       "text": "　이런　썰렁한　아자씨　얼굴을",
-      "fixed": "",
+      "fixed": "　이런　썰렁한　아저씨　얼굴을",
       "confirmed": false
     },
     {
@@ -45233,7 +45233,7 @@
       "offset": 783920,
       "length": 20,
       "text": "　소문대로　아자씨…",
-      "fixed": "",
+      "fixed": "　소문대로　아저씨…",
       "confirmed": false
     },
     {
@@ -47305,7 +47305,7 @@
       "offset": 812126,
       "length": 30,
       "text": "　더이상　가르칠　게　없구만．",
-      "fixed": "",
+      "fixed": "　더이상　가르칠　게　없구만　",
       "confirmed": false
     },
     {
@@ -47452,7 +47452,7 @@
       "offset": 812818,
       "length": 28,
       "text": "「…잘　싸웠는데，안됐구만．",
-      "fixed": "",
+      "fixed": "「…잘　싸웠는데，안됐구만　",
       "confirmed": false
     },
     {
@@ -47466,7 +47466,7 @@
       "offset": 812890,
       "length": 32,
       "text": "　어쨌든　수련은　모두　끝났네．",
-      "fixed": "",
+      "fixed": "　어쨌든　수련은　모두　끝났네　",
       "confirmed": false
     },
     {
@@ -47641,7 +47641,7 @@
       "offset": 813670,
       "length": 24,
       "text": "　바로　그　때문이라네．",
-      "fixed": "",
+      "fixed": "　바로　그　때문이라네　",
       "confirmed": false
     },
     {
@@ -48558,7 +48558,7 @@
       "offset": 840118,
       "length": 22,
       "text": "무투대회일이　되었다．",
-      "fixed": "",
+      "fixed": "무투대회일이　되었다　",
       "confirmed": false
     },
     {
@@ -49860,7 +49860,7 @@
       "offset": 876268,
       "length": 22,
       "text": "어떻게　호랑이　투의를",
-      "fixed": "",
+      "fixed": "어떻게　호랑이투의를　",
       "confirmed": false
     },
     {
@@ -50077,7 +50077,7 @@
       "offset": 877010,
       "length": 14,
       "text": "호랑이　투의를",
-      "fixed": "",
+      "fixed": "호랑이투의를　",
       "confirmed": false
     },
     {
@@ -50938,7 +50938,7 @@
       "offset": 880088,
       "length": 28,
       "text": "　하지만，난　아자씨와　개는",
-      "fixed": "",
+      "fixed": "　하지만，난　아저씨와　개는",
       "confirmed": false
     },
     {
@@ -51008,7 +51008,7 @@
       "offset": 880344,
       "length": 18,
       "text": "「어라？　아자씨…",
-      "fixed": "",
+      "fixed": "「어라？　아저씨…",
       "confirmed": false
     },
     {
@@ -51141,7 +51141,7 @@
       "offset": 880934,
       "length": 28,
       "text": "　이벤트　종류도　다르다네．",
-      "fixed": "",
+      "fixed": "　이벤트　종류도　다르다네　",
       "confirmed": false
     },
     {
@@ -51505,7 +51505,7 @@
       "offset": 882476,
       "length": 36,
       "text": "「헤헤，술고래인　아자씨가　말해봐야",
-      "fixed": "",
+      "fixed": "「헤헤，술고래인　아저씨가　말해봐야",
       "confirmed": false
     },
     {
@@ -51680,7 +51680,7 @@
       "offset": 883222,
       "length": 24,
       "text": "「점잖？！　아자씨가？！",
-      "fixed": "",
+      "fixed": "「점잖？！　아저씨가？！",
       "confirmed": false
     },
     {
@@ -52030,7 +52030,7 @@
       "offset": 884512,
       "length": 34,
       "text": "「같은　물건을　갖고　계시잖아요．",
-      "fixed": "",
+      "fixed": "「같은　물건을　갖고　계시잖아요　",
       "confirmed": false
     },
     {
@@ -53955,7 +53955,7 @@
       "offset": 947926,
       "length": 20,
       "text": "파괴력이　강력하다．",
-      "fixed": "",
+      "fixed": "파괴력이　강력하다　",
       "confirmed": false
     },
     {
@@ -56301,7 +56301,7 @@
       "length": 14,
       "text": "전설의　무투복",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 954838,
@@ -56986,14 +56986,14 @@
       "offset": 956824,
       "length": 14,
       "text": "완전히　취해서",
-      "fixed": "기어코　꽐라가",
+      "fixed": "꽐라가　되어서",
       "confirmed": false
     },
     {
       "offset": 956842,
       "length": 18,
       "text": "맛이　가버린　상태",
-      "fixed": "된　인사불성　상태",
+      "fixed": "아무것도　못　한다",
       "confirmed": false
     },
     {
@@ -59576,7 +59576,7 @@
       "offset": 967356,
       "length": 22,
       "text": "　거절할지도　모른다．",
-      "fixed": "",
+      "fixed": "　거절할지도　모른다　",
       "confirmed": false
     },
     {
@@ -59611,7 +59611,7 @@
       "offset": 967498,
       "length": 26,
       "text": "「호랑이　투의」를　받았다",
-      "fixed": "",
+      "fixed": "「호랑이투의」를　받았다　",
       "confirmed": false
     },
     {
@@ -60780,7 +60780,7 @@
       "offset": 972220,
       "length": 28,
       "text": "「호랑이　투의」를　발견했다",
-      "fixed": "",
+      "fixed": "「호랑이투의」를　발견했다　",
       "confirmed": false
     },
     {
@@ -64714,7 +64714,7 @@
       "offset": 1027094,
       "length": 10,
       "text": "했습니다．",
-      "fixed": "",
+      "fixed": "했습니다　",
       "confirmed": false
     },
     {
@@ -65421,7 +65421,7 @@
       "offset": 1030116,
       "length": 32,
       "text": "「만취함」，「정신없이취함」으로",
-      "fixed": "「비틀비틀」，「부어라마셔라」로",
+      "fixed": "「비틀비틀」，「인사불성」으로　",
       "confirmed": false
     },
     {
@@ -67689,7 +67689,7 @@
       "offset": 1060908,
       "length": 24,
       "text": "성대한　파티가　열렸다．",
-      "fixed": "",
+      "fixed": "성대한　파티가　열렸다　",
       "confirmed": false
     },
     {
@@ -68529,7 +68529,7 @@
       "offset": 1063946,
       "length": 20,
       "text": "「제길…！　아자씨，",
-      "fixed": "",
+      "fixed": "「제길…！　아저씨，",
       "confirmed": false
     },
     {
@@ -68837,14 +68837,14 @@
       "offset": 1065164,
       "length": 26,
       "text": "　내가　아니라，아자씨가…",
-      "fixed": "",
+      "fixed": "　내가　아니라，아저씨가…",
       "confirmed": false
     },
     {
       "offset": 1065198,
       "length": 32,
       "text": "　（변함없이　둔한　아자씨…！）",
-      "fixed": "",
+      "fixed": "　（변함없이　둔한　아저씨…！）",
       "confirmed": false
     },
     {
@@ -69005,7 +69005,7 @@
       "offset": 1065828,
       "length": 32,
       "text": "　정말，눈치라곤　없는　아자씨…",
-      "fixed": "",
+      "fixed": "　정말，눈치라곤　없는　아저씨…",
       "confirmed": false
     },
     {
@@ -69159,7 +69159,7 @@
       "offset": 1066500,
       "length": 28,
       "text": "　열리고　있는　모양이예요．",
-      "fixed": "",
+      "fixed": "　열리고　있는　모양이예요　",
       "confirmed": false
     },
     {
@@ -69593,7 +69593,7 @@
       "offset": 1068402,
       "length": 34,
       "text": "「호랑이　투의」를　상자에　넣었다",
-      "fixed": "",
+      "fixed": "「호랑이투의」를　상자에　넣었다　",
       "confirmed": false
     },
     {
@@ -69621,7 +69621,7 @@
       "offset": 1068520,
       "length": 26,
       "text": "　이곳에서　호랑이　투의를",
-      "fixed": "",
+      "fixed": "　이곳에서　호랑이투의를　",
       "confirmed": false
     },
     {
@@ -71035,7 +71035,7 @@
       "offset": 1075010,
       "length": 22,
       "text": "　푸줏간　주인인가？）",
-      "fixed": "",
+      "fixed": "　정육점　주인인가？）",
       "confirmed": false
     },
     {
@@ -73436,7 +73436,7 @@
       "offset": 1121564,
       "length": 22,
       "text": "「아자씨！　그곳으로는",
-      "fixed": "",
+      "fixed": "「아저씨！　그곳으로는",
       "confirmed": false
     },
     {
@@ -77573,7 +77573,7 @@
       "offset": 1152432,
       "length": 22,
       "text": "「？！아니　이　아자씨",
-      "fixed": "",
+      "fixed": "「？！아니　이　아저씨",
       "confirmed": false
     },
     {
@@ -77825,7 +77825,7 @@
       "offset": 1153350,
       "length": 26,
       "text": "　이　아자씨　특기니까…）",
-      "fixed": "",
+      "fixed": "　이　아저씨　특기니까…）",
       "confirmed": false
     },
     {
@@ -78378,7 +78378,7 @@
       "offset": 1201184,
       "length": 32,
       "text": "감으로　진행할　수도　있습니다．",
-      "fixed": "",
+      "fixed": "감으로　진행할　수도　있습니다　",
       "confirmed": false
     },
     {
@@ -78854,7 +78854,7 @@
       "offset": 1203188,
       "length": 32,
       "text": "입구까지　돌아올　수　있습니다．",
-      "fixed": "",
+      "fixed": "입구까지　돌아올　수　있습니다　",
       "confirmed": false
     },
     {
@@ -79092,7 +79092,7 @@
       "offset": 1204134,
       "length": 32,
       "text": "「…아자씨，지금　여유부릴　때가",
-      "fixed": "",
+      "fixed": "「…아저씨，지금　여유부릴　때가",
       "confirmed": false
     },
     {
@@ -79575,7 +79575,7 @@
       "offset": 1258506,
       "length": 36,
       "text": "　이곳엔　수많은　몬스타가　살고있죠",
-      "fixed": "",
+      "fixed": "　이곳엔　수많은　몬스터가　살고있죠",
       "confirmed": false
     },
     {
@@ -79680,7 +79680,7 @@
       "offset": 1259014,
       "length": 24,
       "text": "　들를　시간이　없어요．",
-      "fixed": "",
+      "fixed": "　들를　시간이　없어요　",
       "confirmed": false
     },
     {
@@ -79715,7 +79715,7 @@
       "offset": 1259162,
       "length": 22,
       "text": "　있을　틈이　없어요．",
-      "fixed": "",
+      "fixed": "　있을　틈이　없어요　",
       "confirmed": false
     },
     {
@@ -80975,7 +80975,7 @@
       "offset": 1264256,
       "length": 34,
       "text": "　ＨＰ를　회복시킬　수　있습니다．",
-      "fixed": "",
+      "fixed": "　ＨＰ를　회복시킬　수　있습니다　",
       "confirmed": false
     },
     {
@@ -81374,7 +81374,7 @@
       "offset": 1265658,
       "length": 34,
       "text": "　못할　지경이니　어쩔　수　없지．",
-      "fixed": "",
+      "fixed": "　못할　지경이니　어쩔　수　없지　",
       "confirmed": false
     },
     {
@@ -81899,7 +81899,7 @@
       "offset": 1267734,
       "length": 18,
       "text": "「투신의　갑옷」을",
-      "fixed": "",
+      "fixed": "「투신의갑옷」을　",
       "confirmed": false
     },
     {
@@ -81948,7 +81948,7 @@
       "offset": 1267898,
       "length": 32,
       "text": "「투신의　갑옷」을　손에　넣었다",
-      "fixed": "",
+      "fixed": "「투신의갑옷」을　손에　넣었다　",
       "confirmed": false
     },
     {
@@ -82893,7 +82893,7 @@
       "offset": 1271712,
       "length": 30,
       "text": "　영력이　약해진　모양이예요．",
-      "fixed": "",
+      "fixed": "　영력이　약해진　모양이예요　",
       "confirmed": false
     },
     {
@@ -84118,7 +84118,7 @@
       "offset": 1276310,
       "length": 18,
       "text": "　알게　되었지요．",
-      "fixed": "",
+      "fixed": "　알게　되었지요　",
       "confirmed": false
     },
     {
@@ -84300,7 +84300,7 @@
       "offset": 1277122,
       "length": 32,
       "text": "찾고　있었다는　사실을　밝혔다．",
-      "fixed": "",
+      "fixed": "찾고　있었다는　사실을　밝혔다　",
       "confirmed": false
     },
     {
@@ -84468,7 +84468,7 @@
       "offset": 1277816,
       "length": 26,
       "text": "아타호는「백호의　투의」를",
-      "fixed": "",
+      "fixed": "아타호는「백호투의」를　　",
       "confirmed": false
     },
     {
@@ -87674,7 +87674,7 @@
       "offset": 1336686,
       "length": 20,
       "text": "　화린이라고　해요．",
-      "fixed": "",
+      "fixed": "　화린이라고　해요　",
       "confirmed": false
     },
     {
@@ -89256,7 +89256,7 @@
       "offset": 1343048,
       "length": 36,
       "text": "　난，술　좋아하는　아자씨로　족해！",
-      "fixed": "",
+      "fixed": "　난，술　좋아하는　아저씨로　족해！",
       "confirmed": false
     },
     {
@@ -89522,7 +89522,7 @@
       "offset": 1344186,
       "length": 22,
       "text": "　보내주시면　됩니다．",
-      "fixed": "",
+      "fixed": "　보내주시면　됩니다　",
       "confirmed": false
     },
     {
@@ -90600,7 +90600,7 @@
       "offset": 1348912,
       "length": 36,
       "text": "　은　유적지하에서　구할　수　있죠．",
-      "fixed": "",
+      "fixed": "　은　유적지하에서　구할　수　있죠　",
       "confirmed": false
     },
     {
@@ -90614,7 +90614,7 @@
       "offset": 1348996,
       "length": 32,
       "text": "　권법가에게서　받을　수　있지．",
-      "fixed": "",
+      "fixed": "　권법가에게서　받을　수　있지　",
       "confirmed": false
     },
     {
@@ -90663,7 +90663,7 @@
       "offset": 1349246,
       "length": 30,
       "text": "　녀석에게서　받을　수　있지．",
-      "fixed": "",
+      "fixed": "　녀석에게서　받을　수　있지　",
       "confirmed": false
     },
     {
@@ -91132,7 +91132,7 @@
       "offset": 1351006,
       "length": 18,
       "text": "보내셔도　됩니다．",
-      "fixed": "",
+      "fixed": "보내셔도　됩니다　",
       "confirmed": false
     },
     {
@@ -94156,7 +94156,7 @@
       "offset": 1362900,
       "length": 34,
       "text": "　전승해서　올라　온　모양입니다．",
-      "fixed": "",
+      "fixed": "　전승해서　올라　온　모양입니다　",
       "confirmed": false
     },
     {
@@ -95759,7 +95759,7 @@
       "offset": 1369446,
       "length": 24,
       "text": "　있다네．…물론　그래서",
-      "fixed": "",
+      "fixed": "　있다네　…물론　그래서",
       "confirmed": false
     },
     {
@@ -99854,7 +99854,7 @@
       "offset": 1385778,
       "length": 24,
       "text": "　라고　말하다니．　쳇！",
-      "fixed": "",
+      "fixed": "　라고　말하다니，　쳇！",
       "confirmed": false
     },
     {
@@ -100883,7 +100883,7 @@
       "offset": 1390042,
       "length": 38,
       "text": "　동네　푸줏간　주인이　이　근처　산에",
-      "fixed": "",
+      "fixed": "　동네　정육점　주인이　이　근처　산에",
       "confirmed": false
     },
     {
@@ -101114,7 +101114,7 @@
       "offset": 1391040,
       "length": 22,
       "text": "　딴소리하면　어떡해．",
-      "fixed": "",
+      "fixed": "　딴소리하면　어떡해　",
       "confirmed": false
     },
     {
@@ -102832,14 +102832,14 @@
       "length": 16,
       "text": "파일　읽기　실패",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 255052,
       "length": 16,
       "text": "파일　기록　실패",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 255088,
@@ -102867,27 +102867,27 @@
       "length": 10,
       "text": "환세취호전",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 561428,
       "length": 10,
       "text": "환세취호전",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 561496,
       "length": 10,
       "text": "환세취호전",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 561524,
       "length": 28,
       "text": "드라이브　준비가　안됐습니다",
-      "fixed": "",
+      "fixed": "드라이브가　준비되지　않음　",
       "confirmed": false
     },
     {
@@ -102901,7 +102901,7 @@
       "offset": 561576,
       "length": 28,
       "text": "드라이브　준비가　안됐습니다",
-      "fixed": "",
+      "fixed": "드라이브가　준비되지　않음　",
       "confirmed": false
     },
     {
@@ -102923,35 +102923,35 @@
       "length": 16,
       "text": "노주　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562062,
       "length": 16,
       "text": "특급주　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562108,
       "length": 16,
       "text": "화주　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562154,
       "length": 16,
       "text": "명주·귀신살　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562200,
       "length": 16,
       "text": "인민복　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562246,
@@ -103007,7 +103007,7 @@
       "length": 16,
       "text": "빙마조　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562614,
@@ -103028,63 +103028,63 @@
       "length": 16,
       "text": "호랑이발톱　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562752,
       "length": 16,
       "text": "드레스　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562798,
       "length": 16,
       "text": "프리티드레스　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562844,
       "length": 16,
       "text": "쿵푸드레스　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562890,
       "length": 16,
       "text": "배틀드레스　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562936,
       "length": 16,
       "text": "데몬드레스　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 562982,
       "length": 16,
       "text": "퀸드레스　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563028,
       "length": 16,
       "text": "닌자도　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563074,
       "length": 16,
       "text": "청룡도　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563120,
@@ -103098,7 +103098,7 @@
       "length": 16,
       "text": "그레이트소드　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563212,
@@ -103112,14 +103112,14 @@
       "length": 16,
       "text": "마인아수라　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563304,
       "length": 16,
       "text": "스마슈타이츠　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563350,
@@ -103133,7 +103133,7 @@
       "length": 16,
       "text": "흑장속　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563442,
@@ -103161,49 +103161,49 @@
       "length": 16,
       "text": "약초　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563854,
       "length": 16,
       "text": "해독초　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563872,
       "length": 16,
       "text": "리프레시　워터　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563890,
       "length": 16,
       "text": "마법의　물약　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563908,
       "length": 16,
       "text": "고급한방약　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563926,
       "length": 16,
       "text": "마수석　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563944,
       "length": 16,
       "text": "무투대회　안내장",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 563962,
@@ -103216,7 +103216,7 @@
       "offset": 563980,
       "length": 16,
       "text": "수면약　　　　　",
-      "fixed": "",
+      "fixed": "수면비약　　　　",
       "confirmed": false
     },
     {
@@ -103224,55 +103224,55 @@
       "length": 16,
       "text": "황금돼지두루마리",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564016,
       "length": 16,
       "text": "화령석　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564034,
       "length": 16,
       "text": "수령석　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564052,
       "length": 16,
       "text": "지령석　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564070,
       "length": 16,
       "text": "풍령석　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564088,
       "length": 16,
       "text": "횃불　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564106,
       "length": 16,
       "text": "횃불세트　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564142,
       "length": 16,
       "text": "호랑이굴　인정서",
-      "fixed": "",
+      "fixed": "호랑이동굴인정서",
       "confirmed": false
     },
     {
@@ -103301,27 +103301,27 @@
       "length": 16,
       "text": "고급술병　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564232,
       "length": 16,
       "text": "서류　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564250,
       "length": 16,
       "text": "암청수　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564268,
       "length": 16,
       "text": "정호수　　　　　",
-      "fixed": "",
+      "fixed": "우물물　　　　　",
       "confirmed": false
     },
     {
@@ -103329,48 +103329,48 @@
       "length": 16,
       "text": "나찰의　돌　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564304,
       "length": 16,
       "text": "부적　１장　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564322,
       "length": 16,
       "text": "부적　２장　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564340,
       "length": 16,
       "text": "부적　３장　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564358,
       "length": 16,
       "text": "부적　４장　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564376,
       "length": 16,
       "text": "스마슈　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564618,
       "length": 16,
       "text": "보통　　　　　　",
-      "fixed": "",
+      "fixed": "통상　　　　　　",
       "confirmed": false
     },
     {
@@ -103378,28 +103378,28 @@
       "length": 16,
       "text": "돌격　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564666,
       "length": 16,
       "text": "방어　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564690,
       "length": 16,
       "text": "선제　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564714,
       "length": 16,
       "text": "반격　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564738,
@@ -103419,7 +103419,7 @@
       "offset": 564786,
       "length": 16,
       "text": "정신없이　취함　",
-      "fixed": "부어라마셔라　　",
+      "fixed": "인사불성　　　　",
       "confirmed": false
     },
     {
@@ -103427,21 +103427,21 @@
       "length": 16,
       "text": "대호　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564834,
       "length": 16,
       "text": "곤드레만드레　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564858,
       "length": 16,
       "text": "흥분　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564882,
@@ -103462,7 +103462,7 @@
       "length": 16,
       "text": "대폭발　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 564954,
@@ -103497,224 +103497,224 @@
       "length": 16,
       "text": "여왕님　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565074,
       "length": 16,
       "text": "피곤함　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565098,
       "length": 16,
       "text": "졸림　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565122,
       "length": 16,
       "text": "행동정지　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565146,
       "length": 16,
       "text": "넘어짐　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565170,
       "length": 16,
       "text": "휙　날아감　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565218,
       "length": 16,
       "text": "마비　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565242,
       "length": 16,
       "text": "기절　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565314,
       "length": 16,
       "text": "커서　위치　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565330,
       "length": 16,
       "text": "문자　표시속도　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565346,
       "length": 16,
       "text": "사운드　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565362,
       "length": 16,
       "text": "묘화　스킵　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 565378,
       "length": 16,
       "text": "게임　종료　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855436,
       "length": 16,
       "text": "정권　　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855466,
       "length": 16,
       "text": "돌려차기　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855496,
       "length": 16,
       "text": "던지기　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855526,
       "length": 16,
       "text": "다리후리기　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855556,
       "length": 16,
       "text": "마시기　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855586,
       "length": 16,
       "text": "마시기　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855616,
       "length": 16,
       "text": "마시기　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855646,
       "length": 16,
       "text": "마시기　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855676,
       "length": 16,
       "text": "마시기　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855706,
       "length": 16,
       "text": "호격권　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855736,
       "length": 16,
       "text": "호격권　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855766,
       "length": 16,
       "text": "호격권　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855796,
       "length": 16,
       "text": "호격권　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855826,
       "length": 16,
       "text": "맹호비상각　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855856,
       "length": 16,
       "text": "맹호비상각　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855886,
       "length": 16,
       "text": "맹호비상각　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855916,
       "length": 16,
       "text": "맹호비상각　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855946,
       "length": 16,
       "text": "폭전축　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 855976,
       "length": 16,
       "text": "폭전축　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856006,
@@ -103728,69 +103728,69 @@
       "length": 16,
       "text": "폭전축　　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856090,
       "length": 16,
       "text": "맹호스페셜　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856136,
       "length": 16,
       "text": "맹호스페셜　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856182,
       "length": 16,
       "text": "맹호스페셜　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856236,
       "length": 16,
       "text": "맹호스페셜　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856314,
       "length": 16,
       "text": "비기·맹호광파참",
-      "fixed": "",
+      "fixed": "오의·맹호광파참",
       "confirmed": false
     },
     {
       "offset": 856360,
       "length": 16,
       "text": "비기·맹호광파참",
-      "fixed": "",
+      "fixed": "오의·맹호광파참",
       "confirmed": false
     },
     {
       "offset": 856406,
       "length": 16,
       "text": "비기·맹호광파참",
-      "fixed": "",
+      "fixed": "오의·맹호광파참",
       "confirmed": false
     },
     {
       "offset": 856460,
       "length": 16,
       "text": "비기·맹호광파참",
-      "fixed": "",
+      "fixed": "오의·맹호광파참",
       "confirmed": false
     },
     {
       "offset": 856522,
       "length": 16,
       "text": "조금　취한　철권",
-      "fixed": "",
+      "fixed": "알딸딸　철권　　",
       "confirmed": false
     },
     {
@@ -103798,13 +103798,13 @@
       "length": 16,
       "text": "지옥　다리후리기",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856630,
       "length": 16,
       "text": "만취한　철권　　",
-      "fixed": "",
+      "fixed": "비틀비틀　철권　",
       "confirmed": false
     },
     {
@@ -103812,14 +103812,14 @@
       "length": 16,
       "text": "염가열소　　　　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856706,
       "length": 16,
       "text": "인사불성　철권　",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 856744,
@@ -103937,28 +103937,28 @@
       "offset": 857304,
       "length": 16,
       "text": "비기·맹호유성각",
-      "fixed": "",
+      "fixed": "오의·맹호유성각",
       "confirmed": false
     },
     {
       "offset": 857334,
       "length": 16,
       "text": "비기·맹호유성각",
-      "fixed": "",
+      "fixed": "오의·맹호유성각",
       "confirmed": false
     },
     {
       "offset": 857364,
       "length": 16,
       "text": "비기·맹호유성각",
-      "fixed": "",
+      "fixed": "오의·맹호유성각",
       "confirmed": false
     },
     {
       "offset": 857394,
       "length": 16,
       "text": "비기·맹호유성각",
-      "fixed": "",
+      "fixed": "오의·맹호유성각",
       "confirmed": false
     },
     {
@@ -104231,28 +104231,28 @@
       "offset": 858956,
       "length": 16,
       "text": "고양이달래기　　",
-      "fixed": "",
+      "fixed": "고양이속이기　　",
       "confirmed": false
     },
     {
       "offset": 858986,
       "length": 16,
       "text": "고양이달래기　　",
-      "fixed": "",
+      "fixed": "고양이속이기　　",
       "confirmed": false
     },
     {
       "offset": 859016,
       "length": 16,
       "text": "고양이달래기　　",
-      "fixed": "",
+      "fixed": "고양이속이기　　",
       "confirmed": false
     },
     {
       "offset": 859046,
       "length": 16,
       "text": "고양이달래기　　",
-      "fixed": "",
+      "fixed": "고양이속이기　　",
       "confirmed": false
     },
     {
@@ -104861,7 +104861,7 @@
       "offset": 861848,
       "length": 16,
       "text": "장궁　　　　　　",
-      "fixed": "",
+      "fixed": "독안개　　　　　",
       "confirmed": false
     },
     {
@@ -104973,7 +104973,7 @@
       "offset": 862352,
       "length": 16,
       "text": "비기·맹호광파참",
-      "fixed": "",
+      "fixed": "오의·맹호광파참",
       "confirmed": false
     },
     {
@@ -105302,7 +105302,7 @@
       "offset": 863970,
       "length": 16,
       "text": "장궁　　　　　　",
-      "fixed": "",
+      "fixed": "독안개　　　　　",
       "confirmed": false
     },
     {
@@ -105407,7 +105407,7 @@
       "offset": 864532,
       "length": 16,
       "text": "장궁　　　　　　",
-      "fixed": "",
+      "fixed": "독안개　　　　　",
       "confirmed": false
     },
     {
@@ -105421,7 +105421,7 @@
       "offset": 864622,
       "length": 16,
       "text": "장궁　　　　　　",
-      "fixed": "",
+      "fixed": "독안개　　　　　",
       "confirmed": false
     },
     {
