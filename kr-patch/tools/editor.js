@@ -116,36 +116,67 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { total: hits.length, results, labelHits: labelHits.slice(0, 50) });
     }
 
+    // Batch save (PC98-style): the client accumulates edits and sends them all at once.
+    // Each edit is { key ("section:offset"), section, offset, fixed }. Every edit is
+    // validated (and label-padded) individually; valid ones are applied and the file is
+    // written once, invalid ones are reported back per-key so the client can flag those
+    // rows without losing the rest. A single bad edit never blocks the good ones.
     if (req.method === 'POST' && url.pathname === '/api/save') {
       const body = JSON.parse(await readBody(req));
-      const { section, offset, fixed } = body;
+      const edits = Array.isArray(body.edits) ? body.edits : [];
+      const t = loadTranslation();
+      const results = {};
+      let anyApplied = false;
+
+      for (const edit of edits) {
+        const { key, section, offset } = edit;
+        if (!['dialogue', 'labels', 'fonts'].includes(section)) {
+          results[key] = { ok: false, error: 'bad section' };
+          continue;
+        }
+        const entry = (t[section] || []).find((e) => e.offset === offset);
+        if (!entry) {
+          results[key] = { ok: false, error: 'entry not found' };
+          continue;
+        }
+        let toSave = edit.fixed || '';
+        if (toSave) {
+          const need = requiredLength(section, entry);
+          toSave = padToFit(section, toSave, need);
+          const got = encodeFor(section, toSave).length;
+          // 'fonts' just needs to fit the fixed NUL-padded buffer; everything else must
+          // match the slot exactly (see requiredLength()/padToFit()).
+          const okLen = section === 'fonts' ? got <= need : got === need;
+          if (!okLen) {
+            results[key] = { ok: false, error: `byte ${got}/${need}`, need, got };
+            continue;
+          }
+        }
+        entry.fixed = toSave;
+        results[key] = { ok: true, fixed: toSave };
+        anyApplied = true;
+      }
+
+      if (anyApplied) saveTranslation(t);
+      return send(res, 200, { results });
+    }
+
+    // Toggle the "reviewed, no change needed" flag on one entry. This is a lightweight
+    // per-row action (a bool, no byte validation), so it persists immediately rather than
+    // going through the batched text-edit save above. Only meaningful when `fixed` is
+    // empty (the UI hides the button otherwise) but we don't enforce that server-side.
+    if (req.method === 'POST' && url.pathname === '/api/confirm') {
+      const body = JSON.parse(await readBody(req));
+      const { section, offset, confirmed } = body;
       if (!['dialogue', 'labels', 'fonts'].includes(section)) {
         return send(res, 400, { error: 'bad section' });
       }
       const t = loadTranslation();
       const entry = (t[section] || []).find((e) => e.offset === offset);
       if (!entry) return send(res, 404, { error: 'entry not found' });
-
-      let toSave = fixed || '';
-      if (toSave) {
-        const need = requiredLength(section, entry);
-        toSave = padToFit(section, toSave, need);
-        const got = encodeFor(section, toSave).length;
-        // 'fonts' just needs to fit the fixed NUL-padded buffer; everything else must
-        // match the slot exactly (see requiredLength()/padToFit()).
-        const ok = section === 'fonts' ? got <= need : got === need;
-        if (!ok) {
-          return send(res, 400, {
-            error: `byte length ${section === 'fonts' ? 'exceeds' : 'mismatch'}: need ${section === 'fonts' ? '<= ' : ''}${need}, got ${got}`,
-            need,
-            got,
-          });
-        }
-      }
-
-      entry.fixed = toSave;
+      entry.confirmed = !!confirmed;
       saveTranslation(t);
-      return send(res, 200, { ok: true, fixed: toSave });
+      return send(res, 200, { ok: true, confirmed: entry.confirmed });
     }
 
     send(res, 404, { error: 'not found' });

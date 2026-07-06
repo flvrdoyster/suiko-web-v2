@@ -54,6 +54,12 @@ function isJapaneseChar(buf, off) {
 function isUpper(b) {
   return b >= 0x41 && b <= 0x5a;
 }
+function isDigit(b) {
+  return b >= 0x30 && b <= 0x39;
+}
+function isPadPairAt(buf, off) {
+  return buf[off] === 0x81 && (buf[off + 1] === 0x40 || buf[off + 1] === 0x41);
+}
 
 // Same noise guard as hwanse-names.js: a Latin-letter run shorter than 3 bytes, mixed-case,
 // or containing 3+ identical consecutive letters ("xxxddd"), was always coincidental
@@ -62,6 +68,9 @@ function isUpper(b) {
 // precede real text too (e.g. a leading digit+letter from the previous record's stat
 // bytes), so the caller splits and re-checks both sides rather than just truncating the
 // tail. See hwanse-names.js's findNoiseRun()/emitCleanEntries() for the full rationale.
+// Also flags a digit run immediately preceded by padding AND at the very end of the span
+// as noise (confirmed on the KR side: "호랑이발톱　　　2" — the '2' is a coincidental stat
+// byte, not the real 0x01-0x04 level-id byte the record format actually uses).
 function findNoiseRun(buf, off, len) {
   let i = off;
   while (i < off + len) {
@@ -82,6 +91,11 @@ function findNoiseRun(buf, off, len) {
       if (runLen < 3 || mixedCase || maxRepeat >= 3) return [i, j];
       i = j;
       continue;
+    }
+    if (l === 1 && isDigit(buf[i]) && i - 2 >= off && isPadPairAt(buf, i - 2)) {
+      let j = i;
+      while (j < off + len && charLenAt(buf, j) === 1 && isDigit(buf[j])) j++;
+      if (j === off + len) return [i, j];
     }
     i += l || 1;
   }

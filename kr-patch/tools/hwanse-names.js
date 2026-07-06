@@ -36,6 +36,33 @@ const NUMERIC_TABLE_RANGES = [
   [0xcab08, 0xcb308],
 ];
 
+// Individual offsets that decode as short 2-syllable Hangul runs but are binary noise, not
+// real labels (manually confirmed: "뼬뼬", "햊 큞", etc). Excluded by exact start offset
+// rather than a range, since a range could swallow a genuine label sitting between them.
+const NOISE_OFFSETS = new Set([
+  0x561c1, 0x561f9, 0x56231, 0x56892, // "뼬뼬" ×3, "뻚뼎"
+  0xd4c21, 0xd514d, 0xd9b6d,          // "햊 큞", "햊.늫", "픜 쑝"
+]);
+
+// 0x10e18c is a NUL-terminated printf-style error message template — 파일 "%s" 가
+// 열리지 않음 ("File \"%s\" could not be opened") — sitting among unrelated
+// non-Korean debug/driver strings ("playing", "WLKF", "SOUND LO..."). Its `"` and `%`
+// bytes aren't in the allowed-ASCII set (kept narrow deliberately — see isAllowedAscii —
+// broadening it risks readmitting the stat-byte noise that set was built to keep out), so
+// the scanner split it into two fragments ("파일 " / " 가　열리지　않음") at those bytes.
+// Rather than broaden the general charset, this one known-good span is force-joined into
+// a single entry, byte range fixed by inspection (a NUL immediately follows at the end).
+const JOIN_OFFSETS = { 0x10e18c: 26 };
+
+// 0x8a042 is a settings-menu list ("커서 위치"/"문자 표시속도"/"사운드"/"묘화 스킵"/
+// "게임 종료") where five real 16-byte-slot labels sit back-to-back with NO invalid byte
+// between them (unlike the costume/weapon table, where records are separated by stat
+// bytes) — so the maximal-run scanner merged all five into one 80-byte entry instead of
+// five 16-byte ones. Confirmed each 16-byte chunk decodes to a standalone real label.
+// Listed by offset since this concatenation-with-no-gap shape hasn't been seen elsewhere;
+// promote to a general rule if more turn up.
+const SPLIT_INTO_16_OFFSETS = new Set([0x8a042]);
+
 function isLatinLetter(b) {
   return (b >= 0x41 && b <= 0x5a) || (b >= 0x61 && b <= 0x7a);
 }
@@ -92,6 +119,13 @@ function isUpper(b) {
 // the previous record's stat bytes, e.g. "9A인민복" where "9A" is noise and "인민복" is a
 // real name that would otherwise be discarded along with it), so the span on *both* sides
 // of the noise run needs to be considered separately. See emitCleanEntries().
+function isDigit(b) {
+  return b >= 0x30 && b <= 0x39;
+}
+function isPadPairAt(buf, off) {
+  return buf[off] === 0xa1 && buf[off + 1] === 0xa1;
+}
+
 function findNoiseRun(buf, off, len) {
   let i = off;
   while (i < off + len) {
@@ -112,6 +146,19 @@ function findNoiseRun(buf, off, len) {
       if (runLen < 3 || mixedCase || maxRepeat >= 3) return [i, j];
       i = j;
       continue;
+    }
+    // A digit run immediately preceded by full-width-space padding is coincidental
+    // stat-byte noise, not real content — real numbers in this table always sit right
+    // after real text (e.g. "환세취호전 ver.1.0", digit after "ver."), never right after a
+    // padding run. Confirmed on two real cases: "호랑이발톱　　　2" / "마인아수라　　　2"
+    // (the trailing '2' is stat-byte 0x32, not the 0x01-0x04 raw level-id byte the real
+    // record structure uses — see kr-patch/docs/NOTES.md). Only fires when the digit run
+    // sits at the very end of the whole span (i.e. immediately hits an invalid byte next),
+    // matching both confirmed cases and avoiding false positives on real mid-string digits.
+    if (l === 1 && isDigit(buf[i]) && i - 2 >= off && isPadPairAt(buf, i - 2)) {
+      let j = i;
+      while (j < off + len && charLenAt(buf, j) === 1 && isDigit(buf[j])) j++;
+      if (j === off + len) return [i, j];
     }
     i += l || 1;
   }
@@ -137,9 +184,16 @@ function inNumericTable(off) {
 // (noise can appear before, after, or between real text — see findNoiseRun()).
 function emitCleanEntries(buf, start, end, entries) {
   if (end <= start) return;
+  if (SPLIT_INTO_16_OFFSETS.has(start)) {
+    for (let s = start; s < end; s += 16) {
+      const text = decodeCp949(buf.subarray(s, s + 16));
+      if (text) entries.push({ offset: s, length: 16, text });
+    }
+    return;
+  }
   const noise = findNoiseRun(buf, start, end - start);
   if (!noise) {
-    if (countHangul(buf, start, end - start) >= 2) {
+    if (!NOISE_OFFSETS.has(start) && countHangul(buf, start, end - start) >= 2) {
       const text = decodeCp949(buf.subarray(start, end));
       if (text) entries.push({ offset: start, length: end - start, text });
     }
@@ -155,6 +209,18 @@ function extract(buf, excludeMask) {
   let i = DATA_RAW;
   let segStart = i;
   while (i < DATA_END) {
+    if (i in JOIN_OFFSETS) {
+      // Flush whatever ran up to here normally, then force the whole known span through
+      // as one entry (its embedded '"'/'%' bytes aren't otherwise valid chars, so the
+      // normal walk below would treat them as a segment break — see JOIN_OFFSETS).
+      emitCleanEntries(buf, segStart, i, entries);
+      const len = JOIN_OFFSETS[i];
+      const text = decodeCp949(buf.subarray(i, i + len));
+      if (text) entries.push({ offset: i, length: len, text });
+      i += len;
+      segStart = i;
+      continue;
+    }
     if ((excludeMask && excludeMask[i]) || inNumericTable(i)) {
       emitCleanEntries(buf, segStart, i, entries);
       segStart = i + 1;

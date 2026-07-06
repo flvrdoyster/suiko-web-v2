@@ -47,35 +47,36 @@ function fail(msg) {
   process.exit(1);
 }
 
-// Carries over `fixed` from a previous run's entries, matched by a key (offset+length by
-// default; fonts use offset+maxLength since they don't have a `length` field), so
-// re-extraction after an extractor tweak doesn't wipe out review work already saved via
-// the editor. Reports any previously-fixed entry that no longer has a matching slot.
-function mergeFixed(oldEntries, newEntries, label, keyOf = (e) => `${e.offset}:${e.length}`) {
+// Carries over review state (`fixed` text edits AND the `confirmed` "reviewed, no change
+// needed" flag) from a previous run's entries, matched by a key (offset+length by default;
+// fonts use offset+maxLength since they don't have a `length` field), so re-extraction
+// after an extractor tweak doesn't wipe out review work already saved via the editor.
+// Reports any previously-touched entry that no longer has a matching slot.
+function mergeReview(oldEntries, newEntries, label, keyOf = (e) => `${e.offset}:${e.length}`) {
   if (!oldEntries) return newEntries;
   const oldByKey = new Map();
   for (const e of oldEntries) {
-    if (e.fixed) oldByKey.set(keyOf(e), e.fixed);
+    if (e.fixed || e.confirmed) oldByKey.set(keyOf(e), { fixed: e.fixed || '', confirmed: !!e.confirmed });
   }
   const matchedKeys = new Set();
   const merged = newEntries.map((e) => {
     const key = keyOf(e);
-    const fixed = oldByKey.get(key);
-    if (fixed !== undefined) matchedKeys.add(key);
-    return { ...e, fixed: fixed || '' };
+    const prev = oldByKey.get(key);
+    if (prev !== undefined) matchedKeys.add(key);
+    return { ...e, fixed: (prev && prev.fixed) || '', confirmed: !!(prev && prev.confirmed) };
   });
   const orphaned = [...oldByKey.keys()].filter((k) => !matchedKeys.has(k));
   if (orphaned.length) {
     console.warn(
-      `\n⚠ ${label}: ${orphaned.length} previously-fixed entr${orphaned.length === 1 ? 'y' : 'ies'} ` +
-      `no longer match any extracted slot — their edits were NOT carried over:`
+      `\n⚠ ${label}: ${orphaned.length} previously-reviewed entr${orphaned.length === 1 ? 'y' : 'ies'} ` +
+      `no longer match any extracted slot — their review state was NOT carried over:`
     );
     for (const k of orphaned.slice(0, 20)) {
       const old = oldEntries.find((e) => keyOf(e) === k);
-      console.warn(`  key=${k} fixed=${JSON.stringify(old.fixed)}`);
+      console.warn(`  key=${k} fixed=${JSON.stringify(old.fixed)} confirmed=${!!old.confirmed}`);
     }
     if (orphaned.length > 20) console.warn(`  ... and ${orphaned.length - 20} more`);
-    console.warn('Resolve these by hand (re-apply the edit at its new offset) before proceeding.\n');
+    console.warn('Resolve these by hand (re-apply at its new offset) before proceeding.\n');
   }
   return merged;
 }
@@ -117,16 +118,16 @@ if (Buffer.compare(rebuilt, krBuf) !== 0) {
 }
 
 const existing = loadExisting(outKrPath);
-const mergedDialogue = mergeFixed(existing && existing.dialogue, dialogue, 'dialogue');
-const mergedLabels = mergeFixed(existing && existing.labels, labels, 'labels');
-const mergedFonts = mergeFixed(existing && existing.fonts, fonts, 'fonts', (e) => `${e.offset}:${e.maxLength}`);
+const mergedDialogue = mergeReview(existing && existing.dialogue, dialogue, 'dialogue');
+const mergedLabels = mergeReview(existing && existing.labels, labels, 'labels');
+const mergedFonts = mergeReview(existing && existing.fonts, fonts, 'fonts', (e) => `${e.offset}:${e.maxLength}`);
 
 const translation = {
   source_file: path.basename(krExePath),
   source_md5: crypto.createHash('md5').update(krBuf).digest('hex'),
-  dialogue: mergedDialogue.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '' })),
-  labels: mergedLabels.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '' })),
-  fonts: mergedFonts.map((e) => ({ offset: e.offset, maxLength: e.maxLength, text: e.text, fixed: e.fixed || '' })),
+  dialogue: mergedDialogue.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
+  labels: mergedLabels.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
+  fonts: mergedFonts.map((e) => ({ offset: e.offset, maxLength: e.maxLength, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
 };
 fs.writeFileSync(outKrPath, JSON.stringify(translation, null, 2));
 console.log(`wrote ${path.relative(ROOT, outKrPath)}: dialogue=${dialogue.length}, labels=${labels.length}, fonts=${fonts.length} (round-trip OK)`);
