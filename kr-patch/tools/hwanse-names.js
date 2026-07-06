@@ -8,7 +8,7 @@
 // character-boundary walk stops there on its own with no special-casing needed).
 //
 // This replaced an earlier version that anchored on "padding run start" to find names
-// backward from there. That approach broke on two real cases (see kr-patch/docs/NOTES.md
+// backward from there. That approach broke on two real cases (see NOTES.md
 // for the full trail):
 //   - the full-width space is NOT always trailing padding — some display names have a
 //     REAL internal space ("지옥　다리후리기" = "Hell Leg Sweep", one name, one word each
@@ -112,7 +112,7 @@ function isUpper(b) {
 // containing 3+ identical consecutive letters ("xxxddd" is two back-to-back triples of
 // that shape) all matched noise empirically, while every real example found was a single
 // consistently-cased whole word ("ver") with no repeated-letter run. See module doc
-// comment and kr-patch/docs/NOTES.md.
+// comment and NOTES.md.
 //
 // Returns [start, end) of the noise run, or null if the span is clean. The caller doesn't
 // just truncate at `start` — noise can precede real text too (a leading digit+letter from
@@ -152,7 +152,7 @@ function findNoiseRun(buf, off, len) {
     // after real text (e.g. "환세취호전 ver.1.0", digit after "ver."), never right after a
     // padding run. Confirmed on two real cases: "호랑이발톱　　　2" / "마인아수라　　　2"
     // (the trailing '2' is stat-byte 0x32, not the 0x01-0x04 raw level-id byte the real
-    // record structure uses — see kr-patch/docs/NOTES.md). Only fires when the digit run
+    // record structure uses — see NOTES.md). Only fires when the digit run
     // sits at the very end of the whole span (i.e. immediately hits an invalid byte next),
     // matching both confirmed cases and avoiding false positives on real mid-string digits.
     if (l === 1 && isDigit(buf[i]) && i - 2 >= off && isPadPairAt(buf, i - 2)) {
@@ -240,7 +240,7 @@ function extract(buf, excludeMask) {
 }
 
 // Same conservative policy as hwanse-text.js/hwanse-strings.js: the replacement must
-// encode to the exact same byte length as the original (kr-patch/docs/NOTES.md's "길이
+// encode to the exact same byte length as the original (NOTES.md's "길이
 // 변경은 안전하지 않다" policy) — but here that length commonly includes trailing
 // full-width-space padding, so a reviewer shortening the visible name should pad it back
 // out with '　' themselves (the editor does this automatically).

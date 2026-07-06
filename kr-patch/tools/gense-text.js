@@ -1,7 +1,7 @@
 // gense-text.js — extract the Japanese dialogue text embedded in GENSE.EXE (JP original),
 // for side-by-side comparison against the KR translation extracted by hwanse-text.js.
 // Same structure as the KR side: literal Shift-JIS bytes inline in PE .data, lines
-// terminated by literal '@' (0x40). See kr-patch/docs/NOTES.md.
+// terminated by literal '@' (0x40). See NOTES.md.
 'use strict';
 
 const iconv = require('iconv-lite');
@@ -47,7 +47,7 @@ function isJapaneseChar(buf, off) {
 // Walks the buffer one character (not byte) at a time so a DBCS trail byte that happens
 // to equal 0x40 ('@') is never mistaken for the literal single-byte '@' line terminator
 // (Shift-JIS trail bytes span 0x40-0x7E/0x80-0xFC, unlike CP949's 0x41-0xFE, so this
-// ambiguity is JP-specific — see kr-patch/docs/NOTES.md).
+// ambiguity is JP-specific — see NOTES.md).
 function extract(buf) {
   const entries = [];
   let i = DATA_RAW;

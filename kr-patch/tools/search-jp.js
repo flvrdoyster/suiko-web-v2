@@ -3,7 +3,7 @@
 // reviewer can cross-check a KR line's meaning on demand without a full alignment.
 //
 // JP and KR text appear in different orders inside their respective .data sections (see
-// kr-patch/docs/NOTES.md), so there is no index-to-index correspondence — this tool is a
+// NOTES.md), so there is no index-to-index correspondence — this tool is a
 // substitute for automatic alignment: search by name/keyword, read the surrounding lines
 // (same appearance order as the original script, just not synced to the KR file offsets),
 // and use human judgement.

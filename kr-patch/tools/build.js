@@ -12,7 +12,7 @@
 // file — this script just reports which offsets were actually touched and lets those
 // errors surface. This does not touch docs/final-shared.img; injecting the patched EXE
 // into the shared disk image and re-testing in the emulator is a separate manual step
-// (see kr-patch/docs/NOTES.md's "다음 단계").
+// (see NOTES.md's "다음 단계").
 'use strict';
 
 const fs = require('fs');

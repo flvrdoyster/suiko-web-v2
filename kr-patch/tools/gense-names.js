@@ -7,7 +7,7 @@
 // by non-text control bytes, rather than anchoring on a padding run (which breaks when a
 // full-width space is a real word separator, or when a name has zero trailing padding).
 // The full-width space/middle-dot byte pairs differ from the KR side because CP949 and
-// Shift-JIS encode U+3000/U+30FB differently — see kr-patch/docs/NOTES.md.
+// Shift-JIS encode U+3000/U+30FB differently — see NOTES.md.
 'use strict';
 
 const iconv = require('iconv-lite');

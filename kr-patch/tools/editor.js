@@ -6,7 +6,7 @@
 //
 // Serves the whole translation.json to the browser once; all browsing/filtering happens
 // client-side (editor.html). Edits are saved one entry at a time via POST /api/save,
-// which re-validates the byte-length constraint (kr-patch/docs/NOTES.md's "길이 변경은
+// which re-validates the byte-length constraint (NOTES.md's "길이 변경은
 // 안전하지 않다" policy) server-side before persisting, so a bad edit can't silently land
 // in translation.json even if the client-side check is bypassed.
 'use strict';

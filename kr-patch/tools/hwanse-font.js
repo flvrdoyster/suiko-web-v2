@@ -11,7 +11,7 @@
 // lfWeight=1000 marker found ~20 other LOGFONT-shaped structs, but all the rest have
 // lfCharSet=ANSI_CHARSET(0) — this is the only Hangul one, i.e. the one call plausibly
 // worth changing if the game's KR font ever needs to be swapped by name instead of by
-// charset substitution (see kr-patch/docs/NOTES.md's still-unresolved GULIM.TTC issue).
+// charset substitution (see NOTES.md's still-unresolved GULIM.TTC issue).
 //
 // This is NOT the same shape as hwanse-names.js's labels: the face name is a C string in
 // a FIXED 32-byte buffer, NUL-terminated/padded (not full-width-space padded), and its

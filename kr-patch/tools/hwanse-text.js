@@ -1,6 +1,6 @@
 // hwanse-text.js — extract/rebuild the Korean dialogue text embedded in HWANSE.EXE.
 //
-// Findings this format is based on (see kr-patch/docs/NOTES.md for the full trail):
+// Findings this format is based on (see NOTES.md for the full trail):
 //   * Text lives as literal CP949 bytes inline in the PE .data section (not in GENSE.FLD,
 //     which contains no readable Korean at all — confirmed by anchor-word frequency scan).
 //   * Each line is terminated by a literal '@' (0x40) byte, not NUL. Lines use full-width
