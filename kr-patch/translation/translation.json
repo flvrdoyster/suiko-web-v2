@@ -4441,6 +4441,13 @@
       "confirmed": false
     },
     {
+      "offset": 346200,
+      "length": 6,
+      "text": "「？！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 346222,
       "length": 6,
       "text": "아타호",
@@ -9810,6 +9817,20 @@
       "confirmed": false
     },
     {
+      "offset": 399224,
+      "length": 2,
+      "text": "…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 399234,
+      "length": 4,
+      "text": "……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 399246,
       "length": 34,
       "text": "…그런데，이걸　어떻게　연다냐？！",
@@ -13520,6 +13541,13 @@
       "confirmed": false
     },
     {
+      "offset": 439758,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 439770,
       "length": 34,
       "text": "　（으이그，조금만　칭찬해주면…）",
@@ -16943,6 +16971,13 @@
       "confirmed": false
     },
     {
+      "offset": 453620,
+      "length": 6,
+      "text": "「……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 453630,
       "length": 20,
       "text": "　정말　괜찮을까요？",
@@ -17051,6 +17086,13 @@
       "offset": 454030,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 454038,
+      "length": 6,
+      "text": "「……",
       "fixed": "",
       "confirmed": false
     },
@@ -22039,6 +22081,13 @@
       "confirmed": false
     },
     {
+      "offset": 524282,
+      "length": 4,
+      "text": "「…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 524290,
       "length": 38,
       "text": "　（쯧쯧∼요새　사내놈들은　연약해서）",
@@ -22375,6 +22424,13 @@
       "confirmed": false
     },
     {
+      "offset": 525764,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 525792,
       "length": 4,
       "text": "사내",
@@ -22707,6 +22763,13 @@
       "offset": 527070,
       "length": 28,
       "text": "　사내와　데이트해　봤으면…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 527114,
+      "length": 2,
+      "text": "　",
       "fixed": "",
       "confirmed": false
     },
@@ -24230,6 +24293,13 @@
       "confirmed": false
     },
     {
+      "offset": 532996,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 533024,
       "length": 6,
       "text": "간호사",
@@ -25612,6 +25682,13 @@
       "offset": 548122,
       "length": 12,
       "text": "「이，이봐…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 548142,
+      "length": 8,
+      "text": "　………",
       "fixed": "",
       "confirmed": false
     },
@@ -28591,6 +28668,13 @@
       "confirmed": false
     },
     {
+      "offset": 579106,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 579134,
       "length": 4,
       "text": "린샹",
@@ -28804,6 +28888,13 @@
       "offset": 580096,
       "length": 2,
       "text": "론",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 580102,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -29707,6 +29798,13 @@
       "offset": 620912,
       "length": 10,
       "text": "「으응？！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 620926,
+      "length": 12,
+      "text": "　………！！",
       "fixed": "",
       "confirmed": false
     },
@@ -34730,6 +34828,13 @@
       "confirmed": false
     },
     {
+      "offset": 641160,
+      "length": 6,
+      "text": "………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 641178,
       "length": 4,
       "text": "린샹",
@@ -39644,6 +39749,13 @@
       "confirmed": false
     },
     {
+      "offset": 678524,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 678552,
       "length": 4,
       "text": "사내",
@@ -41142,6 +41254,13 @@
       "confirmed": false
     },
     {
+      "offset": 684490,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 684518,
       "length": 6,
       "text": "간호사",
@@ -42465,6 +42584,13 @@
       "confirmed": false
     },
     {
+      "offset": 770992,
+      "length": 4,
+      "text": "「！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 771000,
       "length": 6,
       "text": "　…우",
@@ -42615,6 +42741,27 @@
       "offset": 771582,
       "length": 24,
       "text": "　마주하고　죽어가다니…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 771626,
+      "length": 2,
+      "text": "…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 771636,
+      "length": 4,
+      "text": "……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 771648,
+      "length": 6,
+      "text": "………",
       "fixed": "",
       "confirmed": false
     },
@@ -43364,6 +43511,13 @@
       "offset": 775598,
       "length": 14,
       "text": "향해　출발했다",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 775620,
+      "length": 6,
+      "text": "………",
       "fixed": "",
       "confirmed": false
     },
@@ -44285,6 +44439,27 @@
       "confirmed": false
     },
     {
+      "offset": 780072,
+      "length": 2,
+      "text": "…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 780078,
+      "length": 2,
+      "text": "…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 780084,
+      "length": 2,
+      "text": "…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 780106,
       "length": 6,
       "text": "아타호",
@@ -44845,6 +45020,13 @@
       "confirmed": false
     },
     {
+      "offset": 782290,
+      "length": 6,
+      "text": "「……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 782312,
       "length": 6,
       "text": "아타호",
@@ -45205,6 +45387,13 @@
       "offset": 783624,
       "length": 32,
       "text": "　빨리　지불하는　게　좋을　걸！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 783664,
+      "length": 6,
+      "text": "　……",
       "fixed": "",
       "confirmed": false
     },
@@ -48814,6 +49003,13 @@
       "confirmed": false
     },
     {
+      "offset": 841086,
+      "length": 8,
+      "text": "　………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 841102,
       "length": 20,
       "text": "　제법인걸…하지만，",
@@ -48985,6 +49181,13 @@
       "offset": 841862,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 841872,
+      "length": 8,
+      "text": "「？？？",
       "fixed": "",
       "confirmed": false
     },
@@ -51334,6 +51537,13 @@
       "confirmed": false
     },
     {
+      "offset": 881650,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 881678,
       "length": 10,
       "text": "마을　사람",
@@ -52314,6 +52524,13 @@
       "confirmed": false
     },
     {
+      "offset": 885510,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 885538,
       "length": 6,
       "text": "Ｍａｎ",
@@ -53259,6 +53476,13 @@
       "confirmed": false
     },
     {
+      "offset": 943424,
+      "length": 2,
+      "text": "／",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 943442,
       "length": 6,
       "text": "기력　",
@@ -53266,9 +53490,23 @@
       "confirmed": false
     },
     {
+      "offset": 943456,
+      "length": 2,
+      "text": "／",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 943474,
       "length": 6,
       "text": "경험　",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 943488,
+      "length": 2,
+      "text": "／",
       "fixed": "",
       "confirmed": false
     },
@@ -53504,6 +53742,55 @@
       "confirmed": false
     },
     {
+      "offset": 944648,
+      "length": 2,
+      "text": "／",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 944658,
+      "length": 2,
+      "text": "／",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 944668,
+      "length": 2,
+      "text": "（",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 944678,
+      "length": 2,
+      "text": "）",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 944684,
+      "length": 10,
+      "text": "　　　　　",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 944702,
+      "length": 2,
+      "text": "：",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 944712,
+      "length": 2,
+      "text": "：",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 944794,
       "length": 2,
       "text": "일",
@@ -53556,6 +53843,13 @@
       "offset": 944864,
       "length": 4,
       "text": "장소",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 944872,
+      "length": 2,
+      "text": "　",
       "fixed": "",
       "confirmed": false
     },
@@ -57277,6 +57571,13 @@
       "confirmed": false
     },
     {
+      "offset": 958164,
+      "length": 6,
+      "text": "？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 958174,
       "length": 14,
       "text": "아타호의　거처",
@@ -57756,6 +58057,13 @@
       "offset": 959146,
       "length": 6,
       "text": "스마슈",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 959496,
+      "length": 6,
+      "text": "？？？",
       "fixed": "",
       "confirmed": false
     },
@@ -58330,8 +58638,8 @@
       "offset": 960454,
       "length": 16,
       "text": "　　　　　　스탭",
-      "fixed": "스탭　　　　　　",
-      "confirmed": false
+      "fixed": "",
+      "confirmed": true
     },
     {
       "offset": 960494,
@@ -58351,7 +58659,7 @@
       "offset": 960538,
       "length": 18,
       "text": "　　　Doskoy K-oka",
-      "fixed": "도스코이Ｋ오카　　",
+      "fixed": "　도스코이Ｋ오카　",
       "confirmed": false
     },
     {
@@ -58365,7 +58673,7 @@
       "offset": 960600,
       "length": 16,
       "text": "　　Satou Taicho",
-      "fixed": "사토　대장　　　",
+      "fixed": "　사토　대장　　",
       "confirmed": false
     },
     {
@@ -58379,35 +58687,35 @@
       "offset": 960656,
       "length": 18,
       "text": "Kawachi Yumedaiko ",
-      "fixed": "",
+      "fixed": "　카와치유메다이코",
       "confirmed": false
     },
     {
       "offset": 960698,
       "length": 18,
       "text": "　　　　　　그래픽",
-      "fixed": "",
+      "fixed": "그래픽　　　　　　",
       "confirmed": false
     },
     {
       "offset": 960724,
       "length": 14,
       "text": "　　　　Migaku",
-      "fixed": "",
+      "fixed": "　미가쿠　　　",
       "confirmed": false
     },
     {
       "offset": 960746,
       "length": 22,
       "text": "　　　Utsutsu Kazuhiko",
-      "fixed": "",
+      "fixed": "　우츠츠카즈히코　　　",
       "confirmed": false
     },
     {
       "offset": 960792,
       "length": 12,
       "text": "　　　사운드",
-      "fixed": "",
+      "fixed": "사운드　　　",
       "confirmed": false
     },
     {
@@ -59184,6 +59492,13 @@
       "offset": 963940,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 963950,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -60574,6 +60889,13 @@
       "confirmed": false
     },
     {
+      "offset": 970434,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 970462,
       "length": 18,
       "text": "검정도복（파란띠）",
@@ -60605,6 +60927,13 @@
       "offset": 970566,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 970574,
+      "length": 8,
+      "text": "「！！！",
       "fixed": "",
       "confirmed": false
     },
@@ -60938,6 +61267,13 @@
       "confirmed": false
     },
     {
+      "offset": 971960,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 971984,
       "length": 6,
       "text": "아타호",
@@ -61123,6 +61459,13 @@
       "offset": 972774,
       "length": 10,
       "text": "「그건……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 972788,
+      "length": 8,
+      "text": "　………",
       "fixed": "",
       "confirmed": false
     },
@@ -61354,6 +61697,13 @@
       "offset": 973744,
       "length": 14,
       "text": "치호（빨간띠）",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 973762,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -61680,6 +62030,13 @@
       "confirmed": false
     },
     {
+      "offset": 975024,
+      "length": 8,
+      "text": "　………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 975040,
       "length": 22,
       "text": "　아타호…죄송해요……",
@@ -61722,6 +62079,13 @@
       "confirmed": false
     },
     {
+      "offset": 975210,
+      "length": 8,
+      "text": "　………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 975242,
       "length": 6,
       "text": "아타호",
@@ -61746,6 +62110,13 @@
       "offset": 975308,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 975316,
+      "length": 6,
+      "text": "「！！",
       "fixed": "",
       "confirmed": false
     },
@@ -61820,6 +62191,13 @@
       "confirmed": false
     },
     {
+      "offset": 975592,
+      "length": 6,
+      "text": "「！！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 975602,
       "length": 18,
       "text": "　…역시，그렇겠죠",
@@ -61869,9 +62247,23 @@
       "confirmed": false
     },
     {
+      "offset": 975808,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 975832,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 975840,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -62954,6 +63346,13 @@
       "confirmed": false
     },
     {
+      "offset": 1019422,
+      "length": 12,
+      "text": "　　　　　　",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1019450,
       "length": 4,
       "text": "간판",
@@ -62964,6 +63363,13 @@
       "offset": 1019458,
       "length": 14,
       "text": "「현무권　도장",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1019476,
+      "length": 12,
+      "text": "　　　　　　",
       "fixed": "",
       "confirmed": false
     },
@@ -62982,6 +63388,13 @@
       "confirmed": false
     },
     {
+      "offset": 1019530,
+      "length": 12,
+      "text": "　　　　　　",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1019558,
       "length": 4,
       "text": "간판",
@@ -62992,6 +63405,13 @@
       "offset": 1019566,
       "length": 14,
       "text": "「백호권　도장",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1019584,
+      "length": 12,
+      "text": "　　　　　　",
       "fixed": "",
       "confirmed": false
     },
@@ -65166,6 +65586,13 @@
       "confirmed": false
     },
     {
+      "offset": 1028090,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1028110,
       "length": 12,
       "text": "백호권　사범",
@@ -65211,6 +65638,13 @@
       "offset": 1028298,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1028306,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -66184,6 +66618,13 @@
       "offset": 1032244,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1032254,
+      "length": 6,
+      "text": "「？？",
       "fixed": "",
       "confirmed": false
     },
@@ -68106,9 +68547,23 @@
       "confirmed": false
     },
     {
+      "offset": 1061790,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1061814,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1061822,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -68477,6 +68932,13 @@
       "confirmed": false
     },
     {
+      "offset": 1062980,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1062996,
       "length": 22,
       "text": "　이미　늦은　건가？！",
@@ -68592,6 +69054,13 @@
       "offset": 1063374,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1063384,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -68911,6 +69380,13 @@
       "confirmed": false
     },
     {
+      "offset": 1064568,
+      "length": 8,
+      "text": "　………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1064584,
       "length": 32,
       "text": "　…으응，아　아무　것도　아녜요",
@@ -69086,6 +69562,13 @@
       "confirmed": false
     },
     {
+      "offset": 1065314,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1065338,
       "length": 6,
       "text": "스마슈",
@@ -69201,6 +69684,13 @@
       "offset": 1065740,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1065750,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -69674,6 +70164,13 @@
       "confirmed": false
     },
     {
+      "offset": 1067832,
+      "length": 6,
+      "text": "　……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1067846,
       "length": 8,
       "text": "　…흑흑",
@@ -70017,6 +70514,13 @@
       "confirmed": false
     },
     {
+      "offset": 1069190,
+      "length": 6,
+      "text": "………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1069204,
       "length": 22,
       "text": "…어쨌든　이번　소동은",
@@ -70132,6 +70636,13 @@
       "offset": 1069610,
       "length": 26,
       "text": "　저는　호랑이　마을에서…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1069644,
+      "length": 6,
+      "text": "………",
       "fixed": "",
       "confirmed": false
     },
@@ -74399,6 +74910,13 @@
       "confirmed": false
     },
     {
+      "offset": 1139404,
+      "length": 14,
+      "text": "　　　　　　　",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1139434,
       "length": 4,
       "text": "간판",
@@ -74409,6 +74927,13 @@
       "offset": 1139442,
       "length": 14,
       "text": "「현무권　도장",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1139460,
+      "length": 14,
+      "text": "　　　　　　　",
       "fixed": "",
       "confirmed": false
     },
@@ -74427,6 +74952,13 @@
       "confirmed": false
     },
     {
+      "offset": 1139516,
+      "length": 14,
+      "text": "　　　　　　　",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1139546,
       "length": 4,
       "text": "간판",
@@ -74437,6 +74969,13 @@
       "offset": 1139554,
       "length": 14,
       "text": "「백호권　도장",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1139572,
+      "length": 14,
+      "text": "　　　　　　　",
       "fixed": "",
       "confirmed": false
     },
@@ -75743,6 +76282,13 @@
       "confirmed": true
     },
     {
+      "offset": 1144694,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1144706,
       "length": 20,
       "text": "　건강해　보인다구요",
@@ -75809,6 +76355,13 @@
       "offset": 1144878,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1144888,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -75907,6 +76460,13 @@
       "offset": 1145222,
       "length": 22,
       "text": "「어라…아무도　없나？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1145256,
+      "length": 6,
+      "text": "………",
       "fixed": "",
       "confirmed": false
     },
@@ -77416,6 +77976,13 @@
       "confirmed": false
     },
     {
+      "offset": 1151042,
+      "length": 6,
+      "text": "「！！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1151060,
       "length": 4,
       "text": "사범",
@@ -77773,6 +78340,13 @@
       "confirmed": false
     },
     {
+      "offset": 1152358,
+      "length": 6,
+      "text": "………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1152380,
       "length": 4,
       "text": "사범",
@@ -77783,6 +78357,13 @@
       "offset": 1152388,
       "length": 8,
       "text": "「천치∼",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1152404,
+      "length": 6,
+      "text": "………",
       "fixed": "",
       "confirmed": false
     },
@@ -77867,6 +78448,13 @@
       "offset": 1152688,
       "length": 8,
       "text": "「천치∼",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1152704,
+      "length": 6,
+      "text": "………",
       "fixed": "",
       "confirmed": false
     },
@@ -81399,6 +81987,13 @@
       "confirmed": false
     },
     {
+      "offset": 1264978,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1265010,
       "length": 4,
       "text": "린샹",
@@ -84276,6 +84871,13 @@
       "confirmed": false
     },
     {
+      "offset": 1276074,
+      "length": 6,
+      "text": "「！！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1276084,
       "length": 26,
       "text": "　당신이　백호였었군요！！",
@@ -85585,6 +86187,13 @@
       "confirmed": false
     },
     {
+      "offset": 1296248,
+      "length": 6,
+      "text": "　……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1296262,
       "length": 12,
       "text": "　…그러죠…",
@@ -85602,6 +86211,13 @@
       "offset": 1296312,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1296322,
+      "length": 8,
+      "text": "　「…？",
       "fixed": "",
       "confirmed": false
     },
@@ -85879,6 +86495,13 @@
       "confirmed": false
     },
     {
+      "offset": 1297456,
+      "length": 6,
+      "text": "「……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1297486,
       "length": 6,
       "text": "스마슈",
@@ -85938,6 +86561,13 @@
       "offset": 1297676,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1297684,
+      "length": 6,
+      "text": "「……",
       "fixed": "",
       "confirmed": false
     },
@@ -86264,6 +86894,13 @@
       "confirmed": false
     },
     {
+      "offset": 1298892,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1298904,
       "length": 30,
       "text": "　왜　자네가　사과하는　건가？",
@@ -86274,6 +86911,13 @@
       "offset": 1298950,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1298958,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -86596,6 +87240,13 @@
       "offset": 1331682,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1331690,
+      "length": 8,
+      "text": "「？？？",
       "fixed": "",
       "confirmed": false
     },
@@ -87114,6 +87765,13 @@
       "offset": 1333654,
       "length": 4,
       "text": "린샹",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1333662,
+      "length": 8,
+      "text": "「？？？",
       "fixed": "",
       "confirmed": false
     },
@@ -88273,6 +88931,13 @@
       "confirmed": false
     },
     {
+      "offset": 1338192,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1338216,
       "length": 8,
       "text": "알리바바",
@@ -88301,6 +88966,13 @@
       "confirmed": false
     },
     {
+      "offset": 1338296,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1338320,
       "length": 8,
       "text": "알리바바",
@@ -88318,6 +88990,13 @@
       "offset": 1338382,
       "length": 6,
       "text": "스마슈",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1338392,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -88346,6 +89025,13 @@
       "offset": 1338504,
       "length": 6,
       "text": "스마슈",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1338514,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -92410,6 +93096,13 @@
       "confirmed": false
     },
     {
+      "offset": 1355172,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1355184,
       "length": 16,
       "text": "　건강하시네요！",
@@ -92476,6 +93169,13 @@
       "offset": 1355358,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1355368,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -96589,6 +97289,13 @@
       "confirmed": false
     },
     {
+      "offset": 1371868,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1371880,
       "length": 26,
       "text": "（역시　생각했던　대로야）",
@@ -97229,6 +97936,13 @@
       "offset": 1374470,
       "length": 10,
       "text": "「그래요…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1374492,
+      "length": 8,
+      "text": "　………",
       "fixed": "",
       "confirmed": false
     },
@@ -98251,6 +98965,13 @@
       "offset": 1378668,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1378678,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     },
@@ -100012,6 +100733,13 @@
       "confirmed": false
     },
     {
+      "offset": 1385504,
+      "length": 6,
+      "text": "「……",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1385530,
       "length": 6,
       "text": "아타호",
@@ -100120,6 +100848,13 @@
       "offset": 1385908,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1385918,
+      "length": 4,
+      "text": "「…",
       "fixed": "",
       "confirmed": false
     },
@@ -100733,6 +101468,13 @@
       "confirmed": false
     },
     {
+      "offset": 1388446,
+      "length": 8,
+      "text": "「？？？",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1388474,
       "length": 4,
       "text": "사내",
@@ -101055,6 +101797,20 @@
       "confirmed": false
     },
     {
+      "offset": 1389788,
+      "length": 6,
+      "text": "………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1389810,
+      "length": 6,
+      "text": "………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1389828,
       "length": 6,
       "text": "아타호",
@@ -101240,6 +101996,13 @@
       "offset": 1390588,
       "length": 16,
       "text": "　어수선한　녀석",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1390612,
+      "length": 8,
+      "text": "　………",
       "fixed": "",
       "confirmed": false
     },
@@ -102203,6 +102966,13 @@
       "confirmed": false
     },
     {
+      "offset": 1394334,
+      "length": 10,
+      "text": "「？？？…",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1394348,
       "length": 18,
       "text": "　내가　아니라구…",
@@ -102945,6 +103715,13 @@
       "confirmed": false
     },
     {
+      "offset": 1397082,
+      "length": 8,
+      "text": "「………",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1397110,
       "length": 6,
       "text": "간호사",
@@ -103060,6 +103837,13 @@
       "offset": 1397554,
       "length": 6,
       "text": "스마슈",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1397564,
+      "length": 8,
+      "text": "「………",
       "fixed": "",
       "confirmed": false
     }

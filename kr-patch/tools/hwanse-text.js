@@ -68,6 +68,19 @@ function isFullwidthAlnum(buf, off) {
   return (cp >= 0xff10 && cp <= 0xff19) || (cp >= 0xff21 && cp <= 0xff3a) || (cp >= 0xff41 && cp <= 0xff5a);
 }
 
+// Real dialogue punctuation that can appear with NO Hangul/alnum at all — silent-reaction
+// lines like "「………」"/"「？？？」" are common in this game. Found by exhaustively listing
+// every codepoint in every currently-dropped (hangul=0, letterCount<3) segment: this exact
+// set (…　「」？！／：（）) covers every one of them, and nothing else — genuine noise
+// (stray control bytes that happen to decode as valid CP949) never lands on one of these
+// specific codepoints, only on unrelated ones (single ASCII letters, U+FFFD, etc.).
+const REAL_PUNCT_CODEPOINTS = new Set([0x2026, 0x3000, 0x300c, 0x300d, 0xff1f, 0xff01, 0xff0f, 0xff1a, 0xff08, 0xff09]);
+function isRealPunct(buf, off) {
+  const code = decodeCp949(buf.subarray(off, off + 2));
+  if (!code) return false;
+  return REAL_PUNCT_CODEPOINTS.has(code.codePointAt(0));
+}
+
 // Minimal CP949 decoder sufficient for this file's byte ranges. We only need this to
 // classify bytes and to produce human-readable text; we round-trip through it symmetrically
 // (decodeCp949 / encodeCp949) so re-encoding never depends on Node's absent native cp949.
@@ -100,8 +113,9 @@ function extract(buf) {
   let segStart = i;
   let hangulCount = 0;
   let letterCount = 0;
+  let punctCount = 0;
   const flushSegment = (end) => {
-    if (end > segStart && (hangulCount >= 1 || letterCount >= 3)) {
+    if (end > segStart && (hangulCount >= 1 || letterCount >= 3 || punctCount >= 1)) {
       const seg = buf.subarray(segStart, end);
       const text = decodeCp949(seg);
       if (text) entries.push({ offset: segStart, length: seg.length, text });
@@ -112,6 +126,7 @@ function extract(buf) {
       segStart = i + 1;
       hangulCount = 0;
       letterCount = 0;
+      punctCount = 0;
       i += 1;
       continue;
     }
@@ -120,6 +135,7 @@ function extract(buf) {
       segStart = i + 1;
       hangulCount = 0;
       letterCount = 0;
+      punctCount = 0;
       i += 1;
       continue;
     }
@@ -129,11 +145,13 @@ function extract(buf) {
       segStart = i;
       hangulCount = 0;
       letterCount = 0;
+      punctCount = 0;
       continue;
     }
     if (len === 2 && isHangulSyllable(buf, i)) hangulCount++;
     if (len === 1 && /[A-Za-z0-9]/.test(String.fromCharCode(buf[i]))) letterCount++;
     if (len === 2 && isFullwidthAlnum(buf, i)) letterCount++;
+    if (len === 2 && isRealPunct(buf, i)) punctCount++;
     i += len;
   }
   return entries;

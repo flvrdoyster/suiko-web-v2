@@ -44,6 +44,27 @@ function isJapaneseChar(buf, off) {
   return (cp >= 0x3040 && cp <= 0x30ff) || (cp >= 0x4e00 && cp <= 0x9fff) || (cp >= 0x3000 && cp <= 0x303f);
 }
 
+// Fullwidth Latin letters/digits (U+FF10-FF19/FF21-FF3A/FF41-FF5A) — e.g. a standalone
+// currency "Ｇ" symbol. Same signal as hwanse-text.js's isFullwidthAlnum (KR side).
+function isFullwidthAlnum(buf, off) {
+  const s = decodeCp932(buf.subarray(off, off + 2));
+  if (!s) return false;
+  const cp = s.codePointAt(0);
+  return (cp >= 0xff10 && cp <= 0xff19) || (cp >= 0xff21 && cp <= 0xff3a) || (cp >= 0xff41 && cp <= 0xff5a);
+}
+
+// Real dialogue punctuation with no other Japanese char at all — silent-reaction lines like
+// "………" are common. isJapaneseChar's 0x3000-0x303f block already covers 「」　, so this
+// only needs to add the ones outside it. Same exhaustive-scan method as hwanse-text.js's
+// REAL_PUNCT_CODEPOINTS (kept as one shared set there; duplicated here since these two
+// files intentionally don't share code — see their own file-top comments).
+const REAL_PUNCT_CODEPOINTS = new Set([0x2026, 0xff1f, 0xff01, 0xff0f, 0xff1a, 0xff08, 0xff09]);
+function isRealPunct(buf, off) {
+  const s = decodeCp932(buf.subarray(off, off + 2));
+  if (!s) return false;
+  return REAL_PUNCT_CODEPOINTS.has(s.codePointAt(0));
+}
+
 // Walks the buffer one character (not byte) at a time so a DBCS trail byte that happens
 // to equal 0x40 ('@') is never mistaken for the literal single-byte '@' line terminator
 // (Shift-JIS trail bytes span 0x40-0x7E/0x80-0xFC, unlike CP949's 0x41-0xFE, so this
@@ -53,8 +74,10 @@ function extract(buf) {
   let i = DATA_RAW;
   let segStart = i;
   let jpCount = 0;
+  let letterCount = 0;
+  let punctCount = 0;
   const flushSegment = (end) => {
-    if (end > segStart && jpCount >= 1) {
+    if (end > segStart && (jpCount >= 1 || letterCount >= 3 || punctCount >= 1)) {
       const seg = buf.subarray(segStart, end);
       const text = decodeCp932(seg);
       if (text) entries.push({ offset: segStart, length: seg.length, text });
@@ -65,6 +88,8 @@ function extract(buf) {
     if (len === 0) {
       segStart = i + 1;
       jpCount = 0;
+      letterCount = 0;
+      punctCount = 0;
       i += 1;
       continue;
     }
@@ -73,9 +98,14 @@ function extract(buf) {
       i += 1;
       segStart = i;
       jpCount = 0;
+      letterCount = 0;
+      punctCount = 0;
       continue;
     }
     if (len === 2 && isJapaneseChar(buf, i)) jpCount++;
+    if (len === 1 && /[A-Za-z0-9]/.test(String.fromCharCode(buf[i]))) letterCount++;
+    if (len === 2 && isFullwidthAlnum(buf, i)) letterCount++;
+    if (len === 2 && isRealPunct(buf, i)) punctCount++;
     i += len;
   }
   return entries;

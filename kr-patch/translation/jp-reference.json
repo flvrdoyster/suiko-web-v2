@@ -11884,6 +11884,21 @@
       "text": "「さて　昼寝でもするか"
     },
     {
+      "offset": 364206,
+      "length": 2,
+      "text": "…"
+    },
+    {
+      "offset": 364212,
+      "length": 2,
+      "text": "…"
+    },
+    {
+      "offset": 364218,
+      "length": 2,
+      "text": "…"
+    },
+    {
       "offset": 364240,
       "length": 10,
       "text": "アターホー"
@@ -32484,6 +32499,11 @@
       "text": "　開けてくださ～い！"
     },
     {
+      "offset": 691250,
+      "length": 6,
+      "text": "………"
+    },
+    {
       "offset": 691264,
       "length": 22,
       "text": "…とまあ　こんな感じで"
@@ -32567,6 +32587,11 @@
       "offset": 691672,
       "length": 24,
       "text": "　私は　虎の民の里より…"
+    },
+    {
+      "offset": 691704,
+      "length": 6,
+      "text": "………"
     },
     {
       "offset": 691718,
@@ -40769,6 +40794,11 @@
       "text": "　体が　飛ばされる～っ！！"
     },
     {
+      "offset": 772696,
+      "length": 6,
+      "text": "………"
+    },
+    {
       "offset": 772714,
       "length": 10,
       "text": "リンシャン"
@@ -46014,14 +46044,29 @@
       "text": "体　力"
     },
     {
+      "offset": 878010,
+      "length": 2,
+      "text": "／"
+    },
+    {
       "offset": 878028,
       "length": 6,
       "text": "技　力"
     },
     {
+      "offset": 878042,
+      "length": 2,
+      "text": "／"
+    },
+    {
       "offset": 878060,
       "length": 6,
       "text": "経　験"
+    },
+    {
+      "offset": 878074,
+      "length": 2,
+      "text": "／"
     },
     {
       "offset": 878092,
@@ -46189,9 +46234,39 @@
       "text": "データがありません"
     },
     {
+      "offset": 879236,
+      "length": 2,
+      "text": "／"
+    },
+    {
+      "offset": 879246,
+      "length": 2,
+      "text": "／"
+    },
+    {
+      "offset": 879256,
+      "length": 2,
+      "text": "（"
+    },
+    {
+      "offset": 879266,
+      "length": 2,
+      "text": "）"
+    },
+    {
       "offset": 879272,
       "length": 10,
       "text": "　　　　　"
+    },
+    {
+      "offset": 879290,
+      "length": 2,
+      "text": "："
+    },
+    {
+      "offset": 879300,
+      "length": 2,
+      "text": "："
     },
     {
       "offset": 879382,
@@ -48894,6 +48969,11 @@
       "text": "　神技"
     },
     {
+      "offset": 893598,
+      "length": 6,
+      "text": "？？？"
+    },
+    {
       "offset": 893608,
       "length": 18,
       "text": "アターホーのすみか"
@@ -49237,6 +49317,11 @@
       "offset": 894620,
       "length": 10,
       "text": "スマッシュ"
+    },
+    {
+      "offset": 894974,
+      "length": 6,
+      "text": "？？？"
     },
     {
       "offset": 894984,
@@ -50192,6 +50277,21 @@
       "offset": 903484,
       "length": 28,
       "text": "　オレは　この世を去るのか…"
+    },
+    {
+      "offset": 903532,
+      "length": 2,
+      "text": "…"
+    },
+    {
+      "offset": 903542,
+      "length": 4,
+      "text": "……"
+    },
+    {
+      "offset": 903554,
+      "length": 6,
+      "text": "………"
     },
     {
       "offset": 903580,
@@ -58487,6 +58587,16 @@
       "offset": 996028,
       "length": 32,
       "text": "　来たかいがあったというものです"
+    },
+    {
+      "offset": 996080,
+      "length": 6,
+      "text": "………"
+    },
+    {
+      "offset": 996102,
+      "length": 6,
+      "text": "………"
     },
     {
       "offset": 996120,
@@ -72094,6 +72204,11 @@
       "text": "「いやじゃ"
     },
     {
+      "offset": 1318044,
+      "length": 6,
+      "text": "………"
+    },
+    {
       "offset": 1318066,
       "length": 4,
       "text": "師範"
@@ -72102,6 +72217,11 @@
       "offset": 1318074,
       "length": 8,
       "text": "「ぼけ～"
+    },
+    {
+      "offset": 1318090,
+      "length": 6,
+      "text": "………"
     },
     {
       "offset": 1318108,
@@ -72162,6 +72282,11 @@
       "offset": 1318392,
       "length": 8,
       "text": "「ぼけ～"
+    },
+    {
+      "offset": 1318408,
+      "length": 6,
+      "text": "………"
     },
     {
       "offset": 1318426,
