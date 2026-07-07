@@ -602,7 +602,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261448,
@@ -651,20 +651,20 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261664,
       "length": 22,
       "text": "「휴우∼이제　안전하게",
-      "fixed": "",
+      "fixed": "「이제　안전하게　약을",
       "confirmed": false
     },
     {
       "offset": 261690,
       "length": 30,
       "text": "　약을　손에　넣을　수　있겠군",
-      "fixed": "",
+      "fixed": "　손에　넣을　수　있겠군　　　",
       "confirmed": false
     },
     {
@@ -672,7 +672,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261754,
@@ -53990,7 +53990,7 @@
       "offset": 945644,
       "length": 6,
       "text": "번　돈",
-      "fixed": "",
+      "fixed": "소지금",
       "confirmed": false
     },
     {
@@ -58673,7 +58673,7 @@
       "offset": 960600,
       "length": 16,
       "text": "　　Satou Taicho",
-      "fixed": "　사토　대장　　",
+      "fixed": "　사토타이쵸　　",
       "confirmed": false
     },
     {
@@ -58722,147 +58722,147 @@
       "offset": 960812,
       "length": 16,
       "text": "　　Motomi Wada ",
-      "fixed": "",
+      "fixed": "　와다　모토미　",
       "confirmed": false
     },
     {
       "offset": 960840,
       "length": 22,
       "text": "　　　　프로그램　지원",
-      "fixed": "",
+      "fixed": "프로그램　지원　　　　",
       "confirmed": false
     },
     {
       "offset": 960870,
       "length": 18,
       "text": "　　　　　Moyashi ",
-      "fixed": "",
+      "fixed": "　모야시쿤　　　　",
       "confirmed": false
     },
     {
       "offset": 960900,
       "length": 24,
       "text": "　　　　　　그래픽　지원",
-      "fixed": "",
+      "fixed": "그래픽　지원　　　　　　",
       "confirmed": false
     },
     {
       "offset": 960932,
       "length": 14,
       "text": "　Sunaho Tobe ",
-      "fixed": "",
+      "fixed": "　토베스나호　",
       "confirmed": false
     },
     {
       "offset": 960954,
       "length": 14,
       "text": "　　　　　Shu ",
-      "fixed": "",
+      "fixed": "　ＳＨＵ　　　",
       "confirmed": false
     },
     {
       "offset": 960984,
       "length": 20,
       "text": "　　　　오리지널　웍",
-      "fixed": "",
+      "fixed": "오리지널　워크　　　",
       "confirmed": false
     },
     {
       "offset": 961012,
       "length": 16,
       "text": "　　　　　Uemizo",
-      "fixed": "",
+      "fixed": "　우에미조　　　",
       "confirmed": false
     },
     {
       "offset": 961036,
       "length": 16,
       "text": "Manabu Matsumoto",
-      "fixed": "",
+      "fixed": "　마츠모토마나부",
       "confirmed": false
     },
     {
       "offset": 961060,
       "length": 22,
       "text": "　　　　Kenji Kawakita",
-      "fixed": "",
+      "fixed": "　세뇨르카와키타　　　",
       "confirmed": false
     },
     {
       "offset": 961102,
       "length": 24,
       "text": "　　　　　　셀　프로모션",
-      "fixed": "",
+      "fixed": "세일즈　프로모션　　　　",
       "confirmed": false
     },
     {
       "offset": 961134,
       "length": 16,
       "text": "　　　　Nisshin ",
-      "fixed": "",
+      "fixed": "　닛신　　　　　",
       "confirmed": false
     },
     {
       "offset": 961158,
       "length": 14,
       "text": "　　　　Marsy ",
-      "fixed": "",
+      "fixed": "　마시　　　　",
       "confirmed": false
     },
     {
       "offset": 961188,
       "length": 20,
       "text": "　　　　Ｔｈａｎｋｓ",
-      "fixed": "",
+      "fixed": "스페셜　땡스　　　　",
       "confirmed": false
     },
     {
       "offset": 961216,
       "length": 12,
       "text": "　　　　Enda",
-      "fixed": "",
+      "fixed": "　엔다　　　",
       "confirmed": false
     },
     {
       "offset": 961236,
       "length": 16,
       "text": "　　　　Nyo-Nyo ",
-      "fixed": "",
+      "fixed": "　뇨～뇨　　　　",
       "confirmed": false
     },
     {
       "offset": 961260,
       "length": 24,
       "text": "　　& ALL COMPILE STAFF ",
-      "fixed": "",
+      "fixed": "　컴파일　스태프　　　　",
       "confirmed": false
     },
     {
       "offset": 961308,
       "length": 18,
       "text": "　　　　　프로듀서",
-      "fixed": "",
+      "fixed": "프로듀서　　　　　",
       "confirmed": false
     },
     {
       "offset": 961334,
       "length": 16,
       "text": "　　Fubon Kitano",
-      "fixed": "",
+      "fixed": "　키타노후본　　",
       "confirmed": false
     },
     {
       "offset": 961374,
       "length": 26,
       "text": "　　　　　　ＥＸ．프로듀서",
-      "fixed": "",
+      "fixed": "ＥＸ．프로듀서　　　　　　",
       "confirmed": false
     },
     {
       "offset": 961408,
       "length": 18,
       "text": "　　　Moo Niitani ",
-      "fixed": "",
+      "fixed": "　ＭＯＯ니이타니　",
       "confirmed": false
     },
     {
