@@ -76,6 +76,30 @@
   #jpResults .hit { margin-bottom: 12px; padding: 8px; background: #2a2a2a; border-radius: 4px; font-size: 12px; }
   #jpResults .hit .match { color: #ffd479; font-weight: bold; }
   #jpClose { float: right; background: none; border: none; color: #888; font-size: 16px; cursor: pointer; }
+  .jp-line-row { display: flex; align-items: baseline; gap: 6px; justify-content: space-between; }
+  .jp-line-row .off { color: #556; font-size: 10px; }
+
+  /* KR<->JP anchor cascade (see computeJpTextForKr() below): the space under each dialogue
+     row's original text shows either the JP line auto-filled from the nearest anchor above,
+     or (if this row itself owns an anchor) that anchor's own JP line, styled distinctly. */
+  .link-row { display: flex; align-items: flex-start; gap: 6px; margin-top: 6px; }
+  .link-anchor { flex: none; background: #252525; color: #888; border: 1px solid #3a3a3a; border-radius: 4px; height: 22px; width: 22px; cursor: pointer; font-size: 12px; line-height: 1; position: relative; }
+  .link-anchor:hover { background: #2e2e2e; color: #ddd; }
+  .link-anchor.anchored { color: #ffd479; border-color: #7a6a3a; }
+  .link-anchor.stopped { color: #c87d7d; border-color: #5c2d2d; }
+  .jp-cascade-text { color: #6a8fae; font-size: 12px; white-space: pre-wrap; word-break: break-all; }
+  .jp-cascade-text.is-anchor { color: #ffd479; }
+  .jp-cascade-text.empty { color: #445; font-style: italic; }
+  .jp-cascade-text.oob { color: #a55; }
+
+  .anchor-popup { position: absolute; z-index: 200; background: #262626; border: 1px solid #4a4a4a; border-radius: 6px; padding: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.5); font-size: 12px; width: 240px; }
+  .anchor-popup .lbl { color: #999; font-size: 11px; margin-bottom: 6px; display: block; }
+  .anchor-popup input { width: 100%; background: #1a1a1a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 5px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; margin-bottom: 8px; }
+  .anchor-popup .actions { display: flex; gap: 6px; }
+  .anchor-popup button { font-size: 11px; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-family: inherit; }
+  .anchor-popup .ap-save { background: #1a3d1a; color: #7dc87d; border: 1px solid #2d5c2d; }
+  .anchor-popup .ap-clear { background: #3d1a1a; color: #c87d7d; border: 1px solid #5c2d2d; }
+  .anchor-popup .ap-cancel { background: #252525; color: #999; border: 1px solid #3a3a3a; }
 
   .toast { position: fixed; bottom: 24px; right: 24px; background: #2a2a2a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: 0 4px 16px rgba(0,0,0,.5); z-index: 100; }
   .toast.show { opacity: 1; }
@@ -113,7 +137,7 @@
 <div id="jpPanel">
   <button id="jpClose">×</button>
   <h3>JP 원문 검색</h3>
-  <div class="hint">KR/JP는 원문 순서가 서로 다르게 배치돼 있어(같은 오프셋/인덱스 대응 아님) — 이름·키워드로 직접 검색해서 대조.</div>
+  <div class="hint">KR/JP는 원문 순서가 서로 다르게 배치돼 있어(같은 오프셋/인덱스 대응 아님) — 이름·키워드로 찾아서 그 줄의 오프셋을 대사 행의 🔗로 입력. 앵커를 찍으면 그 아래 줄들은 같은 간격으로 자동 대응됨(다음 앵커 전까지).</div>
   <input type="text" id="jpSearchBox" placeholder="이름/키워드로 검색...">
   <div id="jpResults"></div>
 </div>
@@ -131,6 +155,56 @@ let curSection = 'dialogue';
 const modified = {};        // "section:offset" -> fixed string (in-memory unsaved edits)
 let problemRows = [];       // currently-rendered rows whose edit is length-invalid
 let problemIdx = -1;
+// Manual KR<->JP anchors: sparse { krOffset: jpOffset } map. Every dialogue row between one
+// anchor and the next gets its JP text auto-filled by walking both dialogue arrays forward
+// in lockstep from the anchor (same position delta on both sides) — see
+// computeJpTextForKr(). Offsets are plain decimal (matches jp-reference.json).
+let anchors = {};
+let jpDialogue = [];         // [{offset, text}], sorted by offset (loaded in full once)
+let krOffsetToIndex = new Map();
+let jpOffsetToIndex = new Map();
+let sortedAnchors = [];      // [{krOffset, krIdx, jpOffset, jpIdx}], sorted by krIdx
+
+// Each marker is either a real anchor ({krIdx, jpOffset, jpIdx}) or a "stop" ({krIdx, stop:
+// true}) that ends the previous anchor's cascade — see openAnchorPopup()'s "여기서 끊기".
+function rebuildSortedAnchors() {
+  sortedAnchors = Object.keys(anchors)
+    .map((k) => parseInt(k, 10))
+    .filter((krOffset) => krOffsetToIndex.has(krOffset))
+    .map((krOffset) => {
+      const v = anchors[krOffset];
+      const krIdx = krOffsetToIndex.get(krOffset);
+      if (v === false) return { krOffset, krIdx, stop: true };
+      return { krOffset, krIdx, jpOffset: v, jpIdx: jpOffsetToIndex.get(v) };
+    })
+    .filter((a) => a.stop || a.jpIdx !== undefined)
+    .sort((a, b) => a.krIdx - b.krIdx);
+}
+
+// Binary search: the last marker whose krIdx <= krIdx, or null before the first marker.
+// Markers past this one (by construction, sorted) all have a strictly greater krIdx, so this
+// naturally bounds the cascade to "up to but not including the next marker" with no extra check.
+function activeMarkerFor(krIdx) {
+  let lo = 0, hi = sortedAnchors.length - 1, best = null;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    if (sortedAnchors[mid].krIdx <= krIdx) { best = sortedAnchors[mid]; lo = mid + 1; }
+    else hi = mid - 1;
+  }
+  return best;
+}
+
+// Returns { text, isAnchor, oob } for the JP line this KR offset cascades to, or null if no
+// anchor applies (row is before the first marker, or sits at/after a "stop" marker).
+function computeJpTextForKr(krOffset) {
+  const krIdx = krOffsetToIndex.get(krOffset);
+  if (krIdx === undefined) return null;
+  const a = activeMarkerFor(krIdx);
+  if (!a || a.stop) return null;
+  const jpIdx = a.jpIdx + (krIdx - a.krIdx);
+  if (jpIdx < 0 || jpIdx >= jpDialogue.length) return { text: '(범위 밖)', isAnchor: krIdx === a.krIdx, oob: true };
+  return { text: jpDialogue[jpIdx].text, isAnchor: krIdx === a.krIdx, oob: false };
+}
 
 function byteLen(s) {
   // rough CP949 estimate for live feedback; server re-validates exactly. ASCII=1, else=2.
@@ -170,8 +244,79 @@ function toast(msg) {
 
 async function load() {
   data = await fetch('/api/translation').then(r => r.json());
+  anchors = await fetch('/api/links').then(r => r.json());
+  jpDialogue = await fetch('/api/jp-dialogue').then(r => r.json());
+  krOffsetToIndex = new Map(data.dialogue.map((e, i) => [e.offset, i]));
+  jpOffsetToIndex = new Map(jpDialogue.map((e, i) => [e.offset, i]));
+  rebuildSortedAnchors();
   renderTabs();
   render();
+}
+
+// Small floating popup (near the clicked 🔗) to type in a JP offset directly — this is the
+// whole "linking" UI now; see computeJpTextForKr() for what happens once one is saved.
+function openAnchorPopup(btn, krOffset) {
+  document.querySelectorAll('.anchor-popup').forEach((p) => p.remove());
+  const existing = anchors[krOffset];
+  const popup = document.createElement('div');
+  popup.className = 'anchor-popup';
+  popup.innerHTML = `
+    <span class="lbl">JP 오프셋 (jp-reference.json 기준, 10진수)</span>
+    <input type="text" inputmode="numeric" placeholder="예: 240108">
+    <div class="actions">
+      <button class="ap-save">저장</button>
+      <button class="ap-stop">여기서 끊기</button>
+      <button class="ap-clear">삭제</button>
+      <button class="ap-cancel">취소</button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+  const rect = btn.getBoundingClientRect();
+  popup.style.top = (window.scrollY + rect.bottom + 4) + 'px';
+  popup.style.left = (window.scrollX + rect.left) + 'px';
+
+  const input = popup.querySelector('input');
+  input.value = typeof existing === 'number' ? String(existing) : '';
+  input.placeholder = existing === false ? '(현재: 여기서 끊김)' : '예: 240108';
+  input.focus();
+  input.select();
+
+  function close() { popup.remove(); document.removeEventListener('mousedown', onOutsideClick, true); }
+  function onOutsideClick(ev) { if (!popup.contains(ev.target)) close(); }
+  setTimeout(() => document.addEventListener('mousedown', onOutsideClick, true), 0);
+
+  async function commit(jpOffset) {
+    try {
+      await fetch('/api/anchor', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ krOffset, jpOffset }),
+      });
+      if (jpOffset === null) delete anchors[krOffset];
+      else anchors[krOffset] = jpOffset;
+      rebuildSortedAnchors();
+      close();
+      render();
+    } catch (err) { toast('저장 실패: ' + err); }
+  }
+
+  popup.querySelector('.ap-save').onclick = () => {
+    const v = input.value.trim();
+    if (!v) { toast('오프셋을 입력하세요'); return; }
+    const n = parseInt(v, 10);
+    if (!Number.isFinite(n)) { toast('숫자가 아님'); return; }
+    if (!jpOffsetToIndex.has(n)) { toast('jp-reference.json에 없는 오프셋'); return; }
+    commit(n);
+  };
+  // "여기서 끊기": marks this row as a hard stop — the anchor above no longer cascades past
+  // it, and this row (and everything after, until the next real anchor) shows empty rather
+  // than a guessed/likely-wrong JP line.
+  popup.querySelector('.ap-stop').onclick = () => commit(false);
+  popup.querySelector('.ap-clear').onclick = () => commit(null);
+  popup.querySelector('.ap-cancel').onclick = close;
+  input.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter') popup.querySelector('.ap-save').click();
+    if (ev.key === 'Escape') close();
+  });
 }
 
 function renderTabs() {
@@ -241,13 +386,39 @@ function renderRow(e) {
 
   const tdOrig = document.createElement('td');
   tdOrig.className = 'orig';
-  tdOrig.textContent = e.text;
-  tdOrig.title = '클릭하여 복사';
-  tdOrig.onclick = () => {
+  const origText = document.createElement('div');
+  origText.textContent = e.text;
+  origText.title = '클릭하여 복사';
+  origText.onclick = () => {
     navigator.clipboard && navigator.clipboard.writeText(e.text);
     tdOrig.classList.add('copied');
     setTimeout(() => tdOrig.classList.remove('copied'), 600);
   };
+  tdOrig.appendChild(origText);
+
+  // Manual KR<->JP anchor cascade (see computeJpTextForKr() above) — dialogue only, since
+  // JP correspondence is only meaningful for story text, not labels/fonts.
+  if (curSection === 'dialogue') {
+    const marker = anchors[e.offset]; // number (anchor) | false (stop) | undefined
+    const isAnchor = typeof marker === 'number';
+    const isStop = marker === false;
+    const computed = computeJpTextForKr(e.offset);
+    const linkRow = document.createElement('div');
+    linkRow.className = 'link-row';
+    const linkBtn = document.createElement('button');
+    linkBtn.className = 'link-anchor' + (isAnchor ? ' anchored' : '') + (isStop ? ' stopped' : '');
+    linkBtn.textContent = isStop ? '⛔' : '🔗';
+    linkBtn.title = isAnchor ? 'JP 앵커 지정됨 — 다시 눌러 수정/삭제'
+      : isStop ? '여기서 끊김 — 다시 눌러 앵커 지정/해제' : '이 줄을 JP 오프셋 앵커로 지정';
+    linkBtn.onclick = () => openAnchorPopup(linkBtn, e.offset);
+    linkRow.appendChild(linkBtn);
+
+    const jpDiv = document.createElement('div');
+    jpDiv.className = 'jp-cascade-text' + (computed && computed.isAnchor ? ' is-anchor' : '') + (computed && computed.oob ? ' oob' : '') + (!computed ? ' empty' : '');
+    jpDiv.textContent = computed ? computed.text : (isStop ? '(여기서 끊김)' : '(위쪽에 앵커 없음)');
+    linkRow.appendChild(jpDiv);
+    tdOrig.appendChild(linkRow);
+  }
 
   const tdFixed = document.createElement('td');
   tdFixed.className = 'fixed-cell';
@@ -454,17 +625,42 @@ document.getElementById('jpSearchBox').addEventListener('input', (ev) => {
     const results = document.getElementById('jpResults');
     if (!q) { results.innerHTML = ''; return; }
     const res = await fetch('/api/jp-search?q=' + encodeURIComponent(q)).then((r) => r.json());
-    results.innerHTML = `<div style="color:#999;font-size:12px;margin-bottom:8px">대사 ${res.total}건, 이름/라벨 ${res.labelHits.length}건</div>`;
+    results.innerHTML = '';
+    const summary = document.createElement('div');
+    summary.style.cssText = 'color:#999;font-size:12px;margin-bottom:8px';
+    summary.textContent = `대사 ${res.total}건, 이름/라벨 ${res.labelHits.length}건`;
+    results.appendChild(summary);
+
+    // No "연결" button anymore — anchors are set by typing an offset into the KR-side 🔗
+    // popup, not by picking a JP line directly. Clicking a line just copies its offset
+    // (decimal, matching jp-reference.json) so it's easy to paste into that popup.
+    function jpLineRow(offset, text, isMatch) {
+      const row = document.createElement('div');
+      row.className = 'jp-line-row' + (isMatch ? ' match' : '');
+      row.title = '클릭하여 오프셋 복사';
+      const span = document.createElement('span');
+      span.textContent = text;
+      const off = document.createElement('span');
+      off.className = 'off';
+      off.textContent = offset;
+      row.onclick = () => {
+        navigator.clipboard && navigator.clipboard.writeText(String(offset));
+        toast('오프셋 복사됨: ' + offset);
+      };
+      row.append(span, off);
+      return row;
+    }
+
     for (const hit of res.results) {
       const div = document.createElement('div');
       div.className = 'hit';
-      div.innerHTML = hit.lines.map((l) => `<div class="${l.isMatch ? 'match' : ''}">${esc(l.text)}</div>`).join('');
+      for (const l of hit.lines) div.appendChild(jpLineRow(l.offset, l.text, l.isMatch));
       results.appendChild(div);
     }
     if (res.labelHits.length) {
       const div = document.createElement('div');
       div.className = 'hit';
-      div.innerHTML = res.labelHits.map((l) => `<div class="match">${esc(l.text)}</div>`).join('');
+      for (const l of res.labelHits) div.appendChild(jpLineRow(l.offset, l.text, true));
       results.appendChild(div);
     }
   }, 250);

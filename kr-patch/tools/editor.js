@@ -17,6 +17,7 @@ const path = require('path');
 
 const TRANS_PATH = path.join(__dirname, '../translation/translation.json');
 const JP_REF_PATH = path.join(__dirname, '../translation/jp-reference.json');
+const LINKS_PATH = path.join(__dirname, '../translation/kr-jp-links.json');
 const HTML_PATH = path.join(__dirname, 'editor.html');
 
 const HWANSE_TEXT = require('./hwanse-text.js');
@@ -69,6 +70,21 @@ function getJpRef() {
   return jpRef;
 }
 
+// Manual KR<->JP "anchors" (see NOTES.md — automatic chunk/scene matching by relocation
+// pointers and by speaker-name sequence both turned out unreliable, so this is a plain
+// human-curated map instead: { krOffset: jpOffset }, sparse. The client fills in every KR
+// row between one anchor and the next by walking both dialogue arrays forward in lockstep
+// from the anchor (same position delta on both sides) — see computeJpTextForKr() in
+// editor.html. Offsets are plain decimal, matching how they appear in jp-reference.json.
+function loadLinks() {
+  return fs.existsSync(LINKS_PATH) ? JSON.parse(fs.readFileSync(LINKS_PATH, 'utf8')) : {};
+}
+function saveLinks(links) {
+  const tmp = LINKS_PATH + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify(links, null, 2));
+  fs.renameSync(tmp, LINKS_PATH);
+}
+
 function send(res, status, body, contentType) {
   res.writeHead(status, { 'Content-Type': contentType || 'application/json; charset=utf-8' });
   const raw = typeof body === 'string' || Buffer.isBuffer(body) ? body : JSON.stringify(body);
@@ -109,11 +125,37 @@ const server = http.createServer(async (req, res) => {
         const lo = Math.max(0, i - context);
         const hi = Math.min(entries.length - 1, i + context);
         const lines = [];
-        for (let k = lo; k <= hi; k++) lines.push({ index: k, text: entries[k].text, isMatch: k === i });
+        for (let k = lo; k <= hi; k++) lines.push({ index: k, offset: entries[k].offset, text: entries[k].text, isMatch: k === i });
         return { index: i, offset: entries[i].offset, lines };
       });
       const labelHits = q ? ref.labels.filter((e) => e.text.includes(q)) : [];
       return send(res, 200, { total: hits.length, results, labelHits: labelHits.slice(0, 50) });
+    }
+
+    // Full JP dialogue dump (offset+text only) for the client's own cascade computation —
+    // see loadLinks() above. Loaded once client-side, same scale as translation.json's own
+    // ~14,700 dialogue entries already loaded in full.
+    if (req.method === 'GET' && url.pathname === '/api/jp-dialogue') {
+      return send(res, 200, getJpRef().dialogue.map((e) => ({ offset: e.offset, text: e.text })));
+    }
+
+    // Manual KR<->JP anchors, built up during review (see loadLinks() above for why).
+    // Value is a JP offset (number, a real anchor), `false` (a "stop" marker — cascade ends
+    // here, resume with a later anchor), or absent entirely (no marker, cascade just
+    // continues from whatever anchor precedes this row).
+    if (req.method === 'GET' && url.pathname === '/api/links') {
+      return send(res, 200, loadLinks());
+    }
+    if (req.method === 'POST' && url.pathname === '/api/anchor') {
+      const body = JSON.parse(await readBody(req));
+      const { krOffset, jpOffset } = body;
+      if (typeof krOffset !== 'number') return send(res, 400, { error: 'krOffset required' });
+      const links = loadLinks();
+      if (jpOffset === null || jpOffset === undefined) delete links[krOffset];
+      else if (jpOffset === false || typeof jpOffset === 'number') links[krOffset] = jpOffset;
+      else return send(res, 400, { error: 'jpOffset must be a number, false, or null' });
+      saveLinks(links);
+      return send(res, 200, { ok: true });
     }
 
     // Batch save (PC98-style): the client accumulates edits and sends them all at once.
