@@ -58,6 +58,16 @@ function isHangulSyllable(buf, off) {
   return cp >= 0xac00 && cp <= 0xd7a3;
 }
 
+// Fullwidth Latin letters/digits (U+FF10-FF19/FF21-FF3A/FF41-FF5A) — the credits' romanized
+// staff names are written this way in places ("Ｔｈａｎｋｓ", 2 bytes/char), not as
+// halfwidth ASCII, so they don't trip charLenAt's 1-byte path at all.
+function isFullwidthAlnum(buf, off) {
+  const code = decodeCp949(buf.subarray(off, off + 2));
+  if (!code) return false;
+  const cp = code.codePointAt(0);
+  return (cp >= 0xff10 && cp <= 0xff19) || (cp >= 0xff21 && cp <= 0xff3a) || (cp >= 0xff41 && cp <= 0xff5a);
+}
+
 // Minimal CP949 decoder sufficient for this file's byte ranges. We only need this to
 // classify bytes and to produce human-readable text; we round-trip through it symmetrically
 // (decodeCp949 / encodeCp949) so re-encoding never depends on Node's absent native cp949.
@@ -76,13 +86,22 @@ function encodeCp949(str) {
 // Walks the buffer one character (not byte) at a time — see gense-text.js's extract for
 // why this matters for Shift-JIS; CP949 trail bytes never equal 0x40 so this ambiguity
 // can't occur here, but the same walk shape is used for consistency between both sides.
+//
+// A segment with zero Hangul is normally noise (stray bytes that happen to decode as valid
+// CP949/ASCII — same class of false positive as JUMP_TABLE_RANGES above), EXCEPT genuine
+// untranslated English content, e.g. the staff-credits block's romanized names ("Kawachi
+// Yumedaiko", "& ALL COMPILE STAFF" — Compile kept these in Latin script even in the KR
+// build). Exhaustively scanning every zero-Hangul segment in .data found a clean split: the
+// 19 real credits entries all have >=3 letters, every noise segment (stray control bytes
+// that happen to look like "d"/"00"/"H"/etc.) has <=2 — so that's the threshold.
 function extract(buf) {
   const entries = [];
   let i = DATA_RAW;
   let segStart = i;
   let hangulCount = 0;
+  let letterCount = 0;
   const flushSegment = (end) => {
-    if (end > segStart && hangulCount >= 1) {
+    if (end > segStart && (hangulCount >= 1 || letterCount >= 3)) {
       const seg = buf.subarray(segStart, end);
       const text = decodeCp949(seg);
       if (text) entries.push({ offset: segStart, length: seg.length, text });
@@ -92,6 +111,7 @@ function extract(buf) {
     if (inExcludedRange(i)) {
       segStart = i + 1;
       hangulCount = 0;
+      letterCount = 0;
       i += 1;
       continue;
     }
@@ -99,6 +119,7 @@ function extract(buf) {
     if (len === 0) {
       segStart = i + 1;
       hangulCount = 0;
+      letterCount = 0;
       i += 1;
       continue;
     }
@@ -107,9 +128,12 @@ function extract(buf) {
       i += 1;
       segStart = i;
       hangulCount = 0;
+      letterCount = 0;
       continue;
     }
     if (len === 2 && isHangulSyllable(buf, i)) hangulCount++;
+    if (len === 1 && /[A-Za-z0-9]/.test(String.fromCharCode(buf[i]))) letterCount++;
+    if (len === 2 && isFullwidthAlnum(buf, i)) letterCount++;
     i += len;
   }
   return entries;

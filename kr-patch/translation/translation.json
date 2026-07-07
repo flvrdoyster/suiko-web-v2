@@ -2754,6 +2754,13 @@
       "confirmed": false
     },
     {
+      "offset": 317728,
+      "length": 12,
+      "text": "　１０００Ｇ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 317744,
       "length": 10,
       "text": "　필요없다",
@@ -34450,9 +34457,23 @@
       "confirmed": false
     },
     {
+      "offset": 640150,
+      "length": 8,
+      "text": "「６６６",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 640170,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 640180,
+      "length": 10,
+      "text": "「６６６？",
       "fixed": "",
       "confirmed": false
     },
@@ -43046,6 +43067,13 @@
       "confirmed": false
     },
     {
+      "offset": 773488,
+      "length": 16,
+      "text": "「Ｉ　ＷＯＮ！！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 773512,
       "length": 10,
       "text": "근육맨２호",
@@ -43175,6 +43203,13 @@
       "offset": 773920,
       "length": 10,
       "text": "근육맨１호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 773934,
+      "length": 16,
+      "text": "「Ｉ　ＬＯＳＴ！",
       "fixed": "",
       "confirmed": false
     },
@@ -44939,6 +44974,13 @@
       "offset": 782850,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 782860,
+      "length": 10,
+      "text": "「ＺＺＺ…",
       "fixed": "",
       "confirmed": false
     },
@@ -52272,9 +52314,23 @@
       "confirmed": false
     },
     {
+      "offset": 885538,
+      "length": 6,
+      "text": "Ｍａｎ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 885548,
       "length": 10,
       "text": "「있어요！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 885574,
+      "length": 6,
+      "text": "Ｍａｎ",
       "fixed": "",
       "confirmed": false
     },
@@ -52286,6 +52342,13 @@
       "confirmed": false
     },
     {
+      "offset": 885612,
+      "length": 6,
+      "text": "Ｍａｎ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 885622,
       "length": 14,
       "text": "「있다니까！！",
@@ -52293,9 +52356,23 @@
       "confirmed": false
     },
     {
+      "offset": 885652,
+      "length": 6,
+      "text": "Ｍａｎ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 885662,
       "length": 18,
       "text": "「있다고　했잖아！",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 885696,
+      "length": 6,
+      "text": "Ｍａｎ",
       "fixed": "",
       "confirmed": false
     },
@@ -58253,34 +58330,55 @@
       "offset": 960454,
       "length": 16,
       "text": "　　　　　　스탭",
-      "fixed": "",
+      "fixed": "스탭　　　　　　",
       "confirmed": false
     },
     {
       "offset": 960494,
       "length": 10,
       "text": "　시나리오",
-      "fixed": "",
+      "fixed": "시나리오　",
       "confirmed": false
     },
     {
       "offset": 960508,
       "length": 22,
       "text": "　　　　　　맵　디자인",
-      "fixed": "",
+      "fixed": "맵　디자인　　　　　　",
+      "confirmed": false
+    },
+    {
+      "offset": 960538,
+      "length": 18,
+      "text": "　　　Doskoy K-oka",
+      "fixed": "도스코이Ｋ오카　　",
       "confirmed": false
     },
     {
       "offset": 960572,
       "length": 20,
       "text": "　　시스템　프로그램",
-      "fixed": "",
+      "fixed": "시스템　프로그램　　",
+      "confirmed": false
+    },
+    {
+      "offset": 960600,
+      "length": 16,
+      "text": "　　Satou Taicho",
+      "fixed": "사토　대장　　　",
       "confirmed": false
     },
     {
       "offset": 960628,
       "length": 20,
       "text": "　시나리오　프로그램",
+      "fixed": "시나리오　프로그램　",
+      "confirmed": false
+    },
+    {
+      "offset": 960656,
+      "length": 18,
+      "text": "Kawachi Yumedaiko ",
       "fixed": "",
       "confirmed": false
     },
@@ -58292,9 +58390,30 @@
       "confirmed": false
     },
     {
+      "offset": 960724,
+      "length": 14,
+      "text": "　　　　Migaku",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 960746,
+      "length": 22,
+      "text": "　　　Utsutsu Kazuhiko",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 960792,
       "length": 12,
       "text": "　　　사운드",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 960812,
+      "length": 16,
+      "text": "　　Motomi Wada ",
       "fixed": "",
       "confirmed": false
     },
@@ -58306,9 +58425,30 @@
       "confirmed": false
     },
     {
+      "offset": 960870,
+      "length": 18,
+      "text": "　　　　　Moyashi ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 960900,
       "length": 24,
       "text": "　　　　　　그래픽　지원",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 960932,
+      "length": 14,
+      "text": "　Sunaho Tobe ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 960954,
+      "length": 14,
+      "text": "　　　　　Shu ",
       "fixed": "",
       "confirmed": false
     },
@@ -58320,9 +58460,72 @@
       "confirmed": false
     },
     {
+      "offset": 961012,
+      "length": 16,
+      "text": "　　　　　Uemizo",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961036,
+      "length": 16,
+      "text": "Manabu Matsumoto",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961060,
+      "length": 22,
+      "text": "　　　　Kenji Kawakita",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 961102,
       "length": 24,
       "text": "　　　　　　셀　프로모션",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961134,
+      "length": 16,
+      "text": "　　　　Nisshin ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961158,
+      "length": 14,
+      "text": "　　　　Marsy ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961188,
+      "length": 20,
+      "text": "　　　　Ｔｈａｎｋｓ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961216,
+      "length": 12,
+      "text": "　　　　Enda",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961236,
+      "length": 16,
+      "text": "　　　　Nyo-Nyo ",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961260,
+      "length": 24,
+      "text": "　　& ALL COMPILE STAFF ",
       "fixed": "",
       "confirmed": false
     },
@@ -58334,9 +58537,23 @@
       "confirmed": false
     },
     {
+      "offset": 961334,
+      "length": 16,
+      "text": "　　Fubon Kitano",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 961374,
       "length": 26,
       "text": "　　　　　　ＥＸ．프로듀서",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 961408,
+      "length": 18,
+      "text": "　　　Moo Niitani ",
       "fixed": "",
       "confirmed": false
     },
@@ -69719,6 +69936,13 @@
       "offset": 1068962,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1068972,
+      "length": 10,
+      "text": "「ＺＺＺ…",
       "fixed": "",
       "confirmed": false
     },
@@ -89596,6 +89820,13 @@
       "confirmed": false
     },
     {
+      "offset": 1344500,
+      "length": 14,
+      "text": "１３５－０８０",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
       "offset": 1344518,
       "length": 24,
       "text": "　서울시　강남구　역삼동",
@@ -101072,6 +101303,13 @@
       "offset": 1390874,
       "length": 6,
       "text": "아타호",
+      "fixed": "",
+      "confirmed": false
+    },
+    {
+      "offset": 1390884,
+      "length": 16,
+      "text": "「１０００Ｇ？！",
       "fixed": "",
       "confirmed": false
     },
