@@ -26,7 +26,7 @@ suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이
 ## 크레딧
 
 **에뮬레이터**: [DosWasmX](https://github.com/nbarkhina/DosWasmX) — MIT License  
-**MIDI 사운드폰트 렌더링**: [SpessaSynth](https://github.com/spessasus/SpessaSynth) — Apache-2.0 License
+**MIDI 사운드폰트 렌더링**: [SpessaSynth](https://github.com/spessasus/SpessaSynth) — Apache-2.0 License  
 **번역 수정 및 웹 배포**: flvrdoyster
 
 ---
