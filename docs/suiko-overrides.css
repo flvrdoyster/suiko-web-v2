@@ -68,10 +68,12 @@ canvas { width: 640px; height: 480px; }
   .top-bar, .disk-panel { width: min(100vw, calc(100vh * 4 / 3)); }
 }
 
-/* The doswasmx engine's own demo UI stays in the DOM (rivets binds to it, and some of
-   its modals/dropdowns are reused later — see ROADMAP.md item 1), but none of it is
-   part of this page's visual layout. */
-#maindiv, #divInstructions, #githubDiv, #menuDiv, #mobileDiv, #mobileButtons,
-#settingsModal, #importModal, #loginModal, .modal-backdrop {
+/* The doswasmx engine's own demo UI (#maindiv, #divInstructions) stays in the DOM — rivets
+   binds to it during init/boot — but isn't part of this page's visual layout. Already has
+   an inline display:none; !important here just makes that non-negotiable regardless of any
+   future inline-style changes. (#githubDiv/#menuDiv/#mobileDiv/#mobileButtons/#settingsModal/
+   #importModal/#loginModal/.modal-backdrop were removed from the HTML entirely in an earlier
+   cleanup pass — dropped from this selector list since they no longer exist.) */
+#maindiv, #divInstructions {
   display: none !important;
 }

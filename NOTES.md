@@ -66,6 +66,16 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 
 - KR 번역 오타·오역 수정 계속 (위 참고, 종료 시점 없음)
 - 대사 길이 확장 — PE 재작성 패처 구현 ("2.1 텍스트 구조"의 "길이 확장 조사" 참고, 아직 미착수)
+- `docs/script.js`(doswasmx 엔진 글루)에 남은 죽은 코드 제거, 아직 미착수. 확인된 것: 트리거할
+  UI가 이미 삭제됐고 `hasCloud`도 항상 false라(설정의 `CLOUDSAVEURL`이 빈 문자열) 부팅 시에도
+  절대 호출 안 되는 설정/가져오기/내보내기/로그인 모달 클러스터 —
+  `settingsModal()`/`settingsSubmit()`/`importModal()`/`exportModal()`/`exportFiles()`/
+  `loginModal()`/`logout()`/`setupLogin()`/`postLoginProcess()`/`saveCloud()`/`loadCloud()`
+  및 상태 필드 `exportFilesRequested`/`loginModalOpened`/`password`/`settings.CLOUDSAVEURL`.
+  같은 구역에 `exportHardDrive()`/`importFiles()`/`processImportFiles()`/`saveStateLocal()`/
+  `loadStateLocal()`처럼 비슷해 보이지만 `#maindiv`에 남겨둔 드래그앤드롭 롬 로딩용 입력
+  요소(`file-upload`/`file-import`/`dropArea`)와 연결됐을 수 있는 메서드가 섞여 있어 — 하나씩
+  개별 확인 후 제거해야 함(한 번에 지우다 부팅이 깨질 위험).
 
 ## 2. 기술 노트
 

@@ -1,6 +1,7 @@
 // suiko-web-v2 boot glue — wires the start overlay + top-bar buttons to the doswasmx
-// engine. gamepad.js (copied from gensei-pc98, unmodified) handles the virtual gamepad,
-// mobile auto-activation, and the top-bar collapse button already.
+// engine. gamepad.js (based on gensei-pc98's, with Z/X/C key bindings for this game's
+// actual controls instead of Enter/Escape) handles the virtual gamepad, mobile
+// auto-activation, and the top-bar collapse button already.
 //
 // This script is a plain (non-module, non-deferred) <script> placed near the end of
 // <body>, so it executes at that point during parsing — after #overlay/#toast/etc.
