@@ -2001,7 +2001,7 @@
       "offset": 314840,
       "length": 36,
       "text": "사용하면　밖으로　나갈　수　있습니다",
-      "fixed": "",
+      "fixed": "사용하면　밖으로　나갈　수　있다　　",
       "confirmed": false
     },
     {
@@ -3093,7 +3093,7 @@
       "offset": 319102,
       "length": 18,
       "text": "스위치가　있습니다",
-      "fixed": "",
+      "fixed": "스위치가　있다　　",
       "confirmed": false
     },
     {
@@ -5207,7 +5207,7 @@
       "offset": 349800,
       "length": 34,
       "text": "이건　린샹이　장비할　수　있습니다",
-      "fixed": "",
+      "fixed": "이건　린샹이　장비할　수　있다　　",
       "confirmed": false
     },
     {
@@ -14923,7 +14923,7 @@
       "offset": 445280,
       "length": 18,
       "text": "스위치가　있습니다",
-      "fixed": "",
+      "fixed": "스위치가　있다　　",
       "confirmed": false
     },
     {
@@ -14944,7 +14944,7 @@
       "offset": 445390,
       "length": 18,
       "text": "스위치가　있습니다",
-      "fixed": "",
+      "fixed": "스위치가　있다　　",
       "confirmed": false
     },
     {
@@ -15266,7 +15266,7 @@
       "offset": 446920,
       "length": 18,
       "text": "　부셔버리겠어요！",
-      "fixed": "",
+      "fixed": "　부셔버려주마！　",
       "confirmed": false
     },
     {
@@ -17695,7 +17695,7 @@
       "offset": 457058,
       "length": 36,
       "text": "이건　스마슈가　장비할　수　있습니다",
-      "fixed": "",
+      "fixed": "이건　스마슈가　장비할　수　있다　　",
       "confirmed": false
     },
     {
@@ -17730,7 +17730,7 @@
       "offset": 457306,
       "length": 34,
       "text": "스마슈에게　장비시킬　수　있습니다",
-      "fixed": "",
+      "fixed": "스마슈에게　장비시킬　수　있다　　",
       "confirmed": false
     },
     {
@@ -17765,7 +17765,7 @@
       "offset": 457552,
       "length": 32,
       "text": "린샹에게　장비시킬　수　있습니다",
-      "fixed": "",
+      "fixed": "린샹에게　장비시킬　수　있다　　",
       "confirmed": false
     },
     {
@@ -17800,7 +17800,7 @@
       "offset": 457790,
       "length": 32,
       "text": "린샹에게　장비시킬　수　있습니다",
-      "fixed": "",
+      "fixed": "린샹에게　장비시킬　수　있다　　",
       "confirmed": false
     },
     {
@@ -24338,7 +24338,7 @@
       "offset": 535320,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -24387,98 +24387,98 @@
       "offset": 535508,
       "length": 26,
       "text": "평균대　끝까지　진행하세요",
-      "fixed": "",
+      "fixed": "평균대　끝까지　진행하자　",
       "confirmed": false
     },
     {
       "offset": 535542,
       "length": 32,
       "text": "←로　몸을　왼쪽으로　기울이고，",
-      "fixed": "",
+      "fixed": "「←」로　몸을　좌로　기울이고　",
       "confirmed": false
     },
     {
       "offset": 535578,
       "length": 34,
       "text": "→로　몸을　오른쪽으로　기울입니다",
-      "fixed": "",
+      "fixed": "「→」로　몸을　우로　기울인다　　",
       "confirmed": false
     },
     {
       "offset": 535616,
       "length": 34,
       "text": "↓로　중심을　잡으면서　전진합니다",
-      "fixed": "",
+      "fixed": "「↓」로　중심을　잡으면서　전진　",
       "confirmed": false
     },
     {
       "offset": 535658,
       "length": 30,
       "text": "…스페이스키로　힘을　모았다가",
-      "fixed": "",
+      "fixed": "「결정」으로　힘을　모았다가　",
       "confirmed": false
     },
     {
       "offset": 535692,
       "length": 28,
       "text": "떼면，점프가　가능합니다！！",
-      "fixed": "",
+      "fixed": "떼면　점프가　가능하다　　　",
       "confirmed": false
     },
     {
       "offset": 535724,
       "length": 36,
       "text": "특히，장애물을　넘을　땐　조심하세요",
-      "fixed": "",
+      "fixed": "특히　장애물을　넘을　땐　조심할　것",
       "confirmed": false
     },
     {
       "offset": 535768,
       "length": 36,
       "text": "몸이　지나치게　한쪽으로　기울거나，",
-      "fixed": "",
+      "fixed": "몸이　지나치게　한쪽으로　기울거나　",
       "confirmed": false
     },
     {
       "offset": 535808,
       "length": 30,
       "text": "장애물　위로　올라서면，밑으로",
-      "fixed": "",
+      "fixed": "장애물　위를　밟으면　아래로　",
       "confirmed": false
     },
     {
       "offset": 535842,
       "length": 16,
       "text": "떨어지고　맙니다",
-      "fixed": "",
+      "fixed": "떨어지고　만다　",
       "confirmed": false
     },
     {
       "offset": 535866,
       "length": 22,
       "text": "…장애물　앞에　서면，",
-      "fixed": "",
+      "fixed": "…장애물　앞에　서면　",
       "confirmed": false
     },
     {
       "offset": 535892,
       "length": 22,
       "text": "자동으로　정지되므로，",
-      "fixed": "",
+      "fixed": "…장애물　앞에　서면　",
       "confirmed": false
     },
     {
       "offset": 535918,
       "length": 28,
       "text": "침착하게　진행하면　됩니다．",
-      "fixed": "침착하게　진행하면　됩니다　",
+      "fixed": "침착하게　진행하도록　하자　",
       "confirmed": false
     },
     {
       "offset": 535962,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -24513,7 +24513,7 @@
       "offset": 536102,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -24555,7 +24555,7 @@
       "offset": 536340,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -24618,7 +24618,7 @@
       "offset": 536644,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -24660,7 +24660,7 @@
       "offset": 536796,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -24744,70 +24744,70 @@
       "offset": 537170,
       "length": 28,
       "text": "평균대를　끝까지　건너가세요",
-      "fixed": "",
+      "fixed": "평균대를　끝까지　건너자　　",
       "confirmed": false
     },
     {
       "offset": 537206,
       "length": 32,
       "text": "←로　몸을　왼쪽으로　기울이고，",
-      "fixed": "",
+      "fixed": "「←」로　몸을　좌로　기울이고　",
       "confirmed": false
     },
     {
       "offset": 537242,
       "length": 34,
       "text": "→로　몸을　오른쪽으로　기울입니다",
-      "fixed": "",
+      "fixed": "「→」로　몸을　우로　기울인다　　",
       "confirmed": false
     },
     {
       "offset": 537280,
       "length": 32,
       "text": "↓로　몸을　숙인　채　전진합니다",
-      "fixed": "",
+      "fixed": "「↓」로　몸을　숙인　채　전진　",
       "confirmed": false
     },
     {
       "offset": 537320,
       "length": 32,
       "text": "또，결정버튼으로　힘을　모았다가",
-      "fixed": "",
+      "fixed": "「결정」으로　힘을　모았다　떼면",
       "confirmed": false
     },
     {
       "offset": 537356,
       "length": 36,
       "text": "떼면，３단계로　점프할　수　있습니다",
-      "fixed": "",
+      "fixed": "３단계　강도로　점프할　수　있다　　",
       "confirmed": false
     },
     {
       "offset": 537396,
       "length": 30,
       "text": "조심해서　장애물을　넘어주세요",
-      "fixed": "",
+      "fixed": "조심해서　장애물을　넘자　　　",
       "confirmed": false
     },
     {
       "offset": 537434,
       "length": 36,
       "text": "몸이　한쪽으로　지나치게　기울거나，",
-      "fixed": "",
+      "fixed": "몸이　한쪽으로　지나치게　기울거나　",
       "confirmed": false
     },
     {
       "offset": 537474,
       "length": 30,
       "text": "장애물　위로　올라서면，밑으로",
-      "fixed": "",
+      "fixed": "장애물　위를　밟게　되면　　　",
       "confirmed": false
     },
     {
       "offset": 537508,
       "length": 24,
       "text": "떨어지고　맙니다．한편，",
-      "fixed": "",
+      "fixed": "아래로　떨어지게　된다　",
       "confirmed": false
     },
     {
@@ -24815,20 +24815,20 @@
       "length": 18,
       "text": "장애물　앞에　서면",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 537562,
       "length": 22,
       "text": "자동적으로　정지되므로",
-      "fixed": "",
+      "fixed": "자동적으로　정지하므로",
       "confirmed": false
     },
     {
       "offset": 537588,
       "length": 24,
       "text": "침착히　전진하면　됩니다",
-      "fixed": "",
+      "fixed": "침착하게　전진하면　된다",
       "confirmed": false
     },
     {
@@ -24836,35 +24836,35 @@
       "length": 16,
       "text": "　다시　도전한다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 537648,
       "length": 22,
       "text": "　다시　설명을　듣는다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 537674,
       "length": 14,
       "text": "　때려　치운다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 545228,
       "length": 12,
       "text": "　　처음부터",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 545244,
       "length": 12,
       "text": "　　　이어서",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 545276,
@@ -26970,7 +26970,7 @@
       "offset": 572156,
       "length": 26,
       "text": "낡은　보물상자가　있습니다",
-      "fixed": "",
+      "fixed": "낡은　보물상자가　있다　　",
       "confirmed": false
     },
     {
@@ -27817,7 +27817,7 @@
       "offset": 575254,
       "length": 18,
       "text": "스위치가　있습니다",
-      "fixed": "",
+      "fixed": "스위치가　있다　　",
       "confirmed": false
     },
     {
@@ -27831,7 +27831,7 @@
       "offset": 575328,
       "length": 18,
       "text": "스위치가　있습니다",
-      "fixed": "",
+      "fixed": "스위치가　있다　　",
       "confirmed": false
     },
     {
@@ -29315,7 +29315,7 @@
       "offset": 619366,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -29399,7 +29399,7 @@
       "offset": 619742,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -32822,7 +32822,7 @@
       "offset": 633568,
       "length": 34,
       "text": "손더듬으로　진행할　수도　있습니다",
-      "fixed": "",
+      "fixed": "손더듬으로　진행할　수도　있다　　",
       "confirmed": false
     },
     {
@@ -32850,7 +32850,7 @@
       "offset": 633716,
       "length": 30,
       "text": "입구까지　돌아갈　수　있습니다",
-      "fixed": "",
+      "fixed": "입구까지　돌아갈　수　있다　　",
       "confirmed": false
     },
     {
@@ -33116,7 +33116,7 @@
       "offset": 634818,
       "length": 18,
       "text": "스위치가　있습니다",
-      "fixed": "",
+      "fixed": "스위치가　있다　　",
       "confirmed": false
     },
     {
@@ -33144,7 +33144,7 @@
       "offset": 634910,
       "length": 18,
       "text": "스위치가　있습니다",
-      "fixed": "",
+      "fixed": "스위치가　있다　　",
       "confirmed": false
     },
     {
@@ -40452,7 +40452,7 @@
       "offset": 681874,
       "length": 36,
       "text": "이건　아타호가　장비할　수　있습니다",
-      "fixed": "",
+      "fixed": "이건　아타호가　장비할　수　있다　　",
       "confirmed": false
     },
     {
@@ -47074,7 +47074,7 @@
       "offset": 811174,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47186,7 +47186,7 @@
       "offset": 811654,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47228,7 +47228,7 @@
       "offset": 811838,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47291,7 +47291,7 @@
       "offset": 812082,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47375,7 +47375,7 @@
       "offset": 812422,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47403,7 +47403,7 @@
       "offset": 812576,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47445,7 +47445,7 @@
       "offset": 812802,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47529,7 +47529,7 @@
       "offset": 813162,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47613,7 +47613,7 @@
       "offset": 813562,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47697,7 +47697,7 @@
       "offset": 813912,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -47739,7 +47739,7 @@
       "offset": 814094,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -60787,7 +60787,7 @@
       "offset": 972252,
       "length": 36,
       "text": "이건　아타호가　장비할　수　있습니다",
-      "fixed": "",
+      "fixed": "이건　아타호가　장비할　수　있다　　",
       "confirmed": false
     },
     {
@@ -64294,7 +64294,7 @@
       "offset": 1025426,
       "length": 24,
       "text": "「백호권　사범？！　헤∼",
-      "fixed": "",
+      "fixed": "「백호권사범？！　헤에∼",
       "confirmed": false
     },
     {
@@ -64308,7 +64308,7 @@
       "offset": 1025496,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64364,7 +64364,7 @@
       "offset": 1025734,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64420,7 +64420,7 @@
       "offset": 1025922,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64553,7 +64553,7 @@
       "offset": 1026442,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64686,7 +64686,7 @@
       "offset": 1026974,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64714,7 +64714,7 @@
       "offset": 1027094,
       "length": 10,
       "text": "했습니다．",
-      "fixed": "했습니다　",
+      "fixed": "했다　　　",
       "confirmed": false
     },
     {
@@ -64763,7 +64763,7 @@
       "offset": 1027280,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64868,7 +64868,7 @@
       "offset": 1027802,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64910,7 +64910,7 @@
       "offset": 1027948,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -64952,7 +64952,7 @@
       "offset": 1028110,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65001,7 +65001,7 @@
       "offset": 1028334,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65043,7 +65043,7 @@
       "offset": 1028508,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65099,7 +65099,7 @@
       "offset": 1028766,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65127,7 +65127,7 @@
       "offset": 1028842,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65169,7 +65169,7 @@
       "offset": 1028972,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65267,7 +65267,7 @@
       "offset": 1029400,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65281,7 +65281,7 @@
       "offset": 1029462,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65456,7 +65456,7 @@
       "offset": 1030310,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65519,7 +65519,7 @@
       "offset": 1030550,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65554,7 +65554,7 @@
       "offset": 1030664,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65596,7 +65596,7 @@
       "offset": 1030830,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65652,7 +65652,7 @@
       "offset": 1031072,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65708,7 +65708,7 @@
       "offset": 1031314,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65743,7 +65743,7 @@
       "offset": 1031422,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65785,7 +65785,7 @@
       "offset": 1031566,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65806,7 +65806,7 @@
       "offset": 1031662,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65841,7 +65841,7 @@
       "offset": 1031788,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65855,7 +65855,7 @@
       "offset": 1031848,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65890,7 +65890,7 @@
       "offset": 1031968,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65904,7 +65904,7 @@
       "offset": 1032014,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -65946,7 +65946,7 @@
       "offset": 1032164,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -69929,7 +69929,7 @@
       "offset": 1069722,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70104,7 +70104,7 @@
       "offset": 1070724,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70146,7 +70146,7 @@
       "offset": 1070916,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70202,7 +70202,7 @@
       "offset": 1071116,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70223,7 +70223,7 @@
       "offset": 1071200,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70244,7 +70244,7 @@
       "offset": 1071292,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70265,7 +70265,7 @@
       "offset": 1071368,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70307,7 +70307,7 @@
       "offset": 1071528,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70328,7 +70328,7 @@
       "offset": 1071636,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70349,7 +70349,7 @@
       "offset": 1071732,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70370,7 +70370,7 @@
       "offset": 1071824,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70412,7 +70412,7 @@
       "offset": 1072004,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70433,7 +70433,7 @@
       "offset": 1072094,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70454,7 +70454,7 @@
       "offset": 1072194,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70475,7 +70475,7 @@
       "offset": 1072296,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70496,7 +70496,7 @@
       "offset": 1072398,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70538,7 +70538,7 @@
       "offset": 1072572,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70559,7 +70559,7 @@
       "offset": 1072668,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70580,7 +70580,7 @@
       "offset": 1072748,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70601,7 +70601,7 @@
       "offset": 1072834,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70636,7 +70636,7 @@
       "offset": 1072966,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70678,7 +70678,7 @@
       "offset": 1073142,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -70937,7 +70937,7 @@
       "offset": 1074596,
       "length": 12,
       "text": "백호권　사범",
-      "fixed": "",
+      "fixed": "백호권사범　",
       "confirmed": false
     },
     {
@@ -71973,7 +71973,7 @@
       "offset": 1114790,
       "length": 24,
       "text": "과연　백호권　사범답군…",
-      "fixed": "",
+      "fixed": "과연　백호권사범답군…　",
       "confirmed": false
     },
     {
@@ -72484,7 +72484,7 @@
       "offset": 1116812,
       "length": 22,
       "text": "백호권　사범인지　뭔지",
-      "fixed": "",
+      "fixed": "백호권사범인지　뭔지　",
       "confirmed": false
     },
     {
@@ -78378,7 +78378,7 @@
       "offset": 1201184,
       "length": 32,
       "text": "감으로　진행할　수도　있습니다．",
-      "fixed": "감으로　진행할　수도　있습니다　",
+      "fixed": "감으로　진행할　수도　있다　　　",
       "confirmed": false
     },
     {
@@ -78854,7 +78854,7 @@
       "offset": 1203188,
       "length": 32,
       "text": "입구까지　돌아올　수　있습니다．",
-      "fixed": "입구까지　돌아올　수　있습니다　",
+      "fixed": "입구까지　돌아올　수　있다　　　",
       "confirmed": false
     },
     {
@@ -78924,7 +78924,7 @@
       "offset": 1203496,
       "length": 36,
       "text": "감으로　진행할　수도　있습니다．만약",
-      "fixed": "",
+      "fixed": "감으로　진행할　수도　있다．만약　　",
       "confirmed": false
     },
     {
@@ -78952,7 +78952,7 @@
       "offset": 1203654,
       "length": 32,
       "text": "입구까지　돌아올　수　있습니다！",
-      "fixed": "",
+      "fixed": "입구까지　돌아올　수　있다　　　",
       "confirmed": false
     },
     {
@@ -80296,7 +80296,7 @@
       "offset": 1261512,
       "length": 24,
       "text": "　걸어서　돌아갔습니다！",
-      "fixed": "",
+      "fixed": "　걸어서　돌아갔다！　　",
       "confirmed": false
     },
     {
@@ -80975,7 +80975,7 @@
       "offset": 1264256,
       "length": 34,
       "text": "　ＨＰ를　회복시킬　수　있습니다．",
-      "fixed": "　ＨＰ를　회복시킬　수　있습니다　",
+      "fixed": "　ＨＰ를　회복시킬　수　있다　　　",
       "confirmed": false
     },
     {
@@ -89977,7 +89977,7 @@
       "offset": 1346114,
       "length": 32,
       "text": "　『술』은　백호권　사범에게서，",
-      "fixed": "",
+      "fixed": "　『술』은　백호권사범에게서　　",
       "confirmed": false
     },
     {
@@ -99077,7 +99077,7 @@
       "offset": 1382738,
       "length": 24,
       "text": "１０００Ｇ를　얻었습니다",
-      "fixed": "",
+      "fixed": "１０００Ｇ를　얻었다　　",
       "confirmed": false
     },
     {

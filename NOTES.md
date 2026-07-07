@@ -196,10 +196,12 @@ relocation 진입점 경계로 리뷰 청크를 나눠보려 시도했으나(624
 
 **산출물**: `kr-patch/tools/hwanse-text.js`·`hwanse-names.js`·`hwanse-font.js`(KR 추출/빌드),
 `gense-text.js`·`gense-names.js`(JP 참고 전용), `search-jp.js`(JP 키워드 검색), `editor.js`+
-`editor.html`(로컬 웹 에디터), `extract.js`/`build.js`/`inject.js`(파이프라인),
+`editor.html`(로컬 웹 에디터 — KR<->JP 앵커 캐스케이드 포함), `pe-reloc.js`(PE 섹션 테이블
+파싱 + relocation 워크, 청크 시도에서 만듦), `extract.js`/`build.js`/`inject.js`(파이프라인),
 `translation/translation.json`(KR 전량, `dialogue`/`labels`/`fonts` 세 섹션 — 공통 필드
 `offset`/`text`/`fixed`, `dialogue`·`labels`는 `length`, `fonts`는 `maxLength`),
-`translation/jp-reference.json`(JP 참고 전량), `translation/GUIDE.md`(수정 판단 기준).
+`translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR<->JP 수동
+앵커, `{krOffset: jpOffset | false}`), `translation/GUIDE.md`(수정 판단 기준).
 
 ### 2.2 이미지 구조 (GENSE.FLD / CNS)
 
