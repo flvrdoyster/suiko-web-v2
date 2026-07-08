@@ -32335,7 +32335,7 @@
       "length": 4,
       "text": "　네",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 1373184
     },
@@ -32344,7 +32344,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 1373194
     },
@@ -32353,7 +32353,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士",
       "jpOffset": 1373222
     },
@@ -32362,7 +32362,7 @@
       "length": 22,
       "text": "「…가능하면　４마수를",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「…できれば　四体の魔獣を",
       "jpOffset": 1373240
     },
@@ -32371,7 +32371,7 @@
       "length": 28,
       "text": "　모두　쓰러트리고　싶었는데",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　みな　倒したかったところだが",
       "jpOffset": 1373270
     },
@@ -32380,7 +32380,7 @@
       "length": 28,
       "text": "　부적이　１장밖에　없으니…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　封印を解く呪符が１枚しかない",
       "jpOffset": 1373308
     },
@@ -32389,7 +32389,7 @@
       "length": 16,
       "text": "　하는　수　없지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　…仕方がないな",
       "jpOffset": 1373342
     },
@@ -32397,7 +32397,7 @@
       "offset": 546320,
       "length": 22,
       "text": "　이녀석으로　결정하자",
-      "fixed": "",
+      "fixed": "　이　녀석으로　할까　",
       "confirmed": false,
       "jp": "　こいつにするか",
       "jpOffset": 1373362
@@ -32407,7 +32407,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 1373394
     },
@@ -32416,7 +32416,7 @@
       "length": 12,
       "text": "「크하하하하",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「フハハハハ！",
       "jpOffset": 1373400
     },
@@ -32424,7 +32424,7 @@
       "offset": 546384,
       "length": 24,
       "text": "　이로써　난　자유다！！",
-      "fixed": "",
+      "fixed": "　이로써　난　자유다！　",
       "confirmed": false,
       "jp": "　これで　私は自由だ！",
       "jpOffset": 1373418
@@ -32434,7 +32434,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士",
       "jpOffset": 1373448
     },
@@ -32442,7 +32442,7 @@
       "offset": 546428,
       "length": 20,
       "text": "「흥，착각하지마라！",
-      "fixed": "",
+      "fixed": "「흥，착각하지　마라",
       "confirmed": false,
       "jp": "「ふん　それは違うぞ",
       "jpOffset": 1373466
@@ -32452,7 +32452,7 @@
       "length": 30,
       "text": "　넌　이제부터　나의　종이다！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　お前は　私のしもべとなるのだ！",
       "jpOffset": 1373490
     },
@@ -32461,7 +32461,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 1373530
     },
@@ -32469,7 +32469,7 @@
       "offset": 546500,
       "length": 32,
       "text": "「크하하하하！　어리석은　인간！",
-      "fixed": "",
+      "fixed": "「크하하하！　어리석은　인간이여",
       "confirmed": false,
       "jp": "「フハハハハ！　愚かなる人間よ",
       "jpOffset": 1373536
@@ -32479,7 +32479,7 @@
       "length": 32,
       "text": "　착각한　걸…후회하게　해주마！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　その思い上がり…後悔するがいい！",
       "jpOffset": 1373570
     },
@@ -32488,7 +32488,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士",
       "jpOffset": 1373620
     },
@@ -32497,7 +32497,7 @@
       "length": 18,
       "text": "「으，으아아아악！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「う　ううぉ～っ！！",
       "jpOffset": 1373638
     },
@@ -32506,7 +32506,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士",
       "jpOffset": 1373674
     },
@@ -32514,7 +32514,7 @@
       "offset": 546642,
       "length": 26,
       "text": "「…이런　깜빡　졸았었군！",
-      "fixed": "",
+      "fixed": "「…이런　깜빡　졸았었나　",
       "confirmed": false,
       "jp": "「…ん？　寝てしまったのか",
       "jpOffset": 1373692
@@ -32523,7 +32523,7 @@
       "offset": 546672,
       "length": 28,
       "text": "　정말…무서운　꿈이었다！！",
-      "fixed": "",
+      "fixed": "　악몽을　꾼　것　같군…　　",
       "confirmed": false,
       "jp": "　イヤな夢を見ていた気がする…",
       "jpOffset": 1373722
@@ -32533,7 +32533,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1373768
     },
@@ -32542,7 +32542,7 @@
       "length": 34,
       "text": "「총통！　이제　곧　무투대회인데…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「総統　もうすぐ武闘大会ですので",
       "jpOffset": 1373794
     },
@@ -32551,7 +32551,7 @@
       "length": 34,
       "text": "　그동안　수련을　했으면　합니다！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　腕試しの修業に出たいと思います",
       "jpOffset": 1373830
     },
@@ -32560,7 +32560,7 @@
       "length": 26,
       "text": "　린샹도　저와　마찬가지로",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　リンシャンも　俺と同様",
       "jpOffset": 1373870
     },
@@ -32569,7 +32569,7 @@
       "length": 30,
       "text": "　수련을　원하고　있습니다만…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　修業したいと言ってるんですが…",
       "jpOffset": 1373898
     },
@@ -32578,7 +32578,7 @@
       "length": 16,
       "text": "총통이라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "総統と呼ばれた拳士",
       "jpOffset": 1373938
     },
@@ -32586,7 +32586,7 @@
       "offset": 546908,
       "length": 16,
       "text": "「응？　그래…？",
-      "fixed": "",
+      "fixed": "「응？　그런가…",
       "confirmed": false,
       "jp": "「ん？　そうか…",
       "jpOffset": 1373960
@@ -32595,7 +32595,7 @@
       "offset": 546928,
       "length": 28,
       "text": "　그렇다면　최선을　다해라！",
-      "fixed": "",
+      "fixed": "　그렇다면　최선을　다해라…",
       "confirmed": false,
       "jp": "　がんばってくるがよい…",
       "jpOffset": 1373980
@@ -32605,7 +32605,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1374012
     },
@@ -32613,7 +32613,7 @@
       "offset": 546988,
       "length": 22,
       "text": "「정말　감사합니다！！",
-      "fixed": "",
+      "fixed": "「정말　감사합니다　　",
       "confirmed": false,
       "jp": "「ありがとうございます",
       "jpOffset": 1374038
@@ -32623,7 +32623,7 @@
       "length": 16,
       "text": "총통이라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "総統と呼ばれた拳士",
       "jpOffset": 1374076
     },
@@ -32632,7 +32632,7 @@
       "length": 30,
       "text": "「…텐호，치호　밖에　있느냐？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「…テンホー　チーホーはいるか？",
       "jpOffset": 1374098
     },
@@ -32641,7 +32641,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 1374146
     },
@@ -32650,7 +32650,7 @@
       "length": 14,
       "text": "「부르셨나요？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「お呼びで？",
       "jpOffset": 1374172
     },
@@ -32659,7 +32659,7 @@
       "length": 16,
       "text": "총통이라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "総統と呼ばれた拳士",
       "jpOffset": 1374192
     },
@@ -32668,7 +32668,7 @@
       "length": 8,
       "text": "「으음…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「うむ…",
       "jpOffset": 1374214
     },
@@ -32676,7 +32676,7 @@
       "offset": 547168,
       "length": 28,
       "text": "　너희들에게　부탁이　있다！",
-      "fixed": "",
+      "fixed": "　너희들에게　부탁이　있다　",
       "confirmed": false,
       "jp": "　お前たちに　頼みがある",
       "jpOffset": 1374226
@@ -32686,7 +32686,7 @@
       "length": 18,
       "text": "검정도복（파란띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（青帯）",
       "jpOffset": 1374258
     },
@@ -32695,7 +32695,7 @@
       "length": 8,
       "text": "「네엣…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「はっ",
       "jpOffset": 1374284
     },
@@ -32704,7 +32704,7 @@
       "length": 16,
       "text": "　말씀하시지요！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なんなりと…",
       "jpOffset": 1374294
     },
@@ -32713,7 +32713,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1374324
     },
@@ -32722,7 +32722,7 @@
       "length": 24,
       "text": "「총통님이　허락하셨으니",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「総統の許可が出たぞ",
       "jpOffset": 1374350
     },
@@ -32730,7 +32730,7 @@
       "offset": 547322,
       "length": 26,
       "text": "　어서　수련하러　가자！！",
-      "fixed": "",
+      "fixed": "　어서　수련하러　가자　　",
       "confirmed": false,
       "jp": "　さ　修業に行こうぜ",
       "jpOffset": 1374374
@@ -32740,7 +32740,7 @@
       "length": 16,
       "text": "고양이귀　여권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "猫耳の女拳士",
       "jpOffset": 1374402
     },
@@ -32748,7 +32748,7 @@
       "offset": 547376,
       "length": 18,
       "text": "「그래…그렇다면…",
-      "fixed": "",
+      "fixed": "「그래…　다녀와　",
       "confirmed": false,
       "jp": "「そう…　いってらっしゃい",
       "jpOffset": 1374418
@@ -32757,7 +32757,7 @@
       "offset": 547398,
       "length": 30,
       "text": "　우리…각자　분발하도록　해！",
-      "fixed": "",
+      "fixed": "　우리　각자　분발하도록　해！",
       "confirmed": false,
       "jp": "　お互い　がんばりましょ",
       "jpOffset": 1374448
@@ -32767,7 +32767,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1374480
     },
@@ -32776,7 +32776,7 @@
       "length": 10,
       "text": "「으응…？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「へ…？",
       "jpOffset": 1374506
     },
@@ -32784,7 +32784,7 @@
       "offset": 547474,
       "length": 26,
       "text": "　함께　가지　않을　거야？",
-      "fixed": "",
+      "fixed": "　함께　가지　않는　건가？",
       "confirmed": false,
       "jp": "　いっしょに行かないのか？",
       "jpOffset": 1374518
@@ -32794,7 +32794,7 @@
       "length": 16,
       "text": "고양이귀　여권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "猫耳の女拳士",
       "jpOffset": 1374552
     },
@@ -32802,7 +32802,7 @@
       "offset": 547528,
       "length": 24,
       "text": "「물론…수련하고　싶다고",
-      "fixed": "",
+      "fixed": "「나는　수련에　가겠다고",
       "confirmed": false,
       "jp": "「わたしは　修業に行きたい",
       "jpOffset": 1374568
@@ -32811,7 +32811,7 @@
       "offset": 547556,
       "length": 24,
       "text": "　말한　건　사실이지만，",
-      "fixed": "",
+      "fixed": "　말한　건　사실이지만　",
       "confirmed": false,
       "jp": "　とは言ったけど",
       "jpOffset": 1374598
@@ -32821,7 +32821,7 @@
       "length": 14,
       "text": "　당신과　함께",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　あなたといっしょに",
       "jpOffset": 1374622
     },
@@ -32829,7 +32829,7 @@
       "offset": 547606,
       "length": 32,
       "text": "　수련하겠다고　한　적은　없어！",
-      "fixed": "",
+      "fixed": "　수련하겠다고　한　적은　없어　",
       "confirmed": false,
       "jp": "　修業したいとは言ってないわ",
       "jpOffset": 1374646
@@ -32838,7 +32838,7 @@
       "offset": 547646,
       "length": 26,
       "text": "　그렇잖아…？！　당신하고",
-      "fixed": "",
+      "fixed": "　그도　그렇잖아？　　　　",
       "confirmed": false,
       "jp": "　だってそうでしょ？",
       "jpOffset": 1374682
@@ -32847,7 +32847,7 @@
       "offset": 547676,
       "length": 30,
       "text": "　똑같은　수련을　하면，어차피",
-      "fixed": "",
+      "fixed": "　당신과　똑같은　수련을　하면",
       "confirmed": false,
       "jp": "　あなたと同じ修業をしたんじゃ",
       "jpOffset": 1374706
@@ -32856,7 +32856,7 @@
       "offset": 547710,
       "length": 34,
       "text": "　당신을　이길　수　없을　테니까！",
-      "fixed": "",
+      "fixed": "　당신을　넘어설　수　없을　테니까",
       "confirmed": false,
       "jp": "　あなたを追い越せないじゃない",
       "jpOffset": 1374740
@@ -32866,7 +32866,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1374778
     },
@@ -32874,7 +32874,7 @@
       "offset": 547776,
       "length": 18,
       "text": "「그건…그렇지만…",
-      "fixed": "",
+      "fixed": "「그，그런건가…？",
       "confirmed": false,
       "jp": "「へ？　そ　そうなのか…？",
       "jpOffset": 1374804
@@ -32884,7 +32884,7 @@
       "length": 16,
       "text": "고양이귀　여권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "猫耳の女拳士",
       "jpOffset": 1374838
     },
@@ -32892,7 +32892,7 @@
       "offset": 547822,
       "length": 18,
       "text": "「그럼　난　이만…",
-      "fixed": "",
+      "fixed": "「그럼　난　가볼게",
       "confirmed": false,
       "jp": "「じゃ　わたしは行くわね",
       "jpOffset": 1374854
@@ -32902,7 +32902,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1374886
     },
@@ -32911,7 +32911,7 @@
       "length": 10,
       "text": "「가다니…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「行く…って",
       "jpOffset": 1374912
     },
@@ -32919,7 +32919,7 @@
       "offset": 547886,
       "length": 26,
       "text": "　어디로　갈　생각이지？！",
-      "fixed": "",
+      "fixed": "　어디로　갈　생각이야？　",
       "confirmed": false,
       "jp": "　どこへ行くつもりだ？",
       "jpOffset": 1374928
@@ -32929,7 +32929,7 @@
       "length": 16,
       "text": "고양이귀　여권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "猫耳の女拳士",
       "jpOffset": 1374958
     },
@@ -32937,7 +32937,7 @@
       "offset": 547940,
       "length": 32,
       "text": "「어디　있는지는　잘　모르지만…",
-      "fixed": "",
+      "fixed": "「어디　있는지는　잘　모르겠지만",
       "confirmed": false,
       "jp": "「場所はよくわからないけど",
       "jpOffset": 1374974
@@ -32955,7 +32955,7 @@
       "offset": 548016,
       "length": 18,
       "text": "　갈　생각이야！！",
-      "fixed": "",
+      "fixed": "　갈　생각이야　　",
       "confirmed": false,
       "jp": "　行ってみるつもりよ",
       "jpOffset": 1375032
@@ -32965,7 +32965,7 @@
       "length": 14,
       "text": "　자，그럼……",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　じゃあね！",
       "jpOffset": 1375056
     },
@@ -32973,7 +32973,7 @@
       "offset": 548056,
       "length": 26,
       "text": "　무투대회장에서　만나！！",
-      "fixed": "",
+      "fixed": "　무투대회장에서　만나！　",
       "confirmed": false,
       "jp": "　武闘大会の会場で会いましょ",
       "jpOffset": 1375072
@@ -32983,7 +32983,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1375116
     },
@@ -32991,8 +32991,8 @@
       "offset": 548122,
       "length": 12,
       "text": "「이，이봐…",
-      "fixed": "",
-      "confirmed": false,
+      "fixed": "「이，이봐！",
+      "confirmed": true,
       "jp": "「お　おいっ！",
       "jpOffset": 1375142
     },
@@ -33001,7 +33001,7 @@
       "length": 8,
       "text": "　………",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　………",
       "jpOffset": 1375164
     },
@@ -33010,7 +33010,7 @@
       "length": 22,
       "text": "　쳇！　하는　수　없지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ちっ　仕方ない",
       "jpOffset": 1375180
     },
@@ -33019,7 +33019,7 @@
       "length": 22,
       "text": "　혼자　가는　수밖에…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　一人で行くか…",
       "jpOffset": 1375200
     },
@@ -33028,7 +33028,7 @@
       "length": 6,
       "text": "린샹…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン…",
       "jpOffset": 240108
     },
@@ -33037,7 +33037,7 @@
       "length": 24,
       "text": "어쨌든　다시　한번　만나",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "とにかく　もう１度会って",
       "jpOffset": 240124
     },
@@ -33046,7 +33046,7 @@
       "length": 24,
       "text": "확실하게　이야기해야　해",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ちゃんと話をしなければな",
       "jpOffset": 240152
     },
@@ -33054,7 +33054,7 @@
       "offset": 566458,
       "length": 22,
       "text": "딱딱한　권법조직이려니",
-      "fixed": "",
+      "fixed": "호오　삼엄한　조직인가",
       "confirmed": false,
       "jp": "ほ？　いかつい武闘組織かと",
       "jpOffset": 240180
@@ -33064,7 +33064,7 @@
       "length": 24,
       "text": "생각했는데　평범한　도장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "思っておったのに普通の道場の",
       "jpOffset": 240210
     },
@@ -33072,7 +33072,7 @@
       "offset": 566512,
       "length": 26,
       "text": "인　것같군．맥　빠지는군！",
-      "fixed": "",
+      "fixed": "인건　같네．맥　빠지는　걸",
       "confirmed": false,
       "jp": "ようじゃな　少し拍子抜けしたぞい",
       "jpOffset": 240242
@@ -33081,7 +33081,7 @@
       "offset": 566542,
       "length": 20,
       "text": "대단한　여자일세！！",
-      "fixed": "",
+      "fixed": "엄청난　각오인　게야",
       "confirmed": false,
       "jp": "よっぽどの覚悟なんじゃろう",
       "jpOffset": 240278
@@ -33090,7 +33090,7 @@
       "offset": 566566,
       "length": 28,
       "text": "사내　２명을　여자　혼자…．",
-      "fixed": "",
+      "fixed": "사내　둘로도　못　당했으니　",
       "confirmed": false,
       "jp": "大の男が２人がかりで勝てんとは",
       "jpOffset": 240308
@@ -33099,7 +33099,7 @@
       "offset": 566598,
       "length": 26,
       "text": "요새　여자들은　기가　세군",
-      "fixed": "",
+      "fixed": "요즘　여자들은　강해졌구먼",
       "confirmed": false,
       "jp": "最近の女は強くなったのぅ",
       "jpOffset": 240342
@@ -106791,7 +106791,7 @@
       "offset": 1269826,
       "length": 14,
       "text": "　말았군요！！",
-      "fixed": "　애처로워요　",
+      "fixed": "　애처롭다구요",
       "confirmed": false,
       "jp": "　悲しくなってしまうわ",
       "jpOffset": 255540
@@ -111643,7 +111643,7 @@
       "length": 24,
       "text": "　　　　　　　환세취호전",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　　　　　　　幻世酔虎伝",
       "jpOffset": 955380
     },
@@ -111652,7 +111652,7 @@
       "length": 22,
       "text": "　　　　　　　　　　끝",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　　　　　　　　　終",
       "jpOffset": 955408
     },
@@ -111661,7 +111661,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 955448
     },
@@ -111823,7 +111823,7 @@
       "length": 10,
       "text": "「호호호…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ほほぉ…",
       "jpOffset": 955858
     },
@@ -111831,7 +111831,7 @@
       "offset": 1331338,
       "length": 32,
       "text": "　스마슈，보신탕을　만들어줄까？",
-      "fixed": "",
+      "fixed": "　죽고　싶은　모양이네　스마슈　",
       "confirmed": false,
       "jp": "　死にたいらしいね　スマッシュ",
       "jpOffset": 955872
