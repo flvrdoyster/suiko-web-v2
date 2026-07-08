@@ -563,15 +563,6 @@ class SuikoEmulator {
         }        
     }
 
-    uploadBrowse() {
-        this.initAudio();
-        document.getElementById('file-upload').click();
-    }
-
-    importBrowse() {
-        document.getElementById('file-import').click();
-    }
-
     detectSingleFileUpload(fileName) {
         let fileExtension = fileName.substr(fileName.lastIndexOf('.')).toLocaleLowerCase();
         if (!this.specialFileHandlers.includes(fileExtension))
@@ -1026,14 +1017,6 @@ class SuikoEmulator {
         
     }
 
-    hideMobileMenu() {
-        if (this.rivetsData.mobileMode)
-        {
-            $("#mobileButtons").hide();
-            $('#menuDiv').show();
-        }
-    }
-
     setupMobileMode()
     {
         this.canvasWidth = window.outerWidth;
@@ -1099,11 +1082,6 @@ class SuikoEmulator {
         {
             return '';
         }
-    }
-
-    loadRomAndSavestate(){
-        this.loadSavestateAfterBoot = true;
-        this.loadRom();
     }
 
     extractRomName(name){
@@ -1253,19 +1231,6 @@ class SuikoEmulator {
 
     }
 
-    countFPS(){
-        this.fpscounter++;
-        let delta = (new Date().getTime() - this.lastCalledTime.getTime())/1000;
-        if (delta>1)
-        {
-            this.currentfps = this.fpscounter;
-            this.fpscounter = 0;
-            this.lastCalledTime = new Date();
-
-            console.log(this.currentfps);
-        }
-    }
-
     extractBaseName(){
         try
         {
@@ -1390,11 +1355,6 @@ class SuikoEmulator {
     }
 
     //prevent dropdown from popping up from keyboard events
-    dropdownKeyDown(e){
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
     fullscreen() {
         let el = document.getElementById('canvasDiv');
 
@@ -1404,20 +1364,6 @@ class SuikoEmulator {
         else {
             el.mozRequestFullScreen();
         }
-    }
-
-    zoomIn(){
-        this.canvasHeight += 30;
-        localStorage.setItem('doswasmx-height', this.canvasHeight.toString());
-        this.resizeCanvas();
-        console.log('zoom in');
-    }
-
-    zoomOut(){
-        this.canvasHeight -= 30;
-        localStorage.setItem('doswasmx-height', this.canvasHeight.toString());
-        this.resizeCanvas();
-        console.log('zoom out');
     }
 
     mouseDecreaseSpeed(){
@@ -1745,38 +1691,6 @@ class SuikoEmulator {
         FS.writeFile('config.txt',configString);
     }
 
-
-    clearDatabase() {
-
-        var request = indexedDB.deleteDatabase('DOSWASMXDB');
-        request.onerror = function (event) {
-            console.log("Error deleting database.");
-            toastr.error("Error deleting database");
-        };
-
-        request.onsuccess = function (event) {
-            console.log("Database deleted successfully");
-            toastr.error("Database deleted successfully");
-        };
-
-    }
-
-    async unzipFile(arrayBuffer){
-
-        const data = new Blob([ arrayBuffer ])
-        let file = new File([data], 'win95.zip');
-
-        document.getElementById('myProgress').innerHTML = 'Decompressing...';
-
-        let zipReader = new zip.ZipReader(new zip.BlobReader(file));
-        let entries = await zipReader.getEntries()
-        let blob = await entries[0].getData(new zip.BlobWriter());
-        let byteArray = new Uint8Array(await blob.arrayBuffer());
-        document.getElementById('myProgress').innerHTML = 'Finished Decompressing';
-
-
-        emulator.LoadEmulator(byteArray);
-    }
 
     toggleOnscreenKeyboard(){
         Module._neil_toggle_onscreenkeyboard();
@@ -2456,32 +2370,6 @@ class SuikoEmulator {
         }
     }
 
-    sendCtrlAltDel(){
-        Module._neil_send_ctrlaltdel();
-    }
-
-    toggle16BitColorFix(){
-        Module._neil_toggle_16_bit_color_fix();
-    }
-
-    toggleAlwaysUseBackbuffer(){
-        Module._neil_toggle_always_use_backbuffer();
-    }
-
-    toggleAutoKeybaord(){
-        this.autoKeyboard = !this.autoKeyboard;
-
-        if (this.autoKeyboard)
-        {
-            this.autoKeyboardTimer = this.autoKeyboardInterval;
-            toastr.info('Auto Keyboard Enabled');
-        }
-        else
-        {
-            toastr.info('Auto Keyboard Disabled');
-        }
-    }
-
     //used to automate keyboard buttons on a timer (useful for certain games)
     tickAutoKeyboard(){
         this.autoKeyboardTimer--;
@@ -2503,13 +2391,7 @@ class SuikoEmulator {
         }
     }
 
-    turboSpeed()
-    {
-        Module._neil_turbo();
-    }
-    
-
-    HandleMessage(name, props) 
+    HandleMessage(name, props)
 	{
         // console.log('handlemessage', name, props)
 		if (name=='neil-resolution-changed')
@@ -2561,21 +2443,6 @@ class SuikoEmulator {
 			postMessage({ name: "wc-sync-sleep", props: data.props }, "*");
         }
     };
-
-    async UploadFiles()
-	{
-		// this.resizeCanvas();
-		// document.getElementById('canvasDiv').style.display = 'block';
-		// this.rivetsData.emulatorStarted = true;
-        setTimeout(() => {
-            Module.messageHandler({ data: { name: 'wc-run', props: { sessionId:'123' } } })
-        }, 50);
-	}
-
-    printError(text)
-	{
-		console.log(text);
-	}
 
     updateCanvas(rgbSource)
 	{

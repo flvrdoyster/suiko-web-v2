@@ -112,12 +112,15 @@ relocation 진입점 경계로 리뷰 청크를 나눠보려 시도했으나(624
   `loadHardDriveDiffs()`(실사용 중)가 호출해서 남겨둠. `myApp.*`로 wasm 쪽에서 직접 호출하는
   메서드(`SaveStateEvent`/`saveHardDriveDiffs`/`toggleFPS` 등, `docs/main.js`에서 이름으로 조회)는
   건드리지 않음 — 286줄 삭제, `node --check` 통과, 외부 참조(html/다른 js) 0건 확인.
-  **추가로 발견했으나 이번엔 손 안 댄 죽은 코드**(같은 방식으로 확인 가능, 별도 작업 필요):
-  `zoomIn`/`zoomOut`/`turboSpeed`/`sendCtrlAltDel`/`toggleAutoKeybaord`/`toggle16BitColorFix`/
-  `toggleAlwaysUseBackbuffer`/`hideMobileMenu`/`dropdownKeyDown`/`uploadBrowse`/`importBrowse`/
-  `loadRomAndSavestate`/`printError`/`clearDatabase`/`unzipFile`/`sleepHandler`/`countFPS`/
-  `UploadFiles`/`AudioProcessRecurring`/`WriteConfigFile` — 전부 CPU 드롭다운/모바일 메뉴 등 이미
-  삭제된 UI 트리거용으로 추정되나, 이번 클러스터처럼 각각 개별 확인이 필요해 범위 밖으로 남김.
+  이어서 CPU 드롭다운/모바일 메뉴 등 이미 삭제된 UI 트리거용으로 추정되는 나머지 zero-caller
+  메서드 17개(`zoomIn`/`zoomOut`/`turboSpeed`/`sendCtrlAltDel`/`toggleAutoKeybaord`/
+  `toggle16BitColorFix`/`toggleAlwaysUseBackbuffer`/`hideMobileMenu`/`dropdownKeyDown`/
+  `uploadBrowse`/`importBrowse`/`loadRomAndSavestate`/`printError`/`clearDatabase`/`unzipFile`/
+  `countFPS`/`UploadFiles`)도 개별 확인 후 제거. **`sleepHandler`/`AudioProcessRecurring`/
+  `WriteConfigFile`는 이름만 보면 비슷해 보였지만 실제로는 각각 `window.addEventListener`,
+  `pcmPlayer.onaudioprocess`, 내부 호출로 살아있는 코드라 보존** — 자동 스캔(단순 호출 횟수
+  카운트)만 믿으면 오탐이 나는 실례. `docs/main.js`의 `myApp.*` wasm 콜백 목록과 겹치는 것도
+  없음 확인. 총 303줄 삭제, `node --check` 통과.
 
 ## 2. 기술 노트
 
