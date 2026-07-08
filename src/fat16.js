@@ -235,8 +235,10 @@ function writeFileInPlace(ctx, entry, data, times) {
 
 // Inject a set of {name, data} files into `dirPath`, matching by name against the
 // existing entries and overwriting in place. Returns a NEW Uint8Array (base is not
-// mutated). Files with no matching entry are reported in the returned `skipped` list
-// rather than silently dropped.
+// mutated). If a name has no existing entry (e.g. the base image ships with an empty
+// SAVEDATA folder — see NOTES.md), a fresh 8.3-only entry is created instead via
+// createFileInDir() rather than silently dropping it — a returning player's save must
+// always land back on disk, whether or not the shipped base image already had that slot.
 function injectDirFiles(bytes, dirPath, files) {
   const copy = (bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes));
   const ctx = openImage(copy);
@@ -250,10 +252,15 @@ function injectDirFiles(bytes, dirPath, files) {
         (e.longName.toUpperCase() === f.name.toUpperCase() ||
           e.shortName.toUpperCase() === f.name.toUpperCase())
     );
-    if (!target) { skipped.push(f.name); continue; }
+    const data = f.data instanceof Uint8Array ? f.data : new Uint8Array(f.data);
     const times = f.times && f.times.length === 13
       ? (f.times instanceof Uint8Array ? f.times : new Uint8Array(f.times)) : null;
-    writeFileInPlace(ctx, target, f.data instanceof Uint8Array ? f.data : new Uint8Array(f.data), times);
+    if (!target) {
+      try { createFileInDir(ctx, cluster, f.name, data, times); }
+      catch (e) { skipped.push(f.name); }
+      continue;
+    }
+    writeFileInPlace(ctx, target, data, times);
   }
   return { image: copy, skipped };
 }
@@ -290,16 +297,15 @@ function name83(name) {
   return base + ext;
 }
 
-// Create a new file (8.3 name only, no LFN) in `dirPath` with `data`. Returns a NEW image.
-// Fails if the name already exists — use injectDirFiles to overwrite instead.
-function createFile(bytes, dirPath, name, data) {
-  const copy = bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes);
-  const ctx = openImage(copy);
-  const dirCluster = resolveDir(ctx, dirPath);
-  if (dirCluster === null) throw new Error('directory not found: ' + dirPath);
+// Core of createFile(), operating directly on an already-open ctx (no image copy) so
+// injectDirFiles() can fall back to it per-file without re-copying/re-opening the whole
+// image each time. Allocates clusters, writes the data, and fills a free 8.3 directory
+// slot (0x00 = end, 0xE5 = deleted) in dirCluster. Optionally restores `times` (the 13-byte
+// create/access/write timestamp blob used elsewhere in this file) so an injected save keeps
+// the time it was actually made at rather than the moment of injection.
+function createFileInDir(ctx, dirCluster, name, data, times) {
   const payload = data instanceof Uint8Array ? data : new Uint8Array(data);
 
-  // allocate + write data
   const needClusters = Math.max(1, Math.ceil(payload.length / ctx.bytesPerCluster));
   const chain = allocateClusters(ctx, needClusters);
   let p = 0;
@@ -310,7 +316,6 @@ function createFile(bytes, dirPath, name, data) {
     p += n;
   }
 
-  // find a free 32-byte directory slot (0x00 = end, 0xE5 = deleted)
   const regions = dirRegions(ctx, dirCluster);
   const nm = name83(name);
   let slotOff = -1;
@@ -323,7 +328,6 @@ function createFile(bytes, dirPath, name, data) {
   }
   if (slotOff < 0) throw new Error('no free directory slot (root full)');
 
-  // write the 8.3 entry
   for (let i = 0; i < 11; i++) ctx.img[slotOff + i] = nm.charCodeAt(i);
   ctx.img[slotOff + 11] = 0x20; // attr = archive
   for (let i = 12; i < 26; i++) ctx.img[slotOff + i] = 0;
@@ -333,6 +337,17 @@ function createFile(bytes, dirPath, name, data) {
   ctx.img[slotOff + 29] = (payload.length >> 8) & 0xff;
   ctx.img[slotOff + 30] = (payload.length >> 16) & 0xff;
   ctx.img[slotOff + 31] = (payload.length >> 24) & 0xff;
+  if (times && times.length === 13) ctx.img.set(times, slotOff + 13);
+}
+
+// Create a new file (8.3 name only, no LFN) in `dirPath` with `data`. Returns a NEW image.
+// Fails if the name already exists — use injectDirFiles to overwrite instead.
+function createFile(bytes, dirPath, name, data) {
+  const copy = bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes);
+  const ctx = openImage(copy);
+  const dirCluster = resolveDir(ctx, dirPath);
+  if (dirCluster === null) throw new Error('directory not found: ' + dirPath);
+  createFileInDir(ctx, dirCluster, name, data, null);
   return copy;
 }
 

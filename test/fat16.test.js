@@ -66,5 +66,19 @@ const slot1After = Fat16.extractDirFiles(tsChanged, SAVE_DIR).find((f) => f.name
 check(Buffer.compare(Buffer.from(slot1After.times), Buffer.from(newTimes)) === 0,
   'injected times are written back to the directory entry');
 
+// 5. injectDirFiles must CREATE a file that has no existing directory entry, not skip it
+//    — the deployed base image now ships with an empty SAVEDATA folder (players create
+//    their own save on first play), so a returning player's IndexedDB-stored save has to
+//    land back on disk even though the base image never had that slot to begin with.
+const emptied = files.reduce((img, f) => Fat16.deletePath(img, `${SAVE_DIR}/${f.name}`).image, base);
+check(Fat16.extractDirFiles(emptied, SAVE_DIR).length === 0, 'save dir is empty after deleting all slots');
+const restored = Fat16.injectDirFiles(emptied, SAVE_DIR, [files[0]]);
+check(restored.skipped.length === 0, 'injecting into an empty dir is not skipped');
+const restoredFiles = Fat16.extractDirFiles(restored.image, SAVE_DIR);
+check(restoredFiles.length === 1 && restoredFiles[0].name.toUpperCase() === 'SAVEDAT1.DAT',
+  'the created entry has the right name');
+check(Buffer.compare(Buffer.from(restoredFiles[0].data), Buffer.from(files[0].data)) === 0,
+  'the created entry has the right content');
+
 console.log(failures === 0 ? '\nALL PASS' : `\n${failures} FAILURE(S)`);
 process.exit(failures === 0 ? 0 : 1);
