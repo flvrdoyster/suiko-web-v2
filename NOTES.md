@@ -102,17 +102,22 @@ relocation 진입점 경계로 리뷰 청크를 나눠보려 시도했으나(624
 
 - KR "과한 의역"(원문에서 멀어진 번역) 검토 — 사용자가 직접 진행 중, 종료 시점 없음
 - 대사 길이 확장 — PE 재작성 패처 구현 ("2.1 텍스트 구조"의 "길이 확장 조사" 참고, 아직 미착수)
-- `docs/script.js`(doswasmx 엔진 글루)에 남은 죽은 코드 제거, 아직 미착수(`MyClass`→
-  `SuikoEmulator` 개명만 완료). 확인된 것: 트리거할 UI가 이미 삭제됐고 `hasCloud`도 항상
-  false라(설정의 `CLOUDSAVEURL`이 빈 문자열) 부팅 시에도 절대 호출 안 되는 설정/가져오기/
-  내보내기/로그인 모달 클러스터 —
-  `settingsModal()`/`settingsSubmit()`/`importModal()`/`exportModal()`/`exportFiles()`/
-  `loginModal()`/`logout()`/`setupLogin()`/`postLoginProcess()`/`saveCloud()`/`loadCloud()`
-  및 상태 필드 `exportFilesRequested`/`loginModalOpened`/`password`/`settings.CLOUDSAVEURL`.
-  같은 구역에 `exportHardDrive()`/`importFiles()`/`processImportFiles()`/`saveStateLocal()`/
-  `loadStateLocal()`처럼 비슷해 보이지만 `#maindiv`에 남겨둔 드래그앤드롭 롬 로딩용 입력
-  요소(`file-upload`/`file-import`/`dropArea`)와 연결됐을 수 있는 메서드가 섞여 있어 — 하나씩
-  개별 확인 후 제거해야 함(한 번에 지우다 부팅이 깨질 위험).
+- **`docs/script.js` 죽은 코드 제거 — 설정/가져오기/내보내기/로그인 모달 클러스터는 완료
+  (2026-07)**: `settingsModal()`/`settingsSubmit()`/`importModal()`/`exportModal()`/
+  `exportFiles()`/`saveStateLocal()`/`loadStateLocal()`/`exportHardDrive()`/`clearHardDrive()`/
+  `loginModal()`/`logout()`/`setupLogin()`/`loginSubmit()`/`loginSilent()`/`loginToServer()`/
+  `postLoginProcess()`/`convertCSharpDateTime()`/`saveCloud()`/`loadCloud()` 및 이들이 게이팅하는
+  호출부(부팅 시 `hasCloud` 체크, 클라우드 세이브 감지 분기 등) 전부 제거 — `hasCloud`가 항상
+  false(`CLOUDSAVEURL`이 빈 문자열)라 애초에 실행된 적 없는 코드. `getSaveStates()`는
+  `loadHardDriveDiffs()`(실사용 중)가 호출해서 남겨둠. `myApp.*`로 wasm 쪽에서 직접 호출하는
+  메서드(`SaveStateEvent`/`saveHardDriveDiffs`/`toggleFPS` 등, `docs/main.js`에서 이름으로 조회)는
+  건드리지 않음 — 286줄 삭제, `node --check` 통과, 외부 참조(html/다른 js) 0건 확인.
+  **추가로 발견했으나 이번엔 손 안 댄 죽은 코드**(같은 방식으로 확인 가능, 별도 작업 필요):
+  `zoomIn`/`zoomOut`/`turboSpeed`/`sendCtrlAltDel`/`toggleAutoKeybaord`/`toggle16BitColorFix`/
+  `toggleAlwaysUseBackbuffer`/`hideMobileMenu`/`dropdownKeyDown`/`uploadBrowse`/`importBrowse`/
+  `loadRomAndSavestate`/`printError`/`clearDatabase`/`unzipFile`/`sleepHandler`/`countFPS`/
+  `UploadFiles`/`AudioProcessRecurring`/`WriteConfigFile` — 전부 CPU 드롭다운/모바일 메뉴 등 이미
+  삭제된 UI 트리거용으로 추정되나, 이번 클러스터처럼 각각 개별 확인이 필요해 범위 밖으로 남김.
 
 ## 2. 기술 노트
 

@@ -23,7 +23,6 @@ class SuikoEmulator {
         this.initCount = 0;
         this.baseImageSaved = false;
         this.isoSaved = false;
-        this.exportFilesRequested = false;
         this.canvasHeight = 480;
         this.ram = 32;
         this.initialHardDrive = 'hd_520';
@@ -44,9 +43,7 @@ class SuikoEmulator {
         this.singleFileUpload = false;
         this.loading = true;
         this.isoName = '';
-        this.loginModalOpened = false;
         this.noCloudSave = true;
-        this.dosSaveStates = [];
         this.allSaveStates = [];
         this.baseHardDrive = new Uint8Array();
         this.compareCount = 0;
@@ -87,7 +84,6 @@ class SuikoEmulator {
             beforeEmulatorStarted: true,
             loggedIn: false,
             romList: [],
-            hasCloud: false,
             password: '',
             message: '',
             moduleInitializing: true,
@@ -114,11 +110,6 @@ class SuikoEmulator {
 
         //comes from settings.js
         this.rivetsData.settings = window["DOSWASMSETTINGS"];
-
-        if (this.rivetsData.settings.CLOUDSAVEURL)
-        {
-            this.rivetsData.hasCloud = true;
-        }
 
         if (window["ROMLIST"].length > 0)
         {
@@ -147,17 +138,6 @@ class SuikoEmulator {
         this.setupDragDropRom();
         this.createDB();
         this.retrieveSettings();
-
-        if (this.rivetsData.hasCloud)
-        {
-            this.setupLogin();
-            let hours = new Date().getHours();
-            if (hours < 7 || hours > 20)
-            {
-                this.btnDarkMode();
-            }
-        }
-
 
         $('#topPanel').show();
         $('#errorOuter').show();
@@ -302,9 +282,6 @@ class SuikoEmulator {
     
 
     configureEmulator(){
-
-        if (this.rivetsData.password)
-            this.loginSilent();
 
         let size = localStorage.getItem('doswasmx-height');
         if (size) {
@@ -553,30 +530,6 @@ class SuikoEmulator {
             && emulator.loadSavestateAfterBoot) {
             console.log('detected windows started');
             emulator.loadSavestateAfterBoot = false;
-
-            if (emulator.rivetsData.loggedIn && !emulator.noCloudSave)
-            {
-                //we give it a 5 second delay because we
-                //want to wait for the windows startup sound
-                setTimeout(() => {
-                    emulator.loadCloud();
-                }, 5000);
-            }
-        }
-
-        //this means its done exporting
-        if (text.includes('echo DONE'))
-        {
-            if (this.exportFilesRequested)
-            {
-                this.exportFilesRequested = false;
-                setTimeout(() => {
-                    let filearray = Module.FS.readFile("/export.zip");    
-                    var file = new File([filearray], "export.zip", {type: "text/plain; charset=x-user-defined"});
-                    saveAs(file);
-                    Module._neil_clear_autoexec();
-                }, 500);
-            }
         }
 
         //this means its done importing
@@ -1777,37 +1730,6 @@ class SuikoEmulator {
 
     }
 
-    clearHardDrive(){
-
-        let romToDelete = 'win95.disk';
-
-        if (!window["indexedDB"]==undefined){
-            console.log('indexedDB not available');
-            return;
-        }
-        
-        var request = indexedDB.open('DOSWASMXDB');
-        request.onsuccess = function (ev) {
-            var db = ev.target.result;
-            var transaction = db.transaction("DOSWASMXSTATES", "readwrite");
-            let request = transaction.objectStore("DOSWASMXSTATES").delete(romToDelete);
-
-            try {
-                // report that the data item has been deleted
-                transaction.oncomplete = function() {
-                    toastr.success('Hard Drive Deleted');
-                    $('#settingsModal').modal('hide');
-                    emulator.rivetsData.dblistDisks = [];
-                };
-
-            } catch (error) {
-                toastr.error('Error Deleting Disk');
-                console.log(error);
-            }
-        }
-
-    }
-
     WriteConfigFile()
     {
         let configString = "";
@@ -1862,73 +1784,6 @@ class SuikoEmulator {
 
     toggleFPS(){
         Module._neil_toggle_fps();
-    }
-
-    exportModal(){
-        $("#exportModal").modal();
-    }
-
-    settingsModal(){
-
-        this.rivetsData.ramTemp = this.ram;
-        this.rivetsData.initialHardDriveTemp = this.initialHardDrive;
-        this.rivetsData.dosVersionTemp = this.dosVersion;
-        
-        $("#settingsModal").modal();
-    }
-
-    settingsSubmit(){
-        this.saveOptions();
-        $('#settingsModal').modal('hide');
-        toastr.info("Settings Saved");
-    }
-
-    importModal(importType){
-        emulator.rivetsData.noCopyImport = false;
-        emulator.rivetsData.changeCD = false;
-        emulator.rivetsData.loadCD = false;
-        emulator.rivetsData.changeFloppy = false;
-        emulator.rivetsData.loadFloppy = false;
-        if (importType == 'noCopy')
-        {
-            emulator.rivetsData.noCopyImport = true;
-        }
-        if (importType == 'changeCD')
-        {
-            emulator.rivetsData.changeCD = true;
-        }
-        if (importType == 'changeFloppy')
-        {
-            emulator.rivetsData.changeFloppy = true;
-        }
-        if (importType == 'loadFloppy')
-        {
-            emulator.rivetsData.loadFloppy = true;
-        }
-        if (importType == 'loadCD')
-        {
-            emulator.rivetsData.loadCD = true;
-        }
-        emulator.rivetsData.importStatus = '';
-        $("#importModal").modal();
-    }
-
-    exportFiles(){
-        console.log('exportFiles');
-        $('#exportModal').modal('hide');
-        this.exportFilesRequested = true;
-        Module._neil_export_files();
-    }
-
-    saveStateLocal(){
-        console.log('saveStateLocal');
-        this.rivetsData.noLocalSave = false;
-        Module._neil_serialize();
-    }
-
-    loadStateLocal(){
-        console.log('loadStateLocal');
-        emulator.loadFromDatabase(SaveTypes.Savestate);
     }
 
     //when it returns from emscripten
@@ -2285,18 +2140,6 @@ class SuikoEmulator {
         return concatenated;
     }
 
-    exportHardDrive(){
-        let imgName = this.base_name + '.img';
-        let exportName = imgName;
-        if (!this.rivetsData.loggedIn)
-        {
-            exportName = 'hdd.img';
-        }
-        let filearray = Module.FS.readFile('/' + imgName);    
-        var file = new File([filearray], exportName, {type: "text/plain; charset=x-user-defined"});
-        saveAs(file);
-    }
-
     importFiles(event){
         console.log('import files');
 
@@ -2485,135 +2328,6 @@ class SuikoEmulator {
         //reset variables
         this.baseImageSaved = false;
         this.isoSaved = false;
-    }
-
-    saveCloud(){
-        Module._neil_serialize();
-    }
-
-    loadCloud(){
-
-        var oReq = new XMLHttpRequest();
-        oReq.open("GET", this.rivetsData.settings.CLOUDSAVEURL + "/LoadStaveState?name=" + this.base_name + '.savestate.doswasmx' +
-         "&password=" + this.rivetsData.password, true);
-        oReq.responseType = "arraybuffer";
-
-        oReq.onload = function (oEvent) {
-            var arrayBuffer = oReq.response; // Note: not oReq.responseText
-            try{
-                if (arrayBuffer) {
-                    var byteArray = new Uint8Array(arrayBuffer);
-                    Module.FS.writeFile('/save/1.sav',byteArray);
-                    Module._neil_unserialize();
-                }
-                else{
-                    toastr.error('Error Loading Cloud Save');
-                }
-            }
-            catch(error){
-                console.log(error);
-                toastr.error('Error Loading Cloud Save');
-            }
-            
-        };
-
-        oReq.send(null);
-    }
-
-    async setupLogin() {
-        //prevent submit on enter 
-        $('#txtPassword').bind("keypress", function (e) {
-            if (e.keyCode == 13) {
-                e.preventDefault();
-                emulator.loginSubmit();
-                return false;
-            }
-        });
-
-        let pw = localStorage.getItem('doswasmx-password');
-        if (pw==null)
-            this.rivetsData.password = '';
-        else
-            this.rivetsData.password = pw;
-
-        if (this.rivetsData.password){
-            await this.loginSilent();
-        }
-            
-    }
-
-    loginModal(){
-        $("#loginModal").modal();
-        this.loginModalOpened = true;
-        setTimeout(() => {
-            //focus on textbox
-            $("#txtPassword").focus();
-        }, 500);
-    }
-
-    logout(){
-        this.rivetsData.loggedIn = false;
-        this.rivetsData.password = '';
-        localStorage.setItem('doswasmx-password', this.rivetsData.password);
-    }
-
-    async loginSubmit(){
-        $('#loginModal').modal('hide');
-        this.loginModalOpened = false;
-        let result = await this.loginToServer();
-        if (result=='Success'){
-            toastr.success('Logged In');
-            localStorage.setItem('doswasmx-password', this.rivetsData.password);
-            await this.getSaveStates();
-            this.postLoginProcess();            
-        }
-        else{
-            toastr.error('Login Failed');
-            this.rivetsData.password = '';
-            localStorage.setItem('doswasmx-password', '');
-        }
-    }
-
-    async loginSilent(){
-        if (!this.rivetsData.hasCloud)
-            return;
-        
-        let result = await this.loginToServer();
-        if (result=='Success'){
-            await this.getSaveStates();
-            this.postLoginProcess();
-        }
-    }
-
-    postLoginProcess(){
-        //filter by .doswasmx extension and sort by date
-        this.dosSaveStates = this.allSaveStates.filter((state)=>{
-            return state.Name.endsWith('.savestate.doswasmx')
-        });
-        this.dosSaveStates.forEach(state => {
-            state.Date = this.convertCSharpDateTime(state.Date);
-        });
-        this.dosSaveStates.sort((a,b)=>{ return b.Date.getTime() - a.Date.getTime() });
-        this.rivetsData.loggedIn = true;
-    }
-
-    convertCSharpDateTime(initialDate) {
-        let dateString = initialDate;
-        dateString = dateString.substring(0, dateString.indexOf('T'));
-        let timeString = initialDate.substr(initialDate.indexOf("T") + 1);
-        let dateComponents = dateString.split('-');
-        let timeComponents = timeString.split(':');
-        let myDate = null;
-
-        myDate = new Date(parseInt(dateComponents[0]), parseInt(dateComponents[1]) - 1, parseInt(dateComponents[2]),
-            parseInt(timeComponents[0]), parseInt(timeComponents[1]), parseInt(timeComponents[2]));
-        return myDate;
-    }
-
-    async loginToServer(){
-        let result = await $.get(this.rivetsData.settings.CLOUDSAVEURL + '/Login?password=' + this.rivetsData.password);
-        console.log('login result: ' + result);
-        return result;
     }
 
     async getSaveStates(){
