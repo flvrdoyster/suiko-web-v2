@@ -7,13 +7,13 @@
       "length": 28,
       "text": "꽤　깊은　산속까지　와버렸군",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 253988,
       "length": 32,
       "text": "정말　이　부근에「호랑이동굴」이",
-      "fixed": "",
+      "fixed": "정말　이　근처에「호랑이동굴」이",
       "confirmed": false
     },
     {
@@ -21,27 +21,27 @@
       "length": 10,
       "text": "있는걸까？",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254038,
       "length": 20,
       "text": "낯선　마을에　왔으면",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254062,
       "length": 24,
       "text": "여러곳을　돌아다니는　건",
-      "fixed": "",
+      "fixed": "이곳저곳　돌아다녀　보는",
       "confirmed": false
     },
     {
       "offset": 254090,
       "length": 12,
       "text": "당연하겠지！",
-      "fixed": "",
+      "fixed": "게　기본이지",
       "confirmed": false
     },
     {
@@ -55,7 +55,7 @@
       "offset": 254134,
       "length": 24,
       "text": "여관에서　차나　한잔할까",
-      "fixed": "",
+      "fixed": "음　여관에서　잠깐　쉴까",
       "confirmed": false
     },
     {
@@ -63,7 +63,7 @@
       "length": 26,
       "text": "뭐야？소란스런　녀석들인걸",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254192,
@@ -76,7 +76,7 @@
       "offset": 254222,
       "length": 26,
       "text": "계속　정보수집이나　해볼까",
-      "fixed": "",
+      "fixed": "자　계속　정보를　모아볼까",
       "confirmed": false
     },
     {
@@ -84,27 +84,27 @@
       "length": 22,
       "text": "아무튼「호랑이동굴」의",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254278,
       "length": 20,
       "text": "단서를　찾아야하는데",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254302,
       "length": 32,
       "text": "이런　타입의　아가씨는　도대체…",
-      "fixed": "",
+      "fixed": "이런　타입의　아가씨는　불편해…",
       "confirmed": false
     },
     {
       "offset": 254338,
       "length": 26,
       "text": "지치도록　데리고　다녀볼까",
-      "fixed": "",
+      "fixed": "질리게　데리고　다녀야하나",
       "confirmed": false
     },
     {
@@ -112,27 +112,27 @@
       "length": 18,
       "text": "왜　내가　주정뱅이",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254390,
       "length": 28,
       "text": "할아범을　위해　일부러　물을",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254422,
       "length": 22,
       "text": "길어와야　하는거지？！",
-      "fixed": "",
+      "fixed": "길어와야　하는거야！？",
       "confirmed": false
     },
     {
       "offset": 254448,
       "length": 26,
       "text": "…괜한　헛　친절을　보였군",
-      "fixed": "",
+      "fixed": "…괜한　친절이　독이　됐군",
       "confirmed": false
     },
     {
@@ -140,7 +140,7 @@
       "length": 22,
       "text": "정말　별스런　할아범도",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254504,
@@ -154,34 +154,34 @@
       "length": 22,
       "text": "분명　이곳에　출입구는",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254550,
       "length": 12,
       "text": "없었는데…．",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254618,
       "length": 26,
       "text": "이사람…아타호가　분명하군",
-      "fixed": "",
+      "fixed": "이　사람…아타호가　분명해",
       "confirmed": false
     },
     {
       "offset": 254648,
       "length": 30,
       "text": "설마　이런곳에서　만날줄이야…",
-      "fixed": "",
+      "fixed": "설마　이런　곳에서　만날줄은…",
       "confirmed": false
     },
     {
       "offset": 254682,
       "length": 30,
       "text": "설마　이게　운명이라는　걸까？",
-      "fixed": "",
+      "fixed": "아마　이게　운명이라는　걸까？",
       "confirmed": false
     },
     {
@@ -189,27 +189,27 @@
       "length": 24,
       "text": "그렇게　투덜대지　말아요",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254744,
       "length": 22,
       "text": "내가　함께　가줄테니까",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254770,
       "length": 34,
       "text": "주정뱅이라도　노인은　공경해야죠！",
-      "fixed": "",
+      "fixed": "주정뱅이라도　노인은　공경해야죠　",
       "confirmed": false
     },
     {
       "offset": 254808,
       "length": 26,
       "text": "정말　화났어！저　영감에겐",
-      "fixed": "",
+      "fixed": "정말　화나네！저　영감에겐",
       "confirmed": false
     },
     {
@@ -217,13 +217,13 @@
       "length": 20,
       "text": "한마디…아니　잔뜩…",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254862,
       "length": 32,
       "text": "퍼붓지　않으면　분이　안풀릴거야",
-      "fixed": "",
+      "fixed": "퍼부어　줘야　분이　풀리겠어！　",
       "confirmed": false
     },
     {
@@ -231,13 +231,13 @@
       "length": 30,
       "text": "이　근처를　여러번　살펴봤지만",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 254932,
       "length": 30,
       "text": "분명　동굴　따윈　안보였는데…",
-      "fixed": "",
+      "fixed": "분명　동굴　같은　건　없었는데",
       "confirmed": false
     },
     {
@@ -252,7 +252,7 @@
       "length": 8,
       "text": "다리오스",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 259908,
@@ -273,20 +273,20 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 259976,
       "length": 12,
       "text": "「황금돼지？",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 259992,
       "length": 22,
       "text": "　그런　것도　있었나？",
-      "fixed": "",
+      "fixed": "　그런　게　있는거야？",
       "confirmed": false
     },
     {
@@ -294,20 +294,20 @@
       "length": 8,
       "text": "다리오스",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260042,
       "length": 32,
       "text": "「응．그런　소문을　듣고　왔는데",
-      "fixed": "「응　그런　소문을　듣고　왔는데",
+      "fixed": "「그런　소문을　듣고　와본　건데",
       "confirmed": false
     },
     {
       "offset": 260078,
       "length": 26,
       "text": "　역시　뜬소문이었나봐！！",
-      "fixed": "　역시　뜬소문이었나봐！　",
+      "fixed": "　역시　뜬소문이었나？　　",
       "confirmed": false
     },
     {
@@ -315,41 +315,41 @@
       "length": 8,
       "text": "다리오스",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260140,
       "length": 30,
       "text": "「이봐，유적　안의　몬스터들은",
-      "fixed": "",
+      "fixed": "「유적　안의　몬스터들은　　　",
       "confirmed": false
     },
     {
       "offset": 260174,
       "length": 16,
       "text": "　강적뿐이라구！",
-      "fixed": "",
+      "fixed": "　강적들뿐이야　",
       "confirmed": false
     },
     {
       "offset": 260198,
       "length": 30,
       "text": "　겉보기에　검사처럼　보이는데",
-      "fixed": "",
+      "fixed": "　보아하니　검사　같은데　　　",
       "confirmed": false
     },
     {
       "offset": 260232,
       "length": 24,
       "text": "　괜한　솜씨자랑하려거든",
-      "fixed": "　괜한　솜씨자랑은　말고",
+      "fixed": "　실력　확인할　생각이면",
       "confirmed": false
     },
     {
       "offset": 260260,
       "length": 30,
       "text": "　애초에　그만두는게　좋을껄！",
-      "fixed": "　애초에　그만두는게　좋을걸！",
+      "fixed": "　그만두는　게　좋을거다　　　",
       "confirmed": false
     },
     {
@@ -357,20 +357,20 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260324,
       "length": 18,
       "text": "「이런，제기랄！！",
-      "fixed": "「이런，제기랄！　",
+      "fixed": "「내　말이！　　　",
       "confirmed": false
     },
     {
       "offset": 260346,
       "length": 34,
       "text": "　몬스터가　나온다니　그만둬야겠군",
-      "fixed": "",
+      "fixed": "　그딴　괴물이　튀어나올　줄이야　",
       "confirmed": false
     },
     {
@@ -384,14 +384,14 @@
       "offset": 260414,
       "length": 24,
       "text": "「칫！　열쇠가　잠겼잖아",
-      "fixed": "",
+      "fixed": "「쳇　자물쇠로　잠겼잖아",
       "confirmed": false
     },
     {
       "offset": 260442,
       "length": 28,
       "text": "　여긴　통행금지인　모양이군",
-      "fixed": "",
+      "fixed": "　지금은　통행금지인가　보군",
       "confirmed": false
     },
     {
@@ -399,13 +399,13 @@
       "length": 22,
       "text": "낡은　보물상자가　있다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260516,
       "length": 12,
       "text": "열어볼까요？",
-      "fixed": "",
+      "fixed": "열어볼까？　",
       "confirmed": false
     },
     {
@@ -413,34 +413,34 @@
       "length": 6,
       "text": "　연다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260546,
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260580,
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260590,
       "length": 22,
       "text": "「어라？　보물상자！！",
-      "fixed": "「어라？　보물상자！　",
+      "fixed": "「옷　보물상자～　　　",
       "confirmed": false
     },
     {
       "offset": 260616,
       "length": 20,
       "text": "　뭐가　들었을까？！",
-      "fixed": "",
+      "fixed": "　뭐가　들었을까～？",
       "confirmed": false
     },
     {
@@ -448,27 +448,27 @@
       "length": 24,
       "text": "「수면비약」을　발견했다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260700,
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260710,
       "length": 36,
       "text": "「더이상　이상한　장치는　없나보군」",
-      "fixed": "「더　이상　이상한　장치는　없나보군",
+      "fixed": "「더　이상　이상한　장치는　없나봐　",
       "confirmed": false
     },
     {
       "offset": 260750,
       "length": 30,
       "text": "　좋아　이　약을　갖고　가자！",
-      "fixed": "",
+      "fixed": "　좋아　이　약은　가져가겠어！",
       "confirmed": false
     },
     {
@@ -476,34 +476,34 @@
       "length": 28,
       "text": "「수면비약」을　손에　넣었다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260868,
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260878,
       "length": 18,
       "text": "「어라？　뭐지？！",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260920,
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 260930,
       "length": 24,
       "text": "「풋！　식은죽　먹기로군",
-      "fixed": "",
+      "fixed": "「훗　식은죽　먹기잖아　",
       "confirmed": false
     },
     {
@@ -511,27 +511,27 @@
       "length": 28,
       "text": "「수면비약」을　손에　넣었다",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261042,
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261052,
       "length": 34,
       "text": "「아무래도　저　석상이　거슬리는데",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261090,
       "length": 36,
       "text": "　흐음…뭔가　좋은　방법이　없나？！",
-      "fixed": "",
+      "fixed": "　흐음…뭔가　좋은　방법이　없으려나",
       "confirmed": false
     },
     {
@@ -539,34 +539,34 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261160,
       "length": 32,
       "text": "「…왠지　불길한　느낌이　드는데",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261196,
       "length": 32,
       "text": "　이　석상…혹시　움직이는　건…",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261252,
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261262,
       "length": 26,
       "text": "「움직일　것같진　않은데…",
-      "fixed": "",
+      "fixed": "「움직일　낌새는　없는데…",
       "confirmed": false
     },
     {
@@ -574,27 +574,27 @@
       "length": 32,
       "text": "　혹시…보물상자를　여는　순간…",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261348,
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261358,
       "length": 30,
       "text": "「칫！　돌로　만든　석상쯤이야",
-      "fixed": "",
+      "fixed": "「훗　무식하게　큰　돌덩이쯤은",
       "confirmed": false
     },
     {
       "offset": 261392,
       "length": 22,
       "text": "　식은죽　먹기지　뭐！",
-      "fixed": "",
+      "fixed": "　식은죽　먹기라고　　",
       "confirmed": false
     },
     {
@@ -678,7 +678,7 @@
       "offset": 261754,
       "length": 34,
       "text": "「어？이거…최근에　부순　것같은데",
-      "fixed": "",
+      "fixed": "「응？최근에　부서진　거　같은데　",
       "confirmed": false
     },
     {
@@ -686,14 +686,14 @@
       "length": 24,
       "text": "　도대체　누가　그랬지？",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261836,
       "length": 4,
       "text": "석판",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261844,
@@ -707,7 +707,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261896,
@@ -728,7 +728,7 @@
       "length": 14,
       "text": "　이거…괜시리",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 261988,
@@ -742,20 +742,20 @@
       "length": 8,
       "text": "다리오스",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 262108,
       "length": 22,
       "text": "「후…페톰녀석은　혼자",
-      "fixed": "",
+      "fixed": "「후우…페톰은　혼자서",
       "confirmed": false
     },
     {
       "offset": 262134,
       "length": 14,
       "text": "　가버리고……",
-      "fixed": "",
+      "fixed": "　돌아가버렸고",
       "confirmed": false
     },
     {
@@ -770,13 +770,13 @@
       "length": 16,
       "text": "　득시글거리니…",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 262202,
       "length": 12,
       "text": "　야단났군！",
-      "fixed": "",
+      "fixed": "　곤란하군！",
       "confirmed": false
     },
     {
@@ -784,7 +784,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 262240,
@@ -826,34 +826,34 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 262390,
       "length": 32,
       "text": "「（이녀석…왠지　위험한　놈이군",
-      "fixed": "",
+      "fixed": "「（뭔가　이상한　녀석　같아…　",
       "confirmed": false
     },
     {
       "offset": 262426,
       "length": 20,
       "text": "　왠지　이놈에겐……",
-      "fixed": "",
+      "fixed": "　괜히　얽히지　않게",
       "confirmed": false
     },
     {
       "offset": 262454,
       "length": 20,
       "text": "　접근하지　않는　게",
-      "fixed": "",
+      "fixed": "　조심하는　편이　　",
       "confirmed": false
     },
     {
       "offset": 262478,
       "length": 16,
       "text": "　현명하겠다…）",
-      "fixed": "",
+      "fixed": "　현명하겠어…）",
       "confirmed": false
     },
     {
@@ -861,20 +861,20 @@
       "length": 8,
       "text": "다리오스",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 262530,
       "length": 32,
       "text": "「유적안에　우글거리는　괴물들은",
-      "fixed": "",
+      "fixed": "「유적　안의　몬스터들은　　　　",
       "confirmed": false
     },
     {
       "offset": 262566,
       "length": 18,
       "text": "　모두　강적뿐이야",
-      "fixed": "",
+      "fixed": "　강적들뿐이야　　",
       "confirmed": false
     },
     {
@@ -882,20 +882,20 @@
       "length": 32,
       "text": "　겉보기에　무투가처럼　보이는데",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 262628,
       "length": 24,
       "text": "　괜히　허튼　솜씨자랑은",
-      "fixed": "",
+      "fixed": "　실력　확인할　생각이면",
       "confirmed": false
     },
     {
       "offset": 262656,
       "length": 22,
       "text": "　안하는　편이　좋아！",
-      "fixed": "",
+      "fixed": "　그만두는　게　나아　",
       "confirmed": false
     },
     {
@@ -12249,14 +12249,14 @@
       "offset": 413062,
       "length": 26,
       "text": "「유적안의　괴물들은　모두",
-      "fixed": "",
+      "fixed": "「유적　안의　몬스터들은　",
       "confirmed": false
     },
     {
       "offset": 413092,
       "length": 16,
       "text": "　강한놈들뿐이야",
-      "fixed": "",
+      "fixed": "　강적들뿐이야　",
       "confirmed": false
     },
     {
@@ -12264,20 +12264,20 @@
       "length": 22,
       "text": "　겉보기에　검사같은데",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 413142,
       "length": 18,
       "text": "　실력　테스트라면",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 413164,
       "length": 24,
       "text": "　그만두는　게　좋을거야",
-      "fixed": "",
+      "fixed": "　그만두는　게　좋을거다",
       "confirmed": false
     },
     {
@@ -71840,14 +71840,14 @@
       "offset": 1075252,
       "length": 26,
       "text": "「유적안에　있는　괴물들은",
-      "fixed": "",
+      "fixed": "「유적　안의　몬스터들은　",
       "confirmed": false
     },
     {
       "offset": 1075282,
       "length": 16,
       "text": "　강적　뿐이라구",
-      "fixed": "",
+      "fixed": "　강적들뿐이야　",
       "confirmed": false
     },
     {
@@ -71855,20 +71855,20 @@
       "length": 32,
       "text": "　겉보기에　권법가처럼　보이는데",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1075342,
       "length": 18,
       "text": "　실력　테스트라면",
       "fixed": "",
-      "confirmed": false
+      "confirmed": true
     },
     {
       "offset": 1075364,
       "length": 24,
       "text": "　그만두는　편이　좋아！",
-      "fixed": "",
+      "fixed": "　그만두는　게　좋을거다",
       "confirmed": false
     },
     {
@@ -79218,7 +79218,7 @@
       "offset": 1201342,
       "length": 32,
       "text": "입구까지　돌아올　수　있습니다！",
-      "fixed": "",
+      "fixed": "입구까지　돌아올　수　있다　　　",
       "confirmed": false
     },
     {
@@ -79638,7 +79638,7 @@
       "offset": 1203044,
       "length": 32,
       "text": "감으로　진행할　수도　있습니다！",
-      "fixed": "",
+      "fixed": "감으로　진행할　수도　있다　　　",
       "confirmed": false
     },
     {

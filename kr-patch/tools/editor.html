@@ -91,6 +91,7 @@
   .jp-cascade-text.is-anchor { color: #ffd479; }
   .jp-cascade-text.empty { color: #445; font-style: italic; }
   .jp-cascade-text.oob { color: #a55; }
+  .jp-cascade-text.copied { background: #1a3322; transition: background .1s; }
   .jp-conflict-warn { color: #e0a030; font-size: 11px; margin-top: 3px; }
   .jp-conflict-jump { color: #7ec4f8; cursor: pointer; text-decoration: underline; }
   tr.jump-focus { outline: 2px solid #7ec4f8; outline-offset: -2px; }
@@ -480,6 +481,15 @@ function renderRow(e) {
     const jpDiv = document.createElement('div');
     jpDiv.className = 'jp-cascade-text' + (computed && computed.isAnchor ? ' is-anchor' : '') + (computed && computed.oob ? ' oob' : '') + (!computed ? ' empty' : '');
     jpDiv.textContent = computed ? computed.text : (isStop ? '(여기서 끊김)' : '(위쪽에 앵커 없음)');
+    if (computed) {
+      jpDiv.title = '클릭하여 복사';
+      jpDiv.style.cursor = 'pointer';
+      jpDiv.onclick = () => {
+        navigator.clipboard && navigator.clipboard.writeText(computed.text);
+        jpDiv.classList.add('copied');
+        setTimeout(() => jpDiv.classList.remove('copied'), 600);
+      };
+    }
     linkRow.appendChild(jpDiv);
     tdOrig.appendChild(linkRow);
 
