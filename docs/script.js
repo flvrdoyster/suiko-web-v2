@@ -8,7 +8,7 @@ const SaveTypes = {
 }
 
 
-class MyClass {
+class SuikoEmulator {
     constructor() {
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext('2d');
@@ -249,37 +249,37 @@ class MyClass {
 
     handleDrop(e){
 
-        myClass.checkIfImgMakeNeeded(e.dataTransfer.files);
+        emulator.checkIfImgMakeNeeded(e.dataTransfer.files);
 
-        myClass.Run();
-        myClass.rivetsData.showProgress = true;
+        emulator.Run();
+        emulator.rivetsData.showProgress = true;
 
         let dt = e.dataTransfer;
         let files = dt.files;
         
         if (files.length == 1)
         {
-            myClass.detectSingleFileUpload(files[0].name);
+            emulator.detectSingleFileUpload(files[0].name);
         }
         else if (files.length > 1)
         {
-            myClass.handleMultipleFiles(files, 0);
+            emulator.handleMultipleFiles(files, 0);
             return;
         }
 
         var file = files[0];
-        myClass.rom_name = file.name;
-        myClass.extractBaseName();
+        emulator.rom_name = file.name;
+        emulator.extractBaseName();
 
         console.log(file);
         var reader = new FileReader();
         reader.onprogress = function (event) {
-            myClass.handleProgress(event, file);
+            emulator.handleProgress(event, file);
         };
         reader.onload = function (e) {
             console.log('finished loading');
             var byteArray = new Uint8Array(this.result);
-            myClass.LoadEmulator(byteArray);
+            emulator.LoadEmulator(byteArray);
         }
         reader.readAsArrayBuffer(file);
 
@@ -337,10 +337,10 @@ class MyClass {
         
     onAnimationFrame() {
 
-        window.requestAnimationFrame(myClass.onAnimationFrame);
+        window.requestAnimationFrame(emulator.onAnimationFrame);
 
-        myClass.rivetsData.inputController.processGamepad();
-        myClass.rivetsData.inputController.updateControls();
+        emulator.rivetsData.inputController.processGamepad();
+        emulator.rivetsData.inputController.updateControls();
     }
 
     processPrintStatement(text) {
@@ -366,7 +366,7 @@ class MyClass {
             
             //showToast doesn't work with weird characters
             toastr.success(newText);
-            myClass.showToast(percent + ' percent');
+            emulator.showToast(percent + ' percent');
         }
 
         if (text.includes('Emulation speed'))
@@ -377,7 +377,7 @@ class MyClass {
 
             //showToast doesn't work with weird characters
             toastr.success(percent + ' percent');
-            myClass.showToast(percent + ' percent');
+            emulator.showToast(percent + ' percent');
         }
 
         //they tried to load an .img file that turned out to be a floppy disk
@@ -386,14 +386,14 @@ class MyClass {
             if (this.rivetsData.dblistDisks.length == 0 && !this.rivetsData.settings.DEFAULTIMG)
             {
                 //this means they don't have a hard disk
-                myClass.base_name = 'mydisk';
-                myClass.rivetsData.initialInstallation = true;
+                emulator.base_name = 'mydisk';
+                emulator.rivetsData.initialInstallation = true;
             }
             else
             {
                 //fall back to using their hard drive
-                myClass.base_name = 'mydisk';
-                myClass.hardDiskFallbackFromFloppy = true;
+                emulator.base_name = 'mydisk';
+                emulator.hardDiskFallbackFromFloppy = true;
             }
         }
 
@@ -401,13 +401,13 @@ class MyClass {
         if (text.includes('floppy disk mounted'))
         {
             setTimeout(() => {
-                if (myClass.rivetsData.initialInstallation)
+                if (emulator.rivetsData.initialInstallation)
                 {
-                    myClass.sendDosCommands(
+                    emulator.sendDosCommands(
                         'imgmake \"' + this.base_name + ".img\" -t " + this.initialHardDrive + "\n" +
                         'imgmount c \"' + this.base_name + ".img\na:\n");
                 }
-                else if (myClass.hardDiskFallbackFromFloppy)
+                else if (emulator.hardDiskFallbackFromFloppy)
                 {
                     //if they already have a hard disk we load it
                     //currently does not support this.rivetsData.settings.DEFAULTIMG + dragging .img floppy
@@ -418,9 +418,9 @@ class MyClass {
                 }
                 else
                 {
-                    myClass.sendDosCommands("a:\n");
+                    emulator.sendDosCommands("a:\n");
                 }
-                myClass.rivetsData.floppyMounted = true;
+                emulator.rivetsData.floppyMounted = true;
             }, 
             
             //TODO this is a hack
@@ -435,17 +435,17 @@ class MyClass {
         if (text.includes("iso mounted root file: WIN98") || text.includes("iso mounted root file: WIN95"))
         {
             //auto start the setup process - only do this once
-            if (!myClass.ranWindowsSetup)
+            if (!emulator.ranWindowsSetup)
             {
-                myClass.ranWindowsSetup = true;
+                emulator.ranWindowsSetup = true;
                 setTimeout(() => {
-                    myClass.rivetsData.initialInstallation = true;
-                    myClass.sendDosCommands("d:setup.exe\n");
+                    emulator.rivetsData.initialInstallation = true;
+                    emulator.sendDosCommands("d:setup.exe\n");
                 }, 50);
 
                 //set cpu to max during windows installation
                 setTimeout(() => {
-                    myClass.updateCpuNeil('cycles=max');
+                    emulator.updateCpuNeil('cycles=max');
                 }, 100);
             }
         }
@@ -459,19 +459,19 @@ class MyClass {
                 let dosCommands = "c:\n";
 
                 //if we found a DOSWASMX.BAT we run it
-                if (myClass.doswasmxBatFound)
+                if (emulator.doswasmxBatFound)
                 {
                     dosCommands += 'doswasmx.bat\n'
                 }
 
                 //add any additional commands appended based on the rom file
-                dosCommands += myClass.winNotFoundCommands;
+                dosCommands += emulator.winNotFoundCommands;
 
                 //send it to the dos shell
-                myClass.sendDosCommands(dosCommands);
+                emulator.sendDosCommands(dosCommands);
 
                 //clear it for next time
-                myClass.winNotFoundCommands = '';
+                emulator.winNotFoundCommands = '';
             }, 50);
         }
 
@@ -479,16 +479,16 @@ class MyClass {
         {
             //a bunch of hacks to get it to dismiss the install
             //warnings for win95rtm, win95osr2, and win98se
-            if (myClass.rivetsData.initialInstallation)
+            if (emulator.rivetsData.initialInstallation)
             {
                 setTimeout(() => {
-                    myClass.sendKey(52); //enter
+                    emulator.sendKey(52); //enter
                 }, 1000); 
                 setTimeout(() => {
-                    myClass.sendKey(49); //escape
+                    emulator.sendKey(49); //escape
                 }, 3000);
                 setTimeout(() => {
-                    myClass.sendKey(52); //enter
+                    emulator.sendKey(52); //enter
                 }, 3100);
             }
         }
@@ -497,20 +497,20 @@ class MyClass {
         {
             //this is hack during windows 95 installation 
             //where it doesnt detect one of the restarts
-            if (myClass.rivetsData.initialInstallation && !myClass.win95InstallationFix)
+            if (emulator.rivetsData.initialInstallation && !emulator.win95InstallationFix)
             {
                 console.log('windows95 fix');
-                myClass.win95InstallationFix = true;
+                emulator.win95InstallationFix = true;
                 setTimeout(() => {
-                    myClass.updateAutoexecAdditional("boot c:\n");
-                    // myClass.saveDrive();    
+                    emulator.updateAutoexecAdditional("boot c:\n");
+                    // emulator.saveDrive();    
                 }, 100);
             }
         }
 
         if (text.includes('drive mounted C file: DOSWASMX.BAT'))
         {
-            myClass.doswasmxBatFound = true;
+            emulator.doswasmxBatFound = true;
         }
 
         if (text.includes('x =='))
@@ -518,7 +518,7 @@ class MyClass {
             if (text.includes('x == 2'))
             {
                 //this means we are booting into windows
-                myClass.rivetsData.isDosMode = false;
+                emulator.rivetsData.isDosMode = false;
             }            
             else
             {
@@ -531,35 +531,35 @@ class MyClass {
                     //otherwise they probably picked restart
                     //so send them back to windows
                     setTimeout(() => {
-                        myClass.updateAutoexecAdditional("boot c:\n");
+                        emulator.updateAutoexecAdditional("boot c:\n");
                     }, 100);
                 }
 
                 //we are back to the dos shell
-                myClass.rivetsData.isoMounted = false;
-                myClass.rivetsData.floppyMounted = false;
-                myClass.rivetsData.isDosMode = true;
+                emulator.rivetsData.isoMounted = false;
+                emulator.rivetsData.floppyMounted = false;
+                emulator.rivetsData.isDosMode = true;
             }
         }
 
         if (text.includes('iso drive mounted'))
         {
             //we mounted a cd
-            myClass.rivetsData.isoMounted = true;
+            emulator.rivetsData.isoMounted = true;
         }
 
         //emulator has started event
         if (text.includes('DEBUG_ShowMsg: pixratio 1.000')
-            && myClass.loadSavestateAfterBoot) {
+            && emulator.loadSavestateAfterBoot) {
             console.log('detected windows started');
-            myClass.loadSavestateAfterBoot = false;
+            emulator.loadSavestateAfterBoot = false;
 
-            if (myClass.rivetsData.loggedIn && !myClass.noCloudSave)
+            if (emulator.rivetsData.loggedIn && !emulator.noCloudSave)
             {
                 //we give it a 5 second delay because we
                 //want to wait for the windows startup sound
                 setTimeout(() => {
-                    myClass.loadCloud();
+                    emulator.loadCloud();
                 }, 5000);
             }
         }
@@ -591,18 +591,18 @@ class MyClass {
     
 
     async initModule(){
-        myClass.initCount++;
-        myClass.finishInitialization();
+        emulator.initCount++;
+        emulator.finishInitialization();
         console.log('module initialized');
     }
 
     //need to wait for both indexedDB and wasm runtime
     finishInitialization()
     {
-        if (myClass.initCount == 2)
+        if (emulator.initCount == 2)
         {
-            myClass.rivetsData.moduleInitializing = false;
-            myClass.rivetsData.message = '';
+            emulator.rivetsData.moduleInitializing = false;
+            emulator.rivetsData.message = '';
 
             $('#githubDiv').show();
             this.loading = false;
@@ -623,7 +623,7 @@ class MyClass {
         let fileExtension = fileName.substr(fileName.lastIndexOf('.')).toLocaleLowerCase();
         if (!this.specialFileHandlers.includes(fileExtension))
         {
-            myClass.singleFileUpload = true;
+            emulator.singleFileUpload = true;
         }
     }
 
@@ -639,42 +639,42 @@ class MyClass {
             }
         }
 
-        if (!hasImgFile && !myClass.rivetsData.settings.DEFAULTIMG)
+        if (!hasImgFile && !emulator.rivetsData.settings.DEFAULTIMG)
         {
-            myClass.rivetsData.initialInstallation = true;
+            emulator.rivetsData.initialInstallation = true;
         }
     }
 
     uploadRom(event) {
 
-        myClass.checkIfImgMakeNeeded(event.currentTarget.files);
+        emulator.checkIfImgMakeNeeded(event.currentTarget.files);
         
-        myClass.Run();
-        myClass.rivetsData.showProgress = true;
+        emulator.Run();
+        emulator.rivetsData.showProgress = true;
 
         if (event.currentTarget.files.length == 1)
         {
-            myClass.detectSingleFileUpload(event.currentTarget.files[0].name);
+            emulator.detectSingleFileUpload(event.currentTarget.files[0].name);
         }
         else if (event.currentTarget.files.length > 1)
         {
-            myClass.handleMultipleFiles(event.currentTarget.files, 0);
+            emulator.handleMultipleFiles(event.currentTarget.files, 0);
             return;
         }
 
         var file = event.currentTarget.files[0];
-        myClass.rom_name = file.name;
-        myClass.extractBaseName();
+        emulator.rom_name = file.name;
+        emulator.extractBaseName();
 
         console.log(file);
         var reader = new FileReader();
         reader.onprogress = function (event) {
-            myClass.handleProgress(event, file);
+            emulator.handleProgress(event, file);
         };
         reader.onload = function (e) {
             console.log('finished loading');
             var byteArray = new Uint8Array(this.result);
-            myClass.LoadEmulator(byteArray);
+            emulator.LoadEmulator(byteArray);
         }
         reader.readAsArrayBuffer(file);
     }
@@ -780,7 +780,7 @@ class MyClass {
         };
         reader.onload = function (e) {
             var byteArray = new Uint8Array(this.result);
-            myClass.multiFiles.push(
+            emulator.multiFiles.push(
                 {
                     name: file.name,
                     data: byteArray
@@ -788,11 +788,11 @@ class MyClass {
             )
             if ( (index+1)<files.length)
             {
-                myClass.handleMultipleFiles(files, index + 1);
+                emulator.handleMultipleFiles(files, index + 1);
             }
             else
             {
-                myClass.parseMultipleFiles();
+                emulator.parseMultipleFiles();
             }
 
         }
@@ -823,10 +823,10 @@ class MyClass {
                 else
                 {
                     if (this.singleFileUpload)
-                        Module.FS.writeFile('/uploaded/' + myClass.rom_name,byteArray);
+                        Module.FS.writeFile('/uploaded/' + emulator.rom_name,byteArray);
                     else
                     {
-                        Module.FS.writeFile('/' + myClass.rom_name,byteArray);
+                        Module.FS.writeFile('/' + emulator.rom_name,byteArray);
                     }
                 }
             }
@@ -1326,7 +1326,7 @@ class MyClass {
     async load_file(path) {
 
         console.log('loading ' + path);
-        myClass.load_url_request(path);
+        emulator.load_url_request(path);
     }
 
     load_url_request(path){
@@ -1336,25 +1336,25 @@ class MyClass {
         if (cleanPath.endsWith('.img'))
         {
             let baseImageName = cleanPath.replace(".img",".baseimage");
-            if (myClass.dblistBaseImages.includes(baseImageName))
+            if (emulator.dblistBaseImages.includes(baseImageName))
             {
-                myClass.loadFromDatabase(SaveTypes.BaseImage);
+                emulator.loadFromDatabase(SaveTypes.BaseImage);
                 return;
             }
         }
         if (cleanPath.endsWith('.iso'))
         {
-            if (myClass.dblistIsos.includes(cleanPath))
+            if (emulator.dblistIsos.includes(cleanPath))
             {
-                myClass.loadFromDatabase(SaveTypes.ISO);
+                emulator.loadFromDatabase(SaveTypes.ISO);
                 return;
             }
         }
         if (cleanPath.endsWith('.zip'))
         {
-            if (!myClass.rivetsData.settings.DEFAULTIMG)
+            if (!emulator.rivetsData.settings.DEFAULTIMG)
             {
-                myClass.rivetsData.initialInstallation = true;
+                emulator.rivetsData.initialInstallation = true;
             }
         }
 
@@ -1388,9 +1388,9 @@ class MyClass {
                     console.log('request returned 404');
 
                     // TODO - this code might not work anymore
-                    if (myClass.rivetsData.loggedIn)
+                    if (emulator.rivetsData.loggedIn)
                     {
-                        myClass.load_file(myClass.rivetsData.settings.DEFAULTIMG);
+                        emulator.load_file(emulator.rivetsData.settings.DEFAULTIMG);
                     }
                 }
                 else if (arrayBuffer) {
@@ -1401,9 +1401,9 @@ class MyClass {
                     if (byteArray[0] === 0x1f && byteArray[1] === 0x8b) {
                         const ds = new DecompressionStream('gzip');
                         new Response(new Blob([byteArray]).stream().pipeThrough(ds)).arrayBuffer()
-                            .then(buf => myClass.LoadEmulator(new Uint8Array(buf)));
+                            .then(buf => emulator.LoadEmulator(new Uint8Array(buf)));
                     } else {
-                        myClass.LoadEmulator(byteArray);
+                        emulator.LoadEmulator(byteArray);
                     }
                 }
                 else{
@@ -1564,25 +1564,25 @@ class MyClass {
                         let rom = cursor.key.toString();
                         if (rom.endsWith('.savestate'))
                         {
-                            myClass.dblistSavestates.push(rom);
+                            emulator.dblistSavestates.push(rom);
                         }
                         if (rom.endsWith('.disk'))
                         {
-                            myClass.rivetsData.dblistDisks.push(rom);
+                            emulator.rivetsData.dblistDisks.push(rom);
                         }
                         if (rom.endsWith('.iso'))
                         {
-                            myClass.dblistIsos.push(rom);
+                            emulator.dblistIsos.push(rom);
                         }
                         if (rom.endsWith('.baseimage'))
                         {
-                            myClass.dblistBaseImages.push(rom);
+                            emulator.dblistBaseImages.push(rom);
                         }
                         cursor.continue();
                     }
                     else {
-                        myClass.initCount++;
-                        myClass.finishInitialization();
+                        emulator.initCount++;
+                        emulator.finishInitialization();
                     }
                 }
 
@@ -1597,15 +1597,15 @@ class MyClass {
 
     findSavestateInDatabase() {
 
-        let imgKey = myClass.base_name;
-        if (!myClass.rivetsData.loggedIn) imgKey = 'win95';
+        let imgKey = emulator.base_name;
+        if (!emulator.rivetsData.loggedIn) imgKey = 'win95';
         imgKey += + '.savestate';
 
-        myClass.dblistSavestates.forEach(save => {
+        emulator.dblistSavestates.forEach(save => {
             if (save == imgKey)
             {
                 console.log('found savestate in indexedDB');
-                myClass.rivetsData.noLocalSave = false;
+                emulator.rivetsData.noLocalSave = false;
             }
         });
     }
@@ -1631,8 +1631,8 @@ class MyClass {
             var db = ev.target.result;
             var transaction = db.transaction("DOSWASMXSTATES", "readwrite");
             var romStore = transaction.objectStore("DOSWASMXSTATES");
-            let imgKey = myClass.base_name;
-            if (!myClass.rivetsData.loggedIn) imgKey = 'win95';
+            let imgKey = emulator.base_name;
+            if (!emulator.rivetsData.loggedIn) imgKey = 'win95';
 
             if (saveType == SaveTypes.Savestate)
             {
@@ -1669,27 +1669,27 @@ class MyClass {
                 console.log('transaction completed');
                 if (saveType == SaveTypes.Savestate)
                 {
-                    myClass.showToast("State Saved")
+                    emulator.showToast("State Saved")
                     toastr.info('State Saved');
                 }
                 if (saveType == SaveTypes.Disk)
                 {
-                    myClass.showToast("Hard Drive Saved")
+                    emulator.showToast("Hard Drive Saved")
                     toastr.info('Hard Drive Saved');
                 }
                 if (saveType == SaveTypes.BaseImage)
                 {
-                    myClass.showToast("Base Image Saved")
+                    emulator.showToast("Base Image Saved")
                     toastr.info('Base Image Saved');
-                    myClass.baseImageSaved = true;
-                    myClass.cacheIsoAndBaseImage();
+                    emulator.baseImageSaved = true;
+                    emulator.cacheIsoAndBaseImage();
                 }
                 if (saveType == SaveTypes.ISO)
                 {
-                    myClass.showToast("ISO Saved")
+                    emulator.showToast("ISO Saved")
                     toastr.info('ISO Saved');
-                    myClass.isoSaved = true;
-                    myClass.cacheIsoAndBaseImage();
+                    emulator.isoSaved = true;
+                    emulator.cacheIsoAndBaseImage();
 
                 }
             }
@@ -1708,8 +1708,8 @@ class MyClass {
         request.onsuccess = function (ev) {
             var db = ev.target.result;
             var romStore = db.transaction("DOSWASMXSTATES", "readwrite").objectStore("DOSWASMXSTATES");
-            let imgKey = myClass.base_name;
-            if (!myClass.rivetsData.loggedIn) imgKey = 'win95';
+            let imgKey = emulator.base_name;
+            if (!emulator.rivetsData.loggedIn) imgKey = 'win95';
 
             if (saveType == SaveTypes.Savestate)
             {
@@ -1739,21 +1739,21 @@ class MyClass {
                 }
                 if (saveType == SaveTypes.Disk)
                 {
-                    if (myClass.hardDiskFallbackFromFloppy)
+                    if (emulator.hardDiskFallbackFromFloppy)
                     {
                         let byteArray = rom.result; //Uint8Array
-                        let imgName = '/' + myClass.base_name + '.img';
+                        let imgName = '/' + emulator.base_name + '.img';
                         Module.FS.writeFile(imgName,byteArray);
-                        myClass.sendDosCommands('imgmount c \"' + myClass.base_name + ".img\na:\n");
+                        emulator.sendDosCommands('imgmount c \"' + emulator.base_name + ".img\na:\n");
                     }
-                    else if (!myClass.rivetsData.loggedIn)
+                    else if (!emulator.rivetsData.loggedIn)
                     {
                         let byteArray = rom.result; //Uint8Array
-                        let imgName = '/' + myClass.base_name + '.img';
+                        let imgName = '/' + emulator.base_name + '.img';
                         Module.FS.writeFile(imgName,byteArray);
                         console.log('loaded drive from db: ' + imgName);
-                        myClass.img_loaded = true;
-                        myClass.LoadEmulator();
+                        emulator.img_loaded = true;
+                        emulator.LoadEmulator();
                     }
                     else
                     {
@@ -1764,7 +1764,7 @@ class MyClass {
                 if (saveType == SaveTypes.ISO || saveType == SaveTypes.BaseImage)
                 {
                     let byteArray = rom.result; //Uint8Array
-                    myClass.LoadEmulator(byteArray);
+                    emulator.LoadEmulator(byteArray);
                 }
             };
             rom.onerror = function (event) {
@@ -1797,7 +1797,7 @@ class MyClass {
                 transaction.oncomplete = function() {
                     toastr.success('Hard Drive Deleted');
                     $('#settingsModal').modal('hide');
-                    myClass.rivetsData.dblistDisks = [];
+                    emulator.rivetsData.dblistDisks = [];
                 };
 
             } catch (error) {
@@ -1853,7 +1853,7 @@ class MyClass {
         document.getElementById('myProgress').innerHTML = 'Finished Decompressing';
 
 
-        myClass.LoadEmulator(byteArray);
+        emulator.LoadEmulator(byteArray);
     }
 
     toggleOnscreenKeyboard(){
@@ -1884,32 +1884,32 @@ class MyClass {
     }
 
     importModal(importType){
-        myClass.rivetsData.noCopyImport = false;
-        myClass.rivetsData.changeCD = false;
-        myClass.rivetsData.loadCD = false;
-        myClass.rivetsData.changeFloppy = false;
-        myClass.rivetsData.loadFloppy = false;
+        emulator.rivetsData.noCopyImport = false;
+        emulator.rivetsData.changeCD = false;
+        emulator.rivetsData.loadCD = false;
+        emulator.rivetsData.changeFloppy = false;
+        emulator.rivetsData.loadFloppy = false;
         if (importType == 'noCopy')
         {
-            myClass.rivetsData.noCopyImport = true;
+            emulator.rivetsData.noCopyImport = true;
         }
         if (importType == 'changeCD')
         {
-            myClass.rivetsData.changeCD = true;
+            emulator.rivetsData.changeCD = true;
         }
         if (importType == 'changeFloppy')
         {
-            myClass.rivetsData.changeFloppy = true;
+            emulator.rivetsData.changeFloppy = true;
         }
         if (importType == 'loadFloppy')
         {
-            myClass.rivetsData.loadFloppy = true;
+            emulator.rivetsData.loadFloppy = true;
         }
         if (importType == 'loadCD')
         {
-            myClass.rivetsData.loadCD = true;
+            emulator.rivetsData.loadCD = true;
         }
-        myClass.rivetsData.importStatus = '';
+        emulator.rivetsData.importStatus = '';
         $("#importModal").modal();
     }
 
@@ -1928,7 +1928,7 @@ class MyClass {
 
     loadStateLocal(){
         console.log('loadStateLocal');
-        myClass.loadFromDatabase(SaveTypes.Savestate);
+        emulator.loadFromDatabase(SaveTypes.Savestate);
     }
 
     //when it returns from emscripten
@@ -1937,9 +1937,9 @@ class MyClass {
         console.log('js savestate event');
         let compressed = Module.FS.readFile('/save/1.sav'); //this is a Uint8Array
         
-        if (!myClass.rivetsData.loggedIn)
+        if (!emulator.rivetsData.loggedIn)
         {
-            myClass.saveToDatabase(compressed, SaveTypes.Savestate);
+            emulator.saveToDatabase(compressed, SaveTypes.Savestate);
             return;
         }
 
@@ -1955,9 +1955,9 @@ class MyClass {
                 if (xhr.readyState === 4) {
                     let result = xhr.response;
                     if (result=="\"Success\""){
-                        myClass.noCloudSave = false;
+                        emulator.noCloudSave = false;
                         toastr.info(saveMessage);
-                        myClass.showToast(saveMessage);
+                        emulator.showToast(saveMessage);
                     }else{
                         toastr.error('Error Saving Cloud Save');
                     }
@@ -1973,16 +1973,16 @@ class MyClass {
 
     async loadHardDriveDiffs(byteArray){
 
-        await myClass.getSaveStates();
+        await emulator.getSaveStates();
 
         let promise = new Promise(function (resolve, reject) {
 
             let foundCloudDrive = false;
 
-            for(let i = 0; i < myClass.allSaveStates.length; i++)
+            for(let i = 0; i < emulator.allSaveStates.length; i++)
             {
-                let element = myClass.allSaveStates[i];
-                if (element.Name==myClass.base_name + ".doswasmx")
+                let element = emulator.allSaveStates[i];
+                if (element.Name==emulator.base_name + ".doswasmx")
                 {
                     foundCloudDrive = true;
                     console.log('foundCloudDrive');
@@ -1999,8 +1999,8 @@ class MyClass {
             toastr.info('Found Diff Drive');
 
             var oReq = new XMLHttpRequest();
-            oReq.open("GET", myClass.rivetsData.settings.CLOUDSAVEURL + "/LoadStaveState?name=" + myClass.base_name + '.doswasmx' +
-                "&password=" + myClass.rivetsData.password, true);
+            oReq.open("GET", emulator.rivetsData.settings.CLOUDSAVEURL + "/LoadStaveState?name=" + emulator.base_name + '.doswasmx' +
+                "&password=" + emulator.rivetsData.password, true);
             oReq.responseType = "arraybuffer";
 
             oReq.onload = function (oEvent) {
@@ -2008,7 +2008,7 @@ class MyClass {
                 try{
                     if (arrayBuffer) {
                         var byteArray = new Uint8Array(arrayBuffer);
-                        myClass.applyHardDriveDiffs(byteArray, resolve);
+                        emulator.applyHardDriveDiffs(byteArray, resolve);
                     }
                     else{
                         reject();
@@ -2198,15 +2198,15 @@ class MyClass {
                     let result = xhr.response;
                     if (result=="\"Success\""){
                         toastr.info(saveMessage);
-                        myClass.showToast('Diffs Saved');
+                        emulator.showToast('Diffs Saved');
                         
-                        if (myClass.doIntegrityCheck)
+                        if (emulator.doIntegrityCheck)
                         {
-                            myClass.integrityCheck(compareHardDrive);
+                            emulator.integrityCheck(compareHardDrive);
                         }
                         else
                         {
-                            myClass.rivetsData.message = '';
+                            emulator.rivetsData.message = '';
                         }
 
                     }else{
@@ -2300,11 +2300,11 @@ class MyClass {
     importFiles(event){
         console.log('import files');
 
-        if (!myClass.rivetsData.noCopyImport)
+        if (!emulator.rivetsData.noCopyImport)
         {
             var rando = Math.floor(Math.random() * Math.floor(1000));
-            myClass.importFolderName = 'Imp' + rando;
-            Module.FS.mkdir('/' + myClass.importFolderName);
+            emulator.importFolderName = 'Imp' + rando;
+            Module.FS.mkdir('/' + emulator.importFolderName);
         }
 
         this.isSpecialHandler = false; 
@@ -2321,7 +2321,7 @@ class MyClass {
             }
         }
 
-        myClass.processImportFiles(files, 0)
+        emulator.processImportFiles(files, 0)
     }
 
     processImportFiles(files, index){
@@ -2338,54 +2338,54 @@ class MyClass {
             total = Math.ceil(total / 1000000);
 
             // console.log('loaded: ' + event.loaded);
-            myClass.rivetsData.importStatus = '(' + (index+1) + ' of ' + files.length + ') ' +
+            emulator.rivetsData.importStatus = '(' + (index+1) + ' of ' + files.length + ') ' +
                 file.name + ' ' + loaded + 'MB / ' + total + 'MB';
         };
         reader.onload = function (e) {
             var byteArray = new Uint8Array(this.result);
 
-            if (myClass.rivetsData.noCopyImport || myClass.isSpecialHandler || myClass.rivetsData.changeFloppy || myClass.rivetsData.loadFloppy)
+            if (emulator.rivetsData.noCopyImport || emulator.isSpecialHandler || emulator.rivetsData.changeFloppy || emulator.rivetsData.loadFloppy)
             {
                 Module.FS.writeFile('/' + file.name, byteArray);
             }
             else
             {
-                Module.FS.writeFile('/' + myClass.importFolderName + '/' + file.name, byteArray);
+                Module.FS.writeFile('/' + emulator.importFolderName + '/' + file.name, byteArray);
             }
 
             if ( (index+1)<files.length)
             {
-                myClass.processImportFiles(files, index + 1);
+                emulator.processImportFiles(files, index + 1);
             }
             else
             {
                 $('#importModal').modal('hide');
-                if (myClass.rivetsData.noCopyImport)
+                if (emulator.rivetsData.noCopyImport)
                 {
                     Module._neil_exit_to_dos();
                 }
-                else if (myClass.rivetsData.changeFloppy)
+                else if (emulator.rivetsData.changeFloppy)
                 {
-                    let filename = myClass.importedFileNames[0];
+                    let filename = emulator.importedFileNames[0];
                     toastr.info('changing floppy ' + filename);
-                    myClass.changeFloppyDisk(filename);
+                    emulator.changeFloppyDisk(filename);
                 }
-                else if (myClass.rivetsData.loadFloppy)
+                else if (emulator.rivetsData.loadFloppy)
                 {
-                    let filename = myClass.importedFileNames[0];
+                    let filename = emulator.importedFileNames[0];
                     toastr.info('loading floppy ' + filename);
-                    myClass.loadFloppyDisk(filename);
+                    emulator.loadFloppyDisk(filename);
                 }
-                else if (myClass.rivetsData.changeCD)
+                else if (emulator.rivetsData.changeCD)
                 {
-                    for(let i = 0; i < myClass.importedFileNames.length; i++)
+                    for(let i = 0; i < emulator.importedFileNames.length; i++)
                     {
-                        let filename = myClass.importedFileNames[i];
+                        let filename = emulator.importedFileNames[i];
                         if (filename.toLocaleLowerCase().endsWith('.iso') ||
                         filename.toLocaleLowerCase().endsWith('.cue'))
                         {
                             toastr.info('changing to ' + filename);
-                            myClass.changeIso(filename);
+                            emulator.changeIso(filename);
                         }
                     }
                 }
@@ -2393,43 +2393,43 @@ class MyClass {
                 {
                     let importCommands = 
                         "mount e .\n" +
-                        "xcopy e:\\" + myClass.importFolderName +
-                        "\\*.* c:" + myClass.importFolderName  + " /I /E\n" +
+                        "xcopy e:\\" + emulator.importFolderName +
+                        "\\*.* c:" + emulator.importFolderName  + " /I /E\n" +
                         "mount -u e\n" +
                         "boot c:\n";
 
-                    if (myClass.isSpecialHandler)
+                    if (emulator.isSpecialHandler)
                     {
                         importCommands = '';
 
-                        for(let i = 0; i < myClass.importedFileNames.length; i++)
+                        for(let i = 0; i < emulator.importedFileNames.length; i++)
                         {
-                            let filename = myClass.importedFileNames[i];
+                            let filename = emulator.importedFileNames[i];
                             if (filename.toLocaleLowerCase().endsWith('.zip') ||
                                 filename.toLocaleLowerCase().endsWith('.7z'))
                             {
                                 //long folder names break with xcopy
-                                let importFolder = myClass.sanitizeName(filename);
+                                let importFolder = emulator.sanitizeName(filename);
 
                                 importCommands += 'mount e \"' + filename +
                                     "\"\nxcopy e:\ c:\\" + importFolder + 
                                     " /i /e\n" +
                                     'mount -u e\n';
-                                myClass.winNotFoundCommands = 'cd ' + importFolder + '\n';
+                                emulator.winNotFoundCommands = 'cd ' + importFolder + '\n';
                             }
                             if (filename.toLocaleLowerCase().endsWith('.iso'))
                             {
                                 importCommands += 
                                     'mount -u d\n' + //unmount existing iso if there is one
                                     'imgmount d \"' + filename + '\"\n'; //mount new iso
-                                myClass.winNotFoundCommands = 'd:\n';
+                                emulator.winNotFoundCommands = 'd:\n';
                             }
                             if (filename.toLocaleLowerCase().endsWith('.cue'))
                             {
                                 importCommands += 
                                     'mount -u d\n' + //unmount existing iso if there is one
                                     'imgmount d \"' + filename + '\"\n'; //mount new iso
-                                myClass.winNotFoundCommands = 'd:\n';
+                                emulator.winNotFoundCommands = 'd:\n';
                             }
                             if (filename.toLocaleLowerCase().endsWith('.img'))
                             {
@@ -2443,7 +2443,7 @@ class MyClass {
                             'boot c:\n'; //boot windows
                     }
 
-                    myClass.updateAutoexecAdditional(importCommands);
+                    emulator.updateAutoexecAdditional(importCommands);
                     Module._neil_exit_to_dos();
                 }
             }
@@ -2525,7 +2525,7 @@ class MyClass {
         $('#txtPassword').bind("keypress", function (e) {
             if (e.keyCode == 13) {
                 e.preventDefault();
-                myClass.loginSubmit();
+                emulator.loginSubmit();
                 return false;
             }
         });
@@ -2715,7 +2715,7 @@ class MyClass {
         }
 
         setTimeout(() => {
-            myClass.rivetsData.message = '';
+            emulator.rivetsData.message = '';
         }, 2000);
 
         Module._neil_toggle_pause();
@@ -2778,11 +2778,11 @@ class MyClass {
             this.sendKey(48) //F12
 
             setTimeout(() => {
-                myClass.sendKey(52); //enter
+                emulator.sendKey(52); //enter
             }, 600);
 
             setTimeout(() => {
-                myClass.sendKey(52); //enter
+                emulator.sendKey(52); //enter
             }, 3000);
 
             this.autoKeyboardTimer = this.autoKeyboardInterval;
@@ -2819,7 +2819,7 @@ class MyClass {
             let rgbSource = new Uint8Array(
                 Module.HEAPU8.buffer,props.pointer, this.frameWidth * this.frameHeight * 4);
 
-			myClass.updateCanvas(rgbSource);
+			emulator.updateCanvas(rgbSource);
 			return;
 		}
 		// console.log(name, props);
@@ -2867,7 +2867,7 @@ class MyClass {
 	{
 
         //this would work too - if not for the FPS counter
-        // myClass.ctx.putImageData(new ImageData(new Uint8ClampedArray(rgbSource), this.frameWidth, this.frameHeight), 0, 0);
+        // emulator.ctx.putImageData(new ImageData(new Uint8ClampedArray(rgbSource), this.frameWidth, this.frameHeight), 0, 0);
 
         let destinationCounter = 0;
         for (let y = 0; y < this.frameHeight; y++) 
@@ -2882,7 +2882,7 @@ class MyClass {
             }
         }
 
-        myClass.ctx.putImageData(new ImageData(this.rgbaDestination, this.frameWidth, this.frameHeight), 0, 0);
+        emulator.ctx.putImageData(new ImageData(this.rgbaDestination, this.frameWidth, this.frameHeight), 0, 0);
 	}
 
 	canvasClick(){
@@ -2907,14 +2907,14 @@ class MyClass {
 }
 
 
-let myClass = new MyClass();
-window["myApp"] = myClass; //so that I can reference from EM_ASM
+let emulator = new SuikoEmulator();
+window["myApp"] = emulator; //so that I can reference from EM_ASM
 
 // window["Module"] = {
-//     onRuntimeInitialized: myClass.initModule,
+//     onRuntimeInitialized: emulator.initModule,
 //     canvas: document.getElementById('canvas'),
-//     print: (text) => myClass.processPrintStatement(text),
-//     // printErr: (text) => myClass.print(text)
+//     print: (text) => emulator.processPrintStatement(text),
+//     // printErr: (text) => emulator.print(text)
 // }
 
 let rando2 = Math.floor(Math.random() * 100000);
@@ -2927,19 +2927,19 @@ document.getElementsByTagName('head')[0].appendChild(script2);
 
 window.onerror = function(message) {
     console.log('window.onerror',message);
-    myClass.onError(message);
+    emulator.onError(message);
 }
 
 window.onunhandledrejection = function(error) {
     console.log('window.onunhandledrejection',error);
-    myClass.onError(error.reason.message);
+    emulator.onError(error.reason.message);
 }
   
 
 window["Module"] = {
-    onRuntimeInitialized: myClass.initModule,
-    print: (text) => myClass.processPrintStatement(text),
+    onRuntimeInitialized: emulator.initModule,
+    print: (text) => emulator.processPrintStatement(text),
 }
 
 //sleep module
-window.addEventListener("message", myClass.sleepHandler, { passive: true });
+window.addEventListener("message", emulator.sleepHandler, { passive: true });
