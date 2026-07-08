@@ -125,6 +125,8 @@
     <div class="topbar-actions">
       <span class="stats"><svg id="donut" width="16" height="16" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:5px"><circle cx="18" cy="18" r="14" fill="none" stroke="#333" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
       <button class="save-btn" id="saveBtn" disabled>저장</button>
+      <button class="ghost-btn" id="buildInjectBtn" title="번역 반영 → HWANSE.EXE 빌드 → 테스트용 디스크 이미지에 삽입 (docs/final-shared.img는 안 건드림)">빌드 및 삽입</button>
+      <button class="ghost-btn" id="deployBtn" title="테스트 이미지를 docs/final-shared.img로 복사 후 커밋 (푸시는 안 함)">배포</button>
       <button class="ghost-btn" id="jpToggle">JP 검색</button>
     </div>
   </div>
@@ -743,7 +745,43 @@ async function saveAll() {
   toast(failed ? `${saved}건 저장, ${failed}건 실패(길이 안 맞음)` : `${saved}건 저장했습니다.`);
 }
 
+async function buildAndInject() {
+  if (Object.keys(modified).length) {
+    toast('미저장 변경이 있습니다 — 저장 후 빌드하세요');
+    return;
+  }
+  const btn = document.getElementById('buildInjectBtn');
+  btn.disabled = true; btn.textContent = '빌드 및 삽입 중...';
+  let result;
+  try {
+    result = await fetch('/api/build-inject', { method: 'POST' }).then((r) => r.json());
+  } catch (err) {
+    btn.disabled = false; btn.textContent = '빌드 및 삽입';
+    toast('빌드 및 삽입 실패: ' + err);
+    return;
+  }
+  btn.disabled = false; btn.textContent = '빌드 및 삽입';
+  toast(result.message);
+}
+
+async function deploy() {
+  const btn = document.getElementById('deployBtn');
+  btn.disabled = true; btn.textContent = '배포 중...';
+  let result;
+  try {
+    result = await fetch('/api/deploy', { method: 'POST' }).then((r) => r.json());
+  } catch (err) {
+    btn.disabled = false; btn.textContent = '배포';
+    toast('배포 실패: ' + err);
+    return;
+  }
+  btn.disabled = false; btn.textContent = '배포';
+  toast(result.message);
+}
+
 document.getElementById('saveBtn').addEventListener('click', saveAll);
+document.getElementById('buildInjectBtn').addEventListener('click', buildAndInject);
+document.getElementById('deployBtn').addEventListener('click', deploy);
 document.getElementById('searchBox').addEventListener('input', render);
 document.getElementById('filterExact').addEventListener('change', render);
 document.getElementById('fillApply').addEventListener('click', applyFill);

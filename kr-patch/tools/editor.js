@@ -14,10 +14,17 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
+const ROOT = path.join(__dirname, '..', '..');
 const TRANS_PATH = path.join(__dirname, '../translation/translation.json');
+const TRANS_REL = 'kr-patch/translation/translation.json';
 const JP_REF_PATH = path.join(__dirname, '../translation/jp-reference.json');
 const LINKS_PATH = path.join(__dirname, '../translation/kr-jp-links.json');
+const BUILD_JS = path.join(__dirname, 'build.js');
+const INJECT_JS = path.join(__dirname, 'inject.js');
+const BUILD_IMG = path.join(ROOT, 'kr-patch/build/final-shared.img');
+const DOCS_IMG = path.join(ROOT, 'docs/final-shared.img');
 const HTML_PATH = path.join(__dirname, 'editor.html');
 
 const HWANSE_TEXT = require('./hwanse-text.js');
@@ -83,6 +90,27 @@ function saveLinks(links) {
   const tmp = LINKS_PATH + '.tmp';
   fs.writeFileSync(tmp, JSON.stringify(links, null, 2));
   fs.renameSync(tmp, LINKS_PATH);
+}
+
+// Per-section count of entries whose `fixed` value differs from the last-committed
+// (HEAD) translation.json, for the deploy commit body ("바뀐 내용 개수"). Returns null if
+// HEAD has no translation.json (e.g. very first commit) — deploy falls back to no counts.
+function countChangedFixed() {
+  let headRaw;
+  try {
+    headRaw = execFileSync('git', ['show', `HEAD:${TRANS_REL}`], { cwd: ROOT, encoding: 'utf8' });
+  } catch (e) {
+    return null;
+  }
+  const head = JSON.parse(headRaw);
+  const current = loadTranslation();
+  const counts = {};
+  for (const section of ['dialogue', 'labels', 'fonts']) {
+    const headMap = new Map((head[section] || []).map((e) => [e.offset, e.fixed || '']));
+    counts[section] = (current[section] || []).reduce(
+      (n, e) => n + ((e.fixed || '') !== (headMap.get(e.offset) || '') ? 1 : 0), 0);
+  }
+  return counts;
 }
 
 function send(res, status, body, contentType) {
@@ -219,6 +247,73 @@ const server = http.createServer(async (req, res) => {
       entry.confirmed = !!confirmed;
       saveTranslation(t);
       return send(res, 200, { ok: true, confirmed: entry.confirmed });
+    }
+
+    // Build (translation.json's `fixed` entries -> patched HWANSE.EXE) then inject that
+    // exe into a test copy of the shared disk image, in one click (gensei-pc98's editor.py
+    // has the same "빌드" button pattern). This only writes kr-patch/build/ (gitignored) —
+    // it deliberately does NOT touch docs/final-shared.img, same safety boundary inject.js
+    // already documents; promoting the test copy to the live deployed image stays a manual
+    // step (`cp kr-patch/build/final-shared.img docs/final-shared.img`).
+    if (req.method === 'POST' && url.pathname === '/api/build-inject') {
+      let buildOut;
+      try {
+        buildOut = execFileSync('node', [BUILD_JS], { encoding: 'utf8', timeout: 60000 });
+      } catch (e) {
+        const out = ((e.stdout || '') + (e.stderr || '')).trim();
+        const last = out.split('\n').filter(Boolean).pop() || String(e.message || e);
+        return send(res, 200, { ok: false, message: `빌드 실패: ${last}` });
+      }
+      const m = buildOut.match(/applied: (\d+) dialogue entries, (\d+) label entries, (\d+) font entries/);
+      const buildMsg = m
+        ? `대사 ${m[1]}건·라벨 ${m[2]}건·폰트 ${m[3]}건 반영`
+        : buildOut.includes('nothing to do') ? '반영할 항목 없음' : '빌드 완료';
+
+      let injectOut;
+      try {
+        injectOut = execFileSync('node', [INJECT_JS], { encoding: 'utf8', timeout: 60000 });
+      } catch (e) {
+        const out = ((e.stdout || '') + (e.stderr || '')).trim();
+        const last = out.split('\n').filter(Boolean).pop() || String(e.message || e);
+        return send(res, 200, { ok: false, message: `빌드는 완료(${buildMsg}), 삽입 실패: ${last}` });
+      }
+      const sizeMatch = injectOut.match(/wrote .*\(([\d,]+) bytes gzip\)/);
+      const injectMsg = sizeMatch
+        ? `삽입 완료 (kr-patch/build/final-shared.img, ${sizeMatch[1]} bytes gzip)`
+        : '삽입 완료';
+
+      return send(res, 200, { ok: true, message: `${buildMsg} · ${injectMsg}` });
+    }
+
+    // Promote the test image (built by /api/build-inject) to the live deployed asset and
+    // commit it, alongside translation.json (the source of the entries that produced it).
+    // Does NOT push — pushing stays a separate, explicit step (see NOTES.md's "커밋/푸시는
+    // 사용자가 명시적으로 요청할 때만 진행").
+    if (req.method === 'POST' && url.pathname === '/api/deploy') {
+      if (!fs.existsSync(BUILD_IMG)) {
+        return send(res, 200, { ok: false, message: '빌드 및 삽입을 먼저 실행하세요 (kr-patch/build/final-shared.img 없음)' });
+      }
+      const counts = countChangedFixed();
+      fs.copyFileSync(BUILD_IMG, DOCS_IMG);
+
+      try {
+        execFileSync('git', ['add', 'docs/final-shared.img', TRANS_REL], { cwd: ROOT });
+        const staged = execFileSync('git', ['diff', '--cached', '--name-only'], { cwd: ROOT, encoding: 'utf8' }).trim();
+        if (!staged) {
+          return send(res, 200, { ok: false, message: '변경 사항 없음 — 커밋할 게 없습니다' });
+        }
+        const body = counts
+          ? `대사 ${counts.dialogue}건·라벨 ${counts.labels}건·폰트 ${counts.fonts}건 수정`
+          : '';
+        const commitArgs = ['commit', '-m', '번역 추가 수정'];
+        if (body) commitArgs.push('-m', body);
+        execFileSync('git', commitArgs, { cwd: ROOT, encoding: 'utf8' });
+        const hash = execFileSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim();
+        return send(res, 200, { ok: true, message: `배포 완료 — 커밋 ${hash}${body ? ' (' + body + ')' : ''}` });
+      } catch (e) {
+        const out = ((e.stdout || '') + (e.stderr || '')).trim();
+        return send(res, 200, { ok: false, message: `커밋 실패: ${out || e.message}` });
+      }
     }
 
     send(res, 404, { error: 'not found' });
