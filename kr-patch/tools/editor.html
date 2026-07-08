@@ -34,6 +34,15 @@
   .prob-nav button:hover { background: #2e2e2e; color: #ccc; }
   .prob-nav .prob-count { color: #c04040; font-weight: 600; }
 
+  /* "완전 일치" 검색 중 같은 원문(대개 같은 JP에 대응)인 행이 여러 개 잡히면 뜨는 바 —
+     한 번 입력해서 전부에 동시 적용(gensei-pc98 에디터의 fill-bar 이식). */
+  .fill-bar { background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 4px; padding: 7px 12px; margin-top: 10px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+  .fill-bar input { flex: 1; background: #252525; border: 1px solid #3a3a3a; color: #d4d4d4; padding: 4px 8px; border-radius: 4px; font-size: 13px; font-family: inherit; }
+  .fill-bar input:focus { outline: none; border-color: #555; }
+  .fill-bar button { background: #2a2a2a; color: #bbb; border: 1px solid #3a3a3a; padding: 4px 12px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+  .fill-bar button:hover { background: #333; color: #ddd; }
+  .fill-bar .fill-info { color: #666; white-space: nowrap; }
+
   /* 고정폭 레이아웃(PC98 방식): table-layout:fixed + 고정 px 컬럼. 브라우저 크기와
      무관하게 컬럼 폭이 일정 — 리사이즈마다 재계산·재배치 없음, 헤더/본문 정렬도 일치.
      OFF 84 + 원문 380 + 수정 412 + Byte 84 = 960 */
@@ -121,7 +130,8 @@
   </div>
   <div class="toolbar">
     <div class="tabs" id="tabs"></div>
-    <input type="text" id="searchBox" placeholder="검색 (원문/수정)...">
+    <input type="text" id="searchBox" placeholder="검색 (원문/수정/JP)...">
+    <label><input type="checkbox" id="filterExact"> 완전 일치</label>
     <label><input type="checkbox" id="filterModified"> 수정된 것만</label>
     <label><input type="checkbox" id="filterProblem"> 문제 있는 것만</label>
     <label><input type="checkbox" id="filterUnlinked"> 연결 안 된 것만</label>
@@ -129,6 +139,12 @@
     <button class="ghost-btn" id="jumpBtn">이동</button>
     <span class="prob-nav" id="probNav" style="display:none"><span class="prob-count" id="probCount"></span><button id="probPrev">이전</button><button id="probNext">다음</button></span>
   </div>
+</div>
+
+<div class="fill-bar" id="fillBar" style="display:none">
+  <span class="fill-info" id="fillInfo"></span>
+  <input type="text" id="fillInput" placeholder="수정 입력...">
+  <button id="fillApply">전체 적용</button>
 </div>
 
 <table>
@@ -376,13 +392,19 @@ function hasProblem(section, e, fixed) {
 }
 
 function filteredRows() {
-  const q = document.getElementById('searchBox').value.trim();
+  const q = document.getElementById('searchBox').value; // NOT .trim() — JS trim() also eats
+  // U+3000 (전각 공백), which is meaningful leading/trailing content in this game's text
+  const exactMatch = document.getElementById('filterExact').checked;
   const modOnly = document.getElementById('filterModified').checked;
   const probOnly = document.getElementById('filterProblem').checked;
   const unlinkedOnly = document.getElementById('filterUnlinked').checked;
   return (data[curSection] || []).filter((e) => {
     const fixed = currentFixed(curSection, e);
-    if (q && !e.text.includes(q) && !fixed.includes(q)) return false;
+    const jp = e.jp || ''; // baked KR<->JP correspondence (dialogue only — see bake-jp.js)
+    if (q) {
+      if (exactMatch) { if (e.text !== q && fixed !== q && jp !== q) return false; }
+      else if (!e.text.includes(q) && !fixed.includes(q) && !jp.includes(q)) return false;
+    }
     if (modOnly && !fixed) return false;
     if (probOnly && !hasProblem(curSection, e, fixed)) return false;
     // "연결 안 된 것만": rows the KR<->JP anchor cascade doesn't reach — dialogue only,
@@ -428,6 +450,36 @@ function render() {
   recomputeProblems();
   updateStats();
   requestAnimationFrame(updateStickyOffset);
+
+  // "완전 일치" 검색으로 여러 행이 잡히면 fill bar를 띄워 한 번에 같이 고칠 수 있게 함.
+  const q = document.getElementById('searchBox').value; // NOT .trim() — JS trim() also eats
+  // U+3000 (전각 공백), which is meaningful leading/trailing content in this game's text
+  const exactMatch = document.getElementById('filterExact').checked;
+  const fillBar = document.getElementById('fillBar');
+  if (exactMatch && q && rows.length > 0) {
+    document.getElementById('fillInfo').textContent = rows.length + '건';
+    fillBar.style.display = 'flex';
+  } else {
+    fillBar.style.display = 'none';
+  }
+}
+
+// Applies the fill-bar's input text as the `fixed` value for every currently-filtered row
+// at once (in-memory only — still goes through the normal save flow/byte-length checks,
+// same as editing one row by hand). Only makes sense with "완전 일치" narrowing the rows
+// down to occurrences of one exact original string (e.g. a repeated speaker-name line).
+function applyFill() {
+  const val = document.getElementById('fillInput').value;
+  if (!val) return;
+  const rows = filteredRows();
+  for (const e of rows) {
+    const k = keyOf(curSection, e);
+    if (val === (e.fixed || '')) delete modified[k];
+    else modified[k] = val;
+  }
+  render();
+  updateSaveBtn();
+  toast(rows.length + '건에 적용됨 (저장은 별도)');
 }
 
 function lenCellState(section, e, fixed) {
@@ -560,12 +612,12 @@ function renderRow(e) {
   ta.addEventListener('focus', () => autosize(ta));
   ta.addEventListener('blur', () => { ta.style.height = ''; });
   ta.addEventListener('input', () => {
-    // Auto-convert a typed half-width space to the full-width space (U+3000) the game text
-    // uses, for dialogue/labels. Skipped for fonts, whose face names use real ASCII spaces
-    // ("환세취호전 ver.1.0"). 1-char→1-char so the caret position stays valid.
-    if (curSection !== 'fonts' && ta.value.indexOf(' ') >= 0) {
+    // Auto-convert typed half-width space / ! / ? to the full-width forms (U+3000/FF01/FF1F)
+    // the game text uses, for dialogue/labels. Skipped for fonts, whose face names use real
+    // ASCII (" ", "환세취호전 ver.1.0"). Each is 1-char→1-char so the caret position stays valid.
+    if (curSection !== 'fonts' && /[ !?]/.test(ta.value)) {
       const s = ta.selectionStart, en = ta.selectionEnd;
-      ta.value = ta.value.replace(/ /g, '　');
+      ta.value = ta.value.replace(/ /g, '　').replace(/!/g, '！').replace(/\?/g, '？');
       ta.setSelectionRange(s, en);
     }
     const val = ta.value;
@@ -693,6 +745,11 @@ async function saveAll() {
 
 document.getElementById('saveBtn').addEventListener('click', saveAll);
 document.getElementById('searchBox').addEventListener('input', render);
+document.getElementById('filterExact').addEventListener('change', render);
+document.getElementById('fillApply').addEventListener('click', applyFill);
+document.getElementById('fillInput').addEventListener('keydown', (ev) => {
+  if (ev.key === 'Enter') applyFill();
+});
 document.getElementById('filterModified').addEventListener('change', render);
 document.getElementById('filterProblem').addEventListener('change', render);
 document.getElementById('filterUnlinked').addEventListener('change', render);

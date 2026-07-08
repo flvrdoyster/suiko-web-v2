@@ -222,15 +222,34 @@ relocation 진입점 경계로 리뷰 청크를 나눠보려 시도했으나(624
   1354490-1354648("拭" 10회 반복). 셋 다 앞뒤로 3만~6만 바이트 공백(다른 텍스트 전혀 없음)
   안에 고립돼있고, 제어바이트도 비정상(마지막 건 0xff — 정상 대사에서 한 번도 안 나온 값).
   JP 14,839→14,813줄. 이 세 구간을 가리키던 KR<->JP 앵커는 0건이라 안전하게 제거.
+- **KR 쪽도 같은 부류의 노이즈 23곳** 발견·제거(2026-07). 처음엔 KR<->JP 앵커에 stop
+  마커("여기서 끊기")로 표시해뒀었는데, 이 방식이 근본적으로 틀렸었다 — stop은 "노이즈 표시"가
+  아니라 "앞 앵커의 캐스케이드를 여기서 강제 종료"하는 기능이라, 노이즈 한 줄이 앵커의 델타
+  계산에서 유령 인덱스로 계속 남아있는 진짜 문제를 안 고치고 가리기만 했음(stop을 지우면 그
+  뒤에 숨어있던 드리프트가 그대로 드러남). 올바른 해법은 JP 때와 동일하게 **추출 단계에서
+  아예 제외**하는 것 — `hwanse-text.js`에 `NOISE_RANGES` 추가(23곳, 전부 "죋l"/"쟡h"/"캾`"/
+  "픜"/"륯"/"쟡h4" 중 하나로 디코드되고 수천~2만 바이트 공백 안에 고립). 대사 14,835→14,812줄.
+  제외 직후 KR<->JP 앵커 캐스케이드가 **미커버 0줄·겹침 0줄**로 저절로 맞아떨어짐(유령
+  인덱스가 사라지니 델타 계산이 자연히 정상화됨) — stop 마커로는 절대 안 나오던 결과.
+- **KR<->JP 대응을 `translation.json`에 직접 굽기로 결정**(2026-07, gensei-pc98 에디터의
+  "jp 필드가 각 줄에 이미 붙어있는" 구조를 참고). `kr-jp-links.json`(희소 앵커)는 계속 입력
+  소스로 남지만, 이제 **`translation.json`이 KR<->JP 대응의 기준**이 됨 — `dialogue` 각
+  항목에 `jp`(대응 JP 원문)·`jpOffset`(그 오프셋) 필드 추가. 새 스크립트
+  `kr-patch/tools/bake-jp.js`가 앵커 캐스케이드를 한 번 계산해서 결과를 구워넣음(모호하지
+  않은 것만 — 충돌·범위밖·앵커없음은 `jp: ""`로 남겨 검색으로 구분 가능). 위 노이즈 제거
+  직후 실행해서 14,812줄 전부 충돌 없이 해소됨. `extract.js`의 `mergeReview()`도 `jp`/
+  `jpOffset`을 `fixed`/`confirmed`처럼 재추출 시 보존하도록 확장(라운드트립 확인 완료).
 
 **산출물**: `kr-patch/tools/hwanse-text.js`·`hwanse-names.js`·`hwanse-font.js`(KR 추출/빌드),
 `gense-text.js`·`gense-names.js`(JP 참고 전용), `search-jp.js`(JP 키워드 검색), `editor.js`+
 `editor.html`(로컬 웹 에디터 — KR<->JP 앵커 캐스케이드 포함), `pe-reloc.js`(PE 섹션 테이블
 파싱 + relocation 워크, 청크 시도에서 만듦), `extract.js`/`build.js`/`inject.js`(파이프라인),
+`bake-jp.js`(앵커 캐스케이드를 `translation.json`의 `jp`/`jpOffset`에 구움),
 `translation/translation.json`(KR 전량, `dialogue`/`labels`/`fonts` 세 섹션 — 공통 필드
-`offset`/`text`/`fixed`, `dialogue`·`labels`는 `length`, `fonts`는 `maxLength`),
-`translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR<->JP 수동
-앵커, `{krOffset: jpOffset | false}`), `translation/GUIDE.md`(수정 판단 기준).
+`offset`/`text`/`fixed`, `dialogue`·`labels`는 `length`, `fonts`는 `maxLength`; `dialogue`는
+추가로 `jp`/`jpOffset`), `translation/jp-reference.json`(JP 참고 전량),
+`translation/kr-jp-links.json`(KR<->JP 수동 앵커 입력, `{krOffset: jpOffset | false}` —
+`bake-jp.js`가 소비하는 소스), `translation/GUIDE.md`(수정 판단 기준).
 
 ### 2.2 이미지 구조 (GENSE.FLD / CNS)
 

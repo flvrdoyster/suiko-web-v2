@@ -47,23 +47,24 @@ function fail(msg) {
   process.exit(1);
 }
 
-// Carries over review state (`fixed` text edits AND the `confirmed` "reviewed, no change
-// needed" flag) from a previous run's entries, matched by a key (offset+length by default;
-// fonts use offset+maxLength since they don't have a `length` field), so re-extraction
-// after an extractor tweak doesn't wipe out review work already saved via the editor.
-// Reports any previously-touched entry that no longer has a matching slot.
+// Carries over review state (`fixed` text edits, the `confirmed` "reviewed, no change
+// needed" flag, and — dialogue only — the baked `jp`/`jpOffset` KR<->JP correspondence from
+// bake-jp.js) from a previous run's entries, matched by a key (offset+length by default;
+// fonts use offset+maxLength since they don't have a `length` field), so re-extraction after
+// an extractor tweak doesn't wipe out review work already saved via the editor or baked by
+// bake-jp.js. Reports any previously-touched entry that no longer has a matching slot.
 function mergeReview(oldEntries, newEntries, label, keyOf = (e) => `${e.offset}:${e.length}`) {
   if (!oldEntries) return newEntries;
   const oldByKey = new Map();
   for (const e of oldEntries) {
-    if (e.fixed || e.confirmed) oldByKey.set(keyOf(e), { fixed: e.fixed || '', confirmed: !!e.confirmed });
+    if (e.fixed || e.confirmed || e.jp) oldByKey.set(keyOf(e), { fixed: e.fixed || '', confirmed: !!e.confirmed, jp: e.jp || '', jpOffset: e.jpOffset != null ? e.jpOffset : null });
   }
   const matchedKeys = new Set();
   const merged = newEntries.map((e) => {
     const key = keyOf(e);
     const prev = oldByKey.get(key);
     if (prev !== undefined) matchedKeys.add(key);
-    return { ...e, fixed: (prev && prev.fixed) || '', confirmed: !!(prev && prev.confirmed) };
+    return { ...e, fixed: (prev && prev.fixed) || '', confirmed: !!(prev && prev.confirmed), jp: (prev && prev.jp) || '', jpOffset: (prev && prev.jpOffset) != null ? prev.jpOffset : null };
   });
   const orphaned = [...oldByKey.keys()].filter((k) => !matchedKeys.has(k));
   if (orphaned.length) {
@@ -125,7 +126,7 @@ const mergedFonts = mergeReview(existing && existing.fonts, fonts, 'fonts', (e) 
 const translation = {
   source_file: path.basename(krExePath),
   source_md5: crypto.createHash('md5').update(krBuf).digest('hex'),
-  dialogue: mergedDialogue.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
+  dialogue: mergedDialogue.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed, jp: e.jp || '', jpOffset: e.jpOffset != null ? e.jpOffset : null })),
   labels: mergedLabels.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
   fonts: mergedFonts.map((e) => ({ offset: e.offset, maxLength: e.maxLength, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
 };

@@ -32,8 +32,25 @@ const DATA_END = DATA_RAW + DATA_SIZE;
 // dialogue line — including genuine short ones like the day-of-week labels 일/월/화/…— is
 // followed by a documented control byte such as 0x02/0x06/0x0A/0x10). See NOTES.md.
 const JUMP_TABLE_RANGES = [[0x3e538, 0x3e8ac]];
+
+// Confirmed noise elsewhere in .data (stray control/pointer bytes coincidentally valid
+// CP949, same false-positive class as the jump table above — see gense-text.js's
+// NOISE_RANGES for the JP-side equivalent). Found via the KR<->JP anchor-cascade audit:
+// each of these decodes to one of exactly 6 garbled strings ("죋l"/"쟡h"/"캾`"/"픜"/"륯"/
+// "쟡h4") and sits alone in a multi-KB gap with no other extracted text nearby — unlike
+// real dialogue, which is packed with minimal gaps (see NOTES.md's "라인 레코드 구조").
+const NOISE_RANGES = [
+  [0x44f45, 0x44f48], [0x57ee6, 0x57ee8], [0x69445, 0x69448], [0x94ef1, 0x94ef4],
+  [0x94f11, 0x94f14], [0x94f2d, 0x94f30], [0xacefd, 0xacf00], [0xc0b29, 0xc0b2c],
+  [0xc4451, 0xc4454], [0xf1c45, 0xf1c48], [0xf1fe5, 0xf1fe9], [0xf2005, 0xf2009],
+  [0xf2021, 0xf2025], [0xf20d1, 0xf20d4], [0xf20f1, 0xf20f4], [0xf212d, 0xf2130],
+  [0xf6e45, 0xf6e48], [0xfce4d, 0xfce50], [0x100e45, 0x100e48], [0x10c225, 0x10c228],
+  [0x10c745, 0x10c748], [0x111ef9, 0x111efb], [0x12124d, 0x121250],
+];
+
 function inExcludedRange(off) {
-  return JUMP_TABLE_RANGES.some(([s, e]) => off >= s && off < e);
+  return JUMP_TABLE_RANGES.some(([s, e]) => off >= s && off < e)
+    || NOISE_RANGES.some(([s, e]) => off >= s && off < e);
 }
 
 function isAsciiPrintable(b) {
