@@ -10,6 +10,17 @@ const DATA_RAW = 0x039e00;
 const DATA_SIZE = 0x120200;
 const DATA_END = DATA_RAW + DATA_SIZE;
 
+// Confirmed noise (stray control/pointer bytes that happen to decode as valid-looking
+// Shift-JIS text — same class of false positive as hwanse-text.js's JUMP_TABLE_RANGES):
+// found via the KR<->JP anchor-cascade "untouched JP line" audit, then verified by
+// inspecting the surrounding raw bytes — all three sit in the middle of large gaps with no
+// other extracted text nearby (338494→350524, 577052→620228, 1320330→1366732), unlike real
+// dialogue; the third also has control byte 0xff, never seen on genuine dialogue lines.
+const NOISE_RANGES = [[0x054490, 0x05450e], [0x08d07d, 0x08d080], [0x14aafa, 0x14ab98]]; // 345232-345358, 577661-577664, 1354490-1354648
+function inExcludedRange(off) {
+  return NOISE_RANGES.some(([s, e]) => off >= s && off < e);
+}
+
 function isAsciiPrintable(b) {
   return b === 0x20 || (b >= 0x21 && b <= 0x7e);
 }
@@ -84,6 +95,14 @@ function extract(buf) {
     }
   };
   while (i < DATA_END) {
+    if (inExcludedRange(i)) {
+      segStart = i + 1;
+      jpCount = 0;
+      letterCount = 0;
+      punctCount = 0;
+      i += 1;
+      continue;
+    }
     const len = charLenAt(buf, i);
     if (len === 0) {
       segStart = i + 1;

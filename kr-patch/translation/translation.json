@@ -34972,7 +34972,7 @@
       "length": 32,
       "text": "「설마，이　세계의　지옥이었나？",
       "fixed": "",
-      "confirmed": true
+      "confirmed": false
     },
     {
       "offset": 641856,
@@ -34985,14 +34985,14 @@
       "offset": 641866,
       "length": 20,
       "text": "「…난，지옥에　다녀",
-      "fixed": "",
-      "confirmed": true
+      "fixed": "「참고로　난　지옥을",
+      "confirmed": false
     },
     {
       "offset": 641890,
       "length": 20,
       "text": "　온　적이　있어！！",
-      "fixed": "",
+      "fixed": "　갔다　온　적　있어",
       "confirmed": false
     },
     {
