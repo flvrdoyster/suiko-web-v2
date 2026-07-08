@@ -65,6 +65,23 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   갈라져 있던 걸 `src/fat16.js` 기준으로 통일(`docs/fat16.js`를 통째로 교체).
 - **`docs/script.js`의 `MyClass`/`myClass` 개명**: DosWasmX 데모 코드의 placeholder 클래스명을
   `SuikoEmulator`/`emulator`로 변경(189곳). 외부 파일에서 참조 안 됨을 확인 후 안전하게 진행.
+- **`docs/script.js` 죽은 코드 제거(2026-07)**: 삭제된 UI가 트리거하던 zero-caller 메서드
+  전부 제거 — ①설정/가져오기/내보내기/로그인 클라우드 모달 클러스터(`settingsModal()`/
+  `settingsSubmit()`/`importModal()`/`exportModal()`/`exportFiles()`/`saveStateLocal()`/
+  `loadStateLocal()`/`exportHardDrive()`/`clearHardDrive()`/`loginModal()`/`logout()`/
+  `setupLogin()`/`loginSubmit()`/`loginSilent()`/`loginToServer()`/`postLoginProcess()`/
+  `convertCSharpDateTime()`/`saveCloud()`/`loadCloud()`와 이들을 게이팅하던 호출부 —
+  `hasCloud`가 항상 false(`CLOUDSAVEURL`이 빈 문자열)라 애초에 실행된 적 없음) ②CPU 드롭다운·
+  모바일 메뉴용 나머지 17개(`zoomIn`/`zoomOut`/`turboSpeed`/`sendCtrlAltDel`/
+  `toggleAutoKeybaord`/`toggle16BitColorFix`/`toggleAlwaysUseBackbuffer`/`hideMobileMenu`/
+  `dropdownKeyDown`/`uploadBrowse`/`importBrowse`/`loadRomAndSavestate`/`printError`/
+  `clearDatabase`/`unzipFile`/`countFPS`/`UploadFiles`). 총 421줄 삭제. `getSaveStates()`는
+  실사용 중인 `loadHardDriveDiffs()`가 호출해서 남김. `docs/main.js`가 `myApp.*`로 이름 조회해
+  직접 호출하는 wasm 콜백(`SaveStateEvent`/`saveHardDriveDiffs`/`toggleFPS` 등)은 안 건드림 —
+  `sleepHandler`/`AudioProcessRecurring`/`WriteConfigFile`는 이름은 비슷해 보였지만 실제로는
+  `window.addEventListener`/`pcmPlayer.onaudioprocess`/내부 호출로 살아있어 보존(자동 호출-횟수
+  스캔만 믿으면 오탐이 나는 사례). 매 케이스 `node --check` 통과, 외부 참조(html/다른 js/
+  `main.js`의 wasm 콜백 목록) 0건 확인 후 제거.
 
 ### 1.2 진행 중
 
@@ -102,25 +119,6 @@ relocation 진입점 경계로 리뷰 청크를 나눠보려 시도했으나(624
 
 - KR "과한 의역"(원문에서 멀어진 번역) 검토 — 사용자가 직접 진행 중, 종료 시점 없음
 - 대사 길이 확장 — PE 재작성 패처 구현 ("2.1 텍스트 구조"의 "길이 확장 조사" 참고, 아직 미착수)
-- **`docs/script.js` 죽은 코드 제거 — 설정/가져오기/내보내기/로그인 모달 클러스터는 완료
-  (2026-07)**: `settingsModal()`/`settingsSubmit()`/`importModal()`/`exportModal()`/
-  `exportFiles()`/`saveStateLocal()`/`loadStateLocal()`/`exportHardDrive()`/`clearHardDrive()`/
-  `loginModal()`/`logout()`/`setupLogin()`/`loginSubmit()`/`loginSilent()`/`loginToServer()`/
-  `postLoginProcess()`/`convertCSharpDateTime()`/`saveCloud()`/`loadCloud()` 및 이들이 게이팅하는
-  호출부(부팅 시 `hasCloud` 체크, 클라우드 세이브 감지 분기 등) 전부 제거 — `hasCloud`가 항상
-  false(`CLOUDSAVEURL`이 빈 문자열)라 애초에 실행된 적 없는 코드. `getSaveStates()`는
-  `loadHardDriveDiffs()`(실사용 중)가 호출해서 남겨둠. `myApp.*`로 wasm 쪽에서 직접 호출하는
-  메서드(`SaveStateEvent`/`saveHardDriveDiffs`/`toggleFPS` 등, `docs/main.js`에서 이름으로 조회)는
-  건드리지 않음 — 286줄 삭제, `node --check` 통과, 외부 참조(html/다른 js) 0건 확인.
-  이어서 CPU 드롭다운/모바일 메뉴 등 이미 삭제된 UI 트리거용으로 추정되는 나머지 zero-caller
-  메서드 17개(`zoomIn`/`zoomOut`/`turboSpeed`/`sendCtrlAltDel`/`toggleAutoKeybaord`/
-  `toggle16BitColorFix`/`toggleAlwaysUseBackbuffer`/`hideMobileMenu`/`dropdownKeyDown`/
-  `uploadBrowse`/`importBrowse`/`loadRomAndSavestate`/`printError`/`clearDatabase`/`unzipFile`/
-  `countFPS`/`UploadFiles`)도 개별 확인 후 제거. **`sleepHandler`/`AudioProcessRecurring`/
-  `WriteConfigFile`는 이름만 보면 비슷해 보였지만 실제로는 각각 `window.addEventListener`,
-  `pcmPlayer.onaudioprocess`, 내부 호출로 살아있는 코드라 보존** — 자동 스캔(단순 호출 횟수
-  카운트)만 믿으면 오탐이 나는 실례. `docs/main.js`의 `myApp.*` wasm 콜백 목록과 겹치는 것도
-  없음 확인. 총 303줄 삭제, `node --check` 통과.
 
 ## 2. 기술 노트
 
