@@ -1393,7 +1393,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360466
     },
@@ -1401,7 +1401,7 @@
       "offset": 263496,
       "length": 18,
       "text": "「？…안　움직이네",
-      "fixed": "",
+      "fixed": "「？　안　움직이네",
       "confirmed": false,
       "jp": "「？　動かんのぅ",
       "jpOffset": 360480
@@ -1411,7 +1411,7 @@
       "length": 18,
       "text": "　이상한　장치로군",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　不思議な仕掛けじゃ",
       "jpOffset": 360500
     },
@@ -1420,7 +1420,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360544
     },
@@ -1429,7 +1429,7 @@
       "length": 28,
       "text": "「상자　내용물은　갖고싶지만",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「宝箱の中身は欲しいが",
       "jpOffset": 360558
     },
@@ -1437,7 +1437,7 @@
       "offset": 263602,
       "length": 24,
       "text": "　석상이　버티고있으니…",
-      "fixed": "",
+      "fixed": "　석상이　버티고　있으니",
       "confirmed": false,
       "jp": "　この石像がネックじゃの",
       "jpOffset": 360584
@@ -1455,7 +1455,7 @@
       "offset": 263660,
       "length": 20,
       "text": "「휴…겨우　이겼다！",
-      "fixed": "",
+      "fixed": "「…겨우　이겼구만　",
       "confirmed": false,
       "jp": "「…よく勝てたものじゃ",
       "jpOffset": 360646
@@ -3156,7 +3156,7 @@
       "offset": 316600,
       "length": 16,
       "text": "　사용해볼까요？",
-      "fixed": "",
+      "fixed": "　사용할까？　　",
       "confirmed": false,
       "jp": "　使いますか？",
       "jpOffset": 414316
@@ -3192,7 +3192,7 @@
       "offset": 316686,
       "length": 16,
       "text": "　사라져버렸다！",
-      "fixed": "",
+      "fixed": "　사라져　버렸다",
       "confirmed": false,
       "jp": "　消えてなくなりました",
       "jpOffset": 414396
@@ -3210,7 +3210,7 @@
       "offset": 316726,
       "length": 20,
       "text": "「호오…제법이구만，",
-      "fixed": "",
+      "fixed": "「호호…제법이구만…",
       "confirmed": false,
       "jp": "「ホホォ…　ナカナカヤルナ…",
       "jpOffset": 414446
@@ -6153,7 +6153,7 @@
       "offset": 347668,
       "length": 34,
       "text": "「좋아，우선　그것부터　찾아볼까！",
-      "fixed": "「좋아　우선　그것부터　찾는　걸세",
+      "fixed": "「좋아　우선　그것부터　찾아볼까　",
       "confirmed": false,
       "jp": "「よし　そいつを探すんじゃ",
       "jpOffset": 471336
@@ -28140,7 +28140,7 @@
       "offset": 523684,
       "length": 12,
       "text": "여관　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 633818
@@ -29248,7 +29248,7 @@
       "length": 2,
       "text": "　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "宿屋のおかみ",
       "jpOffset": 637714
     },
@@ -48751,7 +48751,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 785692
     },
@@ -48759,7 +48759,7 @@
       "offset": 654118,
       "length": 14,
       "text": "「어찌되었나？",
-      "fixed": "",
+      "fixed": "「어찌　됐나？",
       "confirmed": false,
       "jp": "「どうしたんだ？",
       "jpOffset": 785708
@@ -48768,7 +48768,7 @@
       "offset": 654136,
       "length": 18,
       "text": "　벌써　잡았나？！",
-      "fixed": "",
+      "fixed": "　벌써　붙잡았어？",
       "confirmed": false,
       "jp": "　もう　捕まえたのか？",
       "jpOffset": 785728
@@ -48778,7 +48778,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 785762
     },
@@ -48786,7 +48786,7 @@
       "offset": 654176,
       "length": 16,
       "text": "「그게　아니라…",
-      "fixed": "",
+      "fixed": "「그게　아니라…",
       "confirmed": false,
       "jp": "「いや　違うんだ",
       "jpOffset": 785776
@@ -48795,7 +48795,7 @@
       "offset": 654196,
       "length": 18,
       "text": "　난，그만　두겠네",
-      "fixed": "",
+      "fixed": "　난　그만　두겠어",
       "confirmed": false,
       "jp": "　オレ　リタイヤするぜ",
       "jpOffset": 785796
@@ -48805,7 +48805,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 785830
     },
@@ -48814,7 +48814,7 @@
       "length": 32,
       "text": "「허어？　그런가…　할　수　없지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「はぁ？　そうか…　仕方ねぇな",
       "jpOffset": 785846
     },
@@ -48822,7 +48822,7 @@
       "offset": 654274,
       "length": 30,
       "text": "　대신　바이트료는　없는　걸세",
-      "fixed": "",
+      "fixed": "　당연하지만　알바비는　없네　",
       "confirmed": false,
       "jp": "　当然だが　バイト代は出さねぇぞ",
       "jpOffset": 785880
@@ -48832,7 +48832,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 785924
     },
@@ -48840,7 +48840,7 @@
       "offset": 654326,
       "length": 16,
       "text": "「역시　그렇군！",
-      "fixed": "",
+      "fixed": "「역시　그렇지？",
       "confirmed": false,
       "jp": "「あ　やっぱ　そう？",
       "jpOffset": 785938
@@ -48849,7 +48849,7 @@
       "offset": 654346,
       "length": 30,
       "text": "　역시　돈벌기가　쉽지　않군！",
-      "fixed": "",
+      "fixed": "　후우　돈버는　게　쉽지　않네",
       "confirmed": false,
       "jp": "　ふー　金もうけは楽じゃねーな",
       "jpOffset": 785962
@@ -48859,7 +48859,7 @@
       "length": 8,
       "text": "주정뱅이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酔っ払い",
       "jpOffset": 786012
     },
@@ -48867,7 +48867,7 @@
       "offset": 654408,
       "length": 12,
       "text": "「어∼취한다",
-      "fixed": "",
+      "fixed": "「우∼　딸꾹",
       "confirmed": false,
       "jp": "「うぃ～　ヒック！",
       "jpOffset": 786024
@@ -48877,7 +48877,7 @@
       "length": 18,
       "text": "　술　가져와，술！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　酒もってこ～い",
       "jpOffset": 786046
     },
@@ -48886,7 +48886,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 786074
     },
@@ -48894,7 +48894,7 @@
       "offset": 654464,
       "length": 20,
       "text": "「아휴　썩은　냄새！",
-      "fixed": "",
+      "fixed": "「우왓　썩은　냄새！",
       "confirmed": false,
       "jp": "「うわぉう　くっせーぞ！",
       "jpOffset": 786088
@@ -48904,7 +48904,7 @@
       "length": 20,
       "text": "　난　코가　예민해서",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　オレは鼻がいいから",
       "jpOffset": 786116
     },
@@ -48913,7 +48913,7 @@
       "length": 22,
       "text": "　냄새공격에　약하니까",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　におい攻撃には弱いんだ",
       "jpOffset": 786144
     },
@@ -48921,7 +48921,7 @@
       "offset": 654542,
       "length": 20,
       "text": "　제발　그만좀　해！",
-      "fixed": "",
+      "fixed": "　제발　좀　봐줘！　",
       "confirmed": false,
       "jp": "　カンベンしてくれ！",
       "jpOffset": 786172
@@ -48931,7 +48931,7 @@
       "length": 4,
       "text": "손님",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "客",
       "jpOffset": 786212
     },
@@ -48939,7 +48939,7 @@
       "offset": 654590,
       "length": 32,
       "text": "「음…역시　이집　술은　맛있어！",
-      "fixed": "",
+      "fixed": "「음…여기　술은　정말　맛있어！",
       "confirmed": false,
       "jp": "「いや～　ここの酒は本当にうまいっ",
       "jpOffset": 786218
@@ -48948,7 +48948,7 @@
       "offset": 654626,
       "length": 34,
       "text": "　청류마을　술맛에　뒤지지　않구만",
-      "fixed": "",
+      "fixed": "　청류마을　술맛에　뒤지지　않는군",
       "confirmed": false,
       "jp": "　清流の町の酒と　いい勝負だよ",
       "jpOffset": 786256
@@ -48966,7 +48966,7 @@
       "offset": 654686,
       "length": 32,
       "text": "「휴∼매일　아저씨만　상대하려니",
-      "fixed": "",
+      "fixed": "「후　매일　아저씨만　상대하려니",
       "confirmed": false,
       "jp": "「ふー　毎日毎日オヤジの相手で",
       "jpOffset": 786312
@@ -48976,7 +48976,7 @@
       "length": 22,
       "text": "　정말　지겨워　죽겠어",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　イヤになっちゃうわ",
       "jpOffset": 786346
     },
@@ -48984,7 +48984,7 @@
       "offset": 654752,
       "length": 24,
       "text": "　가끔은　멋있는　사내와",
-      "fixed": "",
+      "fixed": "　가끔은　멋진　남자라도",
       "confirmed": false,
       "jp": "　たまには　カッコいい男の子でも",
       "jpOffset": 786374
@@ -48993,7 +48993,7 @@
       "offset": 654780,
       "length": 22,
       "text": "　데이트나　해봤으면…",
-      "fixed": "",
+      "fixed": "　나타나　줬으면…　　",
       "confirmed": false,
       "jp": "　来てくれないかしら…",
       "jpOffset": 786410
@@ -49003,7 +49003,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 786444
     },
@@ -49011,7 +49011,7 @@
       "offset": 654824,
       "length": 18,
       "text": "「아니∼이　아가씨",
-      "fixed": "",
+      "fixed": "「아니∼　곤란한걸",
       "confirmed": false,
       "jp": "「いや～　まいったな",
       "jpOffset": 786458
@@ -49020,7 +49020,7 @@
       "offset": 654846,
       "length": 26,
       "text": "　그토록　나를　기다렸어！",
-      "fixed": "",
+      "fixed": "　그토록　나를　기다렸어？",
       "confirmed": false,
       "jp": "　そんなにオレのこと待ってたの？",
       "jpOffset": 786482
@@ -49030,7 +49030,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 786526
     },
@@ -49038,7 +49038,7 @@
       "offset": 654894,
       "length": 20,
       "text": "「왜，멋진　남자들은",
-      "fixed": "",
+      "fixed": "「…멋진　남자라도　",
       "confirmed": false,
       "jp": "「…カッコいい男の子でも",
       "jpOffset": 786536
@@ -49047,7 +49047,7 @@
       "offset": 654918,
       "length": 22,
       "text": "　나타나지　않는거야？",
-      "fixed": "",
+      "fixed": "　나타나　줬으면　　　",
       "confirmed": false,
       "jp": "　来てくれないかしら",
       "jpOffset": 786564
@@ -49057,7 +49057,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 786596
     },
@@ -49066,7 +49066,7 @@
       "length": 16,
       "text": "「여기　있잖아！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「オレ！　オレ！",
       "jpOffset": 786610
     },
@@ -49075,7 +49075,7 @@
       "length": 16,
       "text": "　이봐　여기야！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ほら　ここに！",
       "jpOffset": 786630
     },
@@ -49084,7 +49084,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 786658
     },
@@ -49092,7 +49092,7 @@
       "offset": 655020,
       "length": 24,
       "text": "「정말이지　멋진　사내가",
-      "fixed": "",
+      "fixed": "「정말이지　멋진　남자가",
       "confirmed": false,
       "jp": "「…なかなかいないわよねぇ",
       "jpOffset": 786668
@@ -49102,7 +49102,7 @@
       "length": 20,
       "text": "　이렇게도　없다니！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　カッコいい男の子って",
       "jpOffset": 786698
     },
@@ -49111,7 +49111,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 786736
     },
@@ -49120,7 +49120,7 @@
       "length": 6,
       "text": "「나…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「オレ…",
       "jpOffset": 786750
     },
@@ -49129,7 +49129,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 786770
     },
@@ -49137,7 +49137,7 @@
       "offset": 655122,
       "length": 8,
       "text": "「휴우…",
-      "fixed": "",
+      "fixed": "「후우…",
       "confirmed": false,
       "jp": "「ふぅ…",
       "jpOffset": 786780
@@ -49147,7 +49147,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 786800
     },
@@ -49156,7 +49156,7 @@
       "length": 10,
       "text": "「져…졌다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ま　負けた…",
       "jpOffset": 786814
     },
@@ -49165,7 +49165,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 786848
     },
@@ -49173,7 +49173,7 @@
       "offset": 655192,
       "length": 24,
       "text": "「가끔은　멋진　사내라도",
-      "fixed": "",
+      "fixed": "「가끔은　멋진　남자라도",
       "confirmed": false,
       "jp": "「たまには　カッコいい男の子でも",
       "jpOffset": 786858
@@ -49182,7 +49182,7 @@
       "offset": 655220,
       "length": 14,
       "text": "　만나봤으면…",
-      "fixed": "",
+      "fixed": "　와　줬으면…",
       "confirmed": false,
       "jp": "　来てくれないかしら…",
       "jpOffset": 786894
@@ -49191,7 +49191,7 @@
       "offset": 655250,
       "length": 12,
       "text": "여관　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 786932
@@ -52134,7 +52134,7 @@
       "offset": 681942,
       "length": 12,
       "text": "여관　안주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 839260
@@ -66795,7 +66795,7 @@
       "offset": 883586,
       "length": 12,
       "text": "여관　안주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 1032454
@@ -81699,7 +81699,7 @@
       "offset": 1020566,
       "length": 12,
       "text": "여관　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 1164388
@@ -85785,7 +85785,7 @@
       "offset": 1038112,
       "length": 12,
       "text": "여관　안주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 1187826
@@ -96207,7 +96207,7 @@
       "offset": 1139602,
       "length": 12,
       "text": "여관　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 1305092
@@ -98520,7 +98520,7 @@
       "offset": 1146426,
       "length": 12,
       "text": "여관　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 1312050
@@ -119769,7 +119769,7 @@
       "offset": 1355840,
       "length": 12,
       "text": "여관　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 313254
@@ -124377,7 +124377,7 @@
       "offset": 1370296,
       "length": 12,
       "text": "여관　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 327632
@@ -132036,7 +132036,7 @@
       "offset": 1393974,
       "length": 12,
       "text": "술집　여주인",
-      "fixed": "",
+      "fixed": "여관여주인　",
       "confirmed": false,
       "jp": "宿屋のおかみ",
       "jpOffset": 1000644
