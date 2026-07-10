@@ -86,7 +86,11 @@
         <!-- id="canvas" is hardcoded in the Emscripten-generated glue (main.js) -->
         <canvas id="canvas" width="640" height="480"></canvas>
         <div id="overlay">
-            <button id="btn-start" disabled>▶ 시작</button>
+            <!-- shown in place of the start button while Win95 boots (suiko-boot.js) -->
+            <img id="boot-cover" src="img/splash.png" alt="" hidden>
+            <!-- Ataho's face, overlaid on the splash for the eye-blink animation -->
+            <img id="boot-blink" alt="" hidden>
+            <button id="btn-start" disabled><img src="img/splash-popup.png" alt=""><span class="btn-start-label">▶ 시작</span></button>
         </div>
         <div id="toast"></div>
     </div>

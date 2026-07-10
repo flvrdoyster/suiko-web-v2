@@ -5,18 +5,18 @@
     <script>window.SUIKO_LANG = 'jp';</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>幻世酔虎伝 : atah.io</title>
+    <title>환세취호전 : atah.io</title>
     <link rel="icon" href="https://atah.io/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="幻世酔虎伝(Compile, 1997)のWEBエミュレータです。">
+    <meta name="description" content="환세취호전(Compile, 1997)의 웹 에뮬레이터입니다.">
     <meta name="keywords" content="환세취호전, 幻世酔虎伝, Compile, Windows 95, suiko, gensei">
-    <meta property="og:title" content="幻世酔虎伝 : atah.io">
+    <meta property="og:title" content="환세취호전 : atah.io">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://suiko.atah.io/jp.html">
     <meta property="og:image" content="https://suiko.atah.io/img/thumbnail-suiko.png">
-    <meta property="og:description" content="幻世酔虎伝(Compile, 1997)のWEBエミュレータです。">
-    <meta property="og:locale" content="ja_JP">
+    <meta property="og:description" content="환세취호전(Compile, 1997)의 웹 에뮬레이터입니다.">
+    <meta property="og:locale" content="ko_KR">
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -86,7 +86,11 @@
         <!-- id="canvas" is hardcoded in the Emscripten-generated glue (main.js) -->
         <canvas id="canvas" width="640" height="480"></canvas>
         <div id="overlay">
-            <button id="btn-start" disabled>▶ 시작</button>
+            <!-- shown in place of the start button while Win95 boots (suiko-boot.js) -->
+            <img id="boot-cover" src="img/splash.png" alt="" hidden>
+            <!-- Ataho's face, overlaid on the splash for the eye-blink animation -->
+            <img id="boot-blink" alt="" hidden>
+            <button id="btn-start" disabled><img src="img/splash-popup.png" alt=""><span class="btn-start-label">▶ 시작</span></button>
         </div>
         <div id="toast"></div>
     </div>
@@ -121,7 +125,7 @@
         }
     </script>
 
-    <p class="hint">画面をクリックした後、キーボードで操作 · 移動: 方向キー · 決定: Z/Enter/Space · キャンセル: X/ESC · 技説明: C</p>
+    <p class="hint">화면을 클릭한 뒤 키보드로 조작 · 이동: 방향키 · 결정: Z/Enter/Space · 취소: X/ESC · 기술설명: C</p>
 
     <div id="virtual-gamepad">
         <div class="gamepad-dpad">

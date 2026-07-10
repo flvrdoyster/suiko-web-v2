@@ -20,6 +20,13 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 - **UI 전면 재구성**: gensei-pc98의 `style.css` 기반 + `suiko-overrides.css` 최소 델타(4:3
   화면비). 로고·게인 기반 뮤트·단일 토스트·전체화면 롱프레스 이식. 모바일 레이아웃(정사각형
   화면비 clamp 포함) 실기 검증 완료.
+- **부팅 스플래시 & 게임 시작 감지**: 시작 버튼을 아타호 팝업 이미지로 교체(잔디 위 `▶ 시작`
+  라벨), 클릭 시 스플래시 커버가 DOS→Win95 부팅 화면을 가리고 눈 깜빡임 애니메이션 재생. 게임
+  시작은 게스트 개입(디스크에 플래그 파일 쓰기)이 Win95 write-back 캐시·PIF 등으로 불안정해
+  기각하고, **캔버스 프레임 픽셀에서 Win95 데스크톱 teal(0,128,128) 색이 사라지는 순간을 관찰**
+  하는 방식으로 감지 — 부팅 타이밍·게스트 내부와 무관. 부팅 동안 하단에 고정(sticky) 토스트
+  유지(세이브 복원 등 다른 토스트가 잠깐 떠도 사라진 뒤 자동 복귀). 스플래시/blink 에셋은
+  `docs/img/splash*.png`, 로직은 `docs/suiko-boot.js`.
 - **doswasmx 데모 코드 정리**: 미사용 UI(Browse/Save Drive/Settings/Login 모달, CPU 드롭다운,
   자체 모바일 터치 UI) 삭제, Bootstrap/Popper/font-awesome/FileSaver/nipplejs 제거. `docs/script.js`
   내 대응 죽은 코드(설정/로그인/클라우드 저장 클러스터 + 기타 트리거 없는 메서드, 총 36개

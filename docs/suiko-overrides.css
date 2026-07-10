@@ -50,6 +50,65 @@ canvas { width: 640px; height: 480px; }
   #canvasDiv { width: 100vw; }
 }
 
+/* Boot cover: splash image shown inside #overlay (in place of the start button) while
+   Win95 boots — suiko-boot.js unhides it on Start and fades the whole overlay out
+   (#overlay.hidden) once the game actually launches. */
+#boot-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+#boot-cover[hidden] { display: none; }
+
+/* Ataho's face overlay for the eye-blink: the base splash is 640x480 and the face frame
+   is 104x88 at (256,136), so these percentages map it 1:1 onto the (always-4:3) cover.
+   suiko-boot.js cycles its src through the blink frames; hidden = resting (base's eyes). */
+#boot-blink {
+  position: absolute;
+  left: 40%;            /* 256/640 */
+  top: 28.3333%;        /* 136/480 */
+  width: 16.25%;        /* 104/640 */
+  height: 18.3333%;     /* 88/480  */
+  image-rendering: pixelated;
+}
+#boot-blink[hidden] { display: none; }
+
+/* Start control: the cute Ataho popup image instead of a plain button. #overlay #btn-start
+   (2 ids) overrides style.css's #overlay button (1 id + type) box styling. Disabled = the
+   pre-ready state (dimmed, not clickable); enabled gets a small hover pop. */
+#overlay #btn-start {
+  position: relative;  /* anchor for the label overlaid on the grass */
+  background: none;
+  border: 0;
+  padding: 0;
+  width: 50%;          /* 320/640: the popup's natural half-width on the splash area */
+  max-width: 320px;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+}
+#overlay #btn-start:hover { background: none; }
+#overlay #btn-start img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+#overlay #btn-start:disabled { opacity: 0.5; cursor: default; }
+#overlay #btn-start:not(:disabled):hover { transform: scale(1.04); }
+
+/* "▶ 시작" label sitting in the grass strip at the bottom-center of the popup. It just
+   INHERITS the button's own text styling (style.css #overlay button already sets
+   KoddiUDOnGothic / --font-lg / light) — re-declaring font-size here would compound the
+   button's 1.2em into 1.44em. pointer-events off so the click lands on the button. */
+#overlay #btn-start .btn-start-label {
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  /* 1px black outline — 4-way text-shadow (text-stroke support is uneven across browsers) */
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000;
+}
+
 /* Landscape on a touch device: a phone in landscape is usually wider than 680px, so it
    would otherwise fall back to the fixed 640x480 and get cropped top/bottom on short
    viewports. Drive by HEIGHT (100% of the viewport, 4:3 width) so the whole screen is
