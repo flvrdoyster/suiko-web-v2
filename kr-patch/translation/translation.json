@@ -7746,7 +7746,7 @@
       "offset": 383642,
       "length": 34,
       "text": "　좀더　수련을　거친　다음에　오게",
-      "fixed": "",
+      "fixed": "　좀　더　스스로를　단련하고　오게",
       "confirmed": false,
       "jp": "　もっと　自分たちを鍛えてまいれ",
       "jpOffset": 507842
@@ -8655,7 +8655,7 @@
       "offset": 386562,
       "length": 28,
       "text": "「불타는　마검」을　입수했다",
-      "fixed": "",
+      "fixed": "「불타는마검」을　입수했다　",
       "confirmed": false,
       "jp": "「燃える魔剣」を手に入れました",
       "jpOffset": 510758
@@ -8907,7 +8907,7 @@
       "offset": 387534,
       "length": 32,
       "text": "　침입자는　절대로　용서못한다！",
-      "fixed": "",
+      "fixed": "　침입자는　절대로　용서　못한다",
       "confirmed": false,
       "jp": "　侵入者は　追い払わねばならない",
       "jpOffset": 511688
@@ -8925,7 +8925,7 @@
       "offset": 387600,
       "length": 14,
       "text": "「알아　들었어",
-      "fixed": "",
+      "fixed": "「알아들었으면",
       "confirmed": false,
       "jp": "「そうか　だったら",
       "jpOffset": 511746
@@ -8934,7 +8934,7 @@
       "offset": 387618,
       "length": 36,
       "text": "　그럼　이　방엔　다시　오지　말게！",
-      "fixed": "",
+      "fixed": "　더　이상　이　방엔　오지　말라고　",
       "confirmed": false,
       "jp": "　もう　ここには来るなよ",
       "jpOffset": 511768
