@@ -6334,7 +6334,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 471940
     },
@@ -6343,7 +6343,7 @@
       "length": 14,
       "text": "「…아타호에겐",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「…アターホーには",
       "jpOffset": 471954
     },
@@ -6351,7 +6351,7 @@
       "offset": 348294,
       "length": 36,
       "text": "　여러가지로　많은　폐를　끼쳤는데…",
-      "fixed": "",
+      "fixed": "　여러가지로　폐를　끼치기도　했고　",
       "confirmed": false,
       "jp": "　いろいろ迷惑かけたことだし",
       "jpOffset": 471976
@@ -6360,7 +6360,7 @@
       "offset": 348338,
       "length": 32,
       "text": "　대단한　것은　없지만，이　방에",
-      "fixed": "",
+      "fixed": "　대단한　것은　없지만　　　　　",
       "confirmed": false,
       "jp": "　たいした物はないけど",
       "jpOffset": 472012
@@ -6369,7 +6369,7 @@
       "offset": 348374,
       "length": 34,
       "text": "　있는　것들　중　마음에　드는　게",
-      "fixed": "",
+      "fixed": "　이　방에　있는　건　　　　　　　",
       "confirmed": false,
       "jp": "　この部屋にあるものは",
       "jpOffset": 472038
@@ -6378,7 +6378,7 @@
       "offset": 348412,
       "length": 30,
       "text": "　있거든，모두다　가지세요！！",
-      "fixed": "",
+      "fixed": "　전부　다　가져도　좋아요　　",
       "confirmed": false,
       "jp": "　全部持っていっていいわよ",
       "jpOffset": 472064
@@ -6414,7 +6414,7 @@
       "offset": 348556,
       "length": 10,
       "text": "　오우케이",
-      "fixed": "",
+      "fixed": "　그러세　",
       "confirmed": false,
       "jp": "　いいぞい",
       "jpOffset": 472192
@@ -6423,7 +6423,7 @@
       "offset": 348570,
       "length": 10,
       "text": "　잠깐만！",
-      "fixed": "",
+      "fixed": "　아직일세",
       "confirmed": false,
       "jp": "　まだじゃ",
       "jpOffset": 472206
@@ -6621,7 +6621,7 @@
       "offset": 349496,
       "length": 36,
       "text": "「어머？　이건　검기에　관한　책이네",
-      "fixed": "",
+      "fixed": "「어머　이건　검과　관련된　기서네요",
       "confirmed": false,
       "jp": "「あら　これは剣の技の書ね",
       "jpOffset": 473160
@@ -6648,7 +6648,7 @@
       "offset": 349596,
       "length": 28,
       "text": "「헤헤，그거야　물어보나마나",
-      "fixed": "",
+      "fixed": "「헷　그거야　물어보나마나　",
       "confirmed": false,
       "jp": "「へっ　こんなのバッチリに",
       "jpOffset": 473252
@@ -6657,7 +6657,7 @@
       "offset": 349628,
       "length": 26,
       "text": "　정해진　거　아니겠어？！",
-      "fixed": "",
+      "fixed": "　당연한　거　아니겠어！　",
       "confirmed": false,
       "jp": "　決まってんじゃねーか！",
       "jpOffset": 473282
