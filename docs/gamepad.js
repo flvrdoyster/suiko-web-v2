@@ -6,8 +6,8 @@
     ArrowDown:  { key: 'ArrowDown',  code: 'ArrowDown',  keyCode: 40 },
     ArrowLeft:  { key: 'ArrowLeft',  code: 'ArrowLeft',  keyCode: 37 },
     ArrowRight: { key: 'ArrowRight', code: 'ArrowRight', keyCode: 39 },
-    KeyZ:       { key: 'z',          code: 'KeyZ',        keyCode: 90 },
-    KeyX:       { key: 'x',          code: 'KeyX',        keyCode: 88 },
+    Enter:      { key: 'Enter',      code: 'Enter',      keyCode: 13 },
+    Escape:     { key: 'Escape',     code: 'Escape',     keyCode: 27 },
     KeyC:       { key: 'c',          code: 'KeyC',        keyCode: 67 }
   };
 
@@ -67,8 +67,8 @@
       var btn = e.target.closest('[data-key]');
       if (!btn) return;
       var key = btn.dataset.key;
-      // 시작 오버레이가 떠 있을 때 Z(결정)는 시작 버튼을 누른다
-      if (key === 'KeyZ') {
+      // 시작 오버레이가 떠 있을 때 Enter(결정)는 시작 버튼을 누른다
+      if (key === 'Enter') {
         var startBtn = document.getElementById('btn-start');
         var overlay = document.getElementById('overlay');
         if (startBtn && overlay && !overlay.classList.contains('hidden')) {

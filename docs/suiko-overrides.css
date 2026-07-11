@@ -136,3 +136,30 @@ canvas { width: 640px; height: 480px; }
 #maindiv, #divInstructions {
   display: none !important;
 }
+
+/* Virtual gamepad: this game only needs 3 face buttons (C, ESC, Enter, left to right) —
+   tighter gap than gensei-pc98's default (6px vs 16px) since Enter is wider than the
+   others. style.css's ".gamepad-buttons button" sizing rule still applies to Enter here
+   (plain descendant selector) — gamepad-btn-enter below overrides just the width back
+   with a more specific selector, no !important needed. */
+.gamepad-buttons {
+  gap: 6px;
+}
+.gamepad-buttons button.gamepad-btn-enter {
+  width: 72px;
+  min-width: 72px;
+}
+.gamepad-buttons button.gamepad-btn-round {
+  border-radius: 50%;
+}
+/* New dpad arrow icons (2026-07) are taller/narrower than gensei-pc98's original square
+   glyph, so style.css's default 50% height (dpad-only; ".gamepad-buttons button svg" is
+   already 30%) reads oversized next to the face buttons. Match dpad icon height to the
+   face buttons' so both read as the same icon size, since both button kinds are the same
+   48px square. Needs the "#virtual-gamepad" id prefix (same as style.css's own
+   ".gamepad-buttons" override) to actually outrank "#virtual-gamepad button svg" — a
+   bare ".gamepad-dpad button svg" class selector loses to that id rule regardless of
+   source order. */
+#virtual-gamepad .gamepad-dpad button svg {
+  height: 30%;
+}
