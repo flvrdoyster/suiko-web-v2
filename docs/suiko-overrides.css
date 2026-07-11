@@ -149,7 +149,11 @@ canvas { width: 640px; height: 480px; }
   width: 72px;
   min-width: 72px;
 }
-.gamepad-buttons button.gamepad-btn-round {
+/* Needs the "#virtual-gamepad" id prefix to outrank "#virtual-gamepad button"'s own
+   border-radius: 8px — a bare ".gamepad-buttons button.gamepad-btn-round" class selector
+   loses to that id rule regardless of extra classes or source order (same specificity
+   trap as the dpad icon height rule below). */
+#virtual-gamepad .gamepad-buttons button.gamepad-btn-round {
   border-radius: 50%;
 }
 /* New dpad arrow icons (2026-07) are taller/narrower than gensei-pc98's original square
