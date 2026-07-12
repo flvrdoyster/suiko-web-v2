@@ -55,6 +55,8 @@
   .orig { width: 380px; color: #999; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
   .orig:hover { background: #1e2433; }
   .orig.copied { background: #1a3322; transition: background .1s; }
+  .jp-text { color: #6a8fae; font-size: 12px; white-space: pre-wrap; word-break: break-all; margin-top: 6px; cursor: pointer; }
+  .jp-text.copied { background: #1a3322; transition: background .1s; }
   /* 수정칸 = [입력 textarea][확정 버튼] flex 행. 버튼은 절대위치로 겹치지 않고 옆에
      붙는다. 버튼이 숨으면(수정칸에 내용 있으면) textarea가 전체 폭을 차지. */
   .fixed-cell { width: 412px; }
@@ -75,44 +77,29 @@
   .len.ok { color: #408040; }
   .len.bad { color: #c04040; font-weight: bold; }
   .len.empty { color: #3a3a3a; }
-
-  #jpPanel { position: fixed; right: 0; top: 0; bottom: 0; width: 360px; background: #202020; border-left: 1px solid #3a3a3a; padding: 12px; overflow-y: auto; transform: translateX(100%); transition: transform .2s; z-index: 50; box-shadow: -4px 0 20px rgba(0,0,0,.4); }
-  #jpPanel.open { transform: translateX(0); }
-  #jpPanel h3 { font-size: 13px; color: #ccc; margin-bottom: 6px; }
-  #jpPanel .hint { font-size: 11px; color: #777; margin-bottom: 10px; line-height: 1.5; }
-  #jpSearchBox { width: 100%; }
-  #jpResults { margin-top: 10px; }
-  #jpResults .hit { margin-bottom: 12px; padding: 8px; background: #2a2a2a; border-radius: 4px; font-size: 12px; }
-  #jpResults .hit .match { color: #ffd479; font-weight: bold; }
-  #jpClose { float: right; background: none; border: none; color: #888; font-size: 16px; cursor: pointer; }
-  .jp-line-row { display: flex; align-items: baseline; gap: 6px; justify-content: space-between; }
-  .jp-line-row .off { color: #556; font-size: 10px; }
-
-  /* KR<->JP anchor cascade (see computeJpTextForKr() below): the space under each dialogue
-     row's original text shows either the JP line auto-filled from the nearest anchor above,
-     or (if this row itself owns an anchor) that anchor's own JP line, styled distinctly. */
-  .link-row { display: flex; align-items: flex-start; gap: 6px; margin-top: 6px; }
-  .link-anchor { flex: none; background: #252525; color: #888; border: 1px solid #3a3a3a; border-radius: 4px; height: 22px; width: 22px; cursor: pointer; font-size: 12px; line-height: 1; position: relative; }
-  .link-anchor:hover { background: #2e2e2e; color: #ddd; }
-  .link-anchor.anchored { color: #ffd479; border-color: #7a6a3a; }
-  .link-anchor.stopped { color: #c87d7d; border-color: #5c2d2d; }
-  .jp-cascade-text { color: #6a8fae; font-size: 12px; white-space: pre-wrap; word-break: break-all; }
-  .jp-cascade-text.is-anchor { color: #ffd479; }
-  .jp-cascade-text.empty { color: #445; font-style: italic; }
-  .jp-cascade-text.oob { color: #a55; }
-  .jp-cascade-text.copied { background: #1a3322; transition: background .1s; }
-  .jp-conflict-warn { color: #e0a030; font-size: 11px; margin-top: 3px; }
-  .jp-conflict-jump { color: #7ec4f8; cursor: pointer; text-decoration: underline; }
   tr.jump-focus { outline: 2px solid #7ec4f8; outline-offset: -2px; }
 
-  .anchor-popup { position: absolute; z-index: 200; background: #262626; border: 1px solid #4a4a4a; border-radius: 6px; padding: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.5); font-size: 12px; width: 240px; }
-  .anchor-popup .lbl { color: #999; font-size: 11px; margin-bottom: 6px; display: block; }
-  .anchor-popup input { width: 100%; background: #1a1a1a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 5px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; margin-bottom: 8px; }
-  .anchor-popup .actions { display: flex; gap: 6px; }
-  .anchor-popup button { font-size: 11px; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-family: inherit; }
-  .anchor-popup .ap-save { background: #1a3d1a; color: #7dc87d; border: 1px solid #2d5c2d; }
-  .anchor-popup .ap-clear { background: #3d1a1a; color: #c87d7d; border: 1px solid #5c2d2d; }
-  .anchor-popup .ap-cancel { background: #252525; color: #999; border: 1px solid #3a3a3a; }
+  /* Context panel: shows the focused row's neighbors (in original-file order — same array
+     index adjacency as translation.json's dialogue list) so a reviewer editing a line
+     doesn't have to clear filters and hunt for what comes before/after it. Opens on
+     textarea focus (see showContext() in the script), stays open until manually closed so
+     clicking into it to copy text doesn't make it vanish. */
+  /* #ctxRows (not #contextPanel) is the scroll container — the infinite-scroll logic in
+     onContextScroll() needs a stable element to read scrollTop/scrollHeight off of, and
+     h3/close-button need to stay put above it rather than scrolling away with the rows. */
+  #contextPanel { position: fixed; right: 0; top: 0; bottom: 0; width: 360px; background: #202020; border-left: 1px solid #3a3a3a; padding: 12px; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .2s; z-index: 50; box-shadow: -4px 0 20px rgba(0,0,0,.4); }
+  #contextPanel.open { transform: translateX(0); }
+  .ctx-header { display: flex; align-items: center; justify-content: space-between; flex: none; margin-bottom: 10px; }
+  #contextPanel h3 { font-size: 13px; color: #ccc; }
+  #ctxClose { background: none; border: none; color: #888; font-size: 16px; cursor: pointer; }
+  #ctxRows { flex: 1; overflow-y: auto; }
+  .ctx-row { padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 12px; }
+  .ctx-row .ctx-off { color: #556; font-size: 10px; margin-bottom: 3px; }
+  .ctx-row .ctx-kr { color: #999; white-space: pre-wrap; word-break: break-all; }
+  .ctx-row .ctx-fixed { color: #d4a017; white-space: pre-wrap; word-break: break-all; margin-top: 2px; }
+  .ctx-row .ctx-jp { color: #6a8fae; white-space: pre-wrap; word-break: break-all; margin-top: 2px; }
+  .ctx-row.current { background: #2a2a2a; border: 1px solid #4a4a4a; }
+  .ctx-row.current .ctx-kr { color: #d4d4d4; }
 
   .toast { position: fixed; bottom: 24px; right: 24px; background: #2a2a2a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: 0 4px 16px rgba(0,0,0,.5); z-index: 100; }
   .toast.show { opacity: 1; }
@@ -127,16 +114,14 @@
       <button class="save-btn" id="saveBtn" disabled>저장</button>
       <button class="ghost-btn" id="buildInjectBtn" title="번역 반영 → HWANSE.EXE 빌드 → 테스트용 디스크 이미지에 삽입 (docs/final-shared.img는 안 건드림)">빌드 및 삽입</button>
       <button class="ghost-btn" id="deployBtn" title="테스트 이미지를 docs/final-shared.img로 복사 후 커밋 (푸시는 안 함)">배포</button>
-      <button class="ghost-btn" id="jpToggle">JP 검색</button>
     </div>
   </div>
   <div class="toolbar">
     <div class="tabs" id="tabs"></div>
     <input type="text" id="searchBox" placeholder="검색 (원문/수정/JP)...">
     <label><input type="checkbox" id="filterExact"> 완전 일치</label>
-    <label><input type="checkbox" id="filterModified"> 수정된 것만</label>
     <label><input type="checkbox" id="filterProblem"> 문제 있는 것만</label>
-    <label><input type="checkbox" id="filterUnlinked"> 연결 안 된 것만</label>
+    <label><input type="checkbox" id="filterPunct"> 문장부호 의심</label>
     <input type="text" id="jumpBox" placeholder="오프셋으로 이동..." style="width:140px">
     <button class="ghost-btn" id="jumpBtn">이동</button>
     <span class="prob-nav" id="probNav" style="display:none"><span class="prob-count" id="probCount"></span><button id="probPrev">이전</button><button id="probNext">다음</button></span>
@@ -159,12 +144,12 @@
   <tbody id="tbody"></tbody>
 </table>
 
-<div id="jpPanel">
-  <button id="jpClose">×</button>
-  <h3>JP 원문 검색</h3>
-  <div class="hint">KR/JP는 원문 순서가 서로 다르게 배치돼 있어(같은 오프셋/인덱스 대응 아님) — 이름·키워드로 찾아서 그 줄의 오프셋을 대사 행의 🔗로 입력. 앵커를 찍으면 그 아래 줄들은 같은 간격으로 자동 대응됨(다음 앵커 전까지).</div>
-  <input type="text" id="jpSearchBox" placeholder="이름/키워드로 검색...">
-  <div id="jpResults"></div>
+<div id="contextPanel">
+  <div class="ctx-header">
+    <h3>맥락 (원문 순서 기준)</h3>
+    <button id="ctxClose">×</button>
+  </div>
+  <div id="ctxRows"></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -180,79 +165,11 @@ let curSection = 'dialogue';
 const modified = {};        // "section:offset" -> fixed string (in-memory unsaved edits)
 let problemRows = [];       // currently-rendered rows whose edit is length-invalid
 let problemIdx = -1;
-// Manual KR<->JP anchors: sparse { krOffset: jpOffset } map. Every dialogue row between one
-// anchor and the next gets its JP text auto-filled by walking both dialogue arrays forward
-// in lockstep from the anchor (same position delta on both sides) — see
-// computeJpTextForKr(). Offsets are plain decimal (matches jp-reference.json).
-let anchors = {};
-let jpDialogue = [];         // [{offset, text}], sorted by offset (loaded in full once)
-let krOffsetToIndex = new Map();
-let jpOffsetToIndex = new Map();
-let sortedAnchors = [];      // [{krOffset, krIdx, jpOffset, jpIdx}], sorted by krIdx
-
-// Each marker is either a real anchor ({krIdx, jpOffset, jpIdx}) or a "stop" ({krIdx, stop:
-// true}) that ends the previous anchor's cascade — see openAnchorPopup()'s "여기서 끊기".
-function rebuildSortedAnchors() {
-  sortedAnchors = Object.keys(anchors)
-    .map((k) => parseInt(k, 10))
-    .filter((krOffset) => krOffsetToIndex.has(krOffset))
-    .map((krOffset) => {
-      const v = anchors[krOffset];
-      const krIdx = krOffsetToIndex.get(krOffset);
-      if (v === false) return { krOffset, krIdx, stop: true };
-      return { krOffset, krIdx, jpOffset: v, jpIdx: jpOffsetToIndex.get(v) };
-    })
-    .filter((a) => a.stop || a.jpIdx !== undefined)
-    .sort((a, b) => a.krIdx - b.krIdx);
-}
-
-// Binary search: the last marker whose krIdx <= krIdx, or null before the first marker.
-// Markers past this one (by construction, sorted) all have a strictly greater krIdx, so this
-// naturally bounds the cascade to "up to but not including the next marker" with no extra check.
-function activeMarkerFor(krIdx) {
-  let lo = 0, hi = sortedAnchors.length - 1, best = null;
-  while (lo <= hi) {
-    const mid = (lo + hi) >> 1;
-    if (sortedAnchors[mid].krIdx <= krIdx) { best = sortedAnchors[mid]; lo = mid + 1; }
-    else hi = mid - 1;
-  }
-  return best;
-}
-
-// Returns { text, isAnchor, oob, conflictWith } for the JP line this KR offset cascades to,
-// or null if no anchor applies (row is before the first marker, or sits at/after a "stop").
-// conflictWith (if set) is the krOffset of ANOTHER anchor whose cascade also lands on this
-// same JP line — a sign one of the two anchors has drifted (see jpClaimMap below).
-function computeJpTextForKr(krOffset) {
-  const krIdx = krOffsetToIndex.get(krOffset);
-  if (krIdx === undefined) return null;
-  const a = activeMarkerFor(krIdx);
-  if (!a || a.stop) return null;
-  const jpIdx = a.jpIdx + (krIdx - a.krIdx);
-  if (jpIdx < 0 || jpIdx >= jpDialogue.length) return { text: '(범위 밖)', isAnchor: krIdx === a.krIdx, oob: true };
-  const claimants = jpClaimMap.get(jpIdx);
-  const conflictWith = claimants && claimants.size > 1 ? [...claimants].find((k) => k !== a.krOffset) : undefined;
-  return { text: jpDialogue[jpIdx].text, isAnchor: krIdx === a.krIdx, oob: false, conflictWith };
-}
-
-// jpIdx -> Set(anchor krOffset) — which anchors' cascades land on each JP line. A JP line
-// claimed by more than one anchor means two KR ranges both think it's their translation;
-// normally only one can be right (see NOTES.md's KR<->JP anchor duplicate-scene findings).
-let jpClaimMap = new Map();
-function rebuildJpClaimMap() {
-  jpClaimMap = new Map();
-  for (let mi = 0; mi < sortedAnchors.length; mi++) {
-    const m = sortedAnchors[mi];
-    if (m.stop) continue;
-    const end = mi + 1 < sortedAnchors.length ? sortedAnchors[mi + 1].krIdx : data.dialogue.length;
-    for (let krIdx = m.krIdx; krIdx < end; krIdx++) {
-      const jpIdx = m.jpIdx + (krIdx - m.krIdx);
-      if (jpIdx < 0 || jpIdx >= jpDialogue.length) continue;
-      if (!jpClaimMap.has(jpIdx)) jpClaimMap.set(jpIdx, new Set());
-      jpClaimMap.get(jpIdx).add(m.krOffset);
-    }
-  }
-}
+// offset -> index in data.dialogue, for the context panel's "neighbors in original-file
+// order" lookup (see showContext()). translation.json's jp/jpOffset fields (baked once by
+// bake-jp.js, see NOTES.md) already carry the resolved KR<->JP correspondence — no
+// client-side anchor computation needed anymore.
+let dialogueIndexByOffset = new Map();
 
 function byteLen(s) {
   // rough CP949 estimate for live feedback; server re-validates exactly. ASCII=1, else=2.
@@ -292,81 +209,9 @@ function toast(msg) {
 
 async function load() {
   data = await fetch('/api/translation').then(r => r.json());
-  anchors = await fetch('/api/links').then(r => r.json());
-  jpDialogue = await fetch('/api/jp-dialogue').then(r => r.json());
-  krOffsetToIndex = new Map(data.dialogue.map((e, i) => [e.offset, i]));
-  jpOffsetToIndex = new Map(jpDialogue.map((e, i) => [e.offset, i]));
-  rebuildSortedAnchors();
-  rebuildJpClaimMap();
+  dialogueIndexByOffset = new Map(data.dialogue.map((e, i) => [e.offset, i]));
   renderTabs();
   render();
-}
-
-// Small floating popup (near the clicked 🔗) to type in a JP offset directly — this is the
-// whole "linking" UI now; see computeJpTextForKr() for what happens once one is saved.
-function openAnchorPopup(btn, krOffset) {
-  document.querySelectorAll('.anchor-popup').forEach((p) => p.remove());
-  const existing = anchors[krOffset];
-  const popup = document.createElement('div');
-  popup.className = 'anchor-popup';
-  popup.innerHTML = `
-    <span class="lbl">JP 오프셋 (jp-reference.json 기준, 10진수)</span>
-    <input type="text" inputmode="numeric" placeholder="예: 240108">
-    <div class="actions">
-      <button class="ap-save">저장</button>
-      <button class="ap-stop">여기서 끊기</button>
-      <button class="ap-clear">삭제</button>
-      <button class="ap-cancel">취소</button>
-    </div>
-  `;
-  document.body.appendChild(popup);
-  const rect = btn.getBoundingClientRect();
-  popup.style.top = (window.scrollY + rect.bottom + 4) + 'px';
-  popup.style.left = (window.scrollX + rect.left) + 'px';
-
-  const input = popup.querySelector('input');
-  input.value = typeof existing === 'number' ? String(existing) : '';
-  input.placeholder = existing === false ? '(현재: 여기서 끊김)' : '예: 240108';
-  input.focus();
-  input.select();
-
-  function close() { popup.remove(); document.removeEventListener('mousedown', onOutsideClick, true); }
-  function onOutsideClick(ev) { if (!popup.contains(ev.target)) close(); }
-  setTimeout(() => document.addEventListener('mousedown', onOutsideClick, true), 0);
-
-  async function commit(jpOffset) {
-    try {
-      await fetch('/api/anchor', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ krOffset, jpOffset }),
-      });
-      if (jpOffset === null) delete anchors[krOffset];
-      else anchors[krOffset] = jpOffset;
-      rebuildSortedAnchors();
-  rebuildJpClaimMap();
-      close();
-      render();
-    } catch (err) { toast('저장 실패: ' + err); }
-  }
-
-  popup.querySelector('.ap-save').onclick = () => {
-    const v = input.value.trim();
-    if (!v) { toast('오프셋을 입력하세요'); return; }
-    const n = parseInt(v, 10);
-    if (!Number.isFinite(n)) { toast('숫자가 아님'); return; }
-    if (!jpOffsetToIndex.has(n)) { toast('jp-reference.json에 없는 오프셋'); return; }
-    commit(n);
-  };
-  // "여기서 끊기": marks this row as a hard stop — the anchor above no longer cascades past
-  // it, and this row (and everything after, until the next real anchor) shows empty rather
-  // than a guessed/likely-wrong JP line.
-  popup.querySelector('.ap-stop').onclick = () => commit(false);
-  popup.querySelector('.ap-clear').onclick = () => commit(null);
-  popup.querySelector('.ap-cancel').onclick = close;
-  input.addEventListener('keydown', (ev) => {
-    if (ev.key === 'Enter') popup.querySelector('.ap-save').click();
-    if (ev.key === 'Escape') close();
-  });
 }
 
 function renderTabs() {
@@ -382,24 +227,46 @@ function renderTabs() {
   }
 }
 
-// A row counts as "문제 있는 것" if either its edit's byte length is invalid, OR (dialogue
-// only) its JP anchor cascade conflicts with another anchor's — see computeJpTextForKr().
-function hasProblem(section, e, fixed) {
-  if (fixed && validity(section, byteLen(fixed), need(section, e)) !== 'ok') return true;
-  if (section === 'dialogue') {
-    const c = computeJpTextForKr(e.offset);
-    if (c && c.conflictWith !== undefined) return true;
+// 문장부호 의심 (see kr-patch/tools/find-punct-issues.js for the CLI/batch version this
+// mirrors): KR has a tone mark (！／？／…) repeated back-to-back, or a tone mark that
+// doesn't appear anywhere in the JP line at all, or ends in a different tone mark than JP
+// does. 「」 vs 『』 is a KR/JP quote *convention* difference, not a translation error, so
+// it's excluded — only ！？… count as "tone marks" here.
+const PUNCT_REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '「', '」', '『', '』', '～', '∼']);
+const PUNCT_TONE_SET = new Set(['！', '？', '…']);
+
+function punctSuspect(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  const chars = [...kr];
+  for (let i = 0; i < chars.length; i++) {
+    if (!PUNCT_REPEAT_SET.has(chars[i])) continue;
+    let j = i;
+    while (j < chars.length && chars[j] === chars[i]) j++;
+    if (j - i >= 2) return true;
+    i = j - 1;
   }
+  const krTone = new Set(chars.filter((c) => PUNCT_TONE_SET.has(c)));
+  const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
+  for (const ch of krTone) if (!jpTone.has(ch)) return true;
+  const krLast = kr.replace(/　+$/u, '').slice(-1);
+  const jpLast = jp.replace(/　+$/u, '').slice(-1);
+  if (PUNCT_TONE_SET.has(krLast) && PUNCT_TONE_SET.has(jpLast) && krLast !== jpLast) return true;
   return false;
+}
+
+// A row counts as "문제 있는 것" if its edit's byte length is invalid.
+function hasProblem(section, e, fixed) {
+  return !!(fixed && validity(section, byteLen(fixed), need(section, e)) !== 'ok');
 }
 
 function filteredRows() {
   const q = document.getElementById('searchBox').value; // NOT .trim() — JS trim() also eats
   // U+3000 (전각 공백), which is meaningful leading/trailing content in this game's text
   const exactMatch = document.getElementById('filterExact').checked;
-  const modOnly = document.getElementById('filterModified').checked;
   const probOnly = document.getElementById('filterProblem').checked;
-  const unlinkedOnly = document.getElementById('filterUnlinked').checked;
+  const punctOnly = document.getElementById('filterPunct').checked;
   return (data[curSection] || []).filter((e) => {
     const fixed = currentFixed(curSection, e);
     const jp = e.jp || ''; // baked KR<->JP correspondence (dialogue only — see bake-jp.js)
@@ -407,13 +274,11 @@ function filteredRows() {
       if (exactMatch) { if (e.text !== q && fixed !== q && jp !== q) return false; }
       else if (!e.text.includes(q) && !fixed.includes(q) && !jp.includes(q)) return false;
     }
-    if (modOnly && !fixed) return false;
     if (probOnly && !hasProblem(curSection, e, fixed)) return false;
-    // "연결 안 된 것만": rows the KR<->JP anchor cascade doesn't reach — dialogue only,
-    // since anchors only ever apply there (see computeJpTextForKr()).
-    if (unlinkedOnly) {
+    // "문장부호 의심": dialogue only — jp field (bake-jp.js) only exists there.
+    if (punctOnly) {
       if (curSection !== 'dialogue') return false;
-      if (computeJpTextForKr(e.offset)) return false;
+      if (!punctSuspect(fixed, e)) return false;
     }
     return true;
   });
@@ -421,12 +286,11 @@ function filteredRows() {
 
 // Jump to a specific KR offset: clears every filter (so the row is guaranteed to render),
 // switches to the dialogue tab, then scrolls to and briefly highlights the row. Used by the
-// toolbar "이동" box and by conflict-warning [이동] links (see renderRow()).
+// toolbar "이동" box.
 function jumpToOffset(offset) {
   document.getElementById('searchBox').value = '';
-  document.getElementById('filterModified').checked = false;
   document.getElementById('filterProblem').checked = false;
-  document.getElementById('filterUnlinked').checked = false;
+  document.getElementById('filterPunct').checked = false;
   curSection = 'dialogue';
   render();
   const row = document.querySelector(`tr[data-offset="${offset}"]`);
@@ -434,6 +298,88 @@ function jumpToOffset(offset) {
   row.scrollIntoView({ block: 'center', behavior: 'smooth' });
   row.classList.add('jump-focus');
   setTimeout(() => row.classList.remove('jump-focus'), 2000);
+}
+
+// Context panel: when a "fixed" textarea is focused, show the row's neighbors in
+// original-file order (adjacent index in data.dialogue — same order the text is laid out
+// in HWANSE.EXE, so this doubles as a way to spot the "다음/이전 줄 내용을 끌어다 붙인"
+// mistranslation pattern, not just a general reading aid). Filters stay untouched — the
+// whole point is not needing to clear them to see context.
+//
+// Starts with a small window around the focused row and grows in both directions as the
+// panel is scrolled near either edge (ctxLo/ctxHi track the currently-rendered range).
+// Prepending above needs the scrollHeight-delta trick in ctxExtendUp() — inserting DOM
+// nodes above the viewport otherwise yanks the visible content down as the browser reflows.
+const CONTEXT_INITIAL = 5;
+const CONTEXT_STEP = 10;
+const CTX_SCROLL_MARGIN = 80; // px from an edge that triggers loading more in that direction
+let ctxLo = 0, ctxHi = -1;
+
+function ctxRowEl(i, isCurrent) {
+  const ent = data.dialogue[i];
+  const div = document.createElement('div');
+  div.className = 'ctx-row' + (isCurrent ? ' current' : '');
+  const off = document.createElement('div');
+  off.className = 'ctx-off';
+  off.textContent = ent.offset;
+  div.appendChild(off);
+  const kr = document.createElement('div');
+  kr.className = 'ctx-kr';
+  kr.textContent = ent.text;
+  div.appendChild(kr);
+  if (ent.fixed) {
+    const fx = document.createElement('div');
+    fx.className = 'ctx-fixed';
+    fx.textContent = ent.fixed;
+    div.appendChild(fx);
+  }
+  if (ent.jp) {
+    const jp = document.createElement('div');
+    jp.className = 'ctx-jp';
+    jp.textContent = ent.jp;
+    div.appendChild(jp);
+  }
+  return div;
+}
+
+function ctxExtendUp(rows) {
+  if (ctxLo <= 0) return;
+  const newLo = Math.max(0, ctxLo - CONTEXT_STEP);
+  const frag = document.createDocumentFragment();
+  for (let i = newLo; i < ctxLo; i++) frag.appendChild(ctxRowEl(i, false));
+  const prevScrollHeight = rows.scrollHeight;
+  rows.prepend(frag);
+  rows.scrollTop += rows.scrollHeight - prevScrollHeight; // keep viewport pinned to the same content
+  ctxLo = newLo;
+}
+
+function ctxExtendDown(rows) {
+  if (ctxHi >= data.dialogue.length - 1) return;
+  const newHi = Math.min(data.dialogue.length - 1, ctxHi + CONTEXT_STEP);
+  const frag = document.createDocumentFragment();
+  for (let i = ctxHi + 1; i <= newHi; i++) frag.appendChild(ctxRowEl(i, false));
+  rows.appendChild(frag);
+  ctxHi = newHi;
+}
+
+function onContextScroll() {
+  const rows = document.getElementById('ctxRows');
+  if (rows.scrollTop < CTX_SCROLL_MARGIN) ctxExtendUp(rows);
+  else if (rows.scrollHeight - (rows.scrollTop + rows.clientHeight) < CTX_SCROLL_MARGIN) ctxExtendDown(rows);
+}
+
+function showContext(e) {
+  const idx = dialogueIndexByOffset.get(e.offset);
+  if (idx === undefined) return;
+  const panel = document.getElementById('contextPanel');
+  const rows = document.getElementById('ctxRows');
+  rows.innerHTML = '';
+  ctxLo = Math.max(0, idx - CONTEXT_INITIAL);
+  ctxHi = Math.min(data.dialogue.length - 1, idx + CONTEXT_INITIAL);
+  for (let i = ctxLo; i <= ctxHi; i++) rows.appendChild(ctxRowEl(i, i === idx));
+  panel.classList.add('open');
+  const current = rows.querySelector('.ctx-row.current');
+  if (current) current.scrollIntoView({ block: 'center' });
 }
 
 // Autosize reads scrollHeight (a forced layout). NEVER call it in a loop over all rows —
@@ -501,7 +447,7 @@ function renderRow(e) {
 
   const tdOff = document.createElement('td');
   tdOff.className = 'off';
-  tdOff.textContent = e.offset; // decimal — matches jp-reference.json/kr-jp-links.json/the anchor popup, so no base-converting back and forth
+  tdOff.textContent = e.offset; // decimal — matches jp-reference.json
 
   const tdOrig = document.createElement('td');
   tdOrig.className = 'orig';
@@ -515,51 +461,19 @@ function renderRow(e) {
   };
   tdOrig.appendChild(origText);
 
-  // Manual KR<->JP anchor cascade (see computeJpTextForKr() above) — dialogue only, since
-  // JP correspondence is only meaningful for story text, not labels/fonts.
-  if (curSection === 'dialogue') {
-    const marker = anchors[e.offset]; // number (anchor) | false (stop) | undefined
-    const isAnchor = typeof marker === 'number';
-    const isStop = marker === false;
-    const computed = computeJpTextForKr(e.offset);
-    const linkRow = document.createElement('div');
-    linkRow.className = 'link-row';
-    const linkBtn = document.createElement('button');
-    linkBtn.className = 'link-anchor' + (isAnchor ? ' anchored' : '') + (isStop ? ' stopped' : '');
-    linkBtn.textContent = isStop ? '⛔' : '🔗';
-    linkBtn.title = isAnchor ? 'JP 앵커 지정됨 — 다시 눌러 수정/삭제'
-      : isStop ? '여기서 끊김 — 다시 눌러 앵커 지정/해제' : '이 줄을 JP 오프셋 앵커로 지정';
-    linkBtn.onclick = () => openAnchorPopup(linkBtn, e.offset);
-    linkRow.appendChild(linkBtn);
-
+  // Baked KR<->JP correspondence (bake-jp.js, see NOTES.md) — dialogue only, since JP
+  // correspondence is only meaningful for story text, not labels/fonts.
+  if (curSection === 'dialogue' && e.jp) {
     const jpDiv = document.createElement('div');
-    jpDiv.className = 'jp-cascade-text' + (computed && computed.isAnchor ? ' is-anchor' : '') + (computed && computed.oob ? ' oob' : '') + (!computed ? ' empty' : '');
-    jpDiv.textContent = computed ? computed.text : (isStop ? '(여기서 끊김)' : '(위쪽에 앵커 없음)');
-    if (computed) {
-      jpDiv.title = '클릭하여 복사';
-      jpDiv.style.cursor = 'pointer';
-      jpDiv.onclick = () => {
-        navigator.clipboard && navigator.clipboard.writeText(computed.text);
-        jpDiv.classList.add('copied');
-        setTimeout(() => jpDiv.classList.remove('copied'), 600);
-      };
-    }
-    linkRow.appendChild(jpDiv);
-    tdOrig.appendChild(linkRow);
-
-    // Conflict: another anchor's cascade lands on the same JP line — one of the two has
-    // drifted (see jpClaimMap). Surface it right here instead of making it a chat-only fact.
-    if (computed && computed.conflictWith !== undefined) {
-      const warn = document.createElement('div');
-      warn.className = 'jp-conflict-warn';
-      warn.textContent = '⚠ 충돌: KR ' + computed.conflictWith + '도 이 JP줄을 가리킴 ';
-      const jumpBtn = document.createElement('span');
-      jumpBtn.className = 'jp-conflict-jump';
-      jumpBtn.textContent = '[이동]';
-      jumpBtn.onclick = () => jumpToOffset(computed.conflictWith);
-      warn.appendChild(jumpBtn);
-      tdOrig.appendChild(warn);
-    }
+    jpDiv.className = 'jp-text';
+    jpDiv.textContent = e.jp;
+    jpDiv.title = '클릭하여 복사';
+    jpDiv.onclick = () => {
+      navigator.clipboard && navigator.clipboard.writeText(e.jp);
+      jpDiv.classList.add('copied');
+      setTimeout(() => jpDiv.classList.remove('copied'), 600);
+    };
+    tdOrig.appendChild(jpDiv);
   }
 
   const tdFixed = document.createElement('td');
@@ -611,7 +525,7 @@ function renderRow(e) {
 
   // NOT .trim()'d anywhere: leading/trailing spaces (half- or full-width 　) are meaningful
   // game content here (right-aligned rank labels, "지옥　다리후리기"-style compounds).
-  ta.addEventListener('focus', () => autosize(ta));
+  ta.addEventListener('focus', () => { autosize(ta); if (curSection === 'dialogue') showContext(e); });
   ta.addEventListener('blur', () => { ta.style.height = ''; });
   ta.addEventListener('input', () => {
     // Auto-convert typed half-width space / ! / ? to the full-width forms (U+3000/FF01/FF1F)
@@ -645,11 +559,9 @@ function renderRow(e) {
 }
 
 function recomputeProblems() {
-  // query only the invalid inputs / conflict warnings (cheap) rather than scanning every
-  // row's textarea — matches hasProblem()'s two problem kinds.
-  const invalidRows = Array.from(document.querySelectorAll('#tbody .kr-input.invalid'), (ta) => ta.closest('tr'));
-  const conflictRows = Array.from(document.querySelectorAll('#tbody .jp-conflict-warn'), (w) => w.closest('tr'));
-  problemRows = [...new Set([...invalidRows, ...conflictRows])];
+  // query only the invalid inputs (cheap) rather than scanning every row's textarea —
+  // matches hasProblem()'s problem kind.
+  problemRows = Array.from(document.querySelectorAll('#tbody .kr-input.invalid'), (ta) => ta.closest('tr'));
   const nav = document.getElementById('probNav');
   if (problemRows.length) {
     document.getElementById('probCount').textContent = problemRows.length + '건 ';
@@ -788,9 +700,8 @@ document.getElementById('fillApply').addEventListener('click', applyFill);
 document.getElementById('fillInput').addEventListener('keydown', (ev) => {
   if (ev.key === 'Enter') applyFill();
 });
-document.getElementById('filterModified').addEventListener('change', render);
 document.getElementById('filterProblem').addEventListener('change', render);
-document.getElementById('filterUnlinked').addEventListener('change', render);
+document.getElementById('filterPunct').addEventListener('change', render);
 document.getElementById('jumpBtn').addEventListener('click', () => {
   const v = document.getElementById('jumpBox').value.trim();
   const n = parseInt(v, 10);
@@ -810,57 +721,8 @@ window.addEventListener('beforeunload', (e) => {
   if (countModifiedAll() > 0) { e.preventDefault(); e.returnValue = ''; }
 });
 
-// JP search panel
-document.getElementById('jpToggle').addEventListener('click', () => document.getElementById('jpPanel').classList.toggle('open'));
-document.getElementById('jpClose').addEventListener('click', () => document.getElementById('jpPanel').classList.remove('open'));
-let jpTimer = null;
-document.getElementById('jpSearchBox').addEventListener('input', (ev) => {
-  clearTimeout(jpTimer);
-  const q = ev.target.value.trim();
-  jpTimer = setTimeout(async () => {
-    const results = document.getElementById('jpResults');
-    if (!q) { results.innerHTML = ''; return; }
-    const res = await fetch('/api/jp-search?q=' + encodeURIComponent(q)).then((r) => r.json());
-    results.innerHTML = '';
-    const summary = document.createElement('div');
-    summary.style.cssText = 'color:#999;font-size:12px;margin-bottom:8px';
-    summary.textContent = `대사 ${res.total}건, 이름/라벨 ${res.labelHits.length}건`;
-    results.appendChild(summary);
-
-    // No "연결" button anymore — anchors are set by typing an offset into the KR-side 🔗
-    // popup, not by picking a JP line directly. Clicking a line just copies its offset
-    // (decimal, matching jp-reference.json) so it's easy to paste into that popup.
-    function jpLineRow(offset, text, isMatch) {
-      const row = document.createElement('div');
-      row.className = 'jp-line-row' + (isMatch ? ' match' : '');
-      row.title = '클릭하여 오프셋 복사';
-      const span = document.createElement('span');
-      span.textContent = text;
-      const off = document.createElement('span');
-      off.className = 'off';
-      off.textContent = offset;
-      row.onclick = () => {
-        navigator.clipboard && navigator.clipboard.writeText(String(offset));
-        toast('오프셋 복사됨: ' + offset);
-      };
-      row.append(span, off);
-      return row;
-    }
-
-    for (const hit of res.results) {
-      const div = document.createElement('div');
-      div.className = 'hit';
-      for (const l of hit.lines) div.appendChild(jpLineRow(l.offset, l.text, l.isMatch));
-      results.appendChild(div);
-    }
-    if (res.labelHits.length) {
-      const div = document.createElement('div');
-      div.className = 'hit';
-      for (const l of res.labelHits) div.appendChild(jpLineRow(l.offset, l.text, true));
-      results.appendChild(div);
-    }
-  }, 250);
-});
+document.getElementById('ctxClose').addEventListener('click', () => document.getElementById('contextPanel').classList.remove('open'));
+document.getElementById('ctxRows').addEventListener('scroll', onContextScroll);
 
 window.addEventListener('resize', updateStickyOffset);
 load();
