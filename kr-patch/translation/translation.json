@@ -2229,7 +2229,7 @@
       "offset": 313642,
       "length": 24,
       "text": "１００Ｇ를　얼른　줏었다",
-      "fixed": "",
+      "fixed": "１００Ｇ를　손에　넣었다",
       "confirmed": false,
       "jp": "１００Ｇを手に入れました",
       "jpOffset": 411338
@@ -67407,7 +67407,7 @@
       "offset": 885388,
       "length": 20,
       "text": "「♥♡책」을　줏었다",
-      "fixed": "",
+      "fixed": "「에로책」을　주웠다",
       "confirmed": false,
       "jp": "「Ｈな本」を拾いました",
       "jpOffset": 1034266
@@ -67417,7 +67417,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 1034324
     },
@@ -67425,7 +67425,7 @@
       "offset": 885454,
       "length": 10,
       "text": "「오잉？！",
-      "fixed": "",
+      "fixed": "「우효～　",
       "confirmed": false,
       "jp": "「うひょ～",
       "jpOffset": 1034338
@@ -67461,7 +67461,7 @@
       "offset": 885538,
       "length": 6,
       "text": "Ｍａｎ",
-      "fixed": "",
+      "fixed": "사람　",
       "confirmed": false,
       "jp": "中の人",
       "jpOffset": 1034434
@@ -67470,7 +67470,7 @@
       "offset": 885548,
       "length": 10,
       "text": "「있어요！",
-      "fixed": "",
+      "fixed": "「있어요　",
       "confirmed": false,
       "jp": "「入ってます",
       "jpOffset": 1034444
@@ -67479,7 +67479,7 @@
       "offset": 885574,
       "length": 6,
       "text": "Ｍａｎ",
-      "fixed": "",
+      "fixed": "사람　",
       "confirmed": false,
       "jp": "中の人",
       "jpOffset": 1034472
@@ -67488,7 +67488,7 @@
       "offset": 885584,
       "length": 12,
       "text": "「있다구요！",
-      "fixed": "",
+      "fixed": "「있습니다　",
       "confirmed": false,
       "jp": "「入ってるよ",
       "jpOffset": 1034482
@@ -67497,7 +67497,7 @@
       "offset": 885612,
       "length": 6,
       "text": "Ｍａｎ",
-      "fixed": "",
+      "fixed": "사람　",
       "confirmed": false,
       "jp": "中の人",
       "jpOffset": 1034510
@@ -67506,7 +67506,7 @@
       "offset": 885622,
       "length": 14,
       "text": "「있다니까！！",
-      "fixed": "",
+      "fixed": "「있다니까！　",
       "confirmed": false,
       "jp": "「入ってるってば！",
       "jpOffset": 1034520
@@ -67515,7 +67515,7 @@
       "offset": 885652,
       "length": 6,
       "text": "Ｍａｎ",
-      "fixed": "",
+      "fixed": "사람　",
       "confirmed": false,
       "jp": "中の人",
       "jpOffset": 1034554
@@ -67525,7 +67525,7 @@
       "length": 18,
       "text": "「있다고　했잖아！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「入ってるって言ってるだろ！！",
       "jpOffset": 1034564
     },
@@ -67533,7 +67533,7 @@
       "offset": 885696,
       "length": 6,
       "text": "Ｍａｎ",
-      "fixed": "",
+      "fixed": "사람　",
       "confirmed": false,
       "jp": "中の人",
       "jpOffset": 1034610
@@ -67542,7 +67542,7 @@
       "offset": 885706,
       "length": 36,
       "text": "「…알았어！　그렇게　보고　싶어！？",
-      "fixed": "",
+      "fixed": "「…알았어　그렇게　보고　싶은거야？",
       "confirmed": false,
       "jp": "「…わかったよ　そんなに見たいのか？",
       "jpOffset": 1034620
@@ -67552,7 +67552,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 1034668
     },
@@ -67560,7 +67560,7 @@
       "offset": 885764,
       "length": 32,
       "text": "「미안！　내가　나쁜　놈이야！！",
-      "fixed": "",
+      "fixed": "「！　미안　내가　나빴어　　　　",
       "confirmed": false,
       "jp": "「！　すまん　オレが悪かった",
       "jpOffset": 1034682
@@ -67569,7 +67569,7 @@
       "offset": 885800,
       "length": 30,
       "text": "　제발　그것만은　용서해줘！！",
-      "fixed": "",
+      "fixed": "　제발　그것만은　용서해　줘！",
       "confirmed": false,
       "jp": "　それだけは　カンベンしてくれ！",
       "jpOffset": 1034714
@@ -67579,7 +67579,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 1034770
     },
@@ -67587,7 +67587,7 @@
       "offset": 885864,
       "length": 22,
       "text": "「아차…용건도　없는데",
-      "fixed": "",
+      "fixed": "「엇…　용건도　없는데",
       "confirmed": false,
       "jp": "「おっと…　用もないのに",
       "jpOffset": 1034784
@@ -67596,7 +67596,7 @@
       "offset": 885890,
       "length": 30,
       "text": "　병실에　들어가면　안되지！！",
-      "fixed": "",
+      "fixed": "　병실에　들어가면　안　되겠지",
       "confirmed": false,
       "jp": "　病室へ立ち入ってはいかんぞい",
       "jpOffset": 1034812
@@ -67606,7 +67606,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 1056124
     },
@@ -67615,7 +67615,7 @@
       "length": 14,
       "text": "「뭐，뭐야？！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「な　なんだぁ？",
       "jpOffset": 1056138
     },
@@ -67623,7 +67623,7 @@
       "offset": 928248,
       "length": 26,
       "text": "　멋대로　닫혀버리다니？！",
-      "fixed": "",
+      "fixed": "　멋대로　닫혀버렸는데！？",
       "confirmed": false,
       "jp": "　勝手に閉まりやがったぜ！？",
       "jpOffset": 1056158
@@ -67633,7 +67633,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 1056210
     },
@@ -68407,7 +68407,7 @@
       "length": 8,
       "text": "원숭이들",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "サルたち",
       "jpOffset": 1058872
     },
@@ -68415,7 +68415,7 @@
       "offset": 931002,
       "length": 12,
       "text": "「끼끼끽－！",
-      "fixed": "",
+      "fixed": "「우끼끼잇！",
       "confirmed": false,
       "jp": "「ウキキーッ！",
       "jpOffset": 1058884
@@ -68425,7 +68425,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 1058918
     },
@@ -68433,7 +68433,7 @@
       "offset": 931044,
       "length": 14,
       "text": "「어，기다렷！",
-      "fixed": "",
+      "fixed": "「앗　기다려！",
       "confirmed": false,
       "jp": "「あっ　待て！",
       "jpOffset": 1058932
@@ -68443,7 +68443,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 1058970
     },
@@ -68452,7 +68452,7 @@
       "length": 28,
       "text": "「쳇　도망치는　건　쏜살같군",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ちっ　逃げ足の速いヤツらだ",
       "jpOffset": 1058984
     },
@@ -68460,7 +68460,7 @@
       "offset": 931124,
       "length": 28,
       "text": "　그새　그림자도　안보이잖아",
-      "fixed": "",
+      "fixed": "　벌써　그림자도　안보이잖아",
       "confirmed": false,
       "jp": "　もう　見えなくなりやがったぜ",
       "jpOffset": 1059016
@@ -68470,7 +68470,7 @@
       "length": 14,
       "text": "　할　수　없지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ま　いいさ",
       "jpOffset": 1059054
     },
@@ -68479,7 +68479,7 @@
       "length": 38,
       "text": "　『가는（？）　놈은　쫓지말라』했으니",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "『サル者は追わず』という言葉もある",
       "jpOffset": 1059070
     },
@@ -68487,7 +68487,7 @@
       "offset": 931220,
       "length": 30,
       "text": "　뚱뚱한놈（？）만　잡아볼까！",
-      "fixed": "",
+      "fixed": "　뚱뚱한　놈（？）만　잡아볼까",
       "confirmed": false,
       "jp": "　サルは追ってもムダってことだな",
       "jpOffset": 1059108
@@ -133098,7 +133098,7 @@
       "offset": 1396952,
       "length": 20,
       "text": "　후훗，작전개시！！",
-      "fixed": "　후훗　작전개시！！",
+      "fixed": "　우후훗　작전개시！",
       "confirmed": false,
       "jp": "　うふふ　作戦開始ですわ！",
       "jpOffset": 1003814
@@ -133251,7 +133251,7 @@
       "offset": 1397400,
       "length": 32,
       "text": "　그래도　싫은　건，싫은　거야！",
-      "fixed": "　그래도　싫은　건　싫은　거야！",
+      "fixed": "　그래도　싫은　건　싫은　거야　",
       "confirmed": false,
       "jp": "　それでもイヤなものはイヤなんだ",
       "jpOffset": 1004278
