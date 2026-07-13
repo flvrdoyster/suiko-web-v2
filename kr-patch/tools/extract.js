@@ -49,10 +49,10 @@ function fail(msg) {
 
 // Carries over review state (`fixed` text edits, the `confirmed` "reviewed, no change
 // needed" flag, and — dialogue only — the baked `jp`/`jpOffset` KR<->JP correspondence from
-// bake-jp.js) from a previous run's entries, matched by a key (offset+length by default;
-// fonts use offset+maxLength since they don't have a `length` field), so re-extraction after
-// an extractor tweak doesn't wipe out review work already saved via the editor or baked by
-// bake-jp.js. Reports any previously-touched entry that no longer has a matching slot.
+// bake-jp.js) from a previous run's entries, matched by a key (offset+length by default), so
+// re-extraction after an extractor tweak doesn't wipe out review work already saved via the
+// editor or baked by bake-jp.js. Reports any previously-touched entry that no longer has a
+// matching slot.
 function mergeReview(oldEntries, newEntries, label, keyOf = (e) => `${e.offset}:${e.length}`) {
   if (!oldEntries) return newEntries;
   const oldByKey = new Map();
@@ -100,7 +100,6 @@ for (const { offset, maxLength } of FONT.FONT_FIELDS) {
   for (let i = offset; i < offset + maxLength; i++) excludeMask[i] = 1;
 }
 const labels = NAMES.extract(krBuf, excludeMask);
-const fonts = FONT.extract(krBuf);
 
 for (const list of [dialogue, labels]) {
   list.sort((a, b) => a.offset - b.offset);
@@ -113,7 +112,6 @@ for (const list of [dialogue, labels]) {
 
 let rebuilt = DIALOGUE.build(krBuf, dialogue);
 rebuilt = NAMES.build(rebuilt, labels);
-rebuilt = FONT.build(rebuilt, fonts);
 if (Buffer.compare(rebuilt, krBuf) !== 0) {
   fail('round-trip check failed: rebuilding with unchanged entries did not reproduce the original file byte-for-byte. Refusing to write translation.json.');
 }
@@ -121,17 +119,15 @@ if (Buffer.compare(rebuilt, krBuf) !== 0) {
 const existing = loadExisting(outKrPath);
 const mergedDialogue = mergeReview(existing && existing.dialogue, dialogue, 'dialogue');
 const mergedLabels = mergeReview(existing && existing.labels, labels, 'labels');
-const mergedFonts = mergeReview(existing && existing.fonts, fonts, 'fonts', (e) => `${e.offset}:${e.maxLength}`);
 
 const translation = {
   source_file: path.basename(krExePath),
   source_md5: crypto.createHash('md5').update(krBuf).digest('hex'),
   dialogue: mergedDialogue.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed, jp: e.jp || '', jpOffset: e.jpOffset != null ? e.jpOffset : null })),
   labels: mergedLabels.map((e) => ({ offset: e.offset, length: e.length, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
-  fonts: mergedFonts.map((e) => ({ offset: e.offset, maxLength: e.maxLength, text: e.text, fixed: e.fixed || '', confirmed: !!e.confirmed })),
 };
 fs.writeFileSync(outKrPath, JSON.stringify(translation, null, 2));
-console.log(`wrote ${path.relative(ROOT, outKrPath)}: dialogue=${dialogue.length}, labels=${labels.length}, fonts=${fonts.length} (round-trip OK)`);
+console.log(`wrote ${path.relative(ROOT, outKrPath)}: dialogue=${dialogue.length}, labels=${labels.length} (round-trip OK)`);
 
 // --- JP (read-only reference) ---
 if (!fs.existsSync(jpExePath)) fail(`JP exe not found: ${jpExePath}`);

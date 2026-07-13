@@ -99,8 +99,8 @@ spessasynth(JS 소프트신스)로 흘러 SC-55.sf3(9MB, 원본 롤랜드 SC-55 
 
 **추출**: KR 14,812줄·JP 14,813줄(초기 필터가 로마자 스탭명·전각 영숫자·문장부호-only 대사를
 누락했던 걸 완화해서 잡음, 이후 노이즈로 확인된 바이너리 찌꺼기 구간은 `NOISE_RANGES`로 양쪽
-추출기에서 하드코딩 제외). 라운드트립(추출→재조립) 바이트 완전 동일 확인. 이름·라벨은 별도
-포맷(KR 389개·JP 435개)으로 같은 파이프라인에서 추출.
+추출기에서 하드코딩 제외). 라운드트립(추출→재조립) 바이트 완전 동일 확인. 레이블은 별도
+포맷으로 같은 파이프라인에서 추출.
 
 **KR↔JP 매칭**: KR·JP는 라인 순서가 서로 대응하지 않아(반복 화자 등장 횟수는 비슷해도 인덱스
 격차 불규칙) 자동 정렬이 불가능 — 사람이 듬성듬성 찍은 기준점(`kr-jp-links.json`)에서 양쪽
@@ -109,13 +109,15 @@ spessasynth(JS 소프트신스)로 흘러 SC-55.sf3(9MB, 원본 롤랜드 SC-55 
 `jp`/`jpOffset` 필드로 확정 반영(`kr-patch/tools/bake-jp.js`). 이후 `extract.js`의
 `mergeReview()`가 재추출 시에도 이 필드를 보존.
 
-**산출물**: `kr-patch/tools/hwanse-text.js`·`hwanse-names.js`·`hwanse-font.js`(KR 추출/빌드),
-`gense-text.js`·`gense-names.js`(JP 참고 전용), `search-jp.js`(JP 키워드 검색), `editor.js`+
-`editor.html`(로컬 웹 에디터), `pe-reloc.js`(PE 섹션 테이블/relocation 파서, 청크 접근 시도에서
-만듦 — 자동 청크 나누기 자체는 장면 경계가 안 맞아 기각), `extract.js`/`build.js`/`inject.js`
-(파이프라인), `bake-jp.js`, `translation/translation.json`(KR 전량, `dialogue`/`labels`/`fonts`
-세 섹션), `translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP
-수동 앵커 입력), `translation/GUIDE.md`(수정 판단 기준).
+**산출물**: `kr-patch/tools/hwanse-text.js`·`hwanse-names.js`(KR 추출/빌드), `hwanse-font.js`
+(LOGFONT lfFaceName 필드 위치 정보만 — 폰트 이름 교체 1차 시도가 효과 없어 보류돼 레이블
+추출에서 이 필드를 제외하는 용도로만 남음), `gense-text.js`·`gense-names.js`(JP 참고 전용),
+`search-jp.js`(JP 키워드 검색), `editor.js`+`editor.html`(로컬 웹 에디터), `pe-reloc.js`(PE
+섹션 테이블/relocation 파서, 청크 접근 시도에서 만듦 — 자동 청크 나누기 자체는 장면 경계가
+안 맞아 기각), `extract.js`/`build.js`/`inject.js`(파이프라인), `bake-jp.js`,
+`translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션), `translation/jp-reference.json`
+(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커 입력), `translation/GUIDE.md`
+(수정 판단 기준).
 
 ## 4. 기타
 

@@ -20,7 +20,6 @@ const path = require('path');
 
 const DIALOGUE = require('./hwanse-text.js');
 const NAMES = require('./hwanse-names.js');
-const FONT = require('./hwanse-font.js');
 
 const ROOT = path.join(__dirname, '..', '..');
 
@@ -50,9 +49,8 @@ if (t.source_file && t.source_file !== path.basename(krExePath)) {
 
 const fixedDialogue = t.dialogue.filter((e) => e.fixed);
 const fixedLabels = t.labels.filter((e) => e.fixed);
-const fixedFonts = (t.fonts || []).filter((e) => e.fixed);
 
-if (!fixedDialogue.length && !fixedLabels.length && !fixedFonts.length) {
+if (!fixedDialogue.length && !fixedLabels.length) {
   console.log('build.js: no entries have a `fixed` value set — nothing to do.');
   process.exit(0);
 }
@@ -61,7 +59,6 @@ let out;
 try {
   out = DIALOGUE.build(buf, fixedDialogue);
   out = NAMES.build(out, fixedLabels);
-  out = FONT.build(out, fixedFonts);
 } catch (e) {
   fail(e.message);
 }
@@ -70,7 +67,7 @@ fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, out);
 
 console.log(`wrote ${path.relative(ROOT, outPath)}`);
-console.log(`applied: ${fixedDialogue.length} dialogue entries, ${fixedLabels.length} label entries, ${fixedFonts.length} font entries`);
-for (const e of [...fixedDialogue, ...fixedLabels, ...fixedFonts]) {
+console.log(`applied: ${fixedDialogue.length} dialogue entries, ${fixedLabels.length} label entries`);
+for (const e of [...fixedDialogue, ...fixedLabels]) {
   console.log(`  0x${e.offset.toString(16)}  ${JSON.stringify(e.text)} -> ${JSON.stringify(e.fixed)}`);
 }

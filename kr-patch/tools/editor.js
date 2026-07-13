@@ -19,6 +19,7 @@ const { execFileSync } = require('child_process');
 const ROOT = path.join(__dirname, '..', '..');
 const TRANS_PATH = path.join(__dirname, '../translation/translation.json');
 const TRANS_REL = 'kr-patch/translation/translation.json';
+const BOOKMARK_PATH = path.join(__dirname, '../translation/bookmark.json');
 const BUILD_JS = path.join(__dirname, 'build.js');
 const INJECT_JS = path.join(__dirname, 'inject.js');
 const BUILD_IMG = path.join(ROOT, 'kr-patch/build/final-shared.img');
@@ -27,7 +28,6 @@ const HTML_PATH = path.join(__dirname, 'editor.html');
 
 const HWANSE_TEXT = require('./hwanse-text.js');
 const HWANSE_NAMES = require('./hwanse-names.js');
-const HWANSE_FONT = require('./hwanse-font.js');
 
 const PORT = parseInt(process.argv[2], 10) || 8182;
 
@@ -40,17 +40,26 @@ function saveTranslation(t) {
   fs.renameSync(tmp, TRANS_PATH);
 }
 
-// Returns the byte length a `fixed` replacement must fit within for a given section/entry.
-// 'fonts' is a fixed-size NUL-padded buffer (LOGFONT lfFaceName) — a shorter name is fine,
-// it just needs to fit; 'dialogue'/'labels' are byte-length-exact slots (see padToFit()).
+// Single-slot "bookmark" — a KR dialogue offset the reviewer explicitly marks (see POST
+// /api/bookmark below), so they can pick up where they left off across a non-linear review
+// pass without it being tied to whatever row happened to be edited/focused last.
+function loadBookmark() {
+  if (!fs.existsSync(BOOKMARK_PATH)) return null;
+  const v = JSON.parse(fs.readFileSync(BOOKMARK_PATH, 'utf8')).offset;
+  return typeof v === 'number' ? v : null;
+}
+function saveBookmark(offset) {
+  fs.writeFileSync(BOOKMARK_PATH, JSON.stringify({ offset }, null, 2));
+}
+
+// Returns the byte length a `fixed` replacement must fit within for a given section/entry —
+// 'dialogue'/'labels' are byte-length-exact slots (see padToFit()).
 function requiredLength(section, entry) {
-  return section === 'fonts' ? entry.maxLength : entry.length;
+  return entry.length;
 }
 
 function encodeFor(section, text) {
-  const encode = section === 'labels' ? HWANSE_NAMES.encodeCp949
-    : section === 'fonts' ? HWANSE_FONT.encodeCp949
-    : HWANSE_TEXT.encodeCp949;
+  const encode = section === 'labels' ? HWANSE_NAMES.encodeCp949 : HWANSE_TEXT.encodeCp949;
   return encode(text);
 }
 
@@ -82,7 +91,7 @@ function countChangedFixed() {
   const head = JSON.parse(headRaw);
   const current = loadTranslation();
   const counts = {};
-  for (const section of ['dialogue', 'labels', 'fonts']) {
+  for (const section of ['dialogue', 'labels']) {
     const headMap = new Map((head[section] || []).map((e) => [e.offset, e.fixed || '']));
     counts[section] = (current[section] || []).reduce(
       (n, e) => n + ((e.fixed || '') !== (headMap.get(e.offset) || '') ? 1 : 0), 0);
@@ -117,6 +126,10 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, loadTranslation());
     }
 
+    if (req.method === 'GET' && url.pathname === '/api/bookmark') {
+      return send(res, 200, { offset: loadBookmark() });
+    }
+
     // Batch save (PC98-style): the client accumulates edits and sends them all at once.
     // Each edit is { key ("section:offset"), section, offset, fixed }. Every edit is
     // validated (and label-padded) individually; valid ones are applied and the file is
@@ -131,7 +144,7 @@ const server = http.createServer(async (req, res) => {
 
       for (const edit of edits) {
         const { key, section, offset } = edit;
-        if (!['dialogue', 'labels', 'fonts'].includes(section)) {
+        if (!['dialogue', 'labels'].includes(section)) {
           results[key] = { ok: false, error: 'bad section' };
           continue;
         }
@@ -145,10 +158,7 @@ const server = http.createServer(async (req, res) => {
           const need = requiredLength(section, entry);
           toSave = padToFit(section, toSave, need);
           const got = encodeFor(section, toSave).length;
-          // 'fonts' just needs to fit the fixed NUL-padded buffer; everything else must
-          // match the slot exactly (see requiredLength()/padToFit()).
-          const okLen = section === 'fonts' ? got <= need : got === need;
-          if (!okLen) {
+          if (got !== need) {
             results[key] = { ok: false, error: `byte ${got}/${need}`, need, got };
             continue;
           }
@@ -162,6 +172,17 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { results });
     }
 
+    // Set the bookmark to an explicit offset (see loadBookmark()/saveBookmark() above) —
+    // a deliberate per-row action, not tied to editing/saving, since review often jumps
+    // around non-linearly and the point of this feature is marking "covered up to here"
+    // on demand rather than wherever an edit happened to land.
+    if (req.method === 'POST' && url.pathname === '/api/bookmark') {
+      const body = JSON.parse(await readBody(req));
+      if (typeof body.offset !== 'number') return send(res, 400, { error: 'offset required' });
+      saveBookmark(body.offset);
+      return send(res, 200, { ok: true, offset: body.offset });
+    }
+
     // Toggle the "reviewed, no change needed" flag on one entry. This is a lightweight
     // per-row action (a bool, no byte validation), so it persists immediately rather than
     // going through the batched text-edit save above. Only meaningful when `fixed` is
@@ -169,7 +190,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'POST' && url.pathname === '/api/confirm') {
       const body = JSON.parse(await readBody(req));
       const { section, offset, confirmed } = body;
-      if (!['dialogue', 'labels', 'fonts'].includes(section)) {
+      if (!['dialogue', 'labels'].includes(section)) {
         return send(res, 400, { error: 'bad section' });
       }
       const t = loadTranslation();
@@ -195,9 +216,9 @@ const server = http.createServer(async (req, res) => {
         const last = out.split('\n').filter(Boolean).pop() || String(e.message || e);
         return send(res, 200, { ok: false, message: `빌드 실패: ${last}` });
       }
-      const m = buildOut.match(/applied: (\d+) dialogue entries, (\d+) label entries, (\d+) font entries/);
+      const m = buildOut.match(/applied: (\d+) dialogue entries, (\d+) label entries/);
       const buildMsg = m
-        ? `대사 ${m[1]}건·라벨 ${m[2]}건·폰트 ${m[3]}건 반영`
+        ? `대사 ${m[1]}건·라벨 ${m[2]}건 반영`
         : buildOut.includes('nothing to do') ? '반영할 항목 없음' : '빌드 완료';
 
       let injectOut;
@@ -234,7 +255,7 @@ const server = http.createServer(async (req, res) => {
           return send(res, 200, { ok: false, message: '변경 사항 없음 — 커밋할 게 없습니다' });
         }
         const body = counts
-          ? `대사 ${counts.dialogue}건·라벨 ${counts.labels}건·폰트 ${counts.fonts}건 수정`
+          ? `대사 ${counts.dialogue}건·라벨 ${counts.labels}건 수정`
           : '';
         const commitArgs = ['commit', '-m', '번역 추가 수정'];
         if (body) commitArgs.push('-m', body);

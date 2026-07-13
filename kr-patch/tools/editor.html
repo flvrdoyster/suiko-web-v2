@@ -5,7 +5,12 @@
 <title>환세취호전 KR 패치 에디터</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Malgun Gothic', -apple-system, sans-serif; background: #1e1e1e; color: #d4d4d4; font-size: 14px; padding: 0 16px 40px; }
+  body { font-family: 'Malgun Gothic', -apple-system, sans-serif; background: #1e1e1e; color: #d4d4d4; font-size: 14px; padding: 0 16px 40px; transition: padding-right .2s; }
+  /* Context panel is position:fixed (so it doesn't scroll away), which means it overlays
+     rather than reflows content by default — push the whole page over by the panel's width
+     instead so nothing sits underneath it. Kept in sync with #contextPanel.open (see
+     showContext()/ctxClose's listener). */
+  body.ctx-open { padding-right: 376px; }
 
   .topbar { position: sticky; top: 0; z-index: 10; background: #181818; padding: 10px 0 8px; border-bottom: 1px solid #333; }
   .topbar-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
@@ -52,6 +57,10 @@
   tr:hover { background: #232323; }
   tr.prob-focus { outline: 2px solid #c04040; outline-offset: -2px; }
   .off { width: 84px; color: #555; font-family: monospace; font-size: 11px; }
+  .off-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
+  .bookmark-btn { background: none; border: none; color: #444; cursor: pointer; font-size: 11px; padding: 0; line-height: 1; filter: grayscale(1); opacity: .5; }
+  .bookmark-btn:hover { opacity: .85; }
+  .bookmark-btn.active { filter: none; opacity: 1; }
   .orig { width: 380px; color: #999; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
   .orig:hover { background: #1e2433; }
   .orig.copied { background: #1a3322; transition: background .1s; }
@@ -61,7 +70,10 @@
      붙는다. 버튼이 숨으면(수정칸에 내용 있으면) textarea가 전체 폭을 차지. */
   .fixed-cell { width: 412px; }
   .fixed-inner { display: flex; align-items: flex-start; gap: 6px; }
-  .kr-input { flex: 1; min-width: 0; background: #252525; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; overflow-y: hidden; line-height: 1.5; }
+  /* resize:vertical (not JS-driven autosize, which forced a layout read on every
+     keystroke) — most dialogue text fits one row anyway; drag to expand for the rare
+     wrapped line instead of resizing automatically. */
+  .kr-input { flex: 1; min-width: 0; background: #252525; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: vertical; overflow-y: auto; line-height: 1.5; }
   .kr-input:focus { border-color: #666; outline: none; }
   .kr-input.modified { border-color: #b87820; background: #1e1600; }
   .kr-input.saved { border-color: #2a8040; }
@@ -92,7 +104,10 @@
   .ctx-header { display: flex; align-items: center; justify-content: space-between; flex: none; margin-bottom: 10px; }
   #contextPanel h3 { font-size: 13px; color: #ccc; }
   #ctxClose { background: none; border: none; color: #888; font-size: 16px; cursor: pointer; }
-  #ctxRows { flex: 1; overflow-y: auto; }
+  /* Scroll still works (wheel/trackpad/keyboard) — just the scrollbar chrome is hidden,
+     since this panel is read-only reference material, not something you drag a thumb in. */
+  #ctxRows { flex: 1; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  #ctxRows::-webkit-scrollbar { display: none; }
   .ctx-row { padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 12px; }
   .ctx-row .ctx-off { color: #556; font-size: 10px; margin-bottom: 3px; }
   .ctx-row .ctx-kr { color: #999; white-space: pre-wrap; word-break: break-all; }
@@ -124,6 +139,7 @@
     <label><input type="checkbox" id="filterPunct"> 문장부호 의심</label>
     <input type="text" id="jumpBox" placeholder="오프셋으로 이동..." style="width:140px">
     <button class="ghost-btn" id="jumpBtn">이동</button>
+    <button class="ghost-btn" id="bookmarkBtn" title="지정해둔 책갈피로 이동">책갈피</button>
     <span class="prob-nav" id="probNav" style="display:none"><span class="prob-count" id="probCount"></span><button id="probPrev">이전</button><button id="probNext">다음</button></span>
   </div>
 </div>
@@ -157,8 +173,7 @@
 <script>
 const SECTIONS = [
   { key: 'dialogue', label: '대사' },
-  { key: 'labels', label: '이름/라벨' },
-  { key: 'fonts', label: '폰트' },
+  { key: 'labels', label: '레이블' },
 ];
 let data = null;
 let curSection = 'dialogue';
@@ -170,6 +185,11 @@ let problemIdx = -1;
 // bake-jp.js, see NOTES.md) already carry the resolved KR<->JP correspondence — no
 // client-side anchor computation needed anymore.
 let dialogueIndexByOffset = new Map();
+// Single-slot bookmark: an offset the reviewer explicitly marks via each row's 🔖 button
+// (see renderRow()) — deliberately NOT tied to editing/focus, since review jumps around
+// non-linearly and the point is marking "covered up to here" on demand. The "책갈피" toolbar
+// button jumps to it; null until either the server has one or one is set this session.
+let bookmarkOffset = null;
 
 function byteLen(s) {
   // rough CP949 estimate for live feedback; server re-validates exactly. ASCII=1, else=2.
@@ -177,11 +197,10 @@ function byteLen(s) {
   for (const ch of s) n += ch.codePointAt(0) <= 0x7f ? 1 : 2;
   return n;
 }
-function need(section, e) { return section === 'fonts' ? e.maxLength : e.length; }
+function need(section, e) { return e.length; }
 
 // Returns 'ok' | 'over' | 'under' | 'odd' — only 'ok' is saveable. Mirrors the server.
 function validity(section, got, n) {
-  if (section === 'fonts') return got <= n ? 'ok' : 'over';
   if (section === 'labels') {
     if (got > n) return 'over';
     if ((n - got) % 2 !== 0) return 'odd';
@@ -198,6 +217,20 @@ function currentFixed(section, e) {
 function esc(s) { return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function escAttr(s) { return esc(s).replace(/"/g,'&quot;'); }
 
+// Debounce: returns a wrapped fn that only actually runs `delay`ms after the last call —
+// used to keep expensive whole-dataset work (full re-render, stats over ~15,000 entries)
+// off the hot path of every single keystroke, which is what was making typing feel laggy.
+function debounce(fn, delay) {
+  let timer = null;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+// recomputeProblems()/updateStats() are hoisted function declarations, safe to reference
+// here even though they're defined further down.
+const scheduleStatsUpdate = debounce(() => { recomputeProblems(); updateStats(); }, 200);
+
 let toastTimer = null;
 function toast(msg) {
   const el = document.getElementById('toast');
@@ -210,6 +243,7 @@ function toast(msg) {
 async function load() {
   data = await fetch('/api/translation').then(r => r.json());
   dialogueIndexByOffset = new Map(data.dialogue.map((e, i) => [e.offset, i]));
+  bookmarkOffset = await fetch('/api/bookmark').then(r => r.json()).then((b) => b.offset);
   renderTabs();
   render();
 }
@@ -310,7 +344,10 @@ function jumpToOffset(offset) {
 // panel is scrolled near either edge (ctxLo/ctxHi track the currently-rendered range).
 // Prepending above needs the scrollHeight-delta trick in ctxExtendUp() — inserting DOM
 // nodes above the viewport otherwise yanks the visible content down as the browser reflows.
-const CONTEXT_INITIAL = 5;
+// Initial window needs to be big enough to actually overflow the panel's height — otherwise
+// there's nothing to scroll and onContextScroll() never fires, which is why this looked
+// like infinite scroll wasn't working at all (11 rows at ±5 didn't reliably overflow).
+const CONTEXT_INITIAL = 20;
 const CONTEXT_STEP = 10;
 const CTX_SCROLL_MARGIN = 80; // px from an edge that triggers loading more in that direction
 let ctxLo = 0, ctxHi = -1;
@@ -378,14 +415,19 @@ function showContext(e) {
   ctxHi = Math.min(data.dialogue.length - 1, idx + CONTEXT_INITIAL);
   for (let i = ctxLo; i <= ctxHi; i++) rows.appendChild(ctxRowEl(i, i === idx));
   panel.classList.add('open');
+  document.body.classList.add('ctx-open');
+  // Guarantee actual overflow regardless of row height/screen size — without this, a short
+  // initial window can end up NOT overflowing the panel, so there's nothing to scroll and
+  // onContextScroll() never fires (looks like "infinite scroll" just doesn't work at all).
+  let guard = 0;
+  while (rows.scrollHeight <= rows.clientHeight
+    && (ctxLo > 0 || ctxHi < data.dialogue.length - 1) && guard++ < 50) {
+    if (ctxLo > 0) ctxExtendUp(rows);
+    if (ctxHi < data.dialogue.length - 1) ctxExtendDown(rows);
+  }
   const current = rows.querySelector('.ctx-row.current');
   if (current) current.scrollIntoView({ block: 'center' });
 }
-
-// Autosize reads scrollHeight (a forced layout). NEVER call it in a loop over all rows —
-// the dialogue section has ~14,700 rows and batch-autosizing them freezes the tab (looked
-// like "no data"). Only the row being focused/edited is autosized; the rest stay rows=1.
-function autosize(ta) { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }
 
 function render() {
   renderTabs();
@@ -432,11 +474,10 @@ function applyFill() {
 
 function lenCellState(section, e, fixed) {
   const n = need(section, e);
-  if (!fixed) return { text: section === 'fonts' ? `0/${n}` : `${n}`, cls: 'empty' };
+  if (!fixed) return { text: `${n}`, cls: 'empty' };
   const got = byteLen(fixed);
   const v = validity(section, got, n);
-  const suffix = section === 'fonts' ? ' 최대' : '';
-  return { text: `${got}/${n}${suffix}`, cls: v === 'ok' ? 'ok' : 'bad' };
+  return { text: `${got}/${n}`, cls: v === 'ok' ? 'ok' : 'bad' };
 }
 
 function renderRow(e) {
@@ -447,7 +488,31 @@ function renderRow(e) {
 
   const tdOff = document.createElement('td');
   tdOff.className = 'off';
-  tdOff.textContent = e.offset; // decimal — matches jp-reference.json
+  const offRow = document.createElement('div');
+  offRow.className = 'off-row';
+  const offText = document.createElement('span');
+  offText.textContent = e.offset; // decimal — matches jp-reference.json
+  offRow.appendChild(offText);
+  if (curSection === 'dialogue') {
+    const bmBtn = document.createElement('button');
+    bmBtn.className = 'bookmark-btn' + (bookmarkOffset === e.offset ? ' active' : '');
+    bmBtn.textContent = '🔖';
+    bmBtn.title = '책갈피로 지정';
+    bmBtn.onclick = async () => {
+      try {
+        await fetch('/api/bookmark', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ offset: e.offset }),
+        });
+        document.querySelectorAll('.bookmark-btn.active').forEach((b) => b.classList.remove('active'));
+        bmBtn.classList.add('active');
+        bookmarkOffset = e.offset;
+        toast('책갈피 지정: ' + e.offset);
+      } catch (err) { toast('책갈피 저장 실패: ' + err); }
+    };
+    offRow.appendChild(bmBtn);
+  }
+  tdOff.appendChild(offRow);
 
   const tdOrig = document.createElement('td');
   tdOrig.className = 'orig';
@@ -462,7 +527,7 @@ function renderRow(e) {
   tdOrig.appendChild(origText);
 
   // Baked KR<->JP correspondence (bake-jp.js, see NOTES.md) — dialogue only, since JP
-  // correspondence is only meaningful for story text, not labels/fonts.
+  // correspondence is only meaningful for story text, not labels.
   if (curSection === 'dialogue' && e.jp) {
     const jpDiv = document.createElement('div');
     jpDiv.className = 'jp-text';
@@ -525,13 +590,13 @@ function renderRow(e) {
 
   // NOT .trim()'d anywhere: leading/trailing spaces (half- or full-width 　) are meaningful
   // game content here (right-aligned rank labels, "지옥　다리후리기"-style compounds).
-  ta.addEventListener('focus', () => { autosize(ta); if (curSection === 'dialogue') showContext(e); });
-  ta.addEventListener('blur', () => { ta.style.height = ''; });
+  ta.addEventListener('focus', () => {
+    if (curSection === 'dialogue') showContext(e);
+  });
   ta.addEventListener('input', () => {
     // Auto-convert typed half-width space / ! / ? to the full-width forms (U+3000/FF01/FF1F)
-    // the game text uses, for dialogue/labels. Skipped for fonts, whose face names use real
-    // ASCII (" ", "환세취호전 ver.1.0"). Each is 1-char→1-char so the caret position stays valid.
-    if (curSection !== 'fonts' && /[ !?]/.test(ta.value)) {
+    // the game text uses. Each is 1-char→1-char so the caret position stays valid.
+    if (/[ !?]/.test(ta.value)) {
       const s = ta.selectionStart, en = ta.selectionEnd;
       ta.value = ta.value.replace(/ /g, '　').replace(/!/g, '！').replace(/\?/g, '？');
       ta.setSelectionRange(s, en);
@@ -540,12 +605,13 @@ function renderRow(e) {
     if (val === (e.fixed || '')) { delete modified[k]; ta.classList.remove('modified'); }
     else { modified[k] = val; ta.classList.add('modified'); }
     ta.classList.remove('saved');
-    autosize(ta);
     refreshLen();
     syncConfirmUI();
-    recomputeProblems();
-    updateStats();
     updateSaveBtn();
+    // recomputeProblems()/updateStats() scan every rendered row / all ~15,000 entries —
+    // debounced so they run once after typing pauses instead of on every keystroke (this
+    // was the main source of the editor feeling laggy while writing).
+    scheduleStatsUpdate();
   });
 
   refreshLen();
@@ -694,7 +760,7 @@ async function deploy() {
 document.getElementById('saveBtn').addEventListener('click', saveAll);
 document.getElementById('buildInjectBtn').addEventListener('click', buildAndInject);
 document.getElementById('deployBtn').addEventListener('click', deploy);
-document.getElementById('searchBox').addEventListener('input', render);
+document.getElementById('searchBox').addEventListener('input', debounce(render, 150));
 document.getElementById('filterExact').addEventListener('change', render);
 document.getElementById('fillApply').addEventListener('click', applyFill);
 document.getElementById('fillInput').addEventListener('keydown', (ev) => {
@@ -711,6 +777,10 @@ document.getElementById('jumpBtn').addEventListener('click', () => {
 document.getElementById('jumpBox').addEventListener('keydown', (ev) => {
   if (ev.key === 'Enter') document.getElementById('jumpBtn').click();
 });
+document.getElementById('bookmarkBtn').addEventListener('click', () => {
+  if (bookmarkOffset === null) { toast('저장된 책갈피가 없습니다'); return; }
+  jumpToOffset(bookmarkOffset);
+});
 document.getElementById('probPrev').addEventListener('click', () => gotoProblem(-1));
 document.getElementById('probNext').addEventListener('click', () => gotoProblem(1));
 
@@ -721,7 +791,10 @@ window.addEventListener('beforeunload', (e) => {
   if (countModifiedAll() > 0) { e.preventDefault(); e.returnValue = ''; }
 });
 
-document.getElementById('ctxClose').addEventListener('click', () => document.getElementById('contextPanel').classList.remove('open'));
+document.getElementById('ctxClose').addEventListener('click', () => {
+  document.getElementById('contextPanel').classList.remove('open');
+  document.body.classList.remove('ctx-open');
+});
 document.getElementById('ctxRows').addEventListener('scroll', onContextScroll);
 
 window.addEventListener('resize', updateStickyOffset);

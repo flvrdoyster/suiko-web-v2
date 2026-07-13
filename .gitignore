@@ -8,3 +8,6 @@ original/
 
 # KR 정식 번역 오타 패치 작업물 — 빌드 산출물만 제외(원본은 original/에 이미 gitignore됨)
 kr-patch/build/
+
+# 에디터 책갈피 — 개인 작업 세션 상태, 프로젝트 데이터 아님 (kr-patch/tools/editor.js)
+kr-patch/translation/bookmark.json
