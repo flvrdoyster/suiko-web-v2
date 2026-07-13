@@ -339,9 +339,11 @@ function filteredRows() {
       else if (!e.text.includes(q) && !fixed.includes(q) && !jp.includes(q)) return false;
     }
     if (probOnly && !hasProblem(curSection, e, fixed)) return false;
-    // "문장부호 의심": dialogue only — jp field (bake-jp.js) only exists there.
+    // "문장부호 의심": dialogue only — jp field (bake-jp.js) only exists there. 이미 수정했거나
+    // (fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
     if (punctOnly) {
       if (curSection !== 'dialogue') return false;
+      if (fixed || e.confirmed) return false;
       if (!punctSuspect(fixed, e)) return false;
     }
     return true;
