@@ -48,6 +48,15 @@
   .fill-bar button:hover { background: #333; color: #ddd; }
   .fill-bar .fill-info { color: #666; white-space: nowrap; }
 
+  /* Floating pill, not in document flow — in-flow bars (like .fill-bar above) push the
+     whole table down every time they show/hide, which felt laggy for something that
+     appears/disappears on every click. Fixed position = no reflow, and it's small/plain
+     enough to stay out of the way. */
+  #bulkBar { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: #1a1a1a; border: 1px solid #3a3a3a; border-radius: 20px; padding: 6px 8px 6px 14px; display: flex; gap: 8px; align-items: center; font-size: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.5); z-index: 60; }
+  #bulkBar .fill-info { color: #999; white-space: nowrap; }
+  #bulkBar button { background: #2a2a2a; color: #bbb; border: 1px solid #3a3a3a; padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer; white-space: nowrap; }
+  #bulkBar button:hover { background: #333; color: #ddd; }
+
   /* 고정폭 레이아웃(PC98 방식): table-layout:fixed + 고정 px 컬럼. 브라우저 크기와
      무관하게 컬럼 폭이 일정 — 리사이즈마다 재계산·재배치 없음, 헤더/본문 정렬도 일치.
      OFF 84 + 원문 380 + 수정 412 + Byte 84 = 960 */
@@ -56,7 +65,10 @@
   td { padding: 5px 8px; border-bottom: 1px solid #252525; vertical-align: top; }
   tr:hover { background: #232323; }
   tr.prob-focus { outline: 2px solid #c04040; outline-offset: -2px; }
-  .off { width: 84px; color: #555; font-family: monospace; font-size: 11px; }
+  /* Multi-select (gensei-pc98 editor.py 이식): OFF 칸을 두 번 클릭해 범위 선택. */
+  tr.row-selected { background: #1a2840 !important; }
+  tr.range-start { background: #252000 !important; }
+  .off { width: 84px; color: #555; font-family: monospace; font-size: 11px; cursor: pointer; }
   .off-row { display: flex; align-items: center; justify-content: space-between; gap: 4px; }
   .bookmark-btn { background: none; border: none; color: #444; cursor: pointer; font-size: 11px; padding: 0; line-height: 1; filter: grayscale(1); opacity: .5; }
   .bookmark-btn:hover { opacity: .85; }
@@ -150,6 +162,12 @@
   <button id="fillApply">전체 적용</button>
 </div>
 
+<div id="bulkBar" style="display:none">
+  <span class="fill-info" id="bulkCount"></span>
+  <button id="bulkCopyJp">JP 복사</button>
+  <button id="bulkCancel">선택 해제</button>
+</div>
+
 <table>
   <thead><tr>
     <th class="off">OFF</th>
@@ -185,6 +203,12 @@ let problemIdx = -1;
 // bake-jp.js, see NOTES.md) already carry the resolved KR<->JP correspondence — no
 // client-side anchor computation needed anymore.
 let dialogueIndexByOffset = new Map();
+// Multi-select (gensei-pc98 editor.py 이식): two-click range select on the OFF column.
+// First click sets rangeStart (an index into the currently-rendered row order, same order
+// filteredRows() produces — stable between the two clicks since neither filters nor search
+// change in between); second click selects everything between the two as a range.
+let selection = new Set();
+let rangeStart = null;
 // Single-slot bookmark: an offset the reviewer explicitly marks via each row's 🔖 button
 // (see renderRow()) — deliberately NOT tied to editing/focus, since review jumps around
 // non-linearly and the point is marking "covered up to here" on demand. The "책갈피" toolbar
@@ -256,7 +280,13 @@ function renderTabs() {
     const list = data[s.key] || [];
     btn.textContent = `${s.label} (${list.length})`;
     btn.className = s.key === curSection ? 'active' : '';
-    btn.onclick = () => { curSection = s.key; render(); };
+    btn.onclick = () => {
+      curSection = s.key;
+      selection.clear();
+      rangeStart = null;
+      updateBulkBar();
+      render();
+    };
     tabs.appendChild(btn);
   }
 }
@@ -333,6 +363,74 @@ function jumpToOffset(offset) {
   row.classList.add('jump-focus');
   setTimeout(() => row.classList.remove('jump-focus'), 2000);
 }
+
+function updateBulkBar() {
+  const bar = document.getElementById('bulkBar');
+  if (selection.size === 0) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  document.getElementById('bulkCount').textContent = selection.size + '행 선택';
+}
+
+// OFF 칸 클릭으로 범위 선택 (gensei-pc98 이식): 첫 클릭이 시작점, 두 번째 클릭이 끝점 —
+// 그 사이 전부가 선택된다. 같은 행을 다시 클릭하면 선택 해제. rangeStart는 현재 렌더된
+// 행 순서상의 인덱스라서, 두 클릭 사이에 필터/검색이 안 바뀐다는 전제로만 유효하다.
+// Toggles .row-selected/.range-start on the already-rendered <tr> elements directly —
+// NOT a full render(), which would rebuild the whole tbody (up to ~14,800 rows) just to
+// flip a highlight class. That full-rebuild-per-click was what made selecting feel slow.
+function applySelectionClasses(trs) {
+  (trs || Array.from(document.getElementById('tbody').children)).forEach((tr, i) => {
+    tr.classList.toggle('row-selected', selection.has(tr.dataset.key));
+    tr.classList.toggle('range-start', rangeStart !== null && i === rangeStart);
+  });
+}
+
+document.getElementById('tbody').addEventListener('click', (ev) => {
+  const offCell = ev.target.closest('td.off');
+  if (!offCell || ev.target.closest('.bookmark-btn')) return;
+  const tr = offCell.closest('tr');
+  if (!tr) return;
+  const trs = Array.from(document.getElementById('tbody').children);
+  const idx = trs.indexOf(tr);
+  if (idx < 0) return;
+
+  if (rangeStart === null) {
+    selection.clear();
+    rangeStart = idx;
+  } else if (rangeStart === idx) {
+    rangeStart = null;
+    selection.clear();
+  } else {
+    const lo = Math.min(rangeStart, idx), hi = Math.max(rangeStart, idx);
+    selection.clear();
+    for (let i = lo; i <= hi; i++) selection.add(trs[i].dataset.key);
+    rangeStart = null;
+  }
+  updateBulkBar();
+  applySelectionClasses(trs);
+});
+
+function bulkCopyJp() {
+  const texts = [];
+  for (const key of selection) {
+    const section = key.slice(0, key.indexOf(':'));
+    const offset = parseInt(key.slice(key.indexOf(':') + 1), 10);
+    const entry = (data[section] || []).find((x) => x.offset === offset);
+    if (entry && entry.jp) texts.push(entry.jp);
+  }
+  navigator.clipboard && navigator.clipboard.writeText(texts.join('\n'));
+  toast(texts.length + '건 JP 복사됨');
+  selection.clear();
+  rangeStart = null;
+  updateBulkBar();
+  applySelectionClasses();
+}
+document.getElementById('bulkCopyJp').addEventListener('click', bulkCopyJp);
+document.getElementById('bulkCancel').addEventListener('click', () => {
+  selection.clear();
+  rangeStart = null;
+  updateBulkBar();
+  applySelectionClasses();
+});
 
 // Context panel: when a "fixed" textarea is focused, show the row's neighbors in
 // original-file order (adjacent index in data.dialogue — same order the text is laid out
@@ -435,7 +533,7 @@ function render() {
   const tbody = document.getElementById('tbody');
   tbody.innerHTML = '';
   const frag = document.createDocumentFragment();
-  for (const e of rows) frag.appendChild(renderRow(e));
+  for (let i = 0; i < rows.length; i++) frag.appendChild(renderRow(rows[i], i));
   tbody.appendChild(frag);
   recomputeProblems();
   updateStats();
@@ -480,11 +578,14 @@ function lenCellState(section, e, fixed) {
   return { text: `${got}/${n}`, cls: v === 'ok' ? 'ok' : 'bad' };
 }
 
-function renderRow(e) {
+function renderRow(e, idx) {
   const tr = document.createElement('tr');
   tr.dataset.offset = e.offset;
   const k = keyOf(curSection, e);
+  tr.dataset.key = k;
   const fixed = currentFixed(curSection, e);
+  if (selection.has(k)) tr.classList.add('row-selected');
+  if (rangeStart !== null && idx === rangeStart) tr.classList.add('range-start');
 
   const tdOff = document.createElement('td');
   tdOff.className = 'off';
