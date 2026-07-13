@@ -123,7 +123,7 @@
       "offset": 254302,
       "length": 32,
       "text": "이런　타입의　아가씨는　도대체…",
-      "fixed": "이런　타입의　아가씨는　불편해…",
+      "fixed": "이런　타입의　아가씨는　불편한데",
       "confirmed": false,
       "jp": "やれやれ　この手の娘は苦手じゃな",
       "jpOffset": 1028016
@@ -1167,7 +1167,7 @@
       "offset": 262712,
       "length": 26,
       "text": "「엇！？　열쇠가　잠겼잖아",
-      "fixed": "",
+      "fixed": "「엇！？　열쇠로　잠겼잖아",
       "confirmed": false,
       "jp": "「むっ！？　カギがかかっておるな",
       "jpOffset": 359658
@@ -1177,7 +1177,7 @@
       "length": 28,
       "text": "　게다가　열쇠구멍도　없고…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　しかも　カギ穴らしきものがない…",
       "jpOffset": 359694
     },
@@ -1186,7 +1186,7 @@
       "length": 28,
       "text": "　여긴　들어갈　수　없겠는걸",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ここは入れそうにないのぅ",
       "jpOffset": 359736
     },
@@ -1194,7 +1194,7 @@
       "offset": 262810,
       "length": 24,
       "text": "　다른　곳을　찾아보자！",
-      "fixed": "",
+      "fixed": "　다른　곳을　찾아볼까　",
       "confirmed": false,
       "jp": "　他をあたるとするかの",
       "jpOffset": 359766
@@ -1204,7 +1204,7 @@
       "length": 22,
       "text": "낡은　보물상자가　있다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "古い宝箱があります",
       "jpOffset": 359808
     },
@@ -1222,7 +1222,7 @@
       "length": 10,
       "text": "　열어본다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　開ける",
       "jpOffset": 359850
     },
@@ -1231,7 +1231,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 359862
     },
@@ -1240,7 +1240,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 359896
     },
@@ -1248,7 +1248,7 @@
       "offset": 262958,
       "length": 18,
       "text": "「열쇠가　잠긴　것",
-      "fixed": "",
+      "fixed": "「열쇠로　잠긴　것",
       "confirmed": false,
       "jp": "「カギはかかって",
       "jpOffset": 359910
@@ -1258,7 +1258,7 @@
       "length": 14,
       "text": "　같진　않구만",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　おらぬらしいな",
       "jpOffset": 359930
     },
@@ -1267,7 +1267,7 @@
       "length": 24,
       "text": "「수면비약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を見つけました",
       "jpOffset": 359966
     },
@@ -1276,7 +1276,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360014
     },
@@ -1284,7 +1284,7 @@
       "offset": 263068,
       "length": 16,
       "text": "「이건　뭐지？！",
-      "fixed": "",
+      "fixed": "「이건　뭐지！？",
       "confirmed": false,
       "jp": "「な　なんじゃ！？",
       "jpOffset": 360028
@@ -1294,7 +1294,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360070
     },
@@ -1302,7 +1302,7 @@
       "offset": 263118,
       "length": 12,
       "text": "「휴우∼정말",
-      "fixed": "",
+      "fixed": "「후∼　제법",
       "confirmed": false,
       "jp": "「ふ～　なかなか",
       "jpOffset": 360084
@@ -1311,7 +1311,7 @@
       "offset": 263134,
       "length": 12,
       "text": "　힘들었다！",
-      "fixed": "",
+      "fixed": "　힘들었는걸",
       "confirmed": false,
       "jp": "　しんどかったの",
       "jpOffset": 360104
@@ -1321,7 +1321,7 @@
       "length": 24,
       "text": "「수면비약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 360144
     },
@@ -1330,7 +1330,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360210
     },
@@ -1339,7 +1339,7 @@
       "length": 28,
       "text": "「저　석상을　치우지　않으면",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「あの石像を倒さねば",
       "jpOffset": 360224
     },
@@ -1348,7 +1348,7 @@
       "length": 24,
       "text": "　아이템은　못　얻겠군…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　アイテムは手に入らぬか…",
       "jpOffset": 360248
     },
@@ -1357,7 +1357,7 @@
       "length": 24,
       "text": "「수면비약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 360306
     },
@@ -1366,7 +1366,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360372
     },
@@ -1374,7 +1374,7 @@
       "offset": 263398,
       "length": 32,
       "text": "「이야∼정말　잘　만든　석상이네",
-      "fixed": "",
+      "fixed": "「호오∼정말　잘　만든　석상이네",
       "confirmed": false,
       "jp": "「ほ～　良くできた石像じゃの",
       "jpOffset": 360386
@@ -1384,7 +1384,7 @@
       "length": 28,
       "text": "　금방이라도　움직일　것같군",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　今にも動きだしそうじゃ",
       "jpOffset": 360418
     },
@@ -1447,7 +1447,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360632
     },
@@ -1464,7 +1464,7 @@
       "offset": 263684,
       "length": 22,
       "text": "　정말　운이　좋았어！",
-      "fixed": "",
+      "fixed": "　정말　운이　좋았어　",
       "confirmed": false,
       "jp": "　我ながら運がよかったわい",
       "jpOffset": 360672
@@ -1474,7 +1474,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360722
     },
@@ -1483,7 +1483,7 @@
       "length": 18,
       "text": "「…부서져버렸으니",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「…さすがに　壊れてしまっては",
       "jpOffset": 360736
     },
@@ -1501,7 +1501,7 @@
       "length": 4,
       "text": "석판",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "石版",
       "jpOffset": 360814
     },
@@ -1509,7 +1509,7 @@
       "offset": 263812,
       "length": 42,
       "text": "「세개의　발판을　세명이　동시에　밟아라！",
-      "fixed": "",
+      "fixed": "「３개의　발판을　３명이　동시에　밟아라　",
       "confirmed": false,
       "jp": "「３つの敷石を３名で同時にふめ",
       "jpOffset": 360822
@@ -1519,7 +1519,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 360864
     },
@@ -1527,7 +1527,7 @@
       "offset": 263876,
       "length": 26,
       "text": "「세명？　그렇다면　혼자선",
-      "fixed": "",
+      "fixed": "「３명？　그렇다면　혼자선",
       "confirmed": false,
       "jp": "「３名？　ワシ一人では",
       "jpOffset": 360878
@@ -1537,7 +1537,7 @@
       "length": 22,
       "text": "　별　도리가　없겠군…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　どうしようもないのぅ…",
       "jpOffset": 360904
     },
@@ -1545,7 +1545,7 @@
       "offset": 263936,
       "length": 26,
       "text": "　일단　이곳은　단념하자！",
-      "fixed": "",
+      "fixed": "　여기는　포기하도록　할까",
       "confirmed": false,
       "jp": "　ここはあきらめるとするかの",
       "jpOffset": 360936
@@ -1554,7 +1554,7 @@
       "offset": 263966,
       "length": 28,
       "text": "　단념은　빠를수록　좋지！！",
-      "fixed": "　단념은　빠를수록　좋지　　",
+      "fixed": "　단념은　빠를　수록　좋지　",
       "confirmed": false,
       "jp": "　物事は　あきらめがカンジンじゃ",
       "jpOffset": 360968
@@ -1564,7 +1564,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 409192
     },
@@ -1582,7 +1582,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 409250
     },
@@ -1590,7 +1590,7 @@
       "offset": 311626,
       "length": 24,
       "text": "「응，이곳이　입구예요！",
-      "fixed": "",
+      "fixed": "「응，이곳이　입구예요　",
       "confirmed": false,
       "jp": "「ううん　ここは入口よ",
       "jpOffset": 409264
@@ -1600,7 +1600,7 @@
       "length": 22,
       "text": "　이　플로어　어딘가에",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　このフロアのどこかに",
       "jpOffset": 409290
     },
@@ -1609,7 +1609,7 @@
       "length": 36,
       "text": "　안내를　하는　해골이　있을　테니까",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　案内役のガイコツがいるハズだから",
       "jpOffset": 409320
     },
@@ -1617,7 +1617,7 @@
       "offset": 311724,
       "length": 34,
       "text": "　일단　그곳까지　가보기로　하죠！",
-      "fixed": "",
+      "fixed": "　일단　그곳까지　가보기로　하죠　",
       "confirmed": false,
       "jp": "　とりあえず　そこまで行きましょ",
       "jpOffset": 409358
@@ -1627,7 +1627,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 409410
     },
@@ -1654,7 +1654,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 409488
     },
@@ -1663,7 +1663,7 @@
       "length": 8,
       "text": "「코스？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「コース？",
       "jpOffset": 409502
     },
@@ -1672,7 +1672,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 409528
     },
@@ -1681,7 +1681,7 @@
       "length": 36,
       "text": "「수련의　난이도를　선택하는　거예요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「修業の難易度を選べるのよ",
       "jpOffset": 409542
     },
@@ -1689,7 +1689,7 @@
       "offset": 311938,
       "length": 20,
       "text": "　어서　선택하세요！",
-      "fixed": "",
+      "fixed": "　뭘로　할까요？　　",
       "confirmed": false,
       "jp": "　どれにする？",
       "jpOffset": 409572
@@ -1699,7 +1699,7 @@
       "length": 34,
       "text": "　간단한　건　３플로어로　끝나지만",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　簡単なのは３フロアで終わりだけど",
       "jpOffset": 409594
     },
@@ -1707,7 +1707,7 @@
       "offset": 312004,
       "length": 28,
       "text": "　다른　건　얼마나　되는　지",
-      "fixed": "　다른　건　얼마나　되는지　",
+      "fixed": "　다른　건　얼마나　이어질지",
       "confirmed": false,
       "jp": "　他はどれくらい行けばいいのか",
       "jpOffset": 409632
@@ -1716,7 +1716,7 @@
       "offset": 312036,
       "length": 28,
       "text": "　저로서도　알　수　없어요！",
-      "fixed": "",
+      "fixed": "　저도　잘　몰라요　　　　　",
       "confirmed": false,
       "jp": "　わたしにもわからないわ",
       "jpOffset": 409666
@@ -1726,7 +1726,7 @@
       "length": 14,
       "text": "　간단한　코스",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　お手軽コース",
       "jpOffset": 409702
     },
@@ -1735,7 +1735,7 @@
       "length": 14,
       "text": "　적당한　코스",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　手応えコース",
       "jpOffset": 409720
     },
@@ -1744,7 +1744,7 @@
       "length": 14,
       "text": "　초난관　코스",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　超難関コース",
       "jpOffset": 409738
     },
@@ -1753,7 +1753,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 409772
     },
@@ -1762,7 +1762,7 @@
       "length": 28,
       "text": "「당신들도　꽤나　괴짜로군요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「アンタタチモ　物好キダネ",
       "jpOffset": 409784
     },
@@ -1771,7 +1771,7 @@
       "length": 26,
       "text": "　조금　전에도　두　팀이나",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　チョット前ニモ　２組ホド",
       "jpOffset": 409814
     },
@@ -1780,7 +1780,7 @@
       "length": 26,
       "text": "　도전하러　왔었는데…혹시",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　挑戦シニキタガ　アンタタチ",
       "jpOffset": 409848
     },
@@ -1789,7 +1789,7 @@
       "length": 22,
       "text": "　아는　사람들인가요？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　知リ合イカネ？",
       "jpOffset": 409880
     },
@@ -1798,7 +1798,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 409908
     },
@@ -1807,7 +1807,7 @@
       "length": 22,
       "text": "「응？　두　팀씩이나？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「え？　２組も来たの？",
       "jpOffset": 409922
     },
@@ -1815,7 +1815,7 @@
       "offset": 312318,
       "length": 24,
       "text": "　정말　희한한　일이네！",
-      "fixed": "",
+      "fixed": "　정말　희한한　일이네…",
       "confirmed": false,
       "jp": "　珍しいこともあるものね…",
       "jpOffset": 409948
@@ -1825,7 +1825,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 409994
     },
@@ -1834,7 +1834,7 @@
       "length": 22,
       "text": "「어라？　또　왔군요？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「オヤ　マタ来タンデスカ？",
       "jpOffset": 410006
     },
@@ -1843,7 +1843,7 @@
       "length": 26,
       "text": "　이번에　어떤　코스를…？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　今度ハ　ドノコースデ？",
       "jpOffset": 410036
     },
@@ -1852,7 +1852,7 @@
       "length": 14,
       "text": "　간단한　코스",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　お手軽コース",
       "jpOffset": 410068
     },
@@ -1861,7 +1861,7 @@
       "length": 14,
       "text": "　적당한　코스",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　手応えコース",
       "jpOffset": 410086
     },
@@ -1870,7 +1870,7 @@
       "length": 14,
       "text": "　초난관　코스",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　超難関コース",
       "jpOffset": 410104
     },
@@ -1879,7 +1879,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 410138
     },
@@ -1897,7 +1897,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 410184
     },
@@ -1905,7 +1905,7 @@
       "offset": 312554,
       "length": 14,
       "text": "「안열리는데…",
-      "fixed": "",
+      "fixed": "「안　열리네…",
       "confirmed": false,
       "jp": "「開かねーな…",
       "jpOffset": 410198
@@ -1915,7 +1915,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 410228
     },
@@ -1924,7 +1924,7 @@
       "length": 24,
       "text": "「해골이　열어　줄거예요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ガイコツに開けてもらうのよ",
       "jpOffset": 410242
     },
@@ -1942,7 +1942,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 410324
     },
@@ -1959,7 +1959,7 @@
       "offset": 312708,
       "length": 20,
       "text": "　뭐가　들었을까나？",
-      "fixed": "",
+      "fixed": "　뭐가　들었으려나？",
       "confirmed": false,
       "jp": "　中身は何かな～？",
       "jpOffset": 410358
@@ -1968,7 +1968,7 @@
       "offset": 312736,
       "length": 12,
       "text": "열어볼까요？",
-      "fixed": "",
+      "fixed": "열어볼까？　",
       "confirmed": false,
       "jp": "あけますか？",
       "jpOffset": 410384
@@ -1987,7 +1987,7 @@
       "length": 8,
       "text": "　내비둬",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 410414
     },
@@ -1996,7 +1996,7 @@
       "length": 20,
       "text": "「약초」가　들어있다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「薬草」でした",
       "jpOffset": 410442
     },
@@ -2004,7 +2004,7 @@
       "offset": 312818,
       "length": 14,
       "text": "가져　갈까요？",
-      "fixed": "",
+      "fixed": "가지고　갈까？",
       "confirmed": false,
       "jp": "持っていきますか？",
       "jpOffset": 410466
@@ -2014,7 +2014,7 @@
       "length": 4,
       "text": "　응",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 410492
     },
@@ -2023,7 +2023,7 @@
       "length": 6,
       "text": "　싫어",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 410502
     },
@@ -2032,7 +2032,7 @@
       "length": 24,
       "text": "「약초」를　손에　넣었다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「薬草」を手に入れました",
       "jpOffset": 410542
     },
@@ -2041,7 +2041,7 @@
       "length": 10,
       "text": "「약초」가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「薬草」は",
       "jpOffset": 410598
     },
@@ -2050,7 +2050,7 @@
       "length": 12,
       "text": "사라져버렸다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "消えてなくなりました",
       "jpOffset": 410612
     },
@@ -2059,7 +2059,7 @@
       "length": 18,
       "text": "１０Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１０Ｇを見つけました",
       "jpOffset": 410648
     },
@@ -2077,7 +2077,7 @@
       "length": 22,
       "text": "「해독초」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「毒消し薬」でした",
       "jpOffset": 410742
     },
@@ -2085,7 +2085,7 @@
       "offset": 313102,
       "length": 16,
       "text": "가지고　갈까요？",
-      "fixed": "",
+      "fixed": "가지고　갈까？　",
       "confirmed": false,
       "jp": "持っていきますか？",
       "jpOffset": 410770
@@ -2104,7 +2104,7 @@
       "length": 8,
       "text": "　싫은데",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 410806
     },
@@ -2113,7 +2113,7 @@
       "length": 22,
       "text": "「해독초」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「毒消し薬」を手に入れました",
       "jpOffset": 410846
     },
@@ -2122,7 +2122,7 @@
       "length": 12,
       "text": "「해독초」가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「毒消し薬」は",
       "jpOffset": 410906
     },
@@ -2131,7 +2131,7 @@
       "length": 12,
       "text": "사라져버렸다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "消えてなくなりました",
       "jpOffset": 410924
     },
@@ -2140,7 +2140,7 @@
       "length": 18,
       "text": "１５Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１５Ｇを見つけました",
       "jpOffset": 410960
     },
@@ -2148,7 +2148,7 @@
       "offset": 313312,
       "length": 20,
       "text": "１５Ｇ를　줏어버렸다",
-      "fixed": "１５Ｇ를　주워버렸다",
+      "fixed": "１５Ｇ를　얻었다　　",
       "confirmed": false,
       "jp": "１５Ｇを手に入れました",
       "jpOffset": 411000
@@ -2158,7 +2158,7 @@
       "length": 30,
       "text": "「리프레시　워터」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「リフレッシュの水」でした",
       "jpOffset": 411054
     },
@@ -2166,7 +2166,7 @@
       "offset": 313398,
       "length": 14,
       "text": "갖고　갈까요？",
-      "fixed": "가져　갈까요？",
+      "fixed": "가지고　갈까？",
       "confirmed": false,
       "jp": "持っていきますか？",
       "jpOffset": 411090
@@ -2176,7 +2176,7 @@
       "length": 14,
       "text": "　말이라고　해",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 411116
     },
@@ -2185,7 +2185,7 @@
       "length": 10,
       "text": "　싫다니까",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 411126
     },
@@ -2194,7 +2194,7 @@
       "length": 28,
       "text": "「리프레시　워터」를　챙겼다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「リフレッシュの水」を手に入れました",
       "jpOffset": 411166
     },
@@ -2203,7 +2203,7 @@
       "length": 20,
       "text": "「리프레시　워터」는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「リフレッシュの水」は",
       "jpOffset": 411234
     },
@@ -2212,7 +2212,7 @@
       "length": 22,
       "text": "조용히　사라졌다（？）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "消えてなくなりました",
       "jpOffset": 411260
     },
@@ -2221,7 +2221,7 @@
       "length": 20,
       "text": "１００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１００Ｇを見つけました",
       "jpOffset": 411296
     },
@@ -2239,7 +2239,7 @@
       "length": 28,
       "text": "「마법의　물약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「魔法の水薬」でした",
       "jpOffset": 411394
     },
@@ -2247,7 +2247,7 @@
       "offset": 313730,
       "length": 16,
       "text": "가지고　갈까요？",
-      "fixed": "",
+      "fixed": "가지고　갈까？　",
       "confirmed": false,
       "jp": "持っていきますか？",
       "jpOffset": 411424
@@ -2266,7 +2266,7 @@
       "length": 6,
       "text": "　싫어",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 411460
     },
@@ -2275,7 +2275,7 @@
       "length": 26,
       "text": "「마법의　물약」을　챙겼다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を手に入れました",
       "jpOffset": 411500
     },
@@ -2293,7 +2293,7 @@
       "length": 22,
       "text": "흔적도　없이　사라졌다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "消えてなくなりました",
       "jpOffset": 411582
     },
@@ -2302,7 +2302,7 @@
       "length": 20,
       "text": "２００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "２００Ｇを見つけました",
       "jpOffset": 411618
     },
@@ -2311,7 +2311,7 @@
       "length": 24,
       "text": "２００Ｇ를　손에　넣었다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "２００Ｇを手に入れました",
       "jpOffset": 411660
     },
@@ -2329,7 +2329,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 411748
     },
@@ -2346,7 +2346,7 @@
       "offset": 314092,
       "length": 14,
       "text": "　함정인가？！",
-      "fixed": "",
+      "fixed": "　함정이었나！",
       "confirmed": false,
       "jp": "　これはワナか！",
       "jpOffset": 411782
@@ -2355,7 +2355,7 @@
       "offset": 314126,
       "length": 28,
       "text": "상자　안은　텅텅　비어있었다",
-      "fixed": "",
+      "fixed": "상자　안은　텅　비어있다　　",
       "confirmed": false,
       "jp": "宝箱はカラッポでした",
       "jpOffset": 411818
@@ -2365,7 +2365,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 411850
     },
@@ -2373,7 +2373,7 @@
       "offset": 314176,
       "length": 18,
       "text": "「쳇！　헛물켰다∼",
-      "fixed": "",
+      "fixed": "「쳇　꽝인건가∼　",
       "confirmed": false,
       "jp": "「ちぇっ　スカかよ～",
       "jpOffset": 411864
@@ -2383,7 +2383,7 @@
       "length": 22,
       "text": "「마수석」이　들어있다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「魔獣石」でした",
       "jpOffset": 411904
     },
@@ -2391,7 +2391,7 @@
       "offset": 314240,
       "length": 18,
       "text": "갖고　가버릴까요？",
-      "fixed": "",
+      "fixed": "가지고　갈까？　　",
       "confirmed": false,
       "jp": "持っていきますか？",
       "jpOffset": 411930
@@ -2400,7 +2400,7 @@
       "offset": 314266,
       "length": 10,
       "text": "　물론이지",
-      "fixed": "",
+      "fixed": "　물론　　",
       "confirmed": false,
       "jp": "　はい",
       "jpOffset": 411956
@@ -2409,7 +2409,7 @@
       "offset": 314280,
       "length": 8,
       "text": "　그냥둬",
-      "fixed": "",
+      "fixed": "　싫어　",
       "confirmed": false,
       "jp": "　いいえ",
       "jpOffset": 411966
@@ -2419,7 +2419,7 @@
       "length": 26,
       "text": "「마수석」을　손에　넣었다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔獣石」を手に入れました",
       "jpOffset": 412006
     },
@@ -2428,7 +2428,7 @@
       "length": 12,
       "text": "「마수석」은",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔獣石」は",
       "jpOffset": 412064
     },
@@ -2437,7 +2437,7 @@
       "length": 22,
       "text": "어디론가　사라져버렸다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "消えてなくなりました",
       "jpOffset": 412080
     },
@@ -2446,7 +2446,7 @@
       "length": 22,
       "text": "１０００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１０００Ｇを見つけました",
       "jpOffset": 412116
     },
@@ -2455,7 +2455,7 @@
       "length": 26,
       "text": "１０００Ｇ를　손에　넣었다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１０００Ｇを手に入れました",
       "jpOffset": 412160
     },
@@ -2464,7 +2464,7 @@
       "length": 32,
       "text": "「회복의　두루마리」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「回復の巻物」でした",
       "jpOffset": 412218
     },
@@ -2472,7 +2472,7 @@
       "offset": 314568,
       "length": 32,
       "text": "전원의　ＨＰ와　ＭＰ　회복아이템",
-      "fixed": "",
+      "fixed": "전원의　ＨＰ와　ＭＰ를　회복한다",
       "confirmed": false,
       "jp": "使うと全員のＨＰとＭＰが回復します",
       "jpOffset": 412248
@@ -2481,7 +2481,7 @@
       "offset": 314604,
       "length": 12,
       "text": "사용할까요？",
-      "fixed": "",
+      "fixed": "사용할까？　",
       "confirmed": false,
       "jp": "使いますか？",
       "jpOffset": 412286
@@ -2491,7 +2491,7 @@
       "length": 6,
       "text": "　물론",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 412306
     },
@@ -2499,7 +2499,7 @@
       "offset": 314634,
       "length": 8,
       "text": "　노우！",
-      "fixed": "",
+      "fixed": "　싫어　",
       "confirmed": false,
       "jp": "　いいえ",
       "jpOffset": 412316
@@ -2509,7 +2509,7 @@
       "length": 22,
       "text": "「회복의　두루마리」가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「回復の巻物」は",
       "jpOffset": 412344
     },
@@ -2518,7 +2518,7 @@
       "length": 12,
       "text": "사라져버렸다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "消えてなくなりました",
       "jpOffset": 412364
     },
@@ -2526,7 +2526,7 @@
       "offset": 314716,
       "length": 32,
       "text": "안에서　강렬한　사기가　발생했다",
-      "fixed": "",
+      "fixed": "사악한　기운이　뿜어져　나왔다　",
       "confirmed": false,
       "jp": "中から強烈な邪気が発せられました！",
       "jpOffset": 412400
@@ -2536,7 +2536,7 @@
       "length": 20,
       "text": "전원의　ＭＰ가　０이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "全員のＭＰが０に",
       "jpOffset": 412438
     },
@@ -2545,7 +2545,7 @@
       "length": 12,
       "text": "되어버렸다！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "なってしまいました！",
       "jpOffset": 412458
     },
@@ -2554,7 +2554,7 @@
       "length": 32,
       "text": "「탈출의　두루마리」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「脱出の巻物」でした",
       "jpOffset": 412494
     },
@@ -2571,7 +2571,7 @@
       "offset": 314880,
       "length": 12,
       "text": "사용할까요？",
-      "fixed": "",
+      "fixed": "사용할까？　",
       "confirmed": false,
       "jp": "使いますか？",
       "jpOffset": 412548
@@ -2581,7 +2581,7 @@
       "length": 4,
       "text": "　네",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 412568
     },
@@ -2590,7 +2590,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 412578
     },
@@ -2599,7 +2599,7 @@
       "length": 22,
       "text": "「탈출의　두루마리」가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「脱出の巻物」は",
       "jpOffset": 412606
     },
@@ -2607,7 +2607,7 @@
       "offset": 314962,
       "length": 14,
       "text": "사라져버렸다！",
-      "fixed": "",
+      "fixed": "사라져버렸다　",
       "confirmed": false,
       "jp": "消えてなくなりました",
       "jpOffset": 412626
@@ -2617,7 +2617,7 @@
       "length": 24,
       "text": "「횃불세트」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "中身は「たいまつセット」でした",
       "jpOffset": 412662
     },
@@ -2625,7 +2625,7 @@
       "offset": 315020,
       "length": 16,
       "text": "가지고　갈까요？",
-      "fixed": "",
+      "fixed": "가지고　갈까？　",
       "confirmed": false,
       "jp": "持っていきますか？",
       "jpOffset": 412696
@@ -2635,7 +2635,7 @@
       "length": 4,
       "text": "　네",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 412722
     },
@@ -2644,7 +2644,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 412732
     },
@@ -2653,7 +2653,7 @@
       "length": 28,
       "text": "「횃불세트」를　손에　넣었다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「たいまつセット」を手に入れました",
       "jpOffset": 412772
     },
@@ -2662,7 +2662,7 @@
       "length": 14,
       "text": "「횃불세트」는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「たいまつセット」は",
       "jpOffset": 412838
     },
@@ -2670,7 +2670,7 @@
       "offset": 315170,
       "length": 14,
       "text": "사라져버렸다！",
-      "fixed": "",
+      "fixed": "사라져버렸다　",
       "confirmed": false,
       "jp": "消えてなくなりました",
       "jpOffset": 412862
@@ -2680,7 +2680,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 412902
     },
@@ -2707,7 +2707,7 @@
       "length": 32,
       "text": "　전멸해버리면　이　안에서　얻은",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　修業の途中で全滅すると",
       "jpOffset": 412988
     },
@@ -2716,7 +2716,7 @@
       "length": 24,
       "text": "　경험치와　레벨은　모두",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　この中で得た経験やレベルは",
       "jpOffset": 413016
     },
@@ -2724,7 +2724,7 @@
       "offset": 315352,
       "length": 26,
       "text": "　사라져버린다는　거예요！",
-      "fixed": "",
+      "fixed": "　사라져버린다는　거예요　",
       "confirmed": false,
       "jp": "　全て失ってしまうことね",
       "jpOffset": 413048
@@ -2743,7 +2743,7 @@
       "length": 28,
       "text": "　마지막까지　무사히　수련을",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　最後まで無事に修業を",
       "jpOffset": 413110
     },
@@ -2751,7 +2751,7 @@
       "offset": 315456,
       "length": 26,
       "text": "　끝내는　수밖에　없어요！",
-      "fixed": "",
+      "fixed": "　끝내는　수밖에　없어요　",
       "confirmed": false,
       "jp": "　終わらせるしかないのよ",
       "jpOffset": 413136
@@ -2761,7 +2761,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 413176
     },
@@ -2770,7 +2770,7 @@
       "length": 16,
       "text": "「허어？　상당히",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ほぅ…　なかなか",
       "jpOffset": 413190
     },
@@ -2778,7 +2778,7 @@
       "offset": 315528,
       "length": 20,
       "text": "　엄격한　룰이로군！",
-      "fixed": "",
+      "fixed": "　엄격한　룰이로군　",
       "confirmed": false,
       "jp": "　シビアなルールじゃな",
       "jpOffset": 413212
@@ -2788,7 +2788,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 413250
     },
@@ -2815,7 +2815,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 413332
     },
@@ -2833,7 +2833,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 413390
     },
@@ -2851,7 +2851,7 @@
       "length": 26,
       "text": "　물이　무서운가　보네요？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やっぱり水がこわいんだ…",
       "jpOffset": 413424
     },
@@ -2860,7 +2860,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 413466
     },
@@ -2868,7 +2868,7 @@
       "offset": 315778,
       "length": 14,
       "text": "「아니라구！！",
-      "fixed": "",
+      "fixed": "「아니야아！！",
       "confirmed": false,
       "jp": "「ちがう～っ！！",
       "jpOffset": 413480
@@ -2887,7 +2887,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 413552
     },
@@ -2941,7 +2941,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 413716
     },
@@ -2950,7 +2950,7 @@
       "length": 18,
       "text": "「화제를　바꾸려고",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「そうね…",
       "jpOffset": 413730
     },
@@ -2968,7 +2968,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 413794
     },
@@ -2976,7 +2976,7 @@
       "offset": 316084,
       "length": 22,
       "text": "「칫…！　들켜버렸군…",
-      "fixed": "",
+      "fixed": "「칫…！　들켜버렸군　",
       "confirmed": false,
       "jp": "「ちっ…　ばれたか",
       "jpOffset": 413808
@@ -2986,7 +2986,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 413850
     },
@@ -2994,7 +2994,7 @@
       "offset": 316140,
       "length": 34,
       "text": "「물에　들어가는　건　그만두자구！",
-      "fixed": "",
+      "fixed": "「있지　물에　들어가지는　말자구　",
       "confirmed": false,
       "jp": "「なあ　水に入るのはやめとこうぜ",
       "jpOffset": 413864
@@ -3004,7 +3004,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 413912
     },
@@ -3012,7 +3012,7 @@
       "offset": 316200,
       "length": 20,
       "text": "「하하하，알았다구！",
-      "fixed": "「하하하　알았다구！",
+      "fixed": "「허허허　알았다네　",
       "confirmed": false,
       "jp": "「ほっほ　わかっとるぞい",
       "jpOffset": 413926
@@ -3022,7 +3022,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 413970
     },
@@ -3040,7 +3040,7 @@
       "length": 28,
       "text": "　시험삼아　해보고　가시죠？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　デキルガ　ヤッテイカナイカ？",
       "jpOffset": 414010
     },
@@ -3058,7 +3058,7 @@
       "length": 16,
       "text": "　드리기로　하죠",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　クレテヤルゾ",
       "jpOffset": 414078
     },
@@ -3067,7 +3067,7 @@
       "length": 6,
       "text": "　초급",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　初級",
       "jpOffset": 414108
     },
@@ -3076,7 +3076,7 @@
       "length": 6,
       "text": "　중급",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　中級",
       "jpOffset": 414118
     },
@@ -3085,7 +3085,7 @@
       "length": 6,
       "text": "　상급",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　上級",
       "jpOffset": 414128
     },
@@ -3094,7 +3094,7 @@
       "length": 8,
       "text": "　최상급",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　超上級",
       "jpOffset": 414138
     },
@@ -3103,7 +3103,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やらない",
       "jpOffset": 414150
     },
@@ -3112,7 +3112,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 414180
     },
@@ -3120,7 +3120,7 @@
       "offset": 316460,
       "length": 24,
       "text": "「이렇게　대단한　선물을",
-      "fixed": "",
+      "fixed": "「이렇게　대단할　수가　",
       "confirmed": false,
       "jp": "「ナント　スバラシイ！",
       "jpOffset": 414192
@@ -3129,7 +3129,7 @@
       "offset": 316488,
       "length": 24,
       "text": "　당신들께　드리지요！！",
-      "fixed": "　당신들께　드리지요！　",
+      "fixed": "　상품을　드리지요！　　",
       "confirmed": false,
       "jp": "　賞品ダ　コレヲヤロウ！",
       "jpOffset": 414218
@@ -3139,7 +3139,7 @@
       "length": 30,
       "text": "「탈출의　두루마리」를　받았다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「脱出の巻物」をもらいました",
       "jpOffset": 414258
     },
@@ -3148,7 +3148,7 @@
       "length": 34,
       "text": "　사용하면　밖으로　나갈　수　있다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　使うと外に出られます",
       "jpOffset": 414290
     },
@@ -3166,7 +3166,7 @@
       "length": 4,
       "text": "　네",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 414338
     },
@@ -3175,7 +3175,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 414348
     },
@@ -3184,7 +3184,7 @@
       "length": 22,
       "text": "「탈출의　두루마리」가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「脱出の巻物」は",
       "jpOffset": 414376
     },
@@ -3202,7 +3202,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 414434
     },
@@ -3210,7 +3210,7 @@
       "offset": 316726,
       "length": 20,
       "text": "「호오…제법이구만，",
-      "fixed": "「호호…제법이구만…",
+      "fixed": "「호호…제법이군요…",
       "confirmed": false,
       "jp": "「ホホォ…　ナカナカヤルナ…",
       "jpOffset": 414446
@@ -3229,7 +3229,7 @@
       "length": 30,
       "text": "「회복의　두루마리」를　받았다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「回復の巻物」をもらいました",
       "jpOffset": 414518
     },
@@ -3237,7 +3237,7 @@
       "offset": 316822,
       "length": 34,
       "text": "　전원의　ＨＰ와　ＭＰ　회복아이템",
-      "fixed": "",
+      "fixed": "　전원의　ＨＰ와　ＭＰ를　회복한다",
       "confirmed": false,
       "jp": "　使うと全員のＨＰとＭＰが回復します",
       "jpOffset": 414550
@@ -3246,7 +3246,7 @@
       "offset": 316860,
       "length": 16,
       "text": "　사용해볼까요？",
-      "fixed": "",
+      "fixed": "　사용할까？　　",
       "confirmed": false,
       "jp": "　使いますか？",
       "jpOffset": 414590
@@ -3256,7 +3256,7 @@
       "length": 4,
       "text": "　네",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　はい",
       "jpOffset": 414612
     },
@@ -3265,7 +3265,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 414622
     },
@@ -3274,7 +3274,7 @@
       "length": 22,
       "text": "「회복의　두루마리」가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「回復の巻物」は",
       "jpOffset": 414650
     },
@@ -3282,7 +3282,7 @@
       "offset": 316946,
       "length": 14,
       "text": "사라져버렸다！",
-      "fixed": "",
+      "fixed": "사라져버렸다　",
       "confirmed": false,
       "jp": "　消えてなくなりました",
       "jpOffset": 414670
@@ -3292,7 +3292,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 414708
     },
@@ -3301,7 +3301,7 @@
       "length": 12,
       "text": "「유감이네요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「残念ダッタナ",
       "jpOffset": 414720
     },
@@ -3309,7 +3309,7 @@
       "offset": 317000,
       "length": 20,
       "text": "　그럼，다음에　또！",
-      "fixed": "",
+      "fixed": "　그럼　다음에　다시",
       "confirmed": false,
       "jp": "　マタドーゾ",
       "jpOffset": 414738
@@ -3319,7 +3319,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 414766
     },
@@ -11490,7 +11490,7 @@
       "offset": 395692,
       "length": 20,
       "text": "이것은「횃불」입니다",
-      "fixed": "",
+      "fixed": "이것은「횃불」이다　",
       "confirmed": false,
       "jp": "これは「たいまつ」です",
       "jpOffset": 519846
@@ -11499,7 +11499,7 @@
       "offset": 395716,
       "length": 20,
       "text": "가지고　갈　건가요？",
-      "fixed": "",
+      "fixed": "가지고　갈까？　　　",
       "confirmed": false,
       "jp": "持っていきますか？",
       "jpOffset": 519872
@@ -11509,7 +11509,7 @@
       "length": 12,
       "text": "　갖고　간다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　持っていく",
       "jpOffset": 519898
     },
@@ -11518,7 +11518,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 519914
     },
@@ -116160,8 +116160,8 @@
       "offset": 1344500,
       "length": 14,
       "text": "１３５－０８０",
-      "fixed": "　　　　　　　",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "〒７３２",
       "jpOffset": 969308
     },
@@ -116169,8 +116169,8 @@
       "offset": 1344518,
       "length": 24,
       "text": "　서울시　강남구　역삼동",
-      "fixed": "　　　　　　　　　　　　",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "広島市南区京橋町１－７",
       "jpOffset": 969320
     },
@@ -116178,8 +116178,8 @@
       "offset": 1344546,
       "length": 32,
       "text": "　６４７－６（재엽Ｂ／Ｄ　３Ｆ）",
-      "fixed": "　　　　　　　　　　　　　　　　",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "アスティ・第一生命ビルディング",
       "jpOffset": 969346
     },
@@ -116187,8 +116187,8 @@
       "offset": 1344586,
       "length": 20,
       "text": "　（주）컴파일코리아",
-      "fixed": "　　　　　　　　　　",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "株式会社コンパイル",
       "jpOffset": 969384
     },
@@ -116196,8 +116196,8 @@
       "offset": 1344610,
       "length": 22,
       "text": "　ＤＳ２호　환세취호전",
-      "fixed": "　　　　　　　　　　　",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "ＤＳ１４号幻世酔虎伝",
       "jpOffset": 969406
     },
@@ -116205,8 +116205,8 @@
       "offset": 1344636,
       "length": 22,
       "text": "　「싸이코　셰조！」앞",
-      "fixed": "　　　　　　　　　　　",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "「トラだ！　トラトラトラ！」係",
       "jpOffset": 969430
     },
@@ -136032,15 +136032,6 @@
       "offset": 1106316,
       "length": 26,
       "text": "파일 \"%s\" 가　열리지　않음",
-      "fixed": "",
-      "confirmed": true
-    }
-  ],
-  "fonts": [
-    {
-      "offset": 338036,
-      "maxLength": 32,
-      "text": "굴림체",
       "fixed": "",
       "confirmed": true
     }
