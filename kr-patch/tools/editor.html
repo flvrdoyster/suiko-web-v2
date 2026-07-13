@@ -519,9 +519,10 @@ function showContext(e) {
   // Guarantee actual overflow regardless of row height/screen size — without this, a short
   // initial window can end up NOT overflowing the panel, so there's nothing to scroll and
   // onContextScroll() never fires (looks like "infinite scroll" just doesn't work at all).
-  let guard = 0;
-  while (rows.scrollHeight <= rows.clientHeight
-    && (ctxLo > 0 || ctxHi < data.dialogue.length - 1) && guard++ < 50) {
+  // ONE measurement + at most ONE extension (not a measure/extend/measure/extend... loop —
+  // each scrollHeight read forces a synchronous layout, and this runs on every row focus,
+  // so a multi-iteration version of this was a real source of the editor feeling laggy).
+  if (rows.scrollHeight <= rows.clientHeight) {
     if (ctxLo > 0) ctxExtendUp(rows);
     if (ctxHi < data.dialogue.length - 1) ctxExtendDown(rows);
   }

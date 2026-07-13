@@ -27124,7 +27124,7 @@
       "length": 4,
       "text": "팬더",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "パンダの民",
       "jpOffset": 630690
     },
@@ -27132,7 +27132,7 @@
       "offset": 520518,
       "length": 32,
       "text": "「부근　바다에선　맛있는　생선이",
-      "fixed": "",
+      "fixed": "「근처　바다에선　맛있는　생선이",
       "confirmed": false,
       "jp": "「ここの近くの海では　おいシい魚が",
       "jpOffset": 630704
@@ -27141,7 +27141,7 @@
       "offset": 520554,
       "length": 34,
       "text": "　잡힌다는데，나는　먹을　수　있는",
-      "fixed": "",
+      "fixed": "　잡힌다는　모양이다해　　　　　　",
       "confirmed": false,
       "jp": "　とれるショうなんでシュけど",
       "jpOffset": 630742
@@ -27150,7 +27150,7 @@
       "offset": 520596,
       "length": 30,
       "text": "　거라곤　대나무　밖에　없으니",
-      "fixed": "",
+      "fixed": "　나는　대나무　말고는　　　　",
       "confirmed": false,
       "jp": "　わたシは竹以外のものは",
       "jpOffset": 630778
@@ -27159,7 +27159,7 @@
       "offset": 520630,
       "length": 34,
       "text": "　생선이　눈　앞에　있어도　그림의",
-      "fixed": "",
+      "fixed": "　거의　먹을　수가　없어서　　　　",
       "confirmed": false,
       "jp": "　ほとんど食べられないので",
       "jpOffset": 630806
@@ -27168,7 +27168,7 @@
       "offset": 520668,
       "length": 28,
       "text": "　떡이잖아．흑흑∼유감이야！",
-      "fixed": "",
+      "fixed": "　무척이나　아쉽다해　　　　",
       "confirmed": false,
       "jp": "　とても残念でシュ",
       "jpOffset": 630836
@@ -27609,7 +27609,7 @@
       "offset": 522104,
       "length": 12,
       "text": "호랑이　사내",
-      "fixed": "",
+      "fixed": "호랑이민족　",
       "confirmed": false,
       "jp": "虎の民",
       "jpOffset": 632286
@@ -28519,7 +28519,7 @@
       "length": 4,
       "text": "팬더",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "パンダの民",
       "jpOffset": 635244
     },
@@ -28527,7 +28527,7 @@
       "offset": 524814,
       "length": 32,
       "text": "「인근　바다에서　물좋은　생선이",
-      "fixed": "",
+      "fixed": "「근처　바다에선　맛있는　생선이",
       "confirmed": false,
       "jp": "「ここの近くの海では　おいシい魚が",
       "jpOffset": 635258
@@ -28536,7 +28536,7 @@
       "offset": 524850,
       "length": 24,
       "text": "　많이　잡힌다고　하는데",
-      "fixed": "",
+      "fixed": "　잡힌다는　모양이다해　",
       "confirmed": false,
       "jp": "　とれるショうなんでシュけど",
       "jpOffset": 635296
@@ -28545,7 +28545,7 @@
       "offset": 524882,
       "length": 28,
       "text": "　난，대나무　이외의　음식은",
-      "fixed": "",
+      "fixed": "　나는　대나무　말고는　　　",
       "confirmed": false,
       "jp": "　わたシは竹以外のものは",
       "jpOffset": 635332
@@ -28554,7 +28554,7 @@
       "offset": 524914,
       "length": 18,
       "text": "　거의　못　먹으니",
-      "fixed": "",
+      "fixed": "　먹을　수　없어서",
       "confirmed": false,
       "jp": "　ほとんど食べられないので",
       "jpOffset": 635360
@@ -28563,7 +28563,7 @@
       "offset": 524936,
       "length": 18,
       "text": "　정말　유감이야！",
-      "fixed": "",
+      "fixed": "　정말　아쉽다해　",
       "confirmed": false,
       "jp": "　とても残念でシュ",
       "jpOffset": 635390
@@ -28869,7 +28869,7 @@
       "offset": 525934,
       "length": 12,
       "text": "호랑이　사내",
-      "fixed": "",
+      "fixed": "호랑이민족　",
       "confirmed": false,
       "jp": "虎の民",
       "jpOffset": 636456
@@ -47581,7 +47581,7 @@
       "length": 4,
       "text": "팬더",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "パンダの民",
       "jpOffset": 781842
     },
@@ -47589,7 +47589,7 @@
       "offset": 650630,
       "length": 28,
       "text": "「이　부근　바다에서　맛있는",
-      "fixed": "",
+      "fixed": "「이　근처는　맛있는　생선이",
       "confirmed": false,
       "jp": "「ここの近くの海では　おいシい魚が",
       "jpOffset": 781856
@@ -47598,7 +47598,7 @@
       "offset": 650662,
       "length": 20,
       "text": "　생선이　잡힌다는데",
-      "fixed": "",
+      "fixed": "　잡히는　모양이다해",
       "confirmed": false,
       "jp": "　とれるショうなんでシュけど",
       "jpOffset": 781894
@@ -47607,7 +47607,7 @@
       "offset": 650690,
       "length": 22,
       "text": "　나는　대나무　외에는",
-      "fixed": "",
+      "fixed": "　나는　대나무　말고는",
       "confirmed": false,
       "jp": "　わたシは竹以外のものは",
       "jpOffset": 781930
@@ -47616,7 +47616,7 @@
       "offset": 650716,
       "length": 18,
       "text": "　거의　못먹으니…",
-      "fixed": "",
+      "fixed": "　먹을　수　없어서",
       "confirmed": false,
       "jp": "　ほとんど食べられないので",
       "jpOffset": 781958
@@ -47625,7 +47625,7 @@
       "offset": 650738,
       "length": 14,
       "text": "　유감이야！！",
-      "fixed": "",
+      "fixed": "　아쉽다해　　",
       "confirmed": false,
       "jp": "　とても残念でシュ",
       "jpOffset": 781988
@@ -47940,7 +47940,7 @@
       "offset": 651744,
       "length": 12,
       "text": "호랑이　사내",
-      "fixed": "",
+      "fixed": "호랑이민족　",
       "confirmed": false,
       "jp": "虎の民",
       "jpOffset": 783094
@@ -50668,7 +50668,7 @@
       "length": 4,
       "text": "팬더",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "パンダの民",
       "jpOffset": 834452
     },
@@ -50676,7 +50676,7 @@
       "offset": 677282,
       "length": 32,
       "text": "「마을　부근　앞바다에서　맛있는",
-      "fixed": "",
+      "fixed": "「근처　바다에선　맛있는　생선이",
       "confirmed": false,
       "jp": "「ここの近くの海では　おいシい魚が",
       "jpOffset": 834466
@@ -50685,7 +50685,7 @@
       "offset": 677318,
       "length": 26,
       "text": "　생선이　잘　잡힌다는데…",
-      "fixed": "",
+      "fixed": "　잡힌다는　모양이다해　　",
       "confirmed": false,
       "jp": "　とれるショうなんでシュけど",
       "jpOffset": 834504
@@ -50694,7 +50694,7 @@
       "offset": 677352,
       "length": 34,
       "text": "　나는　대나무　이외의　것은　거의",
-      "fixed": "",
+      "fixed": "　나는　대나무　말고는　　　　　　",
       "confirmed": false,
       "jp": "　わたシは竹以外のものは",
       "jpOffset": 834540
@@ -50703,7 +50703,7 @@
       "offset": 677390,
       "length": 22,
       "text": "　먹을　수　없으니……",
-      "fixed": "",
+      "fixed": "　먹을　수가　없어서　",
       "confirmed": false,
       "jp": "　ほとんど食べられないので",
       "jpOffset": 834568
@@ -50712,7 +50712,7 @@
       "offset": 677416,
       "length": 22,
       "text": "　그림의　떡이지　뭐！",
-      "fixed": "",
+      "fixed": "　무척이나　아쉽다해　",
       "confirmed": false,
       "jp": "　とても残念でシュ",
       "jpOffset": 834598
@@ -51001,7 +51001,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 835584
     },
@@ -51010,7 +51010,7 @@
       "length": 10,
       "text": "「허허허허",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ふぉっふぉっふぉ",
       "jpOffset": 835592
     },
@@ -51019,7 +51019,7 @@
       "length": 20,
       "text": "　나는　알고　있다네",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　わしにはわかるぞ",
       "jpOffset": 835614
     },
@@ -51027,7 +51027,7 @@
       "offset": 678460,
       "length": 28,
       "text": "　자네，굉장한　실력자이지？",
-      "fixed": "",
+      "fixed": "　자네　제법　하는구먼？　　",
       "confirmed": false,
       "jp": "　おぬし　なかなかやるであろう？",
       "jpOffset": 835640
@@ -51037,7 +51037,7 @@
       "length": 10,
       "text": "　허허허허",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ふお～ふぉっふぉっふぉ",
       "jpOffset": 835676
     },
@@ -51046,7 +51046,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 835712
     },
@@ -51055,7 +51055,7 @@
       "length": 8,
       "text": "「？？？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「？？？",
       "jpOffset": 835726
     },
@@ -51064,7 +51064,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 835754
     },
@@ -51073,7 +51073,7 @@
       "length": 14,
       "text": "「올해　축제도",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「うんうん　今年の祭りも",
       "jpOffset": 835764
     },
@@ -51081,7 +51081,7 @@
       "offset": 678578,
       "length": 20,
       "text": "　정말　굉장했었지．",
-      "fixed": "　정말　굉장했었지　",
+      "fixed": "　아주　성황이었어　",
       "confirmed": false,
       "jp": "　盛り上がったねぇ",
       "jpOffset": 835792
@@ -51090,7 +51090,7 @@
       "offset": 678606,
       "length": 22,
       "text": "　다행스러운　일이야！",
-      "fixed": "",
+      "fixed": "　다행이야　다행이야　",
       "confirmed": false,
       "jp": "　よかったよかった",
       "jpOffset": 835818
@@ -51099,7 +51099,7 @@
       "offset": 678632,
       "length": 24,
       "text": "　그걸　보면　올　농사도",
-      "fixed": "",
+      "fixed": "　이걸로　올해도　풍작이",
       "confirmed": false,
       "jp": "　これで　今年も豊作",
       "jpOffset": 835840
@@ -51108,7 +51108,7 @@
       "offset": 678660,
       "length": 26,
       "text": "　틀림없는　풍작이었겠지！",
-      "fixed": "",
+      "fixed": "　틀림없을　거야　　　　　",
       "confirmed": false,
       "jp": "　マチガイなしだよ",
       "jpOffset": 835864
@@ -51117,7 +51117,7 @@
       "offset": 678702,
       "length": 12,
       "text": "호랑이　사내",
-      "fixed": "",
+      "fixed": "호랑이민족　",
       "confirmed": false,
       "jp": "虎の民",
       "jpOffset": 835898
@@ -65914,7 +65914,7 @@
       "length": 4,
       "text": "팬더",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "パンダの民",
       "jpOffset": 1029592
     },
@@ -65922,7 +65922,7 @@
       "offset": 880704,
       "length": 26,
       "text": "「여긴　해변마을이라구요！",
-      "fixed": "",
+      "fixed": "「여긴　해변마을이다해　　",
       "confirmed": false,
       "jp": "「ここは　海辺の町でシュ",
       "jpOffset": 1029606
@@ -66219,7 +66219,7 @@
       "offset": 881782,
       "length": 10,
       "text": "웬　호랑이",
-      "fixed": "",
+      "fixed": "호랑이민족",
       "confirmed": false,
       "jp": "虎の民",
       "jpOffset": 1030670
@@ -74158,7 +74158,7 @@
       "length": 10,
       "text": "호랑이마을",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "虎の民の里",
       "jpOffset": 893882
     },
@@ -129841,7 +129841,7 @@
       "length": 4,
       "text": "팬더",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "パンダの民",
       "jpOffset": 993212
     },
@@ -129849,7 +129849,7 @@
       "offset": 1387114,
       "length": 32,
       "text": "「인근　바다에서　맛있는　생선이",
-      "fixed": "",
+      "fixed": "「근처　바다에선　맛있는　생선이",
       "confirmed": false,
       "jp": "「ここの近くの海では　おいシい魚が",
       "jpOffset": 993226
@@ -129858,7 +129858,7 @@
       "offset": 1387150,
       "length": 20,
       "text": "　많이　잡힌다지만，",
-      "fixed": "",
+      "fixed": "　잡히는　모양이다해",
       "confirmed": false,
       "jp": "　とれるショうなんでシュけど",
       "jpOffset": 993264
@@ -129867,7 +129867,7 @@
       "offset": 1387178,
       "length": 26,
       "text": "　난　대나무　이외의　것은",
-      "fixed": "",
+      "fixed": "　나는　대나무　말고는　　",
       "confirmed": false,
       "jp": "　わたシは竹以外のものは",
       "jpOffset": 993300
@@ -129876,7 +129876,7 @@
       "offset": 1387208,
       "length": 18,
       "text": "　거의　안먹으니까",
-      "fixed": "",
+      "fixed": "　먹을　수　없어서",
       "confirmed": false,
       "jp": "　ほとんど食べられないので",
       "jpOffset": 993328
@@ -129885,7 +129885,7 @@
       "offset": 1387230,
       "length": 16,
       "text": "　정말　유감이야",
-      "fixed": "",
+      "fixed": "　정말　아쉽다해",
       "confirmed": false,
       "jp": "　とても残念でシュ",
       "jpOffset": 993358
@@ -130317,7 +130317,7 @@
       "offset": 1388614,
       "length": 12,
       "text": "호랑이　사내",
-      "fixed": "",
+      "fixed": "호랑이민족　",
       "confirmed": false,
       "jp": "虎の民",
       "jpOffset": 994828
