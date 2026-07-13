@@ -3472,7 +3472,7 @@
       "length": 18,
       "text": "　회복의　두루마리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　回復の巻物",
       "jpOffset": 415288
     },
@@ -3481,7 +3481,7 @@
       "length": 18,
       "text": "　탈출의　두루마리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　脱出の巻物",
       "jpOffset": 415304
     },
@@ -3490,7 +3490,7 @@
       "length": 8,
       "text": "　마수석",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　魔獣石",
       "jpOffset": 415320
     },
@@ -3498,7 +3498,7 @@
       "offset": 317582,
       "length": 12,
       "text": "　필요없어！",
-      "fixed": "",
+      "fixed": "　필요없다　",
       "confirmed": false,
       "jp": "　いらない",
       "jpOffset": 415332
@@ -3544,7 +3544,7 @@
       "length": 10,
       "text": "　필요없다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いらない",
       "jpOffset": 415480
     },
@@ -111445,7 +111445,7 @@
       "length": 30,
       "text": "「어라？　어떻게　된　거지…？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「あれ？　どうなってんだ…？",
       "jpOffset": 295470
     },
@@ -111454,7 +111454,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 295514
     },
@@ -111462,7 +111462,7 @@
       "offset": 1298762,
       "length": 24,
       "text": "「…자세히는　모르겠지만",
-      "fixed": "",
+      "fixed": "「왠지는　잘　모르겠지만",
       "confirmed": false,
       "jp": "「よくわからんが",
       "jpOffset": 295528
@@ -111472,7 +111472,7 @@
       "length": 24,
       "text": "　어디로　가버렸다는구만",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　どこかへ行ったらしい",
       "jpOffset": 295548
     },
@@ -111481,7 +111481,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 295586
     },
@@ -111490,7 +111490,7 @@
       "length": 12,
       "text": "「죄송해요…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ごめんなさい…",
       "jpOffset": 295600
     },
@@ -111498,7 +111498,7 @@
       "offset": 1298854,
       "length": 12,
       "text": "　아타호！！",
-      "fixed": "",
+      "fixed": "　아타호　　",
       "confirmed": false,
       "jp": "　アターホー",
       "jpOffset": 295620
@@ -111508,7 +111508,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 295648
     },
@@ -111517,7 +111517,7 @@
       "length": 8,
       "text": "「？？？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「？？？",
       "jpOffset": 295662
     },
@@ -111526,7 +111526,7 @@
       "length": 30,
       "text": "　왜　자네가　사과하는　건가？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なんでお主が謝るんじゃ？",
       "jpOffset": 295674
     },
@@ -111535,7 +111535,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 295716
     },
@@ -111544,7 +111544,7 @@
       "length": 8,
       "text": "「………",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「………",
       "jpOffset": 295730
     },
@@ -111553,7 +111553,7 @@
       "length": 12,
       "text": "　죄송해요…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ごめんなさい…",
       "jpOffset": 295742
     },
@@ -111562,7 +111562,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 295774
     },
@@ -111571,7 +111571,7 @@
       "length": 22,
       "text": "「…이상한　녀석이로군",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「…ヘンなヤツじゃな",
       "jpOffset": 295788
     },
@@ -111580,7 +111580,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 295832
     },
@@ -111588,7 +111588,7 @@
       "offset": 1299064,
       "length": 26,
       "text": "「그럼，호랑이마을을　향해",
-      "fixed": "",
+      "fixed": "「그럼　호랑이마을을　향해",
       "confirmed": false,
       "jp": "「では　虎の民の里に向けて",
       "jpOffset": 295846
@@ -111598,7 +111598,7 @@
       "length": 14,
       "text": "　출발해볼까！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　出発じゃ！",
       "jpOffset": 295876
     },
@@ -111607,7 +111607,7 @@
       "length": 10,
       "text": "　출발한다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　出発する",
       "jpOffset": 295900
     },
@@ -111615,7 +111615,7 @@
       "offset": 1299134,
       "length": 16,
       "text": "　아니，잠깐만！",
-      "fixed": "",
+      "fixed": "　잠깐　기다려　",
       "confirmed": false,
       "jp": "　ちょっと待った",
       "jpOffset": 295914
@@ -111625,7 +111625,7 @@
       "length": 20,
       "text": "이렇게　아타호일행은",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "こうして　アターホーたちは",
       "jpOffset": 295950
     },
@@ -111634,7 +111634,7 @@
       "length": 28,
       "text": "호랑이마을을　향해　출발했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "虎の民の里に向けて出発しました",
       "jpOffset": 295980
     },
@@ -111669,7 +111669,7 @@
       "offset": 1330936,
       "length": 26,
       "text": "「휴우∼드디어　끝난건가？",
-      "fixed": "",
+      "fixed": "「옷　드디어　끝났구만　　",
       "confirmed": false,
       "jp": "「おっ　とうとう終わったな",
       "jpOffset": 955462
@@ -111678,7 +111678,7 @@
       "offset": 1330966,
       "length": 28,
       "text": "　이번에도　무척　힘들었다！",
-      "fixed": "",
+      "fixed": "　후우　이번에도　하드했다구",
       "confirmed": false,
       "jp": "　ふーっ　今回もハードだったぜ",
       "jpOffset": 955492
@@ -111688,7 +111688,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 955538
     },
@@ -111697,7 +111697,7 @@
       "length": 10,
       "text": "「허허허…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ほっほ…",
       "jpOffset": 955552
     },
@@ -111705,7 +111705,7 @@
       "offset": 1331034,
       "length": 20,
       "text": "　정말　수고했네！！",
-      "fixed": "",
+      "fixed": "　수고들　했구만　　",
       "confirmed": false,
       "jp": "　ごくろうさんじゃったな",
       "jpOffset": 955566
@@ -111715,7 +111715,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 955606
     },
@@ -111723,7 +111723,7 @@
       "offset": 1331078,
       "length": 16,
       "text": "「수고들했습니다",
-      "fixed": "「수고들　했어요",
+      "fixed": "「수고　많았어요",
       "confirmed": false,
       "jp": "「お疲れさまー",
       "jpOffset": 955620
@@ -111732,7 +111732,7 @@
       "offset": 1331098,
       "length": 26,
       "text": "　그럼，막을　내릴까요！？",
-      "fixed": "",
+      "fixed": "　그럼　막을　내려볼까요　",
       "confirmed": false,
       "jp": "　さ　打ち上げにしましょ",
       "jpOffset": 955638
@@ -111742,7 +111742,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 955678
     },
@@ -111751,7 +111751,7 @@
       "length": 10,
       "text": "「잠깐만！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ちょっと！",
       "jpOffset": 955686
     },
@@ -111759,7 +111759,7 @@
       "offset": 1331162,
       "length": 22,
       "text": "　벌써　끝난　건가요？",
-      "fixed": "",
+      "fixed": "　벌써　끝났어？　　　",
       "confirmed": false,
       "jp": "　もう終わりなの？",
       "jpOffset": 955702
@@ -111768,7 +111768,7 @@
       "offset": 1331192,
       "length": 18,
       "text": "　어째서…？　난，",
-      "fixed": "",
+      "fixed": "　왜　내　출연　신",
       "confirmed": false,
       "jp": "　なんであたしの",
       "jpOffset": 955728
@@ -111777,7 +111777,7 @@
       "offset": 1331214,
       "length": 20,
       "text": "　출연도　못했는데！",
-      "fixed": "",
+      "fixed": "　이　없는　거야！　",
       "confirmed": false,
       "jp": "　出番がないのよ！",
       "jpOffset": 955748
@@ -111787,7 +111787,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 955782
     },
@@ -111795,7 +111795,7 @@
       "offset": 1331260,
       "length": 16,
       "text": "「누구야，너는？",
-      "fixed": "",
+      "fixed": "「누구야　너는？",
       "confirmed": false,
       "jp": "「誰だ？　お前？",
       "jpOffset": 955796
@@ -111804,7 +111804,7 @@
       "offset": 1331300,
       "length": 8,
       "text": "바본가？",
-      "fixed": "",
+      "fixed": "빠직　　",
       "confirmed": false,
       "jp": "ぶちっ",
       "jpOffset": 955836
@@ -111814,7 +111814,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 955850
     },
@@ -111841,7 +111841,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 955918
     },
@@ -111849,7 +111849,7 @@
       "offset": 1331396,
       "length": 24,
       "text": "「기다려，농담이라구？！",
-      "fixed": "",
+      "fixed": "「기　기다려　농담이야！",
       "confirmed": false,
       "jp": "「ま　待て　ほんのジョークだ！",
       "jpOffset": 955932
@@ -111859,7 +111859,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 955978
     },
@@ -111867,7 +111867,7 @@
       "offset": 1331444,
       "length": 22,
       "text": "「이봐요，거기　두사람",
-      "fixed": "",
+      "fixed": "「자자　두　분　모두　",
       "confirmed": false,
       "jp": "「まあまあ　お２人とも",
       "jpOffset": 955992
@@ -111876,7 +111876,7 @@
       "offset": 1331470,
       "length": 22,
       "text": "　제발　좀　진정해요！",
-      "fixed": "",
+      "fixed": "　그만　진정하세요　　",
       "confirmed": false,
       "jp": "　落ち着いてください",
       "jpOffset": 956018
@@ -111886,7 +111886,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 956054
     },
@@ -111894,7 +111894,7 @@
       "offset": 1331518,
       "length": 18,
       "text": "「저런저런…도무지",
-      "fixed": "",
+      "fixed": "「저런…　언제봐도",
       "confirmed": false,
       "jp": "「やれやれ…　いつ見ても",
       "jpOffset": 956068
@@ -111903,7 +111903,7 @@
       "offset": 1331540,
       "length": 28,
       "text": "　발전성이　없는　녀석들！！",
-      "fixed": "",
+      "fixed": "　발전이라곤　없는　녀석들　",
       "confirmed": false,
       "jp": "　進歩のないヤツらじゃな",
       "jpOffset": 956096
@@ -111913,7 +111913,7 @@
       "length": 4,
       "text": "페톰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ペトゥム",
       "jpOffset": 956136
     },
@@ -111921,7 +111921,7 @@
       "offset": 1331592,
       "length": 16,
       "text": "「정말　그렇죠！",
-      "fixed": "",
+      "fixed": "「네에　그렇네요",
       "confirmed": false,
       "jp": "「ええ　そうですね",
       "jpOffset": 956148
@@ -111931,7 +111931,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 956182
     },
@@ -111940,7 +111940,7 @@
       "length": 8,
       "text": "「페톰…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ペトゥム…",
       "jpOffset": 956196
     },
@@ -111948,7 +111948,7 @@
       "offset": 1331646,
       "length": 20,
       "text": "　네녀석이　감히！！",
-      "fixed": "",
+      "fixed": "　네가　할말은　아냐",
       "confirmed": false,
       "jp": "　お前に言われたくないぜ",
       "jpOffset": 956212
@@ -111958,7 +111958,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 956252
     },
@@ -111967,7 +111967,7 @@
       "length": 8,
       "text": "「？？？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「？？？",
       "jpOffset": 956266
     },
@@ -111975,7 +111975,7 @@
       "offset": 1331702,
       "length": 24,
       "text": "　이사람들은　누구예요？",
-      "fixed": "",
+      "fixed": "　이　사람들은　누구？　",
       "confirmed": false,
       "jp": "　ねぇ　この人たち　誰なの？",
       "jpOffset": 956278
@@ -111985,7 +111985,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 956322
     },
@@ -111993,7 +111993,7 @@
       "offset": 1331752,
       "length": 20,
       "text": "「응？　아，린샹은…",
-      "fixed": "",
+      "fixed": "「응？　아아　린샹은",
       "confirmed": false,
       "jp": "「ん？　ああ　リンシャンは",
       "jpOffset": 956336
@@ -112002,7 +112002,7 @@
       "offset": 1331776,
       "length": 26,
       "text": "　이녀석들과는　초면이구나",
-      "fixed": "",
+      "fixed": "　이녀석들과는　초면이구나",
       "confirmed": false,
       "jp": "　こいつらとは初めて会うのか",
       "jpOffset": 956366
@@ -112011,7 +112011,7 @@
       "offset": 1331810,
       "length": 32,
       "text": "　이녀석들은　일전에　나와　함께",
-      "fixed": "",
+      "fixed": "　이녀석들은　전에　나랑　같이　",
       "confirmed": false,
       "jp": "　こいつらは　以前　オレと一緒に",
       "jpOffset": 956402
@@ -112020,7 +112020,7 @@
       "offset": 1331846,
       "length": 32,
       "text": "　모험여행을　했던　동료들이지！",
-      "fixed": "",
+      "fixed": "　모험을　했던　동료들이야　　　",
       "confirmed": false,
       "jp": "　旅をした仲間なんだ",
       "jpOffset": 956438
@@ -112029,7 +112029,7 @@
       "offset": 1331886,
       "length": 30,
       "text": "　자세한　것을　알고　싶으면，",
-      "fixed": "",
+      "fixed": "　자세한　것을　알고　싶으면　",
       "confirmed": false,
       "jp": "　詳しいことを知りたければ",
       "jpOffset": 956466
@@ -112038,7 +112038,7 @@
       "offset": 1331920,
       "length": 24,
       "text": "　폭소　ＲＰＧ로　유명한",
-      "fixed": "",
+      "fixed": "　ＰＣ－９８０１로　나온",
       "confirmed": false,
       "jp": "　ＰＣ－９８０１シリーズ専用だが",
       "jpOffset": 956496
@@ -112047,7 +112047,7 @@
       "offset": 1331948,
       "length": 28,
       "text": "　『환세희담』을　해보라구！",
-      "fixed": "",
+      "fixed": "　『환세희담』을　해보라구　",
       "confirmed": false,
       "jp": "　『幻世喜譚』を見てくれ",
       "jpOffset": 956532
@@ -112057,7 +112057,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 956572
     },
@@ -112065,7 +112065,7 @@
       "offset": 1332000,
       "length": 22,
       "text": "「그래요，하지만…난，",
-      "fixed": "",
+      "fixed": "「음…　하지만　난　　",
       "confirmed": false,
       "jp": "「ふ～ん…　でも　わたし",
       "jpOffset": 956586
@@ -112074,7 +112074,7 @@
       "offset": 1332026,
       "length": 26,
       "text": "　폭소ＲＰＧ는　별로인데…",
-      "fixed": "",
+      "fixed": "　ＰＣ－９８０１은　없는데",
       "confirmed": false,
       "jp": "　９８持ってないのよね…",
       "jpOffset": 956614
@@ -112084,7 +112084,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 956654
     },
@@ -112092,7 +112092,7 @@
       "offset": 1332078,
       "length": 26,
       "text": "「만약　그렇다면，마도물어",
-      "fixed": "",
+      "fixed": "「그렇다면　이식　요청을　",
       "confirmed": false,
       "jp": "「そういう場合は　移植希望を",
       "jpOffset": 956668
@@ -112101,7 +112101,7 @@
       "offset": 1332108,
       "length": 28,
       "text": "　시리즈같은　걸　하고싶다고",
-      "fixed": "",
+      "fixed": "　팍팍　보내주게나　　　　　",
       "confirmed": false,
       "jp": "　ガンガン送ってくれい",
       "jpOffset": 956700
@@ -112110,7 +112110,7 @@
       "offset": 1332144,
       "length": 24,
       "text": "　컴파일코리아　사장님께",
-      "fixed": "",
+      "fixed": "　이식　요청이　아니라도",
       "confirmed": false,
       "jp": "　移植希望でなくとも",
       "jpOffset": 956730
@@ -112119,7 +112119,7 @@
       "offset": 1332172,
       "length": 26,
       "text": "　편지를　보내봐！！　그럼",
-      "fixed": "",
+      "fixed": "　응원，감상，불만의　엽서",
       "confirmed": false,
       "jp": "　応援・感想・苦情のハガキ",
       "jpOffset": 956754
@@ -112128,7 +112128,7 @@
       "offset": 1332202,
       "length": 24,
       "text": "　린샹이　좋아하는　정통",
-      "fixed": "",
+      "fixed": "　편지도　기다리고　있지",
       "confirmed": false,
       "jp": "　お手紙も待っとるぞい",
       "jpOffset": 956784
@@ -112137,7 +112137,7 @@
       "offset": 1332234,
       "length": 26,
       "text": "　ＲＰＧ도　금방　이식해서",
-      "fixed": "",
+      "fixed": "　보낼　곳은　이　코너의　",
       "confirmed": false,
       "jp": "　あて先は　このコーナーの",
       "jpOffset": 956814
@@ -112146,7 +112146,7 @@
       "offset": 1332264,
       "length": 28,
       "text": "　발매해　줄거야！！　주소는",
-      "fixed": "",
+      "fixed": "　가장　마지막에　나오니까　",
       "confirmed": false,
       "jp": "　一番最後に出るから",
       "jpOffset": 956844
@@ -112155,7 +112155,7 @@
       "offset": 1332296,
       "length": 30,
       "text": "　조금　있으면　나올　거야！！",
-      "fixed": "",
+      "fixed": "　잘　메모하도록　하게나　　　",
       "confirmed": false,
       "jp": "　ちゃんとメモするようにな",
       "jpOffset": 956868
@@ -112165,7 +112165,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 956910
     },
@@ -112173,7 +112173,7 @@
       "offset": 1332350,
       "length": 32,
       "text": "「쳇！　아타호가　주인공이라구？",
-      "fixed": "",
+      "fixed": "「쳇　이번엔　아타호가　주역인가",
       "confirmed": false,
       "jp": "「ちぇっ　今回はアターホーが主役か",
       "jpOffset": 956918
@@ -112182,7 +112182,7 @@
       "offset": 1332386,
       "length": 28,
       "text": "　좋아　다음에는　꼭　내가…",
-      "fixed": "",
+      "fixed": "　다음에야말로　꼭　내가…　",
       "confirmed": false,
       "jp": "　次こそは　あたしが主役だな",
       "jpOffset": 956956
@@ -112192,7 +112192,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 957000
     },
@@ -112200,7 +112200,7 @@
       "offset": 1332440,
       "length": 30,
       "text": "「풋…과연　그럴　수　있을까？",
-      "fixed": "",
+      "fixed": "「훗…　그건　어떠려나？　　　",
       "confirmed": false,
       "jp": "「ふっ…　それはどうかな？",
       "jpOffset": 957014
@@ -112209,7 +112209,7 @@
       "offset": 1332474,
       "length": 32,
       "text": "　아마，그런　얼굴로는　힘들껄！",
-      "fixed": "",
+      "fixed": "　이제　아무도　기억　못할텐데…",
       "confirmed": false,
       "jp": "　もう　誰もおぼえていないんじゃ…",
       "jpOffset": 957044
@@ -112218,8 +112218,8 @@
       "offset": 1332518,
       "length": 20,
       "text": "퍽　빠직　퍽퍽　퍼억",
-      "fixed": "",
-      "confirmed": false,
+      "fixed": "퍽　빡　콰직　　　　",
+      "confirmed": true,
       "jp": "ドカッ　バキッ　グシャッ",
       "jpOffset": 957090
     },
@@ -112228,7 +112228,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 957126
     },
@@ -112236,7 +112236,7 @@
       "offset": 1332560,
       "length": 26,
       "text": "「방금『퍼억』이란　소린？",
-      "fixed": "",
+      "fixed": "「방금『콰직』하는　소린…",
       "confirmed": false,
       "jp": "「今の　『グシャッ』って音は…",
       "jpOffset": 957140
@@ -112246,7 +112246,7 @@
       "length": 4,
       "text": "페톰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ペトゥム",
       "jpOffset": 957186
     },
@@ -112254,7 +112254,7 @@
       "offset": 1332610,
       "length": 20,
       "text": "「저…전　아녜요！！",
-      "fixed": "",
+      "fixed": "「자…잔혹하네요…　",
       "confirmed": false,
       "jp": "「む…　むごいですね…",
       "jpOffset": 957198
@@ -112264,7 +112264,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 957236
     },
@@ -112272,7 +112272,7 @@
       "offset": 1332654,
       "length": 24,
       "text": "「스마슈님　괜찮으세요？",
-      "fixed": "",
+      "fixed": "「스마슈씨　괜찮으세요？",
       "confirmed": false,
       "jp": "「スマッシュさん　大丈夫ですか？",
       "jpOffset": 957250
@@ -112281,7 +112281,7 @@
       "offset": 1332682,
       "length": 24,
       "text": "　…대답이　없으시네！？",
-      "fixed": "",
+      "fixed": "　…대답이　없으시네요　",
       "confirmed": false,
       "jp": "　…返事がありませんわね",
       "jpOffset": 957286
@@ -112291,7 +112291,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 957326
     },
@@ -112299,7 +112299,7 @@
       "offset": 1332730,
       "length": 20,
       "text": "「아무래도　우리들을",
-      "fixed": "",
+      "fixed": "「확실히　이번부터　",
       "confirmed": false,
       "jp": "「なあ　たしかに今回から",
       "jpOffset": 957334
@@ -112308,7 +112308,7 @@
       "offset": 1332754,
       "length": 22,
       "text": "　잘　모르는　유저들이",
-      "fixed": "",
+      "fixed": "　우리들을　잘　모르는",
       "confirmed": false,
       "jp": "　あたしたちを知らないっていう",
       "jpOffset": 957362
@@ -112317,7 +112317,7 @@
       "offset": 1332784,
       "length": 24,
       "text": "　계실　것같은데…，그런",
-      "fixed": "",
+      "fixed": "　유저들이　많을텐데　　",
       "confirmed": false,
       "jp": "　新しいお客さんが多いらしいよ",
       "jpOffset": 957400
@@ -112326,7 +112326,7 @@
       "offset": 1332812,
       "length": 30,
       "text": "　의미에서　한사람씩　자기소개",
-      "fixed": "",
+      "fixed": "　여기서　각자　자기소개　하면",
       "confirmed": false,
       "jp": "　ここでひとつ　自己紹介ってのは",
       "jpOffset": 957434
@@ -112335,7 +112335,7 @@
       "offset": 1332846,
       "length": 12,
       "text": "　해볼까！！",
-      "fixed": "",
+      "fixed": "　어떨까나？",
       "confirmed": false,
       "jp": "　どうだい？",
       "jpOffset": 957470
@@ -112345,7 +112345,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 957498
     },
@@ -112353,7 +112353,7 @@
       "offset": 1332886,
       "length": 16,
       "text": "「으음，그것　참",
-      "fixed": "",
+      "fixed": "「그거　좋네　　",
       "confirmed": false,
       "jp": "「いいな　それ",
       "jpOffset": 957510
@@ -112362,7 +112362,7 @@
       "offset": 1332906,
       "length": 18,
       "text": "　괜찮은　생각이야",
-      "fixed": "",
+      "fixed": "　나도　낄게　키리",
       "confirmed": false,
       "jp": "　乗ったよ　キリ",
       "jpOffset": 957528
@@ -112372,7 +112372,7 @@
       "length": 18,
       "text": "　자기소개를　본다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　自己紹介を見る",
       "jpOffset": 957556
     },
@@ -112381,7 +112381,7 @@
       "length": 14,
       "text": "　보지　않는다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　見ない",
       "jpOffset": 957576
     },
@@ -112390,7 +112390,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 957608
     },
@@ -112398,7 +112398,7 @@
       "offset": 1333006,
       "length": 24,
       "text": "「허허，유저　여러분！！",
-      "fixed": "",
+      "fixed": "「어라？　또　클리어했나",
       "confirmed": false,
       "jp": "「おや？　またまたクリアしたのか",
       "jpOffset": 957622
@@ -112407,7 +112407,7 @@
       "offset": 1333034,
       "length": 26,
       "text": "　한번　플레이하고　끝내지",
-      "fixed": "",
+      "fixed": "　몇　번이고　해줘서　　　",
       "confirmed": false,
       "jp": "　何度もやってもらえて",
       "jpOffset": 957658
@@ -112416,7 +112416,7 @@
       "offset": 1333068,
       "length": 28,
       "text": "　마시고，여러번　플레이해서",
-      "fixed": "",
+      "fixed": "　나는　기쁘구먼　　　　　　",
       "confirmed": false,
       "jp": "　ワシはうれしいぞい",
       "jpOffset": 957688
@@ -112425,7 +112425,7 @@
       "offset": 1333100,
       "length": 28,
       "text": "　부디　제가　최고의　단위를",
-      "fixed": "",
+      "fixed": "　열심히　힘낸　보람이　　　",
       "confirmed": false,
       "jp": "　一生懸命　がんばったかいが",
       "jpOffset": 957712
@@ -112434,7 +112434,7 @@
       "offset": 1333132,
       "length": 28,
       "text": "　획득하도록　도와주셔용！！",
-      "fixed": "",
+      "fixed": "　있었다는　것이구먼　　　　",
       "confirmed": false,
       "jp": "　あったというものじゃ",
       "jpOffset": 957744
@@ -112444,7 +112444,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 957782
     },
@@ -112452,7 +112452,7 @@
       "offset": 1333186,
       "length": 22,
       "text": "「역시，나이가　들어서",
-      "fixed": "",
+      "fixed": "「역시　나이가　들어서",
       "confirmed": false,
       "jp": "「やっぱ　老体には",
       "jpOffset": 957796
@@ -112461,7 +112461,7 @@
       "offset": 1333212,
       "length": 20,
       "text": "　쉰소리도　잘하셔！",
-      "fixed": "",
+      "fixed": "　힘이　들었나　보네",
       "confirmed": false,
       "jp": "　少しきつかったようだな",
       "jpOffset": 957818
@@ -112471,7 +112471,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 957858
     },
@@ -112479,7 +112479,7 @@
       "offset": 1333258,
       "length": 8,
       "text": "「키리！",
-      "fixed": "",
+      "fixed": "「키리　",
       "confirmed": false,
       "jp": "「キリよ",
       "jpOffset": 957872
@@ -112488,7 +112488,7 @@
       "offset": 1333270,
       "length": 26,
       "text": "　저녀석　좀　붙잡아주게！",
-      "fixed": "",
+      "fixed": "　저녀석　좀　붙잡아주게　",
       "confirmed": false,
       "jp": "　そいつを　つかまえてくれい",
       "jpOffset": 957884
@@ -112498,7 +112498,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 957928
     },
@@ -112507,7 +112507,7 @@
       "length": 10,
       "text": "「이렇게？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「こうか？",
       "jpOffset": 957936
     },
@@ -112516,7 +112516,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 957962
     },
@@ -112534,7 +112534,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 958022
     },
@@ -112561,7 +112561,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 958096
     },
@@ -112588,7 +112588,7 @@
       "length": 4,
       "text": "페톰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ペトゥム",
       "jpOffset": 958174
     },
@@ -112597,7 +112597,7 @@
       "length": 16,
       "text": "「정말　그렇군요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ええ　そうですね",
       "jpOffset": 958186
     },
@@ -112606,7 +112606,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 958220
     },
@@ -112633,7 +112633,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 958290
     },
@@ -112642,7 +112642,7 @@
       "length": 8,
       "text": "「？？？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「？？？",
       "jpOffset": 958304
     },
@@ -112650,7 +112650,7 @@
       "offset": 1333674,
       "length": 30,
       "text": "　이사람들은　대체　누구예요？",
-      "fixed": "",
+      "fixed": "　이　사람들은　대체　누구？　",
       "confirmed": false,
       "jp": "　ねぇ　この人たち　誰なの？",
       "jpOffset": 958316
@@ -112660,7 +112660,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 958360
     },
@@ -112669,7 +112669,7 @@
       "length": 16,
       "text": "「벌써　잊었어？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「もう忘れたのか？",
       "jpOffset": 958374
     },
@@ -112677,7 +112677,7 @@
       "offset": 1333750,
       "length": 24,
       "text": "　…귀　후비고　잘들어！",
-      "fixed": "",
+      "fixed": "　…이젠　좀　기억해　줘",
       "confirmed": false,
       "jp": "　…いい加減　おぼえてやれよ",
       "jpOffset": 958396
@@ -112686,7 +112686,7 @@
       "offset": 1333782,
       "length": 30,
       "text": "　이녀석들은　전에　나와　함께",
-      "fixed": "",
+      "fixed": "　이녀석들은　전에　나랑　같이",
       "confirmed": false,
       "jp": "　こいつらは　以前　オレと一緒に",
       "jpOffset": 958432
@@ -112695,7 +112695,7 @@
       "offset": 1333816,
       "length": 30,
       "text": "　모험여행을　했던　동료들이야",
-      "fixed": "",
+      "fixed": "　모험을　했던　동료들이야　　",
       "confirmed": false,
       "jp": "　旅をした仲間なんだ",
       "jpOffset": 958468
@@ -112704,7 +112704,7 @@
       "offset": 1333854,
       "length": 24,
       "text": "　자세한　걸　알고싶으면",
-      "fixed": "",
+      "fixed": "　자세히　알고　싶다면　",
       "confirmed": false,
       "jp": "　詳しいことを知りたければ",
       "jpOffset": 958496
@@ -112713,7 +112713,7 @@
       "offset": 1333882,
       "length": 24,
       "text": "　폭소　ＲＰＧ로　유명한",
-      "fixed": "",
+      "fixed": "　ＰＣ－９８０１로　나온",
       "confirmed": false,
       "jp": "　ＰＣ－９８０１シリーズ専用だが",
       "jpOffset": 958526
@@ -112722,7 +112722,7 @@
       "offset": 1333910,
       "length": 24,
       "text": "　『환세희담』을　해봐！",
-      "fixed": "",
+      "fixed": "　『환세희담』을　해봐　",
       "confirmed": false,
       "jp": "　『幻世喜譚』をやってみてくれ",
       "jpOffset": 958562
@@ -112732,7 +112732,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 958608
     },
@@ -112740,7 +112740,7 @@
       "offset": 1333958,
       "length": 26,
       "text": "「하지만，난　폭소ＲＰＧ는",
-      "fixed": "",
+      "fixed": "「으～음…　하지만　난　　",
       "confirmed": false,
       "jp": "「ふ～ん…　でも　わたし",
       "jpOffset": 958622
@@ -112749,7 +112749,7 @@
       "offset": 1333988,
       "length": 24,
       "text": "　별로　좋아하지　않아！",
-      "fixed": "",
+      "fixed": "　ＰＣ－９８０１은　없어",
       "confirmed": false,
       "jp": "　９８持ってないのよね…",
       "jpOffset": 958650
@@ -112759,7 +112759,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 958690
     },
@@ -112767,7 +112767,7 @@
       "offset": 1334038,
       "length": 28,
       "text": "「그래？　만약　정통ＲＰＧ를",
-      "fixed": "",
+      "fixed": "「그렇다면　이식　요청을　　",
       "confirmed": false,
       "jp": "「そういう場合は　移植希望を",
       "jpOffset": 958704
@@ -112776,7 +112776,7 @@
       "offset": 1334070,
       "length": 30,
       "text": "　즐기고　싶다면，컴파일코리아",
-      "fixed": "",
+      "fixed": "　팍팍　보내주게나　　　　　　",
       "confirmed": false,
       "jp": "　ガンガン送ってくれい",
       "jpOffset": 958736
@@ -112785,7 +112785,7 @@
       "offset": 1334108,
       "length": 26,
       "text": "　앞으로　엽서를　보내렴！",
-      "fixed": "",
+      "fixed": "　이식　요청이　아니라도　",
       "confirmed": false,
       "jp": "　移植希望でなくとも",
       "jpOffset": 958766
@@ -112794,7 +112794,7 @@
       "offset": 1334138,
       "length": 30,
       "text": "　마도물어　시리즈를　이식하면",
-      "fixed": "",
+      "fixed": "　응원，감상，불만의　엽서　　",
       "confirmed": false,
       "jp": "　応援・感想・苦情のハガキ",
       "jpOffset": 958790
@@ -112803,7 +112803,7 @@
       "offset": 1334172,
       "length": 30,
       "text": "　좋겠다는　희망사항을　적어서",
-      "fixed": "",
+      "fixed": "　편지도　기다리고　있지　　　",
       "confirmed": false,
       "jp": "　お手紙も待っとるぞい",
       "jpOffset": 958820
@@ -112812,7 +112812,7 @@
       "offset": 1334210,
       "length": 26,
       "text": "　사장님　앞으로　보내！！",
-      "fixed": "",
+      "fixed": "　보낼　곳은　이　코너의　",
       "confirmed": false,
       "jp": "　あて先は　このおまけコーナーの",
       "jpOffset": 958850
@@ -112821,7 +112821,7 @@
       "offset": 1334240,
       "length": 18,
       "text": "　타당성만　있으면",
-      "fixed": "",
+      "fixed": "　맨끝에　나오니까",
       "confirmed": false,
       "jp": "　最後に出るから",
       "jpOffset": 958886
@@ -112830,7 +112830,7 @@
       "offset": 1334262,
       "length": 26,
       "text": "　이식할　수도　있잖아！！",
-      "fixed": "",
+      "fixed": "　잘　메모하도록　하게나　",
       "confirmed": false,
       "jp": "　ちゃんとメモするようにな",
       "jpOffset": 958906
@@ -112840,7 +112840,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 958948
     },
@@ -112848,7 +112848,7 @@
       "offset": 1334312,
       "length": 34,
       "text": "「아타호까지　주연으로　등장하는데",
-      "fixed": "",
+      "fixed": "「아타호까지　주연을　했는데　　　",
       "confirmed": false,
       "jp": "「アターホーまで主役をやったのに",
       "jpOffset": 958956
@@ -112857,7 +112857,7 @@
       "offset": 1334350,
       "length": 22,
       "text": "　어째서　나는，배역을",
-      "fixed": "",
+      "fixed": "　나한테는　왜　배역도",
       "confirmed": false,
       "jp": "　あたしには　なんで",
       "jpOffset": 958992
@@ -112866,7 +112866,7 @@
       "offset": 1334380,
       "length": 20,
       "text": "　주지　않는　걸까？",
-      "fixed": "",
+      "fixed": "　주지　않는　거야？",
       "confirmed": false,
       "jp": "　役が回ってこないんだ？",
       "jpOffset": 959020
@@ -112875,7 +112875,7 @@
       "offset": 1334404,
       "length": 32,
       "text": "　외전시리즈에서　배역이　없었던",
-      "fixed": "",
+      "fixed": "　지금까지　외전에　배역이　없던",
       "confirmed": false,
       "jp": "　今まで　外伝で役をやってないのは",
       "jpOffset": 959048
@@ -112884,7 +112884,7 @@
       "offset": 1334440,
       "length": 24,
       "text": "　건　나　밖에　없잖아！",
-      "fixed": "",
+      "fixed": "　건　나　밖에　없잖아　",
       "confirmed": false,
       "jp": "　あたしだけじゃないか",
       "jpOffset": 959086
@@ -112894,7 +112894,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 959124
     },
@@ -112902,7 +112902,7 @@
       "offset": 1334490,
       "length": 36,
       "text": "「작가에게　미움을　받은　거　아냐？",
-      "fixed": "",
+      "fixed": "「작가에게　미움을　산　거　아냐？　",
       "confirmed": false,
       "jp": "「作者に嫌われてんじゃねーか？",
       "jpOffset": 959138
@@ -112911,7 +112911,7 @@
       "offset": 1334550,
       "length": 4,
       "text": "에잇",
-      "fixed": "",
+      "fixed": "빠직",
       "confirmed": false,
       "jp": "ぶちっ",
       "jpOffset": 959192
@@ -112920,7 +112920,7 @@
       "offset": 1334574,
       "length": 18,
       "text": "퍽퍽　빠직　퍽　쿵",
-      "fixed": "",
+      "fixed": "퍽　빡　콰직　　　",
       "confirmed": false,
       "jp": "ドカッ　バキッ　グシャッ",
       "jpOffset": 959218
@@ -112930,7 +112930,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 959254
     },
@@ -112938,7 +112938,7 @@
       "offset": 1334614,
       "length": 30,
       "text": "「방금『쿵』은　무슨　소리지…",
-      "fixed": "",
+      "fixed": "「방금『콰직』하는　소리는…　",
       "confirmed": false,
       "jp": "「今の　『グシャッ』って音は…",
       "jpOffset": 959268
@@ -112948,7 +112948,7 @@
       "length": 4,
       "text": "페톰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ペトゥム",
       "jpOffset": 959314
     },
@@ -112956,7 +112956,7 @@
       "offset": 1334668,
       "length": 20,
       "text": "「난，절대　아녜요…",
-      "fixed": "",
+      "fixed": "「자…잔혹하네요…　",
       "confirmed": false,
       "jp": "「む…　むごいですね…",
       "jpOffset": 959326
@@ -112966,7 +112966,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 959364
     },
@@ -112974,7 +112974,7 @@
       "offset": 1334712,
       "length": 22,
       "text": "「스마슈님，괜찮아요？",
-      "fixed": "",
+      "fixed": "「스마슈씨　괜찮아요？",
       "confirmed": false,
       "jp": "「スマッシュさん　大丈夫ですか？",
       "jpOffset": 959378
@@ -112983,7 +112983,7 @@
       "offset": 1334738,
       "length": 28,
       "text": "　…어머，대답이　없으시네！",
-      "fixed": "",
+      "fixed": "　…대답이　없으시네요　　　",
       "confirmed": false,
       "jp": "　…返事がありませんわね",
       "jpOffset": 959414
@@ -112993,7 +112993,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 959454
     },
@@ -113001,7 +113001,7 @@
       "offset": 1334790,
       "length": 20,
       "text": "「좋아，이　자리에서",
-      "fixed": "",
+      "fixed": "「좋아　여기서　한번",
       "confirmed": false,
       "jp": "「よし　ここでもう１度",
       "jpOffset": 959462
@@ -113010,7 +113010,7 @@
       "offset": 1334814,
       "length": 26,
       "text": "　내　소개를　멋지게　해서",
-      "fixed": "",
+      "fixed": "　더　자기소개를　해서　　",
       "confirmed": false,
       "jp": "　自己紹介をして",
       "jpOffset": 959488
@@ -113019,7 +113019,7 @@
       "offset": 1334848,
       "length": 18,
       "text": "　손님들에게　나를",
-      "fixed": "",
+      "fixed": "　유저들에게　나를",
       "confirmed": false,
       "jp": "　お客さんに",
       "jpOffset": 959512
@@ -113028,7 +113028,7 @@
       "offset": 1334870,
       "length": 18,
       "text": "　어필시켜줘야지！",
-      "fixed": "",
+      "fixed": "　어필해　두겠어　",
       "confirmed": false,
       "jp": "　あたしをアピールしとくぜ",
       "jpOffset": 959528
@@ -113038,7 +113038,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 959570
     },
@@ -113046,7 +113046,7 @@
       "offset": 1334916,
       "length": 28,
       "text": "「…쳇！　그게　본심이였군！",
-      "fixed": "",
+      "fixed": "「…그게　본심이였나　　　　",
       "confirmed": false,
       "jp": "「…それがホンネか",
       "jpOffset": 959582
@@ -113055,7 +113055,7 @@
       "offset": 1334952,
       "length": 10,
       "text": "　쯧쯧……",
-      "fixed": "",
+      "fixed": "　정말…　",
       "confirmed": false,
       "jp": "　ったく…",
       "jpOffset": 959608
@@ -113064,7 +113064,7 @@
       "offset": 1334966,
       "length": 28,
       "text": "　아무리　어필　시대라지만，",
-      "fixed": "",
+      "fixed": "　튀고　싶어　하는　것도　　",
       "confirmed": false,
       "jp": "　目立ちたがり屋も",
       "jpOffset": 959622
@@ -113073,7 +113073,7 @@
       "offset": 1334998,
       "length": 30,
       "text": "　도가　지나치면　꼴불견이지！",
-      "fixed": "",
+      "fixed": "　도가　지나치면　눈꼴　사나워",
       "confirmed": false,
       "jp": "　度が過ぎるとイヤミだよ",
       "jpOffset": 959644
@@ -113083,7 +113083,7 @@
       "length": 18,
       "text": "　자기소개를　본다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　自己紹介を見る",
       "jpOffset": 959680
     },
@@ -113092,7 +113092,7 @@
       "length": 14,
       "text": "　보지　않는다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　見ない",
       "jpOffset": 959700
     },
@@ -113101,7 +113101,7 @@
       "length": 30,
       "text": "자기소개할　사람을　골라주세요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "自己紹介する人を選んでください",
       "jpOffset": 959728
     },
@@ -113110,7 +113110,7 @@
       "length": 6,
       "text": "　키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　キリ",
       "jpOffset": 959774
     },
@@ -113119,7 +113119,7 @@
       "length": 6,
       "text": "　화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ファーリン",
       "jpOffset": 959784
     },
@@ -113128,7 +113128,7 @@
       "length": 10,
       "text": "　알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　アリババ",
       "jpOffset": 959800
     },
@@ -113137,7 +113137,7 @@
       "length": 6,
       "text": "　페톰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ペトゥム",
       "jpOffset": 959814
     },
@@ -113146,7 +113146,7 @@
       "length": 14,
       "text": "　유리와카마루",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ユリワカマル",
       "jpOffset": 959828
     },
@@ -113155,7 +113155,7 @@
       "length": 8,
       "text": "　스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　スマッシュ",
       "jpOffset": 959846
     },
@@ -113164,7 +113164,7 @@
       "length": 8,
       "text": "　아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　アターホー",
       "jpOffset": 959862
     },
@@ -113173,7 +113173,7 @@
       "length": 8,
       "text": "　끝낸다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　終わる",
       "jpOffset": 959878
     },
@@ -113182,7 +113182,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 959910
     },
@@ -113190,7 +113190,7 @@
       "offset": 1335268,
       "length": 16,
       "text": "「저는，키리！！",
-      "fixed": "",
+      "fixed": "「나는　키리！　",
       "confirmed": false,
       "jp": "「あたしはキリ",
       "jpOffset": 959918
@@ -113199,7 +113199,7 @@
       "offset": 1335288,
       "length": 36,
       "text": "　『환세희담』의　진정한　주인공이죠",
-      "fixed": "",
+      "fixed": "　『환세희담』의　진정한　주인공이야",
       "confirmed": false,
       "jp": "　『幻世喜譚』の真の主人公だよ",
       "jpOffset": 959936
@@ -113209,7 +113209,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 959982
     },
@@ -113217,7 +113217,7 @@
       "offset": 1335350,
       "length": 26,
       "text": "「그　거짓말，정말이야！？",
-      "fixed": "",
+      "fixed": "「에！？　그런　거였어！？",
       "confirmed": false,
       "jp": "「え！？　そうだったのか！？",
       "jpOffset": 959996
@@ -113227,7 +113227,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 960040
     },
@@ -113235,7 +113235,7 @@
       "offset": 1335404,
       "length": 32,
       "text": "「이봐，중간에　끼어들지　말아！",
-      "fixed": "",
+      "fixed": "「쉿　그냥　맘대로　말하게　둬　",
       "confirmed": false,
       "jp": "「しーっ　言わせておけよ",
       "jpOffset": 960052
@@ -113244,7 +113244,7 @@
       "offset": 1335440,
       "length": 30,
       "text": "　혼자　떠들어도　시끄럽구만！",
-      "fixed": "",
+      "fixed": "　참견하면　시끄러우니까　말야",
       "confirmed": false,
       "jp": "　茶々を入れると　うるさいからな",
       "jpOffset": 960080
@@ -113254,7 +113254,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 960128
     },
@@ -113262,7 +113262,7 @@
       "offset": 1335494,
       "length": 34,
       "text": "「이봐　알리바바　다　듣고있다구！",
-      "fixed": "",
+      "fixed": "「…다　들려　알리바바　　　　　　",
       "confirmed": false,
       "jp": "「…聞こえてるぞ　アリババ",
       "jpOffset": 960136
@@ -113271,7 +113271,7 @@
       "offset": 1335536,
       "length": 24,
       "text": "　이제　생각해보니　넌，",
-      "fixed": "",
+      "fixed": "　그러고　보니　넌…　　",
       "confirmed": false,
       "jp": "　そういえば　お前…",
       "jpOffset": 960170
@@ -113281,7 +113281,7 @@
       "length": 26,
       "text": "　『환세희담』에서　나에게",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　『幻世喜譚』で　あたしに",
       "jpOffset": 960194
     },
@@ -113289,7 +113289,7 @@
       "offset": 1335594,
       "length": 32,
       "text": "　호되게　당했던　피래미　적으로",
-      "fixed": "",
+      "fixed": "　묵사발（사어？）이　된　그냥　",
       "confirmed": false,
       "jp": "　コテンパン（死語？）にされた",
       "jpOffset": 960224
@@ -113298,7 +113298,7 @@
       "offset": 1335634,
       "length": 24,
       "text": "　나왔던　주제에　어째서",
-      "fixed": "",
+      "fixed": "　조무래기　적인　주제에",
       "confirmed": false,
       "jp": "　ただのザコ敵のくせに",
       "jpOffset": 960262
@@ -113307,7 +113307,7 @@
       "offset": 1335662,
       "length": 28,
       "text": "　이런　자리에　나온　거지？",
-      "fixed": "",
+      "fixed": "　왜　이　자리에　있지？　　",
       "confirmed": false,
       "jp": "　なんでここにいるのさ？",
       "jpOffset": 960288
@@ -113317,7 +113317,7 @@
       "length": 6,
       "text": "버럭！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "むかっ",
       "jpOffset": 960336
     },
@@ -113326,7 +113326,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 960350
     },
@@ -113334,7 +113334,7 @@
       "offset": 1335740,
       "length": 18,
       "text": "「뭣이라구？？！！",
-      "fixed": "",
+      "fixed": "「뭐라고오오！　　",
       "confirmed": false,
       "jp": "「なんだとっっっ！",
       "jpOffset": 960362
@@ -113343,7 +113343,7 @@
       "offset": 1335762,
       "length": 32,
       "text": "　이녀석！　다시　한번　말해봐！",
-      "fixed": "",
+      "fixed": "　네놈　다시　한　번　말해봐！　",
       "confirmed": false,
       "jp": "　てめぇ　もういっぺん言ってみろ！",
       "jpOffset": 960384
@@ -113352,7 +113352,7 @@
       "offset": 1335802,
       "length": 32,
       "text": "　３명이　한꺼번에　덤벼서　겨우",
-      "fixed": "",
+      "fixed": "　세　명이서　덤벼서　간신히　　",
       "confirmed": false,
       "jp": "　３人がかりで　なんとか　ようやく",
       "jpOffset": 960426
@@ -113361,7 +113361,7 @@
       "offset": 1335838,
       "length": 30,
       "text": "　겨우　이긴　주제에　잘난　척",
-      "fixed": "",
+      "fixed": "　아슬아슬하게　이긴　주제에　",
       "confirmed": false,
       "jp": "　やっとこさ　ギリギリ勝ったくせに",
       "jpOffset": 960464
@@ -113370,7 +113370,7 @@
       "offset": 1335872,
       "length": 30,
       "text": "　떠들어대다니　정말　우습군！",
-      "fixed": "",
+      "fixed": "　잘난　척　떠들지　말라고！　",
       "confirmed": false,
       "jp": "　エラそうに言うんじゃねぇっ！",
       "jpOffset": 960502
@@ -113380,7 +113380,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 960548
     },
@@ -113388,7 +113388,7 @@
       "offset": 1335926,
       "length": 26,
       "text": "「흥！　지고나서　생떼라니",
-      "fixed": "",
+      "fixed": "「흥　지고　나서　생떼라니",
       "confirmed": false,
       "jp": "「ふん　負け惜しみ？",
       "jpOffset": 960556
@@ -113397,7 +113397,7 @@
       "offset": 1335956,
       "length": 22,
       "text": "　정말　꼴불견이야！！",
-      "fixed": "",
+      "fixed": "　정말　꼴불견이네！　",
       "confirmed": false,
       "jp": "　みっともないね！",
       "jpOffset": 960580
@@ -113407,7 +113407,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 960614
     },
@@ -113415,7 +113415,7 @@
       "offset": 1336006,
       "length": 14,
       "text": "「시끄러워！！",
-      "fixed": "",
+      "fixed": "「죽여주마！　",
       "confirmed": false,
       "jp": "「てめぇ！　ぶっ殺す！",
       "jpOffset": 960626
@@ -113425,7 +113425,7 @@
       "length": 4,
       "text": "페톰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ペトゥム",
       "jpOffset": 960664
     },
@@ -113433,7 +113433,7 @@
       "offset": 1336044,
       "length": 24,
       "text": "「저런저런…발정성이라곤",
-      "fixed": "",
+      "fixed": "「저런저런…　언제　봐도",
       "confirmed": false,
       "jp": "「やれやれ…　いつ会っても",
       "jpOffset": 960676
@@ -113442,7 +113442,7 @@
       "offset": 1336072,
       "length": 28,
       "text": "　전∼혀　안보이는　녀석들！",
-      "fixed": "",
+      "fixed": "　발전이　없는　인간들이네…",
       "confirmed": false,
       "jp": "　進歩のない人たちですねぇ…",
       "jpOffset": 960706
@@ -113452,7 +113452,7 @@
       "length": 14,
       "text": "키리＆알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ＆アリババ",
       "jpOffset": 960754
     },
@@ -113460,7 +113460,7 @@
       "offset": 1336138,
       "length": 10,
       "text": "「페톰！！",
-      "fixed": "",
+      "fixed": "「페톰！　",
       "confirmed": false,
       "jp": "「ペトゥムっ",
       "jpOffset": 960772
@@ -113469,7 +113469,7 @@
       "offset": 1336152,
       "length": 30,
       "text": "　너나　똑바로　해라，이녀석！",
-      "fixed": "",
+      "fixed": "　네　녀석이　할　말이냐！！！",
       "confirmed": false,
       "jp": "　てめぇが言うなぁっっっ！！！",
       "jpOffset": 960788
@@ -113479,7 +113479,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 960838
     },
@@ -113487,7 +113487,7 @@
       "offset": 1336210,
       "length": 10,
       "text": "「어머！！",
-      "fixed": "",
+      "fixed": "「이거　참",
       "confirmed": false,
       "jp": "「まあ…",
       "jpOffset": 960852
@@ -113496,7 +113496,7 @@
       "offset": 1336224,
       "length": 26,
       "text": "　정말　사이가　좋으시군요",
-      "fixed": "",
+      "fixed": "　정말　사이가　좋으시네요",
       "confirmed": false,
       "jp": "　仲がよろしいですわね",
       "jpOffset": 960864
@@ -113506,7 +113506,7 @@
       "length": 26,
       "text": "　싸울수록　친한　사이라는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ケンカするほど　仲がいいって",
       "jpOffset": 960894
     },
@@ -113515,7 +113515,7 @@
       "length": 20,
       "text": "　옛말도　있으니까요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　昔からいいますものね",
       "jpOffset": 960928
     },
@@ -113523,7 +113523,7 @@
       "offset": 1336312,
       "length": 32,
       "text": "　그런데，키리님　자기소개는…？",
-      "fixed": "",
+      "fixed": "　그런데　키리씨　자기소개는？　",
       "confirmed": false,
       "jp": "　でも　キリさん　自己紹介は？",
       "jpOffset": 960954
@@ -113533,7 +113533,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 961000
     },
@@ -113541,7 +113541,7 @@
       "offset": 1336368,
       "length": 20,
       "text": "「이런，무슨　짓을…",
-      "fixed": "",
+      "fixed": "「아앗　무슨　짓을！",
       "confirmed": false,
       "jp": "「ああっ　しまった！",
       "jpOffset": 961008
@@ -113550,7 +113550,7 @@
       "offset": 1336396,
       "length": 24,
       "text": "　자기소개를　하다　말고",
-      "fixed": "",
+      "fixed": "　내　소개를　하려던　게",
       "confirmed": false,
       "jp": "　あたしの自己紹介をするはずが",
       "jpOffset": 961036
@@ -113559,7 +113559,7 @@
       "offset": 1336424,
       "length": 26,
       "text": "　쓸데없는　짓을　하다니…",
-      "fixed": "",
+      "fixed": "　어쩌다　이런　꼴이…　　",
       "confirmed": false,
       "jp": "　なんでこんなことに…",
       "jpOffset": 961070
@@ -113569,7 +113569,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 961108
     },
@@ -113577,7 +113577,7 @@
       "offset": 1336476,
       "length": 32,
       "text": "「유감이지만，시간　오버라구！！",
-      "fixed": "",
+      "fixed": "「유감이지만　시간　오버라구　　",
       "confirmed": false,
       "jp": "「残念だったな　時間切れらしいぜ",
       "jpOffset": 961122
@@ -113587,7 +113587,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 961170
     },
@@ -113595,7 +113595,7 @@
       "offset": 1336532,
       "length": 10,
       "text": "「콰당！！",
-      "fixed": "",
+      "fixed": "「콰당！　",
       "confirmed": false,
       "jp": "「ガーン！",
       "jpOffset": 961178
@@ -113605,7 +113605,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 961212
     },
@@ -113613,7 +113613,7 @@
       "offset": 1336574,
       "length": 30,
       "text": "「안녕하세요？　오랫만이예요！",
-      "fixed": "",
+      "fixed": "「안녕하세요？　오랫만이에요　",
       "confirmed": false,
       "jp": "「こんにちは　お久しぶりです",
       "jpOffset": 961226
@@ -113622,7 +113622,7 @@
       "offset": 1336608,
       "length": 28,
       "text": "　저를　처음　보셨다구요？！",
-      "fixed": "",
+      "fixed": "　혹시　처음　뵙는　걸까요？",
       "confirmed": false,
       "jp": "　ひょっとして　はじめましてかしら？",
       "jpOffset": 961258
@@ -113631,7 +113631,7 @@
       "offset": 1336644,
       "length": 18,
       "text": "　저는…　여우족을",
-      "fixed": "",
+      "fixed": "　저는　여우민족을",
       "confirmed": false,
       "jp": "　私は　キツネ族の",
       "jpOffset": 961302
@@ -113640,7 +113640,7 @@
       "offset": 1336666,
       "length": 16,
       "text": "　통치하고　있는",
-      "fixed": "",
+      "fixed": "　통치하고　있는",
       "confirmed": false,
       "jp": "　たばねをつとめております",
       "jpOffset": 961324
@@ -113658,7 +113658,7 @@
       "offset": 1336714,
       "length": 30,
       "text": "　환세시리즈에서는　스마슈님과",
-      "fixed": "",
+      "fixed": "『환세희담』과　『포물장』에서",
       "confirmed": false,
       "jp": "『幻世喜譚』と『幻世捕物帳』で",
       "jpOffset": 961384
@@ -113667,7 +113667,7 @@
       "offset": 1336748,
       "length": 36,
       "text": "　함께　보람있고　신나는　모험여행을",
-      "fixed": "",
+      "fixed": "　스마슈씨와　함께　모험을　　　　　",
       "confirmed": false,
       "jp": "　スマッシュさんとご一緒させて",
       "jpOffset": 961418
@@ -113676,7 +113676,7 @@
       "offset": 1336788,
       "length": 14,
       "text": "　했었답니다！",
-      "fixed": "",
+      "fixed": "　했었답니다　",
       "confirmed": false,
       "jp": "　いただきました",
       "jpOffset": 961452
@@ -113686,7 +113686,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 961484
     },
@@ -113694,7 +113694,7 @@
       "offset": 1336826,
       "length": 34,
       "text": "「화린！！　왜　자기소개를　그렇게",
-      "fixed": "",
+      "fixed": "「뭐랄까　평범한　자기소개잖아　　",
       "confirmed": false,
       "jp": "「なんか　フツーの自己紹介だな",
       "jpOffset": 961492
@@ -113703,7 +113703,7 @@
       "offset": 1336864,
       "length": 24,
       "text": "　평범하게　하는　거지？",
-      "fixed": "",
+      "fixed": "　…화린도　참　　　　　",
       "confirmed": false,
       "jp": "　…ファーリンはさぁ",
       "jpOffset": 961526
@@ -113712,7 +113712,7 @@
       "offset": 1336896,
       "length": 36,
       "text": "　평상시에도　평범한데，자기소개만큼",
-      "fixed": "",
+      "fixed": "　평소에도　수수하니까　　　　　　　",
       "confirmed": false,
       "jp": "　ただでさえ地味なんだから",
       "jpOffset": 961554
@@ -113721,7 +113721,7 @@
       "offset": 1336936,
       "length": 34,
       "text": "　은　튀게　해야　확실하게　자신의",
-      "fixed": "",
+      "fixed": "　이런　때　정돈　좀　더　화려하게",
       "confirmed": false,
       "jp": "　こんなときぐらい　もっとハデに",
       "jpOffset": 961584
@@ -113730,7 +113730,7 @@
       "offset": 1336974,
       "length": 30,
       "text": "　인상을　심어줄　거　아냐！？",
-      "fixed": "",
+      "fixed": "　눈에　띌　궁리를　해야한다고",
       "confirmed": false,
       "jp": "　目立つ工夫をしないとダメだよ",
       "jpOffset": 961620
@@ -113740,7 +113740,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 961666
     },
@@ -113748,7 +113748,7 @@
       "offset": 1337030,
       "length": 32,
       "text": "「화린이　키리같은　줄　알아？！",
-      "fixed": "",
+      "fixed": "「키리랑　달라서　화린쨩은　　　",
       "confirmed": false,
       "jp": "「キリと違って　ファーリンちゃんは",
       "jpOffset": 961680
@@ -113757,7 +113757,7 @@
       "offset": 1337066,
       "length": 32,
       "text": "　가만　있어도　인기가　있는데，",
-      "fixed": "",
+      "fixed": "　배역도　인기도　있으니까　　　",
       "confirmed": false,
       "jp": "　出番も　人気もあるから",
       "jpOffset": 961718
@@ -113766,7 +113766,7 @@
       "offset": 1337106,
       "length": 32,
       "text": "　키리처럼　악착같이　광대노릇을",
-      "fixed": "",
+      "fixed": "　이런　데서　눈에　안　띄어도　",
       "confirmed": false,
       "jp": "　こんなトコで　目立たなくても",
       "jpOffset": 961750
@@ -113775,7 +113775,7 @@
       "offset": 1337142,
       "length": 22,
       "text": "　할　필요가　있겠어？",
-      "fixed": "",
+      "fixed": "　괜찮은　거　아닐까？",
       "confirmed": false,
       "jp": "　いいんじゃねーか？",
       "jpOffset": 961784
@@ -113784,7 +113784,7 @@
       "offset": 1337188,
       "length": 6,
       "text": "퍼억！",
-      "fixed": "",
+      "fixed": "빠직　",
       "confirmed": false,
       "jp": "ぶちっ",
       "jpOffset": 961828
@@ -113794,7 +113794,7 @@
       "length": 4,
       "text": "키리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ",
       "jpOffset": 961842
     },
@@ -113802,7 +113802,7 @@
       "offset": 1337210,
       "length": 12,
       "text": "「스마슈！！",
-      "fixed": "",
+      "fixed": "「스마슈！　",
       "confirmed": false,
       "jp": "「スマッシュ！",
       "jpOffset": 961850
@@ -113811,7 +113811,7 @@
       "offset": 1337226,
       "length": 36,
       "text": "　그나마　숨쉴　때　가만히　있어！！",
-      "fixed": "",
+      "fixed": "　이번에야말로　숨통을　끊어　주마！",
       "confirmed": false,
       "jp": "　今度こそ息の根を止めてやる！",
       "jpOffset": 961868
@@ -113821,7 +113821,7 @@
       "length": 6,
       "text": "스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュ",
       "jpOffset": 961914
     },
@@ -113829,7 +113829,7 @@
       "offset": 1337288,
       "length": 28,
       "text": "「사실을　이야기하면　잠자코",
-      "fixed": "",
+      "fixed": "「우와우！　있는　사실을　　",
       "confirmed": false,
       "jp": "「うわぉう！　ホントのことを",
       "jpOffset": 961928
@@ -113838,7 +113838,7 @@
       "offset": 1337320,
       "length": 30,
       "text": "　듣고　있을　줄도　알아야지！",
-      "fixed": "",
+      "fixed": "　이야기　했을　뿐이잖아！　　",
       "confirmed": false,
       "jp": "　言っただけじゃねーか！",
       "jpOffset": 961960
@@ -113848,7 +113848,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 962000
     },
@@ -113856,7 +113856,7 @@
       "offset": 1337374,
       "length": 14,
       "text": "「두사람　모두",
-      "fixed": "",
+      "fixed": "「두　사람　다",
       "confirmed": false,
       "jp": "「お２人とも…",
       "jpOffset": 962014
@@ -113865,7 +113865,7 @@
       "offset": 1337392,
       "length": 22,
       "text": "　적당히　해　둬요！！",
-      "fixed": "",
+      "fixed": "　적당히　해　두세요！",
       "confirmed": false,
       "jp": "　いい加減にしてください！",
       "jpOffset": 962032
@@ -113875,7 +113875,7 @@
       "length": 12,
       "text": "키리＆스마슈",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キリ＆スマッシュ",
       "jpOffset": 962078
     },
@@ -113884,7 +113884,7 @@
       "length": 10,
       "text": "「녜녜녜…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「は　はいっ！",
       "jpOffset": 962098
     },
@@ -113893,7 +113893,7 @@
       "length": 4,
       "text": "화린",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ファーリン",
       "jpOffset": 962132
     },
@@ -113901,7 +113901,7 @@
       "offset": 1337488,
       "length": 20,
       "text": "「알아들으셨겠죠？！",
-      "fixed": "",
+      "fixed": "「알아들으신　거죠？",
       "confirmed": false,
       "jp": "「わかっていただけましたか？",
       "jpOffset": 962146
@@ -113911,7 +113911,7 @@
       "length": 24,
       "text": "　그렇다면　다행이지만…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なら　いいんですけど",
       "jpOffset": 962178
     },
@@ -113920,7 +113920,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 962216
     },
@@ -113928,7 +113928,7 @@
       "offset": 1337564,
       "length": 20,
       "text": "「역시，화린의　말은",
-      "fixed": "",
+      "fixed": "「화린이　말하면…　",
       "confirmed": false,
       "jp": "「ファーリンて　なんか…",
       "jpOffset": 962228
@@ -113937,7 +113937,7 @@
       "offset": 1337588,
       "length": 24,
       "text": "　설득력이　있다니까！！",
-      "fixed": "",
+      "fixed": "　설득력이　있다니까　　",
       "confirmed": false,
       "jp": "　言葉に説得力があるよな",
       "jpOffset": 962256
@@ -113947,7 +113947,7 @@
       "length": 6,
       "text": "아타호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホー",
       "jpOffset": 962296
     },
@@ -113955,7 +113955,7 @@
       "offset": 1337638,
       "length": 26,
       "text": "「나도　그렇게　생각해！！",
-      "fixed": "",
+      "fixed": "「나도　그렇게　생각하네　",
       "confirmed": false,
       "jp": "「そうそう　ワシもそう思う",
       "jpOffset": 962310
