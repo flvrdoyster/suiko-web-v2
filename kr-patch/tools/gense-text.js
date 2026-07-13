@@ -16,7 +16,7 @@ const DATA_END = DATA_RAW + DATA_SIZE;
 // inspecting the surrounding raw bytes — all three sit in the middle of large gaps with no
 // other extracted text nearby (338494→350524, 577052→620228, 1320330→1366732), unlike real
 // dialogue; the third also has control byte 0xff, never seen on genuine dialogue lines.
-const NOISE_RANGES = [[0x054490, 0x05450e], [0x08d07d, 0x08d080], [0x14aafa, 0x14ab98]]; // 345232-345358, 577661-577664, 1354490-1354648
+const NOISE_RANGES = [[0x054490, 0x05450e], [0x08d07d, 0x08d080], [0x14aafa, 0x14ab98], [0x0771f2, 0x0771f4]]; // 345232-345358, 577661-577664, 1354490-1354648, 487922-487924 ("娠", found via KR<->JP off-by-one at KR offset 380820 — isolated between 473512 and 504720, a ~31KB gap with nothing else)
 function inExcludedRange(off) {
   return NOISE_RANGES.some(([s, e]) => off >= s && off < e);
 }

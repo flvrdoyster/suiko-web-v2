@@ -6722,8 +6722,8 @@
       "text": "주작권사",
       "fixed": "",
       "confirmed": false,
-      "jp": "娠",
-      "jpOffset": 487922
+      "jp": "朱雀拳拳士",
+      "jpOffset": 504720
     },
     {
       "offset": 380528,
@@ -6731,8 +6731,8 @@
       "text": "「이곳은　주작의　시련이　있는　곳！",
       "fixed": "",
       "confirmed": false,
-      "jp": "朱雀拳拳士",
-      "jpOffset": 504720
+      "jp": "「ここは　朱雀の試練です",
+      "jpOffset": 504734
     },
     {
       "offset": 380568,
@@ -6740,8 +6740,8 @@
       "text": "　안쪽에　주작님이　계십니다",
       "fixed": "",
       "confirmed": false,
-      "jp": "「ここは　朱雀の試練です",
-      "jpOffset": 504734
+      "jp": "　奥に　朱雀さまがおられます",
+      "jpOffset": 504762
     },
     {
       "offset": 380612,
@@ -6749,8 +6749,8 @@
       "text": "주작권사",
       "fixed": "",
       "confirmed": false,
-      "jp": "　奥に　朱雀さまがおられます",
-      "jpOffset": 504762
+      "jp": "朱雀拳拳士",
+      "jpOffset": 504806
     },
     {
       "offset": 380624,
@@ -6758,8 +6758,8 @@
       "text": "「주작권사는　일정　시기가　되면",
       "fixed": "",
       "confirmed": false,
-      "jp": "朱雀拳拳士",
-      "jpOffset": 504806
+      "jp": "「朱雀拳の拳士は　ある時期にくると",
+      "jpOffset": 504820
     },
     {
       "offset": 380660,
@@ -6767,8 +6767,8 @@
       "text": "　이곳으로　와　수련을　한답니다",
       "fixed": "",
       "confirmed": false,
-      "jp": "「朱雀拳の拳士は　ある時期にくると",
-      "jpOffset": 504820
+      "jp": "　ここに来て修業することになります",
+      "jpOffset": 504858
     },
     {
       "offset": 380708,
@@ -6776,8 +6776,8 @@
       "text": "주작권사",
       "fixed": "",
       "confirmed": false,
-      "jp": "　ここに来て修業することになります",
-      "jpOffset": 504858
+      "jp": "朱雀拳拳士",
+      "jpOffset": 504908
     },
     {
       "offset": 380720,
@@ -6785,8 +6785,8 @@
       "text": "「주작님에게　인정을　받아야만",
       "fixed": "",
       "confirmed": false,
-      "jp": "朱雀拳拳士",
-      "jpOffset": 504908
+      "jp": "「我々は　朱雀さまに認められて",
+      "jpOffset": 504922
     },
     {
       "offset": 380754,
@@ -6794,8 +6794,8 @@
       "text": "　비로서，주작권사가　될　수　있죠",
       "fixed": "",
       "confirmed": false,
-      "jp": "「我々は　朱雀さまに認められて",
-      "jpOffset": 504922
+      "jp": "　初めて一人前になれるのです",
+      "jpOffset": 504956
     },
     {
       "offset": 380804,
@@ -6803,8 +6803,8 @@
       "text": "엉아（형님）",
       "fixed": "",
       "confirmed": false,
-      "jp": "　初めて一人前になれるのです",
-      "jpOffset": 504956
+      "jp": "アニキ",
+      "jpOffset": 505000
     },
     {
       "offset": 380820,
@@ -6812,8 +6812,8 @@
       "text": "「으응？　용케　여∼까징　왔구만",
       "fixed": "",
       "confirmed": false,
-      "jp": "アニキ",
-      "jpOffset": 505000
+      "jp": "「ん？　よく　この部屋がわかったな",
+      "jpOffset": 505010
     },
     {
       "offset": 380856,
@@ -6821,8 +6821,8 @@
       "text": "　머슬１호　룸에　온걸　환영해부러",
       "fixed": "",
       "confirmed": false,
-      "jp": "「ん？　よく　この部屋がわかったな",
-      "jpOffset": 505010
+      "jp": "　ようこそ　マッスルルーム１号室へ",
+      "jpOffset": 505048
     },
     {
       "offset": 380898,
@@ -6830,8 +6830,8 @@
       "text": "　…그란디，여근　출입금지랑게！",
       "fixed": "",
       "confirmed": false,
-      "jp": "　ようこそ　マッスルルーム１号室へ",
-      "jpOffset": 505048
+      "jp": "　…だが　ここは立ち入り禁止だ",
+      "jpOffset": 505090
     },
     {
       "offset": 380934,
@@ -6839,8 +6839,8 @@
       "text": "　존∼말할　때　가부러！！",
       "fixed": "",
       "confirmed": false,
-      "jp": "　…だが　ここは立ち入り禁止だ",
-      "jpOffset": 505090
+      "jp": "　おとなしく　立ち去るがよい",
+      "jpOffset": 505124
     },
     {
       "offset": 380968,
@@ -6848,8 +6848,8 @@
       "text": "　그렇게는　못해",
       "fixed": "",
       "confirmed": false,
-      "jp": "　おとなしく　立ち去るがよい",
-      "jpOffset": 505124
+      "jp": "　そうはいかない",
+      "jpOffset": 505160
     },
     {
       "offset": 380988,
@@ -6857,8 +6857,8 @@
       "text": "　알았어",
       "fixed": "",
       "confirmed": false,
-      "jp": "　そうはいかない",
-      "jpOffset": 505160
+      "jp": "　わかった",
+      "jpOffset": 505180
     },
     {
       "offset": 381016,
@@ -6866,8 +6866,8 @@
       "text": "다른　엉아",
       "fixed": "",
       "confirmed": false,
-      "jp": "　わかった",
-      "jpOffset": 505180
+      "jp": "アニキ",
+      "jpOffset": 505210
     },
     {
       "offset": 381030,
@@ -6875,8 +6875,8 @@
       "text": "「우리는　이　방의　파수꾼이다",
       "fixed": "",
       "confirmed": false,
-      "jp": "アニキ",
-      "jpOffset": 505210
+      "jp": "「俺たちはこの部屋の番人",
+      "jpOffset": 505220
     },
     {
       "offset": 381064,
@@ -6884,8 +6884,8 @@
       "text": "　침입자는　모두　쫓아낸다！！",
       "fixed": "",
       "confirmed": false,
-      "jp": "「俺たちはこの部屋の番人",
-      "jpOffset": 505220
+      "jp": "　侵入者は　追い払わねばならない",
+      "jpOffset": 505248
     },
     {
       "offset": 381110,
@@ -6893,8 +6893,8 @@
       "text": "그　엉아",
       "fixed": "",
       "confirmed": false,
-      "jp": "　侵入者は　追い払わねばならない",
-      "jpOffset": 505248
+      "jp": "アニキ",
+      "jpOffset": 505296
     },
     {
       "offset": 381122,
@@ -6902,8 +6902,8 @@
       "text": "「결심했냐？！",
       "fixed": "",
       "confirmed": false,
-      "jp": "アニキ",
-      "jpOffset": 505296
+      "jp": "「そうか　だったら",
+      "jpOffset": 505306
     },
     {
       "offset": 381140,
@@ -6911,8 +6911,8 @@
       "text": "　그라문　다시　오지　말어！",
       "fixed": "",
       "confirmed": false,
-      "jp": "「そうか　だったら",
-      "jpOffset": 505306
+      "jp": "　もう　ここには来るなよ",
+      "jpOffset": 505328
     },
     {
       "offset": 381184,
@@ -6920,8 +6920,8 @@
       "text": "또　그　엉아",
       "fixed": "",
       "confirmed": false,
-      "jp": "　もう　ここには来るなよ",
-      "jpOffset": 505328
+      "jp": "アニキ",
+      "jpOffset": 505368
     },
     {
       "offset": 381200,
@@ -6929,8 +6929,8 @@
       "text": "「어이구　분혀，할　수　없쟤잉∼",
       "fixed": "",
       "confirmed": false,
-      "jp": "アニキ",
-      "jpOffset": 505368
+      "jp": "「ちくしょう　無念だぜ…",
+      "jpOffset": 505378
     },
     {
       "offset": 381236,
@@ -6938,8 +6938,8 @@
       "text": "　분하지만，퇴각이다！！",
       "fixed": "",
       "confirmed": false,
-      "jp": "「ちくしょう　無念だぜ…",
-      "jpOffset": 505378
+      "jp": "　やむをえん　退却だ！",
+      "jpOffset": 505406
     },
     {
       "offset": 381276,
@@ -6947,8 +6947,8 @@
       "text": "엉아",
       "fixed": "형님",
       "confirmed": false,
-      "jp": "　やむをえん　退却だ！",
-      "jpOffset": 505406
+      "jp": "アニキ",
+      "jpOffset": 505444
     },
     {
       "offset": 381284,
@@ -6956,8 +6956,8 @@
       "text": "「어때？　톡톡히　맛을　봤으면",
       "fixed": "",
       "confirmed": false,
-      "jp": "アニキ",
-      "jpOffset": 505444
+      "jp": "「これにこりて　もう",
+      "jpOffset": 505454
     },
     {
       "offset": 381318,
@@ -6965,8 +6965,8 @@
       "text": "　다시　오진　말어！！",
       "fixed": "",
       "confirmed": false,
-      "jp": "「これにこりて　もう",
-      "jpOffset": 505454
+      "jp": "　ここに来るんじゃないぜ",
+      "jpOffset": 505478
     },
     {
       "offset": 381360,
@@ -6974,8 +6974,8 @@
       "text": "아타호",
       "fixed": "",
       "confirmed": false,
-      "jp": "　ここに来るんじゃないぜ",
-      "jpOffset": 505478
+      "jp": "アターホー",
+      "jpOffset": 505522
     },
     {
       "offset": 381370,
@@ -6983,8 +6983,8 @@
       "text": "「휴우…겨우　끝났군",
       "fixed": "",
       "confirmed": false,
-      "jp": "アターホー",
-      "jpOffset": 505522
+      "jp": "「ようやく終わりか…",
+      "jpOffset": 505536
     },
     {
       "offset": 381410,
@@ -6992,8 +6992,8 @@
       "text": "다른　엉아",
       "fixed": "",
       "confirmed": false,
-      "jp": "「ようやく終わりか…",
-      "jpOffset": 505536
+      "jp": "アニキ",
+      "jpOffset": 505576
     },
     {
       "offset": 381424,
@@ -7001,8 +7001,8 @@
       "text": "「네　이녀석！",
       "fixed": "",
       "confirmed": false,
-      "jp": "アニキ",
-      "jpOffset": 505576
+      "jp": "「おのれ！",
+      "jpOffset": 505586
     },
     {
       "offset": 381442,
@@ -7010,8 +7010,8 @@
       "text": "　이번엔　우리가　상대다！",
       "fixed": "",
       "confirmed": false,
-      "jp": "「おのれ！",
-      "jpOffset": 505586
+      "jp": "　今度は俺たちが相手だ！",
+      "jpOffset": 505600
     },
     {
       "offset": 381484,
@@ -7019,8 +7019,8 @@
       "text": "엉아",
       "fixed": "형님",
       "confirmed": false,
-      "jp": "　今度は俺たちが相手だ！",
-      "jpOffset": 505600
+      "jp": "アニキ",
+      "jpOffset": 505640
     },
     {
       "offset": 381492,
@@ -7028,8 +7028,8 @@
       "text": "「어？　또　왔어？",
       "fixed": "",
       "confirmed": false,
-      "jp": "アニキ",
-      "jpOffset": 505640
+      "jp": "「お？　また来たのか",
+      "jpOffset": 505650
     },
     {
       "offset": 381514,
@@ -7037,8 +7037,8 @@
       "text": "　설마，우리하고　또　싸우게？",
       "fixed": "",
       "confirmed": false,
-      "jp": "「お？　また来たのか",
-      "jpOffset": 505650
+      "jp": "　まさか　俺たちとやる気か？",
+      "jpOffset": 505674
     },
     {
       "offset": 381552,
@@ -7046,8 +7046,8 @@
       "text": "　거럼　거럼",
       "fixed": "",
       "confirmed": false,
-      "jp": "　まさか　俺たちとやる気か？",
-      "jpOffset": 505674
+      "jp": "　そのとおり",
+      "jpOffset": 505710
     },
     {
       "offset": 381568,
@@ -7055,8 +7055,8 @@
       "text": "　아，아냐！",
       "fixed": "",
       "confirmed": false,
-      "jp": "　そのとおり",
-      "jpOffset": 505710
+      "jp": "　いや　違う",
+      "jpOffset": 505726
     },
     {
       "offset": 381600,
@@ -7064,8 +7064,8 @@
       "text": "「부적」을　발견했다",
       "fixed": "",
       "confirmed": false,
-      "jp": "　いや　違う",
-      "jpOffset": 505726
+      "jp": "「呪符」を見つけました",
+      "jpOffset": 505758
     },
     {
       "offset": 381640,
@@ -7073,8 +7073,8 @@
       "text": "「부적」을　입수했다",
       "fixed": "",
       "confirmed": false,
-      "jp": "「呪符」を見つけました",
-      "jpOffset": 505758
+      "jp": "「呪符」を手に入れました",
+      "jpOffset": 505800
     },
     {
       "offset": 381696,
@@ -7082,8 +7082,8 @@
       "text": "스마슈",
       "fixed": "",
       "confirmed": false,
-      "jp": "「呪符」を手に入れました",
-      "jpOffset": 505800
+      "jp": "スマッシュ",
+      "jpOffset": 505860
     },
     {
       "offset": 381706,
@@ -7091,8 +7091,8 @@
       "text": "「이건　뭐야？",
       "fixed": "",
       "confirmed": false,
-      "jp": "スマッシュ",
-      "jpOffset": 505860
+      "jp": "「なんだ　これ？",
+      "jpOffset": 505874
     },
     {
       "offset": 381736,
@@ -7100,8 +7100,8 @@
       "text": "린샹",
       "fixed": "",
       "confirmed": false,
-      "jp": "「なんだ　これ？",
-      "jpOffset": 505874
+      "jp": "リンシャン",
+      "jpOffset": 505906
     },
     {
       "offset": 381744,
@@ -7109,8 +7109,8 @@
       "text": "「주술에　쓰는　부적이잖아",
       "fixed": "",
       "confirmed": false,
-      "jp": "リンシャン",
-      "jpOffset": 505906
+      "jp": "「まじないの　おふだね",
+      "jpOffset": 505920
     },
     {
       "offset": 381774,
@@ -7118,8 +7118,8 @@
       "text": "　봉인을　푸는데　사용하는　거예요",
       "fixed": "",
       "confirmed": false,
-      "jp": "「まじないの　おふだね",
-      "jpOffset": 505920
+      "jp": "　何かの封印を解くために使うものよ",
+      "jpOffset": 505946
     },
     {
       "offset": 381824,
@@ -7127,8 +7127,8 @@
       "text": "아타호",
       "fixed": "",
       "confirmed": false,
-      "jp": "　何かの封印を解くために使うものよ",
-      "jpOffset": 505946
+      "jp": "アターホー",
+      "jpOffset": 505996
     },
     {
       "offset": 381834,
@@ -7136,8 +7136,8 @@
       "text": "「린샹，별걸　다　아네！",
       "fixed": "",
       "confirmed": false,
-      "jp": "アターホー",
-      "jpOffset": 505996
+      "jp": "「リンシャン　詳しいんじゃな",
+      "jpOffset": 506010
     },
     {
       "offset": 381874,
@@ -7145,8 +7145,8 @@
       "text": "린샹",
       "fixed": "",
       "confirmed": false,
-      "jp": "「リンシャン　詳しいんじゃな",
-      "jpOffset": 506010
+      "jp": "リンシャン",
+      "jpOffset": 506054
     },
     {
       "offset": 381882,
@@ -7154,8 +7154,8 @@
       "text": "「네…아…일전에　한번",
       "fixed": "",
       "confirmed": false,
-      "jp": "リンシャン",
-      "jpOffset": 506054
+      "jp": "「え　ええ…　前に１度",
+      "jpOffset": 506068
     },
     {
       "offset": 381908,
@@ -7163,8 +7163,8 @@
       "text": "　똑같은　걸　본　적이　있어요",
       "fixed": "",
       "confirmed": false,
-      "jp": "「え　ええ…　前に１度",
-      "jpOffset": 506068
+      "jp": "　同じものを　見たことがあるから",
+      "jpOffset": 506094
     },
     {
       "offset": 381958,
@@ -7172,8 +7172,8 @@
       "text": "주작권사",
       "fixed": "",
       "confirmed": false,
-      "jp": "　同じものを　見たことがあるから",
-      "jpOffset": 506094
+      "jp": "朱雀拳拳士",
+      "jpOffset": 506146
     },
     {
       "offset": 381970,
@@ -7181,8 +7181,8 @@
       "text": "「호오…",
       "fixed": "",
       "confirmed": false,
-      "jp": "朱雀拳拳士",
-      "jpOffset": 506146
+      "jp": "「ほぉ…",
+      "jpOffset": 506160
     },
     {
       "offset": 381982,
@@ -7190,8 +7190,8 @@
       "text": "　우리　유파분들은　아닌　것같은데",
       "fixed": "",
       "confirmed": false,
-      "jp": "「ほぉ…",
-      "jpOffset": 506160
+      "jp": "　我が流派ではない方ですか",
+      "jpOffset": 506172
     },
     {
       "offset": 382024,
@@ -7199,8 +7199,8 @@
       "text": "　이곳을　통과하려면　우리들과",
       "fixed": "",
       "confirmed": false,
-      "jp": "　我が流派ではない方ですか",
-      "jpOffset": 506172
+      "jp": "　ここを通るのでしたら　私たちと",
+      "jpOffset": 506206
     },
     {
       "offset": 382058,
@@ -7208,8 +7208,8 @@
       "text": "　싸워서　이겨야　합니다",
       "fixed": "",
       "confirmed": false,
-      "jp": "　ここを通るのでしたら　私たちと",
-      "jpOffset": 506206
+      "jp": "　戦っていただきますが？",
+      "jpOffset": 506242
     },
     {
       "offset": 382086,
@@ -7217,8 +7217,8 @@
       "text": "　싸우겠습니까？",
       "fixed": "",
       "confirmed": false,
-      "jp": "　戦っていただきますが？",
-      "jpOffset": 506242
+      "jp": "　いいですかな？",
+      "jpOffset": 506270
     },
     {
       "offset": 382110,
@@ -7226,8 +7226,8 @@
       "text": "　좋아요",
       "fixed": "",
       "confirmed": false,
-      "jp": "　いいですかな？",
-      "jpOffset": 506270
+      "jp": "　わかった",
+      "jpOffset": 506294
     },
     {
       "offset": 382122,
@@ -7235,8 +7235,8 @@
       "text": "　아니오",
       "fixed": "",
       "confirmed": false,
-      "jp": "　わかった",
-      "jpOffset": 506294
+      "jp": "　いやだ",
+      "jpOffset": 506308
     },
     {
       "offset": 382150,
