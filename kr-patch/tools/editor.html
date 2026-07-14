@@ -90,11 +90,21 @@
   .kr-input.modified { border-color: #b87820; background: #1e1600; }
   .kr-input.saved { border-color: #2a8040; }
   .kr-input.invalid { border-color: #c04040; background: #1e0d0d; }
+  /* Cheap stand-in for .kr-input shown by default — one <textarea> per row × ~14,800 rows
+     was the editor's main weight, so rows render this div and upgrade to a real textarea
+     only when clicked (see renderRow's upgradeToTextarea()). Visually mirrors .kr-input. */
+  .kr-display { flex: 1; min-width: 0; background: #252525; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 4px 7px; border-radius: 4px; font-size: 13px; line-height: 1.5; white-space: pre-wrap; word-break: break-all; cursor: text; min-height: 26px; }
+  .kr-display.placeholder { color: #555; }
+  .kr-display.modified { border-color: #b87820; background: #1e1600; }
+  .kr-display.saved { border-color: #2a8040; }
+  .kr-display.invalid { border-color: #c04040; background: #1e0d0d; }
   /* 확정(수정 없이 검수 완료) 토글 — 수정칸이 비어 있을 때만 표시 */
   .confirm-btn { flex: none; background: #252525; color: #777; border: 1px solid #3a3a3a; height: 26px; padding: 0 10px; border-radius: 4px; cursor: pointer; font-size: 11px; font-family: inherit; white-space: nowrap; }
   .confirm-btn:hover { background: #2e2e2e; color: #aaa; }
   tr.confirmed .kr-input { background: #152015; border-color: #2a452a; }
   tr.confirmed .kr-input::placeholder { color: #4a7a4a; }
+  tr.confirmed .kr-display { background: #152015; border-color: #2a452a; }
+  tr.confirmed .kr-display.placeholder { color: #4a7a4a; }
   tr.confirmed .confirm-btn { background: #1a3d1a; color: #7dc87d; border-color: #2d5c2d; }
   tr.confirmed .confirm-btn:hover { background: #234d23; }
   .len { width: 84px; text-align: center; color: #555; font-size: 12px; white-space: nowrap; }
@@ -196,7 +206,7 @@ const SECTIONS = [
 let data = null;
 let curSection = 'dialogue';
 const modified = {};        // "section:offset" -> fixed string (in-memory unsaved edits)
-let problemRows = [];       // currently-rendered rows whose edit is length-invalid
+let problemOffsets = [];    // offsets of filtered rows whose edit is length-invalid
 let problemIdx = -1;
 // offset -> index in data.dialogue, for the context panel's "neighbors in original-file
 // order" lookup (see showContext()). translation.json's jp/jpOffset fields (baked once by
@@ -586,7 +596,6 @@ function renderRow(e, idx) {
   tr.dataset.offset = e.offset;
   const k = keyOf(curSection, e);
   tr.dataset.key = k;
-  const fixed = currentFixed(curSection, e);
   if (selection.has(k)) tr.classList.add('row-selected');
   if (rangeStart !== null && idx === rangeStart) tr.classList.add('range-start');
 
@@ -647,13 +656,20 @@ function renderRow(e, idx) {
 
   const tdFixed = document.createElement('td');
   tdFixed.className = 'fixed-cell';
-  const ta = document.createElement('textarea');
-  ta.className = 'kr-input';
-  ta.rows = 1;
-  ta.value = fixed;
-  ta.placeholder = e.text;
-  ta.dataset.key = k;
-  if (k in modified) ta.classList.add('modified');
+  const inner = document.createElement('div');
+  inner.className = 'fixed-inner';
+
+  const tdLen = document.createElement('td');
+  tdLen.className = 'len';
+
+  const curVal = () => (k in modified ? modified[k] : (e.fixed || ''));
+  const isInvalid = (v) => !!(v && validity(curSection, byteLen(v), need(curSection, e)) !== 'ok');
+
+  function refreshLen() {
+    const st = lenCellState(curSection, e, curVal());
+    tdLen.textContent = st.text;
+    tdLen.className = 'len ' + st.cls;
+  }
 
   // "확정" toggle — marks an entry reviewed with no change needed. Only shown when the
   // fixed field is empty (an actual edit supersedes it). Persists immediately (a bool, no
@@ -663,8 +679,7 @@ function renderRow(e, idx) {
   function syncConfirmUI() {
     tr.classList.toggle('confirmed', !!e.confirmed);
     confirmBtn.textContent = e.confirmed ? '취소' : '확정';
-    // hide the button whenever the fixed field has content (edit takes precedence)
-    confirmBtn.style.display = ta.value ? 'none' : '';
+    confirmBtn.style.display = curVal() ? 'none' : '';
   }
   confirmBtn.addEventListener('click', async () => {
     const next = !e.confirmed;
@@ -680,63 +695,79 @@ function renderRow(e, idx) {
     confirmBtn.disabled = false;
   });
 
-  const tdLen = document.createElement('td');
-  tdLen.className = 'len';
-
-  function refreshLen() {
-    const val = ta.value;
-    const st = lenCellState(curSection, e, val);
-    tdLen.textContent = st.text;
-    tdLen.className = 'len ' + st.cls;
-    const invalid = val && validity(curSection, byteLen(val), need(curSection, e)) !== 'ok';
-    ta.classList.toggle('invalid', !!invalid);
+  // Default: a cheap div showing the value (or the KR original as a greyed placeholder).
+  const display = document.createElement('div');
+  display.className = 'kr-display';
+  function paintDisplay() {
+    const v = curVal();
+    display.textContent = v || e.text;
+    display.classList.toggle('placeholder', !v);
+    display.classList.toggle('modified', k in modified);
+    display.classList.toggle('invalid', isInvalid(v));
   }
+  paintDisplay();
+  // mousedown (not click) + preventDefault so upgrading doesn't first select the div's text.
+  display.addEventListener('mousedown', (ev) => { ev.preventDefault(); tr._edit(); });
 
-  // NOT .trim()'d anywhere: leading/trailing spaces (half- or full-width 　) are meaningful
-  // game content here (right-aligned rank labels, "지옥　다리후리기"-style compounds).
-  ta.addEventListener('focus', () => {
-    if (curSection === 'dialogue') showContext(e);
-  });
-  ta.addEventListener('input', () => {
-    // Auto-convert typed half-width space / ! / ? to the full-width forms (U+3000/FF01/FF1F)
-    // the game text uses. Each is 1-char→1-char so the caret position stays valid.
-    if (/[ !?]/.test(ta.value)) {
-      const s = ta.selectionStart, en = ta.selectionEnd;
-      ta.value = ta.value.replace(/ /g, '　').replace(/!/g, '！').replace(/\?/g, '？');
-      ta.setSelectionRange(s, en);
+  // Upgrade this one row's display to a real <textarea> for editing. Called on click, and
+  // by jumpToOffset()/gotoProblem() via tr._edit. Idempotent — reuses an existing textarea.
+  tr._edit = function upgradeToTextarea() {
+    let ta = inner.querySelector('.kr-input');
+    if (!ta) {
+      ta = document.createElement('textarea');
+      ta.className = 'kr-input' + (k in modified ? ' modified' : '') + (isInvalid(curVal()) ? ' invalid' : '');
+      ta.rows = 1;
+      ta.value = curVal();
+      ta.placeholder = e.text;
+      ta.dataset.key = k;
+      ta.addEventListener('focus', () => { if (curSection === 'dialogue') showContext(e); });
+      ta.addEventListener('input', () => {
+        // Auto-convert typed half-width space / ! / ? to full-width (U+3000/FF01/FF1F).
+        // Each is 1-char→1-char so the caret position stays valid.
+        if (/[ !?]/.test(ta.value)) {
+          const s = ta.selectionStart, en = ta.selectionEnd;
+          ta.value = ta.value.replace(/ /g, '　').replace(/!/g, '！').replace(/\?/g, '？');
+          ta.setSelectionRange(s, en);
+        }
+        const v = ta.value;
+        if (v === (e.fixed || '')) { delete modified[k]; ta.classList.remove('modified'); }
+        else { modified[k] = v; ta.classList.add('modified'); }
+        ta.classList.remove('saved');
+        ta.classList.toggle('invalid', isInvalid(v));
+        refreshLen();
+        syncConfirmUI();
+        updateSaveBtn();
+        // recomputeProblems()/updateStats() scan the whole section — debounced so they run
+        // once after typing pauses instead of on every keystroke.
+        scheduleStatsUpdate();
+      });
+      inner.replaceChild(ta, display);
     }
-    const val = ta.value;
-    if (val === (e.fixed || '')) { delete modified[k]; ta.classList.remove('modified'); }
-    else { modified[k] = val; ta.classList.add('modified'); }
-    ta.classList.remove('saved');
-    refreshLen();
-    syncConfirmUI();
-    updateSaveBtn();
-    // recomputeProblems()/updateStats() scan every rendered row / all ~15,000 entries —
-    // debounced so they run once after typing pauses instead of on every keystroke (this
-    // was the main source of the editor feeling laggy while writing).
-    scheduleStatsUpdate();
-  });
+    ta.focus();
+    const n = ta.value.length;
+    ta.setSelectionRange(n, n);
+  };
 
+  inner.append(display, confirmBtn);
   refreshLen();
   syncConfirmUI();
-  const inner = document.createElement('div');
-  inner.className = 'fixed-inner';
-  inner.append(ta, confirmBtn);
   tdFixed.appendChild(inner);
   tr.append(tdOff, tdOrig, tdFixed, tdLen);
   return tr;
 }
 
 function recomputeProblems() {
-  // query only the invalid inputs (cheap) rather than scanning every row's textarea —
-  // matches hasProblem()'s problem kind.
-  problemRows = Array.from(document.querySelectorAll('#tbody .kr-input.invalid'), (ta) => ta.closest('tr'));
+  // Compute from the data model (rows no longer all carry a textarea to query — see
+  // renderRow's lazy upgradeToTextarea). Stores offsets; gotoProblem() finds the <tr> by
+  // data-offset (all filtered rows are still in the DOM).
+  problemOffsets = filteredRows()
+    .filter((e) => hasProblem(curSection, e, currentFixed(curSection, e)))
+    .map((e) => e.offset);
   const nav = document.getElementById('probNav');
-  if (problemRows.length) {
-    document.getElementById('probCount').textContent = problemRows.length + '건 ';
+  if (problemOffsets.length) {
+    document.getElementById('probCount').textContent = problemOffsets.length + '건 ';
     nav.style.display = 'inline-flex';
-    if (problemIdx >= problemRows.length) problemIdx = problemRows.length - 1;
+    if (problemIdx >= problemOffsets.length) problemIdx = problemOffsets.length - 1;
   } else {
     nav.style.display = 'none';
     problemIdx = -1;
@@ -744,14 +775,14 @@ function recomputeProblems() {
 }
 
 function gotoProblem(delta) {
-  if (!problemRows.length) return;
-  problemIdx = (problemIdx + delta + problemRows.length) % problemRows.length;
-  const tr = problemRows[problemIdx];
+  if (!problemOffsets.length) return;
+  problemIdx = (problemIdx + delta + problemOffsets.length) % problemOffsets.length;
+  const tr = document.querySelector(`#tbody tr[data-offset="${problemOffsets[problemIdx]}"]`);
+  if (!tr) return;
   document.querySelectorAll('tr.prob-focus').forEach((r) => r.classList.remove('prob-focus'));
   tr.classList.add('prob-focus');
   tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  const ta = tr.querySelector('.kr-input');
-  if (ta) ta.focus();
+  if (tr._edit) tr._edit();
 }
 
 function countModifiedAll() { return Object.keys(modified).length; }
@@ -809,21 +840,15 @@ async function saveAll() {
       const entry = (data[section] || []).find((e) => e.offset === offset);
       if (entry) entry.fixed = res.fixed;
       delete modified[k];
-      const ta = document.querySelector(`.kr-input[data-key="${CSS.escape(k)}"]`);
-      if (ta) {
-        ta.value = res.fixed;
-        ta.classList.remove('modified', 'invalid');
-        ta.classList.add('saved');
-        setTimeout(() => ta.classList.remove('saved'), 1500);
-      }
     } else {
       failed++;
     }
   }
   btn.textContent = '저장';
   updateSaveBtn();
-  updateStats();
-  recomputeProblems();
+  // Rows are lazy displays now (no per-row textarea to patch in place), so just re-render
+  // to reflect saved values — cheap since it's divs, and save is an infrequent action.
+  render();
   toast(failed ? `${saved}건 저장, ${failed}건 실패(길이 안 맞음)` : `${saved}건 저장했습니다.`);
 }
 
