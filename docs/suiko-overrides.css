@@ -125,6 +125,15 @@ canvas { width: 640px; height: 480px; }
      actual canvas, i.e. they visually sat well short of the canvas's real edges. Match
      their width to the same formula so the 3-column grid spans the full canvas width. */
   .top-bar, .disk-panel { width: min(100vw, calc(100vh * 4 / 3)); }
+  /* 100vh on mobile Safari/Chrome is the height as if the address/toolbar were hidden, not
+     the actually-visible viewport — with the toolbar showing (e.g. top-bar collapsed but
+     the browser chrome still up), a canvas sized off 100vh comes out taller than the real
+     screen. 100dvh tracks the current visible viewport instead; re-declaring the same
+     properties after the 100vh versions above means unsupported browsers just keep the vh
+     fallback (an unparseable dvh value doesn't overwrite the previous declaration), while
+     supported ones (iOS Safari 15.4+/Chrome 108+) get the corrected size. */
+  canvas { width: min(100vw, calc(100dvh * 4 / 3)); height: min(100dvh, calc(100vw * 3 / 4)); }
+  .top-bar, .disk-panel { width: min(100vw, calc(100dvh * 4 / 3)); }
 }
 
 /* The doswasmx engine's own demo UI (#maindiv, #divInstructions) stays in the DOM — rivets
