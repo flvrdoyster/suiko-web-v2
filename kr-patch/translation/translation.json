@@ -555,7 +555,7 @@
       "offset": 260590,
       "length": 22,
       "text": "「어라？　보물상자！！",
-      "fixed": "「옷　보물상자～　　　",
+      "fixed": "「옷　보물상자∼　　　",
       "confirmed": false,
       "jp": "「おっ　たっからばこ～",
       "jpOffset": 357484
@@ -564,7 +564,7 @@
       "offset": 260616,
       "length": 20,
       "text": "　뭐가　들었을까？！",
-      "fixed": "　뭐가　들었을까～？",
+      "fixed": "　뭐가　들었을까∼？",
       "confirmed": false,
       "jp": "　中身は何かな～？",
       "jpOffset": 357510
@@ -2284,7 +2284,7 @@
       "length": 18,
       "text": "「마법의　물약」은",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」は",
       "jpOffset": 411562
     },
@@ -4263,7 +4263,7 @@
       "offset": 340246,
       "length": 28,
       "text": "음　굉장히　좋은　반응이군！",
-      "fixed": "음～　이　얼마나　멋진가！　",
+      "fixed": "음∼　이　얼마나　멋진가！　",
       "confirmed": false,
       "jp": "う～ん　なんていい響きなんだ！",
       "jpOffset": 1158136
@@ -6252,7 +6252,7 @@
       "offset": 347966,
       "length": 28,
       "text": "　우리들　일엔　상관말아요！",
-      "fixed": "",
+      "fixed": "　우리들　일엔　상관　말아요",
       "confirmed": false,
       "jp": "　私たちに関わらないで",
       "jpOffset": 471646
@@ -6630,7 +6630,7 @@
       "offset": 349536,
       "length": 34,
       "text": "　스마슈，사용할　수　있겠어요？！",
-      "fixed": "",
+      "fixed": "　어때？　스마슈　쓸　수　있겠어？",
       "confirmed": false,
       "jp": "　どう？　スマッシュ　使えそう？",
       "jpOffset": 473190
@@ -8664,7 +8664,7 @@
       "offset": 386622,
       "length": 32,
       "text": "「열화폭염권　기서」를　발견했다",
-      "fixed": "",
+      "fixed": "「열화폭염권」　기서를　발견했다",
       "confirmed": false,
       "jp": "「烈火爆炎拳の技書」を見つけました",
       "jpOffset": 510820
@@ -8674,7 +8674,7 @@
       "length": 4,
       "text": "린샹",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャン",
       "jpOffset": 510866
     },
@@ -8682,7 +8682,7 @@
       "offset": 386674,
       "length": 18,
       "text": "「으와！　굉장해…",
-      "fixed": "",
+      "fixed": "「헤에　그렇구나…",
       "confirmed": false,
       "jp": "「へえ　なるほどね…",
       "jpOffset": 510880
@@ -8691,7 +8691,7 @@
       "offset": 386696,
       "length": 32,
       "text": "　이건　나도　사용할　수　있겠다",
-      "fixed": "",
+      "fixed": "　이건　나도　사용할　수　있겠어",
       "confirmed": false,
       "jp": "　これなら私にも使えそうね",
       "jpOffset": 510904
@@ -8898,7 +8898,7 @@
       "offset": 387496,
       "length": 34,
       "text": "「우린　이곳을　지키는　파수꾼이다",
-      "fixed": "",
+      "fixed": "「우린　이곳을　지키는　파수꾼　　",
       "confirmed": false,
       "jp": "「俺たちはこの部屋の番人",
       "jpOffset": 511660
@@ -22722,7 +22722,7 @@
       "offset": 456810,
       "length": 32,
       "text": "（나쁜놈！　내　１０００Ｇ를…）",
-      "fixed": "（내　１０００Ｇ를　돌려줘～！）",
+      "fixed": "（내　１０００Ｇ를　돌려줘∼！）",
       "confirmed": false,
       "jp": "（ワシの１０００Ｇを返せ～っ！！）",
       "jpOffset": 570754
@@ -26007,7 +26007,7 @@
       "offset": 516972,
       "length": 32,
       "text": "「쳇，사람이　말하면　들어야지．",
-      "fixed": "「쳇，사람이　말하면　들어야지　",
+      "fixed": "「쳇　사람이　말하면　들어야지　",
       "confirmed": false,
       "jp": "「チェッ　人の話を聞けよな～",
       "jpOffset": 627094
@@ -30633,7 +30633,7 @@
       "offset": 531238,
       "length": 32,
       "text": "「정말이지…영문은　잘　모르지만",
-      "fixed": "「정말이지～　신세졌어　아저씨　",
+      "fixed": "「정말이지∼　신세졌어　아저씨　",
       "confirmed": false,
       "jp": "「いや～　悪かったな　おっさん",
       "jpOffset": 642250
@@ -30777,7 +30777,7 @@
       "offset": 531692,
       "length": 34,
       "text": "「잔뜩　기대만　시켜놓고…뭡니까？",
-      "fixed": "「뭐야　잔뜩　기대만　시켜놓고～　",
+      "fixed": "「뭐야　잔뜩　기대만　시켜놓고∼　",
       "confirmed": false,
       "jp": "「なんだ　期待させんなよ～",
       "jpOffset": 642740
@@ -43557,7 +43557,7 @@
       "offset": 637612,
       "length": 18,
       "text": "「됐다니까요！！！",
-      "fixed": "「아저씨　말고～　",
+      "fixed": "「아저씨　말고∼　",
       "confirmed": false,
       "jp": "「おっさんじゃなくて～っ",
       "jpOffset": 769244
@@ -67425,7 +67425,7 @@
       "offset": 885454,
       "length": 10,
       "text": "「오잉？！",
-      "fixed": "「우효～　",
+      "fixed": "「우효∼　",
       "confirmed": false,
       "jp": "「うひょ～",
       "jpOffset": 1034338
@@ -72591,7 +72591,7 @@
       "offset": 954354,
       "length": 18,
       "text": "꿀꺽하는　것도？！",
-      "fixed": "뻗어버릴　수도!?　",
+      "fixed": "뻗어버릴　수도！？",
       "confirmed": false,
       "jp": "いっちゃうことも！？",
       "jpOffset": 889642
@@ -75552,7 +75552,7 @@
       "offset": 961236,
       "length": 16,
       "text": "　　　　Nyo-Nyo ",
-      "fixed": "　뇨～뇨　　　　",
+      "fixed": "　뇨∼뇨　　　　",
       "confirmed": false,
       "jp": "　　　にょ～にょ",
       "jpOffset": 896814
@@ -77964,7 +77964,7 @@
       "offset": 969706,
       "length": 28,
       "text": "「음∼이쪽은　길이　틀린데…",
-      "fixed": "「음～　이쪽　길이　아닌데　",
+      "fixed": "「음∼　이쪽　길이　아닌데　",
       "confirmed": false,
       "jp": "「う～む　こっちは道が違うな",
       "jpOffset": 1118730
@@ -112740,7 +112740,7 @@
       "offset": 1333958,
       "length": 26,
       "text": "「하지만，난　폭소ＲＰＧ는",
-      "fixed": "「으～음…　하지만　난　　",
+      "fixed": "「으∼음…　하지만　난　　",
       "confirmed": false,
       "jp": "「ふ～ん…　でも　わたし",
       "jpOffset": 958622
@@ -114468,7 +114468,7 @@
       "offset": 1339122,
       "length": 12,
       "text": "「……으효！",
-      "fixed": "「……우효～",
+      "fixed": "「……우효∼",
       "confirmed": false,
       "jp": "「………あふぅ～",
       "jpOffset": 963850
@@ -114747,7 +114747,7 @@
       "offset": 1339948,
       "length": 36,
       "text": "「…그렇다면，내게　빚긴　것을　갚게",
-      "fixed": "「호～？　그럼　내게　빚진　걸　갚게",
+      "fixed": "「호∼？　그럼　내게　빚진　걸　갚게",
       "confirmed": false,
       "jp": "「ほ～？　じゃあ　金を返さんか",
       "jpOffset": 964704
@@ -115341,7 +115341,7 @@
       "offset": 1341878,
       "length": 22,
       "text": "「이봐　뭐하는　거야？",
-      "fixed": "「뭐　뭐하는　거야～　",
+      "fixed": "「뭐　뭐하는　거야∼　",
       "confirmed": false,
       "jp": "「な　なんだよ～",
       "jpOffset": 966640
@@ -115647,7 +115647,7 @@
       "offset": 1342808,
       "length": 34,
       "text": "「주눅든　척　말아！　그러는　사이",
-      "fixed": "",
+      "fixed": "「주눅든　척하는　사이에　　　　　",
       "confirmed": false,
       "jp": "「いじけたフリしてる間に",
       "jpOffset": 967590
@@ -115656,7 +115656,7 @@
       "offset": 1342846,
       "length": 34,
       "text": "　아까운　시간만　다　지나갔잖아！",
-      "fixed": "",
+      "fixed": "　시간이　다　된　모양이구먼　　　",
       "confirmed": false,
       "jp": "　時間がきたようじゃな",
       "jpOffset": 967618
@@ -118726,7 +118726,7 @@
       "length": 22,
       "text": "　이번에야말로　정말로",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　　　今度こそ　本当に",
       "jpOffset": 977666
     },
@@ -118735,7 +118735,7 @@
       "length": 24,
       "text": "　　　　　　　환세취호전",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　　　　　　　幻世酔虎伝",
       "jpOffset": 977696
     },
@@ -118744,7 +118744,7 @@
       "length": 22,
       "text": "　　　　　　　　끝！！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　　　　　　　　終わり",
       "jpOffset": 977724
     },
@@ -118753,7 +118753,7 @@
       "length": 18,
       "text": "　게임을　종료한다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ゲームを終了する",
       "jpOffset": 977762
     },
@@ -118761,7 +118761,7 @@
       "offset": 1352944,
       "length": 20,
       "text": "　　타이틀화면으로！",
-      "fixed": "",
+      "fixed": "　타이틀　화면으로　",
       "confirmed": false,
       "jp": "　タイトル画面に戻る",
       "jpOffset": 977784
@@ -120318,7 +120318,7 @@
       "offset": 1357410,
       "length": 22,
       "text": "「팬이라구요？　하하하",
-      "fixed": "「팬이라구？　거짓말～",
+      "fixed": "「팬이라구？　거짓말∼",
       "confirmed": false,
       "jp": "「ファン？　うそくせ～",
       "jpOffset": 314890
@@ -121344,7 +121344,7 @@
       "offset": 1360600,
       "length": 34,
       "text": "「이봐요，아타호！　아침이라구요∼",
-      "fixed": "「이～봐　아타호　아침이라고∼　　",
+      "fixed": "「이∼봐　아타호　아침이라고∼　　",
       "confirmed": false,
       "jp": "「お～い　アターホー　朝だぞ～",
       "jpOffset": 318040
