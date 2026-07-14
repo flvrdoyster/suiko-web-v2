@@ -677,7 +677,8 @@ class InputController {
             event.key == 'Alt' ||
             event.key == 'Shift' ||
             event.key == 'Tab' ||
-            event.key == 'Escape'
+            event.key == 'Escape' ||
+            event.key == ' '
         )
             event.preventDefault();
     }
