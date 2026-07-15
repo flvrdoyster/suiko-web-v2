@@ -39,9 +39,18 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 - **KR↔JP 대사 매칭**: 두 언어의 전체 대사(KR 14,812줄/JP 14,813줄)를 1:1 대응시켜
   `translation.json`의 각 `dialogue` 항목에 `jp`/`jpOffset` 필드로 확정 반영 완료 — 충돌·누락
   0건. 상세 방법은 "3.3 텍스트 구조" 참고.
-- **KR 정식 번역 오타·오역 수정**: 게임 데이터(`HWANSE.EXE`)에 내장된 기존 정식 한글 번역의
-  오타·오역을 찾아 고치는 작업(새 번역 아님). 스마슈→아타호 존댓말 오류 전수 수정 완료,
-  판단 기준은 `GUIDE.md`에 문서화. 파이프라인은 "3.3 텍스트 구조" 참고.
+- **KR 정식 번역 결함 수정**: 게임 데이터(`HWANSE.EXE`)에 내장된 기존 정식 한글 번역의
+  결함을 찾아 고치는 작업(새 번역 아님). 수정은 결함의 성격에 따라 **3층위**로 분류한다 —
+  심각도 순으로 뜻 → 뉘앙스 → 표면:
+  - **① 오역 정정** — 뜻 자체가 틀림(오독·오해). 예: `瘴気` "장궁"→"독안개", `檮杌` "두개골"→"도올".
+  - **② 원문 뉘앙스 교정** — 뜻은 맞지만 원문 톤·뉘앙스에서 멀어짐. 덜 살린 것(뭉갬)과
+    과한 의역 **양방향**을 함께 포함(예전에 "과한 의역/원문에서 멀어진 번역"으로 부르던 것).
+    예: "비기"→"오의", 캐릭터 특수 모드명, 스마슈→아타호 존댓말 말투 오류.
+  - **③ 표기·맞춤법 정정** — 뜻·뉘앙스와 무관한 표면 표기. 동일 대상 표기 통일 + 외래어
+    표기법 + 단순 오탈자를 묶음. 예: "호랑이굴"→"호랑이동굴", "햄머"→"해머", "겁장이"→"겁쟁이".
+
+  스마슈→아타호 존댓말 오류 전수 수정 완료. 판단 기준은 `GUIDE.md`, 파이프라인은 "3.3
+  텍스트 구조" 참고.
 - **배포 세이브 데이터 초기화**: 배포 이미지의 SAVEDATA 폴더를 파일 없는 순수 빈 폴더로
   정리(신규 유저는 직접 플레이해서 첫 세이브 생성). 이 과정에서 `Fat16.injectDirFiles()`가
   "기존 디렉토리 엔트리가 없으면 조용히 skip"하던 회귀 버그를 발견해 수정(빈 슬롯도 생성하도록,
@@ -50,7 +59,12 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 
 ## 2. 진행 중 / 남은 작업
 
-- KR "과한 의역"(원문에서 멀어진 번역) 검토 — 사용자가 직접 진행 중, 종료 시점 없음
+- **번역 전량 재검토**: 미수정·미확정 대사 12,067줄을 원문(JP)과 1:1 대조해 결함 후보를
+  추리는 전수 검토. 후보를 `translation/review-findings.json`에 `{offset, kr, jp, category,
+  reason}`로 기록(총 200건 — 의미 왜곡 53, 문장부호 과잉 143, 화자 말투 4), 로컬 에디터의
+  필터 드롭다운("AI 검토: 의미 왜곡/화자 말투")과 "문장부호 의심" 필터로 하나씩 검토·수정
+  진행 중. 문장부호 과잉은 기계적 감지(`find-punct-issues.js` / 에디터 필터)가 후보를 전부
+  포함하므로 별도 필터 없이 병합. 수정하거나 확정한 줄은 필터에서 자동 제외돼 잔여 건수가 줄어듦.
 - 대사 길이 확장(PE 재작성 패처)은 기술적으로 가능하나 **진행하지 않기로 결정**(2026-07) —
   원본 바이트 길이 제약 안에서 조사·어미 교체로 대응
 
@@ -113,11 +127,12 @@ spessasynth(JS 소프트신스)로 흘러 SC-55.sf3(9MB, 원본 롤랜드 SC-55 
 **산출물**: `kr-patch/tools/hwanse-text.js`·`hwanse-names.js`(KR 추출/빌드), `hwanse-font.js`
 (LOGFONT lfFaceName 필드 위치 정보만 — 폰트 이름 교체 1차 시도가 효과 없어 보류돼 레이블
 추출에서 이 필드를 제외하는 용도로만 남음), `gense-text.js`·`gense-names.js`(JP 참고 전용),
-`search-jp.js`(JP 키워드 검색), `editor.js`+`editor.html`(로컬 웹 에디터), `pe-reloc.js`(PE
-섹션 테이블/relocation 파서, 청크 접근 시도에서 만듦 — 자동 청크 나누기 자체는 장면 경계가
-안 맞아 기각), `extract.js`/`build.js`/`inject.js`(파이프라인), `bake-jp.js`,
-`translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션), `translation/jp-reference.json`
-(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커 입력), `translation/GUIDE.md`
+`search-jp.js`(JP 키워드 검색), `find-punct-issues.js`(문장부호 결함 CLI 감지), `editor.js`+
+`editor.html`(로컬 웹 에디터), `pe-reloc.js`(PE 섹션 테이블/relocation 파서, 청크 접근 시도에서
+만듦 — 자동 청크 나누기 자체는 장면 경계가 안 맞아 기각), `extract.js`/`build.js`/`inject.js`
+(파이프라인), `bake-jp.js`, `translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션),
+`translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커
+입력), `translation/review-findings.json`(전량 재검토 결함 후보 200건), `translation/GUIDE.md`
 (수정 판단 기준).
 
 ## 4. 기타
