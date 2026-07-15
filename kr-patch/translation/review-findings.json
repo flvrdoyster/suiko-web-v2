@@ -1,0 +1,1402 @@
+[
+  {
+    "offset": 345582,
+    "kr": "　하지만，어쩔　수　없어요…",
+    "jp": "　仕方ないわね　勝負よ！",
+    "category": "meaning",
+    "reason": "JP ends with an assertive challenge '勝負よ！' (Let's fight!/It's a match!) which KR drops entirely, replacing it with a trailing ellipsis of resignation — reverses the emotional valence from confident challenge to giving up."
+  },
+  {
+    "offset": 383944,
+    "kr": "　『비교적인　표현』이라구",
+    "jp": "　『言葉の誤り』っていうんだ",
+    "category": "meaning",
+    "reason": "JP's '言葉の誤り' means 'a slip/error of wording,' but KR translates it as '비교적인 표현' (a comparative/figurative expression) — an unrelated concept that breaks the joke's meaning (Smash is claiming he simply misspoke, not that he used a figure of speech)."
+  },
+  {
+    "offset": 402592,
+    "kr": "　왜？　자신들이　없나？！",
+    "jp": "　ちゃんと　人数分くれるぞ",
+    "category": "meaning",
+    "reason": "JP states 'they properly give one per person' (referring to certificates), but KR replaces this with an unrelated rhetorical question about lacking confidence — the actual JP content is omitted and different content is invented."
+  },
+  {
+    "offset": 402716,
+    "kr": "　우린，무려　１７년　동안이나",
+    "jp": "　俺たちはもう　１７回も",
+    "category": "meaning",
+    "reason": "JP '１７回' means '17 times' (attempts at the trial), but KR mistranslates it as '17년' (17 years) — changes a count of failed attempts into a 17-year span, a clear numeric/meaning distortion."
+  },
+  {
+    "offset": 380934,
+    "kr": "　존∼말할　때　가부러！！",
+    "jp": "　おとなしく　立ち去るがよい",
+    "category": "punct",
+    "reason": "JP line has no ending punctuation at all; KR ends with a repeated '！！' not present anywhere in JP."
+  },
+  {
+    "offset": 381064,
+    "kr": "　침입자는　모두　쫓아낸다！！",
+    "jp": "　侵入者は　追い払わねばならない",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR doubles '！！' which does not appear in JP."
+  },
+  {
+    "offset": 381236,
+    "kr": "　분하지만，퇴각이다！！",
+    "jp": "　やむをえん　退却だ！",
+    "category": "punct",
+    "reason": "JP ends with a single '！'; KR repeats it back-to-back as '！！', a repetition JP does not have."
+  },
+  {
+    "offset": 381318,
+    "kr": "　다시　오진　말어！！",
+    "jp": "　ここに来るんじゃないぜ",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR ends with a doubled '！！' not present in JP at all."
+  },
+  {
+    "offset": 383052,
+    "kr": "　도전해　볼　텐가？！",
+    "jp": "　挑戦しようというのかえ？",
+    "category": "punct",
+    "reason": "JP ends with a single '？'; KR appends an extra '！' after it that does not appear anywhere in JP."
+  },
+  {
+    "offset": 383258,
+    "kr": "「그렇다면　용무가　없겠지？！",
+    "jp": "「ならば　ここには用はなかろう",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all ('なかろう' is unmarked); KR ends with a '？！' combo entirely absent from JP."
+  },
+  {
+    "offset": 383378,
+    "kr": "　설마　겁먹은　건　아니겠지？！",
+    "jp": "　まさか　おじけづいたのかえ？",
+    "category": "punct",
+    "reason": "JP ends with a single '？'; KR appends an extra '！' not present in JP."
+  },
+  {
+    "offset": 384328,
+    "kr": "　역시　포기하는　건가？！",
+    "jp": "　やけにあきらめがよいな？",
+    "category": "punct",
+    "reason": "JP ends with a single '？'; KR appends an extra '！' that JP does not have."
+  },
+  {
+    "offset": 384412,
+    "kr": "　기회를　봐서　다시　오겠다！！",
+    "jp": "　機会を改めて挑戦したいのじゃが？",
+    "category": "punct",
+    "reason": "JP ends with a humble question mark '？'; KR ends with a doubled '！！', both changing the punctuation type and repeating it beyond anything in JP."
+  },
+  {
+    "offset": 387006,
+    "kr": "　맨　안쪽엔　창룡님이　계시지！！",
+    "jp": "　一番奥には　蒼龍さまがおられる",
+    "category": "punct",
+    "reason": "JP line has no ending punctuation; KR doubles '！！' which is absent from JP."
+  },
+  {
+    "offset": 387104,
+    "kr": "　이곳에서　수련해야　한다네！！",
+    "jp": "　ここで修業することになるのだ",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR doubles '！！' not present in JP."
+  },
+  {
+    "offset": 387202,
+    "kr": "　가장　엄하다고　알려져있다네！！",
+    "jp": "　もっとも厳しいといわれている",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR doubles '！！' not present in JP."
+  },
+  {
+    "offset": 387678,
+    "kr": "「제길…분하다！！！",
+    "jp": "「ちくしょう　無念だぜ…",
+    "category": "punct",
+    "reason": "JP ends with a trailing ellipsis '…'; KR instead ends with a tripled '！！！' — a stark punctuation type mismatch and excessive repetition not in JP."
+  },
+  {
+    "offset": 390032,
+    "kr": "　계속　정진하게나！！",
+    "jp": "　これからも　精進せよ",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR doubles '！！' which does not appear in JP."
+  },
+  {
+    "offset": 390552,
+    "kr": "　의외로　포기가　빠르군　그래！",
+    "jp": "　やけにあきらめがよいな？",
+    "category": "punct",
+    "reason": "JP ends with a question mark '？'; KR ends with an exclamation mark '！' instead — the ending punctuation type differs from JP."
+  },
+  {
+    "offset": 393696,
+    "kr": "안되는　곳이　바로　여기다！！",
+    "jp": "　通れないのがここの修業だ",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR doubles '！！' not present in JP."
+  },
+  {
+    "offset": 394700,
+    "kr": "「뭐야，이건？！",
+    "jp": "「なんだ　これ？",
+    "category": "punct",
+    "reason": "JP ends with a single '？'; KR appends an extra '！' not present in JP."
+  },
+  {
+    "offset": 396944,
+    "kr": "　그게　너희들의　전력이냐？！",
+    "jp": "　それが　おぬしらの全力か？",
+    "category": "punct",
+    "reason": "JP ends with a single '？'; KR appends an extra '！' not present in JP."
+  },
+  {
+    "offset": 397898,
+    "kr": "　벌써　포기한　거야？！",
+    "jp": "　もうおしまいか？",
+    "category": "punct",
+    "reason": "JP ends with a single '？'; KR appends an extra '！' not present in JP."
+  },
+  {
+    "offset": 401212,
+    "kr": "　불법　침입자는　거절한다！！",
+    "jp": "　侵入者は　追い払わねばならない",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR doubles '！！' not present in JP."
+  },
+  {
+    "offset": 401378,
+    "kr": "　자，모두　퇴각하자！！",
+    "jp": "　やむをえん　退却だ！",
+    "category": "punct",
+    "reason": "JP ends with a single '！'; KR repeats it as '！！', a repetition JP does not have."
+  },
+  {
+    "offset": 401458,
+    "kr": "　다시는　이곳에　오지　말아라！！",
+    "jp": "　ここに来るんじゃないぜ",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR doubles '！！' not present in JP."
+  },
+  {
+    "offset": 401884,
+    "kr": "「어라！　이건　뭐지？！",
+    "jp": "「なんだ　これ？",
+    "category": "punct",
+    "reason": "JP ends with a single '？'; KR appends an extra '！' not present in JP."
+  },
+  {
+    "offset": 402178,
+    "kr": "「어，너희들은…？！",
+    "jp": "「お　お前たちは！？",
+    "category": "punct",
+    "reason": "JP has no ellipsis at all; KR inserts a '…' before the question/exclamation marks that does not appear anywhere in JP."
+  },
+  {
+    "offset": 402560,
+    "kr": "　받을　생각을　해야지！！！",
+    "jp": "　取りに行ったらどうじゃ？",
+    "category": "punct",
+    "reason": "JP ends with a question mark '？'; KR ends with a tripled '！！！' — both a punctuation type mismatch and excessive repetition absent from JP."
+  },
+  {
+    "offset": 402944,
+    "kr": "　하는　것보다　더　어렵다구요！！",
+    "jp": "　難しいのよ　…わかる？",
+    "category": "punct",
+    "reason": "JP ends with a question mark '？'; KR ends with a doubled '！！' — punctuation type mismatch plus repetition not present in JP."
+  },
+  {
+    "offset": 403110,
+    "kr": "　너희에게　이겼잖아！！！",
+    "jp": "　お前たちに勝ったんだぜ",
+    "category": "punct",
+    "reason": "JP line has no punctuation; KR ends with a tripled '！！！' not present anywhere in JP."
+  },
+  {
+    "offset": 403592,
+    "kr": "　충분히　인정서를　받을　수　있어！",
+    "jp": "　認定証をもらえるんじゃないか？",
+    "category": "punct",
+    "reason": "JP ends with a rhetorical question mark '？'; KR ends with an exclamation mark '！' — the ending punctuation type differs from JP."
+  },
+  {
+    "offset": 404316,
+    "kr": "　좋은　방법은　없는　건가？！",
+    "jp": "　外に出る方法は　ねぇもんかな",
+    "category": "punct",
+    "reason": "JP line has no punctuation ('かな' is unmarked); KR ends with a '？！' combo entirely absent from JP."
+  },
+  {
+    "offset": 346080,
+    "kr": "　당신들과는……",
+    "jp": "　あなたたちには…",
+    "category": "punct",
+    "reason": "JP uses a single ellipsis '…'; KR doubles it to '……', a repetition not present in JP."
+  },
+  {
+    "offset": 348074,
+    "kr": "　아무　말　말고　돌아가세요…！",
+    "jp": "　ここを立ち去ってちょうだい…",
+    "category": "punct",
+    "reason": "JP ends with only an ellipsis '…'; KR appends an extra '！' after it that does not appear anywhere in JP."
+  },
+  {
+    "offset": 405264,
+    "kr": "　인정서는　우리　것이다！！！",
+    "jp": "　認定証は　いただきだぜ！",
+    "category": "punct",
+    "reason": "KR ends with tripled ！！！ while JP has only a single ！ (いただきだぜ！)."
+  },
+  {
+    "offset": 405760,
+    "kr": "　해치우면，후후　인정서는…",
+    "jp": "　やっちまえば　一番楽かもな",
+    "category": "meaning",
+    "reason": "JP just says 'taking them out would probably be the easiest (一番楽かもな)' — no mention of the certificate. KR injects '인정서는…' (the certificate is...) which isn't in this JP line, changing what the sentence is about."
+  },
+  {
+    "offset": 438562,
+    "kr": "　이　석상이　문제로구만！！！",
+    "jp": "　この石像がネックじゃの",
+    "category": "punct",
+    "reason": "KR adds tripled ！！！ ending while JP line (ネックじゃの) has no punctuation at all."
+  },
+  {
+    "offset": 438980,
+    "kr": "　오늘은　컨디션도　엉망이겠다！！",
+    "jp": "　今日のオレは　きれてるぜ！",
+    "category": "meaning",
+    "reason": "JP きれてる here is Sumassyu's boast that he's 'sharp/on fire today' (positive), which is exactly why Atahoo replies a few lines later asking if he meant to say 『さえてる』(『최고』) — implying the original line sounded like a boast. KR translates it as '오늘은 컨디션도 엉망이겠다' (my condition today will be terrible), a self-deprecating negative statement that contradicts the boastful tone and breaks the following joke's premise."
+  },
+  {
+    "offset": 439344,
+    "kr": "　그만이잖아！！！",
+    "jp": "　いいじゃねーか！",
+    "category": "punct",
+    "reason": "KR ends with tripled ！！！ while JP has only a single ！ (いいじゃねーか！)."
+  },
+  {
+    "offset": 452732,
+    "kr": "「뭐야…？！",
+    "jp": "「ほっとけ！",
+    "category": "meaning",
+    "reason": "JP ほっとけ！ is an imperative meaning 'leave it/don't mind it', Atahoo dismissively brushing off Sumassyu's remark about his face. KR '뭐야…？！' ('What...?!') is a surprised-reaction interjection, a different speech act entirely, not a dismissal."
+  },
+  {
+    "offset": 460056,
+    "kr": "「（…이　아가씨　정말　대단하군",
+    "jp": "「（…それにしても　強引な娘じゃ",
+    "category": "meaning",
+    "reason": "JP 強引な娘じゃ is a mildly critical/wary remark ('what a pushy/forceful girl'), but KR '정말 대단하군' ('she's really impressive/amazing') flips it into an admiring compliment — the emotional valence is reversed."
+  },
+  {
+    "offset": 462598,
+    "kr": "　자，통과해！！",
+    "jp": "　さあ　通りたまえ",
+    "category": "punct",
+    "reason": "JP 'さあ 通りたまえ' has no exclamation mark at all, but KR ends with a repeated '！！'."
+  },
+  {
+    "offset": 463508,
+    "kr": "　익사자들이　많았어！！",
+    "jp": "　おぼれるヤツが多かったんじゃ",
+    "category": "punct",
+    "reason": "JP ends with no punctuation ('多かったんじゃ'), but KR adds a repeated '！！' not present anywhere in JP."
+  },
+  {
+    "offset": 464050,
+    "kr": "　데려다　줘야겠다！！",
+    "jp": "　みてもらわねば！",
+    "category": "punct",
+    "reason": "JP has a single '！', but KR doubles it to '！！' (repetition not present in JP)."
+  },
+  {
+    "offset": 511094,
+    "kr": "무슨　유적같은데…？！",
+    "jp": "まさに遺跡ってカンジじゃな",
+    "category": "punct",
+    "reason": "JP 'まさに遺跡ってカンジじゃな' ends with no punctuation, but KR ends with the combo '…？！', none of which appears in JP."
+  },
+  {
+    "offset": 512166,
+    "kr": "저　석상을　치우지　않으면",
+    "jp": "ちょっと散策してみるか",
+    "category": "meaning",
+    "reason": "JP means 'shall I take a bit of a stroll/look around?', but KR says 'if I don't clear away that statue' — completely unrelated content, not a paraphrase."
+  },
+  {
+    "offset": 512196,
+    "kr": "보물은　못얻겠군",
+    "jp": "おっ　早くも何か",
+    "category": "meaning",
+    "reason": "JP means 'oh, already something [here]', but KR says 'I won't be able to get the treasure' — unrelated meaning, continuing the mismatched pair with offset 512166."
+  },
+  {
+    "offset": 512216,
+    "kr": "어디선가　본듯한　동굴인데",
+    "jp": "いわくありげなダンジョンだな",
+    "category": "meaning",
+    "reason": "JP 'いわくありげなダンジョンだな' means 'a dungeon that seems to have some history/mystery to it', but KR conveys deja-vu ('a cave I feel like I've seen somewhere before') — a different meaning, not a stylistic variant."
+  },
+  {
+    "offset": 521008,
+    "kr": "　ＨＰ　최대치가　감소한대！！",
+    "jp": "　体力の上限が少し下がってしまうんだ",
+    "category": "punct",
+    "reason": "JP ends with no punctuation, but KR ends with a repeated '！！' absent from JP."
+  },
+  {
+    "offset": 521292,
+    "kr": "　우글거리고　있다는　거야！！",
+    "jp": "　化け物が住み着いているんだぜ",
+    "category": "punct",
+    "reason": "JP ends with no punctuation, but KR adds a repeated '！！' not present anywhere in JP."
+  },
+  {
+    "offset": 528252,
+    "kr": "　절대　그럴　수　없습니다",
+    "jp": "　行かせるわけにはいかん",
+    "category": "tone",
+    "reason": "The doctor character speaks casual banmal elsewhere in the same scene set (e.g. '뭐하고 있는 겐가', '입 좀 다물게', '나가주게'), matching JP's blunt casual 'わけにはいかん'; here KR abruptly switches to the formal honorific '-습니다', inconsistent with both JP's register and the character's established voice."
+  },
+  {
+    "offset": 535372,
+    "kr": "　지나가야　하네！！",
+    "jp": "　渡りきるのぢゃ",
+    "category": "punct",
+    "reason": "JP ends with no punctuation, but KR adds a repeated '！！' not present anywhere in JP."
+  },
+  {
+    "offset": 536588,
+    "kr": "　허허，별의별　기술이　다있구만！！",
+    "jp": "　そんなこと　思いもよらなかったぞ",
+    "category": "punct",
+    "reason": "JP ends with no punctuation, but KR ends with a repeated '！！' absent from JP."
+  },
+  {
+    "offset": 567922,
+    "kr": "얕보다간　큰코　다쳐요！！",
+    "jp": "なめるとイタイ目を見ることになるわ",
+    "category": "punct",
+    "reason": "JP ends with no punctuation, but KR ends with a repeated '！！' not present anywhere in JP."
+  },
+  {
+    "offset": 568214,
+    "kr": "기뻐해도　되잖아요！？",
+    "jp": "うれしそうにしてもいいんじゃない？",
+    "category": "punct",
+    "reason": "JP ends with a single '？', but KR adds a '！' that does not appear anywhere in the JP line, forming an unmatched '！？' combo."
+  },
+  {
+    "offset": 568300,
+    "kr": "기뻐해도　되잖아요！？",
+    "jp": "うれしそうにしてもいいんじゃない？",
+    "category": "punct",
+    "reason": "Same as offset 568214: JP ends with a single '？' only; KR appends an unmatched '！' not present anywhere in JP."
+  },
+  {
+    "offset": 569368,
+    "kr": "왔다　왔어！！",
+    "jp": "来た来た来たぁ～っっ！",
+    "category": "punct",
+    "reason": "JP has a single '！', but KR doubles it to '！！', a repetition not present in JP."
+  },
+  {
+    "offset": 574054,
+    "kr": "　무사했군요！！！",
+    "jp": "　無事だったのね",
+    "category": "punct",
+    "reason": "JP 'ね' ending has no punctuation at all, but KR ends with a triple '！！！' not present anywhere in JP."
+  },
+  {
+    "offset": 575640,
+    "kr": "　그만둘까！！",
+    "jp": "　やめておくかの",
+    "category": "punct",
+    "reason": "JP 'やめておくかの' has no punctuation at all, but KR repeats ！！ back-to-back."
+  },
+  {
+    "offset": 577238,
+    "kr": "　파워업이다！！！",
+    "jp": "　パワーアップしたぜ！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ but KR triples it to ！！！."
+  },
+  {
+    "offset": 578716,
+    "kr": "　네놈，뜻대로는　안될　껄！！",
+    "jp": "　おのれ　このままではすまさんぞぉ…",
+    "category": "punct",
+    "reason": "JP trails off with … (ellipsis, no exclamation), but KR ends with repeated ！！, changing a trailing-off ellipsis into a shouted double exclamation."
+  },
+  {
+    "offset": 580312,
+    "kr": "　엄청난　재앙이　뒤따를　것이다！！",
+    "jp": "　とりかえしのつかないことになる…",
+    "category": "punct",
+    "reason": "JP ends with … (pensive trailing-off), KR ends with ！！ (repeated exclamation not present in JP at all)."
+  },
+  {
+    "offset": 619338,
+    "kr": "　틀림없어요！！",
+    "jp": "　だったのね！",
+    "category": "punct",
+    "reason": "JP has a single ！, KR repeats it as ！！."
+  },
+  {
+    "offset": 619704,
+    "kr": "　분이　안풀릴　것같애！！",
+    "jp": "　わたしの気がすまないわ！",
+    "category": "punct",
+    "reason": "JP has a single ！, KR repeats it as ！！."
+  },
+  {
+    "offset": 619908,
+    "kr": "　두들겨　패줄거야！！",
+    "jp": "　ぶっ飛ばしてやるわ！",
+    "category": "punct",
+    "reason": "JP has a single ！, KR repeats it as ！！."
+  },
+  {
+    "offset": 622394,
+    "kr": "　나도　좀　끼워　주라구！！",
+    "jp": "　ワシも　まぜてくれんか？",
+    "category": "punct",
+    "reason": "JP ends with a question mark ？ (a soft request 'won't you let me join?'), but KR ends with a repeated ！！, both changing the punctuation type and repeating a mark not present in JP."
+  },
+  {
+    "offset": 628532,
+    "kr": "　네놈들　어디　두고보자！！",
+    "jp": "　キサマら　おぼえてやがれ！",
+    "category": "punct",
+    "reason": "JP has a single ！, KR repeats it as ！！."
+  },
+  {
+    "offset": 579448,
+    "kr": "설명했다！！",
+    "jp": "静かに語りました",
+    "category": "meaning",
+    "reason": "JP explicitly says he explained '静かに' (calmly/quietly), but KR drops that and adds a double exclamation ！！, flipping the described tone from calm to excited/shouted."
+  },
+  {
+    "offset": 634776,
+    "kr": "「화나게　할　거예욧！",
+    "jp": "「ち　ちが～う！！！",
+    "category": "meaning",
+    "reason": "JP 'ちがう' is a denial ('That's not it!!!', pushing back on the accusation of being shy), but KR renders it as a threat/statement about getting angry ('I'll get angry!'), losing the denial meaning entirely."
+  },
+  {
+    "offset": 637856,
+    "kr": "　이제　알아　들었겠지！",
+    "jp": "　１０００年早いぞぃ",
+    "category": "meaning",
+    "reason": "JP uses the idiom '１０００年早い' ('you're 1000 years too early [to try that]', i.e. you're not nearly good enough), but KR replaces it with a generic restatement of the earlier line ('Now you understand, right!'), losing the idiom's specific put-down meaning."
+  },
+  {
+    "offset": 641514,
+    "kr": "　모양새도，질도　최고　수준이야！",
+    "jp": "　見かけも　質も　合格点だわ",
+    "category": "meaning",
+    "reason": "JP '合格点' means 'just passing/adequate', a modest assessment, but KR '최고 수준' means 'top-notch/highest level', significantly overstating the compliment."
+  },
+  {
+    "offset": 643630,
+    "kr": "　나한테　시방　상대해달라는　거여？",
+    "jp": "　とりあえず　相手してやるぜ！",
+    "category": "meaning",
+    "reason": "JP is Smash's own declarative decision to fight ('anyway, I'll take you on!'), but KR turns it into a question asking whether he's being asked to fight ('are you asking me to fight now?'), reversing his agency."
+  },
+  {
+    "offset": 645540,
+    "kr": "　화린님이랑…단둘이…",
+    "jp": "　ファーリンちゃんと…",
+    "category": "meaning",
+    "reason": "KR adds '단둘이' (just the two of us alone) implying romantic solitude; JP only says 'with Farin-chan...' with no such qualifier."
+  },
+  {
+    "offset": 645566,
+    "kr": "　바닷가에서……",
+    "jp": "　オレが海に飛び込んで…",
+    "category": "meaning",
+    "reason": "JP explicitly says he jumped/dove into the sea (海に飛び込んで), a key action for the later 'washed up unconscious' plot beat; KR drops the action and just says 'at the beach', losing that clause."
+  },
+  {
+    "offset": 645590,
+    "kr": "　이런∼어찌된　영문이지！？",
+    "jp": "　あ～　わけわからねーっ！",
+    "category": "punct",
+    "reason": "JP ends with a single ！; KR appends an extra ？ (！？) that has no counterpart in the JP line."
+  },
+  {
+    "offset": 645648,
+    "kr": "　여긴　또　어디야！？",
+    "jp": "　とりあえず　ここはどこだ？",
+    "category": "punct",
+    "reason": "JP ends with ？ only; KR stacks ！？, adding an exclamation mark not present in JP."
+  },
+  {
+    "offset": 646012,
+    "kr": "「해변마을？！",
+    "jp": "「海辺の町？",
+    "category": "punct",
+    "reason": "JP ends with ？ only; KR adds a trailing ！ (？！) not present in the JP line."
+  },
+  {
+    "offset": 646200,
+    "kr": "　불쌍하게시리……！",
+    "jp": "　　かわいそうに…）",
+    "category": "punct",
+    "reason": "JP has a single ellipsis (…) closing the thought; KR doubles the ellipsis (……) and adds a ！ that doesn't appear in JP."
+  },
+  {
+    "offset": 647704,
+    "kr": "「그렇죠？！",
+    "jp": "「そうでしょう？",
+    "category": "punct",
+    "reason": "JP ends with ？ only; KR adds an extra ！ (？！) not present in JP."
+  },
+  {
+    "offset": 647974,
+    "kr": "　설정이니　잠이나　자볼까！！",
+    "jp": "　設定らしいから　おとなしく寝るか",
+    "category": "punct",
+    "reason": "JP line ends with the plain particle か and carries no punctuation at all; KR appends a doubled ！！ that has no basis in JP."
+  },
+  {
+    "offset": 648104,
+    "kr": "　이제　정신이　들었군요",
+    "jp": "　気がふれたんですね！",
+    "category": "meaning",
+    "reason": "JP literally means 'you seem to have gone mad/insane' (気がふれた) — a deliberate wrong-word joke that Smash corrects in the next line ('気がついたんですね' = noticed). KR instead translates it as the normal/correct '정신이 들었군요' (you've come to), flipping the meaning and breaking the setup for the joke."
+  },
+  {
+    "offset": 648602,
+    "kr": "　자，차라도　한　잔！！",
+    "jp": "　さあ　お茶にでも…",
+    "category": "punct",
+    "reason": "JP trails off with '…' (hesitant suggestion); KR ends with a doubled ！！, a completely different punctuation type not found in JP."
+  },
+  {
+    "offset": 650136,
+    "kr": "「쳇∼！",
+    "jp": "「え～ん！",
+    "category": "meaning",
+    "reason": "JP 'え～ん' is a crying/whimpering sound (like 'waah'); KR '쳇' is a tsk/scoff of annoyance — opposite emotional valence (sadness/crying vs. contempt)."
+  },
+  {
+    "offset": 656766,
+    "kr": "　죽써서　개줬군！",
+    "jp": "　ちっ　働き損かよ…",
+    "category": "punct",
+    "reason": "JP ends with a trailing '…'; KR ends with '！', a different punctuation type not matching JP's ending."
+  },
+  {
+    "offset": 657204,
+    "kr": "　눈물이　다　나올　지경이다！",
+    "jp": "　…悲しくて涙も出ねぇぜ",
+    "category": "meaning",
+    "reason": "JP says tears won't even come out (涙も出ねぇ = negation, numb from grief); KR says tears are about to come pouring out — the opposite of what JP states."
+  },
+  {
+    "offset": 658124,
+    "kr": "１０００Ｇ를　발견했다",
+    "jp": "１００Ｇを見つけました",
+    "category": "meaning",
+    "reason": "JP specifies 100G; KR says 1000G — a factor-of-10 numeric error."
+  },
+  {
+    "offset": 658166,
+    "kr": "１０００Ｇ를　입수했다",
+    "jp": "１００Ｇを手に入れました",
+    "category": "meaning",
+    "reason": "Same numeric mismatch as the item-discovery line: JP says 100G, KR says 1000G."
+  },
+  {
+    "offset": 676364,
+    "kr": "　정말　한심한　사내군요！！",
+    "jp": "　ダサい男ね～　前から思ってたけど",
+    "category": "meaning",
+    "reason": "JP has two clauses: 'you're lame' AND 'I've thought so for a while' (前から思ってたけど). KR only renders the first clause and drops '전부터 그렇게 생각했다' entirely."
+  },
+  {
+    "offset": 678250,
+    "kr": "　（…으음，아야）",
+    "jp": "　…たぶんな",
+    "category": "meaning",
+    "reason": "JP's aside means '...probably' (たぶんな), expressing self-doubt about being fine; KR renders it as a pain interjection '(...um, ouch)', a substantively different meaning/joke."
+  },
+  {
+    "offset": 679768,
+    "kr": "「허어？　왜　나만　갖고…",
+    "jp": "「は？　なんでオレばっかり！！",
+    "category": "punct",
+    "reason": "JP ends with a doubled ！！; KR ends with a trailing '…', a different punctuation type not matching JP."
+  },
+  {
+    "offset": 682136,
+    "kr": "「이봐욧！！",
+    "jp": "「ちょっと　あんた",
+    "category": "punct",
+    "reason": "JP carries no punctuation at all; KR adds a doubled ！！ that has no basis in the JP line."
+  },
+  {
+    "offset": 686150,
+    "kr": "　그　상처는……？！",
+    "jp": "　そのキズは…",
+    "category": "punct",
+    "reason": "JP trails off with a single '…'; KR turns it into a doubled ellipsis plus '？！' combo, none of which matches JP's simple trailing ellipsis."
+  },
+  {
+    "offset": 687584,
+    "kr": "　제발　그것만은　용서해줘！！",
+    "jp": "　それだけは　カンベンしてくれ！",
+    "category": "punct",
+    "reason": "JP ends with a single ！; KR doubles it to ！！, an excess not present in JP."
+  },
+  {
+    "offset": 687672,
+    "kr": "　럭키∼∼！！",
+    "jp": "　ラッキーだぜ",
+    "category": "punct",
+    "reason": "JP carries no punctuation at all; KR adds a doubled ！！ with no basis in the JP line."
+  },
+  {
+    "offset": 780276,
+    "kr": "「아니지…",
+    "jp": "「ま　いいか",
+    "category": "meaning",
+    "reason": "JP「ま いいか」means 'well, fine/why not' (acceptance), but KR '아니지…' means 'no, that's not it...' (negation) — the valence is flipped from agreement to refusal."
+  },
+  {
+    "offset": 781538,
+    "kr": "　이런！　여유가　별로　없잖아！",
+    "jp": "　大会までは少し期間があるが",
+    "category": "meaning",
+    "reason": "JP states there is still some time before the tournament ('大会までは少し期間があるが' = there's a bit of time left, but...'), while KR asserts the opposite — that there is hardly any time left ('여유가 별로 없잖아'). This directly contradicts the following line about the registration deadline being separately tight."
+  },
+  {
+    "offset": 785952,
+    "kr": "　헛소문에　불과했나？！",
+    "jp": "　どうやら単なるウワサだったようだ",
+    "category": "meaning",
+    "reason": "JP is a flat, resigned statement with no punctuation ('seems it was just a rumor'), but KR turns it into an alarmed rhetorical question with ？！, injecting surprise/uncertainty not present in the source."
+  },
+  {
+    "offset": 812592,
+    "kr": "「맹호권과　백호권，이　두　권법을",
+    "jp": "「猛虎拳と酔虎拳　両方を極めれば",
+    "category": "meaning",
+    "reason": "JP 酔虎拳 (Chwiho-gwon, 'Drunken Tiger Fist' — the game's own title) is mistranslated as 백호권 (Baekho-gwon, 'White Tiger Fist'), a different named school in the game. The same JP phrase is correctly rendered as 취호권 at offset 813178 a few lines later, confirming this is an error."
+  },
+  {
+    "offset": 838706,
+    "kr": "결승전　제１시합",
+    "jp": "準決勝　第１試合",
+    "category": "meaning",
+    "reason": "JP 準決勝 means 'semifinal', but KR says 결승전 ('final'). This mislabels the tournament round; the actual final round is correctly labeled 결승전 later at offset 840262 where JP says 決勝戦."
+  },
+  {
+    "offset": 781640,
+    "kr": "　즉시　출발해볼까…？！",
+    "jp": "　さっそく出かけるとするか",
+    "category": "punct",
+    "reason": "KR ends with the combo '…？！' which appears nowhere in the JP line; JP has no punctuation marks at all."
+  },
+  {
+    "offset": 839480,
+    "kr": "　패배하고　마는　건가？",
+    "jp": "　敗北が決まってしまう！",
+    "category": "punct",
+    "reason": "JP ends in a single ！ (a certain, dreadful assertion 'the defeat will be decided!'), but KR ends in ？, turning it into a question and softening the certainty."
+  },
+  {
+    "offset": 842118,
+    "kr": "　자네，평범한　인간이　아니군！",
+    "jp": "　お主　ただ者ではないな？",
+    "category": "punct",
+    "reason": "JP ends in ？ (a probing, uncertain question 'you're no ordinary person, are you?'), but KR ends in ！, converting it into a flat, confident assertion."
+  },
+  {
+    "offset": 883410,
+    "kr": "「흐흐흐，둘이　사귀는　건가？",
+    "jp": "「おっさんはともかく　なんで",
+    "category": "meaning",
+    "reason": "JP full line (with next segment) is「おっさんはともかく　なんでリンシャンまでムキになるんだ？」= 'setting the old man aside, why is even Rinshan getting so worked up?' KR instead invents '너희 둘 사귀는 거냐?' (are you two dating?), a meaning not present in JP at all, while dropping JP's actual point about Rinshan's odd defensiveness."
+  },
+  {
+    "offset": 885264,
+    "kr": "　어쩔　수　없지，깨끗한　화장실을",
+    "jp": "　これは　オレがいただいて…",
+    "category": "meaning",
+    "reason": "JP's joke is「これは　オレがいただいて…　じゃなくて　片づけてやるか」('I'll take this for myself... no wait, I'll clean it up') — Smash's selfish impulse and self-correction. KR skips 'オレがいただいて…' (I'll take it for myself) entirely and just states '어쩔 수 없지, 깨끗한 화장실을 위해 치워야겠다' (well, for the clean bathroom's sake I'll clean it up), erasing the comedic reveal of his true motive."
+  },
+  {
+    "offset": 962114,
+    "kr": "「계단을　올라가는　수밖에　없겠네요",
+    "jp": "「階段を降りるしかないようね",
+    "category": "meaning",
+    "reason": "JP says 降りる (go DOWN the stairs), but KR says 올라가는 (go UP). This is a direct directional reversal, and it also contradicts the later line at offset 962396 (\"…올라가는 계단이라 유감이지만\" / JP \"登り階段なのが　残念じゃが\") where the party is disappointed to discover the stairs only go up — a twist that requires Rinshan to have expected 'down' here, not 'up'."
+  },
+  {
+    "offset": 961898,
+    "kr": "　모른다고　그랬잖아요！",
+    "jp": "　あんた　思いっきり悩んでたじゃない",
+    "category": "meaning",
+    "reason": "JP accuses Atahoo of visibly agonizing/racking his brain over the riddle just now (思いっきり悩んでた = 'was totally struggling/thinking hard'), implying he actually knew the answer. KR instead has Rinshan say he 'said he didn't know' (모른다고 그랬잖아요), a different and misattributed claim — it was actually Smash (961664) who said he didn't know, not Atahoo."
+  },
+  {
+    "offset": 881340,
+    "kr": "　살고　있다고　하네！！！",
+    "jp": "　化け物が住み着いているんだぜ",
+    "category": "punct",
+    "reason": "KR ends with a tripled exclamation mark ！！！ while JP's line (化け物が住み着いているんだぜ) has no punctuation mark at all — the triple repetition doesn't appear anywhere in JP."
+  },
+  {
+    "offset": 928550,
+    "kr": "　안으로　들어가　보자！！！",
+    "jp": "　とりあえず　奥に行ってみるとするか",
+    "category": "punct",
+    "reason": "KR ends with a tripled exclamation mark ！！！ while JP's line (とりあえず　奥に行ってみるとするか) has no punctuation mark at all — the repeated ！！！ is not present in JP."
+  },
+  {
+    "offset": 962060,
+    "kr": "　열　수　있는　문이었잖아！！",
+    "jp": "　一方通行の扉だったようじゃ…",
+    "category": "punct",
+    "reason": "JP ends in a trailing ellipsis 「…」 (a calm, resigned realization — 'ようじゃ…'), but KR ends in a doubled exclamation ！！, flipping the tone to alarmed/emphatic and using punctuation (！！) that doesn't appear in JP's line at all."
+  },
+  {
+    "offset": 963454,
+    "kr": "　오다니，참　대단하구만！！！",
+    "jp": "　よくここまで来れたもんじゃ",
+    "category": "punct",
+    "reason": "JP line ends with no punctuation at all (よくここまで来れたもんじゃ); KR adds a triple ！！！ not present anywhere in the JP line."
+  },
+  {
+    "offset": 963732,
+    "kr": "　무사히　올　수　있었죠！！",
+    "jp": "　ここまでたどり着けましたよ",
+    "category": "punct",
+    "reason": "JP line ends plainly with よ and has no punctuation; KR appends a repeated ！！ that has no counterpart in JP."
+  },
+  {
+    "offset": 965552,
+    "kr": "「말하기　전에　뒤부터　살펴봐요！",
+    "jp": "「それを言っちゃまずいわよ…",
+    "category": "meaning",
+    "reason": "JP means \"You shouldn't have said that...\" (a warning that Ataho's boast was a mistake), but KR renders it as \"Check behind you before you speak!\" — an unrelated instruction not present in the JP text."
+  },
+  {
+    "offset": 969544,
+    "kr": "　없을　테니까，잘　결정하게나！！",
+    "jp": "　ないから　よく考えるんじゃよ",
+    "category": "punct",
+    "reason": "JP ends with じゃよ and no punctuation mark; KR adds a repeated ！！ not found anywhere in the JP line."
+  },
+  {
+    "offset": 974282,
+    "kr": "　자격이　없다！！！",
+    "jp": "　俺たちをとやかく言う資格はない",
+    "category": "punct",
+    "reason": "JP line has no punctuation at the end (資格はない); KR adds a triple ！！！ that doesn't correspond to anything in JP."
+  },
+  {
+    "offset": 1023610,
+    "kr": "「정말，이　영감님이…",
+    "jp": "「ほら見なさい！　さあ",
+    "category": "meaning",
+    "reason": "JP says \"See, look! Now...\" (pointing to proof that the old man is lying), but KR renders it as a generic exasperated remark \"Really, this old man...\", dropping the \"ほら見なさい\" (look!/see!) content and substituting different meaning."
+  },
+  {
+    "offset": 1030580,
+    "kr": "　도대체　어딜　갔다　온건가？",
+    "jp": "　いったい　何をやっとったんぢゃ！",
+    "category": "punct",
+    "reason": "JP ends in ！ (an exclamatory demand \"what were you doing!\"), but KR ends in ？, flipping the ending punctuation type from exclamation to question."
+  },
+  {
+    "offset": 1056578,
+    "kr": "　수련이　필요하겠군！！",
+    "jp": "　少し修業せねばならんな",
+    "category": "punct",
+    "reason": "KR doubles ！！ but JP ends with plain 'な' — no punctuation at all in the JP line."
+  },
+  {
+    "offset": 1058746,
+    "kr": "　들어오너라！！",
+    "jp": "　立ち入るがよい",
+    "category": "punct",
+    "reason": "KR doubles ！！ but JP '立ち入るがよい' has no punctuation."
+  },
+  {
+    "offset": 1060536,
+    "kr": "　잔치　준비를　할까！！",
+    "jp": "　さっそく　うたげの準備だ！",
+    "category": "punct",
+    "reason": "KR repeats ！！ while JP has only a single, non-repeated ！."
+  },
+  {
+    "offset": 1061530,
+    "kr": "　침통할　수밖에　없었던　거죠！！",
+    "jp": "　あんな大騒ぎをしたの",
+    "category": "punct",
+    "reason": "KR doubles ！！ but JP 'あんな大騒ぎをしたの' has no ending punctuation."
+  },
+  {
+    "offset": 1062498,
+    "kr": "「준비는　됴는가…？！",
+    "jp": "「よし…　行くぞ！",
+    "category": "meaning",
+    "reason": "JP 'よし…行くぞ！' is Ron declaring he's starting the fight ('Alright... let's go!'); KR turns it into a question asking if the opponent is ready ('Are you ready...?!'), reversing the speech act from declaration to interrogation."
+  },
+  {
+    "offset": 1062634,
+    "kr": "　수련을　한　게　후회스럽다！",
+    "jp": "　修業してきたんだ！",
+    "category": "meaning",
+    "reason": "JP '修業してきたんだ！' is Ron asserting his resolve/pride ('I've trained for this!'); KR flips it to regret ('I regret having trained!'), the opposite sentiment."
+  },
+  {
+    "offset": 1062668,
+    "kr": "　제기랄………",
+    "jp": "　ちくしょぅっっ！！！",
+    "category": "meaning",
+    "reason": "JP 'ちくしょぅっっ！！！' is an explosive triple-exclamation curse (rage); KR renders it as a trailing muttered ellipsis, flipping the emotional valence from explosive anger to resigned muttering."
+  },
+  {
+    "offset": 1063104,
+    "kr": "「네놈！！",
+    "jp": "「おのれ！",
+    "category": "punct",
+    "reason": "KR doubles ！！ while JP 'おのれ！' has only a single, non-repeated ！."
+  },
+  {
+    "offset": 1063204,
+    "kr": "　제기랄…",
+    "jp": "　ちくしょぅっっ！！！",
+    "category": "meaning",
+    "reason": "Same as offset 1062668: JP's explosive tripled-exclamation curse is rendered as a muted trailing ellipsis, reversing the emotional intensity."
+  },
+  {
+    "offset": 1067694,
+    "kr": "　나를　버려두고　가다니！！",
+    "jp": "　わたしを　おいてけぼりにしたのね！",
+    "category": "punct",
+    "reason": "KR doubles ！！ while JP has only a single, non-repeated ！."
+  },
+  {
+    "offset": 1067846,
+    "kr": "　…흑흑",
+    "jp": "　…うそだけど",
+    "category": "meaning",
+    "reason": "JP 'うそだけど' reveals the previous harsh line was a joke ('just kidding, though'); KR instead depicts her crying ('...sob sob'), completely reversing the comedic reveal into genuine sadness."
+  },
+  {
+    "offset": 1069838,
+    "kr": "　단위를　인정해주겠네！！！",
+    "jp": "　段位を認定してやろうぢゃないか",
+    "category": "punct",
+    "reason": "KR uses a tripled ！！！ while the JP line '段位を認定してやろうぢゃないか' carries no punctuation at all."
+  },
+  {
+    "offset": 1070740,
+    "kr": "「여러분은　아타호를　무슨　급으로",
+    "jp": "「アンケートに応募する場合は",
+    "category": "meaning",
+    "reason": "JP is an instruction for players entering a questionnaire/survey ('If you're applying for the survey...'); KR replaces this entirely with a curiosity question about what rank the player raised Atahoo to — the survey/응모 content is absent from KR."
+  },
+  {
+    "offset": 1070778,
+    "kr": "　키웠는지　궁금하네요？？？！！",
+    "jp": "　この段位と評価を書くのぢゃ！",
+    "category": "punct",
+    "reason": "KR stacks five unmatched marks (？？？！！) while JP ends with a single ！; also continues the meaning distortion from the previous line (JP: 'write this rank and evaluation')."
+  },
+  {
+    "offset": 1072622,
+    "kr": "　남을　탓할　생각은　말게나！！",
+    "jp": "　もっと　積極的にいかんとな",
+    "category": "meaning",
+    "reason": "JP advises the listener to be more proactive/assertive going forward ('もっと積極的にいかんとな'); KR instead tells them not to blame others — different advice/content not present in the JP line."
+  },
+  {
+    "offset": 1115858,
+    "kr": "꼭　클리어해보이겠어！！",
+    "jp": "なんとしてもクリアしてみせるわ",
+    "category": "punct",
+    "reason": "KR doubles ！！ but JP 'なんとしてもクリアしてみせるわ' has no ending punctuation."
+  },
+  {
+    "offset": 1140622,
+    "kr": "　정의의　철권이　제격이다！！",
+    "jp": "　ギャルには　オレの正義の鉄拳を…",
+    "category": "punct",
+    "reason": "JP trails off mid-sentence with '…' (interrupted, setting up the stomach-growl gag on the next line), but KR completes it as an emphatic doubled ！！, erasing the interruption and changing the punctuation type entirely."
+  },
+  {
+    "offset": 1141340,
+    "kr": "「휴우∼다행이다！！",
+    "jp": "「ま　間に合った…",
+    "category": "punct",
+    "reason": "JP trails off with an understated ellipsis (間に合った…), but KR ends with a double exclamation (다행이다！！), inverting the subdued tone into loud excitement."
+  },
+  {
+    "offset": 1142656,
+    "kr": "　괜찮을까……？！",
+    "jp": "　大丈夫だろうか…？",
+    "category": "punct",
+    "reason": "JP has a single trailing ellipsis and one question mark (…？), but KR doubles the ellipsis length and appends an extra ！ (……？！) not present in JP at all."
+  },
+  {
+    "offset": 1142070,
+    "kr": "열변을　토하며　설명했다",
+    "jp": "重々しく語りました",
+    "category": "meaning",
+    "reason": "JP 重々しく means the practitioner spoke gravely/solemnly (calm, heavy tone), but KR '열변을 토하며' means he spoke passionately/fervently — nearly the opposite emotional register, especially notable since this line is one of a parallel triplet (dojo flavor text) meant to contrast distinct tones."
+  },
+  {
+    "offset": 1149944,
+    "kr": "　를　얻었고，또　많은　권법가들이",
+    "jp": "　また　その何十　何百倍もの拳士が",
+    "category": "meaning",
+    "reason": "JP explicitly says 'several tens, several hundred times as many' practitioners vanished (何十何百倍もの拳士が), a key detail emphasizing that failures vastly outnumbered successes; KR drops this quantifier entirely, reducing it to a plain 'and also many practitioners.'"
+  },
+  {
+    "offset": 1150994,
+    "kr": "　자네，실력이　줄었어！！",
+    "jp": "　アターホーよ　腕が落ちたのぅ…",
+    "category": "punct",
+    "reason": "JP ends with a soft trailing のぅ… (muttered observation), but KR ends with a double exclamation ！！, turning a quiet remark into a loud shout."
+  },
+  {
+    "offset": 1151140,
+    "kr": "「겁이　났는가？",
+    "jp": "「臆（おく）したか！",
+    "category": "punct",
+    "reason": "JP ends in an accusatory exclamation mark (臆したか！), but KR renders it as a plain question (겁이 났는가？), softening the master's accusatory jab into a neutral question."
+  },
+  {
+    "offset": 1152944,
+    "kr": "「（왠지　속는　느낌이군…）",
+    "jp": "「（…このインチキじじいめ！）",
+    "category": "meaning",
+    "reason": "JP is a direct insult — '(...this fraudulent old geezer!)' — but KR softens it to vague suspicion, '(somehow I feel like I'm being tricked...)', losing the name-calling and the exclamatory anger entirely."
+  },
+  {
+    "offset": 1202790,
+    "kr": "「저런…정말　잘났네　그려！！",
+    "jp": "「やれやれ…　困った男じゃのぅ…",
+    "category": "punct",
+    "reason": "JP trails off twice with ellipses in a resigned mutter (やれやれ…困った男じゃのぅ…), but KR ends with a double exclamation ！！, flipping the tired sigh into an emphatic outburst."
+  },
+  {
+    "offset": 1272232,
+    "kr": "　진봉…폭호！！",
+    "jp": "　真封…暴虎！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (真封…暴虎！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1272354,
+    "kr": "　봉인될　거라　생각했나？",
+    "jp": "　封じられると思うてか！",
+    "category": "punct",
+    "reason": "JP ends with ！ (思うてか！), KR changes the ending punctuation type to ？."
+  },
+  {
+    "offset": 1272750,
+    "kr": "　…？　그럼　신나게　즐겨볼까！！",
+    "jp": "　本気で大暴れしてやるぜ！",
+    "category": "punct",
+    "reason": "JP ends with single ！ (やるぜ！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1272846,
+    "kr": "　내　진정한　힘을　보여주겠다！！",
+    "jp": "　ワシの真の力を見せてくれるわ！",
+    "category": "punct",
+    "reason": "JP ends with single ！ (くれるわ！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1272924,
+    "kr": "　네　이놈들！！！",
+    "jp": "　おのれっ　おのれぃっ！！",
+    "category": "punct",
+    "reason": "JP already doubles ！！ (おのれぃっ！！), KR extends it further to a triple ！！！, exceeding JP's own repetition."
+  },
+  {
+    "offset": 1273094,
+    "kr": "　진봉…폭호！！",
+    "jp": "　真封…暴虎！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (真封…暴虎！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1273154,
+    "kr": "　가만두지　않겠다！！",
+    "jp": "　すまさんぞーぉっっっ！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (すまさんぞーぉっっっ！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1273880,
+    "kr": "「쿠오오오옷…",
+    "jp": "「グオオオッ！",
+    "category": "punct",
+    "reason": "JP ends with ！ (グオオオッ！), KR changes the ending mark to an ellipsis …."
+  },
+  {
+    "offset": 1274068,
+    "kr": "　진봉…폭호！！",
+    "jp": "　真封…暴虎！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (真封…暴虎！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1274924,
+    "kr": "　진봉…폭호！！",
+    "jp": "　真封…暴虎！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (真封…暴虎！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1275536,
+    "kr": "「겨우라…？！",
+    "jp": "「なんとか…？",
+    "category": "punct",
+    "reason": "JP ends with ？ (なんとか…？), KR appends an extra ！ making it ？！, a mark not present in JP."
+  },
+  {
+    "offset": 1276084,
+    "kr": "　당신이　백호였었군요！！",
+    "jp": "　お主が白虎どのじゃったのか！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (じゃったのか！), KR doubles it to ！！."
+  },
+  {
+    "offset": 1277238,
+    "kr": "　흑흑∼속았다！！",
+    "jp": "　だまされたぜ…",
+    "category": "punct",
+    "reason": "JP ends with an ellipsis … (だまされたぜ…), KR changes it to a doubled exclamation ！！, a mark not present in JP."
+  },
+  {
+    "offset": 1277562,
+    "kr": "　아타호님！！",
+    "jp": "　アターホーさん",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (アターホーさん), KR adds a doubled ！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1277764,
+    "kr": "　이걸　아타호님께　드리지요！！",
+    "jp": "　アターホーさんにさしあげましょう",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all, KR adds a doubled ！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1277846,
+    "kr": "받았다！！！",
+    "jp": "もらいました！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (もらいました！), KR triples it to ！！！."
+  },
+  {
+    "offset": 1277928,
+    "kr": "　그럼，저는　이만　실례！！",
+    "jp": "　私はこれで失礼しますわね",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (失礼しますわね), KR adds a doubled ！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1279016,
+    "kr": "　책망하지　말아주게나！！",
+    "jp": "　責めないでやってもらえまいか？",
+    "category": "punct",
+    "reason": "JP ends with a question mark ？ (もらえまいか？), KR changes the ending type to a doubled exclamation ！！."
+  },
+  {
+    "offset": 1279090,
+    "kr": "　너무　마음쓰지　말게！！",
+    "jp": "　気にすることはないぞい",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (ないぞい), KR adds a doubled ！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1279834,
+    "kr": "　렛츠∼머슬！　고우　고우！",
+    "jp": "　レーッツ　マッスル！",
+    "category": "meaning",
+    "reason": "KR adds an extra chant '고우 고우！' (Go Go!) that has no counterpart anywhere in JP's line 'レーッツ　マッスル！' (contrast with the parallel line at offset 1280054 which renders the same JP text without the addition)."
+  },
+  {
+    "offset": 1280412,
+    "kr": "　너무　빠르잖아요？！",
+    "jp": "　ちょっと早いんじゃない？",
+    "category": "punct",
+    "reason": "JP ends with a single ？ (じゃない？), KR appends an extra ！ making it ？！, a mark not present in JP."
+  },
+  {
+    "offset": 1295554,
+    "kr": "「이엿！！",
+    "jp": "「ふぬーっ",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (ふぬーっ), KR adds a doubled ！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1348268,
+    "kr": "「린샹…무슨　소리를…？！",
+    "jp": "「ほ？　な　何を言っとるんじゃ？",
+    "category": "punct",
+    "reason": "JP ends with a single ？ (言っとるんじゃ？), KR appends an extra ！ making it ？！, a mark not present in JP."
+  },
+  {
+    "offset": 1349560,
+    "kr": "「그으래？！",
+    "jp": "「そうなのか？",
+    "category": "punct",
+    "reason": "JP ends with a single ？ (そうなのか？), KR appends an extra ！ making it ？！, a mark not present in JP."
+  },
+  {
+    "offset": 1349576,
+    "kr": "　쳇！！",
+    "jp": "　ちぇっ",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (ちぇっ), KR adds a doubled ！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1349610,
+    "kr": "「뭐야？！",
+    "jp": "「なんだ！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (なんだ！), KR adds a ？ making it ？！, a mark not present in JP."
+  },
+  {
+    "offset": 1349624,
+    "kr": "　쳇이라니？！",
+    "jp": "　その『ちぇっ』ってのは？",
+    "category": "punct",
+    "reason": "JP ends with a single ？ (ってのは？), KR appends an extra ！ making it ？！, a mark not present in JP."
+  },
+  {
+    "offset": 1351436,
+    "kr": "「…아깝군！！！",
+    "jp": "「…うーん　おしいな！",
+    "category": "punct",
+    "reason": "JP ends with a single ！ (おしいな！), KR triples it to ！！！."
+  },
+  {
+    "offset": 1351646,
+    "kr": "　그렇습니다！！！！",
+    "jp": "　技も探さないといけないらしい",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (いけないらしい), KR adds a quadrupled ！！！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1354222,
+    "kr": "　는데，사실인가？！",
+    "jp": "　本当の話なのか？",
+    "category": "punct",
+    "reason": "JP ends with a single ？ (話なのか？), KR appends an extra ！ making it ？！, a mark not present in JP."
+  },
+  {
+    "offset": 1358032,
+    "kr": "「완벽합니다．…그보다　백호권",
+    "jp": "「バッチリじゃよ　…ちなみに",
+    "category": "tone",
+    "reason": "JP uses Ataho's characteristic casual/archaic old-man speech ('バッチリじゃよ'), but KR shifts to the formal honorific ending '완벽합니다' (-습니다체), inconsistent with how Ataho otherwise speaks throughout the chunk (e.g. '~하네','~구만','~일세')."
+  },
+  {
+    "offset": 1359348,
+    "kr": "　여긴　대체　뭐하러　온거야！？",
+    "jp": "　何しに来てたのかしら…",
+    "category": "punct",
+    "reason": "JP ends with a soft trailing ellipsis … (のかしら…), KR changes the ending punctuation type entirely to a forceful ！？combo, marks not present in JP."
+  },
+  {
+    "offset": 1360228,
+    "kr": "　너무　서글프군！！",
+    "jp": "　少し残念です",
+    "category": "meaning",
+    "reason": "JP says only 'a bit regrettable' (少し残念です, mild/plain statement with no punctuation), but KR intensifies this to '너무 서글프군！！' (so very sad!!), amplifying both the emotional intensity and adding punctuation not present in JP."
+  },
+  {
+    "offset": 1361550,
+    "kr": "　３번만　이기면，승리로군요！！",
+    "jp": "　３人勝てば勝ち抜けじゃな",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (勝ち抜けじゃな), KR adds a doubled ！！ not present anywhere in JP."
+  },
+  {
+    "offset": 1362344,
+    "kr": "　맨　그녀석일　테지…！！",
+    "jp": "　たしか　紫色の帯のヤツじゃな",
+    "category": "punct",
+    "reason": "JP line has no punctuation at all (帯のヤツじゃな), KR adds an ellipsis plus doubled ！！ (…！！) not present anywhere in JP."
+  },
+  {
+    "offset": 1364604,
+    "kr": "　뭡니까，그건？！",
+    "jp": "　なんでワシが？",
+    "category": "meaning",
+    "reason": "JP なんでワシが？ means 'why (should) I (have to do it)?' — a refusal/complaint about being tasked. KR '뭡니까，그건？！' means 'what is that?!', a completely different question (confusion about an object/situation, not refusal). Compare the parallel later scenes at offsets 1376544 and 1376958 where the same なんでワシが is correctly rendered as '왜 내가'."
+  },
+  {
+    "offset": 1364592,
+    "kr": "「허？！",
+    "jp": "「は？",
+    "category": "punct",
+    "reason": "JP ends with a single ？. KR appends ！ (？！) which does not appear in the JP line at all, turning a plain surprised question into a sharper exclamatory one."
+  },
+  {
+    "offset": 1365860,
+    "kr": "　기억하고　있나？！",
+    "jp": "　わかったんじゃろうか？",
+    "category": "punct",
+    "reason": "JP line ends with a single ？. KR ends with ？！ — the ！ is not present anywhere in the JP line."
+  },
+  {
+    "offset": 1366028,
+    "kr": "　악귀같은　놈들이라면서…？",
+    "jp": "　鬼のような連中なんだって？",
+    "category": "punct",
+    "reason": "JP ends with a plain ？ and has no ellipsis. KR inserts '…' before the ？, a mark that does not appear anywhere in the JP line."
+  },
+  {
+    "offset": 1366280,
+    "kr": "　도대체　누구인지　아나？！",
+    "jp": "　いったい　何者なんじゃ？",
+    "category": "punct",
+    "reason": "JP ends with a single ？. KR ends with ？！, adding an exclamation mark absent from the JP line."
+  },
+  {
+    "offset": 1367924,
+    "kr": "　어디있는지　알고　계십니까？！",
+    "jp": "　どこにあるかご存知でないかの？",
+    "category": "punct",
+    "reason": "JP ends with a single ？. KR ends with ？！, adding an exclamation mark absent from the JP line."
+  },
+  {
+    "offset": 1374650,
+    "kr": "　같이　찾아　나서는　게…！？",
+    "jp": "　いっしょに行かない？",
+    "category": "punct",
+    "reason": "JP ends with a simple ？ and has no ellipsis or ！. KR ends with '…！？', adding both marks that are absent from the JP line."
+  },
+  {
+    "offset": 1376544,
+    "kr": "「…왜　내가…？！",
+    "jp": "「ほ？　なんでワシが？",
+    "category": "punct",
+    "reason": "JP's sentence ends with a single ？. KR ends with ？！, adding an exclamation mark not present in the JP line."
+  },
+  {
+    "offset": 1380140,
+    "kr": "「네？　저도？！",
+    "jp": "「え？　わたしも？",
+    "category": "punct",
+    "reason": "JP ends with a single ？. KR ends with ？！, adding an exclamation mark not present in the JP line."
+  },
+  {
+    "offset": 1373896,
+    "kr": "　안면백조권！！！！",
+    "jp": "　顔面百爪（がんめんひゃくそう）拳！",
+    "category": "punct",
+    "reason": "JP ends with a single ！. KR repeats it four times (！！！！), a repetition not present in JP."
+  },
+  {
+    "offset": 1378626,
+    "kr": "　앙갚음을　해줄거야！！！",
+    "jp": "　つぐないを　させてやるわ！",
+    "category": "punct",
+    "reason": "JP ends with a single ！. KR repeats it three times (！！！), a repetition not present in JP."
+  },
+  {
+    "offset": 1373476,
+    "kr": "　영감님이　좋아서　한　일이니까！",
+    "jp": "　あんたが勝手にやったんだから",
+    "category": "meaning",
+    "reason": "JP あんたが勝手にやったんだから means 'because you did it on your own (without being asked)' — the reason she won't say thanks is that she never asked for help. KR changes this to 'because the old man did it because he liked/wanted to', substituting a different motive (personal fondness) not present in the JP text."
+  },
+  {
+    "offset": 1387444,
+    "kr": "　수련이나　시작해볼까！",
+    "jp": "　修業を開始しなければ！",
+    "category": "meaning",
+    "reason": "JP 修業を開始しなければ！ expresses obligation ('I must start training!'). KR '수련이나 시작해볼까！' is a casual, tentative suggestion ('maybe I'll start training or something'), flattening the sense of urgency/necessity into idle musing."
+  },
+  {
+    "offset": 1367500,
+    "kr": "「잘　모르겠는데…",
+    "jp": "「知らねーよ",
+    "category": "tone",
+    "reason": "JP 知らねーよ is blunt, rough dismissive speech (ため口/rough contraction). KR '잘 모르겠는데…' is a soft, hedging '-는데' phrasing that reads far more polite/gentle than the curt refusal in JP."
+  },
+  {
+    "offset": 1367522,
+    "kr": "　쓸데없이　노크하지　말아줘！",
+    "jp": "　くだらねーことで呼ぶんじゃねー！",
+    "category": "tone",
+    "reason": "JP くだらねーことで呼ぶんじゃねー！ is an aggressive rough command ('don't you dare call me over stupid stuff!'). KR uses the soft request form '-말아줘' ('please don't...'), which reads as a polite plea rather than the angry rough demand of the source."
+  },
+  {
+    "offset": 1395128,
+    "kr": "　나랑　관계없잖아！",
+    "jp": "　ワシには無関係じゃの",
+    "category": "punct",
+    "reason": "JP ends with a plain colloquial tag 'じゃの' with no exclamation mark; KR adds a ！ not present anywhere in the JP line."
+  },
+  {
+    "offset": 1395370,
+    "kr": "　좀　아는　사람인데！",
+    "jp": "　ちょっとした知り合いじゃ",
+    "category": "punct",
+    "reason": "JP line 'ちょっとした知り合いじゃ' has no punctuation at all; KR adds a ！ not present in JP."
+  },
+  {
+    "offset": 1395626,
+    "kr": "「이런　제길…",
+    "jp": "「ホッ…　なんじゃ",
+    "category": "meaning",
+    "reason": "JP 'ホッ…なんじゃ' expresses a sigh of relief ('phew... what is it'), but KR '이런 제길…' ('damn it') conveys frustration/anger — the emotional valence is flipped from relief to irritation."
+  },
+  {
+    "offset": 1396112,
+    "kr": "　싫다고　저　난리랍니다！！！",
+    "jp": "　手術をイヤがって暴れるんですよ",
+    "category": "punct",
+    "reason": "KR ends with a repeated ！！！ (triple exclamation) while JP 'んですよ' has no exclamation mark at all."
+  },
+  {
+    "offset": 1396184,
+    "kr": "　손쓸　방도도　없구요！！",
+    "jp": "　暴れると手がつけられないんですよ",
+    "category": "punct",
+    "reason": "KR ends with a repeated ！！ (double exclamation) while JP 'んですよ' has no exclamation mark."
+  },
+  {
+    "offset": 1396488,
+    "kr": "「（…그런　문제였었군）",
+    "jp": "「（…そういう問題か？）",
+    "category": "meaning",
+    "reason": "JP 'そういう問題か？' is a questioning/uncertain musing (ends in ？), but KR '그런 문제였었군' is rendered as a settled, retrospective statement with no question mark — the uncertainty in JP is lost."
+  },
+  {
+    "offset": 1396714,
+    "kr": "　『수면비약』이잖아요？",
+    "jp": "『眠りの秘薬』ぢゃないですか！",
+    "category": "punct",
+    "reason": "JP ends in ！ (excited exclamation), but KR ends in ？ (question) — ending punctuation type differs."
+  },
+  {
+    "offset": 1396828,
+    "kr": "　정말　괴상한　작전명이군！",
+    "jp": "　そんな名前の作戦じゃったかの？",
+    "category": "punct",
+    "reason": "JP ends in ？ (musing/uncertain recollection 'was that the name...?'), but KR ends in ！ (declarative exclamation 'what a strange operation name!') — ending punctuation type and tone differ."
+  }
+]

@@ -31,6 +31,7 @@
   .tabs button:active { transform: scale(.95); }
   .tabs button.active { background: #1e3a5c; color: #7ec4f8; border-color: #3a6a9c; font-weight: 600; }
   .toolbar input[type="text"] { background: #252525; color: #ccc; border: 1px solid #3a3a3a; height: 28px; padding: 0 8px; border-radius: 4px; font-size: 12px; font-family: inherit; }
+  .toolbar select { background: #252525; color: #ccc; border: 1px solid #3a3a3a; height: 28px; padding: 0 6px; border-radius: 4px; font-size: 12px; font-family: inherit; }
   #searchBox { width: 280px; }
   .toolbar label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #888; cursor: pointer; user-select: none; white-space: nowrap; }
   .toolbar label input[type="checkbox"] { accent-color: #999; width: 12px; height: 12px; }
@@ -78,6 +79,9 @@
   .orig.copied { background: #1a3322; transition: background .1s; }
   .jp-text { color: #6a8fae; font-size: 12px; white-space: pre-wrap; word-break: break-all; margin-top: 6px; cursor: pointer; }
   .jp-text.copied { background: #1a3322; transition: background .1s; }
+  /* AI 검토 통과분(review-findings.json)의 사유 — 대사 원문/JP 아래 참고용으로 표시 */
+  .finding-reason { color: #c9a04a; font-size: 11px; white-space: pre-wrap; word-break: break-all; margin-top: 6px; }
+  .finding-reason b { color: #e0b95c; }
   /* 수정칸 = [입력 textarea][확정 버튼] flex 행. 버튼은 절대위치로 겹치지 않고 옆에
      붙는다. 버튼이 숨으면(수정칸에 내용 있으면) textarea가 전체 폭을 차지. */
   .fixed-cell { width: 412px; }
@@ -158,7 +162,7 @@
     <input type="text" id="searchBox" placeholder="검색 (원문/수정/JP)...">
     <label><input type="checkbox" id="filterExact"> 완전 일치</label>
     <label><input type="checkbox" id="filterProblem"> 문제 있는 것만</label>
-    <label><input type="checkbox" id="filterPunct"> 문장부호 의심</label>
+    <select id="filterSelect"></select>
     <input type="text" id="jumpBox" placeholder="오프셋으로 이동..." style="width:140px">
     <button class="ghost-btn" id="jumpBtn">이동</button>
     <button class="ghost-btn" id="bookmarkBtn" title="지정해둔 책갈피로 이동">책갈피</button>
@@ -175,6 +179,7 @@
 <div id="bulkBar" style="display:none">
   <span class="fill-info" id="bulkCount"></span>
   <button id="bulkCopyJp">JP 복사</button>
+  <button id="bulkConfirm" title="수정 없이 전체 확정 처리 (이미 수정칸에 값이 있는 행은 건너뜀)">일괄 확정</button>
   <button id="bulkCancel">선택 해제</button>
 </div>
 
@@ -225,6 +230,28 @@ let rangeStart = null;
 // button jumps to it; null until either the server has one or one is set this session.
 let bookmarkOffset = null;
 
+// Rubric-driven LLM review pass results (review-findings.json, see NOTES.md) — one entry
+// per {offset, category: 'meaning'|'punct'|'tone', reason}. offset -> finding (dialogue
+// offsets are unique, so no need for an array) and category -> Set(offset) for the dropdown
+// filter options built in FILTER_OPTIONS below.
+let findingByOffset = new Map();
+const findingOffsetsByCategory = { meaning: new Set(), punct: new Set(), tone: new Set() };
+const FINDING_CATEGORY_LABEL = { meaning: '의미 왜곡', punct: '문장부호 과잉', tone: '화자 말투 불일치' };
+
+// Filter dropdown options: '' = 필터 없음, 'punct-mechanical' = 기존 자동감지(punctSuspect),
+// 'ai-<category>' = review-findings.json에서 해당 카테고리로 걸린 것만.
+// AI 검토의 'punct'(문장부호 과잉) 카테고리는 별도 옵션으로 두지 않는다 — 확인해보니 미해결
+// 상태인 AI punct 판정은 전부 punct-mechanical의 부분집합이라 옵션을 나눌 이유가 없고, 그
+// 판정에 딸린 사유(reason)는 어차피 punct-mechanical로 훑을 때도 해당 행에 그대로 표시된다
+// (renderRow가 findingByOffset을 필터와 무관하게 조회하기 때문). 'meaning'/'tone'은 자동감지가
+// 애초에 잡을 수 없는 카테고리라 그대로 유지.
+const FILTER_OPTIONS = [
+  { value: '', label: '필터 없음' },
+  { value: 'punct-mechanical', label: '문장부호 의심 (자동감지 + AI 검토)' },
+  { value: 'ai-meaning', label: 'AI 검토: 의미 왜곡' },
+  { value: 'ai-tone', label: 'AI 검토: 화자 말투 불일치' },
+];
+
 function byteLen(s) {
   // rough CP949 estimate for live feedback; server re-validates exactly. ASCII=1, else=2.
   let n = 0;
@@ -274,10 +301,42 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
 }
 
+// Rebuilds the dropdown's option labels with a live "남은 건수" count (excludes offsets
+// already fixed or confirmed — see filteredRows()'s ai- branch) — recomputed on every
+// render() so the count visibly drops as the reviewer works through a category, instead of
+// staying frozen at the load-time total. Preserves the current selection across rebuilds.
+function renderFilterSelect() {
+  const sel = document.getElementById('filterSelect');
+  const prev = sel.value;
+  sel.innerHTML = '';
+  for (const opt of FILTER_OPTIONS) {
+    const o = document.createElement('option');
+    o.value = opt.value;
+    let label = opt.label;
+    if (opt.value.startsWith('ai-')) {
+      const cat = opt.value.slice(3);
+      let n = 0;
+      for (const off of findingOffsetsByCategory[cat]) {
+        const e = dialogueIndexByOffset.has(off) ? data.dialogue[dialogueIndexByOffset.get(off)] : null;
+        if (e && !currentFixed('dialogue', e) && !e.confirmed) n++;
+      }
+      label += ` (${n})`;
+    }
+    o.textContent = label;
+    sel.appendChild(o);
+  }
+  sel.value = prev;
+}
+
 async function load() {
   data = await fetch('/api/translation').then(r => r.json());
   dialogueIndexByOffset = new Map(data.dialogue.map((e, i) => [e.offset, i]));
   bookmarkOffset = await fetch('/api/bookmark').then(r => r.json()).then((b) => b.offset);
+  const findings = await fetch('/api/findings').then(r => r.json()).catch(() => []);
+  findingByOffset = new Map(findings.map((f) => [f.offset, f]));
+  for (const f of findings) {
+    if (findingOffsetsByCategory[f.category]) findingOffsetsByCategory[f.category].add(f.offset);
+  }
   renderTabs();
   render();
 }
@@ -340,7 +399,7 @@ function filteredRows() {
   // U+3000 (전각 공백), which is meaningful leading/trailing content in this game's text
   const exactMatch = document.getElementById('filterExact').checked;
   const probOnly = document.getElementById('filterProblem').checked;
-  const punctOnly = document.getElementById('filterPunct').checked;
+  const filterVal = document.getElementById('filterSelect').value;
   return (data[curSection] || []).filter((e) => {
     const fixed = currentFixed(curSection, e);
     const jp = e.jp || ''; // baked KR<->JP correspondence (dialogue only — see bake-jp.js)
@@ -349,12 +408,18 @@ function filteredRows() {
       else if (!e.text.includes(q) && !fixed.includes(q) && !jp.includes(q)) return false;
     }
     if (probOnly && !hasProblem(curSection, e, fixed)) return false;
-    // "문장부호 의심": dialogue only — jp field (bake-jp.js) only exists there. 이미 수정했거나
-    // (fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
-    if (punctOnly) {
+    if (filterVal) {
       if (curSection !== 'dialogue') return false;
-      if (fixed || e.confirmed) return false;
-      if (!punctSuspect(fixed, e)) return false;
+      if (filterVal === 'punct-mechanical') {
+        // 이미 수정했거나(fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
+        if (fixed || e.confirmed) return false;
+        if (!punctSuspect(fixed, e)) return false;
+      } else if (filterVal.startsWith('ai-')) {
+        // 자동감지 필터와 동일하게, 이미 수정했거나(fixed) 확정한(confirmed) 줄은 검토
+        // 완료로 보고 후보에서 제외 — 그래야 수정할 때마다 남은 항목 수가 줄어든다.
+        if (fixed || e.confirmed) return false;
+        if (!findingOffsetsByCategory[filterVal.slice(3)].has(e.offset)) return false;
+      }
     }
     return true;
   });
@@ -366,7 +431,7 @@ function filteredRows() {
 function jumpToOffset(offset) {
   document.getElementById('searchBox').value = '';
   document.getElementById('filterProblem').checked = false;
-  document.getElementById('filterPunct').checked = false;
+  document.getElementById('filterSelect').value = '';
   curSection = 'dialogue';
   render();
   const row = document.querySelector(`tr[data-offset="${offset}"]`);
@@ -436,7 +501,35 @@ function bulkCopyJp() {
   updateBulkBar();
   applySelectionClasses();
 }
+// Bulk "확정" (reviewed, no change needed) for every selected row — same semantics as the
+// per-row 확정 button (see renderRow's confirmBtn), just applied to the whole selection at
+// once. Rows that already have a fixed edit (in-memory or saved) are skipped, same as the
+// per-row button being hidden in that case — an actual edit already supersedes "확정".
+async function bulkConfirm() {
+  const targets = [];
+  for (const key of selection) {
+    const section = key.slice(0, key.indexOf(':'));
+    const offset = parseInt(key.slice(key.indexOf(':') + 1), 10);
+    const entry = (data[section] || []).find((x) => x.offset === offset);
+    if (entry && !currentFixed(section, entry) && !entry.confirmed) targets.push({ section, entry });
+  }
+  if (!targets.length) { toast('확정할 대상이 없습니다 (이미 수정됐거나 확정된 행 제외)'); return; }
+  const results = await Promise.all(targets.map(({ section, entry }) =>
+    fetch('/api/confirm', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ section, offset: entry.offset, confirmed: true }),
+    }).then((r) => r.json()).catch(() => ({ ok: false }))
+  ));
+  let done = 0;
+  results.forEach((res, i) => { if (res.ok) { targets[i].entry.confirmed = res.confirmed; done++; } });
+  selection.clear();
+  rangeStart = null;
+  updateBulkBar();
+  render();
+  toast(`${done}건 확정 처리됨${done < targets.length ? ` (${targets.length - done}건 실패)` : ''}`);
+}
 document.getElementById('bulkCopyJp').addEventListener('click', bulkCopyJp);
+document.getElementById('bulkConfirm').addEventListener('click', bulkConfirm);
 document.getElementById('bulkCancel').addEventListener('click', () => {
   selection.clear();
   rangeStart = null;
@@ -542,6 +635,7 @@ function showContext(e) {
 
 function render() {
   renderTabs();
+  renderFilterSelect();
   const rows = filteredRows();
   const tbody = document.getElementById('tbody');
   tbody.innerHTML = '';
@@ -652,6 +746,17 @@ function renderRow(e, idx) {
       setTimeout(() => jpDiv.classList.remove('copied'), 600);
     };
     tdOrig.appendChild(jpDiv);
+  }
+
+  const finding = curSection === 'dialogue' ? findingByOffset.get(e.offset) : null;
+  if (finding) {
+    const reasonDiv = document.createElement('div');
+    reasonDiv.className = 'finding-reason';
+    const label = document.createElement('b');
+    label.textContent = `[${FINDING_CATEGORY_LABEL[finding.category] || finding.category}] `;
+    reasonDiv.appendChild(label);
+    reasonDiv.appendChild(document.createTextNode(finding.reason));
+    tdOrig.appendChild(reasonDiv);
   }
 
   const tdFixed = document.createElement('td');
@@ -899,7 +1004,7 @@ document.getElementById('fillInput').addEventListener('keydown', (ev) => {
   if (ev.key === 'Enter') applyFill();
 });
 document.getElementById('filterProblem').addEventListener('change', render);
-document.getElementById('filterPunct').addEventListener('change', render);
+document.getElementById('filterSelect').addEventListener('change', render);
 document.getElementById('jumpBtn').addEventListener('click', () => {
   const v = document.getElementById('jumpBox').value.trim();
   const n = parseInt(v, 10);

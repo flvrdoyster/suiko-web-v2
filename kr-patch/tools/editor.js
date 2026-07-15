@@ -20,6 +20,7 @@ const ROOT = path.join(__dirname, '..', '..');
 const TRANS_PATH = path.join(__dirname, '../translation/translation.json');
 const TRANS_REL = 'kr-patch/translation/translation.json';
 const BOOKMARK_PATH = path.join(__dirname, '../translation/bookmark.json');
+const FINDINGS_PATH = path.join(__dirname, '../translation/review-findings.json');
 const BUILD_JS = path.join(__dirname, 'build.js');
 const INJECT_JS = path.join(__dirname, 'inject.js');
 const BUILD_IMG = path.join(ROOT, 'kr-patch/build/final-shared.img');
@@ -128,6 +129,14 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'GET' && url.pathname === '/api/bookmark') {
       return send(res, 200, { offset: loadBookmark() });
+    }
+
+    // Rubric-driven LLM review pass results (offset/category/reason per flagged line) — see
+    // NOTES.md. Static reference data, not edited through the UI; missing file (before the
+    // review has been run) just means the dropdown filter's AI options find nothing.
+    if (req.method === 'GET' && url.pathname === '/api/findings') {
+      if (!fs.existsSync(FINDINGS_PATH)) return send(res, 200, []);
+      return send(res, 200, JSON.parse(fs.readFileSync(FINDINGS_PATH, 'utf8')));
     }
 
     // Batch save (PC98-style): the client accumulates edits and sends them all at once.
