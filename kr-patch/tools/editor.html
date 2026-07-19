@@ -290,7 +290,7 @@ function debounce(fn, delay) {
 }
 // recomputeProblems()/updateStats() are hoisted function declarations, safe to reference
 // here even though they're defined further down.
-const scheduleStatsUpdate = debounce(() => { recomputeProblems(); updateStats(); }, 200);
+const scheduleStatsUpdate = debounce(() => { recomputeProblems(); updateStats(); renderFilterSelect(); }, 200);
 
 let toastTimer = null;
 function toast(msg) {
@@ -394,35 +394,52 @@ function hasProblem(section, e, fixed) {
   return !!(fixed && validity(section, byteLen(fixed), need(section, e)) !== 'ok');
 }
 
-function filteredRows() {
+// Per-entry filter predicate — shared by filteredRows() (full list) and dropOffFilteredRow()
+// (single-row recheck after an in-place edit/confirm, so a row can disappear the moment it
+// stops matching the active filter without waiting for the next full render()).
+function passesFilters(e) {
   const q = document.getElementById('searchBox').value; // NOT .trim() — JS trim() also eats
   // U+3000 (전각 공백), which is meaningful leading/trailing content in this game's text
   const exactMatch = document.getElementById('filterExact').checked;
   const probOnly = document.getElementById('filterProblem').checked;
   const filterVal = document.getElementById('filterSelect').value;
-  return (data[curSection] || []).filter((e) => {
-    const fixed = currentFixed(curSection, e);
-    const jp = e.jp || ''; // baked KR<->JP correspondence (dialogue only — see bake-jp.js)
-    if (q) {
-      if (exactMatch) { if (e.text !== q && fixed !== q && jp !== q) return false; }
-      else if (!e.text.includes(q) && !fixed.includes(q) && !jp.includes(q)) return false;
+  const fixed = currentFixed(curSection, e);
+  const jp = e.jp || ''; // baked KR<->JP correspondence (dialogue only — see bake-jp.js)
+  if (q) {
+    if (exactMatch) { if (e.text !== q && fixed !== q && jp !== q) return false; }
+    else if (!e.text.includes(q) && !fixed.includes(q) && !jp.includes(q)) return false;
+  }
+  if (probOnly && !hasProblem(curSection, e, fixed)) return false;
+  if (filterVal) {
+    if (curSection !== 'dialogue') return false;
+    if (filterVal === 'punct-mechanical') {
+      // 이미 수정했거나(fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
+      if (fixed || e.confirmed) return false;
+      if (!punctSuspect(fixed, e)) return false;
+    } else if (filterVal.startsWith('ai-')) {
+      // 자동감지 필터와 동일하게, 이미 수정했거나(fixed) 확정한(confirmed) 줄은 검토
+      // 완료로 보고 후보에서 제외 — 그래야 수정할 때마다 남은 항목 수가 줄어든다.
+      if (fixed || e.confirmed) return false;
+      if (!findingOffsetsByCategory[filterVal.slice(3)].has(e.offset)) return false;
     }
-    if (probOnly && !hasProblem(curSection, e, fixed)) return false;
-    if (filterVal) {
-      if (curSection !== 'dialogue') return false;
-      if (filterVal === 'punct-mechanical') {
-        // 이미 수정했거나(fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
-        if (fixed || e.confirmed) return false;
-        if (!punctSuspect(fixed, e)) return false;
-      } else if (filterVal.startsWith('ai-')) {
-        // 자동감지 필터와 동일하게, 이미 수정했거나(fixed) 확정한(confirmed) 줄은 검토
-        // 완료로 보고 후보에서 제외 — 그래야 수정할 때마다 남은 항목 수가 줄어든다.
-        if (fixed || e.confirmed) return false;
-        if (!findingOffsetsByCategory[filterVal.slice(3)].has(e.offset)) return false;
-      }
-    }
-    return true;
-  });
+  }
+  return true;
+}
+
+function filteredRows() {
+  return (data[curSection] || []).filter(passesFilters);
+}
+
+// Called after an edit/confirm changes one entry's state (see renderRow) — if the row no
+// longer matches the currently active filter, drop just that <tr> instead of waiting for
+// the next full render(). Also refreshes problem-nav/stats/dropdown counts, which are cheap
+// (bounded by filtered-row / finding-set size, not the full ~14,800-row dataset).
+function dropRowIfFiltered(tr, e) {
+  if (passesFilters(e)) return;
+  tr.remove();
+  recomputeProblems();
+  updateStats();
+  renderFilterSelect();
 }
 
 // Jump to a specific KR offset: clears every filter (so the row is guaranteed to render),
@@ -748,16 +765,28 @@ function renderRow(e, idx) {
     tdOrig.appendChild(jpDiv);
   }
 
+  // AI 검토 사유 표시 — 아직 수정도 확정도 안 된 동안만 보여준다. 이미 처리된 줄에 계속
+  // 떠 있으면 "아직 안 고친 것"처럼 보여서 혼동을 준다. 필터와 별개로(필터 없이 보고 있어도
+  // 적용되는) 이 행 자체의 fixed/confirmed 상태만 본다 — syncFindingReason()을 수정/확정
+  // 핸들러에서 같이 불러 즉시 사라지게 한다.
   const finding = curSection === 'dialogue' ? findingByOffset.get(e.offset) : null;
-  if (finding) {
-    const reasonDiv = document.createElement('div');
-    reasonDiv.className = 'finding-reason';
-    const label = document.createElement('b');
-    label.textContent = `[${FINDING_CATEGORY_LABEL[finding.category] || finding.category}] `;
-    reasonDiv.appendChild(label);
-    reasonDiv.appendChild(document.createTextNode(finding.reason));
-    tdOrig.appendChild(reasonDiv);
+  let reasonDiv = null;
+  function syncFindingReason() {
+    if (!finding) return;
+    const resolved = !!(currentFixed(curSection, e) || e.confirmed);
+    if (resolved) { if (reasonDiv) reasonDiv.style.display = 'none'; return; }
+    if (!reasonDiv) {
+      reasonDiv = document.createElement('div');
+      reasonDiv.className = 'finding-reason';
+      const label = document.createElement('b');
+      label.textContent = `[${FINDING_CATEGORY_LABEL[finding.category] || finding.category}] `;
+      reasonDiv.appendChild(label);
+      reasonDiv.appendChild(document.createTextNode(finding.reason));
+      tdOrig.appendChild(reasonDiv);
+    }
+    reasonDiv.style.display = '';
   }
+  syncFindingReason();
 
   const tdFixed = document.createElement('td');
   tdFixed.className = 'fixed-cell';
@@ -794,7 +823,7 @@ function renderRow(e, idx) {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ section: curSection, offset: e.offset, confirmed: next }),
       }).then((r) => r.json());
-      if (res.ok) { e.confirmed = res.confirmed; syncConfirmUI(); updateStats(); }
+      if (res.ok) { e.confirmed = res.confirmed; syncConfirmUI(); syncFindingReason(); dropRowIfFiltered(tr, e); }
       else toast('확정 실패');
     } catch (err) { toast('확정 실패: ' + err); }
     confirmBtn.disabled = false;
@@ -844,11 +873,17 @@ function renderRow(e, idx) {
         ta.classList.toggle('invalid', isInvalid(v));
         refreshLen();
         syncConfirmUI();
+        syncFindingReason();
         updateSaveBtn();
         // recomputeProblems()/updateStats() scan the whole section — debounced so they run
         // once after typing pauses instead of on every keystroke.
         scheduleStatsUpdate();
       });
+      // Only recheck the active filter on blur, not on every keystroke — removing the row
+      // mid-input would yank the textarea out from under the reviewer while they're still
+      // typing. Blur means they've moved on, so it's safe to drop the row if it no longer
+      // matches (e.g. typing anything into 문장부호 의심/AI 필터 rows excludes them).
+      ta.addEventListener('blur', () => dropRowIfFiltered(tr, e));
       inner.replaceChild(ta, display);
     }
     ta.focus();
