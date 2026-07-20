@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>KR↔JP 연결 수정</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Malgun Gothic', -apple-system, sans-serif; background: #1e1e1e; color: #d4d4d4; font-size: 14px; padding: 20px; }
+  h1 { font-size: 15px; color: #bbb; margin-bottom: 4px; }
+  .note { font-size: 12px; color: #666; margin-bottom: 16px; }
+  .panel { background: #202020; border: 1px solid #333; border-radius: 6px; padding: 14px; margin-bottom: 14px; }
+  .panel h2 { font-size: 12px; color: #888; margin-bottom: 8px; font-weight: 600; }
+  .row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  input[type="text"], input[type="number"] { background: #252525; color: #ccc; border: 1px solid #3a3a3a; height: 30px; padding: 0 10px; border-radius: 4px; font-size: 13px; font-family: inherit; }
+  #krOffset { width: 140px; }
+  #jpSearch { flex: 1; min-width: 200px; }
+  button { background: #2a2a2a; color: #bbb; border: 1px solid #3a3a3a; height: 30px; padding: 0 14px; border-radius: 4px; cursor: pointer; font-size: 13px; font-family: inherit; }
+  button:hover { background: #333; color: #ddd; }
+  button:disabled { opacity: .4; cursor: default; }
+  .kr-box { display: flex; gap: 16px; }
+  .kr-box .cell { flex: 1; }
+  .label { font-size: 11px; color: #666; margin-bottom: 3px; }
+  .value { white-space: pre-wrap; word-break: break-all; padding: 8px 10px; background: #181818; border-radius: 4px; min-height: 20px; }
+  .value.kr { color: #d4d4d4; }
+  .value.jp { color: #6a8fae; }
+  .value.jp.empty { color: #444; }
+  .candidates { max-height: 340px; overflow-y: auto; border: 1px solid #2a2a2a; border-radius: 4px; }
+  .cand-row { display: flex; gap: 10px; padding: 6px 10px; border-bottom: 1px solid #262626; cursor: pointer; align-items: baseline; }
+  .cand-row:hover { background: #262626; }
+  .cand-row.selected { background: #1e3a5c; }
+  .cand-off { color: #556; font-size: 11px; font-family: monospace; width: 80px; flex: none; }
+  .cand-text { color: #6a8fae; white-space: pre-wrap; word-break: break-all; font-size: 13px; }
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #2a2a2a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: 0 4px 16px rgba(0,0,0,.5); }
+  .toast.show { opacity: 1; }
+  .hint { font-size: 11px; color: #555; margin-top: 6px; }
+</style>
+</head>
+<body>
+<h1>KR↔JP 연결 수정</h1>
+<div class="note">단발성 재연결 도구 — translation.json의 특정 항목 하나의 jp/jpOffset만 고쳐 씀. 앵커 캐스케이드 재실행 아님.</div>
+
+<div class="panel">
+  <h2>1. 대상 KR 대사</h2>
+  <div class="row">
+    <input type="number" id="krOffset" placeholder="KR 오프셋">
+    <button id="loadBtn">불러오기</button>
+  </div>
+  <div class="kr-box">
+    <div class="cell">
+      <div class="label">KR 원문</div>
+      <div class="value kr" id="krText">—</div>
+    </div>
+    <div class="cell">
+      <div class="label">현재 연결된 JP (jpOffset: <span id="curJpOffset">—</span>)</div>
+      <div class="value jp" id="curJp">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>2. 올바른 JP 검색</h2>
+  <div class="row">
+    <input type="text" id="jpSearch" placeholder="JP 원문 일부로 검색...">
+  </div>
+  <div class="candidates" id="candidates"></div>
+  <div class="hint">행을 클릭하면 아래 3번에 후보로 선택됨</div>
+</div>
+
+<div class="panel">
+  <h2>3. 적용</h2>
+  <div class="row">
+    <div class="cell" style="flex:1">
+      <div class="label">선택된 JP (jpOffset: <span id="selJpOffset">—</span>)</div>
+      <div class="value jp empty" id="selJp">후보를 클릭하세요</div>
+    </div>
+  </div>
+  <div class="row">
+    <button id="applyBtn" disabled>이 연결로 저장</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let krDialogue = [];
+let jpReference = [];
+let currentEntry = null;
+let selectedJp = null;
+
+let toastTimer = null;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+function debounce(fn, delay) {
+  let timer = null;
+  return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), delay); };
+}
+
+async function init() {
+  [krDialogue, jpReference] = await Promise.all([
+    fetch('/api/kr-dialogue').then(r => r.json()),
+    fetch('/api/jp-reference').then(r => r.json()),
+  ]);
+  toast(`KR ${krDialogue.length}줄 / JP ${jpReference.length}줄 로드됨`);
+}
+
+function loadKrEntry() {
+  const off = parseInt(document.getElementById('krOffset').value, 10);
+  if (!Number.isFinite(off)) { toast('숫자 오프셋을 입력하세요'); return; }
+  const entry = krDialogue.find((e) => e.offset === off);
+  if (!entry) { toast('해당 KR 오프셋을 찾을 수 없음: ' + off); return; }
+  currentEntry = entry;
+  document.getElementById('krText').textContent = entry.fixed || entry.text;
+  document.getElementById('curJp').textContent = entry.jp || '(연결 없음)';
+  document.getElementById('curJp').classList.toggle('empty', !entry.jp);
+  document.getElementById('curJpOffset').textContent = entry.jpOffset ?? '—';
+  selectedJp = null;
+  document.getElementById('selJp').textContent = '후보를 클릭하세요';
+  document.getElementById('selJp').classList.add('empty');
+  document.getElementById('selJpOffset').textContent = '—';
+  document.getElementById('applyBtn').disabled = true;
+}
+
+function renderCandidates(query) {
+  const box = document.getElementById('candidates');
+  box.innerHTML = '';
+  if (!query) return;
+  const matches = jpReference.filter((e) => e.text.includes(query)).slice(0, 200);
+  const frag = document.createDocumentFragment();
+  for (const e of matches) {
+    const row = document.createElement('div');
+    row.className = 'cand-row';
+    row.dataset.offset = e.offset;
+    const off = document.createElement('div');
+    off.className = 'cand-off';
+    off.textContent = e.offset;
+    const text = document.createElement('div');
+    text.className = 'cand-text';
+    text.textContent = e.text;
+    row.append(off, text);
+    row.addEventListener('click', () => selectCandidate(e, row));
+    frag.appendChild(row);
+  }
+  box.appendChild(frag);
+  if (matches.length === 200) toast('검색 결과 200건 이상 — 검색어를 더 구체적으로 입력하세요');
+}
+
+function selectCandidate(e, row) {
+  selectedJp = e;
+  document.querySelectorAll('.cand-row.selected').forEach((r) => r.classList.remove('selected'));
+  row.classList.add('selected');
+  document.getElementById('selJp').textContent = e.text;
+  document.getElementById('selJp').classList.remove('empty');
+  document.getElementById('selJpOffset').textContent = e.offset;
+  document.getElementById('applyBtn').disabled = !currentEntry;
+}
+
+async function applyRelink() {
+  if (!currentEntry || !selectedJp) return;
+  const btn = document.getElementById('applyBtn');
+  btn.disabled = true; btn.textContent = '저장 중...';
+  try {
+    const res = await fetch('/api/relink', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ offset: currentEntry.offset, jpOffset: selectedJp.offset }),
+    }).then((r) => r.json());
+    if (res.ok) {
+      currentEntry.jp = res.jp;
+      currentEntry.jpOffset = res.jpOffset;
+      document.getElementById('curJp').textContent = res.jp;
+      document.getElementById('curJp').classList.remove('empty');
+      document.getElementById('curJpOffset').textContent = res.jpOffset;
+      toast('저장됨: ' + currentEntry.offset + ' → ' + res.jpOffset);
+    } else {
+      toast('저장 실패: ' + (res.error || '알 수 없는 오류'));
+    }
+  } catch (err) {
+    toast('저장 실패: ' + err);
+  }
+  btn.textContent = '이 연결로 저장';
+  btn.disabled = false;
+}
+
+document.getElementById('loadBtn').addEventListener('click', loadKrEntry);
+document.getElementById('krOffset').addEventListener('keydown', (e) => { if (e.key === 'Enter') loadKrEntry(); });
+document.getElementById('jpSearch').addEventListener('input', debounce((e) => renderCandidates(e.target.value), 150));
+document.getElementById('applyBtn').addEventListener('click', applyRelink);
+
+init();
+</script>
+</body>
+</html>
