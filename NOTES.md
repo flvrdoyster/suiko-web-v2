@@ -36,9 +36,14 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   확인 완료 — 포맷 역공학 상세는 "3.2 이미지 구조" 참고.
 - **JP 빌드**: 하나의 이미지에 `C:\GENSE`(KR)·`C:\GENSEJP`(JP) 공존, `docs/jp.html`은 언어
   플래그만 다름. 세이브는 언어 독립적 IndexedDB 키로 KR↔JP 호환. 일본어 폰트 베이킹 완료.
-- **KR↔JP 대사 매칭**: 두 언어의 전체 대사(KR 14,812줄/JP 14,813줄)를 1:1 대응시켜
-  `translation.json`의 각 `dialogue` 항목에 `jp`/`jpOffset` 필드로 확정 반영 완료 — 충돌·누락
-  0건. 상세 방법은 "3.3 텍스트 구조" 참고.
+- **KR↔JP 대사 매칭**: 두 언어의 전체 대사(KR 14,812줄/JP 14,812줄)를 1:1 대응시켜
+  `translation.json`의 각 `dialogue` 항목에 `jp`/`jpOffset` 필드로 반영 완료 — 다만 이 매칭은
+  수동 앵커 사이를 보간한 결과라 **일부 구간은 여전히 틀릴 수 있음**(앵커 227개 중 13개 쌍이
+  JP 오프셋 기준 역전돼 있어 그 사이 745줄이 보간만으로 확정 못한 상태). 이 구간은 "동일 KR
+  텍스트가 여러 곳에 재사용됐는데 링크된 JP끼리 뜻이 다른 경우"를 찾는 교차검증으로 17건을
+  적발, 그중 512166/512196 등 실제 오역으로 확인된 건은 재번역, 나머지는 검토 후 확정 처리
+  완료(2026-07). 스팟 재연결은 `kr-patch/tools/relink.js`(메인 에디터와 분리된 단발성 도구)로.
+  상세 방법·역전 앵커 목록은 "3.3 텍스트 구조" 참고.
 - **KR 정식 번역 결함 수정**: 게임 데이터(`HWANSE.EXE`)에 내장된 기존 정식 한글 번역의
   결함을 찾아 고치는 작업(새 번역 아님). 수정은 결함의 성격에 따라 **3층위**로 분류한다 —
   심각도 순으로 뜻 → 뉘앙스 → 표면:
@@ -63,8 +68,9 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   추리는 전수 검토. 후보를 `translation/review-findings.json`에 `{offset, kr, jp, category,
   reason}`로 기록(총 200건 — 의미 왜곡 53, 문장부호 과잉 143, 화자 말투 4), 로컬 에디터의
   필터 드롭다운("AI 검토: 의미 왜곡/화자 말투")과 "문장부호 의심" 필터로 하나씩 검토·수정
-  진행 중. 문장부호 과잉은 기계적 감지(`find-punct-issues.js` / 에디터 필터)가 후보를 전부
-  포함하므로 별도 필터 없이 병합. 수정하거나 확정한 줄은 필터에서 자동 제외돼 잔여 건수가 줄어듦.
+  진행 중(2026-07 기준 78건 해결·122건 남음 — 진행 중이라 이 숫자는 스냅샷일 뿐). 문장부호
+  과잉은 기계적 감지(`find-punct-issues.js` / 에디터 필터)가 후보를 전부 포함하므로 별도
+  필터 없이 병합. 수정하거나 확정한 줄은 필터에서 자동 제외돼 잔여 건수가 줄어듦.
 - 대사 길이 확장(PE 재작성 패처)은 기술적으로 가능하나 **진행하지 않기로 결정**(2026-07) —
   원본 바이트 길이 제약 안에서 조사·어미 교체로 대응
 
@@ -118,21 +124,36 @@ spessasynth(JS 소프트신스)로 흘러 SC-55.sf3(9MB, 원본 롤랜드 SC-55 
 확인. 레이블은 별도 포맷으로 같은 파이프라인에서 추출.
 
 **KR↔JP 매칭**: KR·JP는 라인 순서가 서로 대응하지 않아(반복 화자 등장 횟수는 비슷해도 인덱스
-격차 불규칙) 자동 정렬이 불가능 — 사람이 듬성듬성 찍은 기준점(`kr-jp-links.json`)에서 양쪽
-배열을 같은 간격으로 내려가며 자동으로 대응 텍스트를 채우는 "앵커 캐스케이드" 방식을 로컬 웹
-에디터에 구현해 전량 검수, 충돌·누락 0건까지 맞춘 뒤 `translation.json`의 `dialogue` 각 항목에
-`jp`/`jpOffset` 필드로 확정 반영(`kr-patch/tools/bake-jp.js`). 이후 `extract.js`의
-`mergeReview()`가 재추출 시에도 이 필드를 보존.
+격차 불규칙) 자동 정렬이 불가능 — 사람이 듬성듬성 찍은 기준점(`kr-jp-links.json`, 앵커 227개)
+사이를 같은 간격으로 내려가며 자동으로 대응 텍스트를 채우는 "앵커 캐스케이드" 방식을 로컬 웹
+에디터에 구현해 전량 검수한 뒤 `translation.json`의 `dialogue` 각 항목에 `jp`/`jpOffset`
+필드로 확정 반영(`kr-patch/tools/bake-jp.js`). 이후 `extract.js`의 `mergeReview()`가 재추출
+시에도 이 필드를 보존.
+
+**알려진 한계 — 앵커 역전**: 227개 앵커 중 13개 쌍이 JP 오프셋 기준 역전돼 있다(예: KR
+462788→JP 1218664 다음 앵커가 KR 516052→JP 626192로 JP가 오히려 앞으로 감). 게임이 같은
+플레이버 텍스트 씬을 여러 곳에서 재활용하면서 KR·JP의 등장 순서가 서로 달라진 지점들 —
+캐스케이드는 이 구간(총 745줄)에서 선형 보간만으로 값을 채우므로 국지적으로 틀릴 수 있다.
+검증 방법: 같은 KR 문구가 2곳 이상에 재사용된 그룹(4자 이상, 511개 그룹·1940줄)을 뽑아 그룹
+내에서 링크된 JP끼리 뜻이 갈리는 경우를 찾는 교차검증 — 2026-07에 17건 적발, 그중
+512166/512196("저 석상을 치우지 않으면"/"보물은 못얻겠군"이 근처 동일 문구를 그대로
+재사용하면서 실제로는 딴 JP(`ちょっと散策してみるか`/`おっ　早くも何か`)에 걸려있던 사례)은
+정식 번역 자체가 새로 옮기지 않고 근처 문구를 복붙한 진짜 오역으로 확인돼 재번역, 나머지는
+검토 후 문제없음으로 확정. 스팟 재연결(잘못 걸린 offset 하나의 `jp`/`jpOffset`만 교체)은
+메인 에디터가 아니라 별도 도구 `kr-patch/tools/relink.js`로 — 앵커 캐스케이드 UI 자체는 이미
+정착된 이후로 메인 에디터에서 제거됐고, 이런 국지적 스팟 수정은 그 UI를 되살릴 필요 없이
+KR 오프셋 하나 + JP 원문 검색만으로 충분해서 분리해뒀다.
 
 **산출물**: `kr-patch/tools/hwanse-text.js`·`hwanse-names.js`(KR 추출/빌드), `hwanse-font.js`
 (LOGFONT lfFaceName 필드 위치 정보만 — 폰트 이름 교체 1차 시도가 효과 없어 보류돼 레이블
 추출에서 이 필드를 제외하는 용도로만 남음), `gense-text.js`·`gense-names.js`(JP 참고 전용),
 `search-jp.js`(JP 키워드 검색), `find-punct-issues.js`(문장부호 결함 CLI 감지), `editor.js`+
-`editor.html`(로컬 웹 에디터), `pe-reloc.js`(PE 섹션 테이블/relocation 파서, 청크 접근 시도에서
-만듦 — 자동 청크 나누기 자체는 장면 경계가 안 맞아 기각), `extract.js`/`build.js`/`inject.js`
-(파이프라인), `bake-jp.js`, `translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션),
+`editor.html`(로컬 웹 에디터), `relink.js`+`relink.html`(KR↔JP 스팟 재연결 전용 도구, 메인
+에디터와 분리), `pe-reloc.js`(PE 섹션 테이블/relocation 파서, 청크 접근 시도에서 만듦 — 자동
+청크 나누기 자체는 장면 경계가 안 맞아 기각), `extract.js`/`build.js`/`inject.js`(파이프라인),
+`bake-jp.js`, `translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션),
 `translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커
-입력), `translation/review-findings.json`(전량 재검토 결함 후보 200건), `translation/GUIDE.md`
+입력, 227개), `translation/review-findings.json`(전량 재검토 결함 후보 200건), `translation/GUIDE.md`
 (수정 판단 기준).
 
 ## 4. 기타
