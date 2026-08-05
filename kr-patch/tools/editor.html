@@ -238,18 +238,19 @@ let findingByOffset = new Map();
 const findingOffsetsByCategory = { meaning: new Set(), punct: new Set(), tone: new Set() };
 const FINDING_CATEGORY_LABEL = { meaning: '의미 왜곡', punct: '문장부호 과잉', tone: '화자 말투 불일치' };
 
-// Filter dropdown options: '' = 필터 없음, 'punct-mechanical' = 기존 자동감지(punctSuspect),
+// Filter dropdown options: '' = 필터 없음, 'punct-*' = PUNCT_FILTERS의 개별 자동감지 조건,
 // 'ai-<category>' = review-findings.json에서 해당 카테고리로 걸린 것만.
 // AI 검토의 'punct'(문장부호 과잉) 카테고리는 별도 옵션으로 두지 않는다 — 확인해보니 미해결
-// 상태인 AI punct 판정은 전부 punct-mechanical의 부분집합이라 옵션을 나눌 이유가 없고, 그
-// 판정에 딸린 사유(reason)는 어차피 punct-mechanical로 훑을 때도 해당 행에 그대로 표시된다
-// (renderRow가 findingByOffset을 필터와 무관하게 조회하기 때문). 'meaning'/'tone'은 자동감지가
-// 애초에 잡을 수 없는 카테고리라 그대로 유지.
+// 상태인 AI punct 판정은 전부 punct-* 자동감지의 부분집합이라 옵션을 나눌 이유가 없고, 그
+// 판정에 딸린 사유(reason)는 어차피 punct-*로 훑을 때도 해당 행에 그대로 표시된다
+// (renderRow가 findingByOffset을 필터와 무관하게 조회하기 때문). 'meaning'/'tone' 옵션은 전량
+// 해결(수정 또는 확정)되어 제거 — findingByOffset/FINDING_CATEGORY_LABEL은 남겨 두어 혹시
+// 남은 사유가 있으면 여전히 행에 참고용으로 표시된다.
 const FILTER_OPTIONS = [
   { value: '', label: '필터 없음' },
-  { value: 'punct-mechanical', label: '문장부호 의심 (자동감지 + AI 검토)' },
-  { value: 'ai-meaning', label: 'AI 검토: 의미 왜곡' },
-  { value: 'ai-tone', label: 'AI 검토: 화자 말투 불일치' },
+  { value: 'punct-repeat', label: '문장부호 반복' },
+  { value: 'punct-tone-missing', label: '어조 편측' },
+  { value: 'punct-lastchar', label: '끝 어조 불일치' },
 ];
 
 function byteLen(s) {
@@ -321,6 +322,13 @@ function renderFilterSelect() {
         if (e && !currentFixed('dialogue', e) && !e.confirmed) n++;
       }
       label += ` (${n})`;
+    } else if (opt.value in PUNCT_FILTERS) {
+      let n = 0;
+      for (const e of data.dialogue) {
+        const fixed = currentFixed('dialogue', e);
+        if (!fixed && !e.confirmed && PUNCT_FILTERS[opt.value](fixed, e)) n++;
+      }
+      label += ` (${n})`;
     }
     o.textContent = label;
     sel.appendChild(o);
@@ -368,10 +376,10 @@ function renderTabs() {
 const PUNCT_REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '「', '」', '『', '』', '～', '∼']);
 const PUNCT_TONE_SET = new Set(['！', '？', '…']);
 
-function punctSuspect(fixed, e) {
+// KR에 같은 문장부호(반복 대상)가 2개 이상 연속.
+function punctRepeat(fixed, e) {
   const kr = fixed || e.text;
-  const jp = e.jp || '';
-  if (!kr || !jp) return false;
+  if (!kr) return false;
   const chars = [...kr];
   for (let i = 0; i < chars.length; i++) {
     if (!PUNCT_REPEAT_SET.has(chars[i])) continue;
@@ -380,14 +388,37 @@ function punctSuspect(fixed, e) {
     if (j - i >= 2) return true;
     i = j - 1;
   }
-  const krTone = new Set(chars.filter((c) => PUNCT_TONE_SET.has(c)));
-  const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
-  for (const ch of krTone) if (!jpTone.has(ch)) return true;
-  const krLast = kr.replace(/　+$/u, '').slice(-1);
-  const jpLast = jp.replace(/　+$/u, '').slice(-1);
-  if (PUNCT_TONE_SET.has(krLast) && PUNCT_TONE_SET.has(jpLast) && krLast !== jpLast) return true;
   return false;
 }
+
+// KR에 있는 어조 문자(！／？／…)가 JP 문자열 전체에 단 하나도 없음 — 위치 무관, 존재 여부만 본다.
+function punctToneMissing(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  const krTone = new Set([...kr].filter((c) => PUNCT_TONE_SET.has(c)));
+  const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
+  for (const ch of krTone) if (!jpTone.has(ch)) return true;
+  return false;
+}
+
+// KR/JP 끝 글자가 둘 다 어조 문자인데 서로 다름(느낌표↔물음표 등).
+function punctLastMismatch(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  const krLast = kr.replace(/　+$/u, '').slice(-1);
+  const jpLast = jp.replace(/　+$/u, '').slice(-1);
+  return PUNCT_TONE_SET.has(krLast) && PUNCT_TONE_SET.has(jpLast) && krLast !== jpLast;
+}
+
+// 필터 드롭다운의 각 'punct-*' 항목이 쓰는 판정 함수 — passesFilters()와
+// renderFilterSelect()의 남은 건수 계산이 이 맵 하나를 공유한다.
+const PUNCT_FILTERS = {
+  'punct-repeat': punctRepeat,
+  'punct-tone-missing': punctToneMissing,
+  'punct-lastchar': punctLastMismatch,
+};
 
 // A row counts as "문제 있는 것" if its edit's byte length is invalid.
 function hasProblem(section, e, fixed) {
@@ -412,10 +443,10 @@ function passesFilters(e) {
   if (probOnly && !hasProblem(curSection, e, fixed)) return false;
   if (filterVal) {
     if (curSection !== 'dialogue') return false;
-    if (filterVal === 'punct-mechanical') {
+    if (filterVal in PUNCT_FILTERS) {
       // 이미 수정했거나(fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
       if (fixed || e.confirmed) return false;
-      if (!punctSuspect(fixed, e)) return false;
+      if (!PUNCT_FILTERS[filterVal](fixed, e)) return false;
     } else if (filterVal.startsWith('ai-')) {
       // 자동감지 필터와 동일하게, 이미 수정했거나(fixed) 확정한(confirmed) 줄은 검토
       // 완료로 보고 후보에서 제외 — 그래야 수정할 때마다 남은 항목 수가 줄어든다.
