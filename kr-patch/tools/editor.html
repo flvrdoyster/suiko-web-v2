@@ -251,6 +251,7 @@ const FILTER_OPTIONS = [
   { value: 'punct-repeat', label: '문장부호 반복' },
   { value: 'punct-tone-missing', label: '어조 편측' },
   { value: 'punct-lastchar', label: '끝 어조 불일치' },
+  { value: 'punct-stammer-space', label: '더듬음 공백' },
 ];
 
 function byteLen(s) {
@@ -323,10 +324,13 @@ function renderFilterSelect() {
       }
       label += ` (${n})`;
     } else if (opt.value in PUNCT_FILTERS) {
+      // punct-stammer-space는 passesFilters()와 동일하게 fixed 유무로 제외하지 않는다
+      // (결함이 fixed 필드 자체 안에 있을 수 있어서) — confirmed만 검토 완료 신호로 본다.
       let n = 0;
       for (const e of data.dialogue) {
         const fixed = currentFixed('dialogue', e);
-        if (!fixed && !e.confirmed && PUNCT_FILTERS[opt.value](fixed, e)) n++;
+        const alreadyReviewed = opt.value === 'punct-stammer-space' ? e.confirmed : (fixed || e.confirmed);
+        if (!alreadyReviewed && PUNCT_FILTERS[opt.value](fixed, e)) n++;
       }
       label += ` (${n})`;
     }
@@ -412,12 +416,29 @@ function punctLastMismatch(fixed, e) {
   return PUNCT_TONE_SET.has(krLast) && PUNCT_TONE_SET.has(jpLast) && krLast !== jpLast;
 }
 
+// 더듬음 구분자 공백 (GUIDE.md 2-6, see kr-patch/tools/find-punct-issues.js 카테고리 D와 동일
+// 로직): JP는 더듬는 음절 뒤에 전각공백을 쓰지만(な　なんだって) 이 게임 KR 정식 번역의
+// 확립된 관례는 쉼표(뭐，뭐라구)다. JP가 더듬음 패턴이고 KR도 음절을 반복은 했는데 그
+// 구분자가 쉼표가 아니라 공백인 경우만 좁혀서 잡는다 — 단순 "같은 글자 반복"으로 넓히면
+// 호호호/헉헉 같은 웃음소리·의성어까지 걸려 대부분 오탐이 되고, "쉼표가 아예 없음"으로
+// 넓히면 더듬음 자체를 생략한(번역 완성도 문제이지 부호 문제가 아닌) 줄까지 섞인다.
+const JP_STAMMER_RE = /^「?[ぁ-んァ-ヶー]　/u;
+function punctStammerSpace(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp || !JP_STAMMER_RE.test(jp)) return false;
+  const body = kr.replace(/^「/u, '');
+  const chars = [...body];
+  return chars.length >= 3 && chars[1] === '　' && chars[0] === chars[2];
+}
+
 // 필터 드롭다운의 각 'punct-*' 항목이 쓰는 판정 함수 — passesFilters()와
 // renderFilterSelect()의 남은 건수 계산이 이 맵 하나를 공유한다.
 const PUNCT_FILTERS = {
   'punct-repeat': punctRepeat,
   'punct-tone-missing': punctToneMissing,
   'punct-lastchar': punctLastMismatch,
+  'punct-stammer-space': punctStammerSpace,
 };
 
 // A row counts as "문제 있는 것" if its edit's byte length is invalid.
@@ -445,7 +466,9 @@ function passesFilters(e) {
     if (curSection !== 'dialogue') return false;
     if (filterVal in PUNCT_FILTERS) {
       // 이미 수정했거나(fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
-      if (fixed || e.confirmed) return false;
+      // punct-stammer-space는 예외: 결함이 fixed 필드 자체 안에 있을 수 있어(이전 리뷰가
+      // JP 포맷을 그대로 베껴 fixed에 덮어쓴 경우) fixed 유무로는 제외하지 않고 confirmed만 본다.
+      if (filterVal === 'punct-stammer-space' ? e.confirmed : (fixed || e.confirmed)) return false;
       if (!PUNCT_FILTERS[filterVal](fixed, e)) return false;
     } else if (filterVal.startsWith('ai-')) {
       // 자동감지 필터와 동일하게, 이미 수정했거나(fixed) 확정한(confirmed) 줄은 검토

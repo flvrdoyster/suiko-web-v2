@@ -22,6 +22,21 @@ const REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '�
 // brackets are deliberately excluded here even though A still catches them if repeated.
 const TONE_SET = new Set(['！', '？', '…']);
 
+// D. stammer detection (GUIDE.md 2-6): JP marks a stammer as a single kana syllable
+// followed by a full-width space (な　なんだって), and this game's established KR
+// convention joins the repeated syllable with a full-width comma (뭐，뭐라구) rather than
+// JP's space. Flags KR that already repeats the syllable but joins it with a full-width
+// space instead — narrower than "any repeated char" (which also matches laughter/onomatopoeia
+// like 호호호 or 헉헉 and would be mostly noise) and narrower than "no comma at all" (which
+// also matches lines that just dropped the stammer entirely, a translation-completeness
+// question rather than a punctuation-consistency one).
+const JP_STAMMER_RE = /^「?[ぁ-んァ-ヶー]　/u;
+function krStammerSpaceSep(str) {
+  const body = str.replace(/^「/u, '');
+  const chars = [...body];
+  return chars.length >= 3 && chars[1] === '　' && chars[0] === chars[2];
+}
+
 function activeText(e) {
   return e.fixed || e.text;
 }
@@ -44,7 +59,7 @@ function repeatedRuns(str) {
   return runs;
 }
 
-const results = { repeated: [], added: [], swapped: [] };
+const results = { repeated: [], added: [], swapped: [], stammer: [] };
 
 for (const e of t.dialogue) {
   const kr = activeText(e);
@@ -76,6 +91,11 @@ for (const e of t.dialogue) {
   if (TONE_SET.has(krLast) && TONE_SET.has(jpLast) && krLast !== jpLast) {
     results.swapped.push({ offset: e.offset, kr, jp, krLast, jpLast });
   }
+
+  // D. JP stammer + KR repeats the syllable but joins it with a space instead of a comma
+  if (JP_STAMMER_RE.test(jp) && krStammerSpaceSep(kr)) {
+    results.stammer.push({ offset: e.offset, kr, jp });
+  }
 }
 
 function dedupe(list) {
@@ -91,10 +111,12 @@ function dedupe(list) {
 results.repeated = dedupe(results.repeated);
 results.added = dedupe(results.added);
 results.swapped = dedupe(results.swapped);
+results.stammer = dedupe(results.stammer);
 
 console.log(`A. 반복 문장부호 (연속 2회 이상): ${results.repeated.length}건`);
 console.log(`B. JP에 없는 부호가 KR에 추가됨: ${results.added.length}건`);
 console.log(`C. 종결 부호 타입이 JP와 다름: ${results.swapped.length}건`);
+console.log(`D. 더듬음 구분자가 쉼표가 아닌 공백: ${results.stammer.length}건`);
 console.log('');
 
 const args = process.argv.slice(2);
@@ -114,3 +136,4 @@ function printList(list, label) {
 if (category === 'A') printList(results.repeated, 'A. 반복 문장부호');
 else if (category === 'B') printList(results.added, 'B. JP에 없는 부호 추가');
 else if (category === 'C') printList(results.swapped, 'C. 종결 부호 타입 다름');
+else if (category === 'D') printList(results.stammer, 'D. 더듬음 구분자 공백');
