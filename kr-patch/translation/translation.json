@@ -108304,7 +108304,7 @@
       "length": 20,
       "text": "　이제　다　끝났나？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　もう終わりなの？",
       "jpOffset": 260002
     },
@@ -108322,7 +108322,7 @@
       "length": 18,
       "text": "「역시　당신들에겐",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「やっぱり　あなたたちには",
       "jpOffset": 260054
     },
@@ -108330,7 +108330,7 @@
       "offset": 1274372,
       "length": 26,
       "text": "　무리한　상대였나　보군요",
-      "fixed": "",
+      "fixed": "　짐이　무거웠나　보군요　",
       "confirmed": false,
       "jp": "　荷が重そうですわね",
       "jpOffset": 260084
