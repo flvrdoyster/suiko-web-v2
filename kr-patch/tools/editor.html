@@ -166,6 +166,7 @@
     <input type="text" id="jumpBox" placeholder="오프셋으로 이동..." style="width:140px">
     <button class="ghost-btn" id="jumpBtn">이동</button>
     <button class="ghost-btn" id="bookmarkBtn" title="지정해둔 책갈피로 이동">책갈피</button>
+    <label title="꺼두면 행 편집칸에 포커스해도 맥락 패널이 자동으로 열리지 않음 — × 버튼으로 닫아도 다음 포커스에 다시 열리는 게 불편할 때 사용"><input type="checkbox" id="ctxAutoToggle" checked> 맥락 자동표시</label>
     <span class="prob-nav" id="probNav" style="display:none"><span class="prob-count" id="probCount"></span><button id="probPrev">이전</button><button id="probNext">다음</button></span>
   </div>
 </div>
@@ -229,6 +230,12 @@ let rangeStart = null;
 // non-linearly and the point is marking "covered up to here" on demand. The "책갈피" toolbar
 // button jumps to it; null until either the server has one or one is set this session.
 let bookmarkOffset = null;
+
+// 맥락 패널 자동표시 on/off (persisted — see ctxAutoToggle listener near the bottom). Default
+// true keeps existing behavior (focus a dialogue row -> panel pops open); when false, focus
+// no longer forces it open, only the toolbar checkbox/manual showContext() calls do. Doesn't
+// affect the panel's own × close button, which always just hides the current view.
+let ctxAutoShow = localStorage.getItem('suikoCtxAuto') !== '0';
 
 // Rubric-driven LLM review pass results (review-findings.json, see NOTES.md) — one entry
 // per {offset, category: 'meaning'|'punct'|'tone', reason}. offset -> finding (dialogue
@@ -1000,7 +1007,7 @@ function renderRow(e, idx) {
       ta.value = curVal();
       ta.placeholder = e.text;
       ta.dataset.key = k;
-      ta.addEventListener('focus', () => { if (curSection === 'dialogue') showContext(e); });
+      ta.addEventListener('focus', () => { if (curSection === 'dialogue' && ctxAutoShow) showContext(e); });
       ta.addEventListener('input', () => {
         // Auto-convert typed half-width space / ! / ? / , to full-width (U+3000/FF01/FF1F/
         // FF0C), and any tilde variant (halfwidth ~ U+007E, fullwidth～ U+FF5E) to ∼ U+223C —
@@ -1225,6 +1232,27 @@ document.getElementById('ctxClose').addEventListener('click', () => {
   document.body.classList.remove('ctx-open');
 });
 document.getElementById('ctxRows').addEventListener('scroll', onContextScroll);
+
+const ctxAutoToggle = document.getElementById('ctxAutoToggle');
+ctxAutoToggle.checked = ctxAutoShow;
+ctxAutoToggle.addEventListener('change', () => {
+  ctxAutoShow = ctxAutoToggle.checked;
+  localStorage.setItem('suikoCtxAuto', ctxAutoShow ? '1' : '0');
+  if (!ctxAutoShow) {
+    document.getElementById('contextPanel').classList.remove('open');
+    document.body.classList.remove('ctx-open');
+    return;
+  }
+  // Turning back on: if a dialogue row is currently being edited, show its context right
+  // away instead of waiting for the next focus event (which won't fire again if the
+  // textarea already has focus from before the toggle).
+  const active = document.activeElement;
+  if (active && active.classList && active.classList.contains('kr-input') && curSection === 'dialogue') {
+    const offset = parseInt(active.dataset.key.split(':')[1], 10);
+    const idx = dialogueIndexByOffset.get(offset);
+    if (idx !== undefined) showContext(data.dialogue[idx]);
+  }
+});
 
 window.addEventListener('resize', updateStickyOffset);
 load();
