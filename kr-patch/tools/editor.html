@@ -248,10 +248,15 @@ const FINDING_CATEGORY_LABEL = { meaning: '의미 왜곡', punct: '문장부호 
 // 남은 사유가 있으면 여전히 행에 참고용으로 표시된다.
 const FILTER_OPTIONS = [
   { value: '', label: '필터 없음' },
-  { value: 'punct-repeat', label: '문장부호 반복' },
-  { value: 'punct-tone-missing', label: '어조 편측' },
+  { value: 'punct-added-repeat', label: '부호 추가+반복' },
+  { value: 'punct-added', label: '부호 추가' },
+  { value: 'punct-amplified', label: '반복 증폭' },
   { value: 'punct-lastchar', label: '끝 어조 불일치' },
   { value: 'punct-stammer-space', label: '더듬음 공백' },
+  { value: 'mistrans-number', label: '숫자 불일치' },
+  { value: 'mistrans-direction', label: '대립쌍 반전' },
+  { value: 'mistrans-name', label: '이름 누락' },
+  { value: 'mistrans-length', label: '분량 축소' },
 ];
 
 function byteLen(s) {
@@ -323,14 +328,14 @@ function renderFilterSelect() {
         if (e && !currentFixed('dialogue', e) && !e.confirmed) n++;
       }
       label += ` (${n})`;
-    } else if (opt.value in PUNCT_FILTERS) {
+    } else if (opt.value in AUTO_FILTERS) {
       // punct-stammer-space는 passesFilters()와 동일하게 fixed 유무로 제외하지 않는다
       // (결함이 fixed 필드 자체 안에 있을 수 있어서) — confirmed만 검토 완료 신호로 본다.
       let n = 0;
       for (const e of data.dialogue) {
         const fixed = currentFixed('dialogue', e);
         const alreadyReviewed = opt.value === 'punct-stammer-space' ? e.confirmed : (fixed || e.confirmed);
-        if (!alreadyReviewed && PUNCT_FILTERS[opt.value](fixed, e)) n++;
+        if (!alreadyReviewed && AUTO_FILTERS[opt.value](fixed, e)) n++;
       }
       label += ` (${n})`;
     }
@@ -373,37 +378,43 @@ function renderTabs() {
 }
 
 // 문장부호 의심 (see kr-patch/tools/find-punct-issues.js for the CLI/batch version this
-// mirrors): KR has a tone mark (！／？／…) repeated back-to-back, or a tone mark that
-// doesn't appear anywhere in the JP line at all, or ends in a different tone mark than JP
-// does. 「」 vs 『』 is a KR/JP quote *convention* difference, not a translation error, so
+// mirrors). 「」 vs 『』 is a KR/JP quote *convention* difference, not a translation error, so
 // it's excluded — only ！？… count as "tone marks" here.
 const PUNCT_REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '「', '」', '『', '』', '～', '∼']);
 const PUNCT_TONE_SET = new Set(['！', '？', '…']);
 
-// KR에 같은 문장부호(반복 대상)가 2개 이상 연속.
-function punctRepeat(fixed, e) {
-  const kr = fixed || e.text;
-  if (!kr) return false;
-  const chars = [...kr];
-  for (let i = 0; i < chars.length; i++) {
-    if (!PUNCT_REPEAT_SET.has(chars[i])) continue;
+// 문자별 최대 연속 반복 길이. { '！': 2, '…': 3 } 형태.
+function punctRuns(s) {
+  const m = {};
+  const c = [...s];
+  for (let i = 0; i < c.length; i++) {
+    if (!PUNCT_REPEAT_SET.has(c[i])) continue;
     let j = i;
-    while (j < chars.length && chars[j] === chars[i]) j++;
-    if (j - i >= 2) return true;
+    while (j < c.length && c[j] === c[i]) j++;
+    m[c[i]] = Math.max(m[c[i]] || 0, j - i);
     i = j - 1;
   }
-  return false;
+  return m;
 }
 
-// KR에 있는 어조 문자(！／？／…)가 JP 문자열 전체에 단 하나도 없음 — 위치 무관, 존재 여부만 본다.
-function punctToneMissing(fixed, e) {
+// 한 줄을 정확히 하나의 문장부호 결함 범주로 분류한다(해당 없으면 null). 예전에는 "반복"과
+// "어조 편측"이 각각 독립 조건이라 523건 중 328건이 양쪽 필터에 동시에 잡혔고 — 한 필터를
+// 다 훑어도 다른 필터에서 같은 줄이 또 나와 진도가 안 나갔다. 상호배타 + 심각도 순으로 정리:
+//   added-repeat: JP에 없는 어조 문자를 KR이 넣고 반복까지 함 (가장 확실한 과잉)
+//   added:        JP에 없는 어조 문자를 KR이 넣음 (반복은 없음)
+//   amplified:    JP에도 있는 문자지만 KR이 JP보다 더 길게 반복 (JP ！ → KR ！！)
+// 위에서부터 먼저 걸리는 하나만 반환하므로 세 범주의 교집합은 항상 0이다.
+function punctCategory(fixed, e) {
   const kr = fixed || e.text;
   const jp = e.jp || '';
-  if (!kr || !jp) return false;
-  const krTone = new Set([...kr].filter((c) => PUNCT_TONE_SET.has(c)));
+  if (!kr || !jp) return null;
+  const rk = punctRuns(kr), rj = punctRuns(jp);
   const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
-  for (const ch of krTone) if (!jpTone.has(ch)) return true;
-  return false;
+  const added = [...new Set([...kr].filter((c) => PUNCT_TONE_SET.has(c)))].filter((c) => !jpTone.has(c));
+  if (added.some((c) => rk[c] >= 2)) return 'added-repeat';
+  if (added.length) return 'added';
+  if (Object.keys(rk).some((c) => rk[c] > (rj[c] || 1))) return 'amplified';
+  return null;
 }
 
 // KR/JP 끝 글자가 둘 다 어조 문자인데 서로 다름(느낌표↔물음표 등).
@@ -435,11 +446,92 @@ function punctStammerSpace(fixed, e) {
 // 필터 드롭다운의 각 'punct-*' 항목이 쓰는 판정 함수 — passesFilters()와
 // renderFilterSelect()의 남은 건수 계산이 이 맵 하나를 공유한다.
 const PUNCT_FILTERS = {
-  'punct-repeat': punctRepeat,
-  'punct-tone-missing': punctToneMissing,
+  'punct-added-repeat': (fixed, e) => punctCategory(fixed, e) === 'added-repeat',
+  'punct-added': (fixed, e) => punctCategory(fixed, e) === 'added',
+  'punct-amplified': (fixed, e) => punctCategory(fixed, e) === 'amplified',
   'punct-lastchar': punctLastMismatch,
   'punct-stammer-space': punctStammerSpace,
 };
+
+// ── 오역 의심 자동감지 (mistrans-*) ─────────────────────────────────────────────
+// 문장부호 필터가 "표면 표기"(3층위 ③)를 잡는다면, 이쪽은 "뜻이 틀림"(①)을 기계적으로
+// 잡는다. 언어와 무관하게 대조 가능한 신호만 쓴다 — 숫자, 좌우/상하 같은 대립쌍, 고유명사
+// 존재 여부, 분량. 의미 판단이 필요한 건 애초에 기계로 못 잡으니 시도하지 않는다.
+
+// JP·KR 양쪽의 아라비아 숫자(전각 포함)를 정규화해 집합으로 비교. 한쪽에만 숫자가 있는
+// 경우는 제외 — JP 한자 수사(１度→"한번", 三人→"세명")를 KR이 우리말로 풀어 쓴 정상 번역이
+// 대부분이라 그것까지 잡으면 오탐이 압도적이다. 양쪽 다 숫자로 적었는데 값이 다르면 진짜
+// 오류(실제로 ２００Ｇ→２０００Ｇ 10배 오기가 이 조건으로 걸렸다).
+function mistransNumber(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  const digits = (s) => (s.replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+    .match(/\d+/g) || []).map(Number).sort((a, b) => a - b).join(',');
+  const a = digits(jp), b = digits(kr);
+  return !!a && !!b && a !== b;
+}
+
+// 대립쌍이 뒤집힌 경우. JP에 A쪽만 있는데 KR엔 B쪽 표현만 있으면(또는 그 반대) 반전으로 본다.
+// 토큰을 좁게 잡는 게 핵심 — 예전에 '勝'(→勝手にの 勝까지 매칭)·'지'(어미 "-지"에 전부 매칭)
+// 같은 헐거운 토큰을 쓰니 오탐이 대부분이었다. 실제로 좌우가 통째로 뒤바뀐 튜토리얼 지시문
+// (KR "오른쪽으로" ← JP 左側に)이 이 조건으로 발견됐다.
+const MISTRANS_PAIRS = [
+  ['降りる|下りる|降ろ', ['내려', '내리'], '登る|上がる|上る|昇', ['올라', '올리']],
+  ['売っ|売る|売り|売ら', ['팔', '파시', '판매'], '買っ|買う|買い|買わ', ['사시', '삽니', '구입']],
+  ['死ん|死ぬ|死に', ['죽'], '生きて|生きる', ['살아']],
+  ['右', ['오른'], '左', ['왼']],
+  ['前に進|進む', ['앞으로', '전진'], '戻る|引き返', ['돌아', '되돌']],
+];
+function mistransDirection(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  for (const [jpA, krA, jpB, krB] of MISTRANS_PAIRS) {
+    const hasA = new RegExp(jpA).test(jp), hasB = new RegExp(jpB).test(jp);
+    const krHasA = krA.some((k) => kr.includes(k)), krHasB = krB.some((k) => kr.includes(k));
+    if (hasA && !hasB && krHasB && !krHasA) return true;
+    if (hasB && !hasA && krHasA && !krHasB) return true;
+  }
+  return false;
+}
+
+// JP가 등장인물을 이름으로 부르는데 KR엔 그 이름이 없는 경우. 한국어가 이름 대신 "자네/
+// 아저씨"를 쓰는 건 자연스러운 현지화라 전부가 결함은 아니지만, 이름이 통째로 증발하면서
+// 문장 뜻까지 바뀐 사례(JP アターホーをいたく → KR "강한 연심을")가 이 조건으로 걸린다.
+const MISTRANS_NAMES = [
+  ['アターホー', '아타호'], ['スマッシュ', '스마슈'], ['リンシャン', '린샹'],
+  ['ダリオス', '다리오스'], ['サスケ', '사스케'], ['ミンメイ', '민메이'],
+  ['シュリ', '슈리'], ['メイメイ', '메이메이'], ['トウコツ', '도올'],
+];
+function mistransName(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  return MISTRANS_NAMES.some(([j, k]) => jp.includes(j) && !kr.includes(k));
+}
+
+// JP 대비 KR 분량이 절반 이하 — 원문의 절(節) 하나가 통째로 빠졌을 가능성. 공백·문장부호를
+// 제외한 실질 글자 수로 비교하고, 짧은 줄(감탄사 등)은 비율이 튀기 쉬워 JP 8자 이상만 본다.
+// 2.0배로 낮추면 175건까지 늘어나는데 정상적인 압축 번역이 섞여 2.5배로 좁혔다.
+function mistransLength(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  const vlen = (s) => [...s.replace(/[　\s「」『』！？…，、。．]/g, '')].length;
+  const a = vlen(jp), b = vlen(kr);
+  return a >= 8 && b > 0 && a / b >= 2.5;
+}
+
+const MISTRANS_FILTERS = {
+  'mistrans-number': mistransNumber,
+  'mistrans-direction': mistransDirection,
+  'mistrans-name': mistransName,
+  'mistrans-length': mistransLength,
+};
+
+// passesFilters()/renderFilterSelect()가 공유하는 자동감지 판정 맵 전체.
+const AUTO_FILTERS = { ...PUNCT_FILTERS, ...MISTRANS_FILTERS };
 
 // A row counts as "문제 있는 것" if its edit's byte length is invalid.
 function hasProblem(section, e, fixed) {
@@ -464,12 +556,12 @@ function passesFilters(e) {
   if (probOnly && !hasProblem(curSection, e, fixed)) return false;
   if (filterVal) {
     if (curSection !== 'dialogue') return false;
-    if (filterVal in PUNCT_FILTERS) {
+    if (filterVal in AUTO_FILTERS) {
       // 이미 수정했거나(fixed) 확정한(confirmed) 줄은 이미 검토된 것으로 보고 후보에서 제외.
       // punct-stammer-space는 예외: 결함이 fixed 필드 자체 안에 있을 수 있어(이전 리뷰가
       // JP 포맷을 그대로 베껴 fixed에 덮어쓴 경우) fixed 유무로는 제외하지 않고 confirmed만 본다.
       if (filterVal === 'punct-stammer-space' ? e.confirmed : (fixed || e.confirmed)) return false;
-      if (!PUNCT_FILTERS[filterVal](fixed, e)) return false;
+      if (!AUTO_FILTERS[filterVal](fixed, e)) return false;
     } else if (filterVal.startsWith('ai-')) {
       // 자동감지 필터와 동일하게, 이미 수정했거나(fixed) 확정한(confirmed) 줄은 검토
       // 완료로 보고 후보에서 제외 — 그래야 수정할 때마다 남은 항목 수가 줄어든다.
