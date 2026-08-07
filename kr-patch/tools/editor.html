@@ -256,7 +256,6 @@ const FINDING_CATEGORY_LABEL = { meaning: '의미 왜곡', punct: '문장부호 
 const FILTER_OPTIONS = [
   { value: '', label: '필터 없음' },
   { value: 'punct-added-repeat', label: '부호 추가+반복' },
-  { value: 'punct-added', label: '부호 추가' },
   { value: 'punct-amplified', label: '반복 증폭' },
   { value: 'punct-lastchar', label: '끝 어조 불일치' },
   { value: 'punct-stammer-space', label: '더듬음 공백' },
@@ -315,38 +314,51 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
 }
 
+// Live "남은 건수" for one filter option — shared by renderFilterSelect() (dropdown label +
+// visibility) and nothing else. Returns null for the always-shown '필터 없음' option (value '').
+function filterRemainingCount(value) {
+  if (!value) return null;
+  if (value.startsWith('ai-')) {
+    const cat = value.slice(3);
+    let n = 0;
+    for (const off of findingOffsetsByCategory[cat]) {
+      const e = dialogueIndexByOffset.has(off) ? data.dialogue[dialogueIndexByOffset.get(off)] : null;
+      if (e && !currentFixed('dialogue', e) && !e.confirmed) n++;
+    }
+    return n;
+  }
+  if (value in AUTO_FILTERS) {
+    // punct-stammer-space는 passesFilters()와 동일하게 fixed 유무로 제외하지 않는다
+    // (결함이 fixed 필드 자체 안에 있을 수 있어서) — confirmed만 검토 완료 신호로 본다.
+    let n = 0;
+    for (const e of data.dialogue) {
+      const fixed = currentFixed('dialogue', e);
+      const alreadyReviewed = value === 'punct-stammer-space' ? e.confirmed : (fixed || e.confirmed);
+      if (!alreadyReviewed && AUTO_FILTERS[value](fixed, e)) n++;
+    }
+    return n;
+  }
+  return null;
+}
+
 // Rebuilds the dropdown's option labels with a live "남은 건수" count (excludes offsets
 // already fixed or confirmed — see filteredRows()'s ai- branch) — recomputed on every
 // render() so the count visibly drops as the reviewer works through a category, instead of
 // staying frozen at the load-time total. Preserves the current selection across rebuilds.
+// Options whose count has hit 0 are dropped from the list entirely (instead of hand-pruning
+// FILTER_OPTIONS by hand once a category is fully resolved, like the old AI 검토 옵션들
+// were) — EXCEPT the currently-selected one, kept (still at 0) so the dropdown doesn't yank
+// the selection out from under an active filter the moment its last row is fixed/confirmed.
 function renderFilterSelect() {
   const sel = document.getElementById('filterSelect');
   const prev = sel.value;
   sel.innerHTML = '';
   for (const opt of FILTER_OPTIONS) {
+    const n = filterRemainingCount(opt.value);
+    if (n === 0 && opt.value !== prev) continue;
     const o = document.createElement('option');
     o.value = opt.value;
-    let label = opt.label;
-    if (opt.value.startsWith('ai-')) {
-      const cat = opt.value.slice(3);
-      let n = 0;
-      for (const off of findingOffsetsByCategory[cat]) {
-        const e = dialogueIndexByOffset.has(off) ? data.dialogue[dialogueIndexByOffset.get(off)] : null;
-        if (e && !currentFixed('dialogue', e) && !e.confirmed) n++;
-      }
-      label += ` (${n})`;
-    } else if (opt.value in AUTO_FILTERS) {
-      // punct-stammer-space는 passesFilters()와 동일하게 fixed 유무로 제외하지 않는다
-      // (결함이 fixed 필드 자체 안에 있을 수 있어서) — confirmed만 검토 완료 신호로 본다.
-      let n = 0;
-      for (const e of data.dialogue) {
-        const fixed = currentFixed('dialogue', e);
-        const alreadyReviewed = opt.value === 'punct-stammer-space' ? e.confirmed : (fixed || e.confirmed);
-        if (!alreadyReviewed && AUTO_FILTERS[opt.value](fixed, e)) n++;
-      }
-      label += ` (${n})`;
-    }
-    o.textContent = label;
+    o.textContent = n === null ? opt.label : `${opt.label} (${n})`;
     sel.appendChild(o);
   }
   sel.value = prev;
@@ -408,9 +420,14 @@ function punctRuns(s) {
 // "어조 편측"이 각각 독립 조건이라 523건 중 328건이 양쪽 필터에 동시에 잡혔고 — 한 필터를
 // 다 훑어도 다른 필터에서 같은 줄이 또 나와 진도가 안 나갔다. 상호배타 + 심각도 순으로 정리:
 //   added-repeat: JP에 없는 어조 문자를 KR이 넣고 반복까지 함 (가장 확실한 과잉)
-//   added:        JP에 없는 어조 문자를 KR이 넣음 (반복은 없음)
+//   added:        JP에 없는 어조 문자를 KR이 넣음 (반복은 없음) — 필터로는 노출 안 함, 아래 참고
 //   amplified:    JP에도 있는 문자지만 KR이 JP보다 더 길게 반복 (JP ！ → KR ！！)
 // 위에서부터 먼저 걸리는 하나만 반환하므로 세 범주의 교집합은 항상 0이다.
+// 'added'는 한때 별도 필터였으나 드롭다운에서 뺐다 — 규칙이 바뀌어서가 아니라(GUIDE.md 2-3의
+// "JP에 없는 부호 추가는 교정 대상"은 그대로 유효하다) 필터로서 쓸모가 없어서다: 1,400건대는
+// 후보를 좁혀준다고 할 수 없어 전체를 그냥 훑는 것과 다를 바 없고, 우선순위도 낮으며, 어차피
+// 다른 대사를 고치는 김에 같이 처리되는 종류다. punctCategory()는 여전히 'added'를 분류하므로
+// 필요해지면 FILTER_OPTIONS에 한 줄 되살리는 것으로 끝난다.
 function punctCategory(fixed, e) {
   const kr = fixed || e.text;
   const jp = e.jp || '';
@@ -454,7 +471,6 @@ function punctStammerSpace(fixed, e) {
 // renderFilterSelect()의 남은 건수 계산이 이 맵 하나를 공유한다.
 const PUNCT_FILTERS = {
   'punct-added-repeat': (fixed, e) => punctCategory(fixed, e) === 'added-repeat',
-  'punct-added': (fixed, e) => punctCategory(fixed, e) === 'added',
   'punct-amplified': (fixed, e) => punctCategory(fixed, e) === 'amplified',
   'punct-lastchar': punctLastMismatch,
   'punct-stammer-space': punctStammerSpace,

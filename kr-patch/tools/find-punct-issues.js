@@ -3,6 +3,15 @@
 // relative to JP: repeated marks (particularly "！！！" runs), marks added that aren't in
 // JP at all, or a different terminal mark than JP's. Report-only (prints candidates with
 // offsets for manual review in the editor) — does not touch translation.json.
+//
+// NOTE — this CLI and the editor's filter dropdown have diverged; they are no longer the
+// same logic. This file keeps the original independent A/B/C conditions, which overlap
+// heavily (one line often lands in two of them). The editor since re-cut the same signals
+// into mutually-exclusive categories (added-repeat / added / amplified, see punctCategory()
+// in editor.html) precisely so a reviewer working one filter to zero doesn't keep meeting
+// the same lines in the next, and it also carries the mistrans-* mistranslation filters
+// that have no counterpart here. **editor.html's AUTO_FILTERS is the canonical set**; this
+// CLI is kept for quick batch counts from the shell, not as a mirror of it.
 'use strict';
 
 const fs = require('fs');
