@@ -35,10 +35,10 @@
   #searchBox { width: 280px; }
   .toolbar label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #888; cursor: pointer; user-select: none; white-space: nowrap; }
   .toolbar label input[type="checkbox"] { accent-color: #999; width: 12px; height: 12px; }
-  .prob-nav { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #666; }
-  .prob-nav button { background: #252525; border: 1px solid #3a3a3a; border-radius: 4px; height: 26px; padding: 0 8px; cursor: pointer; font-size: 12px; color: #999; font-family: inherit; }
-  .prob-nav button:hover { background: #2e2e2e; color: #ccc; }
-  .prob-nav .prob-count { color: #c04040; font-weight: 600; }
+  .unrev-nav { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #666; }
+  .unrev-nav button { background: #252525; border: 1px solid #3a3a3a; border-radius: 4px; height: 26px; padding: 0 8px; cursor: pointer; font-size: 12px; color: #999; font-family: inherit; }
+  .unrev-nav button:hover { background: #2e2e2e; color: #ccc; }
+  .unrev-nav .unrev-count { color: #c04040; font-weight: 600; }
 
   /* "완전 일치" 검색 중 같은 원문(대개 같은 JP에 대응)인 행이 여러 개 잡히면 뜨는 바 —
      한 번 입력해서 전부에 동시 적용(gensei-pc98 에디터의 fill-bar 이식). */
@@ -65,7 +65,7 @@
   th { background: #1a1a1a; padding: 6px 8px; text-align: left; border-bottom: 1px solid #333; font-weight: 600; color: #666; font-size: 11px; position: sticky; top: var(--topbar-h, 84px); z-index: 5; white-space: nowrap; }
   td { padding: 5px 8px; border-bottom: 1px solid #252525; vertical-align: top; }
   tr:hover { background: #232323; }
-  tr.prob-focus { outline: 2px solid #c04040; outline-offset: -2px; }
+  tr.unrev-focus { outline: 2px solid #c04040; outline-offset: -2px; }
   /* Multi-select (gensei-pc98 editor.py 이식): OFF 칸을 두 번 클릭해 범위 선택. */
   tr.row-selected { background: #1a2840 !important; }
   tr.range-start { background: #252000 !important; }
@@ -161,13 +161,13 @@
     <div class="tabs" id="tabs"></div>
     <input type="text" id="searchBox" placeholder="검색 (원문/수정/JP)...">
     <label><input type="checkbox" id="filterExact"> 완전 일치</label>
-    <label><input type="checkbox" id="filterProblem"> 문제 있는 것만</label>
+    <label><input type="checkbox" id="filterUnreviewed"> 미검토</label>
     <select id="filterSelect"></select>
     <input type="text" id="jumpBox" placeholder="오프셋으로 이동..." style="width:140px">
     <button class="ghost-btn" id="jumpBtn">이동</button>
     <button class="ghost-btn" id="bookmarkBtn" title="지정해둔 책갈피로 이동">책갈피</button>
     <label title="꺼두면 행 편집칸에 포커스해도 맥락 패널이 자동으로 열리지 않음 — × 버튼으로 닫아도 다음 포커스에 다시 열리는 게 불편할 때 사용"><input type="checkbox" id="ctxAutoToggle" checked> 맥락 자동표시</label>
-    <span class="prob-nav" id="probNav" style="display:none"><span class="prob-count" id="probCount"></span><button id="probPrev">이전</button><button id="probNext">다음</button></span>
+    <span class="unrev-nav" id="unrevNav" style="display:none"><span class="unrev-count" id="unrevCount"></span><button id="unrevPrev">이전</button><button id="unrevNext">다음</button></span>
   </div>
 </div>
 
@@ -212,8 +212,8 @@ const SECTIONS = [
 let data = null;
 let curSection = 'dialogue';
 const modified = {};        // "section:offset" -> fixed string (in-memory unsaved edits)
-let problemOffsets = [];    // offsets of filtered rows whose edit is length-invalid
-let problemIdx = -1;
+let unreviewedOffsets = [];    // offsets of filtered rows with no fixed/confirmed yet
+let unreviewedIdx = -1;
 // offset -> index in data.dialogue, for the context panel's "neighbors in original-file
 // order" lookup (see showContext()). translation.json's jp/jpOffset fields (baked once by
 // bake-jp.js, see NOTES.md) already carry the resolved KR<->JP correspondence — no
@@ -301,9 +301,9 @@ function debounce(fn, delay) {
     timer = setTimeout(() => fn(...args), delay);
   };
 }
-// recomputeProblems()/updateStats() are hoisted function declarations, safe to reference
+// recomputeUnreviewed()/updateStats() are hoisted function declarations, safe to reference
 // here even though they're defined further down.
-const scheduleStatsUpdate = debounce(() => { recomputeProblems(); updateStats(); renderFilterSelect(); }, 200);
+const scheduleStatsUpdate = debounce(() => { recomputeUnreviewed(); updateStats(); renderFilterSelect(); }, 200);
 
 let toastTimer = null;
 function toast(msg) {
@@ -556,9 +556,12 @@ const MISTRANS_FILTERS = {
 // passesFilters()/renderFilterSelect()가 공유하는 자동감지 판정 맵 전체.
 const AUTO_FILTERS = { ...PUNCT_FILTERS, ...MISTRANS_FILTERS };
 
-// A row counts as "문제 있는 것" if its edit's byte length is invalid.
-function hasProblem(section, e, fixed) {
-  return !!(fixed && validity(section, byteLen(fixed), need(section, e)) !== 'ok');
+// A row counts as "미검토" if it has neither an edit nor a 확정(reviewed, no change needed)
+// mark — i.e. nobody has looked at it yet. Replaces the old byte-length "문제 있는 것만"
+// checkbox, which duplicated the inline Byte column (already shows over/under in red) and
+// wasn't actually about review progress.
+function isUnreviewed(section, e, fixed) {
+  return !fixed && !e.confirmed;
 }
 
 // Per-entry filter predicate — shared by filteredRows() (full list) and dropOffFilteredRow()
@@ -568,7 +571,7 @@ function passesFilters(e) {
   const q = document.getElementById('searchBox').value; // NOT .trim() — JS trim() also eats
   // U+3000 (전각 공백), which is meaningful leading/trailing content in this game's text
   const exactMatch = document.getElementById('filterExact').checked;
-  const probOnly = document.getElementById('filterProblem').checked;
+  const unrevOnly = document.getElementById('filterUnreviewed').checked;
   const filterVal = document.getElementById('filterSelect').value;
   const fixed = currentFixed(curSection, e);
   const jp = e.jp || ''; // baked KR<->JP correspondence (dialogue only — see bake-jp.js)
@@ -576,7 +579,7 @@ function passesFilters(e) {
     if (exactMatch) { if (e.text !== q && fixed !== q && jp !== q) return false; }
     else if (!e.text.includes(q) && !fixed.includes(q) && !jp.includes(q)) return false;
   }
-  if (probOnly && !hasProblem(curSection, e, fixed)) return false;
+  if (unrevOnly && !isUnreviewed(curSection, e, fixed)) return false;
   if (filterVal) {
     if (curSection !== 'dialogue') return false;
     if (filterVal in AUTO_FILTERS) {
@@ -601,12 +604,12 @@ function filteredRows() {
 
 // Called after an edit/confirm changes one entry's state (see renderRow) — if the row no
 // longer matches the currently active filter, drop just that <tr> instead of waiting for
-// the next full render(). Also refreshes problem-nav/stats/dropdown counts, which are cheap
+// the next full render(). Also refreshes unreviewed-nav/stats/dropdown counts, which are cheap
 // (bounded by filtered-row / finding-set size, not the full ~14,800-row dataset).
 function dropRowIfFiltered(tr, e) {
   if (passesFilters(e)) return;
   tr.remove();
-  recomputeProblems();
+  recomputeUnreviewed();
   updateStats();
   renderFilterSelect();
 }
@@ -616,7 +619,7 @@ function dropRowIfFiltered(tr, e) {
 // toolbar "이동" box.
 function jumpToOffset(offset) {
   document.getElementById('searchBox').value = '';
-  document.getElementById('filterProblem').checked = false;
+  document.getElementById('filterUnreviewed').checked = false;
   document.getElementById('filterSelect').value = '';
   curSection = 'dialogue';
   render();
@@ -828,7 +831,7 @@ function render() {
   const frag = document.createDocumentFragment();
   for (let i = 0; i < rows.length; i++) frag.appendChild(renderRow(rows[i], i));
   tbody.appendChild(frag);
-  recomputeProblems();
+  recomputeUnreviewed();
   updateStats();
   requestAnimationFrame(updateStickyOffset);
 
@@ -1013,7 +1016,7 @@ function renderRow(e, idx) {
   display.addEventListener('mousedown', (ev) => { ev.preventDefault(); tr._edit(); });
 
   // Upgrade this one row's display to a real <textarea> for editing. Called on click, and
-  // by jumpToOffset()/gotoProblem() via tr._edit. Idempotent — reuses an existing textarea.
+  // by jumpToOffset()/gotoUnreviewed() via tr._edit. Idempotent — reuses an existing textarea.
   tr._edit = function upgradeToTextarea() {
     let ta = inner.querySelector('.kr-input');
     if (!ta) {
@@ -1045,7 +1048,7 @@ function renderRow(e, idx) {
         syncConfirmUI();
         syncFindingReason();
         updateSaveBtn();
-        // recomputeProblems()/updateStats() scan the whole section — debounced so they run
+        // recomputeUnreviewed()/updateStats() scan the whole section — debounced so they run
         // once after typing pauses instead of on every keystroke.
         scheduleStatsUpdate();
       });
@@ -1069,31 +1072,31 @@ function renderRow(e, idx) {
   return tr;
 }
 
-function recomputeProblems() {
+function recomputeUnreviewed() {
   // Compute from the data model (rows no longer all carry a textarea to query — see
-  // renderRow's lazy upgradeToTextarea). Stores offsets; gotoProblem() finds the <tr> by
+  // renderRow's lazy upgradeToTextarea). Stores offsets; gotoUnreviewed() finds the <tr> by
   // data-offset (all filtered rows are still in the DOM).
-  problemOffsets = filteredRows()
-    .filter((e) => hasProblem(curSection, e, currentFixed(curSection, e)))
+  unreviewedOffsets = filteredRows()
+    .filter((e) => isUnreviewed(curSection, e, currentFixed(curSection, e)))
     .map((e) => e.offset);
-  const nav = document.getElementById('probNav');
-  if (problemOffsets.length) {
-    document.getElementById('probCount').textContent = problemOffsets.length + '건 ';
+  const nav = document.getElementById('unrevNav');
+  if (unreviewedOffsets.length) {
+    document.getElementById('unrevCount').textContent = unreviewedOffsets.length + '건 ';
     nav.style.display = 'inline-flex';
-    if (problemIdx >= problemOffsets.length) problemIdx = problemOffsets.length - 1;
+    if (unreviewedIdx >= unreviewedOffsets.length) unreviewedIdx = unreviewedOffsets.length - 1;
   } else {
     nav.style.display = 'none';
-    problemIdx = -1;
+    unreviewedIdx = -1;
   }
 }
 
-function gotoProblem(delta) {
-  if (!problemOffsets.length) return;
-  problemIdx = (problemIdx + delta + problemOffsets.length) % problemOffsets.length;
-  const tr = document.querySelector(`#tbody tr[data-offset="${problemOffsets[problemIdx]}"]`);
+function gotoUnreviewed(delta) {
+  if (!unreviewedOffsets.length) return;
+  unreviewedIdx = (unreviewedIdx + delta + unreviewedOffsets.length) % unreviewedOffsets.length;
+  const tr = document.querySelector(`#tbody tr[data-offset="${unreviewedOffsets[unreviewedIdx]}"]`);
   if (!tr) return;
-  document.querySelectorAll('tr.prob-focus').forEach((r) => r.classList.remove('prob-focus'));
-  tr.classList.add('prob-focus');
+  document.querySelectorAll('tr.unrev-focus').forEach((r) => r.classList.remove('unrev-focus'));
+  tr.classList.add('unrev-focus');
   tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
   if (tr._edit) tr._edit();
 }
@@ -1208,7 +1211,7 @@ document.getElementById('fillApply').addEventListener('click', applyFill);
 document.getElementById('fillInput').addEventListener('keydown', (ev) => {
   if (ev.key === 'Enter') applyFill();
 });
-document.getElementById('filterProblem').addEventListener('change', render);
+document.getElementById('filterUnreviewed').addEventListener('change', render);
 document.getElementById('filterSelect').addEventListener('change', render);
 document.getElementById('jumpBtn').addEventListener('click', () => {
   const v = document.getElementById('jumpBox').value.trim();
@@ -1223,8 +1226,8 @@ document.getElementById('bookmarkBtn').addEventListener('click', () => {
   if (bookmarkOffset === null) { toast('저장된 책갈피가 없습니다'); return; }
   jumpToOffset(bookmarkOffset);
 });
-document.getElementById('probPrev').addEventListener('click', () => gotoProblem(-1));
-document.getElementById('probNext').addEventListener('click', () => gotoProblem(1));
+document.getElementById('unrevPrev').addEventListener('click', () => gotoUnreviewed(-1));
+document.getElementById('unrevNext').addEventListener('click', () => gotoUnreviewed(1));
 
 // Home/End/PageUp/PageDown scroll the whole page by default — with a ~14,800-row table,
 // one stray press (easy to hit next to the arrow keys while reviewing) jumps the viewport
