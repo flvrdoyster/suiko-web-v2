@@ -267,7 +267,7 @@
       "offset": 254808,
       "length": 26,
       "text": "정말　화났어！저　영감에겐",
-      "fixed": "정말　화나네！저　영감에겐",
+      "fixed": "정말　화나네！　그　영감은",
       "confirmed": false,
       "jp": "頭に来たわ！　あのじいさんに",
       "jpOffset": 1028608
@@ -8134,7 +8134,7 @@
       "length": 8,
       "text": "스마슈는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュは",
       "jpOffset": 509054
     },
@@ -8143,7 +8143,7 @@
       "length": 20,
       "text": "상자를　열려고　했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "宝箱を開けようとしました",
       "jpOffset": 509070
     },
@@ -8160,7 +8160,7 @@
       "offset": 384912,
       "length": 8,
       "text": "「으햐！",
-      "fixed": "",
+      "fixed": "「아뜨！",
       "confirmed": false,
       "jp": "「アチーっ！",
       "jpOffset": 509120
@@ -8178,7 +8178,7 @@
       "offset": 384944,
       "length": 20,
       "text": "「어떻게　된　거죠？",
-      "fixed": "",
+      "fixed": "「뭐에요？　　　　　",
       "confirmed": false,
       "jp": "「どうしたの？",
       "jpOffset": 509162
@@ -8187,7 +8187,7 @@
       "offset": 384968,
       "length": 20,
       "text": "　즐거워　보이는데…",
-      "fixed": "",
+      "fixed": "　신나　보이네요　　",
       "confirmed": false,
       "jp": "　うれしそうね",
       "jpOffset": 509180
@@ -8205,7 +8205,7 @@
       "offset": 385014,
       "length": 26,
       "text": "「뭐가　즐겁다는　거야！！",
-      "fixed": "",
+      "fixed": "「신난　게　아냐！！　　　",
       "confirmed": false,
       "jp": "「うれしいんじゃねー！！",
       "jpOffset": 509224
@@ -8214,7 +8214,7 @@
       "offset": 385044,
       "length": 32,
       "text": "　상자가　데일　정도로　뜨겁다구",
-      "fixed": "",
+      "fixed": "　이　상자　불　같이　뜨거운데？",
       "confirmed": false,
       "jp": "　この箱　燃えるように熱いぜ！？",
       "jpOffset": 509252
@@ -8421,7 +8421,7 @@
       "offset": 385692,
       "length": 34,
       "text": "　상자가　뜨거워　데일　뻔했는데！",
-      "fixed": "　상자가　불타는　것처럼　뜨거워？",
+      "fixed": "　이　상자　불　같이　뜨거운데？　",
       "confirmed": false,
       "jp": "　この箱　燃えるように熱いぜ！？",
       "jpOffset": 509894
@@ -23155,7 +23155,7 @@
       "length": 16,
       "text": "검정도복（청띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（青帯）",
       "jpOffset": 572660
     },
@@ -30031,7 +30031,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士",
       "jpOffset": 640290
     },
@@ -30076,7 +30076,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士は",
       "jpOffset": 640434
     },
@@ -30103,7 +30103,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士",
       "jpOffset": 640532
     },
@@ -30157,7 +30157,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士",
       "jpOffset": 640728
     },
@@ -34999,7 +34999,7 @@
       "length": 10,
       "text": "검은　복면",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒覆面の拳士",
       "jpOffset": 722848
     },
@@ -47986,7 +47986,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783282
     },
@@ -48004,7 +48004,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783328
     },
@@ -48022,7 +48022,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783384
     },
@@ -48040,7 +48040,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783440
     },
@@ -48058,7 +48058,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783488
     },
@@ -48076,7 +48076,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783536
     },
@@ -48094,7 +48094,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783588
     },
@@ -48121,7 +48121,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783668
     },
@@ -48139,7 +48139,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783718
     },
@@ -48166,7 +48166,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783796
     },
@@ -48193,7 +48193,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783886
     },
@@ -48220,7 +48220,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 783980
     },
@@ -48247,7 +48247,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 784060
     },
@@ -48274,7 +48274,7 @@
       "length": 4,
       "text": "점원",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 784146
     },
@@ -52243,7 +52243,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 839532
     },
@@ -57624,7 +57624,7 @@
       "offset": 781736,
       "length": 24,
       "text": "흑복면의　사내（빨간띠）",
-      "fixed": "",
+      "fixed": "검은　복면（빨간띠）　　",
       "confirmed": false,
       "jp": "黒覆面の拳士（赤帯）",
       "jpOffset": 366024
@@ -57669,7 +57669,7 @@
       "offset": 781850,
       "length": 24,
       "text": "흑복면의　사내（빨간띠）",
-      "fixed": "",
+      "fixed": "검은　복면（빨간띠）　　",
       "confirmed": false,
       "jp": "黒覆面の拳士（赤帯）",
       "jpOffset": 366134
@@ -57723,7 +57723,7 @@
       "offset": 781966,
       "length": 22,
       "text": "흑복면의　사내（흰띠）",
-      "fixed": "",
+      "fixed": "검은　복면（흰띠）　　",
       "confirmed": false,
       "jp": "黒覆面の拳士（白帯）",
       "jpOffset": 366248
@@ -57741,7 +57741,7 @@
       "offset": 782028,
       "length": 24,
       "text": "흑복면의　사내（빨간띠）",
-      "fixed": "",
+      "fixed": "검은　복면（빨간띠）　　",
       "confirmed": false,
       "jp": "黒覆面の拳士（赤帯）",
       "jpOffset": 366312
@@ -57813,7 +57813,7 @@
       "offset": 782264,
       "length": 22,
       "text": "흑복면의　사내（흰띠）",
-      "fixed": "",
+      "fixed": "검은　복면（흰띠）　　",
       "confirmed": false,
       "jp": "黒覆面の拳士（白帯）",
       "jpOffset": 366542
@@ -62800,7 +62800,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 983430
     },
@@ -62808,7 +62808,7 @@
       "offset": 840672,
       "length": 28,
       "text": "「이봐，자네가　아타호인가？",
-      "fixed": "",
+      "fixed": "「거기　네가　아타호였는가？",
       "confirmed": false,
       "jp": "「そこのお前が　アターホーだったのか",
       "jpOffset": 983456
@@ -62817,7 +62817,7 @@
       "offset": 840704,
       "length": 36,
       "text": "　（칫！　전에　그녀석이　아니었군）",
-      "fixed": "",
+      "fixed": "　（칫　전에　그　녀석이　아니었군）",
       "confirmed": false,
       "jp": "（ちっ　あの拳士は　人違いだったか）",
       "jpOffset": 983496
@@ -62826,7 +62826,7 @@
       "offset": 840748,
       "length": 36,
       "text": "　나와　대전을　했더라면　내　손으로",
-      "fixed": "",
+      "fixed": "　가능했다면　내　손으로　　　　　　",
       "confirmed": false,
       "jp": "　できることなら　このオレの手で",
       "jpOffset": 983540
@@ -62835,7 +62835,7 @@
       "offset": 840788,
       "length": 34,
       "text": "　혼내주려했는데…，할　수　없지！",
-      "fixed": "",
+      "fixed": "　혼내줬으면　했지만　　　　　　　",
       "confirmed": false,
       "jp": "　たたきつぶしたかったところだが",
       "jpOffset": 983576
@@ -62844,7 +62844,7 @@
       "offset": 840826,
       "length": 36,
       "text": "　넌，론이　알아서　혼내줄　거다！！",
-      "fixed": "",
+      "fixed": "　뭐　여긴　론에게　양보하도록　하지",
       "confirmed": false,
       "jp": "　ま　ここはロンにゆずってやるぜ",
       "jpOffset": 983612
@@ -62862,7 +62862,7 @@
       "offset": 840882,
       "length": 32,
       "text": "「흥！　너따윈　이몸이　상대해도",
-      "fixed": "",
+      "fixed": "「흥　너　따위는　내가　상대하는",
       "confirmed": false,
       "jp": "「ふん　お前なんぞの相手は",
       "jpOffset": 983666
@@ -62871,7 +62871,7 @@
       "offset": 840918,
       "length": 16,
       "text": "　충분하다！！！",
-      "fixed": "",
+      "fixed": "　걸로　충분하다",
       "confirmed": false,
       "jp": "　この私で十分だ",
       "jpOffset": 983696
@@ -62881,7 +62881,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 983720
     },
@@ -62908,7 +62908,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 983830
     },
@@ -62953,7 +62953,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 983954
     },
@@ -63034,7 +63034,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 984238
     },
@@ -63079,7 +63079,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 984392
     },
@@ -63133,7 +63133,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 984574
     },
@@ -63187,7 +63187,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 984710
     },
@@ -63430,7 +63430,7 @@
       "length": 8,
       "text": "검정도복",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 985330
     },
@@ -63592,7 +63592,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 985856
     },
@@ -66876,7 +66876,7 @@
       "offset": 883784,
       "length": 20,
       "text": "「이봐요，당신들！！",
-      "fixed": "",
+      "fixed": "「이봐요　당신들　　",
       "confirmed": false,
       "jp": "「ちょっと　あんたたち",
       "jpOffset": 1032656
@@ -66895,7 +66895,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1032768
     },
@@ -66949,7 +66949,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1032894
     },
@@ -66967,7 +66967,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1032942
     },
@@ -66985,7 +66985,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1032998
     },
@@ -67003,7 +67003,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033048
     },
@@ -67021,7 +67021,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033098
     },
@@ -67048,7 +67048,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033156
     },
@@ -67075,7 +67075,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033220
     },
@@ -67102,7 +67102,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033298
     },
@@ -67129,7 +67129,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033382
     },
@@ -67156,7 +67156,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033474
     },
@@ -67174,7 +67174,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033534
     },
@@ -67201,7 +67201,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033606
     },
@@ -67218,7 +67218,7 @@
       "offset": 884776,
       "length": 32,
       "text": "　물건은　아무　것도　없군요！！",
-      "fixed": "",
+      "fixed": "　물건은　아무　것도　없군요　　",
       "confirmed": false,
       "jp": "　何も持ってないみたいね",
       "jpOffset": 1033656
@@ -67228,7 +67228,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1033696
     },
@@ -77146,7 +77146,7 @@
       "length": 18,
       "text": "검정도복（파란띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（青帯）",
       "jpOffset": 1116136
     },
@@ -78217,7 +78217,7 @@
       "length": 18,
       "text": "검정도복（파란띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（青帯）",
       "jpOffset": 1119502
     },
@@ -78235,7 +78235,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1119556
     },
@@ -78325,7 +78325,7 @@
       "length": 18,
       "text": "검정도복（파란띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（青帯）",
       "jpOffset": 1119824
     },
@@ -78352,7 +78352,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1119916
     },
@@ -78379,7 +78379,7 @@
       "length": 18,
       "text": "검정도복（파란띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（青帯）",
       "jpOffset": 1120020
     },
@@ -78424,7 +78424,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1120166
     },
@@ -78442,7 +78442,7 @@
       "length": 18,
       "text": "검정도복（파란띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（青帯）",
       "jpOffset": 1120216
     },
@@ -79009,7 +79009,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1122062
     },
@@ -79054,7 +79054,7 @@
       "length": 20,
       "text": "검정도복（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（紫帯）",
       "jpOffset": 1122192
     },
@@ -79261,7 +79261,7 @@
       "length": 12,
       "text": "핀푸（흰띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ピンフー（白帯）",
       "jpOffset": 1122828
     },
@@ -79360,7 +79360,7 @@
       "length": 10,
       "text": "탄（흰띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "タン（白帯）",
       "jpOffset": 1123110
     },
@@ -81385,7 +81385,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163386
     },
@@ -81403,7 +81403,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163432
     },
@@ -81421,7 +81421,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163490
     },
@@ -81439,7 +81439,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163548
     },
@@ -81457,7 +81457,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163600
     },
@@ -81475,7 +81475,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163648
     },
@@ -81493,7 +81493,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163698
     },
@@ -81520,7 +81520,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163780
     },
@@ -81538,7 +81538,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163838
     },
@@ -81565,7 +81565,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1163928
     },
@@ -81592,7 +81592,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1164028
     },
@@ -81619,7 +81619,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1164126
     },
@@ -81646,7 +81646,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1164214
     },
@@ -81673,7 +81673,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1164310
     },
@@ -98188,7 +98188,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311098
     },
@@ -98215,7 +98215,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311162
     },
@@ -98233,7 +98233,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311210
     },
@@ -98251,7 +98251,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311266
     },
@@ -98269,7 +98269,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311316
     },
@@ -98287,7 +98287,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311366
     },
@@ -98314,7 +98314,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311424
     },
@@ -98341,7 +98341,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311488
     },
@@ -98368,7 +98368,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311566
     },
@@ -98395,7 +98395,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311650
     },
@@ -98422,7 +98422,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311742
     },
@@ -98467,7 +98467,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311874
     },
@@ -98494,7 +98494,7 @@
       "length": 8,
       "text": "상점주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "お店の人",
       "jpOffset": 1311964
     },
@@ -110761,7 +110761,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 293406
     },
@@ -110815,7 +110815,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 293590
     },
@@ -110914,7 +110914,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 293908
     },
@@ -110968,7 +110968,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 294096
     },
@@ -111184,7 +111184,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 294668
     },
@@ -119742,7 +119742,7 @@
       "offset": 1355778,
       "length": 10,
       "text": "상점　주인",
-      "fixed": "",
+      "fixed": "상점주인　",
       "confirmed": false,
       "jp": "お店の人",
       "jpOffset": 313190
@@ -124684,7 +124684,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 328598
     },
@@ -124810,7 +124810,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 329020
     },
@@ -124954,7 +124954,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 329496
     },
@@ -125008,7 +125008,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "やられた黒い道着の拳士（赤帯）",
       "jpOffset": 329696
     },
@@ -125026,7 +125026,7 @@
       "length": 22,
       "text": "다른　검정도복（흰띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "残りの黒い道着の拳士（白帯）",
       "jpOffset": 329758
     },
@@ -125467,7 +125467,7 @@
       "length": 18,
       "text": "검정도복（빨간띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士（赤帯）",
       "jpOffset": 331176
     },
