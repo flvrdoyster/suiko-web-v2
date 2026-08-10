@@ -15,6 +15,10 @@ suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이
 + **`kr-patch/`** — KR 정식 번역 오타·오역 수정 파이프라인(추출·검수 에디터·재삽입).
 + **`original/`** — 원본 게임 파일(저장소에는 없음, 로컬에 직접 준비 필요).
 
+그래픽 **추출**(`GENSE.FLD` 아카이브 · CNS 이미지)은 [compile-gfx](https://github.com/flvrdoyster/compile-gfx)로
+일원화되어 있음 — `compile-gfx fld original/jp/GENSE.FLD out/`.
+이 저장소에는 **재삽입** 쪽만 둔다(`kr-patch/tools/cara-fnt.js`의 폰트 교체 등).
+
 ---
 
 ## 기술 노트
