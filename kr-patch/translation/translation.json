@@ -14919,7 +14919,7 @@
       "offset": 406960,
       "length": 26,
       "text": "　정말로　유감이로군…！！",
-      "fixed": "",
+      "fixed": "　그것　참　유감이로군　　",
       "confirmed": false,
       "jp": "　ところじゃな　残念じゃ",
       "jpOffset": 530798
@@ -21795,7 +21795,7 @@
       "offset": 453620,
       "length": 6,
       "text": "「……",
-      "fixed": "",
+      "fixed": "「네에",
       "confirmed": false,
       "jp": "「ええ",
       "jpOffset": 567460
@@ -35412,7 +35412,7 @@
       "offset": 574032,
       "length": 18,
       "text": "「어머，아타호！！",
-      "fixed": "",
+      "fixed": "「앗　아타호　　　",
       "confirmed": false,
       "jp": "「あっ　アターホー",
       "jpOffset": 724096
@@ -35421,7 +35421,7 @@
       "offset": 574054,
       "length": 18,
       "text": "　무사했군요！！！",
-      "fixed": "",
+      "fixed": "　무사했군요　　　",
       "confirmed": false,
       "jp": "　無事だったのね",
       "jpOffset": 724118
@@ -35709,7 +35709,7 @@
       "offset": 574856,
       "length": 20,
       "text": "　걱정해주었다네！！",
-      "fixed": "",
+      "fixed": "　걱정했으니　말야　",
       "confirmed": false,
       "jp": "　心配しとったからの",
       "jpOffset": 724980
@@ -35970,7 +35970,7 @@
       "offset": 575640,
       "length": 14,
       "text": "　그만둘까！！",
-      "fixed": "",
+      "fixed": "　그만둘까나　",
       "confirmed": false,
       "jp": "　やめておくかの",
       "jpOffset": 725818
@@ -38679,7 +38679,7 @@
       "offset": 622394,
       "length": 28,
       "text": "　나도　좀　끼워　주라구！！",
-      "fixed": "",
+      "fixed": "　나도　좀　끼워　줄텐가？　",
       "confirmed": false,
       "jp": "　ワシも　まぜてくれんか？",
       "jpOffset": 753940
@@ -40308,7 +40308,7 @@
       "offset": 627506,
       "length": 14,
       "text": "　그랬었군！！",
-      "fixed": "",
+      "fixed": "　그랬었구만　",
       "confirmed": false,
       "jp": "　そうじゃったか",
       "jpOffset": 758930
@@ -43530,7 +43530,7 @@
       "offset": 637536,
       "length": 18,
       "text": "「…엇？　그랬었나",
-      "fixed": "「엇？　그랬었나？",
+      "fixed": "「엇？　그런건가？",
       "confirmed": false,
       "jp": "「えっ？　そうじゃったか？",
       "jpOffset": 769166
@@ -45150,7 +45150,7 @@
       "offset": 642546,
       "length": 22,
       "text": "　그랬나∼그랬었구나…",
-      "fixed": "",
+      "fixed": "　그런가∼　그랬구나∼",
       "confirmed": false,
       "jp": "　そうかぁ～　そうだよなぁ～",
       "jpOffset": 774140
