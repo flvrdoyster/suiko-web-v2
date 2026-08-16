@@ -609,8 +609,8 @@
       "offset": 260804,
       "length": 28,
       "text": "「수면비약」을　손에　넣었다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「수면비약」을　입수했다　　",
+      "confirmed": false,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 357696
     },
@@ -654,8 +654,8 @@
       "offset": 260978,
       "length": 28,
       "text": "「수면비약」을　손에　넣었다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「수면비약」을　입수했다　　",
+      "confirmed": false,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 357874
     },
@@ -2031,8 +2031,8 @@
       "offset": 312886,
       "length": 24,
       "text": "「약초」를　손에　넣었다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「약초」를　입수했다　　",
+      "confirmed": false,
       "jp": "「薬草」を手に入れました",
       "jpOffset": 410542
     },
@@ -2067,8 +2067,8 @@
       "offset": 313022,
       "length": 22,
       "text": "１０Ｇ를　손에　넣었다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "１０Ｇ를　입수했다　　",
+      "confirmed": false,
       "jp": "１０Ｇを手に入れました",
       "jpOffset": 410688
     },
@@ -2148,7 +2148,7 @@
       "offset": 313312,
       "length": 20,
       "text": "１５Ｇ를　줏어버렸다",
-      "fixed": "１５Ｇ를　얻었다　　",
+      "fixed": "１５Ｇ를　입수했다　",
       "confirmed": false,
       "jp": "１５Ｇを手に入れました",
       "jpOffset": 411000
@@ -2193,8 +2193,8 @@
       "offset": 313480,
       "length": 28,
       "text": "「리프레시　워터」를　챙겼다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「리프레시　워터」를　챙겼다",
+      "confirmed": false,
       "jp": "「リフレッシュの水」を手に入れました",
       "jpOffset": 411166
     },
@@ -2229,7 +2229,7 @@
       "offset": 313642,
       "length": 24,
       "text": "１００Ｇ를　얼른　줏었다",
-      "fixed": "１００Ｇ를　손에　넣었다",
+      "fixed": "１００Ｇ를　입수했다　　",
       "confirmed": false,
       "jp": "１００Ｇを手に入れました",
       "jpOffset": 411338
@@ -2310,8 +2310,8 @@
       "offset": 313960,
       "length": 24,
       "text": "２００Ｇ를　손에　넣었다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "２００Ｇ를　입수했다　　",
+      "confirmed": false,
       "jp": "２００Ｇを手に入れました",
       "jpOffset": 411660
     },
@@ -3966,8 +3966,8 @@
       "offset": 319062,
       "length": 24,
       "text": "훌륭하게　클리어했군요！",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "훌륭하게　클리어했다！　",
+      "confirmed": false,
       "jp": "見事クリアーしました！",
       "jpOffset": 416796
     },
@@ -5028,7 +5028,7 @@
       "offset": 344094,
       "length": 16,
       "text": "　아차！　그렇지",
-      "fixed": "",
+      "fixed": "　아！　그렇지　",
       "confirmed": false,
       "jp": "　あ！　そうそう",
       "jpOffset": 467718
@@ -5110,7 +5110,7 @@
       "length": 12,
       "text": "「…고마워요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「…ありがとう",
       "jpOffset": 467954
     },
@@ -5821,7 +5821,7 @@
       "length": 12,
       "text": "　…고마워요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　…ありがとう",
       "jpOffset": 470272
     },
@@ -6666,7 +6666,7 @@
       "offset": 349678,
       "length": 22,
       "text": "스마슈는　새로운　기술",
-      "fixed": "",
+      "fixed": "스마슈는　새로이　　　",
       "confirmed": false,
       "jp": "スマッシュは新しく",
       "jpOffset": 473330
@@ -7071,8 +7071,8 @@
       "offset": 381640,
       "length": 20,
       "text": "「부적」을　입수했다",
-      "fixed": "「부적」을　얻었다　",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "「呪符」を手に入れました",
       "jpOffset": 505800
     },
@@ -11140,7 +11140,7 @@
       "length": 20,
       "text": "「부적」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「呪符」を見つけました",
       "jpOffset": 518728
     },
@@ -11149,7 +11149,7 @@
       "length": 20,
       "text": "「부적」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「呪符」を手に入れました",
       "jpOffset": 518770
     },
@@ -12138,7 +12138,7 @@
       "offset": 397702,
       "length": 8,
       "text": "「흐음…",
-      "fixed": "",
+      "fixed": "「으음…",
       "confirmed": false,
       "jp": "「う～む…",
       "jpOffset": 521850
@@ -12310,7 +12310,7 @@
       "length": 4,
       "text": "현무",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "玄武",
       "jpOffset": 522368
     },
@@ -12327,7 +12327,7 @@
       "offset": 398272,
       "length": 28,
       "text": "　겁쟁이에겐　용건이　없다！",
-      "fixed": "",
+      "fixed": "　약한　자에게　볼일은　없다",
       "confirmed": false,
       "jp": "　弱き者に　用はない",
       "jpOffset": 522412
@@ -12355,7 +12355,7 @@
       "length": 8,
       "text": "아타호는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホーは",
       "jpOffset": 522506
     },
@@ -12679,7 +12679,7 @@
       "length": 8,
       "text": "아타호는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホーは",
       "jpOffset": 523564
     },
@@ -13066,7 +13066,7 @@
       "length": 26,
       "text": "「고급한방약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「高級漢方薬」を見つけました",
       "jpOffset": 524982
     },
@@ -13075,7 +13075,7 @@
       "length": 26,
       "text": "「고급한방약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「高級漢方薬」を手に入れました",
       "jpOffset": 525030
     },
@@ -13138,7 +13138,7 @@
       "length": 8,
       "text": "　알았어",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　わかった",
       "jpOffset": 525272
     },
@@ -13345,7 +13345,7 @@
       "length": 20,
       "text": "「부적」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「呪符」を見つけました",
       "jpOffset": 525850
     },
@@ -13354,7 +13354,7 @@
       "length": 20,
       "text": "「부적」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「呪符」を手に入れました",
       "jpOffset": 525892
     },
@@ -15253,7 +15253,7 @@
       "length": 8,
       "text": "아타호는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホーは",
       "jpOffset": 531820
     },
@@ -15415,7 +15415,7 @@
       "length": 26,
       "text": "스마슈는　화령석을　꺼내서",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュは　火霊石を取り出し",
       "jpOffset": 532292
     },
@@ -15541,7 +15541,7 @@
       "length": 26,
       "text": "스마슈는　화령석을　꺼내서",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュは　火霊石を取り出し",
       "jpOffset": 532766
     },
@@ -15802,7 +15802,7 @@
       "length": 22,
       "text": "낡은　보물상자가　있다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "古い宝箱があります",
       "jpOffset": 534616
     },
@@ -15810,7 +15810,7 @@
       "offset": 413316,
       "length": 12,
       "text": "열어볼까요？",
-      "fixed": "",
+      "fixed": "열어볼까？　",
       "confirmed": false,
       "jp": "開けますか？",
       "jpOffset": 534638
@@ -15829,7 +15829,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 534670
     },
@@ -15865,7 +15865,7 @@
       "length": 24,
       "text": "「수면비약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を見つけました",
       "jpOffset": 534782
     },
@@ -15901,7 +15901,7 @@
       "length": 24,
       "text": "「수면비약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 534930
     },
@@ -15946,7 +15946,7 @@
       "length": 24,
       "text": "「수면비약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 535108
     },
@@ -16765,7 +16765,7 @@
       "length": 28,
       "text": "　게다가　열쇠구멍도　없고…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　しかも　カギ穴らしきものがない…",
       "jpOffset": 551394
     },
@@ -16792,7 +16792,7 @@
       "length": 22,
       "text": "낡은　보물상자가　있다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "古い宝箱があります",
       "jpOffset": 551506
     },
@@ -16800,7 +16800,7 @@
       "offset": 437788,
       "length": 12,
       "text": "열어볼까요？",
-      "fixed": "",
+      "fixed": "열어볼까？　",
       "confirmed": false,
       "jp": "開けますか？",
       "jpOffset": 551528
@@ -16819,7 +16819,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 551560
     },
@@ -16855,7 +16855,7 @@
       "length": 24,
       "text": "「수면비약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を見つけました",
       "jpOffset": 551664
     },
@@ -16908,7 +16908,7 @@
       "offset": 438080,
       "length": 28,
       "text": "「수면비약」을　손에　넣었다",
-      "fixed": "",
+      "fixed": "「수면비약」을　입수했다　　",
       "confirmed": false,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 551842
@@ -16944,7 +16944,7 @@
       "offset": 438258,
       "length": 28,
       "text": "「수면비약」을　손에　넣었다",
-      "fixed": "",
+      "fixed": "「수면비약」을　입수했다　　",
       "confirmed": false,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 552004
@@ -19492,7 +19492,7 @@
       "length": 22,
       "text": "「해독초」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「毒消し薬」を見つけました",
       "jpOffset": 559894
     },
@@ -19501,7 +19501,7 @@
       "length": 22,
       "text": "「해독초」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「毒消し薬」を手に入れました",
       "jpOffset": 559940
     },
@@ -19510,7 +19510,7 @@
       "length": 18,
       "text": "１５Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１５Ｇを見つけました",
       "jpOffset": 560000
     },
@@ -19519,7 +19519,7 @@
       "length": 18,
       "text": "１５Ｇ를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１５Ｇを手に入れました",
       "jpOffset": 560040
     },
@@ -19528,7 +19528,7 @@
       "length": 30,
       "text": "「리프레시　워터」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「リフレッシュの水」を見つけました",
       "jpOffset": 560094
     },
@@ -19536,7 +19536,7 @@
       "offset": 446422,
       "length": 34,
       "text": "「리프레시　워터」를　손에　넣었다",
-      "fixed": "",
+      "fixed": "「리프레시　워터」를　입수했다　　",
       "confirmed": false,
       "jp": "「リフレッシュの水」を手に入れました",
       "jpOffset": 560148
@@ -19546,7 +19546,7 @@
       "length": 20,
       "text": "１００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１００Ｇを見つけました",
       "jpOffset": 560216
     },
@@ -19554,7 +19554,7 @@
       "offset": 446528,
       "length": 24,
       "text": "１００Ｇ를　손에　넣었다",
-      "fixed": "",
+      "fixed": "１００Ｇ를　입수했다　　",
       "confirmed": false,
       "jp": "１００Ｇを手に入れました",
       "jpOffset": 560258
@@ -19564,7 +19564,7 @@
       "length": 28,
       "text": "「마법의　물약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を見つけました",
       "jpOffset": 560314
     },
@@ -19572,7 +19572,7 @@
       "offset": 446632,
       "length": 32,
       "text": "「마법의　물약」을　손에　넣었다",
-      "fixed": "",
+      "fixed": "「마법의　물약」을　입수했다　　",
       "confirmed": false,
       "jp": "「魔法の水薬」を手に入れました",
       "jpOffset": 560362
@@ -19663,7 +19663,7 @@
       "length": 26,
       "text": "「고급한방약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「高級漢方薬」を見つけました",
       "jpOffset": 560734
     },
@@ -19752,7 +19752,7 @@
       "offset": 447340,
       "length": 10,
       "text": "발견했다！",
-      "fixed": "",
+      "fixed": "발견했다　",
       "confirmed": false,
       "jp": "　見つけました",
       "jpOffset": 561082
@@ -20185,7 +20185,7 @@
       "length": 22,
       "text": "「마수석」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔獣石」を見つけました",
       "jpOffset": 562424
     },
@@ -20194,7 +20194,7 @@
       "length": 26,
       "text": "「마수석」을　손에　넣었다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔獣石」を手に入れました",
       "jpOffset": 562468
     },
@@ -20338,7 +20338,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 562932
     },
@@ -20401,7 +20401,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 563104
     },
@@ -20418,7 +20418,7 @@
       "offset": 449362,
       "length": 20,
       "text": "「어라？　안열리잖아",
-      "fixed": "",
+      "fixed": "「응？　안　열리잖아",
       "confirmed": false,
       "jp": "「ん？　開かないぜ",
       "jpOffset": 563152
@@ -20572,7 +20572,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 563654
     },
@@ -20959,7 +20959,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 564860
     },
@@ -21022,7 +21022,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 565032
     },
@@ -21039,7 +21039,7 @@
       "offset": 451276,
       "length": 20,
       "text": "「응？　안열리는데…",
-      "fixed": "",
+      "fixed": "「응？　안　열리잖아",
       "confirmed": false,
       "jp": "「ん？　開かないぜ",
       "jpOffset": 565080
@@ -21156,7 +21156,7 @@
       "offset": 451674,
       "length": 6,
       "text": "「예…",
-      "fixed": "",
+      "fixed": "「네에",
       "confirmed": false,
       "jp": "「ええ",
       "jpOffset": 565462
@@ -21193,7 +21193,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 565582
     },
@@ -21418,7 +21418,7 @@
       "length": 26,
       "text": "「데몬드레스」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「デーモンドレス」を手に入れました！",
       "jpOffset": 566266
     },
@@ -21598,7 +21598,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 566858
     },
@@ -21661,7 +21661,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 567030
     },
@@ -21832,7 +21832,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 567580
     },
@@ -22128,7 +22128,7 @@
       "offset": 454660,
       "length": 8,
       "text": "휴지조각",
-      "fixed": "",
+      "fixed": "종이조각",
       "confirmed": false,
       "jp": "紙くず",
       "jpOffset": 568524
@@ -22138,7 +22138,7 @@
       "length": 10,
       "text": "「진봉폭호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「真封暴虎（ぼうこ）",
       "jpOffset": 568534
     },
@@ -22318,7 +22318,7 @@
       "length": 30,
       "text": "「리프레시　워터」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「リフレッシュの水」を見つけました",
       "jpOffset": 569108
     },
@@ -22326,7 +22326,7 @@
       "offset": 455278,
       "length": 34,
       "text": "「리프레시　워터」를　손에　넣었다",
-      "fixed": "",
+      "fixed": "「리프레시　워터」를　입수했다　　",
       "confirmed": false,
       "jp": "「リフレッシュの水」を手に入れました",
       "jpOffset": 569162
@@ -22336,7 +22336,7 @@
       "length": 20,
       "text": "１００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１００Ｇを見つけました",
       "jpOffset": 569230
     },
@@ -22345,7 +22345,7 @@
       "length": 20,
       "text": "１００Ｇ를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１００Ｇを手に入れました",
       "jpOffset": 569272
     },
@@ -22362,7 +22362,7 @@
       "offset": 455476,
       "length": 24,
       "text": "「약초」를　손에　넣었다",
-      "fixed": "",
+      "fixed": "「약초」를　입수했다　　",
       "confirmed": false,
       "jp": "「薬草」を手に入れました",
       "jpOffset": 569370
@@ -22372,7 +22372,7 @@
       "length": 18,
       "text": "１０Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１０Ｇを見つけました",
       "jpOffset": 569426
     },
@@ -22380,7 +22380,7 @@
       "offset": 455570,
       "length": 22,
       "text": "１０Ｇ를　손에　넣었다",
-      "fixed": "",
+      "fixed": "１０Ｇ를　입수했다　　",
       "confirmed": false,
       "jp": "１０Ｇを手に入れました",
       "jpOffset": 569466
@@ -22390,7 +22390,7 @@
       "length": 22,
       "text": "「해독초」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「毒消し薬」を見つけました",
       "jpOffset": 569520
     },
@@ -22399,7 +22399,7 @@
       "length": 22,
       "text": "「해독초」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「毒消し薬」を手に入れました",
       "jpOffset": 569566
     },
@@ -22408,7 +22408,7 @@
       "length": 18,
       "text": "１５Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１５Ｇを見つけました",
       "jpOffset": 569626
     },
@@ -22416,7 +22416,7 @@
       "offset": 455758,
       "length": 22,
       "text": "１５Ｇ를　손에　넣었다",
-      "fixed": "",
+      "fixed": "１５Ｇ를　입수했다　　",
       "confirmed": false,
       "jp": "１５Ｇを手に入れました",
       "jpOffset": 569666
@@ -22426,7 +22426,7 @@
       "length": 28,
       "text": "「마법의　물약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を見つけました",
       "jpOffset": 569720
     },
@@ -22435,7 +22435,7 @@
       "length": 28,
       "text": "「마법의　물약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を手に入れました",
       "jpOffset": 569768
     },
@@ -22462,7 +22462,7 @@
       "length": 26,
       "text": "「고급한방약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「高級漢方薬」を見つけました",
       "jpOffset": 569928
     },
@@ -22768,7 +22768,7 @@
       "length": 26,
       "text": "１５００Ｇ를　손에　넣었다",
       "fixed": "",
-      "confirmed": true,
+      "confirmed": false,
       "jp": "１５００Ｇを手に入れました",
       "jpOffset": 570922
     },
@@ -22795,7 +22795,7 @@
       "length": 32,
       "text": "「그레이트소드」를　손에　넣었다",
       "fixed": "",
-      "confirmed": true,
+      "confirmed": false,
       "jp": "「グレイツソード」を手に入れました",
       "jpOffset": 571068
     },
@@ -22813,7 +22813,7 @@
       "length": 26,
       "text": "１５００Ｇ를　손에　넣었다",
       "fixed": "",
-      "confirmed": true,
+      "confirmed": false,
       "jp": "１５００Ｇを手に入れました",
       "jpOffset": 571178
     },
@@ -22840,7 +22840,7 @@
       "length": 28,
       "text": "「철편갑옷」을　손에　넣었다",
       "fixed": "",
-      "confirmed": true,
+      "confirmed": false,
       "jp": "「鉄片のヨロイ」を手に入れました",
       "jpOffset": 571322
     },
@@ -22930,7 +22930,7 @@
       "length": 30,
       "text": "「배틀드레스」를　손에　넣었다",
       "fixed": "",
-      "confirmed": true,
+      "confirmed": false,
       "jp": "「バトルドレス」を手に入れました",
       "jpOffset": 571826
     },
@@ -23173,7 +23173,7 @@
       "length": 16,
       "text": "총통이라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "総統と呼ばれた拳士",
       "jpOffset": 572724
     },
@@ -23389,7 +23389,7 @@
       "length": 22,
       "text": "「암청수」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「岩清水」を手に入れました",
       "jpOffset": 573462
     },
@@ -23479,7 +23479,7 @@
       "length": 22,
       "text": "「암청수」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「岩清水」を手に入れました",
       "jpOffset": 573808
     },
@@ -23776,7 +23776,7 @@
       "length": 10,
       "text": "「그래요…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「そう…",
       "jpOffset": 574776
     },
@@ -26026,7 +26026,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 627172
     },
@@ -26179,7 +26179,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 627706
     },
@@ -26260,7 +26260,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 627964
     },
@@ -26295,7 +26295,7 @@
       "offset": 517868,
       "length": 20,
       "text": "　후후，작전개시！！",
-      "fixed": "",
+      "fixed": "　우후후　작전개시！",
       "confirmed": false,
       "jp": "　うふふ　作戦開始ですわ！",
       "jpOffset": 628048
@@ -26332,7 +26332,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 628168
     },
@@ -26359,7 +26359,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 628244
     },
@@ -26386,7 +26386,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 628330
     },
@@ -26421,7 +26421,7 @@
       "offset": 518258,
       "length": 30,
       "text": "「역시，아무래도　남의　병실을",
-      "fixed": "",
+      "fixed": "「아무리　그래도　남의　병실을",
       "confirmed": false,
       "jp": "「いくらなんでも　他人の病室を",
       "jpOffset": 628422
@@ -26430,7 +26430,7 @@
       "offset": 518292,
       "length": 26,
       "text": "　엿보는　건　악취미야！！",
-      "fixed": "",
+      "fixed": "　엿보는　건　악취미겠지　",
       "confirmed": false,
       "jp": "　のぞくなんてのは悪趣味だな",
       "jpOffset": 628456
@@ -26773,7 +26773,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 629560
     },
@@ -26818,7 +26818,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 629690
     },
@@ -26881,7 +26881,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 629902
     },
@@ -26908,7 +26908,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 629986
     },
@@ -26962,7 +26962,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 630148
     },
@@ -26989,7 +26989,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 630214
     },
@@ -27043,7 +27043,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 630410
     },
@@ -27097,7 +27097,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 630606
     },
@@ -27105,7 +27105,7 @@
       "offset": 520436,
       "length": 24,
       "text": "「이젠　축제도　끝났으니",
-      "fixed": "",
+      "fixed": "「축제도　다　끝났으니　",
       "confirmed": false,
       "jp": "「祭りも終わったことじゃし",
       "jpOffset": 630616
@@ -27115,7 +27115,7 @@
       "length": 30,
       "text": "　슬슬　다른　마을로　가볼까…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　そろそろ　別の町に行くか…",
       "jpOffset": 630646
     },
@@ -27331,7 +27331,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 631492
     },
@@ -27412,7 +27412,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 631734
     },
@@ -27519,7 +27519,7 @@
       "offset": 521822,
       "length": 24,
       "text": "「뭐라는　건지　모르지만",
-      "fixed": "",
+      "fixed": "「무슨　소린지　몰라도　",
       "confirmed": false,
       "jp": "「なんだかわかんねーけど",
       "jpOffset": 632010
@@ -27538,7 +27538,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 632078
     },
@@ -27682,7 +27682,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 632540
     },
@@ -27700,7 +27700,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 632606
     },
@@ -27754,7 +27754,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 632756
     },
@@ -27781,7 +27781,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 632826
     },
@@ -27808,7 +27808,7 @@
       "length": 8,
       "text": "주정뱅이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酔っ払い",
       "jpOffset": 632902
     },
@@ -27825,7 +27825,7 @@
       "offset": 522762,
       "length": 18,
       "text": "　술　가져와，술！",
-      "fixed": "",
+      "fixed": "　술　가져∼와！　",
       "confirmed": false,
       "jp": "　酒もってこ～い",
       "jpOffset": 632936
@@ -27969,7 +27969,7 @@
       "offset": 523220,
       "length": 26,
       "text": "　내　생각을　했던거야！！",
-      "fixed": "",
+      "fixed": "　그토록　나를　기다렸어？",
       "confirmed": false,
       "jp": "　そんなにオレのこと待ってたの？",
       "jpOffset": 633372
@@ -27979,7 +27979,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 633416
     },
@@ -28033,7 +28033,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 633548
     },
@@ -28078,7 +28078,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 633656
     },
@@ -28114,7 +28114,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 633734
     },
@@ -28168,7 +28168,7 @@
       "length": 6,
       "text": "　쉰다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休む",
       "jpOffset": 633878
     },
@@ -28177,7 +28177,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 633888
     },
@@ -28186,7 +28186,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 633898
     },
@@ -28239,7 +28239,7 @@
       "offset": 523890,
       "length": 28,
       "text": "　멋대로　들어가지　말아욧！",
-      "fixed": "",
+      "fixed": "　멋대로　들어가지　마세요　",
       "confirmed": false,
       "jp": "　勝手に入らないでおくれよ",
       "jpOffset": 634048
@@ -28249,7 +28249,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 634380
     },
@@ -28257,7 +28257,7 @@
       "offset": 524006,
       "length": 22,
       "text": "「가끔은　혼자　여행을",
-      "fixed": "",
+      "fixed": "「때론　느긋하게　혼자",
       "confirmed": false,
       "jp": "「たまには　のんびりと一人で",
       "jpOffset": 634390
@@ -28276,7 +28276,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 634464
     },
@@ -28330,7 +28330,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 634626
     },
@@ -28338,7 +28338,7 @@
       "offset": 524230,
       "length": 8,
       "text": "「쳇！！",
-      "fixed": "",
+      "fixed": "「흥∼！",
       "confirmed": false,
       "jp": "「え～ん！",
       "jpOffset": 634636
@@ -28384,7 +28384,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 634768
     },
@@ -28438,7 +28438,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 634964
     },
@@ -28492,7 +28492,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 635160
     },
@@ -28510,7 +28510,7 @@
       "length": 30,
       "text": "　슬슬　다른　마을로　가볼까…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　そろそろ　別の町に行くか…",
       "jpOffset": 635200
     },
@@ -28573,7 +28573,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 635424
     },
@@ -28726,7 +28726,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 636046
     },
@@ -28816,7 +28816,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 636312
     },
@@ -28969,7 +28969,7 @@
       "length": 8,
       "text": "주정뱅이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酔っ払い",
       "jpOffset": 636810
     },
@@ -28986,7 +28986,7 @@
       "offset": 526292,
       "length": 18,
       "text": "　술　가져와，술！",
-      "fixed": "",
+      "fixed": "　술　가져∼와！　",
       "confirmed": false,
       "jp": "　酒もってこ～い",
       "jpOffset": 636844
@@ -29023,7 +29023,7 @@
       "length": 4,
       "text": "손님",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "客",
       "jpOffset": 636968
     },
@@ -29040,7 +29040,7 @@
       "offset": 526452,
       "length": 32,
       "text": "　청류마을에　비해　손색이　없군",
-      "fixed": "",
+      "fixed": "　청류마을의　술과도　막상막하야",
       "confirmed": false,
       "jp": "　清流の町の酒と　いい勝負だよ",
       "jpOffset": 637012
@@ -29050,7 +29050,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 637058
     },
@@ -29113,7 +29113,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 637248
     },
@@ -29221,7 +29221,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 637630
     },
@@ -29274,7 +29274,7 @@
       "offset": 527162,
       "length": 6,
       "text": "　휴식",
-      "fixed": "",
+      "fixed": "　쉰다",
       "confirmed": false,
       "jp": "　休む",
       "jpOffset": 637774
@@ -29284,7 +29284,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 637784
     },
@@ -29292,7 +29292,7 @@
       "offset": 527182,
       "length": 10,
       "text": "　그냥간다",
-      "fixed": "",
+      "fixed": "　그만둔다",
       "confirmed": false,
       "jp": "　なにもしない",
       "jpOffset": 637794
@@ -29346,7 +29346,7 @@
       "offset": 527312,
       "length": 28,
       "text": "　멋대로　들어가지　말아욧！",
-      "fixed": "",
+      "fixed": "　멋대로　들어가지　마세요　",
       "confirmed": false,
       "jp": "　勝手に入らないでおくれよ",
       "jpOffset": 637944
@@ -29374,7 +29374,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 638052
     },
@@ -29518,7 +29518,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 638570
     },
@@ -29545,7 +29545,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 638660
     },
@@ -29563,7 +29563,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 638722
     },
@@ -29599,7 +29599,7 @@
       "length": 16,
       "text": "부상당한　권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ケガをしている拳士",
       "jpOffset": 638822
     },
@@ -30265,7 +30265,7 @@
       "length": 16,
       "text": "부상당한　권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ケガをしている拳士",
       "jpOffset": 641076
     },
@@ -30319,7 +30319,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 641266
     },
@@ -30337,7 +30337,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 641310
     },
@@ -30391,7 +30391,7 @@
       "length": 16,
       "text": "부상당한　권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ケガをしている拳士",
       "jpOffset": 641482
     },
@@ -30445,7 +30445,7 @@
       "length": 16,
       "text": "부상당한　권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ケガをしている拳士",
       "jpOffset": 641626
     },
@@ -30859,7 +30859,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 643026
     },
@@ -31048,7 +31048,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 643680
     },
@@ -31129,7 +31129,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 643918
     },
@@ -31138,7 +31138,7 @@
       "length": 10,
       "text": "「이름이야",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「そんなこと",
       "jpOffset": 643928
     },
@@ -31219,7 +31219,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 644174
     },
@@ -31237,7 +31237,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 644236
     },
@@ -31282,7 +31282,7 @@
       "length": 26,
       "text": "「하지만　수술하지　않으면",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「しかし　手術せんと",
       "jpOffset": 644360
     },
@@ -31300,7 +31300,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 644424
     },
@@ -31327,7 +31327,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 644518
     },
@@ -34764,7 +34764,7 @@
       "offset": 572186,
       "length": 12,
       "text": "열어볼까요？",
-      "fixed": "",
+      "fixed": "열어볼까？　",
       "confirmed": false,
       "jp": "開けますか？",
       "jpOffset": 722186
@@ -34783,7 +34783,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 722218
     },
@@ -35260,7 +35260,7 @@
       "length": 20,
       "text": "「아무래도　한사람씩",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「どうやら　一人ずつ",
       "jpOffset": 723620
     },
@@ -35287,7 +35287,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ふまない",
       "jpOffset": 723702
     },
@@ -35332,7 +35332,7 @@
       "length": 10,
       "text": "「아야야…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「つつ…",
       "jpOffset": 723844
     },
@@ -36133,7 +36133,7 @@
       "length": 22,
       "text": "「해독초」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「毒消し薬」を見つけました",
       "jpOffset": 726382
     },
@@ -36141,7 +36141,7 @@
       "offset": 576294,
       "length": 26,
       "text": "「해독초」를　손에　넣었다",
-      "fixed": "",
+      "fixed": "「해독초」를　입수했다　　",
       "confirmed": false,
       "jp": "「毒消し薬」を手に入れました",
       "jpOffset": 726428
@@ -36151,7 +36151,7 @@
       "length": 18,
       "text": "１５Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１５Ｇを見つけました",
       "jpOffset": 726488
     },
@@ -36169,7 +36169,7 @@
       "length": 30,
       "text": "「리프레시　워터」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「リフレッシュの水」を見つけました",
       "jpOffset": 726582
     },
@@ -36187,7 +36187,7 @@
       "length": 20,
       "text": "１００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１００Ｇを見つけました",
       "jpOffset": 726704
     },
@@ -36196,7 +36196,7 @@
       "length": 24,
       "text": "１００Ｇ를　손에　넣었다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１００Ｇを手に入れました",
       "jpOffset": 726746
     },
@@ -36205,7 +36205,7 @@
       "length": 28,
       "text": "「마법의　물약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を見つけました",
       "jpOffset": 726802
     },
@@ -36367,7 +36367,7 @@
       "length": 24,
       "text": "스마슈는　새로운　필살기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュは　新必殺技",
       "jpOffset": 727460
     },
@@ -36376,7 +36376,7 @@
       "length": 18,
       "text": "「인법·분신술」을",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「忍法・分身の術」を",
       "jpOffset": 727486
     },
@@ -38896,7 +38896,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 754678
     },
@@ -39220,7 +39220,7 @@
       "length": 8,
       "text": "창룡권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "蒼龍拳拳士",
       "jpOffset": 755692
     },
@@ -39274,7 +39274,7 @@
       "length": 8,
       "text": "현무권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "玄武拳拳士",
       "jpOffset": 755866
     },
@@ -39382,7 +39382,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 756258
     },
@@ -39913,7 +39913,7 @@
       "length": 6,
       "text": "　휴식",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休憩",
       "jpOffset": 757700
     },
@@ -39922,7 +39922,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 757710
     },
@@ -39931,7 +39931,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 757720
     },
@@ -41101,7 +41101,7 @@
       "length": 8,
       "text": "창룡권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "蒼龍拳拳士",
       "jpOffset": 761232
     },
@@ -41209,7 +41209,7 @@
       "length": 8,
       "text": "창룡권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "蒼龍拳拳士",
       "jpOffset": 761614
     },
@@ -41263,7 +41263,7 @@
       "length": 8,
       "text": "현무권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "玄武拳拳士",
       "jpOffset": 761800
     },
@@ -41776,7 +41776,7 @@
       "length": 8,
       "text": "「후후후",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ふっふっふ",
       "jpOffset": 763422
     },
@@ -41794,7 +41794,7 @@
       "length": 8,
       "text": "스마슈는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュは",
       "jpOffset": 763474
     },
@@ -42910,7 +42910,7 @@
       "length": 28,
       "text": "「마법의　물약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を見つけました",
       "jpOffset": 767184
     },
@@ -42919,7 +42919,7 @@
       "length": 28,
       "text": "「마법의　물약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を手に入れました",
       "jpOffset": 767232
     },
@@ -43747,7 +43747,7 @@
       "length": 10,
       "text": "「아야야…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「いたた…",
       "jpOffset": 769806
     },
@@ -43990,7 +43990,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 770482
     },
@@ -44044,7 +44044,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 770632
     },
@@ -44071,7 +44071,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 770716
     },
@@ -44089,7 +44089,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 770764
     },
@@ -44134,7 +44134,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 770898
     },
@@ -44170,7 +44170,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 770996
     },
@@ -44224,7 +44224,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 771140
     },
@@ -44755,7 +44755,7 @@
       "length": 28,
       "text": "「마법의　물약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を見つけました",
       "jpOffset": 772766
     },
@@ -44764,7 +44764,7 @@
       "length": 28,
       "text": "「마법의　물약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「魔法の水薬」を手に入れました",
       "jpOffset": 772814
     },
@@ -45772,7 +45772,7 @@
       "length": 24,
       "text": "스마슈는　새로운　필살기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スマッシュは　新必殺技",
       "jpOffset": 776074
     },
@@ -45871,7 +45871,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 776490
     },
@@ -45907,7 +45907,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 776590
     },
@@ -45970,7 +45970,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 776766
     },
@@ -46042,7 +46042,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 776968
     },
@@ -46096,7 +46096,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 777124
     },
@@ -46123,7 +46123,7 @@
       "length": 6,
       "text": "강권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "剛拳士",
       "jpOffset": 777212
     },
@@ -46231,7 +46231,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 777560
     },
@@ -46258,7 +46258,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 777636
     },
@@ -46303,7 +46303,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 777766
     },
@@ -46330,7 +46330,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 777840
     },
@@ -46483,7 +46483,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 778374
     },
@@ -46564,7 +46564,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 778632
     },
@@ -46636,7 +46636,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 778836
     },
@@ -46699,7 +46699,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 779058
     },
@@ -47338,7 +47338,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 781054
     },
@@ -47365,7 +47365,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 781138
     },
@@ -47419,7 +47419,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 781300
     },
@@ -47635,7 +47635,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 782022
     },
@@ -47788,7 +47788,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 782648
     },
@@ -47868,8 +47868,8 @@
       "offset": 651552,
       "length": 24,
       "text": "「뭐라는　건지　모르지만",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「무슨　소린지　몰라도　",
+      "confirmed": false,
       "jp": "「なんだかわかんねーけど",
       "jpOffset": 782882
     },
@@ -47887,7 +47887,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 782950
     },
@@ -48436,7 +48436,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 784692
     },
@@ -48463,7 +48463,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 784768
     },
@@ -48481,7 +48481,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 784826
     },
@@ -48535,7 +48535,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 784976
     },
@@ -48562,7 +48562,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 785046
     },
@@ -48643,7 +48643,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 785336
     },
@@ -48706,7 +48706,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 785546
     },
@@ -48724,7 +48724,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 785596
     },
@@ -48876,8 +48876,8 @@
       "offset": 654424,
       "length": 18,
       "text": "　술　가져와，술！",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "　술　가져∼와！　",
+      "confirmed": false,
       "jp": "　酒もってこ～い",
       "jpOffset": 786046
     },
@@ -48958,7 +48958,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 786302
     },
@@ -49219,7 +49219,7 @@
       "length": 6,
       "text": "　쉰다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休む",
       "jpOffset": 786992
     },
@@ -49228,7 +49228,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 787002
     },
@@ -49237,7 +49237,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 787012
     },
@@ -49300,7 +49300,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 787204
     },
@@ -49903,7 +49903,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 789242
     },
@@ -49957,7 +49957,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 789418
     },
@@ -50038,7 +50038,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 789688
     },
@@ -50092,7 +50092,7 @@
       "length": 30,
       "text": "「리프레시　워터」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「リフレッシュの水」を見つけました",
       "jpOffset": 789864
     },
@@ -50101,7 +50101,7 @@
       "length": 30,
       "text": "「리프레시　워터」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「リフレッシュの水」を手に入れました",
       "jpOffset": 789918
     },
@@ -50163,7 +50163,7 @@
       "offset": 658342,
       "length": 16,
       "text": "스마슈는　새로운",
-      "fixed": "",
+      "fixed": "스마슈는　새로이",
       "confirmed": false,
       "jp": "スマッシュは新しく",
       "jpOffset": 790228
@@ -50190,7 +50190,7 @@
       "offset": 658430,
       "length": 22,
       "text": "「해독약」을　발견했다",
-      "fixed": "",
+      "fixed": "「해독초」를　발견했다",
       "confirmed": false,
       "jp": "「毒消し薬」を見つけました",
       "jpOffset": 790322
@@ -50199,7 +50199,7 @@
       "offset": 658472,
       "length": 22,
       "text": "「해독약」을　입수했다",
-      "fixed": "",
+      "fixed": "「해독초」를　발견했다",
       "confirmed": false,
       "jp": "「毒消し薬」を手に入れました",
       "jpOffset": 790368
@@ -50209,7 +50209,7 @@
       "length": 18,
       "text": "１５Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１５Ｇを見つけました",
       "jpOffset": 790428
     },
@@ -50218,7 +50218,7 @@
       "length": 18,
       "text": "１５Ｇ를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１５Ｇを手に入れました",
       "jpOffset": 790468
     },
@@ -50587,7 +50587,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 834172
     },
@@ -50641,7 +50641,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 834368
     },
@@ -50659,7 +50659,7 @@
       "length": 30,
       "text": "　슬슬　다른　마을로　가볼까…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　そろそろ　別の町に行くか…",
       "jpOffset": 834408
     },
@@ -50722,7 +50722,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 834632
     },
@@ -50875,7 +50875,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 835246
     },
@@ -51217,7 +51217,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 836198
     },
@@ -51226,7 +51226,7 @@
       "length": 22,
       "text": "「특급주」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「特級酒」を手に入れました",
       "jpOffset": 836240
     },
@@ -51316,7 +51316,7 @@
       "length": 8,
       "text": "주정뱅이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酔っ払い",
       "jpOffset": 836562
     },
@@ -51333,7 +51333,7 @@
       "offset": 679380,
       "length": 18,
       "text": "　술　가져와，술！",
-      "fixed": "",
+      "fixed": "　술　가져∼와！　",
       "confirmed": false,
       "jp": "　酒もってこ～い",
       "jpOffset": 836596
@@ -51370,7 +51370,7 @@
       "length": 4,
       "text": "손님",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "客",
       "jpOffset": 836720
     },
@@ -51397,7 +51397,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 836810
     },
@@ -51586,7 +51586,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 837426
     },
@@ -52162,7 +52162,7 @@
       "length": 6,
       "text": "　쉰다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休む",
       "jpOffset": 839320
     },
@@ -52171,7 +52171,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 839330
     },
@@ -52180,7 +52180,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 839340
     },
@@ -52279,7 +52279,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 839606
     },
@@ -52468,7 +52468,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 840210
     },
@@ -52657,7 +52657,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 840864
     },
@@ -52738,7 +52738,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 841102
     },
@@ -52855,7 +52855,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 841454
     },
@@ -52936,7 +52936,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 841712
     },
@@ -52999,7 +52999,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 841884
     },
@@ -53053,7 +53053,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 842044
     },
@@ -53647,7 +53647,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 843996
     },
@@ -54124,7 +54124,7 @@
       "length": 6,
       "text": "으음…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "むぅ…",
       "jpOffset": 350770
     },
@@ -55366,7 +55366,7 @@
       "length": 34,
       "text": "　우리　머슬팀에　들어오고　싶어？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　我々マッスルチームに入りたいのか？",
       "jpOffset": 905030
     },
@@ -55609,7 +55609,7 @@
       "length": 16,
       "text": "　좀더　단련해서",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　もっともっと鍛えて",
       "jpOffset": 905740
     },
@@ -55618,7 +55618,7 @@
       "length": 10,
       "text": "　우리처럼",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　我々のように",
       "jpOffset": 905768
     },
@@ -55626,7 +55626,7 @@
       "offset": 773792,
       "length": 20,
       "text": "　강력한　머슬파워를",
-      "fixed": "",
+      "fixed": "　절륜한　머슬　파워",
       "confirmed": false,
       "jp": "　絶倫なる　マッスルパワーを",
       "jpOffset": 905786
@@ -55635,7 +55635,7 @@
       "offset": 773816,
       "length": 20,
       "text": "　갖춘　다음에　오게",
-      "fixed": "",
+      "fixed": "　를　갖추도록　해　",
       "confirmed": false,
       "jp": "　手に入れないとな",
       "jpOffset": 905818
@@ -55843,7 +55843,7 @@
       "length": 10,
       "text": "　출발한다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　出発する",
       "jpOffset": 906490
     },
@@ -57238,7 +57238,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 364716
     },
@@ -57247,7 +57247,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 364726
     },
@@ -57939,7 +57939,7 @@
       "offset": 782660,
       "length": 18,
       "text": "　『호랑이발톱』，",
-      "fixed": "",
+      "fixed": "　「호랑이발톱」과",
       "confirmed": false,
       "jp": "　『タイガークロー』と",
       "jpOffset": 366968
@@ -58003,7 +58003,7 @@
       "length": 10,
       "text": "「ＺＺＺ…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ＺＺＺ…",
       "jpOffset": 367186
     },
@@ -59209,7 +59209,7 @@
       "length": 10,
       "text": "　출발한다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　出発する",
       "jpOffset": 371204
     },
@@ -59334,7 +59334,7 @@
       "offset": 786788,
       "length": 24,
       "text": "「이거…인사가　늦었군요",
-      "fixed": "",
+      "fixed": "「이거　인사가　늦었군요",
       "confirmed": false,
       "jp": "「これは申し遅れました",
       "jpOffset": 371566
@@ -59344,7 +59344,7 @@
       "length": 22,
       "text": "　저는　호랑이마을에서",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　私は　虎の民の里より",
       "jpOffset": 371592
     },
@@ -59353,7 +59353,7 @@
       "length": 12,
       "text": "　아타호님을",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　アターホーさんを",
       "jpOffset": 371622
     },
@@ -59658,7 +59658,7 @@
       "offset": 787772,
       "length": 20,
       "text": "　어떻게　된　건가？",
-      "fixed": "",
+      "fixed": "　무슨　일인가？　　",
       "confirmed": false,
       "jp": "　どうしたんじゃ？",
       "jpOffset": 372720
@@ -59803,7 +59803,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 373144
     },
@@ -60010,7 +60010,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 921648
     },
@@ -60073,7 +60073,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 921830
     },
@@ -60568,7 +60568,7 @@
       "length": 6,
       "text": "문지기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "門番",
       "jpOffset": 923532
     },
@@ -60622,7 +60622,7 @@
       "length": 6,
       "text": "문지기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "門番",
       "jpOffset": 923688
     },
@@ -63169,7 +63169,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 984674
     },
@@ -65680,7 +65680,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 1028892
     },
@@ -66085,7 +66085,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 1030274
     },
@@ -66193,7 +66193,7 @@
       "length": 10,
       "text": "마을　사람",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "町の人",
       "jpOffset": 1030580
     },
@@ -66400,7 +66400,7 @@
       "length": 8,
       "text": "주정뱅이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酔っ払い",
       "jpOffset": 1031214
     },
@@ -66417,7 +66417,7 @@
       "offset": 882356,
       "length": 18,
       "text": "　술　가져와　술！",
-      "fixed": "",
+      "fixed": "　술　가져∼와！　",
       "confirmed": false,
       "jp": "　酒もってこ～い",
       "jpOffset": 1031248
@@ -66481,7 +66481,7 @@
       "length": 4,
       "text": "손님",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "客",
       "jpOffset": 1031454
     },
@@ -66823,7 +66823,7 @@
       "length": 6,
       "text": "　쉰다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休む",
       "jpOffset": 1032514
     },
@@ -66940,7 +66940,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 1032860
     },
@@ -67057,7 +67057,7 @@
       "length": 12,
       "text": "「감사합니다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ありがとう",
       "jpOffset": 1033168
     },
@@ -67255,7 +67255,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 1033782
     },
@@ -67291,7 +67291,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 1033882
     },
@@ -68047,7 +68047,7 @@
       "length": 6,
       "text": "　휴식",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休憩",
       "jpOffset": 1057638
     },
@@ -68056,7 +68056,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 1057648
     },
@@ -68065,7 +68065,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 1057658
     },
@@ -68533,7 +68533,7 @@
       "length": 24,
       "text": "「고급술병」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「高級酒ビン」を手に入れました",
       "jpOffset": 1059276
     },
@@ -68541,7 +68541,7 @@
       "offset": 942268,
       "length": 6,
       "text": "번　돈",
-      "fixed": "",
+      "fixed": "소지금",
       "confirmed": false,
       "jp": "所持金",
       "jpOffset": 876856
@@ -71287,7 +71287,7 @@
       "length": 10,
       "text": "아수라처럼",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "阿修羅のごとく",
       "jpOffset": 886360
     },
@@ -74851,7 +74851,7 @@
       "length": 12,
       "text": "숙련현무권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "熟練玄武拳士",
       "jpOffset": 895374
     },
@@ -74950,7 +74950,7 @@
       "length": 4,
       "text": "치호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "チーホー",
       "jpOffset": 895520
     },
@@ -74959,7 +74959,7 @@
       "length": 4,
       "text": "치호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "チーホー",
       "jpOffset": 895532
     },
@@ -74968,7 +74968,7 @@
       "length": 4,
       "text": "치호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "チーホー",
       "jpOffset": 895544
     },
@@ -75004,7 +75004,7 @@
       "length": 8,
       "text": "현무권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "玄武拳士",
       "jpOffset": 895588
     },
@@ -75067,7 +75067,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 895670
     },
@@ -75139,7 +75139,7 @@
       "length": 4,
       "text": "나찰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "羅刹",
       "jpOffset": 895778
     },
@@ -75777,7 +75777,7 @@
       "offset": 961948,
       "length": 6,
       "text": "「흐…",
-      "fixed": "",
+      "fixed": "「우…",
       "confirmed": false,
       "jp": "「う…",
       "jpOffset": 1111778
@@ -76956,7 +76956,7 @@
       "offset": 965644,
       "length": 14,
       "text": "손에　넣었다！",
-      "fixed": "",
+      "fixed": "손에　넣었다　",
       "confirmed": false,
       "jp": "手に入れました",
       "jpOffset": 1115492
@@ -76966,7 +76966,7 @@
       "length": 12,
       "text": "축하합니다！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "おめでとう！",
       "jpOffset": 1115530
     },
@@ -76983,7 +76983,7 @@
       "offset": 965730,
       "length": 24,
       "text": "훌륭하게　클리어하셨군요",
-      "fixed": "",
+      "fixed": "훌륭하게　클리어했다！　",
       "confirmed": false,
       "jp": "見事クリアーしました！",
       "jpOffset": 1115570
@@ -77065,7 +77065,7 @@
       "length": 24,
       "text": "「…『같아서』가　아니라",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「…『みたい』じゃなくて",
       "jpOffset": 1115820
     },
@@ -77101,7 +77101,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 1115936
     },
@@ -77128,7 +77128,7 @@
       "length": 16,
       "text": "총통이라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "総統と呼ばれた拳士",
       "jpOffset": 1116076
     },
@@ -77164,7 +77164,7 @@
       "length": 16,
       "text": "총통이라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "総統と呼ばれた拳士",
       "jpOffset": 1116176
     },
@@ -77244,7 +77244,7 @@
       "offset": 967498,
       "length": 26,
       "text": "「호랑이　투의」를　받았다",
-      "fixed": "「호랑이투의」를　받았다　",
+      "fixed": "「호랑이투의」를　입수했다",
       "confirmed": false,
       "jp": "「トラの闘衣」を手に入れました",
       "jpOffset": 1116456
@@ -77254,7 +77254,7 @@
       "length": 16,
       "text": "총통이라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "総統と呼ばれた拳士",
       "jpOffset": 1116518
     },
@@ -77307,7 +77307,7 @@
       "offset": 967748,
       "length": 6,
       "text": "「으…",
-      "fixed": "",
+      "fixed": "「우…",
       "confirmed": false,
       "jp": "「う…",
       "jpOffset": 1116710
@@ -77406,7 +77406,7 @@
       "offset": 968006,
       "length": 12,
       "text": "　어，어라？",
-      "fixed": "",
+      "fixed": "　어，어머！",
       "confirmed": false,
       "jp": "　あ　あれ！",
       "jpOffset": 1116966
@@ -77443,7 +77443,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 1117078
     },
@@ -77533,7 +77533,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 1117356
     },
@@ -77587,7 +77587,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 1117504
     },
@@ -78243,7 +78243,7 @@
       "offset": 970538,
       "length": 8,
       "text": "「으음…",
-      "fixed": "",
+      "fixed": "「으음　",
       "confirmed": false,
       "jp": "「うむ",
       "jpOffset": 1119582
@@ -78577,7 +78577,7 @@
       "length": 18,
       "text": "　…일전에　만났던",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　…以前見かけた",
       "jpOffset": 1120616
     },
@@ -79279,7 +79279,7 @@
       "length": 14,
       "text": "론（보라색띠）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ロン（紫帯）",
       "jpOffset": 1122870
     },
@@ -80710,7 +80710,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 1161144
     },
@@ -80764,7 +80764,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 1161330
     },
@@ -81718,7 +81718,7 @@
       "length": 6,
       "text": "　휴식",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休憩",
       "jpOffset": 1164430
     },
@@ -81727,7 +81727,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 1164440
     },
@@ -81736,7 +81736,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 1164450
     },
@@ -81745,7 +81745,7 @@
       "length": 8,
       "text": "술집주인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場のオヤジ",
       "jpOffset": 1164484
     },
@@ -81898,7 +81898,7 @@
       "length": 10,
       "text": "　도장일세",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　道場だ",
       "jpOffset": 1164964
     },
@@ -81934,7 +81934,7 @@
       "length": 20,
       "text": "…권법가는　한참동안",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "…拳士は　しばらくの間",
       "jpOffset": 1165068
     },
@@ -81997,7 +81997,7 @@
       "length": 28,
       "text": "「이곳은　현무권을　수련하는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ここは　玄武（げんぶ）拳の",
       "jpOffset": 1165268
     },
@@ -82024,7 +82024,7 @@
       "length": 34,
       "text": "　평온의　상징인　대지를　숭배하는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　安らぎの象徴である　大地を尊ぶ",
       "jpOffset": 1165348
     },
@@ -82150,7 +82150,7 @@
       "length": 20,
       "text": "…권법가는　한참동안",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "…拳士は　しばらくの間",
       "jpOffset": 1165760
     },
@@ -82348,7 +82348,7 @@
       "length": 6,
       "text": "목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "声",
       "jpOffset": 1166454
     },
@@ -85606,7 +85606,7 @@
       "length": 22,
       "text": "１０００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１０００Ｇを見つけました",
       "jpOffset": 1176506
     },
@@ -85615,7 +85615,7 @@
       "length": 22,
       "text": "１０００Ｇ를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "１０００Ｇを手に入れました",
       "jpOffset": 1176550
     },
@@ -85651,7 +85651,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 1187408
     },
@@ -85678,7 +85678,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 1187496
     },
@@ -85804,7 +85804,7 @@
       "length": 6,
       "text": "　휴식",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休憩",
       "jpOffset": 1187868
     },
@@ -85813,7 +85813,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 1187878
     },
@@ -85822,7 +85822,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 1187888
     },
@@ -85921,7 +85921,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 1188184
     },
@@ -86011,7 +86011,7 @@
       "length": 20,
       "text": "「노주」를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「老酒」を手に入れました",
       "jpOffset": 1188498
     },
@@ -87315,8 +87315,8 @@
       "offset": 1059768,
       "length": 22,
       "text": "스마슈는　새로운　검기",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "스마슈는　새로이　　　",
+      "confirmed": false,
       "jp": "スマッシュは新しく",
       "jpOffset": 1218292
     },
@@ -92257,7 +92257,7 @@
       "length": 28,
       "text": "　게다가　열쇠구멍도　없고…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　しかも　カギ穴らしきものがない…",
       "jpOffset": 697434
     },
@@ -92284,7 +92284,7 @@
       "length": 22,
       "text": "낡은　보물상자가　있다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "古い宝箱があります",
       "jpOffset": 697548
     },
@@ -92292,7 +92292,7 @@
       "offset": 1075590,
       "length": 12,
       "text": "열어볼까요？",
-      "fixed": "",
+      "fixed": "열어볼까？　",
       "confirmed": false,
       "jp": "開けますか？",
       "jpOffset": 697570
@@ -92311,7 +92311,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 697602
     },
@@ -92347,7 +92347,7 @@
       "length": 24,
       "text": "「수면비약」을　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を見つけました",
       "jpOffset": 697706
     },
@@ -92401,7 +92401,7 @@
       "length": 24,
       "text": "「수면비약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 697884
     },
@@ -92437,7 +92437,7 @@
       "length": 24,
       "text": "「수면비약」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「眠りの秘薬」を手に入れました",
       "jpOffset": 698052
     },
@@ -92491,7 +92491,7 @@
       "length": 18,
       "text": "　이상한　장치로군",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　不思議な仕掛けじゃ",
       "jpOffset": 698246
     },
@@ -93103,7 +93103,7 @@
       "length": 6,
       "text": "으음…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "むぅ…",
       "jpOffset": 707582
     },
@@ -95091,7 +95091,7 @@
       "offset": 1121332,
       "length": 6,
       "text": "입간판",
-      "fixed": "",
+      "fixed": "이정표",
       "confirmed": false,
       "jp": "立て札",
       "jpOffset": 1284830
@@ -95101,7 +95101,7 @@
       "length": 12,
       "text": "「←해변마을",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「←　海辺の町",
       "jpOffset": 1284840
     },
@@ -95109,7 +95109,7 @@
       "offset": 1121370,
       "length": 6,
       "text": "입간판",
-      "fixed": "",
+      "fixed": "이정표",
       "confirmed": false,
       "jp": "立て札",
       "jpOffset": 1284870
@@ -95218,7 +95218,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 1301944
     },
@@ -95272,7 +95272,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 1302130
     },
@@ -95713,7 +95713,7 @@
       "length": 6,
       "text": "문지기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "門番",
       "jpOffset": 1303698
     },
@@ -95758,7 +95758,7 @@
       "length": 6,
       "text": "문지기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "門番",
       "jpOffset": 1303820
     },
@@ -95776,7 +95776,7 @@
       "length": 6,
       "text": "문지기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "門番",
       "jpOffset": 1303876
     },
@@ -96901,7 +96901,7 @@
       "length": 20,
       "text": "…권법가는　한참동안",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "…拳士は　しばらくの間",
       "jpOffset": 1307296
     },
@@ -97117,7 +97117,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 1308034
     },
@@ -97171,7 +97171,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 1308190
     },
@@ -97225,7 +97225,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 1308366
     },
@@ -97297,7 +97297,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 1308582
     },
@@ -97324,7 +97324,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 1308654
     },
@@ -98044,7 +98044,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 1310602
     },
@@ -98296,7 +98296,7 @@
       "length": 12,
       "text": "「감사합니다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ありがとう",
       "jpOffset": 1311378
     },
@@ -98323,7 +98323,7 @@
       "length": 12,
       "text": "「감사합니다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ありがとう",
       "jpOffset": 1311436
     },
@@ -98548,7 +98548,7 @@
       "length": 6,
       "text": "　쉰다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休む",
       "jpOffset": 1312120
     },
@@ -98557,7 +98557,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 1312130
     },
@@ -98566,7 +98566,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 1312140
     },
@@ -99754,7 +99754,7 @@
       "length": 18,
       "text": "　지금　그　말투는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　その言い方は",
       "jpOffset": 1315810
     },
@@ -100501,7 +100501,7 @@
       "length": 10,
       "text": "　싫습니다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いやじゃ",
       "jpOffset": 1317974
     },
@@ -100519,7 +100519,7 @@
       "length": 10,
       "text": "「싫은데요",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「いやじゃ",
       "jpOffset": 1318022
     },
@@ -102418,7 +102418,7 @@
       "length": 6,
       "text": "　연다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　開ける",
       "jpOffset": 1370388
     },
@@ -102463,7 +102463,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　やめとく",
       "jpOffset": 1370482
     },
@@ -102868,7 +102868,7 @@
       "length": 4,
       "text": "해골",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ",
       "jpOffset": 1371728
     },
@@ -102966,7 +102966,7 @@
       "offset": 1205556,
       "length": 14,
       "text": "손에　넣었다！",
-      "fixed": "",
+      "fixed": "손에　넣었다　",
       "confirmed": false,
       "jp": "手に入れました",
       "jpOffset": 1372022
@@ -103003,7 +103003,7 @@
       "length": 12,
       "text": "축하합니다！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "おめでとう！",
       "jpOffset": 1372144
     },
@@ -103020,7 +103020,7 @@
       "offset": 1205734,
       "length": 26,
       "text": "멋지게　클리어하셨습니다！",
-      "fixed": "",
+      "fixed": "훌륭하게　클리어했다！　　",
       "confirmed": false,
       "jp": "見事クリアーしました！",
       "jpOffset": 1372184
@@ -104137,7 +104137,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 247498
     },
@@ -104191,7 +104191,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 247678
     },
@@ -104209,7 +104209,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 247724
     },
@@ -104227,7 +104227,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 247776
     },
@@ -104245,7 +104245,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 247828
     },
@@ -104272,7 +104272,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 247900
     },
@@ -104290,7 +104290,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 247940
     },
@@ -104317,7 +104317,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 248016
     },
@@ -104344,7 +104344,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 248092
     },
@@ -104371,7 +104371,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 248182
     },
@@ -104398,7 +104398,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 248260
     },
@@ -104416,7 +104416,7 @@
       "length": 30,
       "text": "　다른　건　팔　물건이　없나？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　他にも何か売ってくれるのかい？",
       "jpOffset": 248288
     },
@@ -104425,7 +104425,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 248336
     },
@@ -104452,7 +104452,7 @@
       "length": 6,
       "text": "행상인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "行商人",
       "jpOffset": 248416
     },
@@ -105361,7 +105361,7 @@
       "length": 4,
       "text": "치호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "チーホー",
       "jpOffset": 251102
     },
@@ -106008,8 +106008,8 @@
       "offset": 1267350,
       "length": 30,
       "text": "「마인아수라」를　손에　넣었다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「마인아수라」를　입수했다　　",
+      "confirmed": false,
       "jp": "「魔刃阿修羅」を手に入れました",
       "jpOffset": 253076
     },
@@ -106206,7 +106206,7 @@
       "offset": 1267898,
       "length": 32,
       "text": "「투신의　갑옷」을　손에　넣었다",
-      "fixed": "「투신의갑옷」을　손에　넣었다　",
+      "fixed": "「투신의갑옷」을　입수했다　　　",
       "confirmed": false,
       "jp": "「闘神のヨロイ」を手に入れました",
       "jpOffset": 253658
@@ -111148,7 +111148,7 @@
       "length": 12,
       "text": "「죄송해요…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ごめんなさい…",
       "jpOffset": 294566
     },
@@ -117214,7 +117214,7 @@
       "length": 8,
       "text": "알리바바",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アリババ",
       "jpOffset": 972898
     },
@@ -118852,7 +118852,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 310812
     },
@@ -118906,7 +118906,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 310962
     },
@@ -119014,7 +119014,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 311298
     },
@@ -119059,7 +119059,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 311414
     },
@@ -119158,7 +119158,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 311672
     },
@@ -119185,7 +119185,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 311748
     },
@@ -119221,7 +119221,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 311844
     },
@@ -119257,7 +119257,7 @@
       "length": 8,
       "text": "「아니…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「いや…",
       "jpOffset": 311930
     },
@@ -119275,7 +119275,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 311982
     },
@@ -119562,7 +119562,7 @@
       "offset": 1355310,
       "length": 12,
       "text": "「뭐라고？！",
-      "fixed": "",
+      "fixed": "「뭣이라고！",
       "confirmed": false,
       "jp": "「なんですと！",
       "jpOffset": 312704
@@ -119626,7 +119626,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 312882
     },
@@ -119671,7 +119671,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 313002
     },
@@ -119796,7 +119796,7 @@
       "offset": 1355898,
       "length": 6,
       "text": "　휴식",
-      "fixed": "",
+      "fixed": "　쉰다",
       "confirmed": false,
       "jp": "　休む",
       "jpOffset": 313324
@@ -119806,7 +119806,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 313334
     },
@@ -119815,7 +119815,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 313344
     },
@@ -120372,8 +120372,8 @@
       "offset": 1357616,
       "length": 24,
       "text": "「화주」를　손에　넣었다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「화주」를　입수했다　　",
+      "confirmed": false,
       "jp": "「火酒」を手に入れました！",
       "jpOffset": 315086
     },
@@ -120444,7 +120444,7 @@
       "offset": 1357862,
       "length": 24,
       "text": "「피곤한데　좀　쉬어볼까",
-      "fixed": "",
+      "fixed": "「그럼　잠깐　쉬어볼까　",
       "confirmed": false,
       "jp": "「さて　一休みするかの",
       "jpOffset": 315340
@@ -120454,7 +120454,7 @@
       "length": 6,
       "text": "　쉰다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　休む",
       "jpOffset": 315374
     },
@@ -120463,7 +120463,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 315384
     },
@@ -120472,7 +120472,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 315394
     },
@@ -122317,7 +122317,7 @@
       "length": 10,
       "text": "　물론이죠",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいぞい",
       "jpOffset": 321090
     },
@@ -122991,7 +122991,7 @@
       "offset": 1365860,
       "length": 20,
       "text": "　기억하고　있나？！",
-      "fixed": "",
+      "fixed": "　기억하고　있는가？",
       "confirmed": false,
       "jp": "　わかったんじゃろうか？",
       "jpOffset": 323180
@@ -123001,7 +123001,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 323224
     },
@@ -123028,7 +123028,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 323302
     },
@@ -123055,7 +123055,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 323386
     },
@@ -123082,7 +123082,7 @@
       "length": 4,
       "text": "여자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "女",
       "jpOffset": 323460
     },
@@ -123451,7 +123451,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 324624
     },
@@ -123496,7 +123496,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 324740
     },
@@ -124000,7 +124000,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男",
       "jpOffset": 326380
     },
@@ -124369,7 +124369,7 @@
       "length": 22,
       "text": "「우물물」을　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「井戸水」を手に入れました",
       "jpOffset": 327574
     },
@@ -124395,7 +124395,7 @@
       "offset": 1370340,
       "length": 6,
       "text": "　쉰다",
-      "fixed": "",
+      "fixed": "　휴식",
       "confirmed": false,
       "jp": "　休憩",
       "jpOffset": 327674
@@ -124405,7 +124405,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 327684
     },
@@ -124414,7 +124414,7 @@
       "length": 10,
       "text": "　그만둔다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　なにもしない",
       "jpOffset": 327694
     },
@@ -124477,7 +124477,7 @@
       "length": 22,
       "text": "고집　센　여자　목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "気が強そうな女の声",
       "jpOffset": 327894
     },
@@ -124504,7 +124504,7 @@
       "length": 12,
       "text": "남자　목소리",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の声",
       "jpOffset": 327988
     },
@@ -125583,7 +125583,7 @@
       "offset": 1374140,
       "length": 14,
       "text": "「시끄러워욧！",
-      "fixed": "",
+      "fixed": "「시끄러워요！",
       "confirmed": false,
       "jp": "「うるさいわね！",
       "jpOffset": 331584
@@ -127095,8 +127095,8 @@
       "offset": 1378820,
       "length": 18,
       "text": "　술　가져와，술！",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "　술　가져∼와！　",
+      "confirmed": false,
       "jp": "　酒だ！　酒もってこ～い！",
       "jpOffset": 336442
     },
@@ -127969,7 +127969,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 987062
     },
@@ -128014,7 +128014,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 987190
     },
@@ -128077,7 +128077,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 987386
     },
@@ -128122,7 +128122,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 987524
     },
@@ -128167,7 +128167,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 987656
     },
@@ -128194,7 +128194,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 987738
     },
@@ -128248,7 +128248,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 987928
     },
@@ -128275,7 +128275,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 988010
     },
@@ -128329,7 +128329,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 988178
     },
@@ -128400,7 +128400,7 @@
       "offset": 1382738,
       "length": 24,
       "text": "１０００Ｇ를　얻었습니다",
-      "fixed": "１０００Ｇ를　얻었다　　",
+      "fixed": "１０００Ｇ를　입수했다　",
       "confirmed": false,
       "jp": "１０００Ｇを手に入れました",
       "jpOffset": 988430
@@ -128464,7 +128464,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 988672
     },
@@ -128509,7 +128509,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 988822
     },
@@ -128626,7 +128626,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 989232
     },
@@ -128734,7 +128734,7 @@
       "length": 20,
       "text": "５００Ｇ를　입수했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "５００Ｇを手に入れました",
       "jpOffset": 989600
     },
@@ -128743,7 +128743,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 989656
     },
@@ -128815,7 +128815,7 @@
       "length": 6,
       "text": "사회자",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "司会者",
       "jpOffset": 989882
     },
@@ -129129,7 +129129,7 @@
       "offset": 1384990,
       "length": 4,
       "text": "메모",
-      "fixed": "",
+      "fixed": "벽보",
       "confirmed": false,
       "jp": "張り紙",
       "jpOffset": 990934
@@ -129211,7 +129211,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 991186
     },
@@ -129346,7 +129346,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 991618
     },
@@ -129373,7 +129373,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 991702
     },
@@ -129427,7 +129427,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 991864
     },
@@ -129481,7 +129481,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 992006
     },
@@ -129553,7 +129553,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 992230
     },
@@ -129607,7 +129607,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 992426
     },
@@ -129661,7 +129661,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 992622
     },
@@ -129715,7 +129715,7 @@
       "length": 6,
       "text": "관광객",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "観光客",
       "jpOffset": 992798
     },
@@ -130021,7 +130021,7 @@
       "length": 4,
       "text": "사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "男の人",
       "jpOffset": 993790
     },
@@ -130174,7 +130174,7 @@
       "length": 4,
       "text": "꼬마",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "子供",
       "jpOffset": 994418
     },
@@ -131460,8 +131460,8 @@
       "offset": 1392162,
       "length": 20,
       "text": "「지금까지　수고했네",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「수고　많았군　　　",
+      "confirmed": false,
       "jp": "「ごくろうさんだったな",
       "jpOffset": 998638
     },
@@ -131523,7 +131523,7 @@
       "offset": 1392392,
       "length": 20,
       "text": "「지금까지　수고했네",
-      "fixed": "",
+      "fixed": "「수고　많았군　　　",
       "confirmed": false,
       "jp": "「ごくろうさんだったな",
       "jpOffset": 998888
@@ -131577,7 +131577,7 @@
       "offset": 1392600,
       "length": 18,
       "text": "「정말　수고많았네",
-      "fixed": "",
+      "fixed": "「수고　많았군　　",
       "confirmed": false,
       "jp": "「ごくろうさんだったな",
       "jpOffset": 999112
@@ -131667,7 +131667,7 @@
       "offset": 1392882,
       "length": 18,
       "text": "「정말　고생많았네",
-      "fixed": "",
+      "fixed": "「수고　많았군　　",
       "confirmed": false,
       "jp": "「ごくろうさんだったな",
       "jpOffset": 999426
@@ -131839,7 +131839,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 999988
     },
@@ -131902,7 +131902,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 1000178
     },
@@ -132010,7 +132010,7 @@
       "length": 6,
       "text": "아가씨",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場娘",
       "jpOffset": 1000560
     },
@@ -132063,7 +132063,7 @@
       "offset": 1394032,
       "length": 6,
       "text": "　휴식",
-      "fixed": "",
+      "fixed": "　쉰다",
       "confirmed": false,
       "jp": "　休む",
       "jpOffset": 1000704
@@ -132073,7 +132073,7 @@
       "length": 6,
       "text": "　기록",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　記録",
       "jpOffset": 1000714
     },
@@ -132397,7 +132397,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 1001708
     },
@@ -132460,7 +132460,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 1001892
     },
@@ -132505,7 +132505,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 1002008
     },
@@ -132559,7 +132559,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 1002150
     },
@@ -132613,7 +132613,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 1002294
     },
@@ -132667,7 +132667,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 1002450
     },
@@ -132739,7 +132739,7 @@
       "length": 4,
       "text": "의사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "医者",
       "jpOffset": 1002660
     },
@@ -132793,7 +132793,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 1002834
     },
@@ -132982,7 +132982,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 1003488
     },
@@ -133063,7 +133063,7 @@
       "length": 6,
       "text": "간호사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "看護婦",
       "jpOffset": 1003726
     },
