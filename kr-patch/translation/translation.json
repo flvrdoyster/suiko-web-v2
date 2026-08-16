@@ -11166,7 +11166,7 @@
       "offset": 394700,
       "length": 16,
       "text": "「뭐야，이건？！",
-      "fixed": "",
+      "fixed": "「뭐야　이건？　",
       "confirmed": false,
       "jp": "「なんだ　これ？",
       "jpOffset": 518844
@@ -13371,7 +13371,7 @@
       "offset": 401884,
       "length": 24,
       "text": "「어라！　이건　뭐지？！",
-      "fixed": "",
+      "fixed": "「뭐야　이건？　　　　　",
       "confirmed": false,
       "jp": "「なんだ　これ？",
       "jpOffset": 525966
@@ -14281,7 +14281,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 528714
     },
@@ -14289,7 +14289,7 @@
       "offset": 404858,
       "length": 24,
       "text": "「어라？　신입들인가？！",
-      "fixed": "",
+      "fixed": "「오　신입들인가？　　　",
       "confirmed": false,
       "jp": "「おっ　新入りかい？",
       "jpOffset": 528722
@@ -14298,7 +14298,7 @@
       "offset": 404886,
       "length": 36,
       "text": "　말해두지만，여긴　아무것도　없다구",
-      "fixed": "",
+      "fixed": "　말해두지만　여긴　아무것도　없다구",
       "confirmed": false,
       "jp": "　言っとくが　ここには何もねぇぞ",
       "jpOffset": 528746
@@ -14308,7 +14308,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 528794
     },
@@ -14316,7 +14316,7 @@
       "offset": 404948,
       "length": 24,
       "text": "「이곳은　백호의　시련이",
-      "fixed": "",
+      "fixed": "「여긴　백호의　시련이란",
       "confirmed": false,
       "jp": "「ここは　白虎の試練って",
       "jpOffset": 528802
@@ -14325,7 +14325,7 @@
       "offset": 404976,
       "length": 22,
       "text": "　기다린다는　곳이라네",
-      "fixed": "",
+      "fixed": "　곳인　모양이네　　　",
       "confirmed": false,
       "jp": "　とこらしいな",
       "jpOffset": 528830
@@ -14335,7 +14335,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 528860
     },
@@ -14380,7 +14380,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 528972
     },
@@ -14407,7 +14407,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 529048
     },
@@ -14434,7 +14434,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 529132
     },
@@ -14470,7 +14470,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 529284
     },
@@ -14838,7 +14838,7 @@
       "offset": 406698,
       "length": 32,
       "text": "「왜，아무도　나타나지　않지？！",
-      "fixed": "",
+      "fixed": "「아무도　안　나오는　모양이군　",
       "confirmed": false,
       "jp": "「何も出てこないようじゃな",
       "jpOffset": 530526
@@ -14883,7 +14883,7 @@
       "offset": 406848,
       "length": 18,
       "text": "「도대체，백호님은",
-      "fixed": "",
+      "fixed": "「도대체　백호님은",
       "confirmed": false,
       "jp": "「いったい　白虎どのは",
       "jpOffset": 530680
@@ -14892,7 +14892,7 @@
       "offset": 406870,
       "length": 24,
       "text": "　어떻게　된　것일까？！",
-      "fixed": "",
+      "fixed": "　어떻게　된　걸까？　　",
       "confirmed": false,
       "jp": "　どうしたんじゃろうか？",
       "jpOffset": 530706
@@ -14911,7 +14911,7 @@
       "length": 28,
       "text": "「백호님과　만나고　싶었는데",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「白虎どのに　会いたかった",
       "jpOffset": 530768
     },
@@ -14937,7 +14937,7 @@
       "offset": 407020,
       "length": 34,
       "text": "「어，이　상자는　열리지　않았네！",
-      "fixed": "",
+      "fixed": "「어　이　상자는　열리지　않았네　",
       "confirmed": false,
       "jp": "「お　この箱は開いてないぞい",
       "jpOffset": 530860
@@ -14947,7 +14947,7 @@
       "length": 8,
       "text": "아타호는",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "アターホーは",
       "jpOffset": 530900
     },
@@ -14956,7 +14956,7 @@
       "length": 30,
       "text": "보물상자를　열려고　애를　썼다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "宝箱を開けようとしました",
       "jpOffset": 530916
     },
@@ -14974,7 +14974,7 @@
       "length": 8,
       "text": "「아얏！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「いたっ！",
       "jpOffset": 530966
     },
@@ -14991,7 +14991,7 @@
       "offset": 407162,
       "length": 26,
       "text": "「아타호，무슨　일이예요？",
-      "fixed": "",
+      "fixed": "「무슨　일이에요　아타호？",
       "confirmed": false,
       "jp": "「どうしたの　アターホー？",
       "jpOffset": 531006
@@ -15009,7 +15009,7 @@
       "offset": 407214,
       "length": 32,
       "text": "「상자를　만졌더니，감전　된　듯",
-      "fixed": "",
+      "fixed": "「상자를　열려고　했더니　　　　",
       "confirmed": false,
       "jp": "「箱を開けようとしたら",
       "jpOffset": 531062
@@ -15018,7 +15018,7 @@
       "offset": 407250,
       "length": 30,
       "text": "　손이　찌릿찌릿　거리는데！！",
-      "fixed": "",
+      "fixed": "　찌릿하고　저리는　구만　　　",
       "confirmed": false,
       "jp": "　ビリッとしびれるんじゃ",
       "jpOffset": 531088
@@ -15036,7 +15036,7 @@
       "offset": 407304,
       "length": 26,
       "text": "「역시…그래서　이　상자만",
-      "fixed": "",
+      "fixed": "「과연…그래서　이　상자만",
       "confirmed": false,
       "jp": "「なるほど…　だから　この箱だけ",
       "jpOffset": 531142
@@ -15045,7 +15045,7 @@
       "offset": 407334,
       "length": 34,
       "text": "　내용물이　남아있었던　거로군요！",
-      "fixed": "",
+      "fixed": "　내용물이　남아　있었던　거로군요",
       "confirmed": false,
       "jp": "　中身をとられずに残っているのね",
       "jpOffset": 531178
@@ -15063,7 +15063,7 @@
       "offset": 407394,
       "length": 26,
       "text": "「이상하네…상자의　표면은",
-      "fixed": "",
+      "fixed": "「이상하군　상자의　표면은",
       "confirmed": false,
       "jp": "「おかしいのぅ　箱の表面は",
       "jpOffset": 531240
@@ -15072,7 +15072,7 @@
       "offset": 407424,
       "length": 26,
       "text": "　평범한　천조각인데…？！",
-      "fixed": "",
+      "fixed": "　평범한　천조각인데…　　",
       "confirmed": false,
       "jp": "　布切れなんじゃが…",
       "jpOffset": 531270
@@ -15090,7 +15090,7 @@
       "offset": 407476,
       "length": 26,
       "text": "「그　천　조각에서　전기를",
-      "fixed": "",
+      "fixed": "「그　천조각에서　전기를　",
       "confirmed": false,
       "jp": "「その布が　電気を",
       "jpOffset": 531320
@@ -15099,7 +15099,7 @@
       "offset": 407506,
       "length": 20,
       "text": "　발생시키는　건가？",
-      "fixed": "",
+      "fixed": "　발생시키는　거려나",
       "confirmed": false,
       "jp": "　通しているというわけか",
       "jpOffset": 531342
@@ -15118,7 +15118,7 @@
       "length": 26,
       "text": "「전기가　통하는　천이라…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「電気を通す布ねえ…",
       "jpOffset": 531396
     },
@@ -15126,7 +15126,7 @@
       "offset": 407584,
       "length": 28,
       "text": "　전기에　감전될　테니，칼로",
-      "fixed": "",
+      "fixed": "　전기에　감전될　테니　칼로",
       "confirmed": false,
       "jp": "　電気でしびれるんじゃ",
       "jpOffset": 531424
@@ -15135,7 +15135,7 @@
       "offset": 407616,
       "length": 20,
       "text": "　자를　수도　없고…",
-      "fixed": "",
+      "fixed": "　자를　수도　없고　",
       "confirmed": false,
       "jp": "　刃物で切るわけにもいかないし",
       "jpOffset": 531450
@@ -15144,7 +15144,7 @@
       "offset": 407640,
       "length": 24,
       "text": "　어떻게　하면　좋지？！",
-      "fixed": "",
+      "fixed": "　어떻게　하면　좋죠？　",
       "confirmed": false,
       "jp": "　どうしたらいいかしら？",
       "jpOffset": 531484
@@ -27466,7 +27466,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 631872
     },
@@ -28753,7 +28753,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 636142
     },
@@ -38824,7 +38824,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 754442
     },
@@ -38905,7 +38905,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 754708
     },
@@ -38932,7 +38932,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 754786
     },
@@ -38959,7 +38959,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 754864
     },
@@ -39040,7 +39040,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 755128
     },
@@ -39067,7 +39067,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 755206
     },
@@ -39094,7 +39094,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 755290
     },
@@ -39112,7 +39112,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 755344
     },
@@ -39130,7 +39130,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 755390
     },
@@ -39148,7 +39148,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 755444
     },
@@ -39868,7 +39868,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 757574
     },
@@ -39895,7 +39895,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 757666
     },
@@ -39940,7 +39940,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 757754
     },
@@ -39967,7 +39967,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 757844
     },
@@ -40012,7 +40012,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 757972
     },
@@ -40057,7 +40057,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 758134
     },
@@ -40102,7 +40102,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 758288
     },
@@ -40156,7 +40156,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 758440
     },
@@ -40237,7 +40237,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 758706
     },
@@ -40318,7 +40318,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 758966
     },
@@ -40381,7 +40381,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 759136
     },
@@ -40399,7 +40399,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 759176
     },
@@ -40462,7 +40462,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 759330
     },
@@ -40516,7 +40516,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 759482
     },
@@ -40579,7 +40579,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 759634
     },
@@ -40633,7 +40633,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 759812
     },
@@ -43279,7 +43279,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 768426
     },
@@ -43333,7 +43333,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 768576
     },
@@ -43378,7 +43378,7 @@
       "length": 8,
       "text": "　권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 768704
     },
@@ -43864,7 +43864,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 770152
     },
@@ -43909,7 +43909,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 770254
     },
@@ -43936,7 +43936,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 770324
     },
@@ -60145,7 +60145,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 922070
     },
@@ -60172,7 +60172,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 922150
     },
@@ -60253,7 +60253,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 922436
     },
@@ -60334,7 +60334,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 922714
     },
@@ -60415,7 +60415,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 922994
     },
@@ -60423,7 +60423,7 @@
       "offset": 810078,
       "length": 34,
       "text": "「이곳엔，또　하나『백호권』이라는",
-      "fixed": "",
+      "fixed": "「여기엔　또　하나　『백호권』이란",
       "confirmed": false,
       "jp": "「ここには　もう一つ　『白虎拳』",
       "jpOffset": 923002
@@ -60496,7 +60496,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 923272
     },
@@ -60504,7 +60504,7 @@
       "offset": 810374,
       "length": 36,
       "text": "「여긴　모두　４개의　도장이　있는데",
-      "fixed": "",
+      "fixed": "「여기엔　４개의　도장이　있어서　　",
       "confirmed": false,
       "jp": "「ここには４つの道場があって",
       "jpOffset": 923280
@@ -60513,7 +60513,7 @@
       "offset": 810414,
       "length": 34,
       "text": "　각기　４마수라는…영수를　모방한",
-      "fixed": "",
+      "fixed": "　각각　４수라　불리는　영수의　　",
       "confirmed": false,
       "jp": "　それぞれ　四獣といわれる",
       "jpOffset": 923312
@@ -60522,7 +60522,7 @@
       "offset": 810456,
       "length": 34,
       "text": "　권법이　전해져　오고　있다네！！",
-      "fixed": "",
+      "fixed": "　동작을　본뜬　권법이　전해져요　",
       "confirmed": false,
       "jp": "　霊獣を模した拳法を伝えているわ",
       "jpOffset": 923346
@@ -60531,7 +60531,7 @@
       "offset": 810494,
       "length": 30,
       "text": "　적의『주작』，청의『창룡』，",
-      "fixed": "",
+      "fixed": "　적의　주작，　청의　창룡　　",
       "confirmed": false,
       "jp": "　赤の『朱雀』　青の『蒼龍』",
       "jpOffset": 923382
@@ -60540,7 +60540,7 @@
       "offset": 810528,
       "length": 36,
       "text": "　흑의『현무』，그리고　백의『백호』",
-      "fixed": "",
+      "fixed": "　흑의　현무　그리고　백의　백호　　",
       "confirmed": false,
       "jp": "　黒の『玄武』　そして　白の『白虎』",
       "jpOffset": 923414
@@ -60549,7 +60549,7 @@
       "offset": 810572,
       "length": 32,
       "text": "　…백호권은　유감이지만，명맥이",
-      "fixed": "",
+      "fixed": "　…백호권은　유감스럽게도　　　",
       "confirmed": false,
       "jp": "　…白虎拳は　残念ながら",
       "jpOffset": 923458
@@ -60558,7 +60558,7 @@
       "offset": 810608,
       "length": 18,
       "text": "　끊긴　것같지만…",
-      "fixed": "",
+      "fixed": "　없어져　버렸지만",
       "confirmed": false,
       "jp": "　なくなってしまったようだけど",
       "jpOffset": 923486
@@ -66130,7 +66130,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1030410
     },
@@ -67695,7 +67695,7 @@
       "offset": 928512,
       "length": 34,
       "text": "「제길，꼼짝없이　갇혔군！　좋아，",
-      "fixed": "",
+      "fixed": "「쳇　꼼짝없이　갇혀버린　모양이군",
       "confirmed": false,
       "jp": "「ちっ　閉じ込められちまったようだな",
       "jpOffset": 1056422
@@ -67704,7 +67704,7 @@
       "offset": 928550,
       "length": 28,
       "text": "　안으로　들어가　보자！！！",
-      "fixed": "",
+      "fixed": "　우선　안으로　들어가　볼까",
       "confirmed": false,
       "jp": "　とりあえず　奥に行ってみるとするか",
       "jpOffset": 1056462
@@ -67714,7 +67714,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 1056518
     },
@@ -67759,7 +67759,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 1056642
     },
@@ -67867,7 +67867,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 1057020
     },
@@ -67975,7 +67975,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 1057416
     },
@@ -68029,7 +68029,7 @@
       "length": 6,
       "text": "시험관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "試験官",
       "jpOffset": 1057604
     },
@@ -75256,7 +75256,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 895918
     },
@@ -75265,7 +75265,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 895926
     },
@@ -80809,7 +80809,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1161480
     },
@@ -80836,7 +80836,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1161554
     },
@@ -80890,7 +80890,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1161768
     },
@@ -80944,7 +80944,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1161970
     },
@@ -81006,7 +81006,7 @@
       "offset": 1018480,
       "length": 36,
       "text": "「여긴　또　하나의　유파인『백호권』",
-      "fixed": "「여기에는　또　하나　『백호권』이란",
+      "fixed": "「여기엔　또　하나　『백호권』이란　",
       "confirmed": true,
       "jp": "「ここには　もう一つ　『白虎拳』",
       "jpOffset": 1162184
@@ -81069,7 +81069,7 @@
       "offset": 1018724,
       "length": 32,
       "text": "　녹슬고…저곳은　이제　틀렸어！",
-      "fixed": "　저긴　이제　글렀네요　　　　　",
+      "fixed": "　여긴　이제　글렀네요　　　　　",
       "confirmed": false,
       "jp": "　あそこは　もうダメね",
       "jpOffset": 1162414
@@ -81772,7 +81772,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1164566
     },
@@ -81799,7 +81799,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1164650
     },
@@ -81880,7 +81880,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1164924
     },
@@ -81988,7 +81988,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1165260
     },
@@ -82096,7 +82096,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1165608
     },
@@ -82492,7 +82492,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1166908
     },
@@ -82582,7 +82582,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1167182
     },
@@ -82798,7 +82798,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1167800
     },
@@ -82843,7 +82843,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1167898
     },
@@ -82978,7 +82978,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1168348
     },
@@ -83023,7 +83023,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1168464
     },
@@ -83077,7 +83077,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1168608
     },
@@ -83149,7 +83149,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1168782
     },
@@ -83221,7 +83221,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1169008
     },
@@ -83275,7 +83275,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1169148
     },
@@ -83581,7 +83581,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1170092
     },
@@ -85732,7 +85732,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1187674
     },
@@ -93228,7 +93228,7 @@
       "offset": 1114618,
       "length": 20,
       "text": "밖으로　나가야지！！",
-      "fixed": "",
+      "fixed": "밖으로　나가　볼까　",
       "confirmed": false,
       "jp": "外に出るとするかの",
       "jpOffset": 707924
@@ -93588,7 +93588,7 @@
       "offset": 1115858,
       "length": 24,
       "text": "꼭　클리어해보이겠어！！",
-      "fixed": "",
+      "fixed": "어떻게든　클리어해내겠어",
       "confirmed": false,
       "jp": "なんとしてもクリアしてみせるわ",
       "jpOffset": 709220
@@ -93768,7 +93768,7 @@
       "offset": 1116326,
       "length": 16,
       "text": "헤멜　것같아！！",
-      "fixed": "",
+      "fixed": "헤멜　것　같아요",
       "confirmed": false,
       "jp": "迷いそうだわ",
       "jpOffset": 709694
@@ -93912,7 +93912,7 @@
       "offset": 1116712,
       "length": 20,
       "text": "혼내　주러　가요！！",
-      "fixed": "",
+      "fixed": "날려　주러　가죠　　",
       "confirmed": false,
       "jp": "ぶっとばしに行きましょ",
       "jpOffset": 710114
@@ -93939,7 +93939,7 @@
       "offset": 1116790,
       "length": 18,
       "text": "혼내　켜　줘요！！",
-      "fixed": "",
+      "fixed": "날려　주러　가죠　",
       "confirmed": false,
       "jp": "ぶっとばしに行きましょ",
       "jpOffset": 710202
@@ -95371,7 +95371,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1302466
     },
@@ -95398,7 +95398,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1302540
     },
@@ -95452,7 +95452,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1302754
     },
@@ -95506,7 +95506,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1302956
     },
@@ -95560,7 +95560,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1303162
     },
@@ -95568,7 +95568,7 @@
       "offset": 1137630,
       "length": 34,
       "text": "「이곳엔『백호권』이란　또　하나의",
-      "fixed": "",
+      "fixed": "「여기엔　또　하나　『백호권』이란",
       "confirmed": false,
       "jp": "「ここには　もう一つ　『白虎拳』",
       "jpOffset": 1303170
@@ -95641,7 +95641,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1303438
     },
@@ -95649,7 +95649,7 @@
       "offset": 1137920,
       "length": 36,
       "text": "「여긴　모두　４개의　도장이　있는데",
-      "fixed": "",
+      "fixed": "「여기엔　４개의　도장이　있어서　　",
       "confirmed": false,
       "jp": "「ここには４つの道場があって",
       "jpOffset": 1303446
@@ -95658,7 +95658,7 @@
       "offset": 1137960,
       "length": 32,
       "text": "　각기　４수라는　영수를　모방한",
-      "fixed": "",
+      "fixed": "　각각　４수라　불리는　영수의　",
       "confirmed": false,
       "jp": "　それぞれ　四獣といわれる",
       "jpOffset": 1303478
@@ -95667,7 +95667,7 @@
       "offset": 1138000,
       "length": 34,
       "text": "　권법들이　전해져　내려오고　있네",
-      "fixed": "",
+      "fixed": "　동작을　본뜬　권법이　전해져요　",
       "confirmed": false,
       "jp": "　霊獣を模した拳法を伝えているわ",
       "jpOffset": 1303512
@@ -95676,7 +95676,7 @@
       "offset": 1138038,
       "length": 30,
       "text": "　적의『주작』，청의『창룡』，",
-      "fixed": "",
+      "fixed": "　적의　주작，　청의　창룡　　",
       "confirmed": false,
       "jp": "　赤の『朱雀』　青の『蒼龍』",
       "jpOffset": 1303548
@@ -95685,7 +95685,7 @@
       "offset": 1138072,
       "length": 36,
       "text": "　흑의『현무』，그리고　백의『백호』",
-      "fixed": "",
+      "fixed": "　흑의　현무　그리고　백의　백호　　",
       "confirmed": false,
       "jp": "　黒の『玄武』　そして　白の『白虎』",
       "jpOffset": 1303580
@@ -95694,7 +95694,7 @@
       "offset": 1138116,
       "length": 32,
       "text": "　…그런데，유감이지만　백호권은",
-      "fixed": "",
+      "fixed": "　…백호권은　유감스럽게도　　　",
       "confirmed": false,
       "jp": "　…白虎拳は　残念ながら",
       "jpOffset": 1303624
@@ -95703,7 +95703,7 @@
       "offset": 1138152,
       "length": 30,
       "text": "　쇠퇴해져서　거론할　가치도…",
-      "fixed": "",
+      "fixed": "　없어져　버렸지만　　　　　　",
       "confirmed": false,
       "jp": "　なくなってしまったようだけど",
       "jpOffset": 1303652
@@ -96847,7 +96847,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1307152
     },
@@ -97009,7 +97009,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳士",
       "jpOffset": 1307628
     },
@@ -97351,7 +97351,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1308726
     },
@@ -97378,7 +97378,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 1308800
     },
@@ -119104,7 +119104,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 311520
     },
@@ -119131,7 +119131,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 311594
     },
@@ -119410,7 +119410,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 312384
     },
@@ -119455,7 +119455,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 312486
     },
@@ -119509,7 +119509,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 312598
     },
@@ -119554,7 +119554,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 312696
     },
@@ -123109,7 +123109,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 323540
     },
@@ -123604,7 +123604,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 325094
     },
@@ -123630,7 +123630,7 @@
       "offset": 1367888,
       "length": 32,
       "text": "「전설의　수련장『호랑이동굴』이",
-      "fixed": "",
+      "fixed": "「『호랑이동굴』이라는　수련장이",
       "confirmed": false,
       "jp": "「『虎の穴』という修業場が",
       "jpOffset": 325150
@@ -123639,7 +123639,7 @@
       "offset": 1367924,
       "length": 32,
       "text": "　어디있는지　알고　계십니까？！",
-      "fixed": "",
+      "fixed": "　어디　있는지　아시는지요？　　",
       "confirmed": false,
       "jp": "　どこにあるかご存知でないかの？",
       "jpOffset": 325180
@@ -123649,7 +123649,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 325224
     },
@@ -123748,7 +123748,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 325534
     },
@@ -124081,7 +124081,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 326650
     },
@@ -126403,7 +126403,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 334124
     },
@@ -127438,7 +127438,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 337548
     },
@@ -127483,7 +127483,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 337688
     },
@@ -127546,7 +127546,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 337882
     },
@@ -127582,7 +127582,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 337972
     },
@@ -130201,7 +130201,7 @@
       "length": 4,
       "text": "노인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "老人",
       "jpOffset": 994514
     },
