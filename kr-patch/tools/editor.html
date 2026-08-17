@@ -94,6 +94,9 @@
   .row-note.note-finding b { color: #e0b95c; }
   .row-note.note-dup { color: #5ec9b0; }
   .row-note.note-dup b { color: #7fe0c8; }
+  /* 갈린 확정본의 나머지 후보 — 제안이 아니라 참고라 한 단계 죽여서 표시 */
+  .row-note.note-dup-alt { color: #4a8a7c; margin-top: 2px; }
+  .row-note.note-dup-alt b { color: #5ea593; }
   /* 수정칸 = [입력 textarea][확정 버튼] flex 행. 버튼은 절대위치로 겹치지 않고 옆에
      붙는다. 버튼이 숨으면(수정칸에 내용 있으면) textarea가 전체 폭을 차지. */
   .fixed-cell { width: 412px; }
@@ -558,23 +561,34 @@ function computeDupSuggestions() {
     const undecided = entries.filter((e) => !isDecided(e));
     if (!decided.length || !undecided.length) continue;
 
+    // 확정본이 여러 갈래일 수 있다(같은 JP를 장면마다 달리 옮겼거나, 같은 번역인데 슬롯
+    // 패딩만 다르거나). 득표순으로 정렬하되 **후보 전체를 들고 간다** — 예전에는 1등 하나만
+    // 남기고 버렸는데, 동률이면 1등이 삽입 순서에 따라 임의로 정해지는 데다, 그렇게 고른
+    // 후보의 길이가 안 맞으면 정작 슬롯에 딱 맞는 다른 확정본이 있는데도 "그대로 못 넣음"
+    // 으로 처리했다(실측 56행).
     const counts = new Map();
     for (const e of decided) counts.set(finalKR(e), (counts.get(finalKR(e)) || 0) + 1);
-    const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
-    if (sorted.length > 1 && sorted[1][1] >= 2) {
-      // 다수결로 못 거를 진짜 충돌: 서로 다른 확정 번역이 각각 2건 이상씩 존재 — 어느 쪽이
-      // 맞는지 기계적으로 판단 못 하므로 이 그룹은 제안하지 않고 건너뛴다.
+    const candidates = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    if (candidates.length > 1 && candidates[1][1] >= 2) {
+      // 서로 다른 확정 번역이 각각 2건 이상씩 존재 — 어느 쪽이 맞는지 기계적으로 판단 못
+      // 하므로 이 그룹은 제안하지 않고 건너뛴다.
       continue;
     }
-    const [agreed, agreedCount] = sorted[0];
-    const strong = agreedCount >= 2; // 결정본 2건 이상이 독립적으로 합의 = 강한 신호
+    const unanimous = candidates.length === 1;
     for (const e of undecided) {
+      // 이 행의 슬롯(e.length)에 바이트가 맞는 후보를 우선 고르고, 그런 게 여럿이면 확정
+      // 건수가 많은 쪽을 쓴다. 맞는 게 하나도 없을 때만 최다 득표 후보로 떨어진다.
+      const fitting = candidates.filter(([v]) => byteLen(v) === e.length);
+      const [agreed, agreedCount] = (fitting.length ? fitting : candidates)[0];
+      const others = candidates.filter(([v]) => v !== agreed).map(([v]) => v);
       if (agreed === e.text) {
-        dupSuggestionByOffset.set(e.offset, { type: 'confirm', agreed, agreedCount });
+        dupSuggestionByOffset.set(e.offset, { type: 'confirm', agreed, agreedCount, others });
       } else {
         const gotLen = byteLen(agreed);
-        const type = gotLen === e.length ? (strong ? 'strong' : 'weak') : 'length';
-        dupSuggestionByOffset.set(e.offset, { type, agreed, agreedCount, need: e.length, got: gotLen });
+        // 'strong'은 확정본이 **전원 일치**하면서 2건 이상일 때만 — 경쟁 후보가 있는데
+        // 강한 신호라고 부르면 안 된다.
+        const type = gotLen === e.length ? (unanimous && agreedCount >= 2 ? 'strong' : 'weak') : 'length';
+        dupSuggestionByOffset.set(e.offset, { type, agreed, agreedCount, need: e.length, got: gotLen, others });
       }
     }
   }
@@ -594,18 +608,22 @@ function computeDupSuggestions() {
 //
 // 필터의 역할은 "남은 일감 찾기"가 아니라 **같은 기계적 판단을 묶어 처리하기**다. 미검토가
 // 5,000건대로 줄어 어차피 전수로 훑는 단계이고, 실측상 전체 필터를 합쳐도 미검토의 20%밖에
-// 못 덮는다(나머지 80%는 어떤 조건에도 안 걸린다). 그래서 "훑다 보면 어차피 만나는" 종류는
-// 필터로 두지 않고 행 주석(annotationsFor)으로만 남긴다 — 주석은 필터를 안 걸어도 보인다.
-// 이 기준으로 dup-length(561건: 제안값을 바이트가 안 맞아 애초에 못 넣는 줄)는 주석만 남기고
-// 필터에서 뺐고, 전량 해결되어 0건이 된 조건들도 뺐다(아래 "연결 해제된 판정기" 참고).
+// 못 덮는다(나머지 80%는 어떤 조건에도 안 걸린다). 그래서 전량 해결되어 0건이 된 조건들은
+// 뺐다(아래 "연결 해제된 판정기" 참고).
+//
+// 중복 JP의 "참고(길이 불일치)"는 제안값을 바이트가 안 맞아 그대로는 못 넣는 줄이라 한때
+// 주석 전용으로 뺐다가 되살렸다 — 그대로 못 넣을 뿐 동형 대사의 확정 번역이 붙어 있는 줄
+// 이라, 그걸 참고해 길이에 맞춰 고쳐 쓰는 작업 자체가 하나의 묶음이기 때문이다. 훑다가
+// 만나기를 기다리는 것보다 모아서 처리하는 편이 낫다.
 const FILTERS = [
   { value: 'punct-added-repeat', group: '문장부호', label: '추가+반복',      test: (f, e) => punctCategory(f, e) === 'added-repeat' },
   { value: 'punct-amplified',    group: '문장부호', label: '반복 증폭',      test: (f, e) => punctCategory(f, e) === 'amplified' },
   { value: 'punct-last-char',    group: '문장부호', label: '끝 어조 불일치', test: punctLastMismatch },
 
-  { value: 'dup-confirm',        group: '중복 JP',  label: '확정 가능',      test: (f, e) => dupTypeOf(e) === 'confirm' },
-  { value: 'dup-strong',         group: '중복 JP',  label: '제안(강한신호)', test: (f, e) => dupTypeOf(e) === 'strong' },
-  { value: 'dup-weak',           group: '중복 JP',  label: '제안(약한신호)', test: (f, e) => dupTypeOf(e) === 'weak' },
+  { value: 'dup-confirm',        group: '중복 JP',  label: '확정 가능',         test: (f, e) => dupTypeOf(e) === 'confirm' },
+  { value: 'dup-strong',         group: '중복 JP',  label: '제안(강한신호)',    test: (f, e) => dupTypeOf(e) === 'strong' },
+  { value: 'dup-weak',           group: '중복 JP',  label: '제안(약한신호)',    test: (f, e) => dupTypeOf(e) === 'weak' },
+  { value: 'dup-length',         group: '중복 JP',  label: '참고(길이 불일치)', test: (f, e) => dupTypeOf(e) === 'length' },
 ];
 const FILTER_BY_VALUE = new Map(FILTERS.map((f) => [f.value, f]));
 
@@ -656,6 +674,16 @@ function annotationsFor(e) {
       label: `중복 JP: ${DUP_TYPE_LABEL[sug.type] || sug.type}`,
       text,
     });
+    // 확정본이 갈렸으면 나머지 후보도 보여준다. 예전에는 1등만 적고 나머지를 숨겨서,
+    // 실제로는 확정본이 둘로 갈린 줄인데도 "N건 확정"이라 만장일치처럼 읽혔다. 위 제안문의
+    // 복붙(→ 뒤부터)을 방해하지 않도록 별도 줄로 뺀다.
+    if (sug.others.length) {
+      out.push({
+        cls: 'note-dup-alt',
+        label: `중복 JP: 다른 확정본 ${sug.others.length}종`,
+        text: sug.others.join('   ·   '),
+      });
+    }
   }
   return out;
 }
