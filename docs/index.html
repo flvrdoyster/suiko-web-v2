@@ -4,9 +4,26 @@
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="0; url=kr.html">
 <link rel="canonical" href="kr.html">
+<link rel="icon" href="https://atah.io/favicon.ico">
 <title>환세취호전</title>
+<!-- kr.html의 다크 배경과 맞춘다 — 리다이렉트 직전 흰 화면이 한 프레임 번쩍이는 걸 막는 용도라
+     본편 CSS를 통째로 안 불러오고 배경·글자색만 인라인으로 최소한만 맞춘다. -->
+<style>
+  body {
+    background: rgba(26, 26, 26, 1);
+    color: rgba(204, 204, 204, 1);
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+</style>
+<!-- 메타 리프레시가 막히는 환경(일부 브라우저 설정) 대비 JS 리다이렉트도 같이 건다.
+     location.replace로 히스토리에 이 페이지가 안 남게 한다. -->
+<script>location.replace('kr.html');</script>
 </head>
 <body>
-<p><a href="kr.html">환세취호전으로 이동</a></p>
 </body>
 </html>
