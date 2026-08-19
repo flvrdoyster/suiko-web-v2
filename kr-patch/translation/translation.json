@@ -115944,7 +115944,7 @@
       "offset": 1343798,
       "length": 32,
       "text": "　알려드릴테니까，잘　읽어보시고",
-      "fixed": "　모르니까　１４호의　지면을　　",
+      "fixed": "　모르니까　지면의　내용을　　　",
       "confirmed": false,
       "jp": "　かもしれねーから　１４号の誌面で",
       "jpOffset": 968570
@@ -115971,7 +115971,7 @@
       "offset": 1343880,
       "length": 32,
       "text": "「그럼，응모요령을　알려드릴테니",
-      "fixed": "「그럼　응모요령을　알려드릴테니",
+      "fixed": "「그럼　응모　요령을　알려줄게요",
       "confirmed": false,
       "jp": "「じゃあ　応募要項を言うわよ",
       "jpOffset": 968666
@@ -115980,7 +115980,7 @@
       "offset": 1343916,
       "length": 22,
       "text": "　눈여겨　잘　보세요！",
-      "fixed": "　잘　들어　주세요　　",
+      "fixed": "　잘　듣도록　해요　　",
       "confirmed": false,
       "jp": "　ちゃんと聞いてね",
       "jpOffset": 968698
@@ -115998,7 +115998,7 @@
       "offset": 1343980,
       "length": 30,
       "text": "　단위　평가가　나왔을　텐데…",
-      "fixed": "　단위와　평가가　나왔을거라　",
+      "fixed": "　단위와　평가가　나왔을　거라",
       "confirmed": false,
       "jp": "　段位を認定して評価が出たと",
       "jpOffset": 968756
@@ -116070,7 +116070,7 @@
       "offset": 1344224,
       "length": 24,
       "text": "　단，１인　１매입니다！",
-      "fixed": "　　　　　　　　　　　　",
+      "fixed": "스마슈　　　　　　　　　",
       "confirmed": false,
       "jp": "",
       "jpOffset": null
@@ -116079,8 +116079,8 @@
       "offset": 1344252,
       "length": 6,
       "text": "스마슈",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「잔뜩",
+      "confirmed": false,
       "jp": "スマッシュ",
       "jpOffset": 969008
     },
@@ -116088,7 +116088,7 @@
       "offset": 1344262,
       "length": 26,
       "text": "「한장　이상　보내도　결코",
-      "fixed": "「한장　이상　보낸다　해도",
+      "fixed": "　보내도　유리하지　않대　",
       "confirmed": false,
       "jp": "「それ以上送っても",
       "jpOffset": 969022
@@ -116097,7 +116097,7 @@
       "offset": 1344304,
       "length": 20,
       "text": "　유리하지　않아요！",
-      "fixed": "　유리한　게　아니래",
+      "fixed": "아타호　　　　　　　",
       "confirmed": false,
       "jp": "　有利にはならないみたいだな",
       "jpOffset": 969044
@@ -116106,8 +116106,8 @@
       "offset": 1344328,
       "length": 6,
       "text": "아타호",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「호…",
+      "confirmed": false,
       "jp": "アターホー",
       "jpOffset": 969088
     },
@@ -116115,7 +116115,7 @@
       "offset": 1344338,
       "length": 24,
       "text": "「낮은　단위를　받았다고",
-      "fixed": "「호오…　낮은　단위라도",
+      "fixed": "　낮은　단위라도　　　　",
       "confirmed": false,
       "jp": "「ほぉ…　別に段位が低くても",
       "jpOffset": 969102
