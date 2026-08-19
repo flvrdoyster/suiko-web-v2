@@ -33153,7 +33153,7 @@
       "offset": 566746,
       "length": 10,
       "text": "느껴지는군",
-      "fixed": "감도는구먼",
+      "fixed": "감도는구만",
       "confirmed": false,
       "jp": "ただよっておるのぅ",
       "jpOffset": 240502
@@ -38715,7 +38715,7 @@
       "offset": 622524,
       "length": 36,
       "text": "「두사람，호흡도　척척　들어맞잖아！",
-      "fixed": "「호흡도　딱딱　맞는구먼…　　　　　",
+      "fixed": "「호흡도　딱딱　맞는구만…　　　　　",
       "confirmed": false,
       "jp": "「息もピッタリじゃのぅ…",
       "jpOffset": 754072
@@ -57021,7 +57021,7 @@
       "offset": 779900,
       "length": 20,
       "text": "「정말　좋은　날씨야",
-      "fixed": "「음∼　날씨　좋구먼",
+      "fixed": "「음∼　날씨　좋구만",
       "confirmed": false,
       "jp": "「ん～　ええ陽気じゃの",
       "jpOffset": 364036
@@ -57976,7 +57976,7 @@
       "length": 24,
       "text": "「잃어버리면　큰일이니까",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「なくすと大変じゃから　闘具を",
       "jpOffset": 367086
     },
@@ -57984,7 +57984,7 @@
       "offset": 782802,
       "length": 24,
       "text": "　투구는　놔두고　가야지",
-      "fixed": "",
+      "fixed": "　무구는　놔두고　가자　",
       "confirmed": false,
       "jp": "　持ち歩くのは　やめておこう",
       "jpOffset": 367120
@@ -58317,7 +58317,7 @@
       "offset": 783704,
       "length": 22,
       "text": "　농담일랑　그만두시고",
-      "fixed": "　클리셰는　됐으니까　",
+      "fixed": "　농담은　됐으니까　　",
       "confirmed": false,
       "jp": "　コテコテのお約束はもういいでスから",
       "jpOffset": 368132
@@ -58866,7 +58866,7 @@
       "offset": 785390,
       "length": 24,
       "text": "　후…뜻밖의　재난이군요",
-      "fixed": "　후…뜻밖의　재난이군요",
+      "fixed": "　후…　날벼락이군요　　",
       "confirmed": false,
       "jp": "　ふう…　とんだ災難でスよ",
       "jpOffset": 370046
@@ -58884,7 +58884,7 @@
       "offset": 785436,
       "length": 12,
       "text": "「이상하군？",
-      "fixed": "「뭐지？　　",
+      "fixed": "「뭔가？　　",
       "confirmed": false,
       "jp": "「なんじゃ？",
       "jpOffset": 370098
@@ -58893,7 +58893,7 @@
       "offset": 785452,
       "length": 32,
       "text": "　기분　탓인가…즐거워　보이는군",
-      "fixed": "　기분　탓인가　기뻐　보이네만？",
+      "fixed": "　기분　탓인지　기뻐　보이는데？",
       "confirmed": false,
       "jp": "　気のせいか　うれしそうじゃが…？",
       "jpOffset": 370114
@@ -61089,7 +61089,7 @@
       "offset": 812292,
       "length": 26,
       "text": "　용솟음치는　느낌이다！！",
-      "fixed": "　솟아오르는　구먼！　　　",
+      "fixed": "　솟아오르는　구만！　　　",
       "confirmed": false,
       "jp": "　みなぎってくるようじゃ！",
       "jpOffset": 925090
@@ -61287,7 +61287,7 @@
       "offset": 813026,
       "length": 24,
       "text": "　솟아나는　것같다！！！",
-      "fixed": "　솟아오르는　구먼！　　",
+      "fixed": "　솟아오르는　구만！　　",
       "confirmed": false,
       "jp": "　みなぎってくるようじゃ！",
       "jpOffset": 925796
@@ -83436,7 +83436,7 @@
       "offset": 1025768,
       "length": 26,
       "text": "　나설　순서를　놓쳤구만！",
-      "fixed": "　마무리가　영　약하구먼　",
+      "fixed": "　마무리가　영　약하구만　",
       "confirmed": false,
       "jp": "　つっこみの間が悪いな",
       "jpOffset": 1169650
@@ -84075,7 +84075,7 @@
       "offset": 1027818,
       "length": 22,
       "text": "「흐음…끝난　것같구만",
-      "fixed": "「흠　끝난　모양이구먼",
+      "fixed": "「흠　끝난　모양이구만",
       "confirmed": false,
       "jp": "「ふむ　終わったようぢゃな",
       "jpOffset": 1171748
@@ -86037,7 +86037,7 @@
       "offset": 1055622,
       "length": 30,
       "text": "　부상자가　왜　이렇게　많지？",
-      "fixed": "　부상자가　많구먼…　　　　　",
+      "fixed": "　부상자가　많구만…　　　　　",
       "confirmed": false,
       "jp": "　よくケガ人が出るのぅ…",
       "jpOffset": 1214230
@@ -114468,7 +114468,7 @@
       "offset": 1339122,
       "length": 12,
       "text": "「……으효！",
-      "fixed": "「……우효∼",
+      "fixed": "「……아후∼",
       "confirmed": false,
       "jp": "「………あふぅ～",
       "jpOffset": 963850
@@ -122856,7 +122856,7 @@
       "offset": 1365434,
       "length": 26,
       "text": "　부상자가　나올　것같군…",
-      "fixed": "　부상자가　많구먼…　　　",
+      "fixed": "　부상자가　많구만…　　　",
       "confirmed": false,
       "jp": "　よくケガ人が出るのぅ…",
       "jpOffset": 322768
@@ -126285,7 +126285,7 @@
       "offset": 1376248,
       "length": 28,
       "text": "「자네，즐거워　보이는구먼…",
-      "fixed": "「시끌벅적하니　즐겁구만…　",
+      "fixed": "「시끌벅적하니　즐겁구먼…　",
       "confirmed": false,
       "jp": "「にぎやかで　楽しそうぢゃな",
       "jpOffset": 333772
@@ -126600,7 +126600,7 @@
       "offset": 1377210,
       "length": 30,
       "text": "「정말　고집쟁이에　제멋대로인",
-      "fixed": "「고，고집쟁이　아가씨로구먼…",
+      "fixed": "「고，고집쟁이　아가씨로구만…",
       "confirmed": false,
       "jp": "「ご　強引な娘じゃ…",
       "jpOffset": 334756
