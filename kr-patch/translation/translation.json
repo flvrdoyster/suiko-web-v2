@@ -68551,7 +68551,7 @@
       "length": 10,
       "text": "　기본기　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　基本技　",
       "jpOffset": 877168
     },
@@ -68560,7 +68560,7 @@
       "length": 10,
       "text": "개인공격기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "単体攻撃技",
       "jpOffset": 877210
     },
@@ -68569,7 +68569,7 @@
       "length": 10,
       "text": "전체공격기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "全体攻撃技",
       "jpOffset": 877252
     },
@@ -68578,7 +68578,7 @@
       "length": 10,
       "text": "　특수기　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　特殊技　",
       "jpOffset": 877294
     },
@@ -68587,7 +68587,7 @@
       "length": 4,
       "text": "도구",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "道具",
       "jpOffset": 877348
     },
@@ -68596,7 +68596,7 @@
       "length": 8,
       "text": "무기　　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "武器一覧",
       "jpOffset": 877396
     },
@@ -68605,7 +68605,7 @@
       "length": 8,
       "text": "방어구　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "防具一覧",
       "jpOffset": 877412
     },
@@ -68614,7 +68614,7 @@
       "length": 4,
       "text": "소지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "持物",
       "jpOffset": 877448
     },
@@ -68623,7 +68623,7 @@
       "length": 6,
       "text": "모드　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "モード",
       "jpOffset": 877480
     },
@@ -68632,7 +68632,7 @@
       "length": 8,
       "text": "환경설정",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "環境設定",
       "jpOffset": 877514
     },
@@ -68641,7 +68641,7 @@
       "length": 4,
       "text": "무기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "武器",
       "jpOffset": 877918
     },
@@ -68650,7 +68650,7 @@
       "length": 6,
       "text": "방어구",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "防具",
       "jpOffset": 877946
     },
@@ -68659,7 +68659,7 @@
       "length": 6,
       "text": "레벨　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "レベル",
       "jpOffset": 877974
     },
@@ -68668,7 +68668,7 @@
       "length": 6,
       "text": "체력　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "体　力",
       "jpOffset": 877996
     },
@@ -68677,7 +68677,7 @@
       "length": 2,
       "text": "／",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "／",
       "jpOffset": 878010
     },
@@ -68686,7 +68686,7 @@
       "length": 6,
       "text": "기력　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "技　力",
       "jpOffset": 878028
     },
@@ -68695,7 +68695,7 @@
       "length": 2,
       "text": "／",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "／",
       "jpOffset": 878042
     },
@@ -68703,7 +68703,7 @@
       "offset": 943474,
       "length": 6,
       "text": "경험　",
-      "fixed": "",
+      "fixed": "경험치",
       "confirmed": false,
       "jp": "経　験",
       "jpOffset": 878060
@@ -68713,7 +68713,7 @@
       "length": 2,
       "text": "／",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "／",
       "jpOffset": 878074
     },
@@ -68722,7 +68722,7 @@
       "length": 6,
       "text": "공격력",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "攻撃力",
       "jpOffset": 878092
     },
@@ -68731,7 +68731,7 @@
       "length": 6,
       "text": "방어력",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "防御力",
       "jpOffset": 878114
     },
@@ -68740,7 +68740,7 @@
       "length": 6,
       "text": "기술력",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "技術力",
       "jpOffset": 878136
     },
@@ -68758,7 +68758,7 @@
       "length": 6,
       "text": "　운　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　運　",
       "jpOffset": 878180
     },
@@ -68767,7 +68767,7 @@
       "length": 20,
       "text": "커서를　기억할까요？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "カーソル記憶しますか？",
       "jpOffset": 878458
     },
@@ -68775,7 +68775,7 @@
       "offset": 943896,
       "length": 6,
       "text": "　　네",
-      "fixed": "",
+      "fixed": "　네　",
       "confirmed": false,
       "jp": "　はい",
       "jpOffset": 878484
@@ -68785,7 +68785,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 878494
     },
@@ -68794,7 +68794,7 @@
       "length": 18,
       "text": "메시지　속도　선택",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "メッセージ速度選択",
       "jpOffset": 878518
     },
@@ -68803,7 +68803,7 @@
       "length": 8,
       "text": "　초특급",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　超特急",
       "jpOffset": 878540
     },
@@ -68811,7 +68811,7 @@
       "offset": 943964,
       "length": 6,
       "text": "　쾌속",
-      "fixed": "",
+      "fixed": "　빠름",
       "confirmed": false,
       "jp": "　快速",
       "jpOffset": 878552
@@ -68820,7 +68820,7 @@
       "offset": 943974,
       "length": 8,
       "text": "　느리게",
-      "fixed": "",
+      "fixed": "　느림　",
       "confirmed": false,
       "jp": "　鈍行",
       "jpOffset": 878562
@@ -68830,7 +68830,7 @@
       "length": 22,
       "text": "ＢＧＭ을　사용할까요？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ＢＧＭを鳴らしますか？",
       "jpOffset": 878584
     },
@@ -68838,7 +68838,7 @@
       "offset": 944024,
       "length": 6,
       "text": "　　네",
-      "fixed": "",
+      "fixed": "　네　",
       "confirmed": false,
       "jp": "　はい",
       "jpOffset": 878610
@@ -68848,7 +68848,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 878620
     },
@@ -68856,7 +68856,7 @@
       "offset": 944058,
       "length": 20,
       "text": "화면표시속도　변경？",
-      "fixed": "",
+      "fixed": "묘화스킵을　켤까요？",
       "confirmed": false,
       "jp": "描画スキップしますか？",
       "jpOffset": 878644
@@ -68865,7 +68865,7 @@
       "offset": 944082,
       "length": 6,
       "text": "　　네",
-      "fixed": "",
+      "fixed": "　네　",
       "confirmed": false,
       "jp": "　はい",
       "jpOffset": 878670
@@ -68875,7 +68875,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 878680
     },
@@ -68884,7 +68884,7 @@
       "length": 18,
       "text": "정말로　좋습니까？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "本当にいいですか？",
       "jpOffset": 878704
     },
@@ -68892,7 +68892,7 @@
       "offset": 944138,
       "length": 6,
       "text": "　　네",
-      "fixed": "",
+      "fixed": "　네　",
       "confirmed": false,
       "jp": "　はい",
       "jpOffset": 878726
@@ -68902,7 +68902,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 878736
     },
@@ -68911,7 +68911,7 @@
       "length": 20,
       "text": "전투를　금지할까요？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "戦闘を禁止しますか？",
       "jpOffset": 878760
     },
@@ -68919,7 +68919,7 @@
       "offset": 944196,
       "length": 6,
       "text": "　　네",
-      "fixed": "",
+      "fixed": "　네　",
       "confirmed": false,
       "jp": "　はい",
       "jpOffset": 878784
@@ -68929,7 +68929,7 @@
       "length": 8,
       "text": "　아니오",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　いいえ",
       "jpOffset": 878794
     },
@@ -68938,7 +68938,7 @@
       "length": 12,
       "text": "데이터　저장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データセーブ",
       "jpOffset": 878862
     },
@@ -68947,7 +68947,7 @@
       "length": 8,
       "text": "데이터１",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データ１",
       "jpOffset": 878898
     },
@@ -68956,7 +68956,7 @@
       "length": 8,
       "text": "데이터２",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データ２",
       "jpOffset": 878930
     },
@@ -68965,7 +68965,7 @@
       "length": 8,
       "text": "데이터３",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データ３",
       "jpOffset": 878962
     },
@@ -68974,7 +68974,7 @@
       "length": 8,
       "text": "데이터４",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データ４",
       "jpOffset": 878994
     },
@@ -68983,7 +68983,7 @@
       "length": 8,
       "text": "데이터５",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データ５",
       "jpOffset": 879026
     },
@@ -68992,7 +68992,7 @@
       "length": 8,
       "text": "데이터６",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データ６",
       "jpOffset": 879058
     },
@@ -69001,7 +69001,7 @@
       "length": 12,
       "text": "데이터　로드",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データロード",
       "jpOffset": 879110
     },
@@ -69010,7 +69010,7 @@
       "length": 18,
       "text": "데이터가　없습니다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "データがありません",
       "jpOffset": 879194
     },
@@ -69019,7 +69019,7 @@
       "length": 2,
       "text": "／",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "／",
       "jpOffset": 879236
     },
@@ -69028,7 +69028,7 @@
       "length": 2,
       "text": "／",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "／",
       "jpOffset": 879246
     },
@@ -69037,7 +69037,7 @@
       "length": 2,
       "text": "（",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "（",
       "jpOffset": 879256
     },
@@ -69046,7 +69046,7 @@
       "length": 2,
       "text": "）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "）",
       "jpOffset": 879266
     },
@@ -69055,7 +69055,7 @@
       "length": 10,
       "text": "　　　　　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　　　　　",
       "jpOffset": 879272
     },
@@ -69064,7 +69064,7 @@
       "length": 2,
       "text": "：",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "：",
       "jpOffset": 879290
     },
@@ -69073,7 +69073,7 @@
       "length": 2,
       "text": "：",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "：",
       "jpOffset": 879300
     },
@@ -69082,7 +69082,7 @@
       "length": 2,
       "text": "일",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "日",
       "jpOffset": 879382
     },
@@ -69091,7 +69091,7 @@
       "length": 2,
       "text": "월",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "月",
       "jpOffset": 879388
     },
@@ -69100,7 +69100,7 @@
       "length": 2,
       "text": "화",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "火",
       "jpOffset": 879394
     },
@@ -69109,7 +69109,7 @@
       "length": 2,
       "text": "수",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "水",
       "jpOffset": 879400
     },
@@ -69118,7 +69118,7 @@
       "length": 2,
       "text": "목",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "木",
       "jpOffset": 879406
     },
@@ -69127,7 +69127,7 @@
       "length": 2,
       "text": "금",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "金",
       "jpOffset": 879412
     },
@@ -69136,7 +69136,7 @@
       "length": 2,
       "text": "토",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "土",
       "jpOffset": 879418
     },
@@ -69145,7 +69145,7 @@
       "length": 4,
       "text": "장소",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "場所",
       "jpOffset": 879452
     },
@@ -69154,7 +69154,7 @@
       "length": 2,
       "text": "　",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　",
       "jpOffset": 879460
     },
@@ -69163,7 +69163,7 @@
       "length": 6,
       "text": "제１장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第１章",
       "jpOffset": 879698
     },
@@ -69172,7 +69172,7 @@
       "length": 6,
       "text": "제２장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第２章",
       "jpOffset": 879708
     },
@@ -69181,7 +69181,7 @@
       "length": 6,
       "text": "제３장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第３章",
       "jpOffset": 879718
     },
@@ -69190,7 +69190,7 @@
       "length": 6,
       "text": "제４장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第４章",
       "jpOffset": 879728
     },
@@ -69199,7 +69199,7 @@
       "length": 6,
       "text": "제５장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第５章",
       "jpOffset": 879738
     },
@@ -69208,7 +69208,7 @@
       "length": 6,
       "text": "제６장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第６章",
       "jpOffset": 879748
     },
@@ -69217,7 +69217,7 @@
       "length": 6,
       "text": "제７장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第７章",
       "jpOffset": 879758
     },
@@ -69226,7 +69226,7 @@
       "length": 6,
       "text": "제８장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "第８章",
       "jpOffset": 879768
     },
@@ -69316,7 +69316,7 @@
       "length": 6,
       "text": "소지수",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "所持数",
       "jpOffset": 880054
     },
@@ -69325,7 +69325,7 @@
       "length": 6,
       "text": "구입수",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "購入数",
       "jpOffset": 880124
     },
@@ -71593,7 +71593,7 @@
       "length": 20,
       "text": "읽으면　공격력　상승",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "見れば攻撃力アップ",
       "jpOffset": 887158
     },
@@ -71601,7 +71601,7 @@
       "offset": 952126,
       "length": 20,
       "text": "전투중에는　안돼요！",
-      "fixed": "",
+      "fixed": "…전투　중엔　안　돼",
       "confirmed": false,
       "jp": "…戦闘中に見るなよ～",
       "jpOffset": 887180
@@ -71763,7 +71763,7 @@
       "offset": 952498,
       "length": 16,
       "text": "시리즈　최초？！",
-      "fixed": "",
+      "fixed": "시리즈　최초！？",
       "confirmed": false,
       "jp": "シリーズ初！？",
       "jpOffset": 887588
@@ -71862,7 +71862,7 @@
       "offset": 952728,
       "length": 20,
       "text": "참가신청서겸　안내서",
-      "fixed": "참가신청서겸　안내장",
+      "fixed": "참가신청서　겸　안내",
       "confirmed": false,
       "jp": "参加申し込み書兼案内書",
       "jpOffset": 887832
@@ -73906,7 +73906,7 @@
       "length": 6,
       "text": "필살기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "必殺技",
       "jpOffset": 892854
     },
@@ -73914,7 +73914,7 @@
       "offset": 957430,
       "length": 6,
       "text": "　장기",
-      "fixed": "",
+      "fixed": "장기　",
       "confirmed": false,
       "jp": "得意技",
       "jpOffset": 892864
@@ -73924,7 +73924,7 @@
       "length": 6,
       "text": "달인기",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "達人技",
       "jpOffset": 892874
     },
@@ -73932,7 +73932,7 @@
       "offset": 957450,
       "length": 6,
       "text": "　신기",
-      "fixed": "",
+      "fixed": "신기　",
       "confirmed": false,
       "jp": "　神技",
       "jpOffset": 892884
@@ -73942,7 +73942,7 @@
       "length": 6,
       "text": "？？？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "？？？",
       "jpOffset": 893598
     },
@@ -73950,7 +73950,7 @@
       "offset": 958174,
       "length": 14,
       "text": "아타호의　거처",
-      "fixed": "",
+      "fixed": "아타호의거처　",
       "confirmed": false,
       "jp": "アターホーのすみか",
       "jpOffset": 893608
@@ -73978,7 +73978,7 @@
       "length": 8,
       "text": "해변마을",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "海辺の町",
       "jpOffset": 893658
     },
@@ -74005,7 +74005,7 @@
       "length": 12,
       "text": "유적지하１층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "遺跡地下１階",
       "jpOffset": 893686
     },
@@ -74014,7 +74014,7 @@
       "length": 12,
       "text": "유적지하２층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "遺跡地下２階",
       "jpOffset": 893702
     },
@@ -74023,7 +74023,7 @@
       "length": 12,
       "text": "유적지하３층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "遺跡地下３階",
       "jpOffset": 893718
     },
@@ -74032,7 +74032,7 @@
       "length": 12,
       "text": "유적지하４층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "遺跡地下４階",
       "jpOffset": 893734
     },
@@ -74041,7 +74041,7 @@
       "length": 12,
       "text": "유적지하５층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "遺跡地下５階",
       "jpOffset": 893750
     },
@@ -74050,7 +74050,7 @@
       "length": 12,
       "text": "유적지하６층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "遺跡地下６階",
       "jpOffset": 893766
     },
@@ -74059,7 +74059,7 @@
       "length": 8,
       "text": "병원１층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "病院１階",
       "jpOffset": 893782
     },
@@ -74068,7 +74068,7 @@
       "length": 8,
       "text": "병원２층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "病院２階",
       "jpOffset": 893794
     },
@@ -74086,7 +74086,7 @@
       "length": 6,
       "text": "화장실",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "トイレ",
       "jpOffset": 893814
     },
@@ -74095,7 +74095,7 @@
       "length": 4,
       "text": "상점",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "商店",
       "jpOffset": 893824
     },
@@ -74104,7 +74104,7 @@
       "length": 6,
       "text": "술창고",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒蔵",
       "jpOffset": 893832
     },
@@ -74113,7 +74113,7 @@
       "length": 4,
       "text": "여관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "宿屋",
       "jpOffset": 893840
     },
@@ -74122,7 +74122,7 @@
       "length": 4,
       "text": "술집",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場",
       "jpOffset": 893848
     },
@@ -74131,7 +74131,7 @@
       "length": 4,
       "text": "창고",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "倉庫",
       "jpOffset": 893856
     },
@@ -74140,7 +74140,7 @@
       "length": 8,
       "text": "술집여관",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "酒場宿",
       "jpOffset": 893864
     },
@@ -74167,7 +74167,7 @@
       "length": 10,
       "text": "맹호권도장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "猛虎拳道場",
       "jpOffset": 893896
     },
@@ -74175,7 +74175,7 @@
       "offset": 958476,
       "length": 14,
       "text": "술창고　안동굴",
-      "fixed": "",
+      "fixed": "술창고동굴　　",
       "confirmed": false,
       "jp": "酒蔵奥の洞窟",
       "jpOffset": 893910
@@ -74184,7 +74184,7 @@
       "offset": 958494,
       "length": 8,
       "text": "신의　산",
-      "fixed": "",
+      "fixed": "신의산　",
       "confirmed": false,
       "jp": "神の山",
       "jpOffset": 893926
@@ -74203,7 +74203,7 @@
       "length": 8,
       "text": "비밀통로",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "隠し通路",
       "jpOffset": 893948
     },
@@ -74257,7 +74257,7 @@
       "length": 14,
       "text": "진·호혈　입구",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "真・虎の穴入口",
       "jpOffset": 894026
     },
@@ -74266,7 +74266,7 @@
       "length": 18,
       "text": "진·호혈　지하１층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "真・虎の穴地下１階",
       "jpOffset": 894044
     },
@@ -74275,7 +74275,7 @@
       "length": 18,
       "text": "진·호혈　지하２층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "真・虎の穴地下２階",
       "jpOffset": 894066
     },
@@ -74284,7 +74284,7 @@
       "length": 18,
       "text": "진·호혈　지하３층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "真・虎の穴地下３階",
       "jpOffset": 894088
     },
@@ -74293,7 +74293,7 @@
       "length": 18,
       "text": "진·호혈　지하４층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "真・虎の穴地下４階",
       "jpOffset": 894110
     },
@@ -74302,7 +74302,7 @@
       "length": 18,
       "text": "진·호혈　지하５층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "真・虎の穴地下５階",
       "jpOffset": 894132
     },
@@ -74311,7 +74311,7 @@
       "length": 22,
       "text": "진·호혈　지하６６６층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "真・虎の穴地下６６６階",
       "jpOffset": 894154
     },
@@ -74319,8 +74319,8 @@
       "offset": 958754,
       "length": 12,
       "text": "주작의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "주작의시련　",
+      "confirmed": false,
       "jp": "朱雀の試練",
       "jpOffset": 894180
     },
@@ -74328,8 +74328,8 @@
       "offset": 958770,
       "length": 12,
       "text": "창룡의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "창룡의시련　",
+      "confirmed": false,
       "jp": "蒼龍の試練",
       "jpOffset": 894194
     },
@@ -74337,8 +74337,8 @@
       "offset": 958786,
       "length": 12,
       "text": "현무의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "현무의시련　",
+      "confirmed": false,
       "jp": "玄武の試練",
       "jpOffset": 894208
     },
@@ -74346,8 +74346,8 @@
       "offset": 958802,
       "length": 12,
       "text": "백호의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "백호의시련　",
+      "confirmed": false,
       "jp": "白虎の試練",
       "jpOffset": 894222
     },
@@ -74356,7 +74356,7 @@
       "length": 8,
       "text": "머슬룸１",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "マッスルルーム１",
       "jpOffset": 894236
     },
@@ -74365,7 +74365,7 @@
       "length": 8,
       "text": "머슬룸２",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "マッスルルーム２",
       "jpOffset": 894256
     },
@@ -74374,7 +74374,7 @@
       "length": 8,
       "text": "머슬룸３",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "マッスルルーム３",
       "jpOffset": 894276
     },
@@ -74383,7 +74383,7 @@
       "length": 8,
       "text": "머슬룸４",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "マッスルルーム４",
       "jpOffset": 894296
     },
@@ -74401,7 +74401,7 @@
       "length": 14,
       "text": "암각권도장입구",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "暗刻拳道場入口",
       "jpOffset": 894326
     },
@@ -74410,7 +74410,7 @@
       "length": 10,
       "text": "암각권도장",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "暗刻拳道場",
       "jpOffset": 894344
     },
@@ -74419,7 +74419,7 @@
       "length": 12,
       "text": "도장지하입구",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "道場地下入口",
       "jpOffset": 894358
     },
@@ -74428,7 +74428,7 @@
       "length": 12,
       "text": "도장지하１층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "道場地下１階",
       "jpOffset": 894374
     },
@@ -74437,7 +74437,7 @@
       "length": 12,
       "text": "도장지하２층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "道場地下２階",
       "jpOffset": 894390
     },
@@ -74446,7 +74446,7 @@
       "length": 12,
       "text": "도장지하３층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "道場地下３階",
       "jpOffset": 894406
     },
@@ -74455,7 +74455,7 @@
       "length": 12,
       "text": "도장지하４층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "道場地下４階",
       "jpOffset": 894422
     },
@@ -74464,7 +74464,7 @@
       "length": 12,
       "text": "도장지하５층",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "道場地下５階",
       "jpOffset": 894438
     },
@@ -74473,7 +74473,7 @@
       "length": 8,
       "text": "봉인공간",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "封印の間",
       "jpOffset": 894454
     },
@@ -74500,7 +74500,7 @@
       "length": 8,
       "text": "안력수련",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "眼力の修業",
       "jpOffset": 894494
     },
@@ -74509,7 +74509,7 @@
       "length": 8,
       "text": "동작수련",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "動きの修業",
       "jpOffset": 894508
     },
@@ -74518,7 +74518,7 @@
       "length": 8,
       "text": "공격수련",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "攻撃の修業",
       "jpOffset": 894522
     },
@@ -74527,7 +74527,7 @@
       "length": 8,
       "text": "회피수련",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "避けの修業",
       "jpOffset": 894536
     },
@@ -74572,7 +74572,7 @@
       "length": 6,
       "text": "？？？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "？？？",
       "jpOffset": 894974
     },
@@ -74581,7 +74581,7 @@
       "length": 6,
       "text": "원숭이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "オサール",
       "jpOffset": 894984
     },
@@ -74589,7 +74589,7 @@
       "offset": 959516,
       "length": 12,
       "text": "취한　원숭이",
-      "fixed": "",
+      "fixed": "취한원숭이　",
       "confirmed": false,
       "jp": "酔いどれサル",
       "jpOffset": 894996
@@ -74599,7 +74599,7 @@
       "length": 6,
       "text": "견원이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ミザール",
       "jpOffset": 895012
     },
@@ -74608,7 +74608,7 @@
       "length": 6,
       "text": "언원이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "イワザール",
       "jpOffset": 895024
     },
@@ -74617,7 +74617,7 @@
       "length": 6,
       "text": "문원이",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "キカザール",
       "jpOffset": 895038
     },
@@ -74626,7 +74626,7 @@
       "length": 6,
       "text": "멧돼지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "イノシシ",
       "jpOffset": 895052
     },
@@ -74635,7 +74635,7 @@
       "length": 10,
       "text": "구멍멧돼지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "穴イノシシ",
       "jpOffset": 895064
     },
@@ -74644,7 +74644,7 @@
       "length": 10,
       "text": "돌기멧돼지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "イボイノシシ",
       "jpOffset": 895078
     },
@@ -74653,7 +74653,7 @@
       "length": 10,
       "text": "외뿔멧돼지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "一角イノシシ",
       "jpOffset": 895094
     },
@@ -74662,7 +74662,7 @@
       "length": 6,
       "text": "슬라임",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スライム",
       "jpOffset": 895110
     },
@@ -74671,7 +74671,7 @@
       "length": 10,
       "text": "바위슬라임",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "岩スライム",
       "jpOffset": 895122
     },
@@ -74680,7 +74680,7 @@
       "length": 10,
       "text": "불꽃슬라임",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "炎スライム",
       "jpOffset": 895136
     },
@@ -74689,7 +74689,7 @@
       "length": 8,
       "text": "물슬라임",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "氷スライム",
       "jpOffset": 895150
     },
@@ -74698,7 +74698,7 @@
       "length": 10,
       "text": "벼락슬라임",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "雷スライム",
       "jpOffset": 895164
     },
@@ -74707,7 +74707,7 @@
       "length": 10,
       "text": "마왕슬라임",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "魔王スライム",
       "jpOffset": 895178
     },
@@ -74716,7 +74716,7 @@
       "length": 4,
       "text": "독사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "毒ヘビ",
       "jpOffset": 895194
     },
@@ -74724,7 +74724,7 @@
       "offset": 959700,
       "length": 6,
       "text": "구렁이",
-      "fixed": "",
+      "fixed": "대사　",
       "confirmed": false,
       "jp": "大蛇",
       "jpOffset": 895204
@@ -74734,7 +74734,7 @@
       "length": 4,
       "text": "화사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "火蛇",
       "jpOffset": 895212
     },
@@ -74743,7 +74743,7 @@
       "length": 4,
       "text": "수사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "水蛇",
       "jpOffset": 895220
     },
@@ -74752,7 +74752,7 @@
       "length": 4,
       "text": "뢰사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "電蛇",
       "jpOffset": 895228
     },
@@ -74761,7 +74761,7 @@
       "length": 4,
       "text": "박쥐",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "コウモリ",
       "jpOffset": 895236
     },
@@ -74770,7 +74770,7 @@
       "length": 6,
       "text": "큰박쥐",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "大コウモリ",
       "jpOffset": 895248
     },
@@ -74779,7 +74779,7 @@
       "length": 8,
       "text": "흡혈박쥐",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "吸血コウモリ",
       "jpOffset": 895262
     },
@@ -74788,7 +74788,7 @@
       "length": 8,
       "text": "마왕박쥐",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "魔王コウモリ",
       "jpOffset": 895278
     },
@@ -74797,7 +74797,7 @@
       "length": 8,
       "text": "동작석상",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "動く石像",
       "jpOffset": 895294
     },
@@ -74806,7 +74806,7 @@
       "length": 4,
       "text": "파워",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "パワー",
       "jpOffset": 895306
     },
@@ -74815,7 +74815,7 @@
       "length": 6,
       "text": "스피드",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スピード",
       "jpOffset": 895316
     },
@@ -74823,8 +74823,8 @@
       "offset": 959806,
       "length": 10,
       "text": "맹호권사범",
-      "fixed": "맹호권사범",
-      "confirmed": false,
+      "fixed": "",
+      "confirmed": true,
       "jp": "猛虎拳師範",
       "jpOffset": 895328
     },
@@ -74833,7 +74833,7 @@
       "length": 12,
       "text": "숙련주작권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "熟練朱雀拳士",
       "jpOffset": 895342
     },
@@ -74842,7 +74842,7 @@
       "length": 12,
       "text": "숙련창룡권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "熟練蒼龍拳士",
       "jpOffset": 895358
     },
@@ -74869,7 +74869,7 @@
       "length": 8,
       "text": "귀갑권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "亀甲拳士",
       "jpOffset": 895404
     },
@@ -74877,7 +74877,7 @@
       "offset": 959894,
       "length": 12,
       "text": "근육맨１호　",
-      "fixed": "머슬　１호　",
+      "fixed": "머슬１호　　",
       "confirmed": false,
       "jp": "マッスル１号",
       "jpOffset": 895416
@@ -74886,7 +74886,7 @@
       "offset": 959910,
       "length": 12,
       "text": "근육맨２호　",
-      "fixed": "머슬　２호　",
+      "fixed": "머슬２호　　",
       "confirmed": false,
       "jp": "マッスル２号",
       "jpOffset": 895432
@@ -74895,7 +74895,7 @@
       "offset": 959926,
       "length": 12,
       "text": "근육맨　　　",
-      "fixed": "",
+      "fixed": "머슬권사　　",
       "confirmed": false,
       "jp": "マッスル拳士",
       "jpOffset": 895448
@@ -74904,7 +74904,7 @@
       "offset": 959942,
       "length": 12,
       "text": "근육맨　　　",
-      "fixed": "",
+      "fixed": "머슬권사　　",
       "confirmed": false,
       "jp": "マッスル拳士",
       "jpOffset": 895464
@@ -74932,7 +74932,7 @@
       "length": 2,
       "text": "탕",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "タン",
       "jpOffset": 895504
     },
@@ -74941,7 +74941,7 @@
       "length": 2,
       "text": "탕",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "タン",
       "jpOffset": 895512
     },
@@ -74977,7 +74977,7 @@
       "length": 2,
       "text": "론",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ロン",
       "jpOffset": 895556
     },
@@ -74986,7 +74986,7 @@
       "length": 8,
       "text": "주작권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "朱雀拳士",
       "jpOffset": 895564
     },
@@ -74995,7 +74995,7 @@
       "length": 8,
       "text": "창룡권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "蒼龍拳士",
       "jpOffset": 895576
     },
@@ -75013,7 +75013,7 @@
       "length": 6,
       "text": "권법가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "拳闘家",
       "jpOffset": 895600
     },
@@ -75022,7 +75022,7 @@
       "length": 6,
       "text": "무투가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "武闘家",
       "jpOffset": 895610
     },
@@ -75031,7 +75031,7 @@
       "length": 6,
       "text": "격투가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "格闘家",
       "jpOffset": 895620
     },
@@ -75049,7 +75049,7 @@
       "length": 8,
       "text": "비룡권사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "飛龍拳士",
       "jpOffset": 895644
     },
@@ -75076,7 +75076,7 @@
       "length": 8,
       "text": "해골전사",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ガイコツ戦士",
       "jpOffset": 895682
     },
@@ -75085,7 +75085,7 @@
       "length": 10,
       "text": "스컬나이트",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "スカルナイト",
       "jpOffset": 895698
     },
@@ -75094,7 +75094,7 @@
       "length": 8,
       "text": "주작성령",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "朱雀の聖霊",
       "jpOffset": 895714
     },
@@ -75103,7 +75103,7 @@
       "length": 8,
       "text": "창룡성령",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "蒼龍の聖霊",
       "jpOffset": 895728
     },
@@ -75112,7 +75112,7 @@
       "length": 8,
       "text": "현무성령",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "玄武の聖霊",
       "jpOffset": 895742
     },
@@ -75121,7 +75121,7 @@
       "length": 4,
       "text": "유령",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ゴースト",
       "jpOffset": 895756
     },
@@ -75130,7 +75130,7 @@
       "length": 4,
       "text": "리치",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リッチ",
       "jpOffset": 895768
     },
@@ -75148,7 +75148,7 @@
       "length": 4,
       "text": "야차",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "夜叉",
       "jpOffset": 895786
     },
@@ -75166,7 +75166,7 @@
       "length": 4,
       "text": "폭호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "暴虎",
       "jpOffset": 895808
     },
@@ -75174,7 +75174,7 @@
       "offset": 960246,
       "length": 12,
       "text": "지옥의　마인",
-      "fixed": "나락의　마인",
+      "fixed": "나락의마인　",
       "confirmed": false,
       "jp": "奈落の魔人",
       "jpOffset": 895816
@@ -75184,7 +75184,7 @@
       "length": 8,
       "text": "바니－Ａ",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "バニーＡ",
       "jpOffset": 895830
     },
@@ -75193,7 +75193,7 @@
       "length": 8,
       "text": "바니－Ｒ",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "バニーＲ",
       "jpOffset": 895842
     },
@@ -75202,7 +75202,7 @@
       "length": 8,
       "text": "바니－Ｓ",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "バニーＳ",
       "jpOffset": 895854
     },
@@ -75211,7 +75211,7 @@
       "length": 4,
       "text": "화룡",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "火竜",
       "jpOffset": 895866
     },
@@ -75220,7 +75220,7 @@
       "length": 4,
       "text": "빙룡",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "氷竜",
       "jpOffset": 895874
     },
@@ -75229,7 +75229,7 @@
       "length": 4,
       "text": "뇌룡",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "電竜",
       "jpOffset": 895882
     },
@@ -75274,7 +75274,7 @@
       "length": 2,
       "text": "론",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ロン",
       "jpOffset": 895934
     },
@@ -75283,7 +75283,7 @@
       "length": 2,
       "text": "론",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ロン",
       "jpOffset": 895942
     },
@@ -75292,7 +75292,7 @@
       "length": 4,
       "text": "투귀",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "闘鬼",
       "jpOffset": 895950
     },
@@ -75301,7 +75301,7 @@
       "length": 4,
       "text": "폭호",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "暴虎",
       "jpOffset": 895958
     },
