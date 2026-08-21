@@ -15162,7 +15162,7 @@
       "offset": 407698,
       "length": 20,
       "text": "「감전되는　상자라…",
-      "fixed": "",
+      "fixed": "「감전되는　상자인가",
       "confirmed": false,
       "jp": "「しびれる箱か",
       "jpOffset": 531546
@@ -15171,7 +15171,7 @@
       "offset": 407722,
       "length": 30,
       "text": "　그렇다면，조금만　견뎌내면…",
-      "fixed": "",
+      "fixed": "　조금　참으면　열　수　있어…",
       "confirmed": false,
       "jp": "　少しガマンすれば開けられる…",
       "jpOffset": 531564
@@ -15180,7 +15180,7 @@
       "offset": 407760,
       "length": 14,
       "text": "　아야얏∼！！",
-      "fixed": "",
+      "fixed": "　아야얏　　　",
       "confirmed": false,
       "jp": "　いってーっ",
       "jpOffset": 531602
@@ -15207,7 +15207,7 @@
       "offset": 407824,
       "length": 36,
       "text": "「…무리하지　않는　게　좋을　걸요！",
-      "fixed": "",
+      "fixed": "「…무리하지　않는　게　좋을　걸요　",
       "confirmed": false,
       "jp": "「…ムリしないほうがいいわよ",
       "jpOffset": 531670
@@ -15225,7 +15225,7 @@
       "offset": 407886,
       "length": 20,
       "text": "「미리　말했어야지！",
-      "fixed": "",
+      "fixed": "「…미리　말해　줘　",
       "confirmed": false,
       "jp": "「…先に言えよ",
       "jpOffset": 531728
@@ -15262,7 +15262,7 @@
       "length": 26,
       "text": "상자를　열려고　애를　썼다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "宝箱を開けようとしました",
       "jpOffset": 531836
     },
@@ -15495,7 +15495,7 @@
       "offset": 408704,
       "length": 36,
       "text": "　디자인도　너무　너무　괜찮은데！！",
-      "fixed": "",
+      "fixed": "　디자인도　제법이잖아　　　　　　　",
       "confirmed": false,
       "jp": "　デザインも　なかなかじゃな",
       "jpOffset": 532566
@@ -15621,7 +15621,7 @@
       "offset": 409186,
       "length": 32,
       "text": "　디자인도　정말　근사하잖아！！",
-      "fixed": "",
+      "fixed": "　디자인도　제법이지　않나　　　",
       "confirmed": false,
       "jp": "　デザインも　なかなかじゃな",
       "jpOffset": 533040
@@ -19212,7 +19212,7 @@
       "offset": 445302,
       "length": 34,
       "text": "「Ｂ２Ｆ의　해골에게　용무가　계신",
-      "fixed": "「Ｂ２층의　해골에게　용무가　있는",
+      "fixed": "「Ｂ２층　해골에게　용무가　있으면",
       "confirmed": false,
       "jp": "「Ｂ２Ｆ　謎のガイコツに御用の方は",
       "jpOffset": 559000
@@ -19221,7 +19221,7 @@
       "offset": 445340,
       "length": 34,
       "text": "　분은　이　스위치를　눌러주세요！",
-      "fixed": "",
+      "fixed": "　이　스위치를　눌러　주세요」　　",
       "confirmed": false,
       "jp": "　このスイッチを入れてください」",
       "jpOffset": 559038
@@ -19239,7 +19239,7 @@
       "offset": 445412,
       "length": 36,
       "text": "「Ｂ２Ｆ의　해골에게　용무가　계신」",
-      "fixed": "「Ｂ２층의　해골에게　용무가　있는　",
+      "fixed": "「Ｂ２층　해골에게　용무가　있으면　",
       "confirmed": false,
       "jp": "「Ｂ２Ｆ　謎のガイコツに御用の方は",
       "jpOffset": 559108
@@ -19248,7 +19248,7 @@
       "offset": 445452,
       "length": 34,
       "text": "　분은　이　스위치를　눌러주세요！",
-      "fixed": "",
+      "fixed": "　이　스위치를　눌러　주세요」　　",
       "confirmed": false,
       "jp": "　このスイッチを入れてください」",
       "jpOffset": 559146
@@ -19257,7 +19257,7 @@
       "offset": 445494,
       "length": 20,
       "text": "스위치를　누를까요？",
-      "fixed": "스위치를　켤까？　　",
+      "fixed": "스위치를　누를까？　",
       "confirmed": false,
       "jp": "スイッチを入れますか？",
       "jpOffset": 559186
@@ -19338,7 +19338,7 @@
       "offset": 445710,
       "length": 28,
       "text": "「역시　스위치를　누르른　건",
-      "fixed": "「스위치를　켜는　건　　　　",
+      "fixed": "「스위치를　누르는　건　　　",
       "confirmed": false,
       "jp": "「ふむ　スイッチを入れるのは",
       "jpOffset": 559420
@@ -19365,7 +19365,7 @@
       "offset": 445792,
       "length": 20,
       "text": "「바닥이　흔들립니다",
-      "fixed": "",
+      "fixed": "「바닥이　약합니다　",
       "confirmed": false,
       "jp": "「床がゆるんでいます",
       "jpOffset": 559496
@@ -19374,7 +19374,7 @@
       "offset": 445816,
       "length": 26,
       "text": "　이　방의　정원은　２명！",
-      "fixed": "",
+      "fixed": "　이　방의　정원은　２명　",
       "confirmed": false,
       "jp": "　この部屋の定員は２名",
       "jpOffset": 559520
@@ -19383,7 +19383,7 @@
       "offset": 445850,
       "length": 22,
       "text": "　정원　오버는　낙하의",
-      "fixed": "",
+      "fixed": "　정원　오버는　낙하의",
       "confirmed": false,
       "jp": "　定員オーバーは",
       "jpOffset": 559550
@@ -19401,7 +19401,7 @@
       "offset": 445898,
       "length": 28,
       "text": "　특히，중앙의　돌에　주의！",
-      "fixed": "",
+      "fixed": "　특히　중앙의　돌에　주의！",
       "confirmed": false,
       "jp": "　特に　中央の石に注意！",
       "jpOffset": 559596
@@ -19447,7 +19447,7 @@
       "length": 10,
       "text": "　그렇다네",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　そうじゃ",
       "jpOffset": 559736
     },
@@ -19473,7 +19473,7 @@
       "offset": 446098,
       "length": 32,
       "text": "「먼저　스마슈를　찾아보죠．그냥",
-      "fixed": "",
+      "fixed": "「먼저　스마슈를　찾으러　가죠　",
       "confirmed": false,
       "jp": "「先にスマッシュを探してきましょ",
       "jpOffset": 559804
@@ -19482,7 +19482,7 @@
       "offset": 446134,
       "length": 34,
       "text": "　두면　나중에　시끄러울　테니까！",
-      "fixed": "",
+      "fixed": "　내버려　두면　나중에　귀찮을테니",
       "confirmed": false,
       "jp": "　おいてくと　きっと後で面倒だから",
       "jpOffset": 559840
@@ -19582,7 +19582,7 @@
       "length": 20,
       "text": "２００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "２００Ｇを見つけました",
       "jpOffset": 560424
     },
@@ -19770,7 +19770,7 @@
       "offset": 447370,
       "length": 24,
       "text": "「어머，이　기술은　나도",
-      "fixed": "",
+      "fixed": "「이　기술은…　나라면　",
       "confirmed": false,
       "jp": "「この技は…　今のわたしなら",
       "jpOffset": 561122
@@ -19779,7 +19779,7 @@
       "offset": 447398,
       "length": 24,
       "text": "　사용할　수　있겠네！！",
-      "fixed": "",
+      "fixed": "　잘　쓸　수　있겠어요　",
       "confirmed": false,
       "jp": "　うまく使えそうだわ",
       "jpOffset": 561154
@@ -19789,7 +19789,7 @@
       "length": 24,
       "text": "린샹은　새로운　회복기인",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "リンシャンは　新しい回復技",
       "jpOffset": 561198
     },
@@ -19806,7 +19806,7 @@
       "offset": 447506,
       "length": 36,
       "text": "동료　전원을　회복시키는　기술이다！",
-      "fixed": "",
+      "fixed": "동료　전원을　회복시키는　기술이다　",
       "confirmed": false,
       "jp": "この技は　仲間全員を回復できます",
       "jpOffset": 561262
@@ -20580,7 +20580,7 @@
       "offset": 449880,
       "length": 24,
       "text": "「우리는　흉조조조조조∼",
-      "fixed": "",
+      "fixed": "「나는　흉조오오…　　　",
       "confirmed": false,
       "jp": "「わらわは　凶鳥ちょうちょう…",
       "jpOffset": 563660
@@ -20589,7 +20589,7 @@
       "offset": 449908,
       "length": 36,
       "text": "　봉인을　풀어준　답례를　하지지지∼",
-      "fixed": "",
+      "fixed": "　봉인을　풀어준　답례를　하지이이…",
       "confirmed": false,
       "jp": "　封印を解いた礼を言うぞうぞうぞ…",
       "jpOffset": 563694
@@ -20652,7 +20652,7 @@
       "offset": 450098,
       "length": 14,
       "text": "「이…이런！！",
-      "fixed": "",
+      "fixed": "「으…　이건　",
       "confirmed": false,
       "jp": "「ぬ…　これは",
       "jpOffset": 563890
@@ -20661,7 +20661,7 @@
       "offset": 450116,
       "length": 26,
       "text": "　큰일을　내고　말았군！！",
-      "fixed": "",
+      "fixed": "　큰일을　저질러　버렸구먼",
       "confirmed": false,
       "jp": "　えらいことをしてしまったぞい",
       "jpOffset": 563908
@@ -21201,7 +21201,7 @@
       "offset": 451796,
       "length": 28,
       "text": "「나는　사악한　용，용용용…",
-      "fixed": "",
+      "fixed": "「나는　사룡，용용용…　　　",
       "confirmed": false,
       "jp": "「わしは邪龍ゥゥゥ…",
       "jpOffset": 565588
@@ -21210,7 +21210,7 @@
       "offset": 451828,
       "length": 28,
       "text": "　이제　자유다，다다다다！！",
-      "fixed": "",
+      "fixed": "　이걸로　자유다，아아아…　",
       "confirmed": false,
       "jp": "　これで　自由ゥゥゥ…",
       "jpOffset": 565612
@@ -21273,7 +21273,7 @@
       "offset": 452012,
       "length": 20,
       "text": "「이…이런　야단났다",
-      "fixed": "",
+      "fixed": "「…이거　위험한가？",
       "confirmed": false,
       "jp": "「ぬ…　これはやばいのでは？",
       "jpOffset": 565796
@@ -21282,7 +21282,7 @@
       "offset": 452036,
       "length": 30,
       "text": "　큰일을　저지르고　말았어！！",
-      "fixed": "",
+      "fixed": "　큰일을　저질러　버렸구먼　　",
       "confirmed": false,
       "jp": "　えらいことをしてしまったぞい",
       "jpOffset": 565828
@@ -21516,7 +21516,7 @@
       "offset": 452776,
       "length": 32,
       "text": "「어머？　부적이　붙어　있어요！",
-      "fixed": "",
+      "fixed": "「어머？　부적이　붙어　있어요　",
       "confirmed": false,
       "jp": "「あら？　ふだがはってあるわ",
       "jpOffset": 566608
@@ -21535,7 +21535,7 @@
       "length": 10,
       "text": "「완봉업구",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「完封業亀（ごうき）",
       "jpOffset": 566670
     },
@@ -21579,7 +21579,7 @@
       "offset": 452958,
       "length": 36,
       "text": "「그러면　열지　않는　편이　낫겠군！",
-      "fixed": "",
+      "fixed": "「그러면　열지　않는　편이　좋겠네　",
       "confirmed": false,
       "jp": "「じゃ　開けない方がいいみたいだな",
       "jpOffset": 566800
@@ -21589,7 +21589,7 @@
       "length": 10,
       "text": "　열어본다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　開ける",
       "jpOffset": 566846
     },
@@ -21616,7 +21616,7 @@
       "length": 10,
       "text": "「완봉업구",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「完封業亀",
       "jpOffset": 566910
     },
@@ -21652,7 +21652,7 @@
       "length": 10,
       "text": "　열어본다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　開ける",
       "jpOffset": 567018
     },
@@ -21678,7 +21678,7 @@
       "offset": 453234,
       "length": 24,
       "text": "「어라？　안열리잖아？！",
-      "fixed": "",
+      "fixed": "「응？　안　열리는데　　",
       "confirmed": false,
       "jp": "「ん？　開かないぞい",
       "jpOffset": 567078
@@ -21687,7 +21687,7 @@
       "offset": 453262,
       "length": 26,
       "text": "　혹시？　봉인의　힘이…？",
-      "fixed": "",
+      "fixed": "　이게　봉인의　힘인가？　",
       "confirmed": false,
       "jp": "　これが　封印の力かの？",
       "jpOffset": 567102
@@ -21841,7 +21841,7 @@
       "length": 14,
       "text": "「나는　업구…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「私は業亀…",
       "jpOffset": 567586
     },
@@ -21849,7 +21849,7 @@
       "offset": 453758,
       "length": 24,
       "text": "　이제　난　해방이다！！",
-      "fixed": "",
+      "fixed": "　긴　은둔은　끝났다…　",
       "confirmed": false,
       "jp": "　長き雌伏のときは終わった…",
       "jpOffset": 567602
@@ -21894,7 +21894,7 @@
       "offset": 453888,
       "length": 24,
       "text": "「이런…사라져버렸군！！",
-      "fixed": "「이런…사라져　버렸네？",
+      "fixed": "「음…　사라져　버렸네？",
       "confirmed": false,
       "jp": "「ぬ…　行ってしまった？",
       "jpOffset": 567746
@@ -21903,7 +21903,7 @@
       "offset": 453916,
       "length": 26,
       "text": "　이거，정말　큰일났다！！",
-      "fixed": "",
+      "fixed": "　이거　큰일　난　건가…　",
       "confirmed": false,
       "jp": "　これは　えらいことになったぞい…",
       "jpOffset": 567774
@@ -21930,7 +21930,7 @@
       "offset": 453992,
       "length": 22,
       "text": "　지금　내겐　없는데…",
-      "fixed": "",
+      "fixed": "　수중에　없구먼…　　",
       "confirmed": false,
       "jp": "　今は　手元にないのぅ…",
       "jpOffset": 567860
@@ -22011,7 +22011,7 @@
       "offset": 454220,
       "length": 30,
       "text": "「나찰의　흉인」을　발견했다！",
-      "fixed": "「나찰의흉인」을　발견했다！　",
+      "fixed": "「나찰의흉인」을　발견했다　　",
       "confirmed": false,
       "jp": "「羅刹の凶刃」を見つけました！",
       "jpOffset": 568108
@@ -22074,7 +22074,7 @@
       "offset": 454474,
       "length": 26,
       "text": "「당신　머리와　똑같군요！",
-      "fixed": "",
+      "fixed": "「당신　머리와　똑같군요　",
       "confirmed": false,
       "jp": "「あんたの頭の中とおんなじね",
       "jpOffset": 568354
@@ -22092,7 +22092,7 @@
       "offset": 454526,
       "length": 24,
       "text": "「…그렇게　심한　소릴…",
-      "fixed": "",
+      "fixed": "「…한　마디씩　많네　　",
       "confirmed": false,
       "jp": "「…一言多いヤツだな",
       "jpOffset": 568412
@@ -22110,7 +22110,7 @@
       "offset": 454576,
       "length": 34,
       "text": "「허허，둘다　남의　말을　할　만한",
-      "fixed": "",
+      "fixed": "「서로　남　말할　처지는　　　　　",
       "confirmed": false,
       "jp": "「お互い　人のことは",
       "jpOffset": 568462
@@ -22119,7 +22119,7 @@
       "offset": 454614,
       "length": 26,
       "text": "　처지는　아닌　것같은데…",
-      "fixed": "",
+      "fixed": "　아닌　것　같은데…　　　",
       "confirmed": false,
       "jp": "　言えぬと思うが…",
       "jpOffset": 568486
@@ -22173,7 +22173,7 @@
       "offset": 454752,
       "length": 26,
       "text": "「아무튼，폭호라는　마수가",
-      "fixed": "",
+      "fixed": "「아무래도　폭호란　마수가",
       "confirmed": false,
       "jp": "「どうやら　暴虎という魔獣が",
       "jpOffset": 568634
@@ -22182,7 +22182,7 @@
       "offset": 454782,
       "length": 34,
       "text": "　여기에　봉인되었던　모양이네요！",
-      "fixed": "",
+      "fixed": "　여기에　봉인되었던　모양이네요　",
       "confirmed": false,
       "jp": "　ここに封印されていたみたいね",
       "jpOffset": 568666
@@ -22200,7 +22200,7 @@
       "offset": 454842,
       "length": 20,
       "text": "「그렇다면，누군가가",
-      "fixed": "",
+      "fixed": "「그렇다는　건　누가",
       "confirmed": false,
       "jp": "「ということは　誰かが",
       "jpOffset": 568726
@@ -22209,7 +22209,7 @@
       "offset": 454866,
       "length": 32,
       "text": "　봉인을　풀었다는　이야기인데…",
-      "fixed": "",
+      "fixed": "　봉인을　풀고　말았다는　건가　",
       "confirmed": false,
       "jp": "　封印を解いてしまったのか",
       "jpOffset": 568752
@@ -22245,7 +22245,7 @@
       "offset": 454976,
       "length": 34,
       "text": "「허허，그런　것쯤은　알고　있네！",
-      "fixed": "",
+      "fixed": "「그런　것쯤은　알고　있네　　　　",
       "confirmed": false,
       "jp": "「そんなことは　わかっとるわい",
       "jpOffset": 568860
@@ -22254,7 +22254,7 @@
       "offset": 455014,
       "length": 32,
       "text": "　하지만，그렇게　정색을　하니…",
-      "fixed": "",
+      "fixed": "　하지만　그렇게　정색을　하면　",
       "confirmed": false,
       "jp": "　そんなにムキになると",
       "jpOffset": 568894
@@ -22263,7 +22263,7 @@
       "offset": 455054,
       "length": 18,
       "text": "　아무래도　자네가",
-      "fixed": "",
+      "fixed": "　정말로　자네가　",
       "confirmed": false,
       "jp": "　まるで　お主が",
       "jpOffset": 568924
@@ -22290,7 +22290,7 @@
       "offset": 455136,
       "length": 20,
       "text": "「…이런，텅비었군！",
-      "fixed": "",
+      "fixed": "「…텅비었구먼　　　",
       "confirmed": false,
       "jp": "「…カラッポじゃな",
       "jpOffset": 569008
@@ -22308,7 +22308,7 @@
       "offset": 455180,
       "length": 28,
       "text": "「도대체…누가　열었을까요？",
-      "fixed": "",
+      "fixed": "「대체　누가　열었을까요？　",
       "confirmed": false,
       "jp": "「いったい　誰が開けたのかしら？",
       "jpOffset": 569056
@@ -22354,7 +22354,7 @@
       "length": 20,
       "text": "「약초」를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「薬草」を見つけました",
       "jpOffset": 569328
     },
@@ -22444,7 +22444,7 @@
       "length": 20,
       "text": "２００Ｇ를　발견했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "２００Ｇを見つけました",
       "jpOffset": 569830
     },
@@ -23163,7 +23163,7 @@
       "offset": 458662,
       "length": 22,
       "text": "「총통！　다녀왔습니다",
-      "fixed": "",
+      "fixed": "「총통　돌아　왔습니다",
       "confirmed": false,
       "jp": "「総統　ただいま帰りましたでス",
       "jpOffset": 572686
@@ -23182,7 +23182,7 @@
       "length": 12,
       "text": "「텐호인가…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「テンホーか…",
       "jpOffset": 572746
     },
@@ -23191,7 +23191,7 @@
       "length": 16,
       "text": "　어떻게　됐지？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　どうであった？",
       "jpOffset": 572764
     },
@@ -23200,7 +23200,7 @@
       "length": 14,
       "text": "텐호라는　사내",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "テンホーと呼ばれた拳士",
       "jpOffset": 572788
     },
@@ -23208,7 +23208,7 @@
       "offset": 458770,
       "length": 22,
       "text": "「네，２개의　아이템을",
-      "fixed": "",
+      "fixed": "「네，２개의　아이템을",
       "confirmed": false,
       "jp": "「はい　この２つのアイテムが",
       "jpOffset": 572814
@@ -23217,7 +23217,7 @@
       "offset": 458796,
       "length": 18,
       "text": "　찾아왔습니다！！",
-      "fixed": "",
+      "fixed": "　발견했습니다　　",
       "confirmed": false,
       "jp": "　見つかりました",
       "jpOffset": 572846
@@ -23226,7 +23226,7 @@
       "offset": 458822,
       "length": 14,
       "text": "텐호란　사내는",
-      "fixed": "",
+      "fixed": "텐호는　　　　",
       "confirmed": false,
       "jp": "テンホーと呼ばれた拳士は",
       "jpOffset": 572870
@@ -23253,7 +23253,7 @@
       "offset": 458898,
       "length": 16,
       "text": "총통이라는　사내",
-      "fixed": "",
+      "fixed": "총통　　　　　　",
       "confirmed": false,
       "jp": "総統と呼ばれた男",
       "jpOffset": 572960
@@ -23262,7 +23262,7 @@
       "offset": 458918,
       "length": 28,
       "text": "「호오∼쓸　만한　물건이로군",
-      "fixed": "",
+      "fixed": "「허허…　쓸　만한　물건이군",
       "confirmed": false,
       "jp": "「ほほぉ…　なかなかのものだ",
       "jpOffset": 572980
@@ -23271,7 +23271,7 @@
       "offset": 458950,
       "length": 26,
       "text": "　하지만　내겐　필요없어！",
-      "fixed": "",
+      "fixed": "　다만　내겐　맞지　않겠어",
       "confirmed": false,
       "jp": "　だが　私には合わないようだな…",
       "jpOffset": 573012
@@ -30039,7 +30039,7 @@
       "offset": 529456,
       "length": 12,
       "text": "「이거야！！",
-      "fixed": "",
+      "fixed": "「이거로군　",
       "confirmed": false,
       "jp": "「これでスね",
       "jpOffset": 640308
@@ -31371,7 +31371,7 @@
       "offset": 535336,
       "length": 32,
       "text": "「이걸　등에　지고，여길　끝까지",
-      "fixed": "",
+      "fixed": "「이걸　짊어지고　이　길을　　　",
       "confirmed": false,
       "jp": "「これをかついで　この道を",
       "jpOffset": 650554
@@ -31380,7 +31380,7 @@
       "offset": 535372,
       "length": 20,
       "text": "　지나가야　하네！！",
-      "fixed": "",
+      "fixed": "　끝까지　건너게　　",
       "confirmed": false,
       "jp": "　渡りきるのぢゃ",
       "jpOffset": 650584
@@ -31399,7 +31399,7 @@
       "length": 18,
       "text": "「술을　마신데다가",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「酒を飲んだ上に",
       "jpOffset": 650626
     },
@@ -31407,7 +31407,7 @@
       "offset": 535436,
       "length": 26,
       "text": "　무거운　짐까지…괴롭군…",
-      "fixed": "",
+      "fixed": "　무거운　짐까진　괴롭군…",
       "confirmed": false,
       "jp": "　この重しはつらいのぅ…",
       "jpOffset": 650646
@@ -44205,7 +44205,7 @@
       "offset": 639552,
       "length": 10,
       "text": "「제기랄！",
-      "fixed": "",
+      "fixed": "「제기랄　",
       "confirmed": false,
       "jp": "「ちくしょー",
       "jpOffset": 771082
@@ -55851,7 +55851,7 @@
       "offset": 775506,
       "length": 18,
       "text": "　조금　있다　가자",
-      "fixed": "",
+      "fixed": "　조금　있다　간다",
       "confirmed": false,
       "jp": "　まだ出発しない",
       "jpOffset": 906504
@@ -55879,7 +55879,7 @@
       "length": 14,
       "text": "향해　출발했다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "目指して　出発しました",
       "jpOffset": 906592
     },
@@ -55888,7 +55888,7 @@
       "length": 6,
       "text": "………",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "おっと！　その少し前に",
       "jpOffset": 906622
     },
@@ -55897,7 +55897,7 @@
       "length": 22,
       "text": "새로운　이벤트　발생！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "こんな出来事がありました",
       "jpOffset": 906648
     },
@@ -55914,7 +55914,7 @@
       "offset": 775682,
       "length": 26,
       "text": "「이왕　여기까지　왔는데，",
-      "fixed": "",
+      "fixed": "「이왕　여기까지　왔는데　",
       "confirmed": false,
       "jp": "「せっかくじゃから　ついでに",
       "jpOffset": 906706
@@ -55923,7 +55923,7 @@
       "offset": 775712,
       "length": 24,
       "text": "　스마슈나　보고　갈까！",
-      "fixed": "",
+      "fixed": "　스마슈나　보고　갈까　",
       "confirmed": false,
       "jp": "　スマッシュの様子でも見ていくかの",
       "jpOffset": 906738
@@ -55987,7 +55987,7 @@
       "length": 8,
       "text": "　출발！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　出発！",
       "jpOffset": 906972
     },
@@ -68506,7 +68506,7 @@
       "length": 10,
       "text": "「제기랄…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「ちくしょー…",
       "jpOffset": 1059178
     },
@@ -77217,7 +77217,7 @@
       "offset": 967416,
       "length": 14,
       "text": "텐호라는　사내",
-      "fixed": "",
+      "fixed": "텐호　　　　　",
       "confirmed": false,
       "jp": "テンホーと呼ばれた拳士",
       "jpOffset": 1116358
@@ -77235,7 +77235,7 @@
       "offset": 967474,
       "length": 20,
       "text": "텐호라　불린　사내는",
-      "fixed": "",
+      "fixed": "텐호는　　　　　　　",
       "confirmed": false,
       "jp": "テンホーと呼ばれた拳士は",
       "jpOffset": 1116428
@@ -82590,7 +82590,7 @@
       "offset": 1023332,
       "length": 22,
       "text": "「그렇게　심한　말을…",
-      "fixed": "",
+      "fixed": "「…그렇게　심한　말을",
       "confirmed": false,
       "jp": "「…そこまで言うか？",
       "jpOffset": 1167190
@@ -82734,7 +82734,7 @@
       "offset": 1023778,
       "length": 14,
       "text": "「뭐라구요！？",
-      "fixed": "",
+      "fixed": "「열받아∼！　",
       "confirmed": false,
       "jp": "「むっか～！",
       "jpOffset": 1167626
@@ -82753,7 +82753,7 @@
       "length": 18,
       "text": "　내가　이렇게까지",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　わたしが　ここまで",
       "jpOffset": 1167674
     },
@@ -82762,7 +82762,7 @@
       "length": 28,
       "text": "　바보취급을　당하고　있는데",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　バカにされてるのよ",
       "jpOffset": 1167698
     },
@@ -82770,7 +82770,7 @@
       "offset": 1023878,
       "length": 30,
       "text": "　뭐라고　한마디쯤　해봐요！！",
-      "fixed": "",
+      "fixed": "　뭐라고　말　좀　해봐요！　　",
       "confirmed": false,
       "jp": "　なんとか言ってよ！",
       "jpOffset": 1167722
@@ -82806,7 +82806,7 @@
       "offset": 1023966,
       "length": 16,
       "text": "「한마디라…！？",
-      "fixed": "",
+      "fixed": "「내가　해줄까？",
       "confirmed": false,
       "jp": "「ナントカ！",
       "jpOffset": 1167808
@@ -82833,7 +82833,7 @@
       "offset": 1024018,
       "length": 28,
       "text": "　정말，용서하지　않겠어！！",
-      "fixed": "",
+      "fixed": "　정말　용서하지　않겠어！　",
       "confirmed": false,
       "jp": "　もう　本当に許せないわ！",
       "jpOffset": 1167860
@@ -82860,7 +82860,7 @@
       "offset": 1024094,
       "length": 22,
       "text": "　어서　덤벼보라고！！",
-      "fixed": "",
+      "fixed": "　어서　덤벼보게나　　",
       "confirmed": false,
       "jp": "　かかってくるがよい",
       "jpOffset": 1167940
@@ -82869,7 +82869,7 @@
       "offset": 1024124,
       "length": 34,
       "text": "　둘이　한꺼번에　덤벼도　괜찮아！",
-      "fixed": "",
+      "fixed": "　뭣하면　둘이　같이　덤벼도　좋네",
       "confirmed": false,
       "jp": "　なんなら　二人同時でもかまわんぞ",
       "jpOffset": 1167968
@@ -82878,7 +82878,7 @@
       "offset": 1024162,
       "length": 16,
       "text": "　자네들따위에게",
-      "fixed": "",
+      "fixed": "　자네들　따위에",
       "confirmed": false,
       "jp": "　お主らごときに",
       "jpOffset": 1168006
@@ -82887,7 +82887,7 @@
       "offset": 1024182,
       "length": 24,
       "text": "　내가　당할성싶은가！？",
-      "fixed": "",
+      "fixed": "　내가　당하겠는가？　　",
       "confirmed": false,
       "jp": "　わしが捕まえられるかの？",
       "jpOffset": 1168026
@@ -82905,7 +82905,7 @@
       "offset": 1024226,
       "length": 26,
       "text": "「절·대·로　용서못해！！",
-      "fixed": "",
+      "fixed": "「절·대　용서　못　해！　",
       "confirmed": false,
       "jp": "「絶・対・に・許せないっ！",
       "jpOffset": 1168078
@@ -82914,7 +82914,7 @@
       "offset": 1024256,
       "length": 20,
       "text": "　아타호，어서！！！",
-      "fixed": "",
+      "fixed": "　가요　아타호！　　",
       "confirmed": false,
       "jp": "　いくわよ　アターホー！",
       "jpOffset": 1168108
@@ -82932,7 +82932,7 @@
       "offset": 1024308,
       "length": 26,
       "text": "「말만　앞선　영감탱이가…",
-      "fixed": "",
+      "fixed": "「말만　앞선　영감탱이네！",
       "confirmed": false,
       "jp": "「口ほどにもないおじいさんね！",
       "jpOffset": 1168170
@@ -82941,7 +82941,7 @@
       "offset": 1024338,
       "length": 28,
       "text": "　이정도에서　용서하겠어요！",
-      "fixed": "",
+      "fixed": "　뭐　이　정도에서　용서하죠",
       "confirmed": false,
       "jp": "　ま　これくらいで許してあげるわ",
       "jpOffset": 1168204
@@ -82959,7 +82959,7 @@
       "offset": 1024392,
       "length": 28,
       "text": "「（휴우∼이제서야　확실하게",
-      "fixed": "",
+      "fixed": "「（왠지　이　아가씨　성격을",
       "confirmed": false,
       "jp": "「（なんか　こいつの性格が",
       "jpOffset": 1168266
@@ -82968,7 +82968,7 @@
       "offset": 1024424,
       "length": 32,
       "text": "　이　아가씨　성질을　알겠구만）",
-      "fixed": "",
+      "fixed": "　알　거　같은　느낌이구먼）　　",
       "confirmed": false,
       "jp": "　　わかったような気がするぞい）",
       "jpOffset": 1168296
@@ -82987,7 +82987,7 @@
       "length": 28,
       "text": "「생각했던　것보다　제법일세",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「思ったよりやるようぢゃの",
       "jpOffset": 1168356
     },
@@ -83013,7 +83013,7 @@
       "offset": 1024544,
       "length": 30,
       "text": "　설마　전혀　효과가　없었나？",
-      "fixed": "",
+      "fixed": "　설마　전혀　안　먹힌　건가？",
       "confirmed": false,
       "jp": "　まさか　ぜんぜん効いてないの？",
       "jpOffset": 1168420
@@ -83040,7 +83040,7 @@
       "offset": 1024608,
       "length": 14,
       "text": "　난，이래봬도",
-      "fixed": "",
+      "fixed": "　나는　명색이",
       "confirmed": false,
       "jp": "　わしは仮にも",
       "jpOffset": 1168490
@@ -83049,7 +83049,7 @@
       "offset": 1024630,
       "length": 28,
       "text": "　『백호권』도장의　사범일세",
-      "fixed": "",
+      "fixed": "　여기『백호권』의　사범일세",
       "confirmed": false,
       "jp": "　ここ『白虎拳』の師範ぢゃぞ",
       "jpOffset": 1168512
@@ -83058,7 +83058,7 @@
       "offset": 1024662,
       "length": 22,
       "text": "　그　정도의　공격으로",
-      "fixed": "",
+      "fixed": "　이　정도　공격으로　",
       "confirmed": false,
       "jp": "　この程度の攻撃で",
       "jpOffset": 1168544
@@ -83067,7 +83067,7 @@
       "offset": 1024688,
       "length": 24,
       "text": "　간단하게　쓰러지겠나！",
-      "fixed": "",
+      "fixed": "　쉽게　당하기야　하겠나",
       "confirmed": false,
       "jp": "　簡単にやられるわけがない",
       "jpOffset": 1168566
@@ -83328,7 +83328,7 @@
       "offset": 1025426,
       "length": 24,
       "text": "「백호권　사범？！　헤∼",
-      "fixed": "「백호권사범？！　헤에∼",
+      "fixed": "「백호권의　사범？　헤에",
       "confirmed": false,
       "jp": "「白虎拳の師範？　へ～",
       "jpOffset": 1169324
@@ -93957,7 +93957,7 @@
       "offset": 1116838,
       "length": 26,
       "text": "모르지만　기다리라고　해！",
-      "fixed": "",
+      "fixed": "모르겠지만　기다리세요！　",
       "confirmed": false,
       "jp": "知らないけど　待ってなさい！",
       "jpOffset": 710256
@@ -93966,7 +93966,7 @@
       "offset": 1116868,
       "length": 30,
       "text": "빚진　건　꼭　갚아줄테니까！！",
-      "fixed": "",
+      "fixed": "빚은　꼭　갚으러　갈테니까！　",
       "confirmed": false,
       "jp": "仮を返しに行くわよ！",
       "jpOffset": 710288
@@ -93975,7 +93975,7 @@
       "offset": 1116902,
       "length": 18,
       "text": "아타호，기회예요！",
-      "fixed": "",
+      "fixed": "아타호　기회예요！",
       "confirmed": false,
       "jp": "アターホー　チャンスよ！",
       "jpOffset": 710312
@@ -93984,7 +93984,7 @@
       "offset": 1116924,
       "length": 22,
       "text": "저런　사기꾼　할아범은",
-      "fixed": "",
+      "fixed": "저런　사기꾼　할아범　",
       "confirmed": false,
       "jp": "あんなインチキじいさん",
       "jpOffset": 710340
@@ -93993,7 +93993,7 @@
       "offset": 1116950,
       "length": 22,
       "text": "맘껏　혼내　주세요！！",
-      "fixed": "",
+      "fixed": "힘껏　혼내줘　버려요！",
       "confirmed": false,
       "jp": "思いっきりやっつけちゃいなさいよ！",
       "jpOffset": 710366
@@ -94002,7 +94002,7 @@
       "offset": 1116976,
       "length": 14,
       "text": "하지만，아타호",
-      "fixed": "",
+      "fixed": "하지만　아타호",
       "confirmed": false,
       "jp": "でも　アターホー",
       "jpOffset": 710404
@@ -94011,7 +94011,7 @@
       "offset": 1116994,
       "length": 24,
       "text": "당신도　충분히　강하니까",
-      "fixed": "",
+      "fixed": "당신도　충분히　강해요　",
       "confirmed": false,
       "jp": "あなたも十分強いわよ",
       "jpOffset": 710424
@@ -94020,7 +94020,7 @@
       "offset": 1117022,
       "length": 28,
       "text": "자신을　가져도　좋다구요！！",
-      "fixed": "",
+      "fixed": "더　자신을　가져도　좋다구요",
       "confirmed": false,
       "jp": "自信をもっと持っていいと思うわ",
       "jpOffset": 710448
@@ -94101,7 +94101,7 @@
       "offset": 1117464,
       "length": 22,
       "text": "꼭　가봐야　되겠다！！",
-      "fixed": "",
+      "fixed": "이건　꼭　가봐야겠어！",
       "confirmed": false,
       "jp": "こりゃ　行くしかねーな！",
       "jpOffset": 710918
@@ -95721,7 +95721,7 @@
       "offset": 1138208,
       "length": 30,
       "text": "「이곳은　통행금지　지역이다！",
-      "fixed": "「이곳은　통행금지　지역이다！",
+      "fixed": "「이·곳·은　통행금지다앗！　",
       "confirmed": false,
       "jp": "「こ・こ・は・通行禁止だーっ！",
       "jpOffset": 1303706
@@ -95739,7 +95739,7 @@
       "offset": 1138260,
       "length": 16,
       "text": "「알았다구！！！",
-      "fixed": "",
+      "fixed": "「알·았·다·구",
       "confirmed": false,
       "jp": "「わ・かっ・た・ぜー",
       "jpOffset": 1303762
@@ -95748,7 +95748,7 @@
       "offset": 1138280,
       "length": 20,
       "text": "　제길，피곤하구만！",
-      "fixed": "",
+      "fixed": "　쳇　피곤하게　구네",
       "confirmed": false,
       "jp": "　ゼーゼー　疲れたぜー",
       "jpOffset": 1303786
@@ -95766,7 +95766,7 @@
       "offset": 1138322,
       "length": 30,
       "text": "「하하하，충분히　단련했나！！",
-      "fixed": "",
+      "fixed": "「핫하하　단련이　부족하다！　",
       "confirmed": false,
       "jp": "「はっは　鍛えかたが　たりーん！",
       "jpOffset": 1303828
@@ -95784,7 +95784,7 @@
       "offset": 1138378,
       "length": 32,
       "text": "「이곳은　그　이름도　무시무시한",
-      "fixed": "",
+      "fixed": "「이곳은　무시무시한　　　　　　",
       "confirmed": false,
       "jp": "「ここは　恐ろしい",
       "jpOffset": 1303884
@@ -95793,7 +95793,7 @@
       "offset": 1138414,
       "length": 32,
       "text": "　‘이매망량’이란　괴물을　봉인",
-      "fixed": "",
+      "fixed": "　온갖　잡귀신을　봉인했다고　　",
       "confirmed": false,
       "jp": "　魑魅魍魎（ちみもうりょう）を",
       "jpOffset": 1303906
@@ -95802,7 +95802,7 @@
       "offset": 1138454,
       "length": 20,
       "text": "　해둔　사당이다！！",
-      "fixed": "",
+      "fixed": "　전해지는　사당이다",
       "confirmed": false,
       "jp": "　封印したといわれる　ほこらだ",
       "jpOffset": 1303944
@@ -95811,7 +95811,7 @@
       "offset": 1138478,
       "length": 26,
       "text": "　물론，이곳은　그　누구도",
-      "fixed": "",
+      "fixed": "　당연하지만　들어가는　건",
       "confirmed": false,
       "jp": "　当然のことだが　立ち入ることは",
       "jpOffset": 1303978
@@ -95820,7 +95820,7 @@
       "offset": 1138508,
       "length": 22,
       "text": "　출입할　수　없다！！",
-      "fixed": "",
+      "fixed": "　금지되어　있지　　　",
       "confirmed": false,
       "jp": "　禁止されている",
       "jpOffset": 1304014
@@ -99771,7 +99771,7 @@
       "offset": 1150178,
       "length": 20,
       "text": "　그곳에　가본　적이",
-      "fixed": "",
+      "fixed": "　호랑이동굴에　가본",
       "confirmed": false,
       "jp": "　虎の穴に行ったことが",
       "jpOffset": 1315854
@@ -99780,7 +99780,7 @@
       "offset": 1150202,
       "length": 28,
       "text": "　있다는　것처럼　들리는데！",
-      "fixed": "",
+      "fixed": "　적　있는　거처럼　말하는군",
       "confirmed": false,
       "jp": "　あるように聞こえるぞい",
       "jpOffset": 1315880
@@ -99798,7 +99798,7 @@
       "offset": 1150264,
       "length": 14,
       "text": "「어，이방이…",
-      "fixed": "「엇，　이쪽　",
+      "fixed": "「아차　이　쪽",
       "confirmed": false,
       "jp": "「おっと　こっちの",
       "jpOffset": 1315942
@@ -99825,7 +99825,7 @@
       "offset": 1150330,
       "length": 30,
       "text": "「아차！　아직　사범님　말씀을",
-      "fixed": "",
+      "fixed": "「아차　아직　사범님　얘기를　",
       "confirmed": false,
       "jp": "「おっと　まだ師範どのの話を",
       "jpOffset": 1316022
@@ -99834,7 +99834,7 @@
       "offset": 1150364,
       "length": 14,
       "text": "　안들었구나！",
-      "fixed": "",
+      "fixed": "　안　들었어　",
       "confirmed": false,
       "jp": "　聞いてないぞい",
       "jpOffset": 1316054
@@ -99852,7 +99852,7 @@
       "offset": 1150406,
       "length": 20,
       "text": "「무엇보다도…자네가",
-      "fixed": "",
+      "fixed": "「왔는가…　무엇보다",
       "confirmed": false,
       "jp": "「来たか…　とりあえず",
       "jpOffset": 1316098
@@ -99861,7 +99861,7 @@
       "offset": 1150430,
       "length": 28,
       "text": "　이렇게　와줘서　다행일세！",
-      "fixed": "",
+      "fixed": "　자네가　와줘서　다행이지만",
       "confirmed": false,
       "jp": "　お主が来てくれて助かったが",
       "jpOffset": 1316124
@@ -99870,7 +99870,7 @@
       "offset": 1150466,
       "length": 28,
       "text": "　가까이　오게나，아타호！！",
-      "fixed": "",
+      "fixed": "　덤벼　보게　아타호여！　　",
       "confirmed": false,
       "jp": "　かかってこい　アターホーよ！",
       "jpOffset": 1316160
@@ -99879,7 +99879,7 @@
       "offset": 1150498,
       "length": 26,
       "text": "　자네의　실력이　줄었는지",
-      "fixed": "",
+      "fixed": "　자네　실력이　무뎌졌는지",
       "confirmed": false,
       "jp": "　お主の腕が　にぶっておらぬか",
       "jpOffset": 1316194
@@ -99888,7 +99888,7 @@
       "offset": 1150528,
       "length": 20,
       "text": "　확인해　봐야겠네！",
-      "fixed": "",
+      "fixed": "　확인부터　하겠네！",
       "confirmed": false,
       "jp": "　確認してくれよう！",
       "jpOffset": 1316228
@@ -99906,7 +99906,7 @@
       "offset": 1150570,
       "length": 30,
       "text": "「…비록　선배이지만，시합에선",
-      "fixed": "",
+      "fixed": "「음！？　그렇게　나온다니！　",
       "confirmed": false,
       "jp": "「ぬっ！？　そう来たか！",
       "jpOffset": 1316274
@@ -99915,7 +99915,7 @@
       "offset": 1150604,
       "length": 34,
       "text": "　적당히　넘어가진　않을　겁니다！",
-      "fixed": "",
+      "fixed": "　선배라　해도　봐주지　않습니다！",
       "confirmed": false,
       "jp": "　先輩とはいえ　手加減はせぬぞ！",
       "jpOffset": 1316302
@@ -99933,7 +99933,7 @@
       "offset": 1150666,
       "length": 26,
       "text": "「우웃…역시　아타호구만！",
-      "fixed": "",
+      "fixed": "「음…　역시　아타호로군　",
       "confirmed": false,
       "jp": "「むぅ…　さすがアターホーじゃ",
       "jpOffset": 1316362
@@ -99942,7 +99942,7 @@
       "offset": 1150696,
       "length": 30,
       "text": "　기술은　옛날과　변함이　없군",
-      "fixed": "",
+      "fixed": "　기술은　예전과　다름이　없어",
       "confirmed": false,
       "jp": "　技のキレは昔と変わっとらんの",
       "jpOffset": 1316396
@@ -99951,7 +99951,7 @@
       "offset": 1150734,
       "length": 16,
       "text": "　하지만，설마…",
-      "fixed": "",
+      "fixed": "　하지만　설마　",
       "confirmed": false,
       "jp": "　しかし　まさか",
       "jpOffset": 1316434
@@ -99961,7 +99961,7 @@
       "length": 38,
       "text": "　그　정도로　만족하는　건　아니겠지？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　その程度で満足しておるのか？",
       "jpOffset": 1316454
     },
@@ -99978,7 +99978,7 @@
       "offset": 1150814,
       "length": 32,
       "text": "「지고　나서　이러쿵저러쿵하다니",
-      "fixed": "",
+      "fixed": "「음？　지고서　억지　부리는　건",
       "confirmed": false,
       "jp": "「む？　負け惜しみとは",
       "jpOffset": 1316510
@@ -99987,7 +99987,7 @@
       "offset": 1150850,
       "length": 26,
       "text": "　사범님답지　않은데요！？",
-      "fixed": "",
+      "fixed": "　사범님　답지　않은데요　",
       "confirmed": false,
       "jp": "　師範どのらしくないぞい",
       "jpOffset": 1316536
@@ -100131,7 +100131,7 @@
       "offset": 1151206,
       "length": 22,
       "text": "「…시간을　좀　주시죠",
-      "fixed": "",
+      "fixed": "「음…　시간을　주시죠",
       "confirmed": false,
       "jp": "「むぅ…　少し時間をくれまいか？",
       "jpOffset": 1316900
@@ -100140,7 +100140,7 @@
       "offset": 1151232,
       "length": 28,
       "text": "　현재로선　역부족이라는　걸",
-      "fixed": "",
+      "fixed": "　지금의　저로선　역부족인걸",
       "confirmed": false,
       "jp": "　今のワシでは役不足なのは",
       "jpOffset": 1316936
@@ -100150,7 +100150,7 @@
       "length": 16,
       "text": "　알고　있습니다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　よくわかっておる",
       "jpOffset": 1316970
     },
@@ -100158,7 +100158,7 @@
       "offset": 1151288,
       "length": 26,
       "text": "　최근　기량이　줄어들어서",
-      "fixed": "",
+      "fixed": "　최근　실력이　무뎌져서　",
       "confirmed": false,
       "jp": "　最近　腕が　なまっていて",
       "jpOffset": 1316992
@@ -100167,7 +100167,7 @@
       "offset": 1151318,
       "length": 24,
       "text": "　제　실력이　안나옵니다",
-      "fixed": "",
+      "fixed": "　힘을　다　못　냅니다　",
       "confirmed": false,
       "jp": "　どうにも　力を出し切れぬ",
       "jpOffset": 1317022
@@ -100186,7 +100186,7 @@
       "length": 20,
       "text": "「그걸　알고　있다면",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「それがわかっておるなら",
       "jpOffset": 1317068
     },
@@ -100194,7 +100194,7 @@
       "offset": 1151386,
       "length": 16,
       "text": "　이야기는　쉽지",
-      "fixed": "",
+      "fixed": "　얘기가　빠르지",
       "confirmed": false,
       "jp": "　話は早い",
       "jpOffset": 1317096
@@ -100212,7 +100212,7 @@
       "offset": 1151426,
       "length": 34,
       "text": "「전력을　다한　게　이　정도인가？",
-      "fixed": "",
+      "fixed": "「이게　자네의　전력인가？　　　　",
       "confirmed": false,
       "jp": "「これがお主の全力か？",
       "jpOffset": 1317130
@@ -100231,7 +100231,7 @@
       "length": 18,
       "text": "「무슨　뜻입니까？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「どういう意味じゃ！？",
       "jpOffset": 1317178
     },
@@ -100248,7 +100248,7 @@
       "offset": 1151520,
       "length": 14,
       "text": "「예전，자네의",
-      "fixed": "",
+      "fixed": "「예전　자네의",
       "confirmed": false,
       "jp": "「かつてのお主の",
       "jpOffset": 1317220
@@ -100258,7 +100258,7 @@
       "length": 24,
       "text": "　파워풀하고　다이나믹한",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　パワフルでダイナミックな",
       "jpOffset": 1317240
     },
@@ -100267,7 +100267,7 @@
       "length": 32,
       "text": "　기술에　비하면　지금의　일격은",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　技に比べれば　今の一撃なぞ",
       "jpOffset": 1317274
     },
@@ -100275,7 +100275,7 @@
       "offset": 1151606,
       "length": 34,
       "text": "　모기에　쏘인　정도에　불과하군…",
-      "fixed": "",
+      "fixed": "　모기에　물린　정도에　불과해…　",
       "confirmed": false,
       "jp": "　蚊に刺されたようなものじゃ…",
       "jpOffset": 1317306
@@ -100294,7 +100294,7 @@
       "length": 26,
       "text": "「…확실히　예전에　비하면",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「む…　たしかに　以前に比べれば",
       "jpOffset": 1317362
     },
@@ -100302,7 +100302,7 @@
       "offset": 1151692,
       "length": 28,
       "text": "　실력이　줄어든　느낌이야…",
-      "fixed": "",
+      "fixed": "　좀　실력이　줄어들었을지도",
       "confirmed": false,
       "jp": "　少し腕がなまったかもしれん",
       "jpOffset": 1317398
@@ -100320,7 +100320,7 @@
       "offset": 1151740,
       "length": 24,
       "text": "「너무　풀죽지　말게나！",
-      "fixed": "",
+      "fixed": "「뭐　너무　풀죽지　말게",
       "confirmed": false,
       "jp": "「まあ　あまり落ちこむな",
       "jpOffset": 1317446
@@ -100446,7 +100446,7 @@
       "offset": 1152120,
       "length": 12,
       "text": "「그렇다네！",
-      "fixed": "",
+      "fixed": "「그렇다네　",
       "confirmed": false,
       "jp": "「そうじゃ",
       "jpOffset": 1317812
@@ -104559,7 +104559,7 @@
       "offset": 1263022,
       "length": 30,
       "text": "　우리에게　공격을　해왔어……",
-      "fixed": "",
+      "fixed": "　우리에게　공격을　해왔어…　",
       "confirmed": false,
       "jp": "　俺たちに攻撃を仕掛けてきたんだ…",
       "jpOffset": 248728
@@ -120066,7 +120066,7 @@
       "offset": 1356634,
       "length": 12,
       "text": "　봤는데……",
-      "fixed": "",
+      "fixed": "　봤는데…　",
       "confirmed": false,
       "jp": "　見たんですけど…",
       "jpOffset": 314098
@@ -120849,7 +120849,7 @@
       "offset": 1359058,
       "length": 24,
       "text": "　들어본　이름인데……）",
-      "fixed": "",
+      "fixed": "　들어본　이름이군요…）",
       "confirmed": false,
       "jp": "　　聞いたような名前ですわね…）",
       "jpOffset": 316574
@@ -124620,7 +124620,7 @@
       "offset": 1371004,
       "length": 34,
       "text": "「흥！　너희들쯤은　식은죽먹기다！",
-      "fixed": "",
+      "fixed": "「흥　너희들쯤은　식은　죽　먹기야",
       "confirmed": false,
       "jp": "「ふん　あんたたちなら楽勝だわ",
       "jpOffset": 328366
@@ -124629,7 +124629,7 @@
       "offset": 1371042,
       "length": 26,
       "text": "　한꺼번에　덤벼보시지！！",
-      "fixed": "",
+      "fixed": "　한꺼번에　덤벼　보시지！",
       "confirmed": false,
       "jp": "　まとめて　かかってきなさい！",
       "jpOffset": 328400
@@ -124647,7 +124647,7 @@
       "offset": 1371094,
       "length": 12,
       "text": "「저，저런…",
-      "fixed": "",
+      "fixed": "「저，저런？",
       "confirmed": false,
       "jp": "「むむっ？",
       "jpOffset": 328460
@@ -124656,7 +124656,7 @@
       "offset": 1371110,
       "length": 32,
       "text": "　연약한　여자　한명에게　사내놈",
-      "fixed": "",
+      "fixed": "　가녀린…지　어떤지　모르겠지만",
       "confirmed": false,
       "jp": "　かよわい…　かどうかは知らんが",
       "jpOffset": 328474
@@ -124665,7 +124665,7 @@
       "offset": 1371150,
       "length": 28,
       "text": "　셋이　한꺼번에　덤비다니…",
-      "fixed": "",
+      "fixed": "　여자　하나에　남자　셋이　",
       "confirmed": false,
       "jp": "　女一人に　大の男が３人がかりで",
       "jpOffset": 328514
@@ -124674,7 +124674,7 @@
       "offset": 1371182,
       "length": 20,
       "text": "　정말　꼴불견이군！",
-      "fixed": "",
+      "fixed": "　시비라니　꼴사납군",
       "confirmed": false,
       "jp": "　からむとは　みっともないぞ",
       "jpOffset": 328550
@@ -124693,7 +124693,7 @@
       "length": 30,
       "text": "「뭐야？　영감은　물러나　있어",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「なんだ？　じいさんは引っ込んどけ",
       "jpOffset": 328624
     },
@@ -124701,7 +124701,7 @@
       "offset": 1371278,
       "length": 24,
       "text": "　방해하면　다칠걸！！！",
-      "fixed": "",
+      "fixed": "　방해하면　다친다고　　",
       "confirmed": false,
       "jp": "　ジャマすると　ケガするぜ",
       "jpOffset": 328662
@@ -124719,7 +124719,7 @@
       "offset": 1371334,
       "length": 16,
       "text": "「그래요　영감님",
-      "fixed": "",
+      "fixed": "「그래요　아저씨",
       "confirmed": false,
       "jp": "「そうそう　おじさん",
       "jpOffset": 328716
@@ -124729,7 +124729,7 @@
       "length": 26,
       "text": "　당신과는　상관없잖아요…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　あんたには関係ないわ…",
       "jpOffset": 328740
     },
@@ -124738,7 +124738,7 @@
       "length": 22,
       "text": "　（！？　저　상처는…",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "（！？　あのキズは…",
       "jpOffset": 328772
     },
@@ -124746,7 +124746,7 @@
       "offset": 1371414,
       "length": 28,
       "text": "　푸훗，설마　그럴　리가…）",
-      "fixed": "",
+      "fixed": "　후훗　설마　그럴　리가…）",
       "confirmed": false,
       "jp": "　ふふ　まさかね…）",
       "jpOffset": 328796
@@ -124764,7 +124764,7 @@
       "offset": 1371468,
       "length": 32,
       "text": "「이　사람들이　사람을　영감이니",
-      "fixed": "",
+      "fixed": "「몰려　들어서　사람을　영감이니",
       "confirmed": false,
       "jp": "「人を　よってたかって　じいさんだの",
       "jpOffset": 328846
@@ -124773,7 +124773,7 @@
       "offset": 1371504,
       "length": 28,
       "text": "　아저씨니　하며　제멋대로…",
-      "fixed": "",
+      "fixed": "　아저씨라느니　말해대고…　",
       "confirmed": false,
       "jp": "　おじさんだの言いおって…",
       "jpOffset": 328886
@@ -124782,7 +124782,7 @@
       "offset": 1371540,
       "length": 26,
       "text": "　나를　화나게　만들어！！",
-      "fixed": "",
+      "fixed": "　나를　화나게　했겠다！　",
       "confirmed": false,
       "jp": "　ワシを　怒らせおったな！",
       "jpOffset": 328920
@@ -124791,7 +124791,7 @@
       "offset": 1371570,
       "length": 28,
       "text": "　사람　좋아　보여도　화나면",
-      "fixed": "",
+      "fixed": "　사람　좋아　보여도　화나면",
       "confirmed": false,
       "jp": "　こう見えても　怒ると",
       "jpOffset": 328950
@@ -124800,7 +124800,7 @@
       "offset": 1371602,
       "length": 26,
       "text": "　무서워요，이　아저씨！！",
-      "fixed": "",
+      "fixed": "　나는　무섭단　말이다！　",
       "confirmed": false,
       "jp": "　ワシはこわいんじゃぞ！",
       "jpOffset": 328976
@@ -124818,7 +124818,7 @@
       "offset": 1371670,
       "length": 20,
       "text": "「제길…두고보자！！",
-      "fixed": "",
+      "fixed": "「제길　두고　보자！",
       "confirmed": false,
       "jp": "「ちくしょう　おぼえてやがれ！",
       "jpOffset": 329046
@@ -124836,7 +124836,7 @@
       "offset": 1371720,
       "length": 20,
       "text": "「저런…바보녀석들！",
-      "fixed": "",
+      "fixed": "「허허　말뿐이구먼　",
       "confirmed": false,
       "jp": "「ほっほ　口ほどにもない",
       "jpOffset": 329110
@@ -124845,7 +124845,7 @@
       "offset": 1371748,
       "length": 30,
       "text": "　실력은　없고，입만　살아서…",
-      "fixed": "",
+      "fixed": "　저런　뻔한　대사나　남기다니",
       "confirmed": false,
       "jp": "　あんな捨てゼリフを残すようでは",
       "jpOffset": 329142
@@ -124854,7 +124854,7 @@
       "offset": 1371782,
       "length": 20,
       "text": "　녀석들은　틀림없이",
-      "fixed": "",
+      "fixed": "　놈들은　그냥　조연",
       "confirmed": false,
       "jp": "　ヤツらは　ただのワキ役…",
       "jpOffset": 329178
@@ -124863,7 +124863,7 @@
       "offset": 1371806,
       "length": 26,
       "text": "　터지는　게　전문일거야…",
-      "fixed": "",
+      "fixed": "　게다가　당하는　역이구먼",
       "confirmed": false,
       "jp": "　しかも　下っぱの　やられ専門じゃの",
       "jpOffset": 329208
@@ -124891,7 +124891,7 @@
       "length": 26,
       "text": "（역시　생각했던　대로야）",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "（たしかに　そのとおりね）",
       "jpOffset": 329288
     },
@@ -124917,7 +124917,7 @@
       "offset": 1371966,
       "length": 24,
       "text": "　영감은　입만　살았었군",
-      "fixed": "",
+      "fixed": "　입만　산　아저씨였잖아",
       "confirmed": false,
       "jp": "　口だけのオヤジだったようね",
       "jpOffset": 329370
@@ -124926,7 +124926,7 @@
       "offset": 1371998,
       "length": 16,
       "text": "　자，네놈들！！",
-      "fixed": "",
+      "fixed": "　자　너희들　　",
       "confirmed": false,
       "jp": "　さ　あんたたち",
       "jpOffset": 329406
@@ -124935,7 +124935,7 @@
       "offset": 1372018,
       "length": 22,
       "text": "　한꺼번에　덤벼라！！",
-      "fixed": "",
+      "fixed": "　한꺼번에　덤벼！　　",
       "confirmed": false,
       "jp": "　かかってらっしゃい！",
       "jpOffset": 329426
@@ -124944,7 +124944,7 @@
       "offset": 1372044,
       "length": 30,
       "text": "　절대로　봐주지　않을　테다！",
-      "fixed": "",
+      "fixed": "　봐주지　않고　상대해　줄게　",
       "confirmed": false,
       "jp": "　手加減なしで　相手してあげるわ",
       "jpOffset": 329452
@@ -124962,7 +124962,7 @@
       "offset": 1372108,
       "length": 26,
       "text": "「흥！　그　잘난　얼굴에서",
-      "fixed": "",
+      "fixed": "「흥！　그　새침한　얼굴을",
       "confirmed": false,
       "jp": "「ふん！　そのスカした顔を",
       "jpOffset": 329522
@@ -124971,7 +124971,7 @@
       "offset": 1372138,
       "length": 26,
       "text": "　피눈물을　쏟게　해주마！",
-      "fixed": "",
+      "fixed": "　울상으로　만들어　주마！",
       "confirmed": false,
       "jp": "　泣き顔にしてやるぜ！",
       "jpOffset": 329552
@@ -124989,7 +124989,7 @@
       "offset": 1372196,
       "length": 34,
       "text": "「그래？！　자신있으면　해보시지！",
-      "fixed": "",
+      "fixed": "「할　수　있으면　해　보시지！　　",
       "confirmed": false,
       "jp": "「やれるもんなら　やってみなさい！",
       "jpOffset": 329602
@@ -125016,7 +125016,7 @@
       "offset": 1372304,
       "length": 22,
       "text": "「으∼아이구　아파라！",
-      "fixed": "",
+      "fixed": "「으악∼　아파라∼！　",
       "confirmed": false,
       "jp": "「うぉ～　いてぇ～！",
       "jpOffset": 329730
@@ -125052,7 +125052,7 @@
       "offset": 1372408,
       "length": 24,
       "text": "「흥…빨리　사라져버렷！",
-      "fixed": "",
+      "fixed": "「흥　냉큼　돌아가시지！",
       "confirmed": false,
       "jp": "「ふん　とっとと帰りなさい！",
       "jpOffset": 329838
@@ -125062,7 +125062,7 @@
       "length": 18,
       "text": "검정도복의　사내들",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "黒い道着の拳士たち",
       "jpOffset": 329878
     },
@@ -125070,7 +125070,7 @@
       "offset": 1372466,
       "length": 10,
       "text": "「제기랄！",
-      "fixed": "",
+      "fixed": "「제기랄　",
       "confirmed": false,
       "jp": "「ちくしょー",
       "jpOffset": 329900
@@ -125079,7 +125079,7 @@
       "offset": 1372480,
       "length": 14,
       "text": "　두고보자！！",
-      "fixed": "",
+      "fixed": "　두고　보자　",
       "confirmed": false,
       "jp": "　おぼえてろーっ",
       "jpOffset": 329916
@@ -125439,7 +125439,7 @@
       "offset": 1373654,
       "length": 14,
       "text": "「자，네녀석들",
-      "fixed": "",
+      "fixed": "「자　너희들　",
       "confirmed": false,
       "jp": "「さ　あんたたち",
       "jpOffset": 331082
@@ -125448,7 +125448,7 @@
       "offset": 1373672,
       "length": 22,
       "text": "　한꺼번에　덤비시지！",
-      "fixed": "",
+      "fixed": "　한꺼번에　덤벼！　　",
       "confirmed": false,
       "jp": "　かかってらっしゃい！",
       "jpOffset": 331102
@@ -125457,7 +125457,7 @@
       "offset": 1373702,
       "length": 28,
       "text": "　적당히　봐주진　않겠어！！",
-      "fixed": "",
+      "fixed": "　봐주지　않고　상대해　줄게",
       "confirmed": false,
       "jp": "　手加減なしで　相手してあげるわ",
       "jpOffset": 331132
@@ -125475,7 +125475,7 @@
       "offset": 1373764,
       "length": 30,
       "text": "「흥！　네　그　잘난　얼굴에서",
-      "fixed": "",
+      "fixed": "「흥！　그　새침한　얼굴을　　",
       "confirmed": false,
       "jp": "「ふん！　そのスカした顔を",
       "jpOffset": 331202
@@ -125484,7 +125484,7 @@
       "offset": 1373798,
       "length": 28,
       "text": "　피눈물을　쏟게　해주마！！",
-      "fixed": "",
+      "fixed": "　울상으로　만들어　주마！　",
       "confirmed": false,
       "jp": "　泣き顔にしてやるぜ！",
       "jpOffset": 331232
@@ -125502,7 +125502,7 @@
       "offset": 1373858,
       "length": 34,
       "text": "「…해볼테면　맘대로　해보시지！！",
-      "fixed": "",
+      "fixed": "「할　수　있으면　해　보시지！　　",
       "confirmed": false,
       "jp": "「やれるもんなら　やってみなさい！",
       "jpOffset": 331282
