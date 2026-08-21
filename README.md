@@ -19,6 +19,18 @@ suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이
 일원화되어 있음 — `compile-gfx fld original/jp/GENSE.FLD out/`.
 이 저장소에는 **재삽입** 쪽만 둔다(`kr-patch/tools/cara-fnt.js`의 폰트 교체 등).
 
+### 로컬 준비
+
+배포 사이트를 이용하는 데는 필요 없고, **저장소의 도구를 돌릴 때만** 필요하다.
+
+```
+npm install
+```
+
+`iconv-lite`(CP949 인코딩) 하나를 받는다. 텍스트 파이프라인(`kr-patch/tools/hwanse-text.js`,
+`hwanse-names.js`, `gense-text.js`, `gense-names.js`, `debug-menu.js`)이 전부 이 모듈에
+의존하므로, 새로 클론한 뒤 이걸 건너뛰면 `Cannot find module 'iconv-lite'`로 실패한다.
+
 ---
 
 ## 기술 노트
