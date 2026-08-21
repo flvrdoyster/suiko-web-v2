@@ -92,8 +92,17 @@ function decodeCp949(bytes) {
     return null;
   }
 }
+// 매핑 없는 문자를 '?'로 뭉개지 않고 실패시킨다 — 이유는 hwanse-text.js 동명 함수 주석 참고.
 function encodeCp949(str) {
-  return iconv.encode(str, 'cp949');
+  const out = iconv.encode(str, 'cp949');
+  const lost = [...str].filter((ch) => ch !== '?' && iconv.encode(ch, 'cp949').length === 1
+    && iconv.encode(ch, 'cp949')[0] === 0x3f);
+  if (lost.length) {
+    const shown = [...new Set(lost)].map((c) =>
+      `${JSON.stringify(c)}(U+${c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')})`).join(', ');
+    throw new Error(`CP949로 인코딩할 수 없는 문자: ${shown} — ${JSON.stringify(str)}`);
+  }
+  return out;
 }
 function isHangulSyllable(buf, off) {
   if (buf[off] === 0xa1) return false; // full-width space/middle-dot, not Hangul

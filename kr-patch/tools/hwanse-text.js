@@ -109,8 +109,18 @@ function decodeCp949(bytes) {
     return null;
   }
 }
+// iconv-lite는 매핑 없는 문자를 조용히 '?'(0x3f) 한 바이트로 바꾼다 — 반각이라 길이 검사도
+// 못 거른다(예: '・' 두 개 = 1B×2 = 2B로 전각 1글자 슬롯을 통과). 매핑 누락은 실패시킨다.
 function encodeCp949(str) {
-  return iconv.encode(str, 'cp949');
+  const out = iconv.encode(str, 'cp949');
+  const lost = [...str].filter((ch, i) => ch !== '?' && iconv.encode(ch, 'cp949')[0] === 0x3f
+    && iconv.encode(ch, 'cp949').length === 1);
+  if (lost.length) {
+    const shown = [...new Set(lost)].map((c) =>
+      `${JSON.stringify(c)}(U+${c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')})`).join(', ');
+    throw new Error(`CP949로 인코딩할 수 없는 문자: ${shown} — ${JSON.stringify(str)}`);
+  }
+  return out;
 }
 
 // Walks the buffer one character (not byte) at a time — see gense-text.js's extract for

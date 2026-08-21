@@ -677,6 +677,19 @@ const SEARCH_NORM_MAP = { ' ': '　', '!': '！', '?': '？', ',': '，', '~': '
 const SEARCH_NORM_RE = /[ !?,~～]/g;
 function searchNorm(s) { return s.replace(SEARCH_NORM_RE, (c) => SEARCH_NORM_MAP[c]); }
 
+// 입력을 게임 KR 표기로 맞춘다: 공백·물결표(～→∼)·가운뎃점(・→·, JP엔 있지만 CP949 매핑이
+// 없어 그대로 두면 "?"로 깨진다)을 바꾸고, 반각 ASCII(!-}) 전체를 +0xFEE0으로 전각화한다
+// (숫자·영문도 이 게임 KR 텍스트는 전부 전각 — ２００Ｇ, ＤＳ２호 등). `ver.1.1`/`"%s"`처럼
+// 반각이 정상인 문자열(코퍼스에 `.`나 `%`로 식별 가능)만 건너뛴다. 1글자→1글자라 캐럿 위치가
+// 유지된다. 수정칸과 fill bar가 공유한다.
+const GAME_FORM_RE = /[\x20-\x7e～・]/;
+const GAME_FORM_SKIP_RE = /[.%]/;
+function toGameForm(s) {
+  const out = s.replace(/ /g, '　').replace(/[~～]/g, '∼').replace(/・/g, '·');
+  if (GAME_FORM_SKIP_RE.test(out)) return out;
+  return out.replace(/[!-}]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0xFEE0));
+}
+
 // A row counts as "미검토" if it has neither an edit nor a 확정(reviewed, no change needed)
 // mark — i.e. nobody has looked at it yet. Replaces the old byte-length "문제 있는 것만"
 // checkbox, which duplicated the inline Byte column (already shows over/under in red) and
@@ -1031,7 +1044,9 @@ function render() {
 // same as editing one row by hand). Only makes sense with "완전 일치" narrowing the rows
 // down to occurrences of one exact original string (e.g. a repeated speaker-name line).
 function applyFill() {
-  const val = document.getElementById('fillInput').value;
+  const input = document.getElementById('fillInput');
+  if (GAME_FORM_RE.test(input.value)) input.value = toGameForm(input.value); // 수정칸과 동일 보정
+  const val = input.value;
   if (!val) return;
   const rows = filteredRows();
   for (const e of rows) {
@@ -1211,15 +1226,10 @@ function renderRow(e, idx) {
       ta.dataset.key = k;
       ta.addEventListener('focus', () => { if (curSection === 'dialogue' && ctxAutoShow) showContext(e); });
       ta.addEventListener('input', () => {
-        // Auto-convert typed half-width space / ! / ? / , to full-width (U+3000/FF01/FF1F/
-        // FF0C), and any tilde variant (halfwidth ~ U+007E, fullwidth～ U+FF5E) to ∼ U+223C —
-        // the game's own KR text exclusively uses these full-width forms (JP uses U+FF5E for
-        // tilde, which is why typing it here easily slips in), so anything else renders as a
-        // different/wrong glyph in the actual game font. Each is 1-char→1-char so the caret
-        // position stays valid.
-        if (/[ !?,~～]/.test(ta.value)) {
+        // 입력 즉시 게임 표기로 맞춘다(toGameForm 주석 참고). 1글자→1글자라 캐럿이 유지된다.
+        if (GAME_FORM_RE.test(ta.value)) {
           const s = ta.selectionStart, en = ta.selectionEnd;
-          ta.value = ta.value.replace(/ /g, '　').replace(/!/g, '！').replace(/\?/g, '？').replace(/,/g, '，').replace(/[~～]/g, '∼');
+          ta.value = toGameForm(ta.value);
           ta.setSelectionRange(s, en);
         }
         const v = ta.value;

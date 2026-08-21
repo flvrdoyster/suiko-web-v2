@@ -165,8 +165,16 @@ const server = http.createServer(async (req, res) => {
         let toSave = edit.fixed || '';
         if (toSave) {
           const need = requiredLength(section, entry);
-          toSave = padToFit(section, toSave, need);
-          const got = encodeFor(section, toSave).length;
+          // encodeCp949는 매핑 없는 문자를 만나면 던진다 — 그대로 올리면 배치 전체가 500으로
+          // 죽으므로, 이 편집만 실패로 기록하고 나머지는 계속 처리한다.
+          let got;
+          try {
+            toSave = padToFit(section, toSave, need);
+            got = encodeFor(section, toSave).length;
+          } catch (err) {
+            results[key] = { ok: false, error: String(err.message || err) };
+            continue;
+          }
           if (got !== need) {
             results[key] = { ok: false, error: `byte ${got}/${need}`, need, got };
             continue;
