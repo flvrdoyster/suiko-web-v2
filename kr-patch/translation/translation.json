@@ -56229,7 +56229,7 @@
       "offset": 778136,
       "length": 16,
       "text": "　　아타호의　집",
-      "fixed": "　아타호의　거처",
+      "fixed": "　아타호의거처　",
       "confirmed": false,
       "jp": "　アターホーの家",
       "jpOffset": 362304
@@ -56463,8 +56463,8 @@
       "offset": 778630,
       "length": 14,
       "text": "　주작의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "　주작의시련　",
+      "confirmed": false,
       "jp": "　朱雀の試練",
       "jpOffset": 362782
     },
@@ -56472,8 +56472,8 @@
       "offset": 778648,
       "length": 14,
       "text": "　창룡의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "　창룡의시련　",
+      "confirmed": false,
       "jp": "　蒼龍の試練",
       "jpOffset": 362798
     },
@@ -56481,8 +56481,8 @@
       "offset": 778666,
       "length": 14,
       "text": "　현무의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "　현무의시련　",
+      "confirmed": false,
       "jp": "　玄武の試練",
       "jpOffset": 362814
     },
@@ -56490,8 +56490,8 @@
       "offset": 778684,
       "length": 14,
       "text": "　백호의　시련",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "　백호의시련　",
+      "confirmed": false,
       "jp": "　白虎の試練",
       "jpOffset": 362830
     },
@@ -74535,8 +74535,8 @@
       "offset": 959088,
       "length": 12,
       "text": "아타호의　집",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "아타호의집　",
+      "confirmed": false,
       "jp": "アターホーの家",
       "jpOffset": 894550
     },
