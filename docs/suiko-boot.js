@@ -147,10 +147,33 @@
           console.log('[suiko-boot] game covering desktop -> reveal');
           clearInterval(watch);
           setTimeout(reveal, 600); // let the first game frame settle
+          watchGameExit();
         }
       }, 250);
       // failsafe: if detection never fires, don't leave the cover stuck forever
       setTimeout(reveal, 90000);
+
+      // ---- game-exit detection (mirror of the above) ----
+      // Once the game has covered the desktop, watch for the same teal fraction rising
+      // back up — the player quit the game and Win95 is showing its desktop again. Same
+      // 250ms cadence as the boot watch above; still needs 2 consecutive high samples
+      // (~500ms) so a one-frame teal-ish flicker doesn't false-trigger a stop mid-play.
+      function watchGameExit() {
+        var highStreak = 0;
+        var watchExit = setInterval(function () {
+          var teal = tealFraction();
+          if (teal < 0) return;
+          if (teal < 0.30) { highStreak = 0; return; }
+          if (++highStreak < 2) return;
+          clearInterval(watchExit);
+          console.log('[suiko-boot] desktop reappeared -> stopping emulation');
+          Module._neil_toggle_pause();
+          // cover는 시작 클릭 때 이미 hidden=false로 켜둔 채 안 꺼서, overlay만 다시
+          // 보이면 그 스플래시 이미지가 뜬다(정지된 데스크톱 대신 첫 화면처럼 보임).
+          overlay.classList.remove('hidden');
+          showToast('게임이 종료되어 에뮬레이션을 정지했습니다. 다시 플레이하려면 새로고침하세요.', 0);
+        }, 250);
+      }
     });
   }
 
