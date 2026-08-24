@@ -196,27 +196,19 @@ const server = http.createServer(async (req, res) => {
           if (keys.length) touchedUnits.set(unit[0].offset, { lines: unit, keys });
         }
       }
-      // 테이블 구간 전체에서 하나뿐인 실측 상한 — hwanse-text.js의 computeLineCap() 주석 참고.
-      const cap = HWANSE_TEXT.computeLineCap(dialogueSorted.filter((e) => e.table != null));
+      // 단위 합계가 원본과 같은가만 강제한다(다음 단위 포인터 침범 방지 — 물리 제약). 한
+      // 줄이 표시 폭 어림값(hwanse-text.js LINE_CAP, 24B)을 넘는지는 여기서 안 본다 — 원본
+      // 텍스트도 종종 넘어서 강제할 수 없다; 그 경고는 저장을 막지 않고 editor.html이
+      // 따로 보여준다. 어긋나면 이 단위에 걸린 편집을 전부 되돌린다 — 일부만 롤백하면
+      // 남은 편집이 여전히 규칙을 깨뜨린 채 저장돼 다음 빌드가 실패한다.
       for (const [unitOffset, { lines, keys }] of touchedUnits) {
-        // 두 조건을 같이 본다: ①단위 합계가 원본과 같은가(다음 단위 포인터 침범 방지),
-        // ②각 줄이 실측 상한 이하인가 — 합계만 보면 한 줄이 옆줄 자리를 다 뺏어 그 줄만
-        // 창 폭을 넘어 잘릴 수 있다(hwanse-text.js build() 주석 참고). 둘 중 하나라도
-        // 어긋나면 이 단위에 걸린 편집을 전부 되돌린다 — 일부만 롤백하면 남은 편집이
-        // 여전히 규칙을 깨뜨린 채 저장돼 다음 빌드가 실패한다.
         const need = lines.reduce((s, e) => s + e.length, 0);
-        let got = 0, overCap = null;
+        let got = 0;
         try {
-          for (const e of lines) {
-            const n = encodeFor('dialogue', e.fixed || e.text).length;
-            if (n > cap && !overCap) overCap = { offset: e.offset, n };
-            got += n;
-          }
+          for (const e of lines) got += encodeFor('dialogue', e.fixed || e.text).length;
         } catch (err) { got = -1; }
-        if (got === need && !overCap) continue;
-        const reason = overCap
-          ? `줄 @${overCap.offset} ${overCap.n}B가 실측 최대 ${cap}B 초과`
-          : `단위 합계 byte ${got}/${need}`;
+        if (got === need) continue;
+        const reason = `단위 합계 byte ${got}/${need}`;
         for (const k of keys) {
           const off = parseInt(k.slice(k.indexOf(':') + 1), 10);
           const e = dialogueSorted.find((x) => x.offset === off);

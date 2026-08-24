@@ -198,22 +198,19 @@ function tableUnits(entries) {
   return units;
 }
 
-// 한 줄이 넘으면 안 되는 상한. 표시 폭(픽셀) 자체는 모르니(NOTES.md 3.4: 줄 높이·글자 폭은
-// `40 15`가 정하고 창마다 다르며 정확한 값은 `40 0d` 핸들러 디스어셈블이 필요해 미착수)
-// "실제로 이미 그 길이로 렌더링된 적 있다"는 실측값에서 근거를 가져온다.
+// 한 줄 표시 폭의 **어림 기준값** — 12자 상당(CP949 24바이트), 끝의 전각 공백(원본 슬롯
+// 패딩)은 빼고 잰다. 표시 폭(픽셀) 자체는 모르니(NOTES.md 3.4: 줄 높이·글자 폭은 `40 15`가
+// 정하고 창마다 다르며 정확한 값은 `40 0d` 핸들러 디스어셈블이 필요해 미착수) 정확한 창
+// 폭이 아니라 사람이 게임 화면에서 눈대중한 값이다.
 //
-// **테이블 구간 전체에서 딱 하나**를 쓴다(현재 36B). 처음엔 테이블별로, 다음엔 단위 줄 수별로
-// 좁게 잡아봤는데 둘 다 표본이 적은 쪽에서 근거 없이 낮게 잠겼다(요일 8개짜리 표는 원본이
-// 전부 한 글자라 cap이 2B). 어차피 줄마다 어디서 끊을지는 사람이 눈으로 맞추는 작업이고,
-// 이 상한의 역할은 "합계만 맞추다가 한 줄이 터무니없이 길어지는 것"을 막는 가드레일뿐이라
-// 세분할 이유가 없다 — 세분하면 가드레일이 아니라 작업 방해가 된다.
-//
-// ⚠ 이건 창의 진짜 픽셀 한도가 아니다. **에뮬레이터 실기 검증 전**이니 실제로 길이를 바꾼
-// 빌드를 돌리기 전에 인게임 확인이 필요하다.
-function computeLineCap(entries) {
-  let cap = 0;
-  for (const e of entries) if (e.length > cap) cap = e.length;
-  return cap;
+// **build()는 이 값을 강제하지 않는다** — 원본(정식판) 텍스트조차 이 값을 넘는 줄이 흔하다
+// (예: table@945876의 194/1,434줄). 강제하면 아무도 손 안 댄 단위의 빌드까지 실패한다.
+// 그래서 이건 순전히 참고용 상수 + 계산 함수이고, 실제 경고 표시는 editor.html/editor.js
+// 쪽의 소관이다(저장은 막지 않고 다른 색으로만 알려준다) — 단위 합계(need) 일치만 build()가
+// 강제하는 물리 제약이다(다음 단위 포인터 침범 방지).
+const LINE_CAP = 24;
+function capByteLen(str) {
+  return encodeCp949(String(str).replace(/　+$/u, '')).length;
 }
 
 // Re-encode entries' `fixed` (falling back to `text`) into `buf`.
@@ -222,11 +219,12 @@ function computeLineCap(entries) {
 //  1) 일반 대사 — 원본 슬롯에 **같은 바이트 길이로** 덮어쓴다. 장면 진입점에서 `@`를 세며
 //     순차로 읽히는 구조라, 한 줄을 늘리면 그 뒤 `.data`가 전부 밀려 relocation이 깨진다.
 //  2) 포인터 테이블 구간(`table` 플래그) — **단위 단위로 다시 채운다.** 단위 안에서는 줄
-//     사이 바이트를 재분배할 수 있지만 두 조건을 같이 건다: ①단위 합계는 원본과 같아야
-//     한다(다음 단위 포인터 침범 방지, 우리가 아는 확실한 사실), ②각 줄은 실측 상한
-//     (computeLineCap(), 테이블 구간 전체에서 하나) 이하여야 한다 — 합계만 보면 한 줄이
-//     옆줄 자리를 다 뺏어 그 줄만 창 폭을 넘어 잘릴 수 있다. 종결 4바이트(`40 XX 00 00`,
-//     XX는 계속/끝 제어코드)는 각 줄의 원본 것을 그대로 따라 옮긴다.
+//     사이 바이트를 재분배할 수 있다 — 강제하는 조건은 **단위 합계가 원본과 같아야 한다**
+//     (다음 단위 포인터 침범 방지) 하나뿐이다. 한 줄이 LINE_CAP(24B, 끝 공백 제외)을
+//     넘는지는 여기서 안 본다 — 원본 텍스트도 종종 넘어서 강제하면 안 된다(위 LINE_CAP
+//     주석 참고); 그 경고는 editor.html/editor.js가 저장을 막지 않는 선에서 보여준다.
+//     종결 4바이트(`40 XX 00 00`, XX는 계속/끝 제어코드)는 각 줄의 원본 것을 그대로
+//     따라 옮긴다.
 //
 // entries에는 **해당 단위의 모든 줄**이 들어와야 한다(수정 안 된 줄 포함) — 앞 줄이 길어지면
 // 뒤 줄도 함께 이동해야 하기 때문이다. build.js가 dialogue 전체를 넘긴다.
@@ -248,17 +246,9 @@ function build(buf, entries) {
   }
 
   const tableEntries = sorted.filter((e) => e.table != null);
-  const cap = computeLineCap(tableEntries);
   for (const unit of tableUnits(tableEntries)) {
     const need = unit.reduce((s, e) => s + e.length, 0);
     const encs = unit.map((e) => encodeCp949(e.fixed != null && e.fixed !== '' ? e.fixed : e.text));
-    const over = encs.map((b, i) => (b.length > cap ? i : -1)).filter((i) => i >= 0);
-    if (over.length) {
-      throw new Error(
-        `table unit @0x${unit[0].offset.toString(16)}: line(s) over the observed max (${cap}B): ` +
-        over.map((i) => `@0x${unit[i].offset.toString(16)} ${encs[i].length}B ${JSON.stringify(unit[i].fixed || unit[i].text)}`).join(', ')
-      );
-    }
     const got = encs.reduce((s, b) => s + b.length, 0);
     if (got !== need) {
       throw new Error(
@@ -285,4 +275,4 @@ function build(buf, entries) {
   return out;
 }
 
-module.exports = { extract, build, tableUnits, computeLineCap, decodeCp949, encodeCp949, DATA_RAW, DATA_END };
+module.exports = { extract, build, tableUnits, LINE_CAP, capByteLen, decodeCp949, encodeCp949, DATA_RAW, DATA_END };
