@@ -94,6 +94,9 @@
   .row-note.note-finding b { color: #e0b95c; }
   .row-note.note-dup { color: #5ec9b0; }
   .row-note.note-dup b { color: #7fe0c8; }
+  /* 자동감지 필터가 이 행을 잡은 사유 */
+  .row-note.note-filter { color: #b98cc4; }
+  .row-note.note-filter b { color: #d1a5dc; }
   /* 갈린 확정본의 나머지 후보 — 제안이 아니라 참고라 한 단계 죽여서 표시 */
   .row-note.note-dup-alt { color: #4a8a7c; margin-top: 2px; }
   .row-note.note-dup-alt b { color: #5ea593; }
@@ -221,11 +224,26 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// 탭은 **뷰**다 — `key`가 실제 데이터 섹션(= 저장 API의 section, modified{} 키, 길이 검증
+// 규칙)이고, `rows`가 있으면 그 섹션 안에서 보여줄 행만 추린다. 포인터 테이블 구간을 따로
+// 보여주되 데이터는 쪼개지 않는 이유: 31개 테이블 중 다수가 대사 배열 한가운데에 있어
+// 나누면 맥락 패널(원문 순서 이웃)과 화자 연속성이 끊긴다.
+//
+// `UI·나레이션` 탭이 잡는 것: 포인터로 주소가 매겨지는 구간은 실측상 **발화 대사가 거의
+// 없다** — 「로 시작하는 줄이 0.6%(8/1,434)뿐이고, 나머지 대사 구간은 27.0%(3,617/13,378)다.
+// 대사는 씬 스크립트가 순차로 훑고 UI·나레이션은 임의 접근이 필요해 포인터를 쓰기 때문.
+// 내용은 UI/시스템 708줄(설명·인명·지명·메뉴·장 제목 등) + 독백·나레이션 726줄이라,
+// GUIDE 2-4(시스템 메시지는 평서체)처럼 말투 규칙이 다른 묶음 = 검수 단위로 유효하다.
+// (편집 규칙도 다르다 — 이 구간만 단위 안 재분배가 되지만, 총량은 안 늘어난다. 3.3 참고)
 const SECTIONS = [
-  { key: 'dialogue', label: '대사' },
-  { key: 'labels', label: '레이블' },
+  { id: 'dialogue', key: 'dialogue', label: '대사',       rows: (e) => e.table == null },
+  { id: 'table',    key: 'dialogue', label: 'UI·나레이션', rows: (e) => e.table != null },
+  { id: 'labels',   key: 'labels',   label: '레이블' },
 ];
+function curTabDef() { return SECTIONS.find((s) => s.id === curTab) || SECTIONS[0]; }
 let data = null;
+let curTab = 'dialogue';
+// 현재 탭의 데이터 섹션. 탭이 바뀔 때만 갱신되므로, 섹션을 쓰는 기존 코드는 그대로 둔다.
 let curSection = 'dialogue';
 const modified = {};        // "section:offset" -> fixed string (in-memory unsaved edits)
 let unreviewedOffsets = [];    // offsets of filtered rows with no fixed/confirmed yet
@@ -372,6 +390,7 @@ async function load() {
   const findings = await fetch('/api/findings').then(r => r.json()).catch(() => []);
   findingByOffset = new Map(findings.map((f) => [f.offset, f]));
   computeDupSuggestions();
+  computeLineCaps();
   renderTabs();
   render();
 }
@@ -381,10 +400,11 @@ function renderTabs() {
   tabs.innerHTML = '';
   for (const s of SECTIONS) {
     const btn = document.createElement('button');
-    const list = data[s.key] || [];
+    const list = (data[s.key] || []).filter(s.rows || (() => true));
     btn.textContent = `${s.label} (${list.length})`;
-    btn.className = s.key === curSection ? 'active' : '';
+    btn.className = s.id === curTab ? 'active' : '';
     btn.onclick = () => {
+      curTab = s.id;
       curSection = s.key;
       selection.clear();
       rangeStart = null;
@@ -448,6 +468,34 @@ function punctLastMismatch(fixed, e) {
   const krLast = kr.replace(/　+$/u, '').slice(-1);
   const jpLast = jp.replace(/　+$/u, '').slice(-1);
   return PUNCT_TONE_SET.has(krLast) && PUNCT_TONE_SET.has(jpLast) && krLast !== jpLast;
+}
+
+// ── 필터별 행 설명 ──────────────────────────────────────────────────────────
+// 아래 note* 함수들은 "이 행이 왜 걸렸는가"를 한 줄로 만든다(FILTERS의 note).
+function noteAddedRepeat(fixed, e) {
+  const kr = fixed || e.text, jp = e.jp || '';
+  const rk = punctRuns(kr);
+  const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
+  const added = [...new Set([...kr].filter((c) => PUNCT_TONE_SET.has(c)))].filter((c) => !jpTone.has(c));
+  const shown = added.filter((c) => rk[c] >= 2).map((c) => `${c} ${rk[c]}회`).join(', ');
+  return `JP에 없는 ${shown} — 부호를 넣고 반복까지 함 (GUIDE 2-3 1순위)`;
+}
+function noteAmplified(fixed, e) {
+  const kr = fixed || e.text, jp = e.jp || '';
+  const rk = punctRuns(kr), rj = punctRuns(jp);
+  const shown = Object.keys(rk).filter((c) => rk[c] > (rj[c] || 1))
+    .map((c) => `${c} JP ${rj[c] || 0}회 → KR ${rk[c]}회`).join(', ');
+  return `${shown} — JP보다 길게 반복 (GUIDE 2-3 2순위)`;
+}
+// GUIDE 2-3: 이 필터는 두 부류가 섞인다. JP `…` → KR `？！`처럼 마크 종류가 실제로 다른 줄이
+// 본래 대상이고, JP `！？` → KR `？！`처럼 부호 조합은 같고 순서만 뒤집힌 줄도 걸린다. 후자는
+// 표의 "마크 종류가 다름"에 해당하지 않아 우선순위 밖이므로, 그 사실을 적어 넘길 수 있게 한다.
+function noteLastChar(fixed, e) {
+  const kr = (fixed || e.text).replace(/　+$/u, ''), jp = (e.jp || '').replace(/　+$/u, '');
+  const toneSet = (s) => [...new Set([...s].filter((c) => PUNCT_TONE_SET.has(c)))].sort().join('');
+  const swapped = toneSet(kr.slice(-3)) && toneSet(kr.slice(-3)) === toneSet(jp.slice(-3));
+  return `끝 부호 JP ${jp.slice(-1)} → KR ${kr.slice(-1)}`
+    + (swapped ? ' — 부호 조합은 같고 순서만 다름 (우선순위 밖, 넘겨도 됨)' : ' — 마크 종류가 다름 (GUIDE 2-3 2순위)');
 }
 
 // 더듬음 공백(GUIDE.md 2-6) 판정기는 전량 해결되어 드롭다운에서 뺐고, 함수도 지웠다 —
@@ -629,6 +677,9 @@ function computeDupSuggestions() {
 //   group  <optgroup> 이름. FILTERS는 group끼리 붙어 있는 순서로 유지한다.
 //   label  그룹 안에서의 항목 이름 (그룹명을 라벨에 중복해 넣지 않는다)
 //   test   (fixed, e) => boolean. 이 행이 후보인가. 계열 무관 동일 시그니처.
+//   note   (fixed, e) => string. 이 행이 왜 걸렸는지 한 줄 설명. 후보인 동안 행에 표시된다
+//          (annotationsFor). 목록만 좁혀 주고 무엇이 문제인지 안 알려주면 결국 한 줄씩 다시
+//          판정해야 해서 필터를 쓰는 의미가 없다 — 새 필터에는 note를 같이 붙인다.
 //
 // 필터의 역할은 "남은 일감 찾기"가 아니라 **같은 기계적 판단을 묶어 처리하기**다. 미검토가
 // 5,000건대로 줄어 어차피 전수로 훑는 단계이고, 실측상 전체 필터를 합쳐도 미검토의 20%밖에
@@ -640,14 +691,15 @@ function computeDupSuggestions() {
 // 이라, 그걸 참고해 길이에 맞춰 고쳐 쓰는 작업 자체가 하나의 묶음이기 때문이다. 훑다가
 // 만나기를 기다리는 것보다 모아서 처리하는 편이 낫다.
 const FILTERS = [
-  { value: 'punct-added-repeat', group: '문장부호', label: '추가+반복',      test: (f, e) => punctCategory(f, e) === 'added-repeat' },
-  { value: 'punct-amplified',    group: '문장부호', label: '반복 증폭',      test: (f, e) => punctCategory(f, e) === 'amplified' },
-  { value: 'punct-last-char',    group: '문장부호', label: '끝 어조 불일치', test: punctLastMismatch },
+  { value: 'punct-added-repeat', group: '문장부호', label: '추가+반복',      test: (f, e) => punctCategory(f, e) === 'added-repeat', note: noteAddedRepeat },
+  { value: 'punct-amplified',    group: '문장부호', label: '반복 증폭',      test: (f, e) => punctCategory(f, e) === 'amplified',    note: noteAmplified },
+  { value: 'punct-last-char',    group: '문장부호', label: '끝 어조 불일치', test: punctLastMismatch,                                note: noteLastChar },
 
   { value: 'dup-confirm',        group: '중복 JP',  label: '확정 가능',         test: (f, e) => dupTypeOf(e) === 'confirm' },
   { value: 'dup-strong',         group: '중복 JP',  label: '제안(강한신호)',    test: (f, e) => dupTypeOf(e) === 'strong' },
   { value: 'dup-weak',           group: '중복 JP',  label: '제안(약한신호)',    test: (f, e) => dupTypeOf(e) === 'weak' },
   { value: 'dup-length',         group: '중복 JP',  label: '참고(길이 불일치)', test: (f, e) => dupTypeOf(e) === 'length' },
+
 ];
 const FILTER_BY_VALUE = new Map(FILTERS.map((f) => [f.value, f]));
 
@@ -698,13 +750,25 @@ function isUnreviewed(section, e, fixed) {
   return !fixed && !e.confirmed;
 }
 
-// 행 아래에 붙는 참고 주석. 소스는 둘(AI 검토 사유 · 중복JP 제안)이지만 표시 규칙과 수명이
-// 같아서(수정/확정되면 사라짐) 한 곳에서 만든다 — 예전에는 거의 똑같은 sync 함수가 두 벌
-// 있었다. 필터와는 독립이다: 필터를 안 걸고 봐도 해당 행에 그대로 뜬다.
+// 행 아래에 붙는 참고 주석. 세 소스를 한 곳에서 만든다: AI 검토 사유 · 중복JP 제안 ·
+// **자동감지 필터의 사유**. 필터를 안 걸고 봐도 해당 행에 그대로 뜬다.
+//
+// 필터 사유는 FILTERS를 그대로 훑어 "지금 이 행을 잡고 있는 필터"의 note()를 띄우므로,
+// 필터에 걸리는 것과 설명이 뜨는 것이 항상 같은 조건이다 — 필터를 추가할 때 표시 코드를
+// 따로 손댈 필요가 없고, 수정해서 조건을 벗어나면 설명도 같이 사라진다.
 const DUP_TYPE_LABEL = { confirm: '확정 가능', strong: '제안(강한신호)', weak: '제안(약한신호)', length: '참고(길이 불일치)' };
 function annotationsFor(e) {
   if (curSection !== 'dialogue') return [];
   const out = [];
+  const curFixed = currentFixed(curSection, e);
+  for (const filter of FILTERS) {
+    if (!filter.note) continue;
+    if (isReviewedFor(filter, e, curFixed)) continue;
+    if (!filter.test(curFixed, e)) continue;
+    out.push({ cls: 'note-filter', label: `${filter.group}: ${filter.label}`, text: filter.note(curFixed, e) });
+  }
+  // 포인터 테이블 구간 여부는 "UI·나레이션" 탭 소속 자체가 이미 알려 준다 — 모든 행에
+  // 같은 말을 반복하는 주석은 붙이지 않는다(전에 한 번 붙였다가 뺐다).
   const finding = findingByOffset.get(e.offset);
   if (finding) {
     out.push({
@@ -791,7 +855,9 @@ function passesFilters(e) {
 }
 
 function filteredRows() {
-  return (data[curSection] || []).filter(passesFilters);
+  const tab = curTabDef();
+  const rows = tab.rows ? (data[curSection] || []).filter(tab.rows) : (data[curSection] || []);
+  return rows.filter(passesFilters);
 }
 
 // Called after an edit/confirm changes one entry's state (see renderRow) — if the row no
@@ -1059,7 +1125,59 @@ function applyFill() {
   toast(rows.length + '건에 적용됨 (저장은 별도)');
 }
 
+// 포인터 테이블 구간(`table`)은 줄이 아니라 **단위 합계**로 맞추면 되므로, Byte 칸도 그
+// 단위의 합을 보여준다(`합계 got/need`). 줄 하나만 보면 재분배 도중이 늘 빨갛게 보여서
+// 쓸모가 없다. 단위는 tableStart 경계로 끊는다 — bake-tables.js / hwanse-text.js와 같은 규칙.
+//
+// 줄 수(단위 크기)가 같은 단위끼리 전체에서 풀링한 실측 최대 길이 — hwanse-text.js의
+// computeLineCaps()와 같은 규칙(테이블별로 좁게 잡으면 표본이 적은 표에서 근거 없이 낮게
+// 잠긴다: 요일 8개짜리 표는 원본이 전부 한 글자라 cap이 2B로 잠기는 식). 표시 폭(픽셀)
+// 자체는 모르니(NOTES.md 3.4) "실제로 그 크기로 렌더링된 적 있는 길이"를 안전 상한으로 쓴다.
+// load()에서 한 번 계산해 두고 조회만 한다(14,812행을 매 렌더마다 훑지 않으려고).
+let lineCaps = new Map();
+function computeLineCaps() {
+  lineCaps = new Map();
+  let cur = null;
+  const flush = () => {
+    if (!cur) return;
+    const cap = Math.max(...cur.map((x) => x.length));
+    if (cap > (lineCaps.get(cur.length) || 0)) lineCaps.set(cur.length, cap);
+  };
+  for (const e of data.dialogue) {
+    if (e.table == null) { flush(); cur = null; continue; }
+    if (!cur || e.tableStart || cur[0].table !== e.table) { flush(); cur = [e]; }
+    else cur.push(e);
+  }
+  flush();
+}
+
+function tableUnitOf(e) {
+  if (curSection !== 'dialogue' || e.table == null) return null;
+  const D = data.dialogue;
+  let i = dialogueIndexByOffset.get(e.offset);
+  if (i == null) return null;
+  while (i > 0 && !D[i].tableStart && D[i - 1].table === e.table) i--;
+  const unit = [];
+  for (let j = i; j < D.length && D[j].table === e.table; j++) {
+    if (j > i && D[j].tableStart) break;
+    unit.push(D[j]);
+  }
+  return unit;
+}
+
 function lenCellState(section, e, fixed) {
+  const unit = tableUnitOf(e);
+  if (unit) {
+    const need = unit.reduce((s, x) => s + x.length, 0);
+    const got = unit.reduce((s, x) => s + byteLen(currentFixed(section, x) || x.text), 0);
+    const cap = lineCaps.get(unit.length);
+    const myLen = byteLen(fixed || e.text);
+    const overCap = cap != null && myLen > cap;
+    // cap은 항상 같이 보여준다 — 넘긴 뒤에야 알려주면 편집하는 사람이 얼마까지 늘려도
+    // 되는지 미리 알 방법이 없다. "이줄 30/36"처럼 항상 표시하고, 넘었을 때만 부호로 강조.
+    const text = `합계 ${got}/${need} · 이줄 ${myLen}${overCap ? '>' : '/'}${cap == null ? '?' : cap}`;
+    return { text, cls: (got === need && !overCap) ? 'ok' : 'bad' };
+  }
   const n = need(section, e);
   if (!fixed) return { text: `${n}`, cls: 'empty' };
   const got = byteLen(fixed);
@@ -1131,30 +1249,26 @@ function renderRow(e, idx) {
     tdOrig.appendChild(jpDiv);
   }
 
-  // 참고 주석(AI 검토 사유 · 중복 JP 제안) — 아직 수정도 확정도 안 된 동안만 보여준다.
-  // 이미 처리된 줄에 계속 떠 있으면 "아직 안 고친 것"처럼 보여서 혼동을 준다. 필터와
-  // 별개로(필터 없이 보고 있어도 적용되는) 이 행 자체의 fixed/confirmed 상태만 보고,
-  // syncNotes()를 수정/확정 핸들러에서 같이 불러 즉시 사라지게 한다.
-  const notes = annotationsFor(e);
-  let notesWrap = null;
+  // 참고 주석(AI 검토 사유 · 중복 JP 제안 · 필터 사유). 편집할 때마다 통째로 다시 만든다 —
+  // 필터 사유는 지금 이 행을 잡고 있는 필터에서 나오므로, 고쳐서 조건을 벗어나면 그 줄이
+  // 사라져야 한다. 수정/확정 핸들러에서 syncNotes()를 같이 불러 즉시 반영한다. 사라지는
+  // 조건은 소스마다 다르지 않고 annotationsFor()가 한 곳에서 판단한다(필터별 reviewed 규칙
+  // 포함) — 예전처럼 "수정/확정되면 전부 숨김"으로 뭉뚱그리면 fixed 값 안에 결함이 있는
+  // 필터(확정만 검토 완료로 보는 것들)의 설명이 정작 필요한 행에서 사라진다.
+  const notesWrap = document.createElement('div');
+  tdOrig.appendChild(notesWrap);
   function syncNotes() {
-    if (!notes.length) return;
-    const resolved = !!(currentFixed(curSection, e) || e.confirmed);
-    if (resolved) { if (notesWrap) notesWrap.style.display = 'none'; return; }
-    if (!notesWrap) {
-      notesWrap = document.createElement('div');
-      for (const n of notes) {
-        const div = document.createElement('div');
-        div.className = 'row-note ' + n.cls;
-        const label = document.createElement('b');
-        label.textContent = `[${n.label}] `;
-        div.appendChild(label);
-        div.appendChild(document.createTextNode(n.text));
-        notesWrap.appendChild(div);
-      }
-      tdOrig.appendChild(notesWrap);
+    const notes = annotationsFor(e);
+    notesWrap.textContent = '';
+    for (const n of notes) {
+      const div = document.createElement('div');
+      div.className = 'row-note ' + n.cls;
+      const label = document.createElement('b');
+      label.textContent = `[${n.label}] `;
+      div.appendChild(label);
+      div.appendChild(document.createTextNode(n.text));
+      notesWrap.appendChild(div);
     }
-    notesWrap.style.display = '';
   }
   syncNotes();
 
@@ -1167,12 +1281,45 @@ function renderRow(e, idx) {
   tdLen.className = 'len';
 
   const curVal = () => (k in modified ? modified[k] : (e.fixed || ''));
-  const isInvalid = (v) => !!(v && validity(curSection, byteLen(v), need(curSection, e)) !== 'ok');
+  // 테이블 구간은 줄 단위로 원본 길이와 달라지는 게 정상이지만(단위 합계만 맞으면 됨), 그
+  // 줄 자체가 같은 크기 단위들의 실측 최대치(lineCaps)를 넘는 건 여기서 막는다 — 표시 폭
+  // 자체는 모르니 "그 크기로 실제 렌더링된 적 있는 길이"를 안전 상한으로 쓴다(hwanse-text.js
+  // build()와 같은 규칙). 합계는 Byte 칸이 따로 보여준다.
+  // 두 조건은 서로 다른 걸 지킨다 — 합계(need)는 "다음 단위 포인터를 안 침범한다"는 물리
+  // 제약, cap은 "이 줄이 창 폭을 안 넘는다"는 표시 제약이라 하나가 다른 하나를 대신 못한다.
+  // 둘 다 여기서 같이 본다 — 전에는 여기(빨간 테두리)가 cap만 보고 합계는 Byte 칸만
+  // 따로 봐서, 합계가 깨져도 이 입력창엔 빨간 테두리가 안 뜨는 불일치가 있었다. 두 신호가
+  // 다른 기준으로 따로 노는 건 신뢰할 수 없다 — 같은 판정을 공유해야 한다.
+  const isInvalid = (v) => {
+    if (e.table != null) {
+      const unit = tableUnitOf(e);
+      if (!unit) return false;
+      const cap = lineCaps.get(unit.length);
+      if (cap != null && byteLen(v || e.text) > cap) return true;
+      const need = unit.reduce((s, x) => s + x.length, 0);
+      const got = unit.reduce((s, x) => s + byteLen((x.offset === e.offset ? v : currentFixed(curSection, x)) || x.text), 0);
+      return got !== need;
+    }
+    return !!(v && validity(curSection, byteLen(v), need(curSection, e)) !== 'ok');
+  };
 
   function refreshLen() {
     const st = lenCellState(curSection, e, curVal());
     tdLen.textContent = st.text;
     tdLen.className = 'len ' + st.cls;
+    // 같은 단위의 다른 줄들도 합계가 바뀌었으니 같이 갱신한다(한 줄만 고쳐도 단위 전체의
+    // 합계 표시가 달라진다). 렌더된 <tr>만 훑으므로 비용은 단위 크기(최대 4줄)로 끝난다.
+    const unit = tableUnitOf(e);
+    if (!unit) return;
+    for (const sib of unit) {
+      if (sib.offset === e.offset) continue;
+      const row = document.querySelector(`#tbody tr[data-offset="${sib.offset}"]`);
+      const cell = row && row.querySelector('.len');
+      if (!cell) continue;
+      const s = lenCellState(curSection, sib, currentFixed(curSection, sib));
+      cell.textContent = s.text;
+      cell.className = 'len ' + s.cls;
+    }
   }
 
   // "확정" toggle — marks an entry reviewed with no change needed. Only shown when the
@@ -1338,11 +1485,13 @@ function updateSaveBtn() {
 function updateStats() {
   // reviewed = entries that either have an edit (effective fixed) or are marked confirmed
   // (reviewed, no change needed), across ALL sections.
+  // SECTIONS는 탭 목록이라 같은 데이터 섹션이 여러 탭으로 나뉠 수 있다(대사 / UI·나레이션은
+  // 둘 다 dialogue) — 키로 중복을 제거하지 않으면 전체 진척률이 이중 집계된다.
   let total = 0, done = 0;
-  for (const s of SECTIONS) {
-    for (const e of (data[s.key] || [])) {
+  for (const key of new Set(SECTIONS.map((s) => s.key))) {
+    for (const e of (data[key] || [])) {
       total++;
-      if (currentFixed(s.key, e) || e.confirmed) done++;
+      if (currentFixed(key, e) || e.confirmed) done++;
     }
   }
   const pct = total ? Math.round((done / total) * 100) : 0;

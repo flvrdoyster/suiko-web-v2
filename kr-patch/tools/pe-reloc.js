@@ -1,7 +1,7 @@
 // pe-reloc.js — generic PE32 helpers: section table lookup + base-relocation walk.
 // Used to find "scene entry point" dialogue lines (ones a HIGHLOW relocation target lands
 // on exactly) in HWANSE.EXE/GENSE.EXE. Reimplements what was first done ad-hoc for KR only
-// (see NOTES.md 2.1 "길이 확장 조사") with the actual PE section table instead of
+// (see NOTES.md 3.3 "텍스트 구조") with the actual PE section table instead of
 // hand-derived constants, so it works unmodified for JP's differently-sized .data section
 // too (verified: produces the same 620 KR entry points the hand-derived version found).
 'use strict';

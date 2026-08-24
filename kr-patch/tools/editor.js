@@ -150,6 +150,7 @@ const server = http.createServer(async (req, res) => {
       const t = loadTranslation();
       const results = {};
       let anyApplied = false;
+      const priorFixed = new Map(); // 단위 합계 검사에서 되돌릴 때 쓸 저장 전 값
 
       for (const edit of edits) {
         const { key, section, offset } = edit;
@@ -163,6 +164,9 @@ const server = http.createServer(async (req, res) => {
           continue;
         }
         let toSave = edit.fixed || '';
+        // 포인터 테이블 구간(`table`)은 줄 단위가 아니라 **단위 합계**로 검사한다 — 아래에서
+        // 편집을 다 반영한 뒤 한 번에 본다. 여기서는 인코딩 가능 여부만 확인하고 통과시킨다.
+        const unitChecked = section === 'dialogue' && entry.table != null;
         if (toSave) {
           const need = requiredLength(section, entry);
           // encodeCp949는 매핑 없는 문자를 만나면 던진다 — 그대로 올리면 배치 전체가 500으로
@@ -175,15 +179,64 @@ const server = http.createServer(async (req, res) => {
             results[key] = { ok: false, error: String(err.message || err) };
             continue;
           }
-          if (got !== need) {
+          if (!unitChecked && got !== need) {
             results[key] = { ok: false, error: `byte ${got}/${need}`, need, got };
             continue;
           }
         }
+        if (unitChecked) priorFixed.set(key, entry.fixed || '');
         entry.fixed = toSave;
-        results[key] = { ok: true, fixed: toSave };
+        results[key] = { ok: true, fixed: toSave, unit: unitChecked || undefined };
         anyApplied = true;
       }
+
+      // 단위 합계 검사: 위에서 통과시킨 테이블 구간 편집들을 반영한 상태로 각 단위의 합을 잰다.
+      // 안 맞으면 그 단위에 걸린 편집을 전부 되돌린다 — 한 줄만 롤백하면 남은 편집이 여전히
+      // 합계를 깨뜨린 채로 저장돼, 다음 빌드가 통째로 실패한다.
+      const touchedUnits = new Map(); // 단위 첫 줄 offset -> { lines, keys }
+      const dialogueSorted = (t.dialogue || []).slice().sort((a, b) => a.offset - b.offset);
+      const editedOffsets = new Set(edits
+        .filter((x) => x.section === 'dialogue' && results[x.key] && results[x.key].unit)
+        .map((x) => x.offset));
+      if (editedOffsets.size) {
+        for (const unit of HWANSE_TEXT.tableUnits(dialogueSorted.filter((e) => e.table != null))) {
+          const keys = unit.filter((e) => editedOffsets.has(e.offset))
+            .map((e) => `dialogue:${e.offset}`);
+          if (keys.length) touchedUnits.set(unit[0].offset, { lines: unit, keys });
+        }
+      }
+      // 줄 수(단위 크기)가 같은 단위끼리 전체에서 풀링한 상한 — hwanse-text.js의
+      // computeLineCaps() 주석 참고(테이블별로 좁게 잡으면 표본이 적은 표에서 근거 없이
+      // 낮게 잠긴다).
+      const lineCaps = HWANSE_TEXT.computeLineCaps(dialogueSorted.filter((e) => e.table != null));
+      for (const [unitOffset, { lines, keys }] of touchedUnits) {
+        // 두 조건을 같이 본다: ①단위 합계가 원본과 같은가(다음 단위 포인터 침범 방지),
+        // ②각 줄이 같은 크기 단위들에서 실측된 최대 길이 이하인가 — 합계만 보면 한 줄이
+        // 옆줄 자리를 다 뺏어 그 줄만 창 폭을 넘어 잘릴 수 있다(hwanse-text.js build() 주석
+        // 참고). 둘 중 하나라도 어긋나면 이 단위에 걸린 편집을 전부 되돌린다 — 일부만
+        // 롤백하면 남은 편집이 여전히 규칙을 깨뜨린 채 저장돼 다음 빌드가 실패한다.
+        const cap = lineCaps.get(lines.length) || 0;
+        const need = lines.reduce((s, e) => s + e.length, 0);
+        let got = 0, overCap = null;
+        try {
+          for (const e of lines) {
+            const n = encodeFor('dialogue', e.fixed || e.text).length;
+            if (n > cap && !overCap) overCap = { offset: e.offset, n };
+            got += n;
+          }
+        } catch (err) { got = -1; }
+        if (got === need && !overCap) continue;
+        const reason = overCap
+          ? `줄 @${overCap.offset} ${overCap.n}B가 ${lines.length}줄 단위 실측 최대 ${cap}B 초과`
+          : `단위 합계 byte ${got}/${need}`;
+        for (const k of keys) {
+          const off = parseInt(k.slice(k.indexOf(':') + 1), 10);
+          const e = dialogueSorted.find((x) => x.offset === off);
+          if (e) e.fixed = priorFixed.has(k) ? priorFixed.get(k) : '';
+          results[k] = { ok: false, error: `${reason} (@${unitOffset}, ${lines.length}줄)`, need, got };
+        }
+      }
+      anyApplied = Object.values(results).some((r) => r.ok);
 
       if (anyApplied) saveTranslation(t);
       return send(res, 200, { results });

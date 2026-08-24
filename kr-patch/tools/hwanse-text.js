@@ -184,14 +184,72 @@ function extract(buf) {
   return entries;
 }
 
-// Re-encode entries' `fixed` (falling back to `text`) into `buf` at [offset, offset+length).
-// Refuses (throws) if any replacement's CP949 byte length differs from the original slot,
-// since we have not yet proven the engine tolerates a shifted region (see NOTES.md — no
-// pointer table was found, which suggests shifting is *probably* safe, but that has not
-// been verified in the emulator, so build() stays conservative until it is).
+// 포인터 테이블 구간의 "단위"로 묶는다 — tableStart(포인터가 직접 가리키는 줄)에서 시작해
+// 다음 tableStart 직전까지. 단위 안의 줄들은 포인터 없이 순차로 이어지므로 경계는 못 옮겨도
+// 안에서는 재배치할 수 있다. bake-tables.js 참고.
+function tableUnits(entries) {
+  const units = [];
+  let cur = null;
+  for (const e of entries) {
+    if (!cur || e.tableStart || cur[0].table !== e.table) { if (cur) units.push(cur); cur = [e]; }
+    else cur.push(e);
+  }
+  if (cur) units.push(cur);
+  return units;
+}
+
+// 표시 폭(픽셀) 자체는 모른다(NOTES.md 3.4: 줄 높이·글자 폭은 `40 15`가 정하고 창마다 다르며
+// 정확한 값은 `40 0d` 핸들러 디스어셈블이 필요해 미착수) — 그래서 "얼마까지 늘려도 되는가"의
+// 근거를 이론이 아니라 **실제로 이미 렌더링된 실측값**에서 가져온다.
+//
+// 처음엔 테이블 단위로 묶었는데(같은 relocation 배열 = 같은 창일 거라는 가정), 테이블마다
+// 표본 수가 들쭉날쭉해서 8개짜리 표에 원본이 전부 요일 한 글자(2B)뿐이면 cap이 4B로
+// 잠겨버렸다 — 그 표에 마침 짧은 텍스트만 있었을 뿐인데 재분배가 통째로 막히는 꼴이라 실효가
+// 없었다. **단위 크기(줄 수)로 묶어 전체 테이블에서 풀링**하는 쪽으로 바꿨다: 표시 규칙은
+// 테이블(어떤 relocation 배열인지)이 아니라 창의 "몇 줄짜리인지"에 매여 있을 가능성이 높고,
+// 실측으로도 1줄 단위 181개·2줄 78개·3줄 335개·4줄 23개로 표본이 훨씬 두꺼워져 좁은 표에
+// 갇혀 있던 cap이 대부분 크게 올라간다(요일·장 번호·인명 표: 4~12B → 22B).
+//
+// 다만 이건 "같은 줄 수 = 같은 창 폭"이라는 추가 가정이다 — 실제로는 요일 칸처럼 아주 좁은
+// 1줄짜리 UI와 지명 표시처럼 넓은 1줄짜리가 진짜 같은 폭일 수도, 아닐 수도 있다. 확실히
+// 아는 건 여전히 "그 정확한 바이트 길이로 어딘가에 존재한 적 있다"는 것뿐이라, 실기 검증
+// 전까지는 여전히 추정이다(아래 build() 주석의 ⚠ 참고).
+function computeLineCaps(entries) {
+  const caps = new Map(); // 단위 줄 수 -> 그 크기 단위들의 원본 줄 중 최댓값
+  for (const unit of tableUnits(entries)) {
+    const cap = Math.max(...unit.map((e) => e.length));
+    if (cap > (caps.get(unit.length) || 0)) caps.set(unit.length, cap);
+  }
+  return caps;
+}
+
+// Re-encode entries' `fixed` (falling back to `text`) into `buf`.
+//
+// 두 가지 규칙이 있다:
+//  1) 일반 대사 — 원본 슬롯에 **같은 바이트 길이로** 덮어쓴다. 장면 진입점에서 `@`를 세며
+//     순차로 읽히는 구조라, 한 줄을 늘리면 그 뒤 `.data`가 전부 밀려 relocation이 깨진다.
+//  2) 포인터 테이블 구간(`table` 플래그) — **단위 단위로 다시 채운다.** 단위 안에서는 줄
+//     사이 바이트를 재분배할 수 있지만 두 조건을 같이 건다: ①단위 합계는 원본과 같아야
+//     한다(다음 단위 포인터 침범 방지, 우리가 아는 확실한 사실), ②각 줄은 같은 크기(줄 수)
+//     단위들에서 실측된 최대 길이(computeLineCaps()) 이하여야 한다 — 합계만 보면 한 줄이
+//     옆줄 자리를 다 뺏어 그 줄만 창 폭을 넘어 잘릴 수 있다. 종결 4바이트(`40 XX 00 00`,
+//     XX는 계속/끝 제어코드)는 각 줄의 원본 것을 그대로 따라 옮긴다.
+//
+// entries에는 **해당 단위의 모든 줄**이 들어와야 한다(수정 안 된 줄 포함) — 앞 줄이 길어지면
+// 뒤 줄도 함께 이동해야 하기 때문이다. build.js가 dialogue 전체를 넘긴다.
+//
+// ⚠ ②의 상한은 "같은 줄 수 단위들에서 실제로 본 최대치"(computeLineCaps)일 뿐 창의 진짜
+// 픽셀 한도가 아니다 — "줄 수가 같으면 창도 같다"는 가정이 깔려 있고, 표본이 두꺼워 대부분
+// 실효 있는 값이 나오지만 우연히 그 크기의 단위가 전부 짧았다면 여전히 낮게 잡힐 수 있다
+// (안전한 방향의 오차 — 반대 방향, 즉 실제 폭보다 넉넉하게 허용하는 오차는 없다는 뜻은
+// 아니다). **에뮬레이터 실기 검증 전**이니 실제로 길이를 바꾼 빌드를 돌리기 전에 인게임
+// 확인이 필요하다.
 function build(buf, entries) {
   const out = Buffer.from(buf);
-  for (const e of entries) {
+  const sorted = entries.slice().sort((a, b) => a.offset - b.offset);
+
+  for (const e of sorted) {
+    if (e.table != null) continue; // 아래 단위 처리에서 다룬다
     const newText = e.fixed != null && e.fixed !== '' ? e.fixed : e.text;
     const encoded = encodeCp949(newText);
     if (encoded.length !== e.length) {
@@ -202,7 +260,44 @@ function build(buf, entries) {
     }
     encoded.copy(out, e.offset);
   }
+
+  const tableEntries = sorted.filter((e) => e.table != null);
+  const lineCaps = computeLineCaps(tableEntries);
+  for (const unit of tableUnits(tableEntries)) {
+    const cap = lineCaps.get(unit.length) || 0;
+    const need = unit.reduce((s, e) => s + e.length, 0);
+    const encs = unit.map((e) => encodeCp949(e.fixed != null && e.fixed !== '' ? e.fixed : e.text));
+    const over = encs.map((b, i) => (b.length > cap ? i : -1)).filter((i) => i >= 0);
+    if (over.length) {
+      throw new Error(
+        `table unit @0x${unit[0].offset.toString(16)}: line(s) over the observed max for ${unit.length}-line units (${cap}B): ` +
+        over.map((i) => `@0x${unit[i].offset.toString(16)} ${encs[i].length}B ${JSON.stringify(unit[i].fixed || unit[i].text)}`).join(', ')
+      );
+    }
+    const got = encs.reduce((s, b) => s + b.length, 0);
+    if (got !== need) {
+      throw new Error(
+        `table unit @0x${unit[0].offset.toString(16)} (${unit.length} lines) changed total byte ` +
+        `length (${need} -> ${got}) — 단위 안에서 재분배는 되지만 합계는 같아야 한다: ` +
+        unit.map((e, i) => `${JSON.stringify(e.text)}->${e.length}/${encs[i].length}B`).join(', ')
+      );
+    }
+    // 텍스트 + 그 줄의 원본 종결 4바이트를 순서대로 다시 깐다.
+    let p = unit[0].offset;
+    for (let i = 0; i < unit.length; i++) {
+      encs[i].copy(out, p);
+      p += encs[i].length;
+      buf.copy(out, p, unit[i].offset + unit[i].length, unit[i].offset + unit[i].length + 4);
+      p += 4;
+    }
+    // 안전장치: 원래 span을 정확히 채웠는가(한 바이트라도 넘으면 다음 단위를 침범한다).
+    const last = unit[unit.length - 1];
+    const spanEnd = last.offset + last.length + 4;
+    if (p !== spanEnd) {
+      throw new Error(`table unit @0x${unit[0].offset.toString(16)} repack ended at ${p}, expected ${spanEnd}`);
+    }
+  }
   return out;
 }
 
-module.exports = { extract, build, decodeCp949, encodeCp949, DATA_RAW, DATA_END };
+module.exports = { extract, build, tableUnits, computeLineCaps, decodeCp949, encodeCp949, DATA_RAW, DATA_END };

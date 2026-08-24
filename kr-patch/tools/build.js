@@ -57,7 +57,10 @@ if (!fixedDialogue.length && !fixedLabels.length) {
 
 let out;
 try {
-  out = DIALOGUE.build(buf, fixedDialogue);
+  // dialogue는 **전량**을 넘긴다 — 포인터 테이블 구간은 단위 단위로 다시 까는데, 앞 줄이
+  // 길어지면 수정되지 않은 뒤 줄도 같이 이동해야 하므로 단위의 모든 줄이 필요하다
+  // (hwanse-text.js build() 주석 참고). 수정 없는 줄은 원본과 같은 바이트로 다시 쓰인다.
+  out = DIALOGUE.build(buf, t.dialogue);
   out = NAMES.build(out, fixedLabels);
 } catch (e) {
   fail(e.message);
