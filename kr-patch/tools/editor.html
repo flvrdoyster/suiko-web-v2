@@ -229,15 +229,15 @@
 // 보여주되 데이터는 쪼개지 않는 이유: 31개 테이블 중 다수가 대사 배열 한가운데에 있어
 // 나누면 맥락 패널(원문 순서 이웃)과 화자 연속성이 끊긴다.
 //
-// `UI·나레이션` 탭이 잡는 것: 포인터로 주소가 매겨지는 구간은 실측상 **발화 대사가 거의
+// `독백·설명` 탭이 잡는 것: 포인터로 주소가 매겨지는 구간은 실측상 **발화 대사가 거의
 // 없다** — 「로 시작하는 줄이 0.6%(8/1,434)뿐이고, 나머지 대사 구간은 27.0%(3,617/13,378)다.
-// 대사는 씬 스크립트가 순차로 훑고 UI·나레이션은 임의 접근이 필요해 포인터를 쓰기 때문.
-// 내용은 UI/시스템 708줄(설명·인명·지명·메뉴·장 제목 등) + 독백·나레이션 726줄이라,
-// GUIDE 2-4(시스템 메시지는 평서체)처럼 말투 규칙이 다른 묶음 = 검수 단위로 유효하다.
-// (편집 규칙도 다르다 — 이 구간만 단위 안 재분배가 되지만, 총량은 안 늘어난다. 3.3 참고)
+// 대사는 씬 스크립트가 순차로 훑는 반면 독백·설명류는 임의 접근이 필요해 포인터를 쓰기 때문.
+// 내용은 설명·시스템 708줄(기술/아이템 설명·인명·지명·메뉴·장 제목 등) + 독백·나레이션
+// 726줄이라, GUIDE 2-4(시스템 메시지는 평서체)처럼 말투 규칙이 다른 묶음 = 검수 단위로
+// 유효하다. (편집 규칙도 다르다 — 이 구간만 단위 안 재분배가 되지만 총량은 안 는다. 3.3)
 const SECTIONS = [
-  { id: 'dialogue', key: 'dialogue', label: '대사',       rows: (e) => e.table == null },
-  { id: 'table',    key: 'dialogue', label: 'UI·나레이션', rows: (e) => e.table != null },
+  { id: 'dialogue', key: 'dialogue', label: '대사',      rows: (e) => e.table == null },
+  { id: 'table',    key: 'dialogue', label: '독백·설명', rows: (e) => e.table != null },
   { id: 'labels',   key: 'labels',   label: '레이블' },
 ];
 function curTabDef() { return SECTIONS.find((s) => s.id === curTab) || SECTIONS[0]; }
@@ -767,7 +767,7 @@ function annotationsFor(e) {
     if (!filter.test(curFixed, e)) continue;
     out.push({ cls: 'note-filter', label: `${filter.group}: ${filter.label}`, text: filter.note(curFixed, e) });
   }
-  // 포인터 테이블 구간 여부는 "UI·나레이션" 탭 소속 자체가 이미 알려 준다 — 모든 행에
+  // 포인터 테이블 구간 여부는 "독백·설명" 탭 소속 자체가 이미 알려 준다 — 모든 행에
   // 같은 말을 반복하는 주석은 붙이지 않는다(전에 한 번 붙였다가 뺐다).
   const finding = findingByOffset.get(e.offset);
   if (finding) {
@@ -1485,7 +1485,7 @@ function updateSaveBtn() {
 function updateStats() {
   // reviewed = entries that either have an edit (effective fixed) or are marked confirmed
   // (reviewed, no change needed), across ALL sections.
-  // SECTIONS는 탭 목록이라 같은 데이터 섹션이 여러 탭으로 나뉠 수 있다(대사 / UI·나레이션은
+  // SECTIONS는 탭 목록이라 같은 데이터 섹션이 여러 탭으로 나뉠 수 있다(대사 / 독백·설명은
   // 둘 다 dialogue) — 키로 중복을 제거하지 않으면 전체 진척률이 이중 집계된다.
   let total = 0, done = 0;
   for (const key of new Set(SECTIONS.map((s) => s.key))) {
