@@ -5,7 +5,7 @@
     <script>window.SUIKO_LANG = 'kr';</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>환세취호전 (디버그) : atah.io</title>
+    <title>환세취호전 (데모) : atah.io</title>
     <link rel="icon" href="https://atah.io/favicon.ico">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -149,10 +149,10 @@
     <!-- suiko-save.js is deliberately NOT loaded here. Its IndexedDB key is shared with
          kr.html/jp.html, so autosaving scenario-warp state would overwrite the real
          playthrough's save. script.js's two SuikoSave calls are guarded, so leaving it out
-         simply disables both the pre-boot restore and the 8s autosave poll: debug.html
+         simply disables both the pre-boot restore and the 8s autosave poll: demo.html
          always boots the image's own saves and never writes back. -->
-    <!-- debug.html only: boots straight into the leftover scenario-warp menu. NOTES.md 3.4. -->
-    <script src="suiko-debug.js"></script>
+    <!-- demo.html only: boots straight into the leftover scenario-warp menu. NOTES.md 3.4. -->
+    <script src="suiko-demo.js"></script>
     <script src="suiko-audio.js"></script>
     <script src="gamepad.js"></script>
     <script src="suiko-boot.js"></script>

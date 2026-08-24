@@ -1005,10 +1005,10 @@ class SuikoEmulator {
         // C:\GENSE(JP)\SAVEDATA into the in-FS disk image (SAVEDATA-only persistence via
         // fat16.js — see suiko-save.js), and keep it synced during play. Replaces
         // doswasmx's whole-disk save.
-        // debug.html additionally patches HWANSE.EXE's title menu to expose the leftover
-        // scenario-warp menu (suiko-debug.js); a no-op on kr.html/jp.html, which don't load it.
+        // demo.html additionally patches HWANSE.EXE's title menu to expose the leftover
+        // scenario-warp menu (suiko-demo.js); a no-op on kr.html/jp.html, which don't load it.
         if (window.SuikoLang) window.SuikoLang.patchLanguage(this.base_name);
-        if (window.SuikoDebug) await window.SuikoDebug.patchDebugMenu(this.base_name);
+        if (window.SuikoDemo) await window.SuikoDemo.patchDemoMenu(this.base_name);
         if (window.SuikoSave) await window.SuikoSave.injectSaveData(this.base_name);
 
         Module.callMain();

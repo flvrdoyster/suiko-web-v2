@@ -306,7 +306,7 @@ KR 오프셋 하나 + JP 원문 검색만으로 충분해서 분리해뒀다.
 에디터와 분리), `pe-reloc.js`(PE 섹션 테이블/relocation 파서, 청크 접근 시도에서 만듦 — 자동
 청크 나누기 자체는 장면 경계가 안 맞아 기각), `extract.js`/`build.js`/`inject.js`(파이프라인),
 `bake-jp.js`, `bake-tables.js`(포인터 테이블 구간 표시 — 위 "예외" 참고),
-`debug-menu.js`(타이틀 메뉴에 시나리오 선택 항목 추가 — 3.4 참고),
+`demo-menu.js`(타이틀 메뉴에 시나리오 선택 항목 추가 — 3.4 참고),
 `translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션),
 `translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커
 입력, 227개), `translation/review-findings.json`(전량 재검토 결함 후보 200건), `translation/GUIDE.md`
@@ -361,10 +361,10 @@ x 위치, 42는 타이틀 전용(~57px = 16px 행 3개 + 위 여백, **아래 �
 `.text`가 `0x559D98`을 12번 이상 참조하고 그게 정확히 그 글자 자리였다. 안전한 곳은 **`.text`
 raw 꼬리의 정렬 패딩**(파일 236428~236543, VA `0x43A78C~`, 116바이트): `VirtualSize`를 넘은
 `FileAlignment` 패딩이라 섹션 가상 범위 안에 정상 매핑되고, 파일 전체에서 그 주소를 참조하는
-곳이 0개이며, `.text`에 `MEM_WRITE`가 없어 런타임에 덮일 수 없다. `debug-menu.js`가 이 검사
+곳이 0개이며, `.text`에 `MEM_WRITE`가 없어 런타임에 덮일 수 없다. `demo-menu.js`가 이 검사
 (전 구간 0 + 참조 0개)를 매번 수행한다.
 
-**진입 방법 — 1바이트** (`debug-menu.js --mode direct`, 기본값): 메인 흐름이 타이틀 메뉴를
+**진입 방법 — 1바이트** (`demo-menu.js --mode direct`, 기본값): 메인 흐름이 타이틀 메뉴를
 호출하는 CALL 한 곳(파일 659100)의 대상을 `0x4A3440` → `0x4A3460`으로 바꾸면 끝. 실제로 바뀌는
 건 한 바이트(`0x40`→`0x60`)이고, 해당 DWORD는 `.reloc` 대상이지만 둘 다 `.data` 내부라 재배치
 안전. 복귀 GOTO 두 곳(660688 = 시나리오 선택 블록 끝, 661464 = 이어서하기 경로)은 손대지 않아,
@@ -381,11 +381,13 @@ raw 꼬리의 정렬 패딩**(파일 236428~236543, VA `0x43A78C~`, 116바이트
 `direct`는 이 문제를 아예 마주치지 않으므로(시나리오 선택 메뉴는 자기 창으로 14행을 이미 정상
 렌더링) 그쪽을 기본값으로 두고, 이 모드는 위 창 프레임 측정치의 근거로 남겨뒀다.
 
-**배포: `docs/debug.html`** — 디스크 이미지를 하나 더 두면 35MB가 늘어나므로, 대신 **부팅
-직전에 메모리상 이미지의 `HWANSE.EXE`를 패치**한다(`docs/suiko-debug.js`, `suiko-lang.js`가
-WIN.INI를 고치는 것과 동일한 방식 — `script.js`의 `Module.callMain()` 앞, `window.SuikoDebug`
-가드가 있어 `kr.html`/`jp.html`에서는 no-op). 패치는 JS로 재구현하지 않고 **데이터로 뽑아서**
-쓴다: `debug-menu.js --emit-patch docs/debug-patch.json`이 입력 EXE와의 바이트 diff를 runs로
+**배포: `docs/demo.html`**(2026-08 이전엔 `debug.html`이었다 — 이제 만들 실사용 디버그
+기능(`&debug`, 세이브 임포트/익스포트)과 이름이 겹쳐서 데모로 개명, 이 절 전체가 그 개명
+반영됨) — 디스크 이미지를 하나 더 두면 35MB가 늘어나므로, 대신 **부팅 직전에 메모리상
+이미지의 `HWANSE.EXE`를 패치**한다(`docs/suiko-demo.js`, `suiko-lang.js`가 WIN.INI를 고치는
+것과 동일한 방식 — `script.js`의 `Module.callMain()` 앞, `window.SuikoDemo` 가드가 있어
+`kr.html`/`jp.html`에서는 no-op). 패치는 JS로 재구현하지 않고 **데이터로 뽑아서** 쓴다:
+`demo-menu.js --emit-patch docs/demo-patch.json`이 입력 EXE와의 바이트 diff를 runs로
 내보내고(`direct`면 1 run·1바이트) 브라우저는 그걸 그대로 적용 — PE 레벨 추론이 한 곳에만 있어
 어긋나지 않는다. 패치 오프셋은 번역 내용과 무관하므로 번역이 바뀌어도 같은 패치 파일이 계속
 유효하다 — 배포 이미지의 EXE가 최신 빌드와 723바이트 달랐던 상태에서도 정상 적용 확인.
@@ -393,19 +395,19 @@ WIN.INI를 고치는 것과 동일한 방식 — `script.js`의 `Module.callMain
 어긋나면 패치를 포기하고 원본으로 부팅한다. KR 전용(JP `GENSE.EXE`는 같은 메뉴가 있지만 배치가
 달라 오프셋 재조사 필요).
 
-**`debug.html`은 `suiko-save.js`를 로드하지 않는다** — 세이브 IndexedDB 키는 `kr.html`/`jp.html`
+**`demo.html`은 `suiko-save.js`를 로드하지 않는다** — 세이브 IndexedDB 키는 `kr.html`/`jp.html`
 공용이라, 시나리오 워프 상태가 8초 폴링으로 실제 플레이 세이브를 덮어쓴다. `script.js`의
 `SuikoSave` 호출 두 곳이 모두 가드되어 있어 스크립트를 빼는 것만으로 부팅 전 복원과 자동 저장이
 동시에 비활성화된다(디스크 이미지 자체의 세이브로 부팅하고 되쓰지 않음). 키를 나누는 방법도
-있지만 디버그 페이지에서 세이브가 필요할 이유가 없어 아예 빼는 쪽을 택했다. `fat16.js`는
-`suiko-debug.js`가 쓰므로 그대로 로드한다.
+있지만 데모 페이지에서 세이브가 필요할 이유가 없어 아예 빼는 쪽을 택했다. `fat16.js`는
+`suiko-demo.js`가 쓰므로 그대로 로드한다.
 
 ## 4. 기타
 
 ### 4.1 릴리스 버전
 
 단일 소스는 `docs/version.js`의 `VERSION` 하나뿐 — 사이트 푸터(`.footer-credits`)에 주입되며
-`kr.html`/`jp.html`/`debug.html`이 모두 이걸 로드한다. 배포할 때 이 값을 올리고 같은 이름의
+`kr.html`/`jp.html`/`demo.html`이 모두 이걸 로드한다. 배포할 때 이 값을 올리고 같은 이름의
 git 태그를 단다(`v1.1.0` 07-06, `v1.1.1` 07-08, `v1.1.2` 07-10, `v1.1.3`~). `package.json`의
 `version`은 웹 도구용이라 릴리스 버전과 무관하니 건드리지 않는다.
 
