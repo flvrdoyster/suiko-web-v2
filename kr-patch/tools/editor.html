@@ -390,7 +390,7 @@ async function load() {
   const findings = await fetch('/api/findings').then(r => r.json()).catch(() => []);
   findingByOffset = new Map(findings.map((f) => [f.offset, f]));
   computeDupSuggestions();
-  computeLineCaps();
+  computeLineCap();
   renderTabs();
   render();
 }
@@ -1126,29 +1126,21 @@ function applyFill() {
 }
 
 // 포인터 테이블 구간(`table`)은 줄이 아니라 **단위 합계**로 맞추면 되므로, Byte 칸도 그
-// 단위의 합을 보여준다(`합계 got/need`). 줄 하나만 보면 재분배 도중이 늘 빨갛게 보여서
-// 쓸모가 없다. 단위는 tableStart 경계로 끊는다 — bake-tables.js / hwanse-text.js와 같은 규칙.
+// 단위의 합을 보여준다. 줄 하나만 보면 재분배 도중이 늘 빨갛게 보여서 쓸모가 없다. 단위는
+// tableStart 경계로 끊는다 — bake-tables.js / hwanse-text.js와 같은 규칙.
 //
-// 줄 수(단위 크기)가 같은 단위끼리 전체에서 풀링한 실측 최대 길이 — hwanse-text.js의
-// computeLineCaps()와 같은 규칙(테이블별로 좁게 잡으면 표본이 적은 표에서 근거 없이 낮게
-// 잠긴다: 요일 8개짜리 표는 원본이 전부 한 글자라 cap이 2B로 잠기는 식). 표시 폭(픽셀)
-// 자체는 모르니(NOTES.md 3.4) "실제로 그 크기로 렌더링된 적 있는 길이"를 안전 상한으로 쓴다.
+// 한 줄의 상한(cap)은 테이블 구간 전체에서 **하나**다 — hwanse-text.js의 computeLineCap()과
+// 같은 규칙. 줄을 어디서 끊을지는 사람이 눈으로 맞추는 작업이라 상한은 "한 줄이 터무니없이
+// 길어지는 것"을 막는 가드레일이면 충분하고, 세분하면(테이블별·줄 수별로 좁게) 표본이 적은
+// 쪽에서 근거 없이 잠겨 작업 방해만 된다. 표시 폭(픽셀) 자체는 모르니(NOTES.md 3.4) "실제로
+// 그 길이로 렌더링된 적 있다"를 근거로 삼는다.
 // load()에서 한 번 계산해 두고 조회만 한다(14,812행을 매 렌더마다 훑지 않으려고).
-let lineCaps = new Map();
-function computeLineCaps() {
-  lineCaps = new Map();
-  let cur = null;
-  const flush = () => {
-    if (!cur) return;
-    const cap = Math.max(...cur.map((x) => x.length));
-    if (cap > (lineCaps.get(cur.length) || 0)) lineCaps.set(cur.length, cap);
-  };
+let lineCap = 0;
+function computeLineCap() {
+  lineCap = 0;
   for (const e of data.dialogue) {
-    if (e.table == null) { flush(); cur = null; continue; }
-    if (!cur || e.tableStart || cur[0].table !== e.table) { flush(); cur = [e]; }
-    else cur.push(e);
+    if (e.table != null && e.length > lineCap) lineCap = e.length;
   }
-  flush();
 }
 
 function tableUnitOf(e) {
@@ -1165,18 +1157,31 @@ function tableUnitOf(e) {
   return unit;
 }
 
+// 단위 하나의 상태 — Byte 칸(합계 표시)과 입력창 빨간 테두리가 **이 하나를 같이 본다.**
+// 따로 계산하면 기준이 갈려 "합계가 깨졌는데 테두리는 멀쩡한" 식의 불일치가 생긴다.
+// `override`({offset, value})는 아직 modified{}에 안 들어간 입력 중인 값을 끼워 넣는 용도.
+function unitLenState(section, unit, override) {
+  const valOf = (x) => (override && x.offset === override.offset ? override.value : currentFixed(section, x)) || x.text;
+  let need = 0, got = 0, overCap = false, touched = false;
+  for (const x of unit) {
+    need += x.length;
+    const n = byteLen(valOf(x));
+    got += n;
+    if (n > lineCap) overCap = true;
+    if (override && x.offset === override.offset ? override.value : currentFixed(section, x)) touched = true;
+  }
+  return { need, got, overCap, touched, ok: got === need && !overCap };
+}
+
 function lenCellState(section, e, fixed) {
   const unit = tableUnitOf(e);
   if (unit) {
-    const need = unit.reduce((s, x) => s + x.length, 0);
-    const got = unit.reduce((s, x) => s + byteLen(currentFixed(section, x) || x.text), 0);
-    const cap = lineCaps.get(unit.length);
-    const myLen = byteLen(fixed || e.text);
-    const overCap = cap != null && myLen > cap;
-    // cap은 항상 같이 보여준다 — 넘긴 뒤에야 알려주면 편집하는 사람이 얼마까지 늘려도
-    // 되는지 미리 알 방법이 없다. "이줄 30/36"처럼 항상 표시하고, 넘었을 때만 부호로 강조.
-    const text = `합계 ${got}/${need} · 이줄 ${myLen}${overCap ? '>' : '/'}${cap == null ? '?' : cap}`;
-    return { text, cls: (got === need && !overCap) ? 'ok' : 'bad' };
+    // 합계는 단위마다 하나뿐인 값이라 **묶음 마지막 줄에만** 적는다 — 줄마다 같은 숫자가
+    // 반복되면 그게 이 줄 길이인지 단위 합인지 헷갈린다. 다른 탭과 같은 `got/need` 형식.
+    if (e.offset !== unit[unit.length - 1].offset) return { text: '', cls: 'empty' };
+    const st = unitLenState(section, unit, null);
+    if (!st.touched) return { text: `${st.need}`, cls: 'empty' };
+    return { text: `${st.got}/${st.need}`, cls: st.ok ? 'ok' : 'bad' };
   }
   const n = need(section, e);
   if (!fixed) return { text: `${n}`, cls: 'empty' };
@@ -1281,24 +1286,16 @@ function renderRow(e, idx) {
   tdLen.className = 'len';
 
   const curVal = () => (k in modified ? modified[k] : (e.fixed || ''));
-  // 테이블 구간은 줄 단위로 원본 길이와 달라지는 게 정상이지만(단위 합계만 맞으면 됨), 그
-  // 줄 자체가 같은 크기 단위들의 실측 최대치(lineCaps)를 넘는 건 여기서 막는다 — 표시 폭
-  // 자체는 모르니 "그 크기로 실제 렌더링된 적 있는 길이"를 안전 상한으로 쓴다(hwanse-text.js
-  // build()와 같은 규칙). 합계는 Byte 칸이 따로 보여준다.
-  // 두 조건은 서로 다른 걸 지킨다 — 합계(need)는 "다음 단위 포인터를 안 침범한다"는 물리
-  // 제약, cap은 "이 줄이 창 폭을 안 넘는다"는 표시 제약이라 하나가 다른 하나를 대신 못한다.
-  // 둘 다 여기서 같이 본다 — 전에는 여기(빨간 테두리)가 cap만 보고 합계는 Byte 칸만
-  // 따로 봐서, 합계가 깨져도 이 입력창엔 빨간 테두리가 안 뜨는 불일치가 있었다. 두 신호가
-  // 다른 기준으로 따로 노는 건 신뢰할 수 없다 — 같은 판정을 공유해야 한다.
+  // 테이블 구간은 줄 단위로 원본 길이와 달라지는 게 정상이라(단위 합계만 맞으면 된다) 판정도
+  // 단위로 한다 — 합계(need)는 "다음 단위 포인터를 안 침범한다"는 물리 제약, cap은 "한 줄이
+  // 창 폭을 안 넘는다"는 표시 제약이고 하나가 다른 하나를 대신 못 한다. 둘 다 unitLenState()
+  // 하나에서 나오고, Byte 칸도 같은 걸 본다 — 두 신호가 다른 기준으로 따로 노는 건 신뢰할 수
+  // 없다. 단위가 깨지면 그 단위의 줄이 **전부** 빨개진다(원인이 옆줄일 수 있으니 맞다).
   const isInvalid = (v) => {
     if (e.table != null) {
       const unit = tableUnitOf(e);
       if (!unit) return false;
-      const cap = lineCaps.get(unit.length);
-      if (cap != null && byteLen(v || e.text) > cap) return true;
-      const need = unit.reduce((s, x) => s + x.length, 0);
-      const got = unit.reduce((s, x) => s + byteLen((x.offset === e.offset ? v : currentFixed(curSection, x)) || x.text), 0);
-      return got !== need;
+      return !unitLenState(curSection, unit, { offset: e.offset, value: v }).ok;
     }
     return !!(v && validity(curSection, byteLen(v), need(curSection, e)) !== 'ok');
   };
@@ -1307,18 +1304,24 @@ function renderRow(e, idx) {
     const st = lenCellState(curSection, e, curVal());
     tdLen.textContent = st.text;
     tdLen.className = 'len ' + st.cls;
-    // 같은 단위의 다른 줄들도 합계가 바뀌었으니 같이 갱신한다(한 줄만 고쳐도 단위 전체의
-    // 합계 표시가 달라진다). 렌더된 <tr>만 훑으므로 비용은 단위 크기(최대 4줄)로 끝난다.
+    // 판정이 단위 전체 기준이라, 한 줄만 고쳐도 **같은 단위의 다른 줄들**의 합계 칸과 빨간
+    // 테두리가 같이 달라진다 — 그래서 형제 줄도 여기서 함께 갱신한다(합계 칸은 마지막 줄에만
+    // 있지만 테두리는 전 줄에 걸린다). 렌더된 <tr>만 훑으므로 비용은 단위 크기(최대 4줄).
     const unit = tableUnitOf(e);
     if (!unit) return;
+    const bad = !unitLenState(curSection, unit, { offset: e.offset, value: curVal() }).ok;
     for (const sib of unit) {
       if (sib.offset === e.offset) continue;
       const row = document.querySelector(`#tbody tr[data-offset="${sib.offset}"]`);
-      const cell = row && row.querySelector('.len');
-      if (!cell) continue;
-      const s = lenCellState(curSection, sib, currentFixed(curSection, sib));
-      cell.textContent = s.text;
-      cell.className = 'len ' + s.cls;
+      if (!row) continue;
+      const cell = row.querySelector('.len');
+      if (cell) {
+        const s = lenCellState(curSection, sib, currentFixed(curSection, sib));
+        cell.textContent = s.text;
+        cell.className = 'len ' + s.cls;
+      }
+      const box = row.querySelector('.kr-input') || row.querySelector('.kr-display');
+      if (box) box.classList.toggle('invalid', bad);
     }
   }
 

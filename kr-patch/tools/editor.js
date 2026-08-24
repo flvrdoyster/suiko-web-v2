@@ -205,17 +205,14 @@ const server = http.createServer(async (req, res) => {
           if (keys.length) touchedUnits.set(unit[0].offset, { lines: unit, keys });
         }
       }
-      // 줄 수(단위 크기)가 같은 단위끼리 전체에서 풀링한 상한 — hwanse-text.js의
-      // computeLineCaps() 주석 참고(테이블별로 좁게 잡으면 표본이 적은 표에서 근거 없이
-      // 낮게 잠긴다).
-      const lineCaps = HWANSE_TEXT.computeLineCaps(dialogueSorted.filter((e) => e.table != null));
+      // 테이블 구간 전체에서 하나뿐인 실측 상한 — hwanse-text.js의 computeLineCap() 주석 참고.
+      const cap = HWANSE_TEXT.computeLineCap(dialogueSorted.filter((e) => e.table != null));
       for (const [unitOffset, { lines, keys }] of touchedUnits) {
         // 두 조건을 같이 본다: ①단위 합계가 원본과 같은가(다음 단위 포인터 침범 방지),
-        // ②각 줄이 같은 크기 단위들에서 실측된 최대 길이 이하인가 — 합계만 보면 한 줄이
-        // 옆줄 자리를 다 뺏어 그 줄만 창 폭을 넘어 잘릴 수 있다(hwanse-text.js build() 주석
-        // 참고). 둘 중 하나라도 어긋나면 이 단위에 걸린 편집을 전부 되돌린다 — 일부만
-        // 롤백하면 남은 편집이 여전히 규칙을 깨뜨린 채 저장돼 다음 빌드가 실패한다.
-        const cap = lineCaps.get(lines.length) || 0;
+        // ②각 줄이 실측 상한 이하인가 — 합계만 보면 한 줄이 옆줄 자리를 다 뺏어 그 줄만
+        // 창 폭을 넘어 잘릴 수 있다(hwanse-text.js build() 주석 참고). 둘 중 하나라도
+        // 어긋나면 이 단위에 걸린 편집을 전부 되돌린다 — 일부만 롤백하면 남은 편집이
+        // 여전히 규칙을 깨뜨린 채 저장돼 다음 빌드가 실패한다.
         const need = lines.reduce((s, e) => s + e.length, 0);
         let got = 0, overCap = null;
         try {
@@ -227,7 +224,7 @@ const server = http.createServer(async (req, res) => {
         } catch (err) { got = -1; }
         if (got === need && !overCap) continue;
         const reason = overCap
-          ? `줄 @${overCap.offset} ${overCap.n}B가 ${lines.length}줄 단위 실측 최대 ${cap}B 초과`
+          ? `줄 @${overCap.offset} ${overCap.n}B가 실측 최대 ${cap}B 초과`
           : `단위 합계 byte ${got}/${need}`;
         for (const k of keys) {
           const off = parseInt(k.slice(k.indexOf(':') + 1), 10);
