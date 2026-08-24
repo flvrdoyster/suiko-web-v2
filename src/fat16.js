@@ -100,26 +100,52 @@ function lfnChars(img, off) {
   return s;
 }
 
+// VFAT checksum of an 11-byte raw 8.3 name (the standard "sum, rotate, add" algorithm).
+// Every LFN entry that names a given short entry carries this same byte at offset 13 —
+// it's how a reader confirms the LFN entries immediately before a short entry actually
+// belong to it, rather than being leftovers from a since-deleted file that used to sit
+// in that slot.
+function shortNameChecksum(img, entryOff) {
+  let sum = 0;
+  for (let j = 0; j < 11; j++) sum = (((sum & 1) ? 0x80 : 0) + (sum >> 1) + img[entryOff + j]) & 0xff;
+  return sum;
+}
+
 // List entries of a directory whose raw bytes span the given [offset,size] regions.
 // `regions` is an array of {off, size}. Returns entries with reassembled long names.
 function parseDirRegions(ctx, regions) {
   const img = ctx.img;
   const out = [];
   let longName = '';
+  let longChecksum = null;
   for (const { off, size } of regions) {
     for (let i = 0; i < size; i += 32) {
       const entryOff = off + i;
       const first = img[entryOff];
-      if (first === 0x00) { longName = ''; return out; } // end of directory
-      if (first === 0xe5) { longName = ''; continue; }   // deleted
+      if (first === 0x00) return out; // end of directory
+      if (first === 0xe5) { longName = ''; longChecksum = null; continue; }   // deleted
       const attr = img[entryOff + 11];
-      if (attr === ATTR_LONG_NAME) { longName = lfnChars(img, entryOff) + longName; continue; }
+      if (attr === ATTR_LONG_NAME) {
+        longName = lfnChars(img, entryOff) + longName;
+        longChecksum = img[entryOff + 13]; // same on every LFN entry in the set
+        continue;
+      }
 
       let name = '';
       for (let j = 0; j < 8; j++) { const c = img[entryOff + j]; if (c !== 0x20) name += String.fromCharCode(c); }
       let ext = '';
       for (let j = 0; j < 3; j++) { const c = img[entryOff + 8 + j]; if (c !== 0x20) ext += String.fromCharCode(c); }
       const shortName = ext ? name + '.' + ext : name;
+
+      // Deleting a file marks only its short entry 0xE5; the LFN entries just above it
+      // keep their sequence-number first byte (0x01/0x42/…), which isn't 0x00 or 0xE5,
+      // so a later create that reuses this now-free short-entry slot leaves those LFN
+      // entries sitting there unclaimed. Without this check they'd get glued onto
+      // whatever new short entry lands here next — silently reporting the wrong name
+      // for a file that's actually fine on disk (found injecting saves into
+      // final-shared.img: even-numbered savedatN.dat entries landed right after such
+      // orphans and vanished from extractDirFiles() under a garbled name).
+      if (longName && longChecksum !== shortNameChecksum(img, entryOff)) longName = '';
 
       out.push({
         shortName,
@@ -134,6 +160,7 @@ function parseDirRegions(ctx, regions) {
         times: img.slice(entryOff + 13, entryOff + 26),
       });
       longName = '';
+      longChecksum = null;
     }
   }
   return out;
@@ -318,15 +345,25 @@ function createFileInDir(ctx, dirCluster, name, data, times) {
 
   const regions = dirRegions(ctx, dirCluster);
   const nm = name83(name);
-  let slotOff = -1;
+  let slotOff = -1, regionOff = -1;
   outer:
   for (const { off, size } of regions) {
     for (let i = 0; i < size; i += 32) {
       const first = ctx.img[off + i];
-      if (first === 0x00 || first === 0xe5) { slotOff = off + i; break outer; }
+      if (first === 0x00 || first === 0xe5) { slotOff = off + i; regionOff = off; break outer; }
     }
   }
   if (slotOff < 0) throw new Error('no free directory slot (root full)');
+
+  // A slot picked above by first-byte alone can still have live-looking LFN entries
+  // sitting right before it — deleting a file only marks its short entry 0xE5, so any
+  // LFN entries that named it keep their sequence-number first byte (0x01/0x42/…) and
+  // never match the 0x00/0xE5 scan above. Left alone they'd get glued onto whatever
+  // short entry we're about to write here (see parseDirRegions' checksum check) —
+  // clear them so the slot we're filling is actually clean, not just its own byte.
+  for (let p = slotOff - 32; p >= regionOff && ctx.img[p + 11] === ATTR_LONG_NAME && ctx.img[p] !== 0x00 && ctx.img[p] !== 0xe5; p -= 32) {
+    ctx.img[p] = 0xe5;
+  }
 
   for (let i = 0; i < 11; i++) ctx.img[slotOff + i] = nm.charCodeAt(i);
   ctx.img[slotOff + 11] = 0x20; // attr = archive

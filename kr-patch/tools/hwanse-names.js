@@ -185,6 +185,15 @@ function countHangul(buf, off, len) {
   return count;
 }
 
+// 0xa1 0xdb = full-width ○ (a censor/placeholder circle, e.g. "○○책" — the retail
+// translators' redaction of an adult joke item name, same device as "Ｈな本" in JP).
+function hasCircle(buf, off, len) {
+  for (let i = off; i + 1 < off + len; i++) {
+    if (buf[i] === 0xa1 && buf[i + 1] === 0xdb) return true;
+  }
+  return false;
+}
+
 function inNumericTable(off) {
   return NUMERIC_TABLE_RANGES.some(([s, e]) => off >= s && off < e);
 }
@@ -202,7 +211,15 @@ function emitCleanEntries(buf, start, end, entries) {
   }
   const noise = findNoiseRun(buf, start, end - start);
   if (!noise) {
-    if (!NOISE_OFFSETS.has(start) && countHangul(buf, start, end - start) >= 2) {
+    // >= 2 Hangul syllables is the usual bar for "this is real text, not a coincidental
+    // valid-looking noise blob". "○○책"(564124) legitimately has only 1 — the retail
+    // translators used the ○ symbol itself as content (redacting an adult joke's name),
+    // so a real name can dip below 2 as long as the other slot is that same intentional
+    // symbol, not arbitrary noise bytes. Loosened here rather than lowering the general
+    // threshold — verified this only newly admits that one entry, nothing else (NOTES.md).
+    const hangul = countHangul(buf, start, end - start);
+    const clean = hangul >= 2 || (hangul >= 1 && hasCircle(buf, start, end - start));
+    if (!NOISE_OFFSETS.has(start) && clean) {
       const text = decodeCp949(buf.subarray(start, end));
       if (text) entries.push({ offset: start, length: end - start, text });
     }

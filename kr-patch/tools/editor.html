@@ -87,11 +87,9 @@
   .jp-text { color: #6a8fae; font-size: 12px; white-space: pre-wrap; word-break: break-all; margin-top: 6px; cursor: pointer; }
   .jp-text.copied { background: #1a3322; transition: background .1s; }
   /* 행 참고 주석 — 대사 원문/JP 아래에 붙는다. 소스별로 색만 다르고 나머지는 공통:
-     note-finding = AI 검토 사유(review-findings.json), note-dup = 중복 JP 처리 제안.
+     note-filter = FILTERS 판정 사유, note-dup = 중복 JP 처리 제안.
      둘 다 정보 표시일 뿐 자동 적용은 하지 않는다(annotationsFor() 참고). */
   .row-note { font-size: 11px; white-space: pre-wrap; word-break: break-all; margin-top: 6px; }
-  .row-note.note-finding { color: #c9a04a; }
-  .row-note.note-finding b { color: #e0b95c; }
   .row-note.note-dup { color: #5ec9b0; }
   .row-note.note-dup b { color: #7fe0c8; }
   /* 자동감지 필터가 이 행을 잡은 사유 */
@@ -277,12 +275,14 @@ let bookmarkOffset = null;
 let ctxAutoShow = localStorage.getItem('suikoCtxAuto') !== '0';
 
 // Rubric-driven LLM review pass results (review-findings.json, see NOTES.md) — one entry
-// per {offset, category: 'meaning'|'punct'|'tone', reason}. 예전에는 이걸 'ai-<category>'
-// 드롭다운 필터로도 썼지만 세 카테고리 모두 전량 해결(수정 또는 확정)되어 필터는 제거했다.
-// 남은 용도는 행 참고 주석(annotationsFor()) 하나뿐 — 아직 미해결인 사유가 있으면 그 행
-// 아래에 표시된다. 필터가 다시 필요해지면 FILTERS 레지스트리에 한 줄 추가하면 된다.
-let findingByOffset = new Map();
-const FINDING_CATEGORY_LABEL = { meaning: '의미 왜곡', punct: '문장부호 과잉', tone: '화자 말투 불일치' };
+// per {offset, category: 'meaning'|'punct'|'tone', reason}. Was used both as an
+// 'ai-<category>' dropdown filter and as a permanent row annotation (annotationsFor());
+// both are gone now (2026-08) — all three categories hit 0 remaining unresolved (the
+// annotation had no e.fixed/e.confirmed check despite a comment here once claiming it did,
+// so it was actually showing on all 200 already-fixed rows forever, not just open ones).
+// The source file itself (review-findings.json, the 1차 LLM 배치 record) is untouched —
+// only the editor's consumption of it is gone. Revive by re-adding the fetch in load(),
+// the finding branch in annotationsFor(), and a FILTERS line if useful again.
 
 function byteLen(s) {
   // rough CP949 estimate for live feedback; server re-validates exactly. ASCII=1, else=2.
@@ -387,8 +387,6 @@ async function load() {
   data = await fetch('/api/translation').then(r => r.json());
   dialogueIndexByOffset = new Map(data.dialogue.map((e, i) => [e.offset, i]));
   bookmarkOffset = await fetch('/api/bookmark').then(r => r.json()).then((b) => b.offset);
-  const findings = await fetch('/api/findings').then(r => r.json()).catch(() => []);
-  findingByOffset = new Map(findings.map((f) => [f.offset, f]));
   computeDupSuggestions();
   computeLineCap();
   renderTabs();
@@ -415,92 +413,11 @@ function renderTabs() {
   }
 }
 
-// 문장부호 의심 (see kr-patch/tools/find-punct-issues.js for the CLI/batch version this
-// mirrors). 「」 vs 『』 is a KR/JP quote *convention* difference, not a translation error, so
-// it's excluded — only ！？… count as "tone marks" here.
-const PUNCT_REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '「', '」', '『', '』', '～', '∼']);
-const PUNCT_TONE_SET = new Set(['！', '？', '…']);
-
-// 문자별 최대 연속 반복 길이. { '！': 2, '…': 3 } 형태.
-function punctRuns(s) {
-  const m = {};
-  const c = [...s];
-  for (let i = 0; i < c.length; i++) {
-    if (!PUNCT_REPEAT_SET.has(c[i])) continue;
-    let j = i;
-    while (j < c.length && c[j] === c[i]) j++;
-    m[c[i]] = Math.max(m[c[i]] || 0, j - i);
-    i = j - 1;
-  }
-  return m;
-}
-
-// 한 줄을 정확히 하나의 문장부호 결함 범주로 분류한다(해당 없으면 null). 예전에는 "반복"과
-// "어조 편측"이 각각 독립 조건이라 523건 중 328건이 양쪽 필터에 동시에 잡혔고 — 한 필터를
-// 다 훑어도 다른 필터에서 같은 줄이 또 나와 진도가 안 나갔다. 상호배타 + 심각도 순으로 정리:
-//   added-repeat: JP에 없는 어조 문자를 KR이 넣고 반복까지 함 (가장 확실한 과잉)
-//   added:        JP에 없는 어조 문자를 KR이 넣음 (반복은 없음) — 필터로는 노출 안 함, 아래 참고
-//   amplified:    JP에도 있는 문자지만 KR이 JP보다 더 길게 반복 (JP ！ → KR ！！)
-// 위에서부터 먼저 걸리는 하나만 반환하므로 세 범주의 교집합은 항상 0이다.
-// 'added'는 한때 별도 필터였으나 드롭다운에서 뺐다 — 규칙이 바뀌어서가 아니라(GUIDE.md 2-3의
-// "JP에 없는 부호 추가는 교정 대상"은 그대로 유효하다) 필터로서 쓸모가 없어서다: 1,400건대는
-// 후보를 좁혀준다고 할 수 없어 전체를 그냥 훑는 것과 다를 바 없고, 우선순위도 낮으며, 어차피
-// 다른 대사를 고치는 김에 같이 처리되는 종류다. punctCategory()는 여전히 'added'를 분류하므로
-// 필요해지면 FILTERS 레지스트리에 한 줄 되살리는 것으로 끝난다.
-function punctCategory(fixed, e) {
-  const kr = fixed || e.text;
-  const jp = e.jp || '';
-  if (!kr || !jp) return null;
-  const rk = punctRuns(kr), rj = punctRuns(jp);
-  const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
-  const added = [...new Set([...kr].filter((c) => PUNCT_TONE_SET.has(c)))].filter((c) => !jpTone.has(c));
-  if (added.some((c) => rk[c] >= 2)) return 'added-repeat';
-  if (added.length) return 'added';
-  if (Object.keys(rk).some((c) => rk[c] > (rj[c] || 1))) return 'amplified';
-  return null;
-}
-
-// KR/JP 끝 글자가 둘 다 어조 문자인데 서로 다름(느낌표↔물음표 등).
-function punctLastMismatch(fixed, e) {
-  const kr = fixed || e.text;
-  const jp = e.jp || '';
-  if (!kr || !jp) return false;
-  const krLast = kr.replace(/　+$/u, '').slice(-1);
-  const jpLast = jp.replace(/　+$/u, '').slice(-1);
-  return PUNCT_TONE_SET.has(krLast) && PUNCT_TONE_SET.has(jpLast) && krLast !== jpLast;
-}
-
-// ── 필터별 행 설명 ──────────────────────────────────────────────────────────
-// 아래 note* 함수들은 "이 행이 왜 걸렸는가"를 한 줄로 만든다(FILTERS의 note).
-function noteAddedRepeat(fixed, e) {
-  const kr = fixed || e.text, jp = e.jp || '';
-  const rk = punctRuns(kr);
-  const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
-  const added = [...new Set([...kr].filter((c) => PUNCT_TONE_SET.has(c)))].filter((c) => !jpTone.has(c));
-  const shown = added.filter((c) => rk[c] >= 2).map((c) => `${c} ${rk[c]}회`).join(', ');
-  return `JP에 없는 ${shown} — 부호를 넣고 반복까지 함 (GUIDE 2-3 1순위)`;
-}
-function noteAmplified(fixed, e) {
-  const kr = fixed || e.text, jp = e.jp || '';
-  const rk = punctRuns(kr), rj = punctRuns(jp);
-  const shown = Object.keys(rk).filter((c) => rk[c] > (rj[c] || 1))
-    .map((c) => `${c} JP ${rj[c] || 0}회 → KR ${rk[c]}회`).join(', ');
-  return `${shown} — JP보다 길게 반복 (GUIDE 2-3 2순위)`;
-}
-// GUIDE 2-3: 이 필터는 두 부류가 섞인다. JP `…` → KR `？！`처럼 마크 종류가 실제로 다른 줄이
-// 본래 대상이고, JP `！？` → KR `？！`처럼 부호 조합은 같고 순서만 뒤집힌 줄도 걸린다. 후자는
-// 표의 "마크 종류가 다름"에 해당하지 않아 우선순위 밖이므로, 그 사실을 적어 넘길 수 있게 한다.
-function noteLastChar(fixed, e) {
-  const kr = (fixed || e.text).replace(/　+$/u, ''), jp = (e.jp || '').replace(/　+$/u, '');
-  const toneSet = (s) => [...new Set([...s].filter((c) => PUNCT_TONE_SET.has(c)))].sort().join('');
-  const swapped = toneSet(kr.slice(-3)) && toneSet(kr.slice(-3)) === toneSet(jp.slice(-3));
-  return `끝 부호 JP ${jp.slice(-1)} → KR ${kr.slice(-1)}`
-    + (swapped ? ' — 부호 조합은 같고 순서만 다름 (우선순위 밖, 넘겨도 됨)' : ' — 마크 종류가 다름 (GUIDE 2-3 2순위)');
-}
-
-// 더듬음 공백(GUIDE.md 2-6) 판정기는 전량 해결되어 드롭다운에서 뺐고, 함수도 지웠다 —
-// 같은 로직이 kr-patch/tools/find-punct-issues.js 카테고리 D에 그대로 있어서 배치로 다시
-// 훑을 수 있기 때문이다. 아래 mistrans-* 판정기들은 그런 사본이 없어 남겨 두었다.
+// 문장부호 과잉 필터(추가+반복/반복 증폭/끝 어조 불일치, punctRuns/punctCategory/
+// punctLastMismatch + note* 3개)와 더듬음 공백(GUIDE.md 2-6) 판정기는 전량 해결되어
+// 드롭다운에서 뺐고 함수도 지웠다(2026-08) — 같은 로직이 kr-patch/tools/find-punct-issues.js
+// 카테고리 A~D에 그대로 있어서 배치로 다시 훑을 수 있기 때문이다. 아래 mistrans-* 판정기들은
+// 그런 사본이 없어 남겨 두었다.
 
 // ── 연결 해제된 판정기: 오역 의심 (mistrans-*) ─────────────────────────────────
 // 문장부호 필터가 "표면 표기"(3층위 ③)를 잡는다면, 이쪽은 "뜻이 틀림"(①)을 기계적으로
@@ -691,10 +608,6 @@ function computeDupSuggestions() {
 // 이라, 그걸 참고해 길이에 맞춰 고쳐 쓰는 작업 자체가 하나의 묶음이기 때문이다. 훑다가
 // 만나기를 기다리는 것보다 모아서 처리하는 편이 낫다.
 const FILTERS = [
-  { value: 'punct-added-repeat', group: '문장부호', label: '추가+반복',      test: (f, e) => punctCategory(f, e) === 'added-repeat', note: noteAddedRepeat },
-  { value: 'punct-amplified',    group: '문장부호', label: '반복 증폭',      test: (f, e) => punctCategory(f, e) === 'amplified',    note: noteAmplified },
-  { value: 'punct-last-char',    group: '문장부호', label: '끝 어조 불일치', test: punctLastMismatch,                                note: noteLastChar },
-
   { value: 'dup-confirm',        group: '중복 JP',  label: '확정 가능',         test: (f, e) => dupTypeOf(e) === 'confirm' },
   { value: 'dup-strong',         group: '중복 JP',  label: '제안(강한신호)',    test: (f, e) => dupTypeOf(e) === 'strong' },
   { value: 'dup-weak',           group: '중복 JP',  label: '제안(약한신호)',    test: (f, e) => dupTypeOf(e) === 'weak' },
@@ -769,14 +682,6 @@ function annotationsFor(e) {
   }
   // 포인터 테이블 구간 여부는 "독백·설명" 탭 소속 자체가 이미 알려 준다 — 모든 행에
   // 같은 말을 반복하는 주석은 붙이지 않는다(전에 한 번 붙였다가 뺐다).
-  const finding = findingByOffset.get(e.offset);
-  if (finding) {
-    out.push({
-      cls: 'note-finding',
-      label: FINDING_CATEGORY_LABEL[finding.category] || finding.category,
-      text: finding.reason,
-    });
-  }
   const sug = dupSuggestionByOffset.get(e.offset);
   if (sug) {
     // 제안문에 따옴표를 두르지 않는다 — 이 줄은 그대로 긁어서 수정칸에 붙여넣는 용도라,
@@ -1398,7 +1303,7 @@ function renderRow(e, idx) {
       // Only recheck the active filter on blur, not on every keystroke — removing the row
       // mid-input would yank the textarea out from under the reviewer while they're still
       // typing. Blur means they've moved on, so it's safe to drop the row if it no longer
-      // matches (e.g. typing anything into 문장부호 의심/AI 필터 rows excludes them).
+      // matches (e.g. typing anything into a 중복 JP 필터 row can exclude it).
       ta.addEventListener('blur', () => dropRowIfFiltered(tr, e));
       inner.replaceChild(ta, display);
     }
