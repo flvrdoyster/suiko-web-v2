@@ -330,9 +330,19 @@ function debounce(fn, delay) {
     timer = setTimeout(() => fn(...args), delay);
   };
 }
-// recomputeUnreviewed()/updateStats() are hoisted function declarations, safe to reference
-// here even though they're defined further down.
-const scheduleStatsUpdate = debounce(() => { recomputeUnreviewed(); updateStats(); renderFilterSelect(); }, 200);
+// recomputeUnreviewed()/updateStats()/computeDupSuggestions() are hoisted function
+// declarations, safe to reference here even though they're defined further down.
+//
+// computeDupSuggestions()가 여기 없으면(예전엔 없었다) 편집 중 새로 생기는 중복 JP 관계를
+// 필터가 새로고침 전까진 영영 모른다 — dupSuggestionByOffset이 load() 때 딱 한 번만 계산돼서,
+// 이 세션에서 막 확정/수정한 줄 때문에 생긴 새 후보가 반영이 안 됐다(사용자가 직접 겪고
+// 지적함). renderFilterSelect()가 그 결과를 읽으니 순서상 먼저 와야 한다.
+const scheduleStatsUpdate = debounce(() => {
+  computeDupSuggestions();
+  recomputeUnreviewed();
+  updateStats();
+  renderFilterSelect();
+}, 200);
 
 let toastTimer = null;
 function toast(msg) {
@@ -1257,7 +1267,14 @@ function renderRow(e, idx) {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ section: curSection, offset: e.offset, confirmed: next }),
       }).then((r) => r.json());
-      if (res.ok) { e.confirmed = res.confirmed; syncConfirmUI(); syncNotes(); dropRowIfFiltered(tr, e); }
+      if (res.ok) {
+        e.confirmed = res.confirmed;
+        syncConfirmUI();
+        syncNotes();
+        dropRowIfFiltered(tr, e); // 즉시 반영: 이 행 제거 + 가벼운 통계
+        scheduleStatsUpdate();    // 디바운스: 중복 JP 후보 등 전체 재계산(확정으로 새로 생긴
+                                  // 관계 반영 — dropRowIfFiltered만으론 그건 못 잡는다)
+      }
       else toast('확정 실패');
     } catch (err) { toast('확정 실패: ' + err); }
     confirmBtn.disabled = false;
@@ -1315,7 +1332,7 @@ function renderRow(e, idx) {
       // mid-input would yank the textarea out from under the reviewer while they're still
       // typing. Blur means they've moved on, so it's safe to drop the row if it no longer
       // matches (e.g. typing anything into a 중복 JP 필터 row can exclude it).
-      ta.addEventListener('blur', () => dropRowIfFiltered(tr, e));
+      ta.addEventListener('blur', () => { dropRowIfFiltered(tr, e); scheduleStatsUpdate(); });
       inner.replaceChild(ta, display);
     }
     ta.focus();
