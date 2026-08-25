@@ -12,6 +12,18 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   IndexedDB → 디스크 이미지 주입, 부팅 후 폴링으로 변경 감지 시 SAVEDATA만 추출 저장).
   doswasmx의 디스크 전체 저장 방식을 대체, 디렉토리 엔트리 날짜/시각도 같이 보존. 저장/복원 시
   토스트 알림. `test/fat16.test.js`로 검증.
+- **세이브 디버그 패널**: `docs/suiko-debug.js`(2026-08) — `kr.html`/`jp.html`에 로드되지만
+  URL에 `?debug`/`&debug`가 없으면 즉시 return(버튼·패널·IDB 오픈 전부 안 함). gensei-pc98의
+  `docs/debug.js`(디스크 이미지 임포트/익스포트) 이식이되, 저장 구조가 달라 그대로는 안
+  맞았다 — gensei-pc98은 IDB 키 하나 = 파일 하나지만, `suiko-save.js`는 키 하나(`savedata`)에
+  SAVEDATA 폴더 전체가 배열로 들어있다. 그래서 행 하나 = 배열 안 슬롯 하나(`SAVEDAT1~6.DAT`
+  고정 6개)로 바꾸고, 가져오기/내보내기/삭제 전부 그 배열을 읽고 이름으로 갈아끼워 다시 쓰는
+  식으로 구현. 상단바 왼쪽(`#topbar-left`, gensei-pc98과 같은 grid-column:1 자리)에 아이콘
+  버튼 하나. 스타일은 이 사이트 `style.css`가 gensei-pc98과 완전히 같은 파일이라
+  `--font-sm`/`--font-md` 토큰과 전역 `button{}`을 그대로 재사용(처음엔 하드코딩해서 폰트
+  크기·버튼 모양이 어긋났다가 정정). 여러 파일 동시 임포트는 안 만듦(1개씩으로 충분).
+  `test/fixtures/SAVEDAT{1,2}.DAT`(실제 KR 세이브 슬롯 2개, 각 1,274B)를 이 패널의 가져오기
+  버튼으로 바로 시험해볼 수 있게 넣어둠 — 개인정보 없음(순수 게임 상태 바이너리, 확인됨).
 - **이미지 크기**: 원본 94MB → gzip 전송 기준 약 34.9MB(`tools/strip-image.js` + SC-55 SF3
   변환 53MB→9MB + `kr-patch/tools/slim-image.js`가 핵심 레버).
 - **부팅 자동화**: 스캔디스크 프롬프트·로고 애니메이션·부트 메뉴 지연 제거, WIN.INI로 게임
