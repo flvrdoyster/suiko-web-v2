@@ -10931,7 +10931,7 @@
       "offset": 393696,
       "length": 30,
       "text": "안되는　곳이　바로　여기다！！",
-      "fixed": "없는　곳이　바로　여기다　　　",
+      "fixed": "　없는　곳이　바로　여기다　　",
       "confirmed": false,
       "jp": "　通れないのがここの修業だ",
       "jpOffset": 517826
@@ -23405,7 +23405,7 @@
       "offset": 459112,
       "length": 30,
       "text": "「호랑이동굴을　찾아낼　때까진",
-      "fixed": "「아차　호랑이동굴에서　수련할",
+      "fixed": "「앗…　호랑이동굴에서　수련할",
       "confirmed": false,
       "jp": "「おっと…　虎の穴で修業するまでは",
       "jpOffset": 573190
@@ -25169,8 +25169,8 @@
       "offset": 464392,
       "length": 24,
       "text": "「아차！　지체하지　말고",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「앗！　새지　말고　　　",
+      "confirmed": false,
       "jp": "「おっと！　遊んでないで",
       "jpOffset": 1220486
     },
@@ -29644,7 +29644,7 @@
       "offset": 527692,
       "length": 28,
       "text": "「스마슈　병문안이나　가볼까",
-      "fixed": "「옷　상태를　보러　가야지！",
+      "fixed": "「앗，상태를　보러　가야지！",
       "confirmed": false,
       "jp": "「おっと　様子を見に行かねば！",
       "jpOffset": 638364
@@ -29662,7 +29662,7 @@
       "offset": 527754,
       "length": 24,
       "text": "「아차！　잊을　뻔했구만",
-      "fixed": "「아차　잊을　뻔했구먼！",
+      "fixed": "「아차，잊을　뻔했구먼！",
       "confirmed": false,
       "jp": "「おっと　忘れるとこじゃった！",
       "jpOffset": 638432
@@ -46246,7 +46246,7 @@
       "offset": 645700,
       "length": 24,
       "text": "「이제　정신을　차렸구만",
-      "fixed": "",
+      "fixed": "「오　정신을　차렸구만　",
       "confirmed": false,
       "jp": "「おっ　目が覚めたようだな",
       "jpOffset": 776500
@@ -49675,7 +49675,7 @@
       "offset": 655518,
       "length": 30,
       "text": "「여기　있다가　도둑놈이　오면",
-      "fixed": "",
+      "fixed": "「여기서　도둑놈이　오면　　　",
       "confirmed": false,
       "jp": "「ここで　泥棒が来たら",
       "jpOffset": 787220
@@ -49684,7 +49684,7 @@
       "offset": 655552,
       "length": 20,
       "text": "　꽉　붙잡아　두게！",
-      "fixed": "",
+      "fixed": "　꽁꽁　묶어　두게　",
       "confirmed": false,
       "jp": "　ふんじばってくれ",
       "jpOffset": 787246
@@ -54698,7 +54698,7 @@
       "offset": 769754,
       "length": 20,
       "text": "「아차！　신의　산은",
-      "fixed": "「아차　신의산은　　",
+      "fixed": "「아차，신의산은　　",
       "confirmed": false,
       "jp": "「おっと　神の山とやらは",
       "jpOffset": 901566
@@ -54968,7 +54968,7 @@
       "offset": 770594,
       "length": 32,
       "text": "「아차！　기껏　여기까지　왔는데",
-      "fixed": "",
+      "fixed": "「아차，기껏　여기까지　왔는데　",
       "confirmed": false,
       "jp": "「おっと　せっかくここまで来たんだ",
       "jpOffset": 902462
@@ -56201,7 +56201,7 @@
       "offset": 775364,
       "length": 10,
       "text": "「아차！！",
-      "fixed": "「아차　　",
+      "fixed": "「아차！　",
       "confirmed": false,
       "jp": "「おっと！",
       "jpOffset": 906364
@@ -60188,7 +60188,7 @@
       "offset": 788092,
       "length": 28,
       "text": "　이봐　더이상　말하지　말게",
-      "fixed": "",
+      "fixed": "　이봐　더는　말하지　말게　",
       "confirmed": false,
       "jp": "　おっと　もう　しゃべるでない",
       "jpOffset": 373058
@@ -68207,7 +68207,7 @@
       "offset": 885864,
       "length": 22,
       "text": "「아차…용건도　없는데",
-      "fixed": "「엇…　용건도　없는데",
+      "fixed": "「앗…　용건도　없는데",
       "confirmed": false,
       "jp": "「おっと…　用もないのに",
       "jpOffset": 1034784
@@ -90984,8 +90984,8 @@
       "offset": 1065348,
       "length": 16,
       "text": "「…아차！　그럼",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「…자　그러면　",
+      "confirmed": false,
       "jp": "「…おっと　それじゃあ",
       "jpOffset": 687278
     },
@@ -92226,7 +92226,7 @@
       "offset": 1069282,
       "length": 24,
       "text": "「…아차！　생각해　보니",
-      "fixed": "「…아차　그러고　보니　",
+      "fixed": "「…아차，그러고　보니　",
       "confirmed": false,
       "jp": "「…おっと　そういえば",
       "jpOffset": 691346
@@ -100202,7 +100202,7 @@
       "offset": 1145340,
       "length": 28,
       "text": "「아차，이집　주인에겐　벌써",
-      "fixed": "「아차　이미　이　집에는　　",
+      "fixed": "「아차，이미　이　집에는　　",
       "confirmed": false,
       "jp": "「おっと　もうこの家の者には",
       "jpOffset": 1310916
@@ -101849,7 +101849,7 @@
       "offset": 1150264,
       "length": 14,
       "text": "「어，이방이…",
-      "fixed": "「아차　이　쪽",
+      "fixed": "「아차，이　쪽",
       "confirmed": false,
       "jp": "「おっと　こっちの",
       "jpOffset": 1315942
@@ -101876,7 +101876,7 @@
       "offset": 1150330,
       "length": 30,
       "text": "「아차！　아직　사범님　말씀을",
-      "fixed": "「아차　아직　사범님　얘기를　",
+      "fixed": "「아차，아직　사범님　얘기를　",
       "confirmed": false,
       "jp": "「おっと　まだ師範どのの話を",
       "jpOffset": 1316022
@@ -112136,8 +112136,8 @@
       "offset": 1279722,
       "length": 24,
       "text": "「아차！　지금은　이곳에",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「아차，지금은　여기에　",
+      "confirmed": false,
       "jp": "「おっと　今は　こんな所に",
       "jpOffset": 268630
     },
@@ -116132,7 +116132,7 @@
       "offset": 1337994,
       "length": 36,
       "text": "「으이그，지겨워！　그만들　좀　해！",
-      "fixed": "「옷　나를　눈여겨　보다니　　　　　",
+      "fixed": "「오　나를　눈여겨　보다니　　　　　",
       "confirmed": false,
       "jp": "「おっと　あたいに目をつけるたあ",
       "jpOffset": 962696
@@ -117941,7 +117941,7 @@
       "offset": 1343602,
       "length": 34,
       "text": "「앗！　아직　리셋하기엔　일러요！",
-      "fixed": "「앗！　아직　리셋하기엔　이르지　",
+      "fixed": "「앗，아직　리셋하기엔　이르지　　",
       "confirmed": false,
       "jp": "「おっと　リセットするのはまだ早いぜ",
       "jpOffset": 968366
@@ -121542,7 +121542,7 @@
       "length": 8,
       "text": "「？？？",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「？？？",
       "jpOffset": 312556
     },
@@ -121641,7 +121641,7 @@
       "length": 8,
       "text": "「………",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "「………",
       "jpOffset": 312776
     },
@@ -125222,7 +125222,7 @@
       "offset": 1366432,
       "length": 28,
       "text": "「아차，한가하게　어물거리고",
-      "fixed": "「아차　어슬렁거릴　　　　　",
+      "fixed": "「아차，어슬렁거릴　　　　　",
       "confirmed": false,
       "jp": "「おっと　遊んでおる",
       "jpOffset": 323708
@@ -125276,7 +125276,7 @@
       "offset": 1366602,
       "length": 24,
       "text": "「아차，어물거리고　있을",
-      "fixed": "「아차　어슬렁거릴　　　",
+      "fixed": "「아차，어슬렁거릴　　　",
       "confirmed": false,
       "jp": "「おっと　遊んでおる",
       "jpOffset": 323860
@@ -125402,7 +125402,7 @@
       "offset": 1366970,
       "length": 26,
       "text": "「아차，어슬렁거리고　있을",
-      "fixed": "「아차　어슬렁거릴　　　　",
+      "fixed": "「아차，어슬렁거릴　　　　",
       "confirmed": false,
       "jp": "「おっと　遊んでおる",
       "jpOffset": 324238
@@ -129966,7 +129966,7 @@
       "length": 18,
       "text": "　먹기대회에　출전",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　大食い大会に出る",
       "jpOffset": 986904
     },
@@ -129975,7 +129975,7 @@
       "length": 20,
       "text": "　마시기대회에　출전",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　大酒飲み大会に出る",
       "jpOffset": 986926
     },
@@ -129984,7 +129984,7 @@
       "length": 18,
       "text": "　출전하지　않는다",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　どちらにも出ない",
       "jpOffset": 986950
     },
@@ -130001,7 +130001,7 @@
       "offset": 1381400,
       "length": 10,
       "text": "「이보셔！",
-      "fixed": "",
+      "fixed": "「이보게　",
       "confirmed": false,
       "jp": "「うほ～い",
       "jpOffset": 987006
@@ -130011,7 +130011,7 @@
       "length": 28,
       "text": "　나　먹기대회에　나갈거요！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ワシ　大食い大会に出るぞ～！",
       "jpOffset": 987020
     },
@@ -130046,7 +130046,7 @@
       "offset": 1381516,
       "length": 10,
       "text": "「이보셔！",
-      "fixed": "",
+      "fixed": "「이보게　",
       "confirmed": false,
       "jp": "「うほ～い",
       "jpOffset": 987132
@@ -130056,7 +130056,7 @@
       "length": 30,
       "text": "　나　마시기대회에　나갈거요！",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "　ワシ　大酒飲み大会に出るぞ～！",
       "jpOffset": 987146
     },
@@ -130631,7 +130631,7 @@
       "offset": 1383278,
       "length": 24,
       "text": "　…나중에　물어봐야겠다",
-      "fixed": "　…엇　얘기는　나중이지",
+      "fixed": "　…앗，얘기는　나중이지",
       "confirmed": false,
       "jp": "　…おっと　話をするのは後じゃ",
       "jpOffset": 989044
@@ -131028,7 +131028,7 @@
       "length": 4,
       "text": "페톰",
       "fixed": "",
-      "confirmed": false,
+      "confirmed": true,
       "jp": "ペトゥム",
       "jpOffset": 990430
     },
@@ -132422,7 +132422,7 @@
       "offset": 1388788,
       "length": 22,
       "text": "우선，먼저　이녀석을…",
-      "fixed": "",
+      "fixed": "「앗，우선　이　녀석…",
       "confirmed": false,
       "jp": "「おっと！　先にこいつ…",
       "jpOffset": 994998
@@ -134492,7 +134492,7 @@
       "offset": 1395104,
       "length": 20,
       "text": "「아차！　이　병실은",
-      "fixed": "「아차　이　병실은　",
+      "fixed": "「아차，이　병실은　",
       "confirmed": false,
       "jp": "「おっと　この病室は",
       "jpOffset": 1001826
