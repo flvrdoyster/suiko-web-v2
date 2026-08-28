@@ -11,7 +11,7 @@ suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이
 
 + **`docs/`** — 배포용 웹 에뮬레이터. GitHub Pages로 `https://suiko.atah.io`에 서빙됨. KR(`kr.html`)·JP(`jp.html`)가 하나의 공유 디스크 이미지(`final-shared.img`)를 사용.
 + **`src/`** / **`test/`** — FAT16 파일 단위 추출/주입 라이브러리(`fat16.js`)와 테스트. 세이브 데이터 저장, KR 텍스트 패치 주입에 공용으로 쓰임.
-+ **`tools/`** — 베이스 디스크 이미지 빌드 도구(`strip-image.js`, `build-image.js`, `build-jp-image.js`, `bake-fonts.js`).
++ **`tools/`** — 베이스 디스크 이미지 빌드 도구(`strip-image.js`, `build-image.js`, `build-jp-image.js`, `bake-fonts.js`)와 사운드폰트 청감 확인용 `midi2mp3.sh`(빌드 파이프라인과 무관한 독립 도구).
 + **`kr-patch/`** — 정식 KR 번역을 저본으로 한 전면 개정 파이프라인(추출·검수 에디터·재삽입).
 + **`original/`** — 원본 게임 파일(저장소에는 없음, 로컬에 직접 준비 필요).
 
@@ -28,7 +28,7 @@ npm install
 ```
 
 `iconv-lite`(CP949 인코딩) 하나를 받는다. 텍스트 파이프라인(`kr-patch/tools/hwanse-text.js`,
-`hwanse-names.js`, `gense-text.js`, `gense-names.js`, `debug-menu.js`)이 전부 이 모듈에
+`hwanse-names.js`, `gense-text.js`, `gense-names.js`, `demo-menu.js`)이 전부 이 모듈에
 의존하므로, 새로 클론한 뒤 이걸 건너뛰면 `Cannot find module 'iconv-lite'`로 실패한다.
 
 ---
