@@ -83,15 +83,28 @@
   // straight from there (no disk, no canvas contention, guest-agnostic).
   //
   // The Win95 desktop used to be the default teal (0,128,128), but the game's own screens
-  // turned out to hit that same range often enough that watching for it re-appearing
-  // (to detect the player quitting to the desktop) false-triggered mid-play and paused a
-  // live session. Fixed at the source instead of the detector: the shared disk image's
-  // desktop background is now set to a fully saturated, off-palette color — pure cyan
-  // (0,255,255) — via Display Properties, baked into docs/final-shared.img (2026-08).
-  // Game art doesn't use flat fully-saturated cyan, so this is a much cleaner signal than
-  // the original default ever was. We wait to first SEE the desktop (cyan fraction goes
-  // high), then reveal when the game covers it (cyan fraction drops back down).
-  function desktopFraction() {
+  // hit that same range often enough that watching for it *re-appearing* (to detect the
+  // player quitting to the desktop) false-triggered mid-play and paused a live session.
+  // Fixed at the source rather than in the detector: the shared disk image's desktop
+  // background is now a fully saturated, off-palette pure cyan (0,255,255), set through
+  // Display Properties and baked into docs/final-shared.img (2026-08). Game art doesn't
+  // use flat fully-saturated cyan, so it's a far cleaner signal than the default ever was.
+  //
+  // ⚠ This script and final-shared.img are separate files with independent cache lifetimes
+  // (both max-age=600 on Pages), so a client can briefly hold one new and one old. That
+  // desync is why the two detections below use *different* color tests:
+  //
+  //   startFraction() — teal OR cyan. Tolerant on purpose. A false positive here is
+  //     harmless (one-shot at boot, worst case the cover lifts a moment early), while a
+  //     false negative strands the player on the splash until the 90s failsafe. Accepting
+  //     the old color too means a new script + stale old image still boots correctly.
+  //   exitFraction() — cyan only. Strict, because this is where a false positive actually
+  //     hurts: it pauses a live session. With a stale old (teal) image this simply never
+  //     fires — auto-stop is quietly unavailable, which is a harmless degradation.
+  //
+  // (The reverse skew — an old cached script against the new image — can't be fixed from
+  // here, and resolves itself once the 10-minute cache window lapses.)
+  function sampleFraction(match) {
     var buf = window.myApp && myApp.rgbaDestination;
     if (!buf || !buf.length) return -1;
     var hit = 0, n = 0;
@@ -99,10 +112,16 @@
     var step = Math.max(1, Math.floor(buf.length / 4 / 3000)) * 4;
     for (var i = 0; i + 2 < buf.length; i += step) {
       n++;
-      if (buf[i] < 48 && buf[i + 1] > 200 && buf[i + 2] > 200) hit++;
+      if (match(buf[i], buf[i + 1], buf[i + 2])) hit++;
     }
     return n ? hit / n : -1;
   }
+  function isCyan(r, g, b) { return r < 48 && g > 200 && b > 200; }
+  function isTeal(r, g, b) { return r < 48 && g > 80 && g < 176 && b > 80 && b < 176; }
+  function startFraction() {
+    return sampleFraction(function (r, g, b) { return isCyan(r, g, b) || isTeal(r, g, b); });
+  }
+  function exitFraction() { return sampleFraction(isCyan); }
 
   // Enable Start once the doswasmx WASM module has initialised.
   if (start) {
@@ -145,7 +164,7 @@
       }
       var sawDesktop = false;
       var watch = setInterval(function () {
-        var frac = desktopFraction();
+        var frac = startFraction(); // tolerant: teal OR cyan — see the comment above
         if (frac < 0) return; // no frame yet
         if (!sawDesktop) {
           if (frac >= 0.30) { sawDesktop = true; console.log('[suiko-boot] Win95 desktop detected'); }
@@ -160,16 +179,16 @@
       setTimeout(reveal, 90000);
 
       // ---- game-exit detection (mirror of the above) ----
-      // Once the game has covered the desktop, watch for the same cyan fraction rising
-      // back up — the player quit the game and Win95 is showing its desktop again. Same
-      // 250ms cadence as the boot watch above; still needs 2 consecutive high samples
-      // (~500ms) so a one-frame flicker doesn't false-trigger a stop mid-play. This is the
-      // same detector that used to false-trigger on the default teal during actual
-      // gameplay (see desktopFraction() comment) — now keyed to the custom cyan instead.
+      // Once the game has covered the desktop, watch for the cyan fraction rising back up —
+      // the player quit the game and Win95 is showing its desktop again. Same 250ms cadence
+      // as the boot watch above; still needs 2 consecutive high samples (~500ms) so a
+      // one-frame flicker doesn't false-trigger a stop mid-play. Strictly cyan (never teal):
+      // this is the detection that used to false-trigger on the default teal during real
+      // gameplay, and a false positive here pauses a live session — see the color note above.
       function watchGameExit() {
         var highStreak = 0;
         var watchExit = setInterval(function () {
-          var frac = desktopFraction();
+          var frac = exitFraction();
           if (frac < 0) return;
           if (frac < 0.30) { highStreak = 0; return; }
           if (++highStreak < 2) return;
