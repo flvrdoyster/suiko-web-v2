@@ -75,27 +75,33 @@
     return window.myApp && myApp.rivetsData && !myApp.rivetsData.moduleInitializing;
   }
 
-  // ---- game-start detection (canvas pixels) ----
+  // ---- game-start/exit detection (canvas pixels) ----
   // Trying to observe boot from inside the guest (a flag file written by Win95) proved
   // unworkable — Win95's WIN.INI run=/load= + PIF quirks and disk write-back caching made
   // it unreliable. Instead we watch what's actually on screen: the emulator writes every
   // frame's RGBA into myApp.rgbaDestination before painting it, so we can read pixels
   // straight from there (no disk, no canvas contention, guest-agnostic).
   //
-  // The Win95 desktop is dominated by its default teal (0,128,128); the DOS/logo boot
-  // screens and the game are not. So we wait to first SEE the desktop (teal goes high),
-  // then reveal when the game covers it (teal drops back down).
-  function tealFraction() {
+  // The Win95 desktop used to be the default teal (0,128,128), but the game's own screens
+  // turned out to hit that same range often enough that watching for it re-appearing
+  // (to detect the player quitting to the desktop) false-triggered mid-play and paused a
+  // live session. Fixed at the source instead of the detector: the shared disk image's
+  // desktop background is now set to a fully saturated, off-palette color — pure cyan
+  // (0,255,255) — via Display Properties, baked into docs/final-shared.img (2026-08).
+  // Game art doesn't use flat fully-saturated cyan, so this is a much cleaner signal than
+  // the original default ever was. We wait to first SEE the desktop (cyan fraction goes
+  // high), then reveal when the game covers it (cyan fraction drops back down).
+  function desktopFraction() {
     var buf = window.myApp && myApp.rgbaDestination;
     if (!buf || !buf.length) return -1;
-    var teal = 0, n = 0;
+    var hit = 0, n = 0;
     // ~3000 samples is plenty and cheap; step in whole pixels (4 bytes).
     var step = Math.max(1, Math.floor(buf.length / 4 / 3000)) * 4;
     for (var i = 0; i + 2 < buf.length; i += step) {
       n++;
-      if (buf[i] < 48 && buf[i + 1] > 80 && buf[i + 1] < 176 && buf[i + 2] > 80 && buf[i + 2] < 176) teal++;
+      if (buf[i] < 48 && buf[i + 1] > 200 && buf[i + 2] > 200) hit++;
     }
-    return n ? teal / n : -1;
+    return n ? hit / n : -1;
   }
 
   // Enable Start once the doswasmx WASM module has initialised.
@@ -139,18 +145,43 @@
       }
       var sawDesktop = false;
       var watch = setInterval(function () {
-        var teal = tealFraction();
-        if (teal < 0) return; // no frame yet
+        var frac = desktopFraction();
+        if (frac < 0) return; // no frame yet
         if (!sawDesktop) {
-          if (teal >= 0.30) { sawDesktop = true; console.log('[suiko-boot] Win95 desktop detected'); }
-        } else if (teal <= 0.10) {
+          if (frac >= 0.30) { sawDesktop = true; console.log('[suiko-boot] Win95 desktop detected'); }
+        } else if (frac <= 0.10) {
           console.log('[suiko-boot] game covering desktop -> reveal');
           clearInterval(watch);
           setTimeout(reveal, 600); // let the first game frame settle
+          watchGameExit();
         }
       }, 250);
       // failsafe: if detection never fires, don't leave the cover stuck forever
       setTimeout(reveal, 90000);
+
+      // ---- game-exit detection (mirror of the above) ----
+      // Once the game has covered the desktop, watch for the same cyan fraction rising
+      // back up — the player quit the game and Win95 is showing its desktop again. Same
+      // 250ms cadence as the boot watch above; still needs 2 consecutive high samples
+      // (~500ms) so a one-frame flicker doesn't false-trigger a stop mid-play. This is the
+      // same detector that used to false-trigger on the default teal during actual
+      // gameplay (see desktopFraction() comment) — now keyed to the custom cyan instead.
+      function watchGameExit() {
+        var highStreak = 0;
+        var watchExit = setInterval(function () {
+          var frac = desktopFraction();
+          if (frac < 0) return;
+          if (frac < 0.30) { highStreak = 0; return; }
+          if (++highStreak < 2) return;
+          clearInterval(watchExit);
+          console.log('[suiko-boot] desktop reappeared -> stopping emulation');
+          Module._neil_toggle_pause();
+          // cover는 시작 클릭 때 이미 hidden=false로 켜둔 채 안 꺼서, overlay만 다시
+          // 보이면 그 스플래시 이미지가 뜬다(정지된 데스크톱 대신 첫 화면처럼 보임).
+          overlay.classList.remove('hidden');
+          showToast('게임이 종료되어 에뮬레이션을 정지했습니다. 다시 플레이하려면 새로고침하세요.', 0);
+        }, 250);
+      }
     });
   }
 
