@@ -198,7 +198,12 @@
           // cover는 시작 클릭 때 이미 hidden=false로 켜둔 채 안 꺼서, overlay만 다시
           // 보이면 그 스플래시 이미지가 뜬다(정지된 데스크톱 대신 첫 화면처럼 보임).
           overlay.classList.remove('hidden');
-          showToast('게임이 종료되어 에뮬레이션을 정지했습니다. 다시 플레이하려면 새로고침하세요.', 0);
+          // 두 문장을 나눠 띄운다(둘 다 duration 0 = 안 사라짐) — 첫 문장을 5초 뒤 두
+          // 번째로 그냥 덮어써서, showToast의 자체 auto-hide 타이머와 겹쳐 깜빡이는 걸 피함.
+          showToast('게임이 종료되어 에뮬레이션을 정지했습니다.', 0);
+          setTimeout(function () {
+            showToast('다시 플레이하려면 새로고침하세요.', 0);
+          }, 5000);
         }, 250);
       }
     });
