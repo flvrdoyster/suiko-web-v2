@@ -43852,7 +43852,7 @@
       "offset": 637408,
       "length": 30,
       "text": "「그래요！　당신들에게　주느니",
-      "fixed": "「그래요！　당신들에게　　　　",
+      "fixed": "「그래요！　당신들에게　넘길　",
       "confirmed": false,
       "jp": "「そうよ！",
       "jpOffset": 769034
@@ -43861,7 +43861,7 @@
       "offset": 637442,
       "length": 20,
       "text": "　개한테　주겠어！！",
-      "fixed": "줄　인정서는　없어！",
+      "fixed": "　인정서는　없어！　",
       "confirmed": false,
       "jp": "　あんたたちに渡す認定証はないわ！",
       "jpOffset": 769048
@@ -45364,8 +45364,8 @@
       "offset": 642074,
       "length": 16,
       "text": "「음…정말이라네",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "「정말이라네　　",
+      "confirmed": false,
       "jp": "「そうじゃな",
       "jpOffset": 773664
     },
