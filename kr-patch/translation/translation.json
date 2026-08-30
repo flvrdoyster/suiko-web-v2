@@ -6584,8 +6584,8 @@
       "offset": 348832,
       "length": 22,
       "text": "５０００Ｇ를　발견했다",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "５００Ｇ를　발견했다　",
+      "confirmed": false,
       "jp": "５００Ｇを見つけました",
       "jpOffset": 472484
     },
@@ -6593,7 +6593,7 @@
       "offset": 348874,
       "length": 26,
       "text": "５０００Ｇ를　손에　넣었다",
-      "fixed": "５０００Ｇ를　입수했다　　",
+      "fixed": "５００Ｇ를　입수했다　　　",
       "confirmed": false,
       "jp": "５００Ｇを手に入れました",
       "jpOffset": 472526
