@@ -514,6 +514,73 @@ function mistransLength(fixed, e) {
   return a >= 8 && b > 0 && a / b >= 2.5;
 }
 
+// ── QA 재검증 (qa-*) ────────────────────────────────────────────────────────
+// 전수 검토가 끝난(미검토 0) 뒤에 도는 자동 감지용 필터. 한때 fixed/confirmed 여부와
+// 무관하게 항상 켜지는 `alwaysShow`로 만들었으나(이미 확정한 줄도 재검사), 실측해보니
+// 여기 걸린 건 전부 오탐이거나 의도한 표기였다(문장부호 규칙에 안 걸리는 정당한 예외,
+// GUIDE 밖 케이스 등) — 사람이 이미 판단해서 확정/수정한 줄을 기계 판정으로 다시 들쑤시는
+// 건 신호 대 잡음비가 안 맞는다. **다른 필터와 동일하게 되돌렸다** — fixed/confirmed면
+// isReviewedFor가 정상적으로 걸러낸다. 자동 판정 로직 자체(punctCategory 등)는 새로
+// 들어오는(아직 검토 안 한) 줄을 잡는 용도로 계속 쓴다.
+
+const PUNCT_REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '「', '」', '『', '』', '～', '∼']);
+const PUNCT_TONE_SET = new Set(['！', '？', '…']);
+function punctRuns(s) {
+  const m = {};
+  // JP는 물결표로 ～(U+FF5E)를, KR은 게임 규칙상 ∼(U+223C)를 쓴다(GUIDE 2-3) — 그대로
+  // 비교하면 서로 다른 키로 잡혀 "JP엔 없던 반복이 KR에 생겼다"는 오탐이 난다(예: JP
+  // ～～～ 3연속 vs KR ∼∼∼ 3연속, 실제로는 동일한데 amplified로 오판했었다). 반복 횟수
+  // 비교 전에 한쪽으로 정규화한다.
+  const c = [...s.replace(/～/g, '∼')];
+  for (let i = 0; i < c.length; i++) {
+    if (!PUNCT_REPEAT_SET.has(c[i])) continue;
+    let j = i;
+    while (j < c.length && c[j] === c[i]) j++;
+    m[c[i]] = Math.max(m[c[i]] || 0, j - i);
+    i = j - 1;
+  }
+  return m;
+}
+// 'added-repeat': JP에 없는 어조 부호(！？…)를 KR이 넣고 그걸 반복까지 함(GUIDE 2-3 1순위).
+// 'amplified': 부호는 JP에도 있으나 KR이 더 길게 반복(2순위). 'added'(부호 하나만 추가,
+// 반복 없음/3순위)는 GUIDE가 명시적으로 "일괄로 고치지 않는다"고 못박은 항목이라 필터를
+// 안 만든다 — 판정 자체는 여기 남겨 두고 쓰지 않는다.
+function punctCategory(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return null;
+  const rk = punctRuns(kr), rj = punctRuns(jp);
+  const jpTone = new Set([...jp].filter((c) => PUNCT_TONE_SET.has(c)));
+  const added = [...new Set([...kr].filter((c) => PUNCT_TONE_SET.has(c)))].filter((c) => !jpTone.has(c));
+  if (added.some((c) => rk[c] >= 2)) return 'added-repeat';
+  if (added.length) return 'added';
+  if (Object.keys(rk).some((c) => rk[c] > (rj[c] || 1))) return 'amplified';
+  return null;
+}
+// KR/JP 끝 글자가 둘 다 어조 부호인데 서로 다름(느낌표↔물음표 등, GUIDE 2-3 2순위).
+function punctLastMismatch(fixed, e) {
+  const kr = fixed || e.text;
+  const jp = e.jp || '';
+  if (!kr || !jp) return false;
+  const krLast = kr.replace(/　+$/u, '').slice(-1);
+  const jpLast = jp.replace(/　+$/u, '').slice(-1);
+  return PUNCT_TONE_SET.has(krLast) && PUNCT_TONE_SET.has(jpLast) && krLast !== jpLast;
+}
+
+// `~구먼`(표준어 정규화, CLAUDE.md 참고) 정책 적용 후에도 `구만`이 남은 줄. 정규화가
+// 당시 confirmed/fixed였던 줄에만 돌아서, 그 뒤 확정된 줄엔 안 걸린 채로 남을 수 있다.
+function residualGuman(fixed, e) {
+  return (fixed || e.text).includes('구만');
+}
+
+// 마침표(．)는 GUIDE 2-3 규칙상 문장 끝에 쓰지 않는다(허용 부호는 ！？…뿐). 전각 반각
+// 모두 잡는다 — 반각 마침표는 코퍼스에 없어야 정상이지만 사람이 직접 타이핑해 넣었을
+// 가능성까지 대비.
+function residualPeriod(fixed, e) {
+  const kr = fixed || e.text;
+  return kr.includes('．') || kr.includes('.');
+}
+
 // ── 중복 JP 처리 제안 (dup-*) ────────────────────────────────────────────────
 // 미확정(수정도 확정도 안 된) 대사 중, 문장부호·기호·공백을 뺀 JP 원문이 이미 확정
 // (confirmed) 또는 수정(fixed)된 다른 대사와 같은 것들을 찾아 제안한다. 자동으로 쓰지는
@@ -628,10 +695,10 @@ function missingLeadFormat(fixed, e) {
 //          (annotationsFor). 목록만 좁혀 주고 무엇이 문제인지 안 알려주면 결국 한 줄씩 다시
 //          판정해야 해서 필터를 쓰는 의미가 없다 — 새 필터에는 note를 같이 붙인다.
 //
-// 필터의 역할은 "남은 일감 찾기"가 아니라 **같은 기계적 판단을 묶어 처리하기**다. 미검토가
-// 5,000건대로 줄어 어차피 전수로 훑는 단계이고, 실측상 전체 필터를 합쳐도 미검토의 20%밖에
-// 못 덮는다(나머지 80%는 어떤 조건에도 안 걸린다). 그래서 전량 해결되어 0건이 된 조건들은
-// 뺐다(아래 "연결 해제된 판정기" 참고).
+// 필터의 역할은 "남은 일감 찾기"가 아니라 **같은 기계적 판단을 묶어 처리하기**다. 전수
+// 검토가 끝난 지금은(2026-08, NOTES.md "2. 완료" 참고) 미검토 0건 — 이 필터들은 앞으로
+// 새로 들어오는 미검토 줄에 반응한다. 전량 해결되어 0건이 된 조건들은 뺐다(아래 "연결 해제된
+// 판정기" 참고).
 //
 // 중복 JP의 "참고(길이 불일치)"는 제안값을 바이트가 안 맞아 그대로는 못 넣는 줄이라 한때
 // 주석 전용으로 뺐다가 되살렸다 — 그대로 못 넣을 뿐 동형 대사의 확정 번역이 붙어 있는 줄
@@ -645,6 +712,25 @@ const FILTERS = [
 
   { value: 'lead-format',        group: '줄머리 표기', label: '「/공백 없음', test: missingLeadFormat,
     note: (f, e) => `첫 글자 "${[...(f || e.text)][0] || ''}" — 나레이션이면 정상, 대사라면 앞에 「 또는 　가 빠진 것` },
+
+  // 다른 필터와 동일하게 isReviewedFor를 그대로 탄다 — fixed/confirmed인 줄은 후보에서
+  // 빠진다. 이미 확정·수정한 줄은 사람이 판단을 끝낸 것으로 본다(alwaysShow로 무시하고
+  // 재검사했다가 전부 오탐/의도한 표기였던 적이 있다 — 아래 각주 대신 이 한 줄로 정리).
+  { value: 'qa-punct-added-repeat', group: 'QA 재검증', label: '부호 추가+반복',
+    test: (f, e) => punctCategory(f, e) === 'added-repeat',
+    note: (f, e) => `JP엔 없는 어조 부호를 넣고 반복까지 함 — JP: ${e.jp}` },
+  { value: 'qa-punct-amplified',    group: 'QA 재검증', label: '부호 반복 증폭',
+    test: (f, e) => punctCategory(f, e) === 'amplified',
+    note: (f, e) => `JP보다 더 길게 반복됨 — JP: ${e.jp}` },
+  { value: 'qa-punct-lastchar',     group: 'QA 재검증', label: '끝 부호 종류 다름',
+    test: punctLastMismatch,
+    note: (f, e) => `JP: ${e.jp}` },
+  { value: 'qa-guman',              group: 'QA 재검증', label: '구만 잔존',
+    test: residualGuman,
+    note: () => '표준어 정규화(~구먼) 정책 적용 전 표기 — CLAUDE.md 참고' },
+  { value: 'qa-period',             group: 'QA 재검증', label: '마침표 잔존',
+    test: residualPeriod,
+    note: () => 'GUIDE 2-3: 문장 끝 허용 부호는 ！？…뿐, 마침표 금지' },
 ];
 const FILTER_BY_VALUE = new Map(FILTERS.map((f) => [f.value, f]));
 
