@@ -64535,7 +64535,7 @@
       "offset": 852028,
       "length": 12,
       "text": "「뭐라구！？",
-      "fixed": "「뭐라구！　",
+      "fixed": "「데엥！　　",
       "confirmed": false,
       "jp": "「ガーン！",
       "jpOffset": 442706
@@ -101687,8 +101687,8 @@
       "offset": 1149774,
       "length": 14,
       "text": "맹호권　권법가",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "맹호권사　　　",
+      "confirmed": false,
       "jp": "猛虎拳拳士",
       "jpOffset": 1315456
     },
@@ -101759,8 +101759,8 @@
       "offset": 1150028,
       "length": 14,
       "text": "맹호권　권법가",
-      "fixed": "",
-      "confirmed": true,
+      "fixed": "맹호권사　　　",
+      "confirmed": false,
       "jp": "猛虎拳拳士",
       "jpOffset": 1315706
     },
