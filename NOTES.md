@@ -100,6 +100,14 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
     category, reason}`로 기록(총 200건 — 의미 왜곡 53, 문장부호 과잉 143, 화자 말투 4), 세
     카테고리 전부 해결. 에디터 소비 경로(드롭다운·행 주석)는 이제 의미가 없어 제거, 원본
     파일은 기록으로 보존.
+  - **2차 수동 검수(2026-09)**: 외부 스프레드시트로 진행한 별도 수동 검수 679건(offset 1만
+    ~1만5천대 구간, 우선순위 A/B/C) — 시트 원본은 삭제 예정이라 `translation/
+    review-findings-2.json`에 전량 이관, 각 항목에 `status`(applied-exact/
+    resolved-differently/dismissed/needs-redesign/open)를 붙여 지금 코퍼스와 대조한
+    결과까지 같이 저장(이미 반영 6, 다른 식으로 이미 해결 80, 판단 틀림 등으로 기각 13,
+    재설계 필요 8, 미반영 572). **이 배치 자체의 판단 신뢰도가 낮다고 판단됨**(굴 평가,
+    2026-09) — "미반영 572건"을 검증된 작업 목록으로 쓰지 말 것, 개별 항목을 원문과
+    다시 대조하고 채택할 것만 골라 쓰는 참고 자료로만 취급한다.
   - **기계 감지 필터**(`editor.html`의 `FILTERS` 레지스트리, 필터 1개 = 한 줄): 문장부호
     3종(추가+반복/반복 증폭/끝 어조 불일치) + 구만 잔존 + 마침표 잔존을 묶은 **QA 재검증**
     5개, **줄머리 표기**(「/공백 없음) 1개, **중복 JP** 4개. 수정하거나 확정한 줄은 자동
@@ -351,7 +359,8 @@ KR 오프셋 하나 + JP 원문 검색만으로 충분해서 분리해뒀다.
 `demo-menu.js`(타이틀 메뉴에 시나리오 선택 항목 추가 — 3.4 참고),
 `translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션),
 `translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커
-입력, 227개), `translation/review-findings.json`(전량 재검토 결함 후보 200건), `translation/GUIDE.md`
+입력, 227개), `translation/review-findings.json`(전량 재검토 결함 후보 200건),
+`translation/review-findings-2.json`(2차 수동 검수 679건, "2. 완료" 참고), `translation/GUIDE.md`
 (수정 판단 기준).
 
 ### 3.4 스크립트 VM & 시나리오 선택 디버그 메뉴 (HWANSE.EXE)
