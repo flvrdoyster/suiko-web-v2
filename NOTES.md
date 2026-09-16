@@ -96,10 +96,10 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 
 - **번역 전량 재검토 완료(2026-08)**: 미수정·미확정 대사를 원문(JP)과 1:1 대조해 결함을
   찾는 전수 검토. **dialogue 14,812/14,812, labels 390/390 — 미검토 0.**
-  - **1차 LLM 배치분**: 후보를 `translation/review-findings.json`에 `{offset, kr, jp,
-    category, reason}`로 기록(총 200건 — 의미 왜곡 53, 문장부호 과잉 143, 화자 말투 4), 세
-    카테고리 전부 해결. 에디터 소비 경로(드롭다운·행 주석)는 이제 의미가 없어 제거, 원본
-    파일은 기록으로 보존.
+  - **1차 LLM 배치분**: 후보 200건(`{offset, kr, jp, category, reason}` — 의미 왜곡 53,
+    문장부호 과잉 143, 화자 말투 4)을 `translation/review-findings.json`에 기록해 전량
+    해결(2026-08 에디터 소비 경로 제거). **소스 파일도 2026-09에 삭제** — 전량 해결된
+    기록을 남겨 둘 이유가 없어서(2차 배치와 달리 재검증·재작업 대상이 전혀 없음).
   - **2차 수동 검수(2026-09)**: 외부 스프레드시트로 진행한 별도 수동 검수 679건(offset 1만
     ~1만5천대 구간, 우선순위 A/B/C) — 시트 원본은 삭제 예정이라 `translation/
     review-findings-2.json`에 전량 이관, 각 항목에 `status`(applied-exact/
@@ -359,9 +359,8 @@ KR 오프셋 하나 + JP 원문 검색만으로 충분해서 분리해뒀다.
 `demo-menu.js`(타이틀 메뉴에 시나리오 선택 항목 추가 — 3.4 참고),
 `translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션),
 `translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커
-입력, 227개), `translation/review-findings.json`(전량 재검토 결함 후보 200건),
-`translation/review-findings-2.json`(2차 수동 검수 679건, "2. 완료" 참고), `translation/GUIDE.md`
-(수정 판단 기준).
+입력, 227개), `translation/review-findings-2.json`(2차 수동 검수 679건, "2. 완료" 참고 —
+1차 배치는 전량 해결돼 파일째 삭제됨), `translation/GUIDE.md`(수정 판단 기준).
 
 ### 3.4 스크립트 VM & 시나리오 선택 디버그 메뉴 (HWANSE.EXE)
 

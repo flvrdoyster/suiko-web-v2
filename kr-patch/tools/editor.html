@@ -281,15 +281,9 @@ let bookmarkOffset = null;
 // affect the panel's own × close button, which always just hides the current view.
 let ctxAutoShow = localStorage.getItem('suikoCtxAuto') !== '0';
 
-// Rubric-driven LLM review pass results (review-findings.json, see NOTES.md) — one entry
-// per {offset, category: 'meaning'|'punct'|'tone', reason}. Was used both as an
-// 'ai-<category>' dropdown filter and as a permanent row annotation (annotationsFor());
-// both are gone now (2026-08) — all three categories hit 0 remaining unresolved (the
-// annotation had no e.fixed/e.confirmed check despite a comment here once claiming it did,
-// so it was actually showing on all 200 already-fixed rows forever, not just open ones).
-// The source file itself (review-findings.json, the 1차 LLM 배치 record) is untouched —
-// only the editor's consumption of it is gone. Revive by re-adding the fetch in load(),
-// the finding branch in annotationsFor(), and a FILTERS line if useful again.
+// 1차 LLM 배치(review-findings.json, {offset, category, reason} 200건) 소비 코드는
+// 2026-08에 제거(3개 카테고리 전부 해결) — 소스 파일도 2026-09에 전량 해결 확인 후 삭제.
+// NOTES.md "2. 완료" 참고.
 
 function byteLen(s) {
   // rough CP949 estimate for live feedback; server re-validates exactly. ASCII=1, else=2.
