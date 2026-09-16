@@ -102,7 +102,8 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
     기록을 남겨 둘 이유가 없어서(2차 배치와 달리 재검증·재작업 대상이 전혀 없음).
   - **2차 수동 검수(2026-09)**: 외부 스프레드시트로 진행한 별도 수동 검수 679건(offset 1만
     ~1만5천대 구간, 우선순위 A/B/C) — 시트 원본은 삭제 예정이라 `translation/
-    review-findings-2.json`에 전량 이관, 각 항목에 `status`(applied-exact/
+    review-findings.json`(1차 배치 삭제 후 이 이름 재사용)에 전량 이관, 각 항목에
+    `status`(applied-exact/
     resolved-differently/dismissed/needs-redesign/open)를 붙여 지금 코퍼스와 대조한
     결과까지 같이 저장(이미 반영 6, 다른 식으로 이미 해결 80, 판단 틀림 등으로 기각 13,
     재설계 필요 8, 미반영 572). **이 배치 자체의 판단 신뢰도가 낮다고 판단됨**(굴 평가,
@@ -359,8 +360,9 @@ KR 오프셋 하나 + JP 원문 검색만으로 충분해서 분리해뒀다.
 `demo-menu.js`(타이틀 메뉴에 시나리오 선택 항목 추가 — 3.4 참고),
 `translation/translation.json`(KR 전량, `dialogue`/`labels` 두 섹션),
 `translation/jp-reference.json`(JP 참고 전량), `translation/kr-jp-links.json`(KR↔JP 수동 앵커
-입력, 227개), `translation/review-findings-2.json`(2차 수동 검수 679건, "2. 완료" 참고 —
-1차 배치는 전량 해결돼 파일째 삭제됨), `translation/GUIDE.md`(수정 판단 기준).
+입력, 227개), `translation/review-findings.json`(2차 수동 검수 679건, "2. 완료" 참고 —
+1차 LLM 배치는 전량 해결돼 이 이름을 쓰던 파일째 삭제되고, 이후 2차 배치가 이 이름을
+재사용함), `translation/GUIDE.md`(수정 판단 기준).
 
 ### 3.4 스크립트 VM & 시나리오 선택 디버그 메뉴 (HWANSE.EXE)
 
