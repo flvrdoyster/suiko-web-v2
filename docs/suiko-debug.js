@@ -150,6 +150,24 @@
     });
   }
 
+  // 13-byte dir-entry timestamp blob (entry offsets 13..25, the `times` fat16.js takes) for
+  // `ms`, in local time as FAT stores it. The base image's SAVEDATA is empty, so an imported
+  // slot becomes a new entry at boot; with `times: null` its dates stay zero and the game's
+  // save screen (GetFileTime, HWANSE.EXE 0x423240) shows the year 1601.
+  function fatTimes(ms) {
+    var d = new Date(ms);
+    var time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
+    var date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+    var t = new Uint8Array(13);
+    var v = new DataView(t.buffer);
+    v.setUint16(1, time, true);  // create time
+    v.setUint16(3, date, true);  // create date
+    v.setUint16(5, date, true);  // last access date
+    v.setUint16(9, time, true);  // write time
+    v.setUint16(11, date, true); // write date
+    return t.buffer;
+  }
+
   function pickFile(slot) {
     pendingSlot = slot;
     fileInput.click();
@@ -161,7 +179,7 @@
     if (!file || !pendingSlot) return;
     var slot = pendingSlot;
     file.arrayBuffer().then(function (buf) {
-      return replaceSlot(slot, { name: slot, data: buf, times: null });
+      return replaceSlot(slot, { name: slot, data: buf, times: fatTimes(file.lastModified || Date.now()) });
     }).then(function () {
       setMsg(slot + ' 저장됨 (' + file.size + 'B) — 새로고침하세요');
       refreshList();
