@@ -109,7 +109,8 @@ function writeRelocs(buf, rvas) {
   buf.fill(0, sec.rawOff, sec.rawOff + sec.rawSize);
   data.copy(buf, sec.rawOff);
   buf.writeUInt32LE(data.length, relocDirOff + 4);
-  buf.writeUInt32LE(data.length, sec.hdrOff + 8);
+  // The linker's VirtualSize is larger than the directory; only grow it, never shrink.
+  if (data.length > sec.vsize) buf.writeUInt32LE(data.length, sec.hdrOff + 8);
 }
 
 function editRelocs(buf, remove, add) {
