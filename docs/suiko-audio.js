@@ -1,4 +1,3 @@
-// suiko-audio.js — 음소거(게인 0 — 게임 오디오 + SC-55 신스).
 (function () {
   'use strict';
 
@@ -15,7 +14,7 @@
     gains().forEach(function (g) { g.gain.value = muted ? 0 : 1; });
   }
 
-  // 자동재생 차단 해제 + 모바일 좀비 컨텍스트 대응 — 상태 확인 없이 항상 resume()
+  // 상태 확인 없이 항상 resume() — 모바일에서 running인데 소리가 안 나는 경우가 있다
   function unlockAudioContexts() {
     if (window.myApp && myApp.audioContext) myApp.audioContext.resume();
     if (window.SuikoMidi && SuikoMidi.getGain && SuikoMidi.getGain()) {
@@ -24,7 +23,6 @@
     }
   }
 
-  // 백그라운드 복귀 뒤 멈춘 ScriptProcessorNode(효과음)를 새로 만들어 다시 연결
   function revivePcmPlayer() {
     if (!window.myApp || !myApp.audioContext || !myApp.pcmPlayer || !myApp.gainNode) return;
     var oldNode = myApp.pcmPlayer;
@@ -50,7 +48,7 @@
     showMuteButton();
   };
 
-  // 모바일 브라우저마다 다른 트리거를 여럿 건다
+  // 모바일 브라우저마다 실제로 불리는 이벤트가 달라 여럿 건다
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden) { resumeAudio(); revivePcmPlayer(); }
   });

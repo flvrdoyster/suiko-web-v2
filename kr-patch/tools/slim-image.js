@@ -1,4 +1,3 @@
-// slim-image.js — 1회성 배포 이미지 경량화(2026-07).
 'use strict';
 
 const fs = require('fs');
@@ -26,7 +25,6 @@ function findRootEntry(img, name) {
 let img = loadImage(LIVE);
 const beforeRaw = img.length;
 
-// 1+2. delete the swap file and the unused Korean font
 for (const p of ['/WINDOWS/WIN386.SWP', '/WINDOWS/FONTS/KOFONT.TTF']) {
   const { image, found } = F.deletePath(img, p);
   if (!found) throw new Error(`${p} not found in image — aborting, nothing written`);
@@ -34,7 +32,6 @@ for (const p of ['/WINDOWS/WIN386.SWP', '/WINDOWS/FONTS/KOFONT.TTF']) {
   console.log(`deleted ${p}`);
 }
 
-// 3. MSDOS.SYS: add Logo=0 / BootDelay=0 right after [Options]
 {
   const vol = F.openImage(img);
   const entry = findRootEntry(img, 'MSDOS.SYS');
@@ -49,11 +46,9 @@ for (const p of ['/WINDOWS/WIN386.SWP', '/WINDOWS/FONTS/KOFONT.TTF']) {
   console.log('MSDOS.SYS: added Logo=0, BootDelay=0');
 }
 
-// zero freed clusters so the deletions actually shrink the gzip
 const zeroed = F.zeroFreeClusters(img);
 console.log(`zeroed ${zeroed} free clusters`);
 
-// verify: deleted files gone, MSDOS.SYS readable with the new lines, savedata intact
 {
   const vol = F.openImage(img);
   if (findRootEntry(img, 'WIN386.SWP')) throw new Error('verify: WIN386.SWP still present');

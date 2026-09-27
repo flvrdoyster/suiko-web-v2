@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// search-jp.js — JP 참고문 키워드 검색. node kr-patch/tools/search-jp.js <keyword> [--context N]
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -15,7 +14,6 @@ const context = ctxFlagIdx >= 0 ? parseInt(args[ctxFlagIdx + 1], 10) : 2;
 
 const jpRef = JSON.parse(fs.readFileSync(path.join(__dirname, '../translation/jp-reference.json'), 'utf8'));
 
-// 대사는 앞뒤 문맥과 함께, 레이블은 목록만
 const dialogue = jpRef.dialogue;
 const dHits = [];
 dialogue.forEach((e, i) => { if (e.text.includes(keyword)) dHits.push(i); });

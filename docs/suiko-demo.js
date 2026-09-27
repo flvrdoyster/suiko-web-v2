@@ -1,4 +1,3 @@
-// suiko-demo.js — demo.html 전용: demo-patch.json을 부팅 전 EXE에 적용.
 (function () {
   'use strict';
   var PATCH_URL = 'demo-patch.json';
@@ -15,7 +14,6 @@
   }
 
   function patchDemoMenu(baseName) {
-    // KR 전용(JP GENSE.EXE는 배치가 다름)
     if (window.SUIKO_LANG !== 'kr') {
       console.warn('[suiko-demo] KR 전용 패치 — SUIKO_LANG=' + window.SUIKO_LANG + ', 건너뜀');
       return Promise.resolve();
@@ -35,12 +33,11 @@
         });
         if (!entry) throw new Error(patch.dir + '\\' + patch.target + ' not found in the image');
 
-        // Copy: readFileEntry may hand back a view onto the image buffer.
+        // 복사본 필요 — readFileEntry가 이미지 버퍼의 뷰를 줄 수 있다
         var exe = new Uint8Array(Fat16.readFileEntry(ctx, entry));
         if (exe.length !== patch.size) {
           throw new Error('size mismatch: image has ' + exe.length + ', patch expects ' + patch.size);
         }
-        // 이 패치를 만든 EXE인지 확인
         patch.expect.forEach(function (e) {
           var got = readU32(exe, e.offset);
           if (got !== e.u32 >>> 0) {

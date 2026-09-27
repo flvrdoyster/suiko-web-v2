@@ -1,5 +1,3 @@
-// suiko-probe.js — probe.html 전용 로컬 테스트: docs/probe/의 FNTPROBE.EXE·HWANSE.EXE·
-// SAVEDAT1~6.DAT를 부팅 전에 디스크 이미지에 넣는다(각각 있을 때만).
 (function () {
   'use strict';
 
@@ -9,18 +7,17 @@
 
   function imgPath(baseName) { return '/' + baseName + '.img'; }
 
-  // fat16.js `times`(디렉토리 엔트리 13..25) — 현재 로컬 시각
   function nowTimes() {
     var d = new Date();
     var time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
     var date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
     var t = new Uint8Array(13);
     var v = new DataView(t.buffer);
-    v.setUint16(1, time, true);  // create time
-    v.setUint16(3, date, true);  // create date
-    v.setUint16(5, date, true);  // access date
-    v.setUint16(9, time, true);  // write time
-    v.setUint16(11, date, true); // write date
+    v.setUint16(1, time, true);
+    v.setUint16(3, date, true);
+    v.setUint16(5, date, true);
+    v.setUint16(9, time, true);
+    v.setUint16(11, date, true);
     return t;
   }
 

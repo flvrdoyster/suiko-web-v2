@@ -1,5 +1,4 @@
 #!/bin/sh
-# FNTPROBE.EXE 빌드 (mingw-w64 필요) → kr-patch/build/, docs/probe/
 set -e
 cd "$(dirname "$0")"
 mkdir -p ../../build

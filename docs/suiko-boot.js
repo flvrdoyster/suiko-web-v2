@@ -1,9 +1,7 @@
-// suiko-boot.js — 시작 오버레이·상단 버튼·부팅 스플래시·게임 시작/종료 감지.
 (function () {
   'use strict';
   function $(id) { return document.getElementById(id); }
 
-  // ---- 토스트(공용 하나): duration 0 = 계속, setSticky = 되돌아올 바탕 문구 ----
   var toastEl = $('toast');
   var toastTimer = null;
   var stickyMsg = null;
@@ -17,10 +15,10 @@
   function hideToast() {
     if (!toastEl) return;
     clearTimeout(toastTimer);
-    if (stickyMsg) { showToast(stickyMsg, 0); return; } // fall back to the sticky line
+    if (stickyMsg) { showToast(stickyMsg, 0); return; }
     toastEl.classList.remove('visible');
   }
-  function setSticky(msg) { // null clears it
+  function setSticky(msg) {
     stickyMsg = msg;
     if (msg) showToast(msg, 0); else hideToast();
   }
@@ -31,21 +29,20 @@
   var cover = $('boot-cover');
   var blink = $('boot-blink');
 
-  // ---- 스플래시 눈 깜빡임 ----
   var BLINK_SRC = [null, 'img/splash-blink-1.png', 'img/splash-blink-2.png'];
   var blinkTimer = null;
-  BLINK_SRC.forEach(function (s) { if (s) { var im = new Image(); im.src = s; } }); // preload
+  BLINK_SRC.forEach(function (s) { if (s) { var im = new Image(); im.src = s; } });
   function setBlinkFrame(f) {
     if (!blink) return;
     if (f === 0) { blink.hidden = true; }
     else { blink.src = BLINK_SRC[f]; blink.hidden = false; }
   }
   function playBlink() {
-    var seq = [1, 2, 1, 0], i = 0; // resting state (0) is where we start/end
+    var seq = [1, 2, 1, 0], i = 0;
     (function step() {
       setBlinkFrame(seq[i++]);
       if (i < seq.length) blinkTimer = setTimeout(step, 90);
-      else blinkTimer = setTimeout(playBlink, 2200 + Math.random() * 2200); // idle, then blink again
+      else blinkTimer = setTimeout(playBlink, 2200 + Math.random() * 2200);
     })();
   }
   function startBlink() { if (blink) blinkTimer = setTimeout(playBlink, 1500); }
@@ -55,7 +52,6 @@
     return window.myApp && myApp.rivetsData && !myApp.rivetsData.moduleInitializing;
   }
 
-  // ---- 게임 시작/종료 감지(프레임 픽셀의 바탕화면색 비율) — 시작은 teal·시안, 종료는 시안만 ----
   function sampleFraction(match) {
     var buf = window.myApp && myApp.rgbaDestination;
     if (!buf || !buf.length) return -1;
@@ -74,7 +70,6 @@
   }
   function exitFraction() { return sampleFraction(isCyan); }
 
-  // Enable Start once the doswasmx WASM module has initialised.
   if (start) {
     start.disabled = true;
     showToast('에뮬레이터를 불러오는 중입니다.', 0);
@@ -88,21 +83,17 @@
 
     start.addEventListener('click', function () {
       if (start.disabled) return;
-      // the click is the user gesture that lets the SC-55 AudioContext start
       if (window.SuikoMidi && SuikoMidi.open) SuikoMidi.open();
-      myApp.loadRom(true); // boot Win95 + auto-launch the game
+      myApp.loadRom(true);
 
-      if (!cover) { // no splash image on this page: old behavior, show the boot as-is
+      if (!cover) {
         hideToast();
         overlay.classList.add('hidden');
         return;
       }
-      // Swap the start button for the splash image and keep the overlay covering the
-      // canvas through the whole DOS→Win95 boot; reveal once the game covers the desktop.
       start.hidden = true;
       cover.hidden = false;
       startBlink();
-      // sticky: stays under any incidental boot toasts and persists until the splash lifts
       setSticky('게임을 실행하고 있습니다.');
       var revealed = false;
       function reveal() {
@@ -110,26 +101,24 @@
         revealed = true;
         clearInterval(watch);
         stopBlink();
-        setSticky(null); // drop the sticky and clear the bar as the cover lifts
+        setSticky(null);
         overlay.classList.add('hidden');
       }
       var sawDesktop = false;
       var watch = setInterval(function () {
         var frac = startFraction();
-        if (frac < 0) return; // no frame yet
+        if (frac < 0) return;
         if (!sawDesktop) {
           if (frac >= 0.30) { sawDesktop = true; console.log('[suiko-boot] Win95 desktop detected'); }
         } else if (frac <= 0.10) {
           console.log('[suiko-boot] game covering desktop -> reveal');
           clearInterval(watch);
-          setTimeout(reveal, 600); // let the first game frame settle
+          setTimeout(reveal, 600);
           watchGameExit();
         }
       }, 250);
-      // failsafe
       setTimeout(reveal, 90000);
 
-      // ---- 게임 종료 감지: 시안 비율이 2회 연속 높으면 ----
       function watchGameExit() {
         var highStreak = 0;
         var watchExit = setInterval(function () {
@@ -150,10 +139,9 @@
     });
   }
 
-  // 전체 화면(ESC는 Keyboard Lock으로 게임 입력, 길게 누르면 해제)
   var fs = $('btn-fullscreen');
   if (fs) fs.addEventListener('click', async function () {
-    var wrap = $('canvasDiv'); // doswasmx's own fullscreen target (see suiko-overrides.css)
+    var wrap = $('canvasDiv');
     if (!wrap) return;
     await (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
     if (navigator.keyboard && navigator.keyboard.lock) {

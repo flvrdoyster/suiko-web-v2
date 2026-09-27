@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// bake-jp.js — kr-jp-links.json 앵커를 풀어 translation.json에 jp/jpOffset 기록.
-// node kr-patch/tools/bake-jp.js [--translation] [--jp-ref] [--links]
 'use strict';
 
 const fs = require('fs');
@@ -40,7 +38,6 @@ const markers = Object.keys(links)
   .filter(Boolean)
   .sort((a, b) => a.krIdx - b.krIdx);
 
-// jpIdx -> Set(anchor krOffset) claiming it, to detect the same conflict the editor flags.
 const claim = new Map();
 for (let mi = 0; mi < markers.length; mi++) {
   const m = markers[mi];
@@ -70,7 +67,6 @@ for (let mi = 0; mi < markers.length; mi++) {
     resolved++;
   }
 }
-// entries before the first marker, or in a stopped stretch with no marker at all
 for (const e of kr) if (e.jp === undefined) { e.jp = ''; e.jpOffset = null; unresolved++; }
 
 fs.writeFileSync(transPath, JSON.stringify(t, null, 2));

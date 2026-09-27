@@ -1,4 +1,3 @@
-// hwanse-names.js — HWANSE.EXE 아이템·의상·기술 이름표 추출/빌드.
 'use strict';
 
 const iconv = require('iconv-lite');
@@ -9,29 +8,25 @@ const NUMERIC_TABLE_RANGES = [
   [0xcab08, 0xcb308],
 ];
 
-// 노이즈로 확인된 개별 시작 오프셋
 const NOISE_OFFSETS = new Set([
-  0x561c1, 0x561f9, 0x56231, 0x56892, // "뼬뼬" ×3, "뻚뼎"
-  0xd4c21, 0xd514d, 0xd9b6d,          // "햊 큞", "햊.늫", "픜 쑝"
+  0x561c1, 0x561f9, 0x56231, 0x56892,
+  0xd4c21, 0xd514d, 0xd9b6d,
 ]);
 
-// 둘로 끊기던 오류 메시지 문자열을 하나로
 const JOIN_OFFSETS = { 0x10e18c: 26 };
 
-// 틈 없이 붙은 16바이트 슬롯 레이블(설정 메뉴)을 나눔
 const SPLIT_INTO_16_OFFSETS = new Set([0x8a042]);
 
 function isLatinLetter(b) {
   return (b >= 0x41 && b <= 0x5a) || (b >= 0x61 && b <= 0x7a);
 }
-// 레이블에 허용하는 ASCII: 공백·마침표·숫자·영문
 function isAllowedAscii(b) {
   return b === 0x20 || b === 0x2e || (b >= 0x30 && b <= 0x39) || isLatinLetter(b);
 }
 function charLenAt(buf, off) {
   const b = buf[off];
   if (isAllowedAscii(b)) return 1;
-  if (b === 0xa1 && (buf[off + 1] === 0xa1 || buf[off + 1] === 0xa4)) return 2; // 　or ・
+  if (b === 0xa1 && (buf[off + 1] === 0xa1 || buf[off + 1] === 0xa4)) return 2;
   if (b >= 0x81 && b <= 0xfe && off + 1 < buf.length) {
     const t = buf[off + 1];
     if (t >= 0x41 && t <= 0xfe && t !== 0x7f) return 2;
@@ -45,7 +40,7 @@ function decodeCp949(bytes) {
     return null;
   }
 }
-// 매핑 없는 문자를 '?'로 뭉개지 않고 실패시킨다 — 이유는 hwanse-text.js 동명 함수 주석 참고.
+// iconv-lite는 매핑 없는 문자를 '?' 1바이트로 바꿔 길이 검사를 통과시키므로 직접 거부한다
 function encodeCp949(str) {
   const out = iconv.encode(str, 'cp949');
   const lost = [...str].filter((ch) => ch !== '?' && iconv.encode(ch, 'cp949').length === 1
@@ -58,7 +53,7 @@ function encodeCp949(str) {
   return out;
 }
 function isHangulSyllable(buf, off) {
-  if (buf[off] === 0xa1) return false; // full-width space/middle-dot, not Hangul
+  if (buf[off] === 0xa1) return false;
   const s = decodeCp949(buf.subarray(off, off + 2));
   if (!s) return false;
   const cp = s.codePointAt(0);
@@ -69,7 +64,6 @@ function isUpper(b) {
   return b >= 0x41 && b <= 0x5a;
 }
 
-// 첫 영문 노이즈 런 [start, end) 또는 null
 function isDigit(b) {
   return b >= 0x30 && b <= 0x39;
 }
@@ -98,7 +92,6 @@ function findNoiseRun(buf, off, len) {
       i = j;
       continue;
     }
-    // 패딩 바로 뒤, 구간 끝의 숫자는 노이즈
     if (l === 1 && isDigit(buf[i]) && i - 2 >= off && isPadPairAt(buf, i - 2)) {
       let j = i;
       while (j < off + len && charLenAt(buf, j) === 1 && isDigit(buf[j])) j++;
@@ -120,8 +113,6 @@ function countHangul(buf, off, len) {
   return count;
 }
 
-// 0xa1 0xdb = full-width ○ (a censor/placeholder circle, e.g. "○○책" — the retail
-// translators' redaction of an adult joke item name, same device as "Ｈな本" in JP).
 function hasCircle(buf, off, len) {
   for (let i = off; i + 1 < off + len; i++) {
     if (buf[i] === 0xa1 && buf[i + 1] === 0xdb) return true;
@@ -133,8 +124,6 @@ function inNumericTable(off) {
   return NUMERIC_TABLE_RANGES.some(([s, e]) => off >= s && off < e);
 }
 
-// Emits clean sub-spans of [start, end), splitting around every noise run found inside
-// (noise can appear before, after, or between real text — see findNoiseRun()).
 function emitCleanEntries(buf, start, end, entries) {
   if (end <= start) return;
   if (SPLIT_INTO_16_OFFSETS.has(start)) {
@@ -146,7 +135,6 @@ function emitCleanEntries(buf, start, end, entries) {
   }
   const noise = findNoiseRun(buf, start, end - start);
   if (!noise) {
-    // 한글 2음절 이상(○○책 예외)
     const hangul = countHangul(buf, start, end - start);
     const clean = hangul >= 2 || (hangul >= 1 && hasCircle(buf, start, end - start));
     if (!NOISE_OFFSETS.has(start) && clean) {
@@ -166,7 +154,6 @@ function extract(buf, excludeMask) {
   let segStart = i;
   while (i < DATA_END) {
     if (i in JOIN_OFFSETS) {
-      // JOIN_OFFSETS 구간은 통째로 한 항목
       emitCleanEntries(buf, segStart, i, entries);
       const len = JOIN_OFFSETS[i];
       const text = decodeCp949(buf.subarray(i, i + len));
@@ -193,7 +180,6 @@ function extract(buf, excludeMask) {
   return entries;
 }
 
-// 같은 바이트 길이만 허용(짧으면 전각 공백 패딩은 편집 쪽에서)
 function build(buf, entries) {
   const out = Buffer.from(buf);
   for (const e of entries) {

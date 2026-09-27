@@ -1,4 +1,3 @@
-// fat16.js — FAT16 디스크 이미지 파일 읽기/쓰기(SAVEDATA 저장, EXE 주입). Node·브라우저 공용.
 
 'use strict';
 
@@ -11,18 +10,15 @@ function u32(view, off) {
   return (view[off] | (view[off + 1] << 8) | (view[off + 2] << 16) | (view[off + 3] << 24)) >>> 0;
 }
 
-// Parse the MBR partition table + FAT16 BPB into geometry we can navigate.
-// Returns a context object shared by the read/write helpers below.
 function openImage(bytes) {
   const img = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
 
-  // First MBR partition entry (0x1BE). We support the first FAT16 partition.
   const PT = 0x1be;
   let partLBA = null;
   for (let i = 0; i < 4; i++) {
     const off = PT + i * 16;
     const type = img[off + 4];
-    if (type === 0x06 || type === 0x0e || type === 0x04) { // FAT16 variants
+    if (type === 0x06 || type === 0x0e || type === 0x04) {
       partLBA = u32(img, off + 8);
       break;
     }
@@ -44,23 +40,20 @@ function openImage(bytes) {
   const dataOffset = rootOffset + rootSizeBytes;
   const bytesPerCluster = bytesPerSector * sectorsPerCluster;
 
-  // Read the first FAT into an array of 16-bit entries.
   const fatEntries = new Uint16Array(sectorsPerFAT * bytesPerSector / 2);
   for (let i = 0; i < fatEntries.length; i++) fatEntries[i] = u16(img, fatStart + i * 2);
 
   return {
     img, bytesPerSector, sectorsPerCluster, bytesPerCluster,
     rootOffset, rootSizeBytes, dataOffset, fatEntries,
-    fatStart, numFATs, sectorsPerFAT, // needed for writing new files
+    fatStart, numFATs, sectorsPerFAT,
   };
 }
 
-// Byte offset of a cluster's data.
 function clusterOffset(ctx, cluster) {
   return ctx.dataOffset + (cluster - 2) * ctx.bytesPerCluster;
 }
 
-// Follow the FAT chain starting at firstCluster; returns the list of cluster numbers.
 function clusterChain(ctx, firstCluster) {
   const chain = [];
   let c = firstCluster;
@@ -71,7 +64,6 @@ function clusterChain(ctx, firstCluster) {
   return chain;
 }
 
-// Decode the 13 UTF-16LE chars packed into one long-file-name directory entry.
 function lfnChars(img, off) {
   let s = '';
   const slots = [[1, 10], [14, 25], [28, 31]];
@@ -85,15 +77,12 @@ function lfnChars(img, off) {
   return s;
 }
 
-// 8.3 이름의 VFAT 체크섬(LFN 엔트리 13바이트째와 비교)
 function shortNameChecksum(img, entryOff) {
   let sum = 0;
   for (let j = 0; j < 11; j++) sum = (((sum & 1) ? 0x80 : 0) + (sum >> 1) + img[entryOff + j]) & 0xff;
   return sum;
 }
 
-// List entries of a directory whose raw bytes span the given [offset,size] regions.
-// `regions` is an array of {off, size}. Returns entries with reassembled long names.
 function parseDirRegions(ctx, regions) {
   const img = ctx.img;
   const out = [];
@@ -103,12 +92,12 @@ function parseDirRegions(ctx, regions) {
     for (let i = 0; i < size; i += 32) {
       const entryOff = off + i;
       const first = img[entryOff];
-      if (first === 0x00) return out; // end of directory
-      if (first === 0xe5) { longName = ''; longChecksum = null; continue; }   // deleted
+      if (first === 0x00) return out;
+      if (first === 0xe5) { longName = ''; longChecksum = null; continue; }
       const attr = img[entryOff + 11];
       if (attr === ATTR_LONG_NAME) {
         longName = lfnChars(img, entryOff) + longName;
-        longChecksum = img[entryOff + 13]; // same on every LFN entry in the set
+        longChecksum = img[entryOff + 13];
         continue;
       }
 
@@ -118,7 +107,6 @@ function parseDirRegions(ctx, regions) {
       for (let j = 0; j < 3; j++) { const c = img[entryOff + 8 + j]; if (c !== 0x20) ext += String.fromCharCode(c); }
       const shortName = ext ? name + '.' + ext : name;
 
-      // 체크섬이 안 맞는 LFN은 지워진 파일의 고아 — 이름으로 쓰지 않는다
       if (longName && longChecksum !== shortNameChecksum(img, entryOff)) longName = '';
 
       out.push({
@@ -127,8 +115,7 @@ function parseDirRegions(ctx, regions) {
         attr,
         firstCluster: u16(img, entryOff + 26),
         size: u32(img, entryOff + 28),
-        entryOffset: entryOff, // where this 8.3 entry lives, for writing size back
-        // 생성·접근·수정 시각(13..25)
+        entryOffset: entryOff,
         times: img.slice(entryOff + 13, entryOff + 26),
       });
       longName = '';
@@ -138,7 +125,6 @@ function parseDirRegions(ctx, regions) {
   return out;
 }
 
-// Regions (offset+size) that hold a directory's entries: the fixed root, or a cluster chain.
 function dirRegions(ctx, firstCluster) {
   if (firstCluster === 0) return [{ off: ctx.rootOffset, size: ctx.rootSizeBytes }];
   return clusterChain(ctx, firstCluster).map((c) => ({ off: clusterOffset(ctx, c), size: ctx.bytesPerCluster }));
@@ -148,8 +134,6 @@ function listDir(ctx, firstCluster) {
   return parseDirRegions(ctx, dirRegions(ctx, firstCluster));
 }
 
-// Resolve a path like "GENSE/SAVEDATA" (case-insensitive) to its directory entry.
-// Returns the entry (with firstCluster) or null. Root is firstCluster 0.
 function resolveDir(ctx, path) {
   const segments = String(path).replace(/^[\\/]+|[\\/]+$/g, '').split(/[\\/]+/).filter(Boolean);
   let cluster = 0;
@@ -165,7 +149,6 @@ function resolveDir(ctx, path) {
   return cluster;
 }
 
-// Read a file's bytes given its directory entry.
 function readFileEntry(ctx, entry) {
   const chain = clusterChain(ctx, entry.firstCluster);
   const buf = new Uint8Array(entry.size);
@@ -180,8 +163,6 @@ function readFileEntry(ctx, entry) {
   return buf;
 }
 
-// Extract every real file directly inside `dirPath` as [{name, data}].
-// Skips '.', '..', volume labels, subdirectories, and macOS AppleDouble junk ('._*').
 function extractDirFiles(bytes, dirPath) {
   const ctx = openImage(bytes);
   const cluster = resolveDir(ctx, dirPath);
@@ -191,13 +172,12 @@ function extractDirFiles(bytes, dirPath) {
     if (e.shortName === '.' || e.shortName === '..') continue;
     if (e.attr & (ATTR_DIRECTORY | ATTR_VOLUME_ID)) continue;
     const name = e.longName || e.shortName;
-    if (name.startsWith('._')) continue; // macOS AppleDouble metadata, not game data
+    if (name.startsWith('._')) continue;
     files.push({ name, data: readFileEntry(ctx, e), times: e.times });
   }
   return files;
 }
 
-// 기존 파일을 클러스터 체인 재사용으로 덮어쓰기(더 커지면 예외). ctx.img를 바꾼다.
 function writeFileInPlace(ctx, entry, data, times) {
   const chain = clusterChain(ctx, entry.firstCluster);
   const capacity = chain.length * ctx.bytesPerCluster;
@@ -214,18 +194,15 @@ function writeFileInPlace(ctx, entry, data, times) {
     ctx.img.set(data.subarray(p, p + n), off);
     p += n;
   }
-  // 파일 길이 뒤 클러스터 여분은 그대로 두고, 8.3 엔트리의 크기를 갱신
   const so = entry.entryOffset + 28;
   ctx.img[so] = data.length & 0xff;
   ctx.img[so + 1] = (data.length >> 8) & 0xff;
   ctx.img[so + 2] = (data.length >> 16) & 0xff;
   ctx.img[so + 3] = (data.length >> 24) & 0xff;
 
-  // 시각(13..25) 복원
   if (times && times.length === 13) ctx.img.set(times, entry.entryOffset + 13);
 }
 
-// {name, data, times?} 파일들을 dirPath에 넣기 — 있으면 덮고 없으면 새로 만든다. 새 이미지를 반환.
 function injectDirFiles(bytes, dirPath, files) {
   const copy = (bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes));
   const ctx = openImage(copy);
@@ -252,7 +229,6 @@ function injectDirFiles(bytes, dirPath, files) {
   return { image: copy, skipped };
 }
 
-// Write a FAT entry value into every FAT copy.
 function setFatEntry(ctx, cluster, value) {
   ctx.fatEntries[cluster] = value & 0xffff;
   for (let f = 0; f < ctx.numFATs; f++) {
@@ -262,7 +238,6 @@ function setFatEntry(ctx, cluster, value) {
   }
 }
 
-// Allocate `count` free clusters, chain them, mark the last as EOF. Returns the chain.
 function allocateClusters(ctx, count) {
   const dataClusters = Math.floor((ctx.img.length - ctx.dataOffset) / ctx.bytesPerCluster);
   const free = [];
@@ -274,7 +249,6 @@ function allocateClusters(ctx, count) {
   return free;
 }
 
-// Build an 8.3 directory-entry name (11 bytes: 8 name + 3 ext, space-padded, uppercased).
 function name83(name) {
   const dot = name.lastIndexOf('.');
   let base = (dot >= 0 ? name.slice(0, dot) : name).toUpperCase();
@@ -284,7 +258,6 @@ function name83(name) {
   return base + ext;
 }
 
-// createFile() 본체(열린 ctx에 직접) — 클러스터 할당, 데이터 기록, 빈 8.3 슬롯 채우기.
 function createFileInDir(ctx, dirCluster, name, data, times) {
   const payload = data instanceof Uint8Array ? data : new Uint8Array(data);
 
@@ -316,7 +289,7 @@ function createFileInDir(ctx, dirCluster, name, data, times) {
   }
 
   for (let i = 0; i < 11; i++) ctx.img[slotOff + i] = nm.charCodeAt(i);
-  ctx.img[slotOff + 11] = 0x20; // attr = archive
+  ctx.img[slotOff + 11] = 0x20;
   for (let i = 12; i < 26; i++) ctx.img[slotOff + i] = 0;
   ctx.img[slotOff + 26] = chain[0] & 0xff;
   ctx.img[slotOff + 27] = (chain[0] >> 8) & 0xff;
@@ -327,8 +300,6 @@ function createFileInDir(ctx, dirCluster, name, data, times) {
   if (times && times.length === 13) ctx.img.set(times, slotOff + 13);
 }
 
-// Create a new file (8.3 name only, no LFN) in `dirPath` with `data`. Returns a NEW image.
-// Fails if the name already exists — use injectDirFiles to overwrite instead.
 function createFile(bytes, dirPath, name, data) {
   const copy = bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes);
   const ctx = openImage(copy);
@@ -338,13 +309,10 @@ function createFile(bytes, dirPath, name, data) {
   return copy;
 }
 
-// Free a cluster chain (set every FAT entry back to 0 in all FAT copies).
 function freeChain(ctx, firstCluster) {
   for (const c of clusterChain(ctx, firstCluster)) setFatEntry(ctx, c, 0);
 }
 
-// Delete one directory entry (mark 0xE5) and free its clusters. Recurses into
-// subdirectories. `entry` is a listing entry from listDir; `img` is mutated.
 function deleteEntry(ctx, entry) {
   if (entry.attr & ATTR_DIRECTORY) {
     for (const child of listDir(ctx, entry.firstCluster)) {
@@ -353,10 +321,9 @@ function deleteEntry(ctx, entry) {
     }
   }
   if (entry.firstCluster >= 2) freeChain(ctx, entry.firstCluster);
-  ctx.img[entry.entryOffset] = 0xe5; // mark deleted
+  ctx.img[entry.entryOffset] = 0xe5;
 }
 
-// 경로(파일·디렉토리) 삭제 → { image, found }
 function deletePath(bytes, path) {
   const copy = bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes);
   const ctx = openImage(copy);
@@ -373,8 +340,6 @@ function deletePath(bytes, path) {
   return { image: copy, found: true };
 }
 
-// Overwrite every free cluster's data region with zeros so the image compresses well
-// (freed/unused space otherwise holds stale bytes that don't gzip away). Mutates in place.
 function zeroFreeClusters(bytes) {
   const ctx = openImage(bytes);
   const dataClusters = Math.floor((ctx.img.length - ctx.dataOffset) / ctx.bytesPerCluster);
@@ -388,7 +353,6 @@ function zeroFreeClusters(bytes) {
   return zeroed;
 }
 
-// Write one 32-byte 8.3 directory entry (name, attr, firstCluster, size) at `slotOff`.
 function writeDirEntry(ctx, slotOff, name8_3, attr, firstCluster, size) {
   for (let i = 0; i < 11; i++) ctx.img[slotOff + i] = name8_3.charCodeAt(i);
   ctx.img[slotOff + 11] = attr;
@@ -401,8 +365,6 @@ function writeDirEntry(ctx, slotOff, name8_3, attr, firstCluster, size) {
   ctx.img[slotOff + 31] = (size >> 24) & 0xff;
 }
 
-// Find a free 32-byte slot (0x00 = end of directory, 0xE5 = deleted) in a directory's
-// cluster chain (or the fixed root if firstCluster is 0).
 function findFreeSlot(ctx, dirCluster) {
   const regions = dirRegions(ctx, dirCluster);
   for (const { off, size } of regions) {
@@ -414,7 +376,6 @@ function findFreeSlot(ctx, dirCluster) {
   throw new Error('no free directory slot');
 }
 
-// Create a new empty subdirectory (8.3 name only) inside `dirPath`. Returns a NEW image.
 function createDir(bytes, dirPath, name) {
   const copy = bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes);
   const ctx = openImage(copy);
@@ -424,7 +385,6 @@ function createDir(bytes, dirPath, name) {
   const [newCluster] = allocateClusters(ctx, 1);
   const clusOff = clusterOffset(ctx, newCluster);
   ctx.img.fill(0, clusOff, clusOff + ctx.bytesPerCluster);
-  // . / ..는 8.3 확장자 규칙을 거치지 않은 이름 그대로
   writeDirEntry(ctx, clusOff, '.          '.slice(0, 11), ATTR_DIRECTORY, newCluster, 0);
   writeDirEntry(ctx, clusOff + 32, '..         '.slice(0, 11), ATTR_DIRECTORY, parentCluster, 0);
 

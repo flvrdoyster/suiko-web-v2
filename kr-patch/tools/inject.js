@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// inject.js — 빌드한 HWANSE.EXE를 배포 이미지 사본(kr-patch/build/final-shared.img)에 주입.
-// node kr-patch/tools/inject.js [--exe] [--image] [--out]
 'use strict';
 
 const fs = require('fs');
@@ -37,8 +35,6 @@ const res = F.injectDirFiles(img, 'GENSE', [{ name: 'HWANSE.EXE', data: patchedE
 if (res.skipped.length) fail(`HWANSE.EXE not found in image at GENSE/: ${res.skipped.join(',')}`);
 img = res.image;
 
-// Sanity: read the injected file back out and diff against what we meant to write, and
-// confirm the shared image's other content (JP save data, KR save data) survived untouched.
 const v = F.openImage(img);
 const entry = F.listDir(v, F.resolveDir(v, 'GENSE')).find((e) => e.shortName.toUpperCase() === 'HWANSE.EXE');
 const readback = F.readFileEntry(v, entry);

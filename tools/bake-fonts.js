@@ -1,5 +1,3 @@
-// bake-fonts.js — 내보낸 이미지의 글꼴·SYSTEM.DAT를 베이스 이미지에 굽기.
-// node tools/bake-fonts.js <exported.img> <base.img> <out.img>
 'use strict';
 const fs = require('fs');
 const zlib = require('zlib');
@@ -40,7 +38,6 @@ const gz = zlib.gzipSync(Buffer.from(img), { level: 9 });
 fs.writeFileSync(outPath, gz);
 console.log('wrote', outPath, gz.length, 'bytes gzip (', img.length, 'raw )');
 
-// verify
 const v = F.openImage(img);
 const vFonts = F.listDir(v, F.resolveDir(v, 'WINDOWS/FONTS')).filter((e) => /JAFONT|KOFONT/i.test(e.shortName));
 console.log('fonts in output:', vFonts.map((e) => e.shortName + ' ' + e.size));

@@ -127,7 +127,6 @@ class SuikoEmulator {
             return eval(eval_string);
         }
 
-        // suiko-web-v2: 지운 모달·모바일 요소는 바인딩하지 않음
         rivets.bind(document.getElementById('maindiv'), { data: this.rivetsData });
         rivets.bind(document.getElementById('divInstructions'), { data: this.rivetsData });
         
@@ -167,7 +166,6 @@ class SuikoEmulator {
                 this.iosVersion = parseInt(iosVersion);
             } catch (err) { }
         }
-        // suiko-web-v2: doswasmx 터치 UI를 지웠으므로 mobileMode는 항상 false
         this.rivetsData.mobileMode = false;
 
         // firefox only supports 250 megs??
@@ -782,7 +780,6 @@ class SuikoEmulator {
             else if (this.rivetsData.initialInstallation || !this.rivetsData.loggedIn)
             {
 
-                // suiko-web-v2: 캐시된 디스크보다 DEFAULTIMG 우선
                 if (this.rivetsData.settings.DEFAULTIMG)
                 {
                     this.load_file(this.rivetsData.settings.DEFAULTIMG);
@@ -990,7 +987,6 @@ class SuikoEmulator {
         this.sendDosControls = Module.cwrap('neil_send_dos_controls', null, 
             ['string','string','string','array','number','string','string']); //arrays are always unsigned byte arrays
 
-        // suiko-web-v2: 부팅 전 이미지 패치(언어·데모·프로브) + 세이브 복원, 부팅 뒤 자동 저장
         if (window.SuikoLang) window.SuikoLang.patchLanguage(this.base_name);
         if (window.SuikoDemo) await window.SuikoDemo.patchDemoMenu(this.base_name);
         if (window.SuikoProbe) await window.SuikoProbe.patch(this.base_name);
@@ -1301,9 +1297,6 @@ class SuikoEmulator {
                 }
                 else if (arrayBuffer) {
                     var byteArray = new Uint8Array(arrayBuffer);
-                    // suiko-web-v2: the disk image is stored gzip'd (~29MB vs ~90MB).
-                    // Detect by gzip magic (1f 8b) and inflate with the native
-                    // DecompressionStream so the filename/base_name stays a plain .img.
                     if (byteArray[0] === 0x1f && byteArray[1] === 0x8b) {
                         const ds = new DecompressionStream('gzip');
                         new Response(new Blob([byteArray]).stream().pipeThrough(ds)).arrayBuffer()
@@ -1371,7 +1364,6 @@ class SuikoEmulator {
     }
 
     resizeCanvas(){
-        // suiko-web-v2: 크기는 CSS만 — 인라인 높이를 쓰지 않음
     }
 
     readFromLocalStorage(localStorageName, name){

@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// bake-tables.js — 포인터 테이블 구간 줄에 table/tableStart 기록.
-// node kr-patch/tools/bake-tables.js [--translation] [--exe] [--dry]
 'use strict';
 
 const fs = require('fs');
@@ -31,7 +29,6 @@ const lineStart = new Set(dialogue.map((e) => e.offset));
 const byOffset = new Map(dialogue.map((e) => [e.offset, e]));
 const dialogueIndexByOffset = new Map(dialogue.map((e, i) => [e.offset, i]));
 
-// .data 안에서 "텍스트 줄 시작을 가리키는" HIGHLOW relocation 슬롯을 전부 모은다.
 const slots = [];
 let p = pe.relocFileOff;
 const end = p + pe.relocSize;
@@ -41,7 +38,7 @@ while (p < end) {
   if (blockSize === 0) break;
   for (let i = 0; i < (blockSize - 8) / 2; i++) {
     const entry = buf.readUInt16LE(p + 8 + i * 2);
-    if ((entry >> 12) !== 3) continue; // HIGHLOW only
+    if ((entry >> 12) !== 3) continue;
     const at = pe.rvaToFile(pageRVA + (entry & 0xfff));
     if (at === null) continue;
     const target = pe.rvaToFile(buf.readUInt32LE(at) - pe.imageBase);
@@ -51,7 +48,6 @@ while (p < end) {
 }
 slots.sort((a, b) => a.at - b.at);
 
-// 슬롯 2개 이상이 4바이트 간격(틈 32B까지)으로 뭉치면 테이블
 const MAX_SLOT_GAP = 32;
 const MIN_SLOTS = 2;
 const runs = [];
@@ -63,7 +59,6 @@ for (let i = 1; i < slots.length; i++) {
 if (cur.length) runs.push(cur);
 const tables = runs.filter((r) => r.length >= MIN_SLOTS);
 
-// 타겟마다 독립적으로 제어바이트(40 02 00 00 = 계속)를 따라 단위 끝까지
 const CONTINUE_CTRL = 0x02;
 for (const e of dialogue) { delete e.table; delete e.tableStart; }
 let markedLines = 0, markedStarts = 0;
@@ -74,14 +69,14 @@ for (const run of tables) {
   let lines = 0;
   for (const target of targets) {
     let idx = dialogueIndexByOffset.get(target);
-    if (idx == null) continue; // 이미 다른 실행에서 확인됨(findEntryPointOffsets류 안전망) — 실측상 없음
+    if (idx == null) continue;
     let e = dialogue[idx];
     e.tableStart = true; markedStarts++;
     for (;;) {
       e.table = run[0].at;
       lines++; markedLines++;
       const ctrl = buf[e.offset + e.length + 1];
-      if (ctrl !== CONTINUE_CTRL) break; // 이 단위는 여기서 끝
+      if (ctrl !== CONTINUE_CTRL) break;
       const next = dialogue[idx + 1];
       if (!next || next.offset !== e.offset + e.length + 4) {
         warnings.push(`table@${run[0].at}: 단위 @0x${target.toString(16)} — @0x${e.offset.toString(16)} 제어바이트는 계속인데 다음 줄이 안 붙어 있음, 여기서 자름`);

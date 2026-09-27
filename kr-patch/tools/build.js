@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// build.js — translation.json의 수정분과 호환성 수정을 원본 HWANSE.EXE에 적용.
-// node kr-patch/tools/build.js [--kr-exe path] [--translation path] [--out path]
 'use strict';
 
 const fs = require('fs');
@@ -46,10 +44,8 @@ if (!fixedDialogue.length && !fixedLabels.length) {
 
 let out;
 try {
-  // dialogue는 전량을 넘긴다(포인터 테이블 구간은 단위 전체를 다시 깐다)
   out = DIALOGUE.build(buf, t.dialogue);
   out = NAMES.build(out, fixedLabels);
-  // 실행 코드 호환성 수정
   console.log('compat: skill fix ' + COMPAT.applySkillFix(out) + ', font fix ' + COMPAT.applyFontFix(out));
 } catch (e) {
   fail(e.message);

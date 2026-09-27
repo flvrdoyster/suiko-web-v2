@@ -1,4 +1,3 @@
-; diag.asm — 알트탭 조사용 로깅 훅 (build-diag.js가 .diag 섹션으로 붙임)
 bits 32
 org 0x5be000
 
@@ -9,7 +8,6 @@ FlushFileBuffers equ 0x5a0454
 GetTickCount     equ 0x5a0464
 wsprintfA        equ 0x5a04e0
 
-; --- hook at 0x417BE5 (after the present Blt in 0x417A55): log HRESULT changes
 diag_present:
     pushad
     mov eax, [ebp-0x80]
@@ -23,10 +21,9 @@ diag_present:
     add esp, 12
 .skip:
     popad
-    cmp dword [ebp-0x80], 0     ; flags for the jz that follows the call
+    cmp dword [ebp-0x80], 0
     ret
 
-; --- hook at 0x417728 (after the Blt in the generic wrapper 0x4176AD): log changes
 diag_present2:
     pushad
     mov eax, [ebp-4]
@@ -43,29 +40,27 @@ diag_present2:
     cmp dword [ebp-4], 0
     ret
 
-; --- replaces call 0x42F460 at 0x401B2C (WM_ACTIVATEAPP): log wParam + primary IsLost
 diag_act:
     pushad
     xor eax, eax
     mov ecx, [0x55abd8]
     test ecx, ecx
     jz .noprim
-    mov ecx, [ecx]              ; IDirectDrawSurface*
+    mov ecx, [ecx]
     test ecx, ecx
     jz .noprim
     push ecx
     mov edx, [ecx]
-    call [edx+0x60]             ; IsLost
+    call [edx+0x60]
 .noprim:
     push eax
-    push dword [esp+40]         ; wParam (pushad 32 + ret 4 + pushed eax 4)
+    push dword [esp+40]
     push fmt_act
     call log
     add esp, 12
     popad
     jmp 0x42f460
 
-; --- replaces call 0x416013 in the present stub: log the restore result
 diag_restore:
     call 0x416013
     pushad
@@ -77,7 +72,6 @@ diag_restore:
     popad
     ret
 
-; log(fmt, a, b) — "tick a b" through wsprintfA, appended to HWDIAG.TXT
 log:
     push ebp
     mov ebp, esp
@@ -85,10 +79,10 @@ log:
     jne .have
     push 0
     push 0x80
-    push 2                      ; CREATE_ALWAYS
+    push 2
     push 0
-    push 1                      ; FILE_SHARE_READ
-    push 0x40000000             ; GENERIC_WRITE
+    push 1
+    push 0x40000000
     push fname
     call [CreateFileA]
     mov [hfile], eax

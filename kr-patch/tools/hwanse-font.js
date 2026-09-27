@@ -1,5 +1,3 @@
-// hwanse-font.js — HWANSE.EXE의 LOGFONT 글꼴 이름 필드(0x52874, 32바이트 NUL 패딩, 슬롯 4 "굴림체")
-// 추출/빌드. extract.js가 레이블 추출에서 이 범위를 빼는 데 쓴다.
 'use strict';
 
 const iconv = require('iconv-lite');
@@ -27,8 +25,6 @@ function extract(buf) {
   });
 }
 
-// Zeroes the whole 32-byte field first (so no trailing bytes of a longer previous name
-// can leak past a NUL) then writes the encoded name. Throws if it doesn't fit.
 function build(buf, entries) {
   const out = Buffer.from(buf);
   for (const e of entries) {

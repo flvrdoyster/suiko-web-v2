@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// extract.js — 원본 EXE에서 translation.json(KR)·jp-reference.json(JP) 재생성.
-// node kr-patch/tools/extract.js [--kr-exe] [--jp-exe] [--out-kr] [--out-jp]
 'use strict';
 
 const fs = require('fs');
@@ -30,7 +28,6 @@ function fail(msg) {
   process.exit(1);
 }
 
-// 이전 추출의 검토 상태(fixed, confirmed, jp/jpOffset)를 키로 옮긴다
 function mergeReview(oldEntries, newEntries, label, keyOf = (e) => `${e.offset}:${e.length}`) {
   if (!oldEntries) return newEntries;
   const oldByKey = new Map();
@@ -64,14 +61,12 @@ function loadExisting(p) {
   return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : null;
 }
 
-// --- KR (editable) ---
 if (!fs.existsSync(krExePath)) fail(`KR exe not found: ${krExePath}`);
 const krBuf = fs.readFileSync(krExePath);
 
 const dialogue = DIALOGUE.extract(krBuf);
 const excludeMask = new Uint8Array(krBuf.length);
 for (const e of dialogue) for (let i = e.offset; i < e.offset + e.length; i++) excludeMask[i] = 1;
-// 글꼴 이름 필드를 레이블 추출에서 제외
 for (const { offset, maxLength } of FONT.FONT_FIELDS) {
   for (let i = offset; i < offset + maxLength; i++) excludeMask[i] = 1;
 }
@@ -105,7 +100,6 @@ const translation = {
 fs.writeFileSync(outKrPath, JSON.stringify(translation, null, 2));
 console.log(`wrote ${path.relative(ROOT, outKrPath)}: dialogue=${dialogue.length}, labels=${labels.length} (round-trip OK)`);
 
-// --- JP (read-only reference) ---
 if (!fs.existsSync(jpExePath)) fail(`JP exe not found: ${jpExePath}`);
 const jpBuf = fs.readFileSync(jpExePath);
 

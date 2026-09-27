@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// relink.js — KR↔JP 스팟 재연결 서버. node kr-patch/tools/relink.js [port] (기본 8183)
 'use strict';
 
 const http = require('http');
@@ -47,18 +46,14 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, fs.readFileSync(HTML_PATH), 'text/html; charset=utf-8');
     }
 
-    // Full KR dialogue array — used only to look up/display the entry being relinked
-    // (search box works against this too, so a reviewer can find the KR row by text).
     if (req.method === 'GET' && url.pathname === '/api/kr-dialogue') {
       return send(res, 200, loadTranslation().dialogue);
     }
 
-    // Full JP reference array — the candidate pool a KR entry gets relinked against.
     if (req.method === 'GET' && url.pathname === '/api/jp-reference') {
       return send(res, 200, loadJpReference());
     }
 
-    // KR 오프셋 하나의 연결 수정(JP는 jp-reference.json에서 다시 찾음)
     if (req.method === 'POST' && url.pathname === '/api/relink') {
       const body = JSON.parse(await readBody(req));
       const { offset, jpOffset } = body;

@@ -1,4 +1,3 @@
-// cara-fnt.js — GENSE.FLD의 cara_fnt.cns(캐릭터 이름 글꼴) 교체·재주입.
 'use strict';
 
 const fs = require('fs');
@@ -12,8 +11,6 @@ const BMP_PATH = path.join(ROOT, 'kr-patch', 'translation', 'cara_fnt.cns.bmp');
 const LIVE_IMG = path.join(ROOT, 'docs', 'final-shared.img');
 const OUT_IMG = path.join(ROOT, 'kr-patch', 'build', 'final-shared.img');
 const TARGET_NAME = 'cara_fnt.cns';
-
-// ---- CNS 코덱 ----
 
 function decompressCns(data, start) {
   const out = [];
@@ -55,7 +52,6 @@ function decompressCns(data, start) {
   return Buffer.from(out);
 }
 
-// 디코드가 소비하는 입력 바이트 수(종료 코드 포함)
 function consumedBytes(data) {
   let i = 0;
   const n = data.length;
@@ -73,7 +69,6 @@ function consumedBytes(data) {
   return i;
 }
 
-// 최소 비용(DP) 해시 체인 LZ 압축
 function compressCns(data, maxChain) {
   maxChain = maxChain || 4096;
   const n = data.length;
@@ -105,7 +100,7 @@ function compressCns(data, maxChain) {
   }
 
   const dp = new Float64Array(n + 1).fill(Infinity); dp[n] = 0;
-  const decL = new Int32Array(n), decD = new Int32Array(n); // decL === 0 → literal
+  const decL = new Int32Array(n), decD = new Int32Array(n);
   for (let i = n - 1; i >= 0; i--) {
     let c = 1 + dp[i + 1], bl = 0, bd = 0;
     const ln = lenNear[i], dn = distNear[i], lf = lenFar[i], df = distFar[i];
@@ -122,7 +117,6 @@ function compressCns(data, maxChain) {
     dp[i] = c; decL[i] = bl; decD[i] = bd;
   }
 
-  // Emit as a token list so the caller can inflate to an exact byte size before serializing.
   const tokens = [];
   let litRun = [];
   function flushLit() {
@@ -155,7 +149,7 @@ function serializeTokens(tokens) {
       for (const b of t.lit) out.push(b);
     } else {
       const { L, dist } = t;
-      const wide = t.wide || dist > 255; // t.wide: force u16-dist form (used for +1 inflation)
+      const wide = t.wide || dist > 255;
       if (L <= 17) {
         if (!wide) { out.push(0x80 | (L - 2)); out.push(dist); }
         else { out.push(0x10 | (L - 2)); out.push(dist & 0xff); out.push((dist >> 8) & 0xff); }
@@ -169,7 +163,6 @@ function serializeTokens(tokens) {
   return Buffer.from(out);
 }
 
-// 풀린 결과는 그대로 두고 토큰 구조만 바꿔 인코딩 크기를 targetSize에 맞춘다
 function inflateToSize(tokens, targetSize) {
   let size = serializeTokens(tokens).length;
   if (size > targetSize) throw new Error(`encoded ${size} > target ${targetSize}; cannot fit`);
@@ -177,7 +170,6 @@ function inflateToSize(tokens, targetSize) {
   while (size < targetSize) {
     if (++guard > 200000) throw new Error('inflation not converging');
     let did = false;
-    // cheapest +1 step: re-encode a narrow-dist match in its u16-dist form (output identical)
     for (let k = 0; k < tokens.length; k++) {
       const t = tokens[k];
       if (!t.lit && !t.wide && t.dist <= 255) {
@@ -186,7 +178,6 @@ function inflateToSize(tokens, targetSize) {
       }
     }
     if (did) continue;
-    // +1: split a short-form literal run (2..31 bytes) into 1 + rest
     for (let k = 0; k < tokens.length; k++) {
       const t = tokens[k];
       if (t.lit && t.lit.length >= 2 && t.lit.length <= 31) {
@@ -195,7 +186,6 @@ function inflateToSize(tokens, targetSize) {
       }
     }
     if (did) continue;
-    // 긴 리터럴 런: 앞 1바이트 떼기(+1, 길이 32 초과일 때만)
     for (let k = 0; k < tokens.length; k++) {
       const t = tokens[k];
       if (t.lit && t.lit.length > 32) {
@@ -204,7 +194,6 @@ function inflateToSize(tokens, targetSize) {
       }
     }
     if (did) continue;
-    // fall back to +2: split a match
     for (let k = 0; k < tokens.length && size <= targetSize - 2; k++) {
       const t = tokens[k];
       if (!t.lit && t.L >= 6 && t.L <= 17) {
@@ -218,8 +207,6 @@ function inflateToSize(tokens, targetSize) {
   }
   return tokens;
 }
-
-// ---- GENSE.FLD archive ----
 
 function parseFld(buf) {
   const magic = buf.subarray(0, 8).toString('ascii');
@@ -254,14 +241,13 @@ function rebuildFld(buf, targetName, newPayload) {
   }
 
   const out = Buffer.alloc(buf.length + delta);
-  buf.copy(out, 0, 0, tableEnd); // header + table, patched below
+  buf.copy(out, 0, 0, tableEnd);
   for (const e of entries) {
     const newOffset = e.offset > target.offset ? e.offset + delta : e.offset;
     const newSize = e.name === targetName ? newPayload.length : e.size;
     out.writeUInt32LE(newOffset, e.tableOffset + 12);
     out.writeUInt32LE(newSize, e.tableOffset + 16);
   }
-  // 대상 앞은 그대로, 새 페이로드, 대상 뒤도 그대로
   let w = tableEnd;
   buf.copy(out, w, tableEnd, target.offset); w += target.offset - tableEnd;
   newPayload.copy(out, w); w += newPayload.length;
@@ -269,8 +255,6 @@ function rebuildFld(buf, targetName, newPayload) {
   if (w !== out.length) throw new Error(`rebuild size mismatch: wrote ${w}, expected ${out.length}`);
   return out;
 }
-
-// ---- main ----
 
 function main() {
   const fld = fs.readFileSync(FLD_PATH);
@@ -311,7 +295,6 @@ function main() {
   const rawSize = serializeTokens(tokens).length;
   console.log(`encoded: ${rawSize} bytes (budget ${target.size}), ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 
-  // 원본 저장 크기와 정확히 같은 소비 바이트로 부풀린다
   const payload = serializeTokens(inflateToSize(tokens, target.size));
   if (payload.length !== target.size) throw new Error(`inflated to ${payload.length}, wanted ${target.size}`);
   const ourConsumed = consumedBytes(payload);
@@ -327,13 +310,11 @@ function main() {
   console.log(`new GENSE.FLD size: ${newFld.length} (was ${fld.length}, delta ${newFld.length - fld.length})`);
   if (newFld.length !== fld.length) throw new Error('FLD size changed despite exact-size payload — bug');
 
-  // inject into a fresh copy of the live disk image
   const liveRaw = fs.readFileSync(LIVE_IMG);
   const liveImg = liveRaw[0] === 0x1f && liveRaw[1] === 0x8b ? new Uint8Array(zlib.gunzipSync(liveRaw)) : new Uint8Array(liveRaw);
   const res = F.injectDirFiles(liveImg, 'GENSE', [{ name: 'GENSE.FLD', data: newFld }]);
   if (res.skipped.length) throw new Error('inject skipped: ' + res.skipped.join(','));
 
-  // verify readback
   const vol = F.openImage(res.image);
   const geCluster = F.resolveDir(vol, 'GENSE');
   const fldEntry = F.listDir(vol, geCluster).find((e) => (e.longName || e.shortName).toUpperCase() === 'GENSE.FLD');

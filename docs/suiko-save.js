@@ -1,4 +1,3 @@
-// suiko-save.js — SAVEDATA 폴더만 IndexedDB에 저장/복원.
 (function () {
   'use strict';
   var DB_NAME = 'suiko-web-v2';
@@ -39,7 +38,6 @@
   function imgPath(baseName) { return '/' + baseName + '.img'; }
 
   function checksum(files) {
-    // order-independent enough: fold name + every byte
     var s = 0;
     files.forEach(function (f) {
       for (var i = 0; i < f.name.length; i++) s = (s + f.name.charCodeAt(i)) >>> 0;
@@ -49,20 +47,18 @@
     return s;
   }
 
-  // Called right before boot: put the player's saved SAVEDATA into the fresh base image.
   function injectSaveData(baseName) {
     return ensureDB().then(function (d) {
       return idbGet(d, KEY);
     }).then(function (saved) {
-      if (!saved || !saved.length) return; // first run: keep the base image's own saves
+      if (!saved || !saved.length) return;
       var path = imgPath(baseName);
-      var img = Module.FS.readFile(path); // Uint8Array (in-memory FS)
+      var img = Module.FS.readFile(path);
       var files = saved.map(function (f) {
         return { name: f.name, data: new Uint8Array(f.data), times: f.times ? new Uint8Array(f.times) : null };
       });
       var res = Fat16.injectDirFiles(img, saveDir(), files);
       Module.FS.writeFile(path, res.image);
-      // seed lastChecksum so the first poll doesn't re-save unchanged data
       lastChecksum = checksum(Fat16.extractDirFiles(res.image, saveDir()));
       console.log('[suiko-save] restored', files.length - res.skipped.length, 'save files',
         res.skipped.length ? '(skipped: ' + res.skipped.join(',') + ')' : '');
@@ -72,13 +68,12 @@
 
   var lastChecksum = null;
 
-  // Extract SAVEDATA from the live disk image and store it if it changed.
   function capture(baseName) {
     var files;
     try {
       var img = Module.FS.readFile(imgPath(baseName));
       files = Fat16.extractDirFiles(img, saveDir());
-    } catch (e) { return Promise.resolve(); } // image not mounted yet, etc.
+    } catch (e) { return Promise.resolve(); }
     var csum = checksum(files);
     if (csum === lastChecksum) return Promise.resolve();
     lastChecksum = csum;
@@ -101,7 +96,6 @@
   function startAutoSave(baseName) {
     if (timer) return;
     timer = setInterval(function () { capture(baseName); }, POLL_MS);
-    // best-effort final flush (async may not finish, but the poll usually caught it)
     window.addEventListener('pagehide', function () { capture(baseName); });
     window.addEventListener('beforeunload', function () { capture(baseName); });
   }

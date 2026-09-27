@@ -1,5 +1,3 @@
-// fontprobe.c — HWANSE.EXE의 LOGFONT 5개로 GDI가 실제로 주는 글꼴 메트릭·비트맵을 기록.
-// 빌드: build.sh (Win95에서도 돌도록 C 런타임 없이)
 #include <windows.h>
 
 void *memset(void *d, int c, unsigned n) { char *p = d; while (n--) *p++ = (char)c; return d; }
@@ -45,8 +43,6 @@ static int readLogfonts(const char *exe, LOGFONTA *lf) {
 
 static int extent(HDC dc, const char *s) { SIZE sz; GetTextExtentPoint32A(dc, s, lstrlenA(s), &sz); return sz.cx; }
 
-// Variant list per slot: "원본" (untouched), then no-antialias combined with every mix of
-// {height 16 (slot 0 only)} x {|width| - 1} x {weight 400}.
 static void addVariant(int s, const LOGFONTA *base, int aa, int h16, int wm1, int normal) {
   Variant *v = &var[s][nvar[s]++];
   v->lf = *base;
@@ -77,7 +73,6 @@ void __stdcall start(void) {
   for (i = lstrlenA(dir); i > 0 && dir[i - 1] != '\\'; i--) {}
   dir[i] = 0;
 
-  // First argument (after the exe name, which may be quoted) = HWANSE.EXE path.
   arg = cmd;
   if (*arg == '"') { arg++; while (*arg && *arg != '"') arg++; if (*arg) arg++; }
   else while (*arg && *arg != ' ') arg++;
@@ -105,7 +100,7 @@ void __stdcall start(void) {
   ver.dwOSVersionInfoSize = sizeof(ver);
   GetVersionExA(&ver);
   SystemParametersInfoA(SPI_GETFONTSMOOTHING, 0, &smooth, 0);
-  SystemParametersInfoA(0x200A /* SPI_GETFONTSMOOTHINGTYPE, XP+ */, 0, &smoothType, 0);
+  SystemParametersInfoA(SPI_GETFONTSMOOTHINGTYPE, 0, &smoothType, 0);
   P("fontprobe 2\r\nexe: %s\r\nOS: %lu.%lu.%lu platform %lu  ACP %u  LOGPIXELSY %d  BITSPIXEL %d  fontsmoothing %d type %u\r\n"
     "BMP: 8bpp gray ramp, rows top to bottom in this order; grid x=%d, cells x=%d pitch %d: ",
     exe, ver.dwMajorVersion, ver.dwMinorVersion, ver.dwBuildNumber & 0xffff, ver.dwPlatformId,
@@ -149,7 +144,7 @@ void __stdcall start(void) {
     memset(&bi, 0, sizeof(bi));
     bi.h.biSize = sizeof(bi.h);
     bi.h.biWidth = BMP_W;
-    bi.h.biHeight = -total; // top-down, so band_y in the TXT is a plain row offset
+    bi.h.biHeight = -total;
     bi.h.biPlanes = 1;
     bi.h.biBitCount = 8;
     bi.h.biClrUsed = 256;
@@ -172,7 +167,6 @@ void __stdcall start(void) {
         TextOutA(dc, 2, y + 2, line, lstrlenA(line));
         SelectObject(dc, p->font);
         SetTextColor(dc, RGB(255, 255, 255));
-        // Game-style: one TextOut per character, cursor += tmMaxCharWidth * bytes / 2.
         while (*c) {
           int nb = IsDBCSLeadByte((BYTE)*c) ? 2 : 1;
           TextOutA(dc, x, y + 2, c, nb);
@@ -204,6 +198,5 @@ void __stdcall start(void) {
   CloseHandle(txt);
   for (s = 0; s < NSLOT; s++) for (v = 0; v < nvar[s]; v++) DeleteObject(var[s][v].font);
   DeleteDC(dc);
-  // No "done" box: in the web emulator this runs from WIN.INI run= alongside the game.
   ExitProcess(0);
 }

@@ -1,25 +1,24 @@
 #!/bin/zsh
-# midi2mp3.sh — 게임 MIDI를 사운드폰트로 mp3 렌더링(청감 확인용).
-# ./midi2mp3.sh [-s font.sf2|sf3] [folder…]
-
-# 스크립트가 위치한 폴더 (어디서 실행하든 사운드폰트를 찾기 위함)
 SCRIPT_DIR="${0:A:h}"
 
 SF=""
 
-# -s / --sf2 로 사운드폰트 직접 지정 (선택, 옵션 이름은 하위호환용으로 유지)
 while [[ "$1" == -* ]]; do
   case "$1" in
     -s|--sf2) SF="$2"; shift 2 ;;
     -h|--help)
-      sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'
+      cat <<'USAGE'
+사용법:
+  ./midi2mp3.sh                  → 현재 폴더의 *.mid 변환 (사운드폰트 자동 탐지)
+  ./midi2mp3.sh haiyuki          → 지정 폴더 변환
+  ./midi2mp3.sh haiyuki suiko    → 여러 폴더 한꺼번에
+  ./midi2mp3.sh -s 다른.sf2 폴더  → 사운드폰트 직접 지정 (.sf2/.sf3 둘 다 가능)
+USAGE
       exit 0 ;;
     *) echo "알 수 없는 옵션: $1"; exit 1 ;;
   esac
 done
 
-# 사운드폰트 자동 탐지: 지정 안 했으면 스크립트 폴더의 .sf2/.sf3 중 첫 번째,
-# 그것도 없으면 리포 배포판 docs/SC-55.sf3로 폴백
 if [[ -z "$SF" ]]; then
   SF=$(print -r -- "$SCRIPT_DIR"/*.(sf2|sf3)(N) | head -1)
 fi
@@ -33,7 +32,6 @@ if [[ -z "$SF" || ! -f "$SF" ]]; then
   exit 1
 fi
 
-# 폴더 인자가 없으면 현재 폴더 사용
 dirs=("$@")
 [[ ${#dirs[@]} -eq 0 ]] && dirs=(".")
 
@@ -55,7 +53,6 @@ for DIR in "${dirs[@]}"; do
   echo "── $DIR (${#files[@]}개)"
   for f in "${files[@]}"; do
     base="${f%.*}"
-    # 이미 변환된 mp3가 있으면 건너뜀
     if [[ -f "${base}.mp3" ]]; then
       echo "  이미 있음: $(basename "${base}.mp3")"
       continue

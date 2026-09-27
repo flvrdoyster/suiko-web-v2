@@ -1,4 +1,3 @@
-// pe-reloc.js — PE 섹션표·.reloc 파서, 장면 진입점 찾기.
 'use strict';
 
 function parsePE(buf) {
@@ -42,8 +41,6 @@ function parsePE(buf) {
   return { imageBase, relocFileOff: rvaToFile(relocRVA), relocSize, rvaToFile, fileToVA };
 }
 
-// entries: [{offset, length, ...}] (file offsets into buf). Returns sorted file-offset list
-// of dialogue-entry starts that a HIGHLOW relocation target lands on exactly.
 function findEntryPointOffsets(buf, entries) {
   const pe = parsePE(buf);
   const lineStartVAs = new Set(entries.map((e) => pe.fileToVA(e.offset)));
@@ -63,7 +60,7 @@ function findEntryPointOffsets(buf, entries) {
     const count = (blockSize - 8) / 2;
     for (let i = 0; i < count; i++) {
       const entry = buf.readUInt16LE(p + 8 + i * 2);
-      if ((entry >> 12) !== 3) continue; // HIGHLOW only
+      if ((entry >> 12) !== 3) continue;
       const at = pe.rvaToFile(pageRVA + (entry & 0xfff));
       if (at === null) continue;
       const targetVA = buf.readUInt32LE(at);

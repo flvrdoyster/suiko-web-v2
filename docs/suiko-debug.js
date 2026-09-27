@@ -1,15 +1,12 @@
-// suiko-debug.js — ?debug일 때만 세이브 슬롯 가져오기/내보내기/삭제 패널.
 (function () {
   'use strict';
 
   if (!new URLSearchParams(location.search).has('debug')) return;
 
-  // suiko-save.js와 같은 DB/스토어/키
   var DB_NAME = 'suiko-web-v2';
   var STORE = 'saves';
   var KEY = 'savedata';
 
-  // 슬롯 6개 고정(빈 캐시여도 가져오기 대상이 보이게)
   var SLOTS = ['SAVEDAT1.DAT', 'SAVEDAT2.DAT', 'SAVEDAT3.DAT', 'SAVEDAT4.DAT', 'SAVEDAT5.DAT', 'SAVEDAT6.DAT'];
 
   function openDB() {
@@ -39,12 +36,10 @@
   var db = null;
   function ensureDB() { return db ? Promise.resolve(db) : openDB().then(function (d) { db = d; return d; }); }
 
-  // 저장된 배열([{name, data, times}]), 없으면 []
   function getSaves() {
     return ensureDB().then(function (d) { return idbGet(d, KEY); }).then(function (v) { return v || []; });
   }
 
-  // style.css(gensei-pc98와 같은 파일)의 토큰·전역 button 규칙 위에 폭·간격만 얹는다
   var STYLE =
     '#dbg-panel{position:fixed;top:56px;left:8px;z-index:300;' +
     'background:rgba(38,38,38,0.97);border:1px solid rgba(68,68,68,1);border-radius:6px;' +
@@ -85,7 +80,6 @@
     return b;
   }
 
-  // 배열에서 같은 이름을 빼고(있으면 새 항목을 넣고) 다시 저장
   function replaceSlot(name, entry) {
     return getSaves().then(function (saves) {
       var next = saves.filter(function (f) { return f.name.toUpperCase() !== name; });
@@ -125,18 +119,17 @@
     });
   }
 
-  // fat16.js `times`(디렉토리 엔트리 13..25) — `ms`를 로컬 시각으로
   function fatTimes(ms) {
     var d = new Date(ms);
     var time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
     var date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
     var t = new Uint8Array(13);
     var v = new DataView(t.buffer);
-    v.setUint16(1, time, true);  // create time
-    v.setUint16(3, date, true);  // create date
-    v.setUint16(5, date, true);  // last access date
-    v.setUint16(9, time, true);  // write time
-    v.setUint16(11, date, true); // write date
+    v.setUint16(1, time, true);
+    v.setUint16(3, date, true);
+    v.setUint16(5, date, true);
+    v.setUint16(9, time, true);
+    v.setUint16(11, date, true);
     return t.buffer;
   }
 
@@ -174,7 +167,6 @@
     btnToggle.title = 'DEBUG 세이브';
     btnToggle.innerHTML = '<svg viewBox="2 4 28 24" height="22"><path fill="currentColor" d="M29,15h-5.1c-0.1-1.2-0.5-2.4-1-3.5c1.9-1.5,3.1-3.7,3.1-6.1V5c0-0.6-0.4-1-1-1s-1,0.4-1,1v0.4c0,1.8-0.8,3.4-2.2,4.5c-0.5-0.7-1.2-1.2-1.9-1.7c0-0.1,0-0.1,0-0.2c0-2.2-1.8-4-4-4s-4,1.8-4,4c0,0.1,0,0.1,0,0.2c-0.7,0.5-1.3,1-1.9,1.7C8.8,8.8,8,7.2,8,5.4V5c0-0.6-0.4-1-1-1S6,4.4,6,5v0.4c0,2.4,1.1,4.7,3.1,6.1c-0.5,1-0.9,2.2-1,3.5H3c-0.6,0-1,0.4-1,1s0.4,1,1,1h5.1c0.1,1.2,0.5,2.4,1,3.5C7.1,21.9,6,24.2,6,26.6V27c0,0.6,0.4,1,1,1s1-0.4,1-1v-0.4c0-1.8,0.8-3.4,2.2-4.5c1.5,1.8,3.5,2.9,5.8,2.9s4.4-1.1,5.8-2.9c1.4,1.1,2.2,2.7,2.2,4.5V27c0,0.6,0.4,1,1,1s1-0.4,1-1v-0.4c0-2.4-1.1-4.7-3.1-6.1c0.5-1,0.9-2.2,1-3.5H29c0.6,0,1-0.4,1-1S29.6,15,29,15z"/></svg>';
 
-    // 상단바 왼쪽 칸(#topbar-left, gensei-pc98과 같은 자리)
     var left = document.getElementById('topbar-left');
     if (!left) {
       left = document.createElement('div');

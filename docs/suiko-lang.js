@@ -1,4 +1,3 @@
-// suiko-lang.js — SUIKO_LANG에 맞춰 부팅 전 WIN.INI load= 변경.
 (function () {
   'use strict';
   var LOAD_LINE = {

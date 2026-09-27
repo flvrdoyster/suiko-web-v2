@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// compat-patch.js — HWANSE.EXE 호환성 수정: 스테이터스 창 기술 버그, NT 계열 글꼴 크기.
-// build.js가 적용한다. 단독 실행: node kr-patch/tools/compat-patch.js [--in path] [--out path]
 'use strict';
 
 const fs = require('fs');
@@ -9,7 +7,6 @@ const { parsePE } = require('./pe-reloc.js');
 
 const ROOT = path.join(__dirname, '..', '..');
 
-// ---- .reloc (HIGHLOW 목록을 집합으로 편집해 통째로 다시 씀) ----------------------------
 function sectionHeaders(buf) {
   const e = buf.readUInt32LE(0x3c);
   const n = buf.readUInt16LE(e + 6);
@@ -84,7 +81,6 @@ function editRelocs(buf, remove, add) {
   writeRelocs(buf, [...set]);
 }
 
-// ---- 1) skill fix -------------------------------------------------------------------
 const SKILL_FN_VA = 0x410e40;
 const SKILL_FN_LEN = 0xe3;
 const SKILL_FN_NEW = Buffer.from(
@@ -119,7 +115,6 @@ function applySkillFix(buf) {
   return 'applied';
 }
 
-// ---- 2) font fix --------------------------------------------------------------------
 const FONT_STUB_VA = 0x410ec0;
 const FONT_STUB = Buffer.from(
   '565783ec3c8b74244889e76a0f59f3a5ff15bc045a0085c0781e833c24007504c60424108b44240485c0' +

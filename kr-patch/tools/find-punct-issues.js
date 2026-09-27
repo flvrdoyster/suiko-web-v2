@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// find-punct-issues.js — 문장부호 결함 후보 CLI 보고(translation.json은 안 건드림).
 'use strict';
 
 const fs = require('fs');
@@ -8,13 +7,10 @@ const path = require('path');
 const TRANS_PATH = path.join(__dirname, '../translation/translation.json');
 const t = JSON.parse(fs.readFileSync(TRANS_PATH, 'utf8'));
 
-// A 반복: 화살표·장식 기호 제외
 const REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '「', '」', '『', '』', '～', '∼']);
 
-// B·C 추가/종결 불일치: 어조 부호만
 const TONE_SET = new Set(['！', '？', '…']);
 
-// D 더듬음: 반복 음절을 전각 공백으로 이은 KR
 const JP_STAMMER_RE = /^「?[ぁ-んァ-ヶー]　/u;
 function krStammerSpaceSep(str) {
   const body = str.replace(/^「/u, '');
@@ -51,13 +47,11 @@ for (const e of t.dialogue) {
   const jp = e.jp || '';
   if (!kr || !jp) continue;
 
-  // A. repeated punctuation run in KR (e.g. "！！！")
   const runs = repeatedRuns(kr);
   for (const r of runs) {
     results.repeated.push({ offset: e.offset, kr, jp, ch: r.ch, len: r.len });
   }
 
-  // B. KR has a tone mark (！／？／…) that JP doesn't have anywhere in the line
   const krSet = new Set(toneMarks(kr));
   const jpSet = new Set(toneMarks(jp));
   for (const ch of krSet) {
@@ -66,7 +60,6 @@ for (const e of t.dialogue) {
     }
   }
 
-  // C: 양쪽 다 어조 부호로 끝나는데 종류가 다름
   const krTrim = kr.replace(/　+$/u, '');
   const jpTrim = jp.replace(/　+$/u, '');
   const krLast = krTrim.slice(-1);
@@ -75,7 +68,6 @@ for (const e of t.dialogue) {
     results.swapped.push({ offset: e.offset, kr, jp, krLast, jpLast });
   }
 
-  // D. JP stammer + KR repeats the syllable but joins it with a space instead of a comma
   if (JP_STAMMER_RE.test(jp) && krStammerSpaceSep(kr)) {
     results.stammer.push({ offset: e.offset, kr, jp });
   }
@@ -103,7 +95,7 @@ console.log(`D. 더듬음 구분자가 쉼표가 아닌 공백: ${results.stamme
 console.log('');
 
 const args = process.argv.slice(2);
-const category = args[0]; // 'A' | 'B' | 'C' | undefined(=summary only)
+const category = args[0];
 const limit = parseInt(args[1], 10) || 30;
 
 function printList(list, label) {

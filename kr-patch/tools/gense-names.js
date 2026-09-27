@@ -1,4 +1,3 @@
-// gense-names.js — GENSE.EXE(JP) 이름표 추출(참고 전용).
 'use strict';
 
 const iconv = require('iconv-lite');
@@ -16,7 +15,7 @@ function isAllowedAscii(b) {
 function charLenAt(buf, off) {
   const b = buf[off];
   if (isAllowedAscii(b)) return 1;
-  if (b === 0x81 && (buf[off + 1] === 0x40 || buf[off + 1] === 0x41)) return 2; // 　or ・
+  if (b === 0x81 && (buf[off + 1] === 0x40 || buf[off + 1] === 0x41)) return 2;
   if ((b >= 0x81 && b <= 0x9f) || (b >= 0xe0 && b <= 0xfc)) {
     if (off + 1 >= buf.length) return 0;
     const t = buf[off + 1];
@@ -35,7 +34,7 @@ function encodeCp932(str) {
   return iconv.encode(str, 'cp932');
 }
 function isJapaneseChar(buf, off) {
-  if (buf[off] === 0x81) return false; // full-width space/middle-dot, not a JP letter
+  if (buf[off] === 0x81) return false;
   const s = decodeCp932(buf.subarray(off, off + 2));
   if (!s) return false;
   const cp = s.codePointAt(0);
@@ -52,7 +51,6 @@ function isPadPairAt(buf, off) {
   return buf[off] === 0x81 && (buf[off + 1] === 0x40 || buf[off + 1] === 0x41);
 }
 
-// hwanse-names.js와 같은 노이즈 규칙
 function findNoiseRun(buf, off, len) {
   let i = off;
   while (i < off + len) {

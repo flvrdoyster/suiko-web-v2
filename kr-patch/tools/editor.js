@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// editor.js — 로컬 검수 에디터 서버. node kr-patch/tools/editor.js [port] (기본 8182)
 'use strict';
 
 const http = require('http');
@@ -31,7 +30,6 @@ function saveTranslation(t) {
   fs.renameSync(tmp, TRANS_PATH);
 }
 
-// 책갈피(오프셋 하나)
 function loadBookmark() {
   if (!fs.existsSync(BOOKMARK_PATH)) return null;
   const v = JSON.parse(fs.readFileSync(BOOKMARK_PATH, 'utf8')).offset;
@@ -41,8 +39,6 @@ function saveBookmark(offset) {
   fs.writeFileSync(BOOKMARK_PATH, JSON.stringify({ offset }, null, 2));
 }
 
-// Returns the byte length a `fixed` replacement must fit within for a given section/entry —
-// 'dialogue'/'labels' are byte-length-exact slots (see padToFit()).
 function requiredLength(section, entry) {
   return entry.length;
 }
@@ -52,7 +48,6 @@ function encodeFor(section, text) {
   return encode(text);
 }
 
-// 레이블은 짧으면 전각 공백으로 슬롯을 채운다(홀수 바이트 부족은 그대로 둬서 거부되게)
 function padToFit(section, text, need) {
   if (section !== 'labels') return text;
   const shortfall = need - encodeFor(section, text).length;
@@ -60,7 +55,6 @@ function padToFit(section, text, need) {
   return text + '　'.repeat(shortfall / 2);
 }
 
-// HEAD 대비 섹션별 바뀐 fixed 개수(배포 커밋 본문용), HEAD에 없으면 null
 function countChangedFixed() {
   let headRaw;
   try {
@@ -110,14 +104,13 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { offset: loadBookmark() });
     }
 
-    // 모아 보낸 편집을 하나씩 검사해 통과한 것만 쓰고, 실패는 키별로 돌려준다
     if (req.method === 'POST' && url.pathname === '/api/save') {
       const body = JSON.parse(await readBody(req));
       const edits = Array.isArray(body.edits) ? body.edits : [];
       const t = loadTranslation();
       const results = {};
       let anyApplied = false;
-      const priorFixed = new Map(); // 단위 합계 검사에서 되돌릴 때 쓸 저장 전 값
+      const priorFixed = new Map();
 
       for (const edit of edits) {
         const { key, section, offset } = edit;
@@ -131,13 +124,9 @@ const server = http.createServer(async (req, res) => {
           continue;
         }
         let toSave = edit.fixed || '';
-        // 포인터 테이블 구간(`table`)은 줄 단위가 아니라 **단위 합계**로 검사한다 — 아래에서
-        // 편집을 다 반영한 뒤 한 번에 본다. 여기서는 인코딩 가능 여부만 확인하고 통과시킨다.
         const unitChecked = section === 'dialogue' && entry.table != null;
         if (toSave) {
           const need = requiredLength(section, entry);
-          // encodeCp949는 매핑 없는 문자를 만나면 던진다 — 그대로 올리면 배치 전체가 500으로
-          // 죽으므로, 이 편집만 실패로 기록하고 나머지는 계속 처리한다.
           let got;
           try {
             toSave = padToFit(section, toSave, need);
@@ -157,8 +146,7 @@ const server = http.createServer(async (req, res) => {
         anyApplied = true;
       }
 
-      // 단위 합계 검사 — 안 맞으면 그 단위의 편집을 전부 되돌린다
-      const touchedUnits = new Map(); // 단위 첫 줄 offset -> { lines, keys }
+      const touchedUnits = new Map();
       const dialogueSorted = (t.dialogue || []).slice().sort((a, b) => a.offset - b.offset);
       const editedOffsets = new Set(edits
         .filter((x) => x.section === 'dialogue' && results[x.key] && results[x.key].unit)
@@ -191,7 +179,6 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { results });
     }
 
-    // 책갈피 저장
     if (req.method === 'POST' && url.pathname === '/api/bookmark') {
       const body = JSON.parse(await readBody(req));
       if (typeof body.offset !== 'number') return send(res, 400, { error: 'offset required' });
@@ -199,7 +186,6 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { ok: true, offset: body.offset });
     }
 
-    // 확정 플래그 토글(즉시 저장)
     if (req.method === 'POST' && url.pathname === '/api/confirm') {
       const body = JSON.parse(await readBody(req));
       const { section, offset, confirmed } = body;
@@ -214,7 +200,6 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { ok: true, confirmed: entry.confirmed });
     }
 
-    // 빌드 + 테스트 이미지 주입(kr-patch/build/에만)
     if (req.method === 'POST' && url.pathname === '/api/build-inject') {
       let buildOut;
       try {
@@ -245,7 +230,6 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { ok: true, message: `${buildMsg} · ${injectMsg}` });
     }
 
-    // 테스트 이미지를 배포 이미지로 올리고 커밋(푸시는 안 함)
     if (req.method === 'POST' && url.pathname === '/api/deploy') {
       if (!fs.existsSync(BUILD_IMG)) {
         return send(res, 200, { ok: false, message: '빌드 및 삽입을 먼저 실행하세요 (kr-patch/build/final-shared.img 없음)' });
