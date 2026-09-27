@@ -20,6 +20,7 @@ const path = require('path');
 
 const DIALOGUE = require('./hwanse-text.js');
 const NAMES = require('./hwanse-names.js');
+const COMPAT = require('./compat-patch.js');
 
 const ROOT = path.join(__dirname, '..', '..');
 
@@ -62,6 +63,8 @@ try {
   // (hwanse-text.js build() 주석 참고). 수정 없는 줄은 원본과 같은 바이트로 다시 쓰인다.
   out = DIALOGUE.build(buf, t.dialogue);
   out = NAMES.build(out, fixedLabels);
+  // 텍스트와 무관한 실행 파일 수정(기술 창 버그, NT 계열 윈도우 글꼴) — compat-patch.js 참고.
+  console.log('compat: skill fix ' + COMPAT.applySkillFix(out) + ', font fix ' + COMPAT.applyFontFix(out));
 } catch (e) {
   fail(e.message);
 }
