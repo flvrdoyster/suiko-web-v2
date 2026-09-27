@@ -1,23 +1,5 @@
-// fontprobe.c — asks GDI what it actually hands HWANSE.EXE for its 5 LOGFONTs, so Win95
-// and Win11 results can be compared number by number and pixel by pixel.
-//
-// Reads the 5 LOGFONT structs straight from HWANSE.EXE (file 0x52768 + n*0x3C, created in
-// order at 0x4113BE) — from the path given on the command line, else HWANSE.EXE next to
-// this exe. Writes FNTPROBE.TXT (metrics) and FNTPROBE.BMP next to this exe.
-//
-// Why tmHeight/tmMaxCharWidth matter: right after CreateFontIndirect the game calls
-// GetTextMetrics and overwrites lfHeight := tmHeight, lfWidth := tmMaxCharWidth
-// (0x41B1B1), then advances its text cursor by lfWidth * bytes / 2 after every TextOut
-// (0x41B449). So those two numbers are the game's layout grid.
-//
-// v2: draws into an 8bpp DIB like the game's 640x480x8 DirectDraw surface (v1 used 24bpp,
-// where Win11 antialiases), with a gray-ramp palette so any AA shows up as index 1..254.
-// Each slot is tried with the candidate request changes below (height 16 only for slot 0,
-// whose request is height 0). BMP row: label | game-grid string | glyph cells at a fixed
-// pitch (for pixel-exact Win95/Win11 comparison, see compare.py).
-//
-// Must run on real Win95: no C runtime, only kernel32/user32/gdi32 calls Win95 has.
-// Build: kr-patch/tools/fontprobe/build.sh
+// fontprobe.c — HWANSE.EXE의 LOGFONT 5개로 GDI가 실제로 주는 글꼴 메트릭·비트맵을 기록.
+// 빌드: build.sh (Win95에서도 돌도록 C 런타임 없이)
 #include <windows.h>
 
 void *memset(void *d, int c, unsigned n) { char *p = d; while (n--) *p++ = (char)c; return d; }

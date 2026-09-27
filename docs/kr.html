@@ -27,15 +27,8 @@
     <script type="module" src="suiko-midi-synth.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rivets/0.9.6/rivets.bundled.min.js"></script>
-    <!-- Bootstrap/Popper dropped: only used by the hidden doswasmx demo UI's
-         .modal()/dropdown calls, which are unreachable now that that UI is hidden
-         (see suiko-overrides.css). Its global CSS reset was bleeding into the
-         gensei-pc98-styled footer (margin/line-height on <p>), so out it goes. -->
-    <!-- toastr stays: doswasmx's engine code calls toastr.* on load-progress/error paths
-         that can actually fire. FileSaver (export-files/-drive) and nipplejs (mobile touch
-         joystick) were dropped — both are only referenced inside now-unreachable code
-         (the export UI was removed; setupMobileControls is never called, mobileMode is
-         forced false in script.js), and neither is touched at load time. -->
+    <!-- Bootstrap/Popper 제거 -->
+    <!-- toastr는 엔진이 사용 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <!-- ours load last so they win the cascade over any third-party resets -->
@@ -47,10 +40,7 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR4S897C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- suiko-web-v2: page structure/CSS classes match gensei-pc98's emulator pages
-         (see docs/style.css, copied verbatim) so the two stay easy to maintain together.
-         The doswasmx engine's own demo UI is hidden but kept in the DOM — see
-         suiko-overrides.css. -->
+    <!-- 구조·클래스는 gensei-pc98 페이지와 동일 -->
     <div class="top-bar">
         <img src="img/logo-suiko.png" alt="환세취호전" class="logo">
         <div class="top-bar-right">
@@ -61,11 +51,7 @@
         </div>
     </div>
 
-    <!-- Hidden host for the handful of elements doswasmx's engine glue (script.js) still
-         touches by id during init/boot; rivets also binds #maindiv (and #divInstructions
-         below). The rest of the doswasmx demo UI — header, load/browse/settings/login
-         buttons, ROM list, drag-drop zone, CPU/Advanced control bar, error box, modals —
-         was removed as unreachable dead markup. -->
+    <!-- script.js가 id로 건드리는 doswasmx 요소(숨김) -->
     <div id="maindiv" style="display:none">
         <div id="myProgress"></div>
         <input id="file-upload" type="file" multiple>
@@ -74,14 +60,8 @@
         <div id="dropArea"></div>
     </div>
 
-    <!-- #canvasDiv's id is hardcoded in doswasmx's script.js (resizeCanvas, fullscreen,
-         mobile mode) so it can't be renamed — but it plays the same role as gensei-pc98's
-         #canvas-wrap, and suiko-overrides.css styles it identically. -->
-    <!-- no inline display:none: unlike gensei-pc98's #canvas-wrap (always visible),
-         doswasmx's own JS normally starts this hidden and $('#canvasDiv').show()s it
-         only after boot — but our #btn-start overlay lives inside it and must be
-         clickable from the start, so we keep it visible here (its .show() later is a
-         harmless no-op) and let the overlay cover it visually until Start is clicked. -->
+    <!-- #canvasDiv: script.js 하드코딩 id -->
+    <!-- 시작 버튼이 안에 있어 처음부터 보이게 -->
     <div id="canvasDiv">
         <!-- id="canvas" is hardcoded in the Emscripten-generated glue (main.js) -->
         <canvas id="canvas" width="640" height="480"></canvas>
@@ -102,9 +82,6 @@
         </div>
     </div>
     
-    <!-- doswasmx's own "View source on GitHub" link (id="githubDiv") was removed here —
-         script.js's $('#githubDiv').show()/.hide() calls are jQuery, safe no-ops on a
-         missing element. Our own credits live in footer.js (data-emulator="dos"). -->
 
 
 
@@ -147,8 +124,7 @@
     <script src="fat16.js"></script>
     <script src="suiko-lang.js"></script>
     <script src="suiko-save.js"></script>
-    <!-- ?debug/&debug in the URL only: save-slot import/export panel. Self-gated (returns
-         immediately without the query param), see suiko-debug.js. -->
+    <!-- ?debug일 때만 세이브 패널 -->
     <script src="suiko-debug.js"></script>
     <script src="suiko-audio.js"></script>
     <script src="gamepad.js"></script>

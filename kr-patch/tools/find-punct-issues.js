@@ -1,17 +1,5 @@
 #!/usr/bin/env node
-// find-punct-issues.js — surface dialogue lines where KR punctuation looks tampered with
-// relative to JP: repeated marks (particularly "！！！" runs), marks added that aren't in
-// JP at all, or a different terminal mark than JP's. Report-only (prints candidates with
-// offsets for manual review in the editor) — does not touch translation.json.
-//
-// NOTE — this CLI and the editor's filter dropdown have diverged; they are no longer the
-// same logic. This file keeps the original independent A/B/C conditions, which overlap
-// heavily (one line often lands in two of them). The editor since re-cut the same signals
-// into mutually-exclusive categories (added-repeat / added / amplified, see punctCategory()
-// in editor.html) precisely so a reviewer working one filter to zero doesn't keep meeting
-// the same lines in the next, and it also carries the mistrans-* mistranslation filters
-// that have no counterpart here. **editor.html's AUTO_FILTERS is the canonical set**; this
-// CLI is kept for quick batch counts from the shell, not as a mirror of it.
+// find-punct-issues.js — 문장부호 결함 후보 CLI 보고(translation.json은 안 건드림).
 'use strict';
 
 const fs = require('fs');
@@ -20,25 +8,13 @@ const path = require('path');
 const TRANS_PATH = path.join(__dirname, '../translation/translation.json');
 const t = JSON.parse(fs.readFileSync(TRANS_PATH, 'utf8'));
 
-// Repeat-detection (A) stays broad — any punctuation mark repeating back-to-back is
-// inherently suspicious regardless of type. Excludes UI-hint arrows (←→↓) and decorative
-// symbols (♥★☆○×◎％＆) since those repeating isn't a translation-tampering signal.
+// A 반복: 화살표·장식 기호 제외
 const REPEAT_SET = new Set(['！', '？', '…', '、', '，', '。', '．', '「', '」', '『', '』', '～', '∼']);
 
-// Add/swap-detection (B, C) is narrowed to just the tone-carrying terminal marks the
-// reviewer actually flagged (exclamation/question/ellipsis). 「」 vs 『』 is a KR/JP quote
-// *convention* difference (GUIDE.md §5 "조작키는「」로 감싼다"), not a translation error, so
-// brackets are deliberately excluded here even though A still catches them if repeated.
+// B·C 추가/종결 불일치: 어조 부호만
 const TONE_SET = new Set(['！', '？', '…']);
 
-// D. stammer detection (GUIDE.md 2-6): JP marks a stammer as a single kana syllable
-// followed by a full-width space (な　なんだって), and this game's established KR
-// convention joins the repeated syllable with a full-width comma (뭐，뭐라구) rather than
-// JP's space. Flags KR that already repeats the syllable but joins it with a full-width
-// space instead — narrower than "any repeated char" (which also matches laughter/onomatopoeia
-// like 호호호 or 헉헉 and would be mostly noise) and narrower than "no comma at all" (which
-// also matches lines that just dropped the stammer entirely, a translation-completeness
-// question rather than a punctuation-consistency one).
+// D 더듬음: 반복 음절을 전각 공백으로 이은 KR
 const JP_STAMMER_RE = /^「?[ぁ-んァ-ヶー]　/u;
 function krStammerSpaceSep(str) {
   const body = str.replace(/^「/u, '');
@@ -90,9 +66,7 @@ for (const e of t.dialogue) {
     }
   }
 
-  // C. terminal tone mark type differs (JP ends in one, KR ends in another) —
-  // approximate "swapped" signal. Only when both sides actually end in a tone mark (skip
-  // plain-text endings, e.g. lines ending in a padding space).
+  // C: 양쪽 다 어조 부호로 끝나는데 종류가 다름
   const krTrim = kr.replace(/　+$/u, '');
   const jpTrim = jp.replace(/　+$/u, '');
   const krLast = krTrim.slice(-1);

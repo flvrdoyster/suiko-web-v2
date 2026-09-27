@@ -1,17 +1,6 @@
 #!/usr/bin/env node
-// bake-jp.js — resolve the sparse KR<->JP anchors in kr-jp-links.json into an ACTUAL JP
-// text/offset on every dialogue entry in translation.json, then write it there directly.
-//
-// Why: kr-jp-links.json only stores anchor points; every other line's JP counterpart is
-// computed live (by the editor, by ad-hoc scripts) by walking both dialogue arrays forward
-// in lockstep from the nearest anchor. That's fragile to keep recomputing — this script
-// runs that computation ONCE and bakes the result into translation.json itself, so it
-// becomes the single source of truth for KR<->JP dialogue correspondence going forward.
-//
-// Usage: node kr-patch/tools/bake-jp.js [--translation path] [--jp-ref path] [--links path]
-// Only bakes entries with a clean, unambiguous match (in range, not conflicting with
-// another anchor's cascade). Anything else is left
-// with jp: "" so it's visible (searchable) as unresolved rather than silently wrong.
+// bake-jp.js — kr-jp-links.json 앵커를 풀어 translation.json에 jp/jpOffset 기록.
+// node kr-patch/tools/bake-jp.js [--translation] [--jp-ref] [--links]
 'use strict';
 
 const fs = require('fs');

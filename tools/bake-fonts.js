@@ -1,9 +1,5 @@
-// bake-fonts.js — pull the newly-installed TrueType fonts + updated registry (SYSTEM.DAT)
-// out of a manually-tested "Export Hard Drive" image and bake them into the shared base
-// image, so JAFONT.TTF/KOFONT.TTF + their font registration are present with no manual
-// Control Panel step at boot.
-//
-// Usage: node tools/bake-fonts.js <exported-hdd.img> <base.img> <out.img>
+// bake-fonts.js — 내보낸 이미지의 글꼴·SYSTEM.DAT를 베이스 이미지에 굽기.
+// node tools/bake-fonts.js <exported.img> <base.img> <out.img>
 'use strict';
 const fs = require('fs');
 const zlib = require('zlib');

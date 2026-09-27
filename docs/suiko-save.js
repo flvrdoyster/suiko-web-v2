@@ -1,13 +1,4 @@
-// suiko-save.js — persist ONLY the game's SAVEDATA folder, not the whole 90MB disk.
-//
-// doswasmx's built-in save writes the entire disk image to IndexedDB on demand; that's
-// what made v1 lose saves to browser storage eviction. Instead we treat the base image
-// as immutable and, using fat16.js:
-//   * on boot (before Module.callMain): inject the player's saved SAVEDATA files into
-//     the in-FS disk image,
-//   * during play (polling + on unload): extract C:\GENSE\SAVEDATA back out and store
-//     just those few KB in IndexedDB.
-// The IndexedDB key is language-independent so a KR save also loads under jp.html.
+// suiko-save.js — SAVEDATA 폴더만 IndexedDB에 저장/복원.
 (function () {
   'use strict';
   var DB_NAME = 'suiko-web-v2';

@@ -1,13 +1,5 @@
 #!/usr/bin/env node
-// editor.js — local web editor for kr-patch/translation/translation.json.
-//
-// Usage: node kr-patch/tools/editor.js [port]
-// Then open http://localhost:<port> (default 8182).
-//
-// Serves the whole translation.json to the browser once; all browsing/filtering happens
-// client-side (editor.html). Edits are saved one entry at a time via POST /api/save,
-// which re-validates the byte-length constraint server-side before persisting, so a bad
-// edit can't silently land in translation.json even if the client-side check is bypassed.
+// editor.js — 로컬 검수 에디터 서버. node kr-patch/tools/editor.js [port] (기본 8182)
 'use strict';
 
 const http = require('http');
@@ -39,9 +31,7 @@ function saveTranslation(t) {
   fs.renameSync(tmp, TRANS_PATH);
 }
 
-// Single-slot "bookmark" — a KR dialogue offset the reviewer explicitly marks (see POST
-// /api/bookmark below), so they can pick up where they left off across a non-linear review
-// pass without it being tied to whatever row happened to be edited/focused last.
+// 책갈피(오프셋 하나)
 function loadBookmark() {
   if (!fs.existsSync(BOOKMARK_PATH)) return null;
   const v = JSON.parse(fs.readFileSync(BOOKMARK_PATH, 'utf8')).offset;
@@ -62,14 +52,7 @@ function encodeFor(section, text) {
   return encode(text);
 }
 
-// 'labels' entries commonly include trailing full-width-space slot padding as part of
-// their captured `text` (see hwanse-names.js) — a reviewer editing the visible name isn't
-// expected to retype that padding by hand, so pad a shorter replacement back out with '　'
-// (U+3000, 2 bytes) to refill the slot. 'dialogue' entries have no such padding concept
-// ('@'-terminated, not slot-based), so those still require an exact-length match. If the
-// shortfall is an odd number of bytes, whole '　' characters can't fill it exactly — leave
-// the text as-is and let the normal length check reject it with a clear error instead of
-// silently returning something that's still one byte off.
+// 레이블은 짧으면 전각 공백으로 슬롯을 채운다(홀수 바이트 부족은 그대로 둬서 거부되게)
 function padToFit(section, text, need) {
   if (section !== 'labels') return text;
   const shortfall = need - encodeFor(section, text).length;
@@ -77,9 +60,7 @@ function padToFit(section, text, need) {
   return text + '　'.repeat(shortfall / 2);
 }
 
-// Per-section count of entries whose `fixed` value differs from the last-committed
-// (HEAD) translation.json, for the deploy commit body ("바뀐 내용 개수"). Returns null if
-// HEAD has no translation.json (e.g. very first commit) — deploy falls back to no counts.
+// HEAD 대비 섹션별 바뀐 fixed 개수(배포 커밋 본문용), HEAD에 없으면 null
 function countChangedFixed() {
   let headRaw;
   try {
@@ -129,11 +110,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { offset: loadBookmark() });
     }
 
-    // Batch save (PC98-style): the client accumulates edits and sends them all at once.
-    // Each edit is { key ("section:offset"), section, offset, fixed }. Every edit is
-    // validated (and label-padded) individually; valid ones are applied and the file is
-    // written once, invalid ones are reported back per-key so the client can flag those
-    // rows without losing the rest. A single bad edit never blocks the good ones.
+    // 모아 보낸 편집을 하나씩 검사해 통과한 것만 쓰고, 실패는 키별로 돌려준다
     if (req.method === 'POST' && url.pathname === '/api/save') {
       const body = JSON.parse(await readBody(req));
       const edits = Array.isArray(body.edits) ? body.edits : [];
@@ -180,9 +157,7 @@ const server = http.createServer(async (req, res) => {
         anyApplied = true;
       }
 
-      // 단위 합계 검사: 위에서 통과시킨 테이블 구간 편집들을 반영한 상태로 각 단위의 합을 잰다.
-      // 안 맞으면 그 단위에 걸린 편집을 전부 되돌린다 — 한 줄만 롤백하면 남은 편집이 여전히
-      // 합계를 깨뜨린 채로 저장돼, 다음 빌드가 통째로 실패한다.
+      // 단위 합계 검사 — 안 맞으면 그 단위의 편집을 전부 되돌린다
       const touchedUnits = new Map(); // 단위 첫 줄 offset -> { lines, keys }
       const dialogueSorted = (t.dialogue || []).slice().sort((a, b) => a.offset - b.offset);
       const editedOffsets = new Set(edits
@@ -195,11 +170,6 @@ const server = http.createServer(async (req, res) => {
           if (keys.length) touchedUnits.set(unit[0].offset, { lines: unit, keys });
         }
       }
-      // 단위 합계가 원본과 같은가만 강제한다(다음 단위 포인터 침범 방지 — 물리 제약). 한
-      // 줄이 표시 폭 어림값(hwanse-text.js LINE_CAP, 24B)을 넘는지는 여기서 안 본다 — 원본
-      // 텍스트도 종종 넘어서 강제할 수 없다; 그 경고는 저장을 막지 않고 editor.html이
-      // 따로 보여준다. 어긋나면 이 단위에 걸린 편집을 전부 되돌린다 — 일부만 롤백하면
-      // 남은 편집이 여전히 규칙을 깨뜨린 채 저장돼 다음 빌드가 실패한다.
       for (const [unitOffset, { lines, keys }] of touchedUnits) {
         const need = lines.reduce((s, e) => s + e.length, 0);
         let got = 0;
@@ -221,10 +191,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { results });
     }
 
-    // Set the bookmark to an explicit offset (see loadBookmark()/saveBookmark() above) —
-    // a deliberate per-row action, not tied to editing/saving, since review often jumps
-    // around non-linearly and the point of this feature is marking "covered up to here"
-    // on demand rather than wherever an edit happened to land.
+    // 책갈피 저장
     if (req.method === 'POST' && url.pathname === '/api/bookmark') {
       const body = JSON.parse(await readBody(req));
       if (typeof body.offset !== 'number') return send(res, 400, { error: 'offset required' });
@@ -232,10 +199,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { ok: true, offset: body.offset });
     }
 
-    // Toggle the "reviewed, no change needed" flag on one entry. This is a lightweight
-    // per-row action (a bool, no byte validation), so it persists immediately rather than
-    // going through the batched text-edit save above. Only meaningful when `fixed` is
-    // empty (the UI hides the button otherwise) but we don't enforce that server-side.
+    // 확정 플래그 토글(즉시 저장)
     if (req.method === 'POST' && url.pathname === '/api/confirm') {
       const body = JSON.parse(await readBody(req));
       const { section, offset, confirmed } = body;
@@ -250,12 +214,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { ok: true, confirmed: entry.confirmed });
     }
 
-    // Build (translation.json's `fixed` entries -> patched HWANSE.EXE) then inject that
-    // exe into a test copy of the shared disk image, in one click (gensei-pc98's editor.py
-    // has the same "빌드" button pattern). This only writes kr-patch/build/ (gitignored) —
-    // it deliberately does NOT touch docs/final-shared.img, same safety boundary inject.js
-    // already documents; promoting the test copy to the live deployed image stays a manual
-    // step (`cp kr-patch/build/final-shared.img docs/final-shared.img`).
+    // 빌드 + 테스트 이미지 주입(kr-patch/build/에만)
     if (req.method === 'POST' && url.pathname === '/api/build-inject') {
       let buildOut;
       try {
@@ -286,9 +245,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { ok: true, message: `${buildMsg} · ${injectMsg}` });
     }
 
-    // Promote the test image (built by /api/build-inject) to the live deployed asset and
-    // commit it, alongside translation.json (the source of the entries that produced it).
-    // Does NOT push — pushing stays a separate, explicit step.
+    // 테스트 이미지를 배포 이미지로 올리고 커밋(푸시는 안 함)
     if (req.method === 'POST' && url.pathname === '/api/deploy') {
       if (!fs.existsSync(BUILD_IMG)) {
         return send(res, 200, { ok: false, message: '빌드 및 삽입을 먼저 실행하세요 (kr-patch/build/final-shared.img 없음)' });

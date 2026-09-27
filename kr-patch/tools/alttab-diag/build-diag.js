@@ -1,20 +1,6 @@
 #!/usr/bin/env node
-// build-diag.js — builds a logging HWANSE.EXE for the Alt+Tab black-screen investigation.
-// Not for distribution.
-//
-// Usage: node kr-patch/tools/alttab-diag/build-diag.js [--in path] [--out path]
-// Defaults: kr-patch/build/HWANSE.EXE (build.js output) -> kr-patch/build/HWANSE-diag.EXE.
-// Needs nasm on PATH.
-//
-// On top of the input exe it applies:
-//   - the restore stub that was tried as a fix (no effect on Win11): the dead Flip wrapper
-//     0x417661 becomes `call 0x416013 / if ok: call 0x416599 (palette), call 0x411466
-//     (full redraw)`, and the game's only restore call (0x41756F) goes through it;
-//   - a new RWX section .diag (VA 0x5BE000, diag.asm) and four hooks that log to HWDIAG.TXT:
-//     0x417BE5 present-strip Blt HRESULT, 0x417728 generic Blt wrapper HRESULT (both only
-//     when the value changes), 0x401B2C WM_ACTIVATEAPP + primary IsLost, and the restore
-//     result.
-// .reloc is not updated for the new code: the exe always loads at its preferred base.
+// build-diag.js — 알트탭 조사용 로깅 HWANSE.EXE 빌드(배포용 아님, nasm 필요).
+// node kr-patch/tools/alttab-diag/build-diag.js [--in path] [--out path]
 'use strict';
 
 const fs = require('fs');
@@ -48,7 +34,7 @@ function patch(buf, va, oldHex, next) {
   next.copy(buf, o);
 }
 
-// Assemble diag.asm; its first 16 bytes are the addresses of the four hook entry points.
+// diag.asm 어셈블 — 앞 16바이트가 훅 진입점 주소표
 const tmp = path.join(os.tmpdir(), `hwanse-diag-${process.pid}.bin`);
 execFileSync('nasm', ['-f', 'bin', '-o', tmp, path.join(__dirname, 'diag.asm')]);
 const code = fs.readFileSync(tmp);
@@ -57,19 +43,19 @@ const [present, present2, act, restore] = [0, 4, 8, 12].map((o) => code.readUInt
 
 let buf = fs.readFileSync(inPath);
 
-// Restore stub in the dead Flip wrapper (see header), padded with INT3 to the wrapper's end.
+// 복구 스텁 (죽은 Flip 래퍼 자리)
 const stub = Buffer.alloc(0x4c, 0xcc);
 Buffer.from('e8ade9ffff85c0750ce82aefffffe8f29dffff31c0c3', 'hex').copy(stub);
 patch(buf, 0x417661, '558bec83ec045356570fbf05', stub); // original wrapper prologue
 patch(buf, 0x41756f, 'e89feaffff', Buffer.from('e8ed000000', 'hex'));
 
-// Hooks.
+// 훅
 patch(buf, 0x417be5, '837d80000f8412000000', Buffer.concat([Buffer.from([0xe8]), rel(0x417be5, present), Buffer.from('7415909090', 'hex')]));
 patch(buf, 0x417728, '837dfc000f8412000000', Buffer.concat([Buffer.from([0xe8]), rel(0x417728, present2), Buffer.from('7415909090', 'hex')]));
 patch(buf, 0x401b2c, Buffer.concat([Buffer.from([0xe8]), rel(0x401b2c, 0x42f460)]), Buffer.concat([Buffer.from([0xe8]), rel(0x401b2c, act)]));
 patch(buf, 0x417661, Buffer.concat([Buffer.from([0xe8]), rel(0x417661, 0x416013)]), Buffer.concat([Buffer.from([0xe8]), rel(0x417661, restore)]));
 
-// New section .diag appended at the end of the file.
+// 새 섹션 .diag를 파일 끝에
 const e = buf.readUInt32LE(0x3c);
 const opt = e + 24;
 const nsec = buf.readUInt16LE(e + 6);

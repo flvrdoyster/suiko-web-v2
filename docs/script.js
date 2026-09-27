@@ -127,9 +127,7 @@ class SuikoEmulator {
             return eval(eval_string);
         }
 
-        // suiko-web-v2: settingsModal/importModal/loginModal/mobileDiv/mobileButtons were
-        // deleted from kr.html (unused login/cloud/import/export/mobile-touch UI) so
-        // binding rivets to them here would throw on the now-null element.
+        // suiko-web-v2: 지운 모달·모바일 요소는 바인딩하지 않음
         rivets.bind(document.getElementById('maindiv'), { data: this.rivetsData });
         rivets.bind(document.getElementById('divInstructions'), { data: this.rivetsData });
         
@@ -169,13 +167,7 @@ class SuikoEmulator {
                 this.iosVersion = parseInt(iosVersion);
             } catch (err) { }
         }
-        // suiko-web-v2: doswasmx's own mobileMode branch (setupMobileMode()) drives a
-        // separate touch UI (#mobileA/#mobileB/#divTouchSurface/#mobileCanvas etc.) that
-        // we removed in favor of gensei-pc98's virtual gamepad + responsive CSS — those
-        // elements no longer exist, so setupMobileMode() would throw on a null element
-        // (setupMobileControls -> getElementById('divTouchSurface').addEventListener)
-        // and silently abort the rest of configureEmulator(), including resizeCanvas()
-        // and $('#canvasDiv').show() — the canvas would never appear. Always false here.
+        // suiko-web-v2: doswasmx 터치 UI를 지웠으므로 mobileMode는 항상 false
         this.rivetsData.mobileMode = false;
 
         // firefox only supports 250 megs??
@@ -790,8 +782,7 @@ class SuikoEmulator {
             else if (this.rivetsData.initialInstallation || !this.rivetsData.loggedIn)
             {
 
-                // suiko-web-v2: DEFAULTIMG always wins over a cached dblistDisks entry,
-                // so players get the current final-shared.img instead of a stale disk.
+                // suiko-web-v2: 캐시된 디스크보다 DEFAULTIMG 우선
                 if (this.rivetsData.settings.DEFAULTIMG)
                 {
                     this.load_file(this.rivetsData.settings.DEFAULTIMG);
@@ -999,14 +990,7 @@ class SuikoEmulator {
         this.sendDosControls = Module.cwrap('neil_send_dos_controls', null, 
             ['string','string','string','array','number','string','string']); //arrays are always unsigned byte arrays
 
-        // suiko-web-v2: one shared image holds both KR and JP game folders (see
-        // tools/build-jp-image.js) — patch WIN.INI's load= to this page's language
-        // before boot (suiko-lang.js), then inject the player's saved
-        // C:\GENSE(JP)\SAVEDATA into the in-FS disk image (SAVEDATA-only persistence via
-        // fat16.js — see suiko-save.js), and keep it synced during play. Replaces
-        // doswasmx's whole-disk save.
-        // demo.html additionally patches HWANSE.EXE's title menu to expose the leftover
-        // scenario-warp menu (suiko-demo.js); a no-op on kr.html/jp.html, which don't load it.
+        // suiko-web-v2: 부팅 전 이미지 패치(언어·데모·프로브) + 세이브 복원, 부팅 뒤 자동 저장
         if (window.SuikoLang) window.SuikoLang.patchLanguage(this.base_name);
         if (window.SuikoDemo) await window.SuikoDemo.patchDemoMenu(this.base_name);
         if (window.SuikoProbe) await window.SuikoProbe.patch(this.base_name);
@@ -1387,11 +1371,7 @@ class SuikoEmulator {
     }
 
     resizeCanvas(){
-        // suiko-web-v2: doswasmx sized #canvasDiv by writing an inline style.height here
-        // (from canvasHeight / zoom buttons / localStorage). We size the canvas purely in
-        // CSS (style.css + suiko-overrides.css, fixed 4:3) like gensei-pc98 does; letting
-        // this write an inline height fought that CSS and shifted the layout (footer moved)
-        // the moment boot called it. No-op now — sizing is CSS-only.
+        // suiko-web-v2: 크기는 CSS만 — 인라인 높이를 쓰지 않음
     }
 
     readFromLocalStorage(localStorageName, name){

@@ -1,16 +1,5 @@
 #!/usr/bin/env node
-// relink.js — standalone tool to fix individual KR<->JP dialogue correspondence
-// (translation.json's `jp`/`jpOffset` fields), separate from the main editor.js/editor.html.
-//
-// Why separate: the anchor-cascade linking UI was removed from the main editor once jp/
-// jpOffset got baked once and treated as settled. But the
-// cascade's linear interpolation between kr-jp-links.json anchors can still be wrong in
-// spots where the game reuses a generic scene at multiple points whose relative KR/JP
-// occurrence order differs (confirmed: 13 anchor pairs are non-monotonic in JP offset,
-// ~745 KR lines sit in those interpolated gaps) — this tool is for fixing those spot
-// cases by hand, not for resurrecting the full cascade system.
-//
-// Usage: node kr-patch/tools/relink.js [port]  (default 8183, separate from editor.js's 8182)
+// relink.js — KR↔JP 스팟 재연결 서버. node kr-patch/tools/relink.js [port] (기본 8183)
 'use strict';
 
 const http = require('http');
@@ -69,9 +58,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, loadJpReference());
     }
 
-    // Apply a corrected link for one KR dialogue offset. Looks the JP text up by offset
-    // (not trusted from the client) so what gets written always matches an entry that
-    // actually exists in jp-reference.json.
+    // KR 오프셋 하나의 연결 수정(JP는 jp-reference.json에서 다시 찾음)
     if (req.method === 'POST' && url.pathname === '/api/relink') {
       const body = JSON.parse(await readBody(req));
       const { offset, jpOffset } = body;

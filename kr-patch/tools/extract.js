@@ -1,22 +1,6 @@
 #!/usr/bin/env node
-// extract.js — regenerate kr-patch/translation/translation.json (KR, editable) and
-// kr-patch/translation/jp-reference.json (JP, read-only reference) from the original game
-// files. This replaces the ad-hoc `node -e "..."` one-liners used during development.
-//
-// Usage:
-//   node kr-patch/tools/extract.js [--kr-exe path] [--jp-exe path]
-//     [--out-kr path] [--out-jp path]
-// Defaults: original/kr/HWANSE.EXE, original/jp/GENSE.EXE,
-//   kr-patch/translation/translation.json, kr-patch/translation/jp-reference.json.
-//
-// Safety:
-//   - Refuses to write translation.json if the KR round-trip (dialogue build() + labels
-//     build(), applied unchanged, must reproduce the original file byte-for-byte) fails.
-//   - Re-running this is NOT allowed to silently discard review work: if translation.json
-//     already exists, any entry with a non-empty `fixed` is carried over by matching on
-//     offset+length. If an old fixed entry's offset/length no longer exists in the new
-//     extraction (e.g. after an extractor algorithm change), that's reported loudly as a
-//     conflict instead of being silently dropped — resolve it by hand before proceeding.
+// extract.js — 원본 EXE에서 translation.json(KR)·jp-reference.json(JP) 재생성.
+// node kr-patch/tools/extract.js [--kr-exe] [--jp-exe] [--out-kr] [--out-jp]
 'use strict';
 
 const fs = require('fs');
@@ -46,12 +30,7 @@ function fail(msg) {
   process.exit(1);
 }
 
-// Carries over review state (`fixed` text edits, the `confirmed` "reviewed, no change
-// needed" flag, and — dialogue only — the baked `jp`/`jpOffset` KR<->JP correspondence from
-// bake-jp.js) from a previous run's entries, matched by a key (offset+length by default), so
-// re-extraction after an extractor tweak doesn't wipe out review work already saved via the
-// editor or baked by bake-jp.js. Reports any previously-touched entry that no longer has a
-// matching slot.
+// 이전 추출의 검토 상태(fixed, confirmed, jp/jpOffset)를 키로 옮긴다
 function mergeReview(oldEntries, newEntries, label, keyOf = (e) => `${e.offset}:${e.length}`) {
   if (!oldEntries) return newEntries;
   const oldByKey = new Map();
@@ -92,9 +71,7 @@ const krBuf = fs.readFileSync(krExePath);
 const dialogue = DIALOGUE.extract(krBuf);
 const excludeMask = new Uint8Array(krBuf.length);
 for (const e of dialogue) for (let i = e.offset; i < e.offset + e.length; i++) excludeMask[i] = 1;
-// Exclude the LOGFONT face-name field(s) before labels runs, so the generic label
-// extractor doesn't ALSO capture "굴림체" as its own (undersized, 6-byte) entry —
-// hwanse-font.js models the true 32-byte NUL-padded slot instead. See hwanse-font.js.
+// 글꼴 이름 필드를 레이블 추출에서 제외
 for (const { offset, maxLength } of FONT.FONT_FIELDS) {
   for (let i = offset; i < offset + maxLength; i++) excludeMask[i] = 1;
 }

@@ -1,13 +1,4 @@
-// gense-names.js — extract the JP item/costume/technique/label text embedded in
-// GENSE.EXE, for cross-checking hwanse-names.js's KR extraction (same tables, different
-// locale build). Read-only reference — no build().
-//
-// Same maximal-valid-run approach as hwanse-names.js (see that file's doc comment for the
-// full rationale): capture Katakana/Kanji/ASCII/full-width-space/middle-dot runs bounded
-// by non-text control bytes, rather than anchoring on a padding run (which breaks when a
-// full-width space is a real word separator, or when a name has zero trailing padding).
-// The full-width space/middle-dot byte pairs differ from the KR side because CP949 and
-// Shift-JIS encode U+3000/U+30FB differently.
+// gense-names.js — GENSE.EXE(JP) 이름표 추출(참고 전용).
 'use strict';
 
 const iconv = require('iconv-lite');
@@ -61,16 +52,7 @@ function isPadPairAt(buf, off) {
   return buf[off] === 0x81 && (buf[off + 1] === 0x40 || buf[off + 1] === 0x41);
 }
 
-// Same noise guard as hwanse-names.js: a Latin-letter run shorter than 3 bytes, mixed-case,
-// or containing 3+ identical consecutive letters ("xxxddd"), was always coincidental
-// stat-byte noise in the KR file; applying the same rule here since the record format is
-// shared. Returns [start, end) of the first noise run, or null if clean — noise can
-// precede real text too (e.g. a leading digit+letter from the previous record's stat
-// bytes), so the caller splits and re-checks both sides rather than just truncating the
-// tail. See hwanse-names.js's findNoiseRun()/emitCleanEntries() for the full rationale.
-// Also flags a digit run immediately preceded by padding AND at the very end of the span
-// as noise (confirmed on the KR side: "호랑이발톱　　　2" — the '2' is a coincidental stat
-// byte, not the real 0x01-0x04 level-id byte the record format actually uses).
+// hwanse-names.js와 같은 노이즈 규칙
 function findNoiseRun(buf, off, len) {
   let i = off;
   while (i < off + len) {

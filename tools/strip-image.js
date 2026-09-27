@@ -1,8 +1,4 @@
-// strip-image.js — shrink a Win95+game disk image for web delivery by deleting files
-// that aren't needed to boot Win95 and run the game, then zeroing freed space so the
-// image compresses far better over the wire (the base image ships gzip'd and immutable).
-//
-// Usage: node tools/strip-image.js <in.img> <out.img>
+// strip-image.js — 불필요한 파일 삭제 + 빈 공간 0. node tools/strip-image.js <in> <out>
 'use strict';
 const fs = require('fs');
 const zlib = require('zlib');
@@ -22,9 +18,7 @@ const STRIP = [
   'WINDOWS/MEDIA',     // sound-scheme WAVs (if present)
 ];
 
-// Fonts: keep the Korean font (GULIM.TTC) the user wants, MARLETT (window-control
-// glyphs), and all the small system bitmap fonts (.FON, needed by the Win95 UI).
-// Delete the Western TrueType faces (Arial/Times/Courier/Verdana/…) — not needed.
+// 글꼴: GULIM.TTC·MARLETT·.FON만 남김
 const FONT_KEEP = new Set(['GULIM.TTC', 'MARLETT.TTF']);
 
 let img = new Uint8Array(fs.readFileSync(inPath));

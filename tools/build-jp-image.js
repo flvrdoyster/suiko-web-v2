@@ -1,10 +1,5 @@
-// build-jp-image.js — add a C:\GENSEJP\ folder (JP game files) to the already-fixed
-// image that has KR installed at C:\GENSE\ (MIDI mapper baked, AutoScan off, stripped).
-// One shared image serves both languages — kr.html/jp.html each patch WIN.INI's `load=`
-// at boot time (see suiko-lang.js) to point at their own exe, instead of needing two
-// full ~90MB Windows installs for a <5MB difference in game files.
-//
-// Usage: node tools/build-jp-image.js <kr-fixed.img> <out-shared.img>
+// build-jp-image.js — KR 이미지에 C:\GENSEJP 추가(두 언어 공유 이미지).
+// node tools/build-jp-image.js <kr-fixed.img> <out-shared.img>
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -29,10 +24,7 @@ img = F.createFile(img, 'GENSEJP', 'PCMDATA.WLK', new Uint8Array(pcmData));
 img = F.createDir(img, 'GENSEJP', 'SAVEDATA');
 console.log('created C:\\GENSEJP\\ with GENSE.EXE/GENSE.FLD/MIDDATA.MLK/PCMDATA.WLK');
 
-// Our save mechanism (suiko-save.js) only overwrites EXISTING slot files in place — it
-// never allocates new directory entries. So GENSEJP\SAVEDATA needs the same 6 fresh
-// (never-saved) slot files as GENSE\SAVEDATA, byte-for-byte, or a KR save would have
-// nothing to inject into under jp.html. Copy KR's own fresh slots verbatim.
+// KR의 빈 세이브 슬롯 파일을 GENSEJP\SAVEDATA에도 복사
 {
   const krSaves = F.extractDirFiles(img, 'GENSE/SAVEDATA');
   for (const f of krSaves) img = F.createFile(img, 'GENSEJP/SAVEDATA', f.name, f.data);

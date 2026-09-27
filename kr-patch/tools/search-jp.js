@@ -1,14 +1,5 @@
 #!/usr/bin/env node
-// search-jp.js — look up JP reference lines by keyword, with surrounding context, so a
-// reviewer can cross-check a KR line's meaning on demand without a full alignment.
-//
-// JP and KR text appear in different orders inside their respective .data sections,
-// so there is no index-to-index correspondence — this tool is a
-// substitute for automatic alignment: search by name/keyword, read the surrounding lines
-// (same appearance order as the original script, just not synced to the KR file offsets),
-// and use human judgement.
-//
-// Usage: node kr-patch/tools/search-jp.js <keyword> [--context N]
+// search-jp.js — JP 참고문 키워드 검색. node kr-patch/tools/search-jp.js <keyword> [--context N]
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -24,9 +15,7 @@ const context = ctxFlagIdx >= 0 ? parseInt(args[ctxFlagIdx + 1], 10) : 2;
 
 const jpRef = JSON.parse(fs.readFileSync(path.join(__dirname, '../translation/jp-reference.json'), 'utf8'));
 
-// dialogue is searched with surrounding context (adjacent indices are adjacent in the
-// original script); labels (item/technique/system text) isn't sequential in the same way,
-// so those hits are just listed without a context window.
+// 대사는 앞뒤 문맥과 함께, 레이블은 목록만
 const dialogue = jpRef.dialogue;
 const dHits = [];
 dialogue.forEach((e, i) => { if (e.text.includes(keyword)) dHits.push(i); });

@@ -1,17 +1,6 @@
 #!/usr/bin/env node
-// inject.js — inject a patched HWANSE.EXE (from build.js) into a copy of the shared disk
-// image (docs/final-shared.img), for local testing before deploying.
-//
-// Usage:
-//   node kr-patch/tools/inject.js [--exe path] [--image path] [--out path]
-// Defaults: kr-patch/build/HWANSE.EXE, docs/final-shared.img,
-//   kr-patch/build/final-shared.img.
-//
-// Deliberately does NOT overwrite docs/final-shared.img directly — that's the live
-// deployed asset. This writes to --out (a separate test copy) so the normal flow is:
-//   1. inject.js (writes kr-patch/build/final-shared.img)
-//   2. serve docs/ with that file swapped in, verify in the emulator
-//   3. only once confirmed: `cp kr-patch/build/final-shared.img docs/final-shared.img`
+// inject.js — 빌드한 HWANSE.EXE를 배포 이미지 사본(kr-patch/build/final-shared.img)에 주입.
+// node kr-patch/tools/inject.js [--exe] [--image] [--out]
 'use strict';
 
 const fs = require('fs');

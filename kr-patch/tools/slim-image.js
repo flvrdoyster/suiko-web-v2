@@ -1,15 +1,4 @@
-// slim-image.js — one-off image slimming pass (2026-07).
-//
-// Applied to docs/final-shared.img (the live base image), so the changes persist
-// through every later build/inject cycle without inject.js needing to know:
-//   1. delete /WINDOWS/WIN386.SWP   — Win95 swap file; recreated at boot, but its
-//                                     memory-dump contents barely gzip (~2MB raw).
-//   2. delete /WINDOWS/FONTS/KOFONT.TTF — unused; the games only use GULIM.TTC (KR)
-//                                     and JAFONT.TTF (JP).
-//   3. MSDOS.SYS [Options] += Logo=0, BootDelay=0 — skip the Win95 splash animation
-//                                     and the boot-menu delay for a faster boot.
-// Then zero the freed clusters and re-gzip. Output goes to kr-patch/build/ for a
-// local emulator test before being copied over docs/final-shared.img.
+// slim-image.js — 1회성 배포 이미지 경량화(2026-07).
 'use strict';
 
 const fs = require('fs');

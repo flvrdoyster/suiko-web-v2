@@ -1,30 +1,4 @@
-// hwanse-names.js — extract the item/costume/technique name table embedded in HWANSE.EXE.
-//
-// This is a THIRD text shape distinct from hwanse-text.js's '@'-terminated dialogue and
-// hwanse-strings.js's NUL-terminated system strings: a maximal run of Hangul/ASCII/
-// full-width-space(0xA1A1)/middle-dot(0xA1A4) characters, immediately followed by a
-// non-text control byte (a level-id 0x01-0x04 for multi-level techniques, or a 0xFF
-// sentinel for single-level ones — either way NOT a valid CP949/ASCII lead byte, so the
-// character-boundary walk stops there on its own with no special-casing needed).
-//
-// This replaced an earlier version that anchored on "padding run start" to find names
-// backward from there. That approach broke on two real cases:
-//   - the full-width space is NOT always trailing padding — some display names have a
-//     REAL internal space ("지옥　다리후리기" = "Hell Leg Sweep", one name, one word each
-//     side of the space), which the old anchor-from-padding approach split into two
-//     separate entries ("지옥" and "다리후리기").
-//   - some names have ZERO trailing padding at all (nameEnd bumps directly into the next
-//     control byte), which the old approach — anchored on finding a padding run — could
-//     never discover in the first place ("다리후리기" alone was invisible to it).
-// Both are fixed by not trying to distinguish "name" from "padding" at extraction time at
-// all: capture the whole maximal run (trailing padding spaces included) as one entry, and
-// let build() re-pad on save. This does mean a captured `text` may have visible trailing
-// full-width spaces — that's real slot padding a reviewer can leave alone.
-//
-// Two ~2KB regions (0x39F600 offset range around 0xca300-0xcaaf6 and 0xcab08-0xcb308) are
-// hard-excluded: they're monotonically-increasing 16-bit lookup tables (likely animation/
-// rotation data) whose bytes coincidentally decode as CP949 Hangul often enough to leak
-// past the hangul-count filter otherwise.
+// hwanse-names.js — HWANSE.EXE 아이템·의상·기술 이름표 추출/빌드.
 'use strict';
 
 const iconv = require('iconv-lite');
@@ -35,42 +9,22 @@ const NUMERIC_TABLE_RANGES = [
   [0xcab08, 0xcb308],
 ];
 
-// Individual offsets that decode as short 2-syllable Hangul runs but are binary noise, not
-// real labels (manually confirmed: "뼬뼬", "햊 큞", etc). Excluded by exact start offset
-// rather than a range, since a range could swallow a genuine label sitting between them.
+// 노이즈로 확인된 개별 시작 오프셋
 const NOISE_OFFSETS = new Set([
   0x561c1, 0x561f9, 0x56231, 0x56892, // "뼬뼬" ×3, "뻚뼎"
   0xd4c21, 0xd514d, 0xd9b6d,          // "햊 큞", "햊.늫", "픜 쑝"
 ]);
 
-// 0x10e18c is a NUL-terminated printf-style error message template — 파일 "%s" 가
-// 열리지 않음 ("File \"%s\" could not be opened") — sitting among unrelated
-// non-Korean debug/driver strings ("playing", "WLKF", "SOUND LO..."). Its `"` and `%`
-// bytes aren't in the allowed-ASCII set (kept narrow deliberately — see isAllowedAscii —
-// broadening it risks readmitting the stat-byte noise that set was built to keep out), so
-// the scanner split it into two fragments ("파일 " / " 가　열리지　않음") at those bytes.
-// Rather than broaden the general charset, this one known-good span is force-joined into
-// a single entry, byte range fixed by inspection (a NUL immediately follows at the end).
+// 둘로 끊기던 오류 메시지 문자열을 하나로
 const JOIN_OFFSETS = { 0x10e18c: 26 };
 
-// 0x8a042 is a settings-menu list ("커서 위치"/"문자 표시속도"/"사운드"/"묘화 스킵"/
-// "게임 종료") where five real 16-byte-slot labels sit back-to-back with NO invalid byte
-// between them (unlike the costume/weapon table, where records are separated by stat
-// bytes) — so the maximal-run scanner merged all five into one 80-byte entry instead of
-// five 16-byte ones. Confirmed each 16-byte chunk decodes to a standalone real label.
-// Listed by offset since this concatenation-with-no-gap shape hasn't been seen elsewhere;
-// promote to a general rule if more turn up.
+// 틈 없이 붙은 16바이트 슬롯 레이블(설정 메뉴)을 나눔
 const SPLIT_INTO_16_OFFSETS = new Set([0x8a042]);
 
 function isLatinLetter(b) {
   return (b >= 0x41 && b <= 0x5a) || (b >= 0x61 && b <= 0x7a);
 }
-// Deliberately narrower than "printable ASCII": labels only ever legitimately contain
-// space/period/digit/letter (e.g. "환세취호전 ver.1.0"). Other single-byte punctuation
-// (!, #, etc.) only ever showed up as coincidental stat-byte noise directly after a real
-// name — including it here previously let the run swallow that noise byte, which then
-// made the WHOLE run (real name included) get discarded by looksLikeNoise(). Stopping
-// the run right at the punctuation instead keeps the real name intact.
+// 레이블에 허용하는 ASCII: 공백·마침표·숫자·영문
 function isAllowedAscii(b) {
   return b === 0x20 || b === 0x2e || (b >= 0x30 && b <= 0x39) || isLatinLetter(b);
 }
@@ -115,18 +69,7 @@ function isUpper(b) {
   return b >= 0x41 && b <= 0x5a;
 }
 
-// Scans [off, off+len) for the FIRST Latin-letter run that looks like coincidental
-// stat-byte noise rather than real text — shorter than 3 bytes, mixed-case ("sZnPdd"), or
-// containing 3+ identical consecutive letters ("xxxddd" is two back-to-back triples of
-// that shape) all matched noise empirically, while every real example found was a single
-// consistently-cased whole word ("ver") with no repeated-letter run. See module doc
-// comment.
-//
-// Returns [start, end) of the noise run, or null if the span is clean. The caller doesn't
-// just truncate at `start` — noise can precede real text too (a leading digit+letter from
-// the previous record's stat bytes, e.g. "9A인민복" where "9A" is noise and "인민복" is a
-// real name that would otherwise be discarded along with it), so the span on *both* sides
-// of the noise run needs to be considered separately. See emitCleanEntries().
+// 첫 영문 노이즈 런 [start, end) 또는 null
 function isDigit(b) {
   return b >= 0x30 && b <= 0x39;
 }
@@ -155,14 +98,7 @@ function findNoiseRun(buf, off, len) {
       i = j;
       continue;
     }
-    // A digit run immediately preceded by full-width-space padding is coincidental
-    // stat-byte noise, not real content — real numbers in this table always sit right
-    // after real text (e.g. "환세취호전 ver.1.0", digit after "ver."), never right after a
-    // padding run. Confirmed on two real cases: "호랑이발톱　　　2" / "마인아수라　　　2"
-    // (the trailing '2' is stat-byte 0x32, not the 0x01-0x04 raw level-id byte the real
-    // record structure uses). Only fires when the digit run
-    // sits at the very end of the whole span (i.e. immediately hits an invalid byte next),
-    // matching both confirmed cases and avoiding false positives on real mid-string digits.
+    // 패딩 바로 뒤, 구간 끝의 숫자는 노이즈
     if (l === 1 && isDigit(buf[i]) && i - 2 >= off && isPadPairAt(buf, i - 2)) {
       let j = i;
       while (j < off + len && charLenAt(buf, j) === 1 && isDigit(buf[j])) j++;
@@ -210,12 +146,7 @@ function emitCleanEntries(buf, start, end, entries) {
   }
   const noise = findNoiseRun(buf, start, end - start);
   if (!noise) {
-    // >= 2 Hangul syllables is the usual bar for "this is real text, not a coincidental
-    // valid-looking noise blob". "○○책"(564124) legitimately has only 1 — the retail
-    // translators used the ○ symbol itself as content (redacting an adult joke's name),
-    // so a real name can dip below 2 as long as the other slot is that same intentional
-    // symbol, not arbitrary noise bytes. Loosened here rather than lowering the general
-    // threshold — verified this only newly admits that one entry, nothing else.
+    // 한글 2음절 이상(○○책 예외)
     const hangul = countHangul(buf, start, end - start);
     const clean = hangul >= 2 || (hangul >= 1 && hasCircle(buf, start, end - start));
     if (!NOISE_OFFSETS.has(start) && clean) {
@@ -235,9 +166,7 @@ function extract(buf, excludeMask) {
   let segStart = i;
   while (i < DATA_END) {
     if (i in JOIN_OFFSETS) {
-      // Flush whatever ran up to here normally, then force the whole known span through
-      // as one entry (its embedded '"'/'%' bytes aren't otherwise valid chars, so the
-      // normal walk below would treat them as a segment break — see JOIN_OFFSETS).
+      // JOIN_OFFSETS 구간은 통째로 한 항목
       emitCleanEntries(buf, segStart, i, entries);
       const len = JOIN_OFFSETS[i];
       const text = decodeCp949(buf.subarray(i, i + len));
@@ -264,10 +193,7 @@ function extract(buf, excludeMask) {
   return entries;
 }
 
-// Same conservative policy as hwanse-text.js/hwanse-strings.js: the replacement must
-// encode to the exact same byte length as the original — but here that length commonly
-// includes trailing full-width-space padding, so a reviewer shortening the visible name
-// should pad it back out with '　' themselves (the editor does this automatically).
+// 같은 바이트 길이만 허용(짧으면 전각 공백 패딩은 편집 쪽에서)
 function build(buf, entries) {
   const out = Buffer.from(buf);
   for (const e of entries) {

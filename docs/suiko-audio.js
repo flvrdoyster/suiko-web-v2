@@ -1,14 +1,4 @@
-// suiko-web-v2 audio glue — same #btn-mute contract as gensei-pc98's audio.js.
-//
-// Mute goes through GAIN, not AudioContext.suspend()/resume(): browsers can silently
-// auto-resume a suspended context on the next user gesture (they don't distinguish
-// "the app paused this" from "autoplay policy paused this"), so suspend()-based mute
-// unmutes itself the moment the player touches a control. Setting gain to 0 keeps the
-// context running (audio processing, doswasmx's game logic timing, etc. unaffected)
-// while producing silence, and nothing auto-undoes it.
-//
-// Two pipelines to mute together: doswasmx's own game audio (myApp.gainNode) and the
-// separate SC-55 MIDI synth's output (window.SuikoMidi.getGain()).
+// suiko-audio.js — 음소거(게인 0 — 게임 오디오 + SC-55 신스).
 (function () {
   'use strict';
 
@@ -25,16 +15,7 @@
     gains().forEach(function (g) { g.gain.value = muted ? 0 : 1; });
   }
 
-  // Audio still needs a user gesture to leave the browser's autoplay-blocked state at
-  // least once; that's a one-time unlock, separate from our own mute state.
-  //
-  // Deliberately unconditional (no `ctx.state === 'suspended'` gate): after a mobile tab
-  // is backgrounded and comes back, an AudioContext — especially an AudioWorklet-based one
-  // like the SC-55 synth's, which doswasmx (gensei-pc98's PC-98 emulator) doesn't have —
-  // can end up reporting `state === 'running'` while no audio is actually flowing (a known
-  // WebKit/mobile "zombie context" quirk after a media-session interruption). Gating on
-  // the state check skipped calling resume() in exactly that case. resume() on an
-  // already-running context is a harmless no-op, so there's no downside to always calling it.
+  // 자동재생 차단 해제 + 모바일 좀비 컨텍스트 대응 — 상태 확인 없이 항상 resume()
   function unlockAudioContexts() {
     if (window.myApp && myApp.audioContext) myApp.audioContext.resume();
     if (window.SuikoMidi && SuikoMidi.getGain && SuikoMidi.getGain()) {
@@ -43,15 +24,7 @@
     }
   }
 
-  // doswasmx's own sound effects run through a ScriptProcessorNode (myApp.pcmPlayer,
-  // set up once in script.js's initAudio()), not the AudioWorklet the SC-55 synth uses.
-  // ScriptProcessorNode has a known WebKit/mobile bug: after a background/foreground
-  // cycle, ctx.resume() succeeds and ctx.state goes back to 'running', but the node's
-  // onaudioprocess callback simply never fires again — the context is alive, the node is
-  // dead. resume() alone can't fix that; the only way out is to throw the node away and
-  // create a fresh one with the same callback, reconnected into the graph. Doing this on
-  // every click/keydown (unlike unlockAudioContexts()) would churn nodes needlessly during
-  // normal play, so it's wired to only the actual "returning from background" triggers.
+  // 백그라운드 복귀 뒤 멈춘 ScriptProcessorNode(효과음)를 새로 만들어 다시 연결
   function revivePcmPlayer() {
     if (!window.myApp || !myApp.audioContext || !myApp.pcmPlayer || !myApp.gainNode) return;
     var oldNode = myApp.pcmPlayer;
@@ -77,9 +50,7 @@
     showMuteButton();
   };
 
-  // Multiple redundant triggers on purpose: which of these actually fires (and whether a
-  // programmatic resume() call outside a trusted user gesture even takes effect) varies
-  // by mobile browser, so layer several rather than rely on just one.
+  // 모바일 브라우저마다 다른 트리거를 여럿 건다
   document.addEventListener('visibilitychange', function () {
     if (!document.hidden) { resumeAudio(); revivePcmPlayer(); }
   });

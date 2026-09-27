@@ -1,7 +1,4 @@
-// gense-text.js — extract the Japanese dialogue text embedded in GENSE.EXE (JP original),
-// for side-by-side comparison against the KR translation extracted by hwanse-text.js.
-// Same structure as the KR side: literal Shift-JIS bytes inline in PE .data, lines
-// terminated by literal '@' (0x40).
+// gense-text.js — GENSE.EXE(JP) 대사 추출(참고 전용).
 'use strict';
 
 const iconv = require('iconv-lite');
@@ -10,12 +7,7 @@ const DATA_RAW = 0x039e00;
 const DATA_SIZE = 0x120200;
 const DATA_END = DATA_RAW + DATA_SIZE;
 
-// Confirmed noise (stray control/pointer bytes that happen to decode as valid-looking
-// Shift-JIS text — same class of false positive as hwanse-text.js's JUMP_TABLE_RANGES):
-// found via the KR<->JP anchor-cascade "untouched JP line" audit, then verified by
-// inspecting the surrounding raw bytes — all three sit in the middle of large gaps with no
-// other extracted text nearby (338494→350524, 577052→620228, 1320330→1366732), unlike real
-// dialogue; the third also has control byte 0xff, never seen on genuine dialogue lines.
+// 확인된 노이즈 구간
 const NOISE_RANGES = [[0x054490, 0x05450e], [0x08d07d, 0x08d080], [0x14aafa, 0x14ab98], [0x0771f2, 0x0771f4]]; // 345232-345358, 577661-577664, 1354490-1354648, 487922-487924 ("娠", found via KR<->JP off-by-one at KR offset 380820 — isolated between 473512 and 504720, a ~31KB gap with nothing else)
 function inExcludedRange(off) {
   return NOISE_RANGES.some(([s, e]) => off >= s && off < e);
@@ -64,11 +56,7 @@ function isFullwidthAlnum(buf, off) {
   return (cp >= 0xff10 && cp <= 0xff19) || (cp >= 0xff21 && cp <= 0xff3a) || (cp >= 0xff41 && cp <= 0xff5a);
 }
 
-// Real dialogue punctuation with no other Japanese char at all — silent-reaction lines like
-// "………" are common. isJapaneseChar's 0x3000-0x303f block already covers 「」　, so this
-// only needs to add the ones outside it. Same exhaustive-scan method as hwanse-text.js's
-// REAL_PUNCT_CODEPOINTS (kept as one shared set there; duplicated here since these two
-// files intentionally don't share code — see their own file-top comments).
+// 부호만인 진짜 대사에 쓰이는 코드포인트(0x3000 블록 밖)
 const REAL_PUNCT_CODEPOINTS = new Set([0x2026, 0xff1f, 0xff01, 0xff0f, 0xff1a, 0xff08, 0xff09]);
 function isRealPunct(buf, off) {
   const s = decodeCp932(buf.subarray(off, off + 2));
@@ -76,10 +64,7 @@ function isRealPunct(buf, off) {
   return REAL_PUNCT_CODEPOINTS.has(s.codePointAt(0));
 }
 
-// Walks the buffer one character (not byte) at a time so a DBCS trail byte that happens
-// to equal 0x40 ('@') is never mistaken for the literal single-byte '@' line terminator
-// (Shift-JIS trail bytes span 0x40-0x7E/0x80-0xFC, unlike CP949's 0x41-0xFE, so this
-// ambiguity is JP-specific).
+// 글자 단위로 걷는다(Shift-JIS 두 번째 바이트가 '@'와 겹칠 수 있어서)
 function extract(buf) {
   const entries = [];
   let i = DATA_RAW;

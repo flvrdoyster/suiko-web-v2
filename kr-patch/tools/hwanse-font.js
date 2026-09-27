@@ -1,24 +1,5 @@
-// hwanse-font.js — special-cased extractor/builder for the ONE Win32 LOGFONT face-name
-// field found in HWANSE.EXE.
-//
-// At file offset 0x52858 sits a byte-for-byte valid ANSI LOGFONT struct (60 bytes):
-// lfHeight=-48, lfWidth=-24, lfEscapement=0, lfOrientation=0, lfWeight=1000,
-// lfItalic/lfUnderline/lfStrikeOut=0, lfCharSet=0x81 (HANGUL_CHARSET — confirmed against
-// the Win32 constant), lfOutPrecision/lfClipPrecision/lfQuality=0 (all *_DEFAULT),
-// lfPitchAndFamily=0x11 (FIXED_PITCH | FF_ROMAN — FIXED_PITCH matches "GulimChe" being the
-// fixed-pitch variant of Gulim), then a 32-byte (LF_FACESIZE) NUL-padded face name field
-// at offset 0x52874 containing "굴림체" (GulimChe). A file-wide scan for the same
-// lfWeight=1000 marker found ~20 other LOGFONT-shaped structs, but all the rest have
-// lfCharSet=ANSI_CHARSET(0) — this is the only one with a face name. That scan missed
-// the other four Hangul LOGFONTs right before it (0x52768 + n*0x3C, lfWeight=700, empty
-// face name): this struct is slot 4 of 5 (chapter titles), while dialogue/menus use slots
-// 0-3, which map by charset alone. That's why renaming this field alone had no visible
-// effect.
-//
-// This is NOT the same shape as hwanse-names.js's labels: the face name is a C string in
-// a FIXED 32-byte buffer, NUL-terminated/padded (not full-width-space padded), and its
-// content is a literal Windows font family name, not game text. Treated as its own
-// "fonts" section (single entry today; FONT_FIELDS is a list in case more show up).
+// hwanse-font.js — HWANSE.EXE의 LOGFONT 글꼴 이름 필드(0x52874, 32바이트 NUL 패딩, 슬롯 4 "굴림체")
+// 추출/빌드. extract.js가 레이블 추출에서 이 범위를 빼는 데 쓴다.
 'use strict';
 
 const iconv = require('iconv-lite');

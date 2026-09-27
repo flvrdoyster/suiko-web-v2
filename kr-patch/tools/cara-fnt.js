@@ -1,24 +1,4 @@
-// cara-fnt.js — one-off tool to replace GENSE.FLD's cara_fnt.cns (KR character-name font
-// bitmap, 640x240x8bpp indexed) with an edited version and re-inject it into the disk image.
-//
-// GENSE.FLD structure (reverse-engineered from GENSE.FLD + cns110.exe disassembly):
-// 8-byte header "FLDF0100" + u32 entry count, then a flat table of fixed
-// 20-byte entries (12-byte NUL-padded name + u32 offset + u32 size), followed immediately
-// by all file payloads back-to-back with zero padding between them (verified: 0 gaps across
-// all 377 entries in the KR file).
-//
-// Each .cns payload is ONE compressed stream (see decompressCns) whose *decompressed* bytes
-// are themselves [2 bytes unknown][u16 width][u16 height][u16 paletteCount-1][palette,
-// 4 bytes/color][pixel indices, width*height bytes, bottom-up row order matching BMP].
-//
-// Two hard constraints, both learned the painful way:
-//  1. The replacement payload must be EXACTLY the original's stored size — growing the
-//     archive shifts every later file's offset and corrupts them.
-//  2. The stream must CONSUME exactly that many input bytes when decoded (terminator last).
-//     Padding with dead bytes after the terminator satisfies (1) but still corrupted every
-//     asset the game loaded after this one — the loader advances by consumed bytes, not by
-//     table size. inflateToSize() handles this by de-optimizing the token stream until the
-//     encode is exactly the right length.
+// cara-fnt.js — GENSE.FLD의 cara_fnt.cns(캐릭터 이름 글꼴) 교체·재주입.
 'use strict';
 
 const fs = require('fs');
@@ -33,24 +13,7 @@ const LIVE_IMG = path.join(ROOT, 'docs', 'final-shared.img');
 const OUT_IMG = path.join(ROOT, 'kr-patch', 'build', 'final-shared.img');
 const TARGET_NAME = 'cara_fnt.cns';
 
-// ---- CNS codec ----
-//
-// Opcode semantics verified against cns110.exe's decompressor at 0x401820 AND validated by
-// decoding the original cara_fnt.cns to a byte-exact match of its known-good BMP extract
-// (153,928 bytes: 8B header + 320B palette + 640x240 pixels), consuming exactly 7024 input
-// bytes with zero out-of-range references:
-//   0x00        : end of stream
-//   0x01-0x0F   : match, len=(al&0xF)+2, dist=next byte
-//   0x10-0x1F   : match, len=(al&0xF)+2, dist=next u16le
-//   0x20-0x2F   : match, len=((al&0xF)<<8)|next, dist=1 byte after that
-//   0x30-0x3F   : match, len=((al&0xF)<<8)|next, dist=u16le after that
-//   0x40-0x5F   : literal run, len=al&0x1F
-//   0x60-0x7F   : literal run, len=((al&0x1F)<<8)|next
-//   0x80-0xFF   : COMBINED op — copy ((al>>4)&7) literal bytes, THEN a match of
-//                 len=(al&0xF)+2 with dist=next byte (read after the literals).
-//                 (An earlier read of the disassembly missed the fall-through at 0x401893
-//                 and treated 0x90+ as literal-only — that desynced the whole stream parse
-//                 and led to a bogus "shared decode buffer" theory.)
+// ---- CNS 코덱 ----
 
 function decompressCns(data, start) {
   const out = [];
@@ -92,11 +55,7 @@ function decompressCns(data, start) {
   return Buffer.from(out);
 }
 
-// Bytes of input a decode consumes (including the terminator). The game's loader appears to
-// advance its read cursor by consumed bytes rather than seeking per table entry — injecting
-// a shorter stream (even zero-padded to the same file size) corrupted every asset loaded
-// AFTER ours at runtime, while identical-length streams are fine. So an encode is only
-// safe when consumedBytes(encoded) === consumedBytes(original) === stored size.
+// 디코드가 소비하는 입력 바이트 수(종료 코드 포함)
 function consumedBytes(data) {
   let i = 0;
   const n = data.length;
@@ -114,13 +73,7 @@ function consumedBytes(data) {
   return i;
 }
 
-// Cost-optimal (DP) hash-chain LZ over cns110.exe's opcode set. For every position we find
-// the longest match in each cost class (near = dist<=255 cheaper, far = dist<=65535), then a
-// backward DP picks the minimum-total-byte tiling. This beats greedy comfortably — enough to
-// land the edited 640x240 image under the original 7024-byte budget so the archive doesn't
-// grow (growing GENSE.FLD shifts every later file's offset and corrupts the
-// game, so we MUST stay <= the original size). maxChain trades build time for ratio; this is
-// a one-off asset build, not run per-request.
+// 최소 비용(DP) 해시 체인 LZ 압축
 function compressCns(data, maxChain) {
   maxChain = maxChain || 4096;
   const n = data.length;
@@ -216,10 +169,7 @@ function serializeTokens(tokens) {
   return Buffer.from(out);
 }
 
-// Inflate the token stream to EXACTLY targetSize encoded bytes without changing its decoded
-// output: splitting a literal run in two adds +1 byte (extra run header); splitting a match
-// of length >=6 into 3+(L-3) adds +2. The decoded output is identical either way — only the
-// token structure (and thus encoded size) changes.
+// 풀린 결과는 그대로 두고 토큰 구조만 바꿔 인코딩 크기를 targetSize에 맞춘다
 function inflateToSize(tokens, targetSize) {
   let size = serializeTokens(tokens).length;
   if (size > targetSize) throw new Error(`encoded ${size} > target ${targetSize}; cannot fit`);
@@ -245,9 +195,7 @@ function inflateToSize(tokens, targetSize) {
       }
     }
     if (did) continue;
-    // long literal runs: peel one byte off the front (+1: long header stays 2B, new 1B run
-    // costs 2). Requires length > 32 — at exactly 32 the remainder drops to short form and
-    // the net change is +0, which would stall the loop.
+    // 긴 리터럴 런: 앞 1바이트 떼기(+1, 길이 32 초과일 때만)
     for (let k = 0; k < tokens.length; k++) {
       const t = tokens[k];
       if (t.lit && t.lit.length > 32) {
@@ -313,9 +261,7 @@ function rebuildFld(buf, targetName, newPayload) {
     out.writeUInt32LE(newOffset, e.tableOffset + 12);
     out.writeUInt32LE(newSize, e.tableOffset + 16);
   }
-  // payload region: copy everything up to target unchanged, splice in new payload,
-  // then copy everything after target unchanged (shifted by delta automatically since
-  // we're appending sequentially into `out`).
+  // 대상 앞은 그대로, 새 페이로드, 대상 뒤도 그대로
   let w = tableEnd;
   buf.copy(out, w, tableEnd, target.offset); w += target.offset - tableEnd;
   newPayload.copy(out, w); w += newPayload.length;
@@ -365,11 +311,7 @@ function main() {
   const rawSize = serializeTokens(tokens).length;
   console.log(`encoded: ${rawSize} bytes (budget ${target.size}), ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 
-  // Inflate to EXACTLY the original stored size. Zero-padding after the terminator is NOT
-  // enough: the game's loader advances by bytes the decoder consumed, so a stream that ends
-  // early desyncs every asset loaded after this one (observed in-game as corrupted sprites
-  // from the next loaded file onward). Structural inflation keeps the decoded output
-  // identical while making the stream consume exactly target.size bytes, terminator last.
+  // 원본 저장 크기와 정확히 같은 소비 바이트로 부풀린다
   const payload = serializeTokens(inflateToSize(tokens, target.size));
   if (payload.length !== target.size) throw new Error(`inflated to ${payload.length}, wanted ${target.size}`);
   const ourConsumed = consumedBytes(payload);

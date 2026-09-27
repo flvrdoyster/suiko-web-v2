@@ -1,22 +1,6 @@
 #!/bin/zsh
-# midi2mp3.sh — render extracted game MIDI to MP3 with a soundfont, for by-ear QA.
-#
-# Not part of the build/deploy pipeline (the game's actual MIDI playback is the
-# browser-side bridge). This is a standalone listening
-# tool: point it at a folder of *.mid pulled from the game data and it batch-renders
-# *.mp3 next to each one via fluidsynth + ffmpeg, so soundfont changes/conversions
-# (e.g. docs/SC-55.sf3 vs the original SC-55.sf2) can be A/B'd by ear without booting
-# the emulator. Requires fluidsynth and ffmpeg on PATH (macOS: brew install fluid-synth
-# ffmpeg).
-#
-# 사용법:
-#   ./midi2mp3.sh                  → 현재 폴더의 *.mid 변환 (사운드폰트 자동 탐지)
-#   ./midi2mp3.sh haiyuki          → 지정 폴더 변환
-#   ./midi2mp3.sh haiyuki suiko    → 여러 폴더 한꺼번에
-#   ./midi2mp3.sh -s 다른.sf2 폴더  → 사운드폰트 직접 지정 (.sf2/.sf3 둘 다 가능)
-#
-# 사운드폰트를 안 주면: 이 스크립트와 같은 폴더의 .sf2/.sf3 파일을 먼저 찾고,
-# 없으면 리포에 실제로 실려 배포되는 ../docs/SC-55.sf3로 자동 폴백한다.
+# midi2mp3.sh — 게임 MIDI를 사운드폰트로 mp3 렌더링(청감 확인용).
+# ./midi2mp3.sh [-s font.sf2|sf3] [folder…]
 
 # 스크립트가 위치한 폴더 (어디서 실행하든 사운드폰트를 찾기 위함)
 SCRIPT_DIR="${0:A:h}"

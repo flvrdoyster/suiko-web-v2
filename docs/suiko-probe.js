@@ -1,10 +1,5 @@
-// suiko-probe.js — probe.html only (compat-patch branch, not for deployment). Local test
-// bench for the compat patch, fed from docs/probe/ (gitignored), each file optional:
-//   FNTPROBE.EXE — kr-patch/tools/fontprobe; copied into C:\GENSE and run via WIN.INI `run=`
-//                  (the game still auto-launches via `load=`), results pulled out with a button.
-//   HWANSE.EXE   — a patched build (kr-patch/build/HWANSE.EXE) swapped in over the image's.
-//   SAVEDAT1~6.DAT — written into C:\GENSE\SAVEDATA (suiko-save.js isn't loaded here, so the
-//                  player's real IndexedDB save is neither restored nor overwritten).
+// suiko-probe.js — probe.html 전용 로컬 테스트: docs/probe/의 FNTPROBE.EXE·HWANSE.EXE·
+// SAVEDAT1~6.DAT를 부팅 전에 디스크 이미지에 넣는다(각각 있을 때만).
 (function () {
   'use strict';
 
@@ -14,9 +9,7 @@
 
   function imgPath(baseName) { return '/' + baseName + '.img'; }
 
-  // The 13-byte dir-entry timestamp blob (entry offsets 13..25) fat16.js takes as `times`,
-  // set to now (local time, as FAT stores it). Without it a new entry gets all-zero dates,
-  // and the game's save screen (GetFileTime, 0x423240) shows the year 1601.
+  // fat16.js `times`(디렉토리 엔트리 13..25) — 현재 로컬 시각
   function nowTimes() {
     var d = new Date();
     var time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);

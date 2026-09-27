@@ -1,19 +1,4 @@
-// fat16.js — minimal FAT16 reader + in-place file writer.
-//
-// Purpose in suiko-web-v2: the game (환세취호전) writes its save files only into
-// C:\GENSE\SAVEDATA\. The base disk image is immutable, so instead of persisting the
-// whole 94MB image we extract just the SAVEDATA files after a save and re-inject them
-// into a fresh copy of the base image before the next boot.
-//
-// Scope on purpose: this reads an MBR+FAT16 image, walks directories (reassembling long
-// file names), reads files, and overwrites existing files *in place* (reusing their
-// cluster chain). It intentionally does NOT allocate new clusters or create/delete
-// entries — the game's save slots always pre-exist at a fixed size (1274 bytes, one
-// cluster each), so in-place overwrite is sufficient and far simpler/safer than a full
-// FAT writer. writeFileInPlace throws if a file would need more space than it already
-// occupies, so a future caller can notice rather than silently corrupt the image.
-//
-// Works in both Node (Buffer/Uint8Array) and the browser (Uint8Array). No dependencies.
+// fat16.js — FAT16 디스크 이미지 파일 읽기/쓰기(SAVEDATA 저장, EXE 주입). Node·브라우저 공용.
 
 'use strict';
 
@@ -100,11 +85,7 @@ function lfnChars(img, off) {
   return s;
 }
 
-// VFAT checksum of an 11-byte raw 8.3 name (the standard "sum, rotate, add" algorithm).
-// Every LFN entry that names a given short entry carries this same byte at offset 13 —
-// it's how a reader confirms the LFN entries immediately before a short entry actually
-// belong to it, rather than being leftovers from a since-deleted file that used to sit
-// in that slot.
+// 8.3 이름의 VFAT 체크섬(LFN 엔트리 13바이트째와 비교)
 function shortNameChecksum(img, entryOff) {
   let sum = 0;
   for (let j = 0; j < 11; j++) sum = (((sum & 1) ? 0x80 : 0) + (sum >> 1) + img[entryOff + j]) & 0xff;
@@ -137,14 +118,7 @@ function parseDirRegions(ctx, regions) {
       for (let j = 0; j < 3; j++) { const c = img[entryOff + 8 + j]; if (c !== 0x20) ext += String.fromCharCode(c); }
       const shortName = ext ? name + '.' + ext : name;
 
-      // Deleting a file marks only its short entry 0xE5; the LFN entries just above it
-      // keep their sequence-number first byte (0x01/0x42/…), which isn't 0x00 or 0xE5,
-      // so a later create that reuses this now-free short-entry slot leaves those LFN
-      // entries sitting there unclaimed. Without this check they'd get glued onto
-      // whatever new short entry lands here next — silently reporting the wrong name
-      // for a file that's actually fine on disk (found injecting saves into
-      // final-shared.img: even-numbered savedatN.dat entries landed right after such
-      // orphans and vanished from extractDirFiles() under a garbled name).
+      // 체크섬이 안 맞는 LFN은 지워진 파일의 고아 — 이름으로 쓰지 않는다
       if (longName && longChecksum !== shortNameChecksum(img, entryOff)) longName = '';
 
       out.push({
@@ -154,9 +128,7 @@ function parseDirRegions(ctx, regions) {
         firstCluster: u16(img, entryOff + 26),
         size: u32(img, entryOff + 28),
         entryOffset: entryOff, // where this 8.3 entry lives, for writing size back
-        // create/access/write date-time fields (offsets 13..25); the game shows the
-        // last-write time, so these must be carried through an extract→inject round trip
-        // or restored saves would keep the base image's old timestamp.
+        // 생성·접근·수정 시각(13..25)
         times: img.slice(entryOff + 13, entryOff + 26),
       });
       longName = '';
@@ -225,10 +197,7 @@ function extractDirFiles(bytes, dirPath) {
   return files;
 }
 
-// Overwrite one existing file's contents in place, reusing its cluster chain.
-// Throws if `data` needs more clusters than the file already occupies (we never grow).
-// Updates the directory entry's size field (and its date-time fields if `times` is
-// given — the 13 bytes at offset 13..25 captured by extractDirFiles). Mutates ctx.img.
+// 기존 파일을 클러스터 체인 재사용으로 덮어쓰기(더 커지면 예외). ctx.img를 바꾼다.
 function writeFileInPlace(ctx, entry, data, times) {
   const chain = clusterChain(ctx, entry.firstCluster);
   const capacity = chain.length * ctx.bytesPerCluster;
@@ -245,27 +214,18 @@ function writeFileInPlace(ctx, entry, data, times) {
     ctx.img.set(data.subarray(p, p + n), off);
     p += n;
   }
-  // Cluster slack past the file length is left untouched, matching real FAT behavior
-  // (the game only ever reads `size` bytes). This keeps identity re-injects byte-exact.
-  // write the 32-bit size back into the 8.3 directory entry
+  // 파일 길이 뒤 클러스터 여분은 그대로 두고, 8.3 엔트리의 크기를 갱신
   const so = entry.entryOffset + 28;
   ctx.img[so] = data.length & 0xff;
   ctx.img[so + 1] = (data.length >> 8) & 0xff;
   ctx.img[so + 2] = (data.length >> 16) & 0xff;
   ctx.img[so + 3] = (data.length >> 24) & 0xff;
 
-  // restore create/access/write date-time (offsets 13..25) so the save keeps the time
-  // it was actually made at, not the base image's timestamp. (26..27 = first cluster,
-  // left untouched — the data lives in the base's existing clusters.)
+  // 시각(13..25) 복원
   if (times && times.length === 13) ctx.img.set(times, entry.entryOffset + 13);
 }
 
-// Inject a set of {name, data} files into `dirPath`, matching by name against the
-// existing entries and overwriting in place. Returns a NEW Uint8Array (base is not
-// mutated). If a name has no existing entry (e.g. the base image ships with an empty
-// SAVEDATA folder), a fresh 8.3-only entry is created instead via
-// createFileInDir() rather than silently dropping it — a returning player's save must
-// always land back on disk, whether or not the shipped base image already had that slot.
+// {name, data, times?} 파일들을 dirPath에 넣기 — 있으면 덮고 없으면 새로 만든다. 새 이미지를 반환.
 function injectDirFiles(bytes, dirPath, files) {
   const copy = (bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes));
   const ctx = openImage(copy);
@@ -324,12 +284,7 @@ function name83(name) {
   return base + ext;
 }
 
-// Core of createFile(), operating directly on an already-open ctx (no image copy) so
-// injectDirFiles() can fall back to it per-file without re-copying/re-opening the whole
-// image each time. Allocates clusters, writes the data, and fills a free 8.3 directory
-// slot (0x00 = end, 0xE5 = deleted) in dirCluster. Optionally restores `times` (the 13-byte
-// create/access/write timestamp blob used elsewhere in this file) so an injected save keeps
-// the time it was actually made at rather than the moment of injection.
+// createFile() 본체(열린 ctx에 직접) — 클러스터 할당, 데이터 기록, 빈 8.3 슬롯 채우기.
 function createFileInDir(ctx, dirCluster, name, data, times) {
   const payload = data instanceof Uint8Array ? data : new Uint8Array(data);
 
@@ -355,12 +310,7 @@ function createFileInDir(ctx, dirCluster, name, data, times) {
   }
   if (slotOff < 0) throw new Error('no free directory slot (root full)');
 
-  // A slot picked above by first-byte alone can still have live-looking LFN entries
-  // sitting right before it — deleting a file only marks its short entry 0xE5, so any
-  // LFN entries that named it keep their sequence-number first byte (0x01/0x42/…) and
-  // never match the 0x00/0xE5 scan above. Left alone they'd get glued onto whatever
-  // short entry we're about to write here (see parseDirRegions' checksum check) —
-  // clear them so the slot we're filling is actually clean, not just its own byte.
+  // 이 슬롯 바로 앞의 고아 LFN 엔트리도 지운다
   for (let p = slotOff - 32; p >= regionOff && ctx.img[p + 11] === ATTR_LONG_NAME && ctx.img[p] !== 0x00 && ctx.img[p] !== 0xe5; p -= 32) {
     ctx.img[p] = 0xe5;
   }
@@ -406,9 +356,7 @@ function deleteEntry(ctx, entry) {
   ctx.img[entry.entryOffset] = 0xe5; // mark deleted
 }
 
-// Delete a path (file or directory subtree) from a NEW image copy. Returns { image,
-// found }. Missing paths are reported (found:false) rather than throwing, so a strip
-// list can include optional entries.
+// 경로(파일·디렉토리) 삭제 → { image, found }
 function deletePath(bytes, path) {
   const copy = bytes instanceof Uint8Array ? bytes.slice() : new Uint8Array(bytes);
   const ctx = openImage(copy);
@@ -476,9 +424,7 @@ function createDir(bytes, dirPath, name) {
   const [newCluster] = allocateClusters(ctx, 1);
   const clusOff = clusterOffset(ctx, newCluster);
   ctx.img.fill(0, clusOff, clusOff + ctx.bytesPerCluster);
-  // "." and ".." are literal-dot 8.3 names, NOT run through name83()'s "last dot is the
-  // extension" logic — that would encode "." as an empty name and ".." as ".", which
-  // decode back as bogus/blank directory entries (found via a listDir() ghost-entry bug).
+  // . / ..는 8.3 확장자 규칙을 거치지 않은 이름 그대로
   writeDirEntry(ctx, clusOff, '.          '.slice(0, 11), ATTR_DIRECTORY, newCluster, 0);
   writeDirEntry(ctx, clusOff + 32, '..         '.slice(0, 11), ATTR_DIRECTORY, parentCluster, 0);
 

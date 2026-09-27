@@ -1,8 +1,4 @@
-// suiko-lang.js — one shared disk image serves both kr.html and jp.html. Each page sets
-// window.SUIKO_LANG ('kr' or 'jp') before this runs; we patch WIN.INI's `load=` line in
-// the in-FS disk image (right before Module.callMain(), alongside the SAVEDATA inject in
-// suiko-save.js) so Windows auto-launches the right exe. Avoids two full ~90MB installs
-// for what's really just a <5MB difference in game files (see tools/build-jp-image.js).
+// suiko-lang.js — SUIKO_LANG에 맞춰 부팅 전 WIN.INI load= 변경.
 (function () {
   'use strict';
   var LOAD_LINE = {

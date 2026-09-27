@@ -1,44 +1,14 @@
-// hwanse-text.js — extract/rebuild the Korean dialogue text embedded in HWANSE.EXE.
-//
-// Findings this format is based on:
-//   * Text lives as literal CP949 bytes inline in the PE .data section (not in GENSE.FLD,
-//     which contains no readable Korean at all — confirmed by anchor-word frequency scan).
-//   * Each line is terminated by a literal '@' (0x40) byte, not NUL. Lines use full-width
-//     spaces/punctuation (　？！「」…) consistent with a fixed-width text renderer.
-//   * No code or data in the whole file references these strings' file offset, RVA, or
-//     absolute VA as a 32-bit immediate (checked for several samples) — so there is no
-//     pointer table pointing at individual strings. The engine appears to consume this
-//     region as a linear byte stream. This means in-place edits are not constrained to
-//     preserve byte length the way pointer-table-driven formats are, though we still
-//     default to same-length patches as the conservative choice (see build()).
-//
-// extract(buf) -> [{offset, length, text}]  (length excludes the trailing '@')
-// build(buf, entries) -> Buffer with each entry's text re-encoded in place, replacing the
-//   original [offset, offset+length) span; if the new encoded length differs, the file
-//   grows/shrinks starting at that point (every later offset shifts) unless entries are
-//   applied longest-first is NOT done automatically — see build()'s same-length assertion.
+// hwanse-text.js — HWANSE.EXE 대사(CP949, '@' 종결) 추출/빌드.
 'use strict';
 
 const DATA_RAW = 0x03A000;
 const DATA_SIZE = 0x11DE00;
 const DATA_END = DATA_RAW + DATA_SIZE;
 
-// 0x3e538-0x3e8ac is a binary jump/address table: 4-byte records shaped
-// [2-byte offset][0x40 or 0x41][0x00] repeating with a fixed stride. The lead 2 bytes
-// coincidentally decode as valid single CP949 Hangul syllables often enough, and the
-// record's own 0x40 byte is indistinguishable from the real dialogue line terminator '@'
-// — together they were leaking ~38 bogus single-syllable "dialogue lines" into extract()
-// (all with the tell: the byte right after their '@' was always 0x00, whereas every real
-// dialogue line — including genuine short ones like the day-of-week labels 일/월/화/…— is
-// followed by a documented control byte such as 0x02/0x06/0x0A/0x10).
+// 대사가 아닌 점프 표('@' 다음 바이트가 0x00)
 const JUMP_TABLE_RANGES = [[0x3e538, 0x3e8ac]];
 
-// Confirmed noise elsewhere in .data (stray control/pointer bytes coincidentally valid
-// CP949, same false-positive class as the jump table above — see gense-text.js's
-// NOISE_RANGES for the JP-side equivalent). Found via the KR<->JP anchor-cascade audit:
-// each of these decodes to one of exactly 6 garbled strings ("죋l"/"쟡h"/"캾`"/"픜"/"륯"/
-// "쟡h4") and sits alone in a multi-KB gap with no other extracted text nearby — unlike
-// real dialogue, which is packed with minimal gaps.
+// 확인된 노이즈 구간
 const NOISE_RANGES = [
   [0x44f45, 0x44f48], [0x57ee6, 0x57ee8], [0x69445, 0x69448], [0x94ef1, 0x94ef4],
   [0x94f11, 0x94f14], [0x94f2d, 0x94f30], [0xacefd, 0xacf00], [0xc0b29, 0xc0b2c],
@@ -75,9 +45,7 @@ function isHangulSyllable(buf, off) {
   return cp >= 0xac00 && cp <= 0xd7a3;
 }
 
-// Fullwidth Latin letters/digits (U+FF10-FF19/FF21-FF3A/FF41-FF5A) — the credits' romanized
-// staff names are written this way in places ("Ｔｈａｎｋｓ", 2 bytes/char), not as
-// halfwidth ASCII, so they don't trip charLenAt's 1-byte path at all.
+// 전각 라틴 문자/숫자
 function isFullwidthAlnum(buf, off) {
   const code = decodeCp949(buf.subarray(off, off + 2));
   if (!code) return false;
@@ -85,12 +53,7 @@ function isFullwidthAlnum(buf, off) {
   return (cp >= 0xff10 && cp <= 0xff19) || (cp >= 0xff21 && cp <= 0xff3a) || (cp >= 0xff41 && cp <= 0xff5a);
 }
 
-// Real dialogue punctuation that can appear with NO Hangul/alnum at all — silent-reaction
-// lines like "「………」"/"「？？？」" are common in this game. Found by exhaustively listing
-// every codepoint in every currently-dropped (hangul=0, letterCount<3) segment: this exact
-// set (…　「」？！／：（）) covers every one of them, and nothing else — genuine noise
-// (stray control bytes that happen to decode as valid CP949) never lands on one of these
-// specific codepoints, only on unrelated ones (single ASCII letters, U+FFFD, etc.).
+// 한글 없이 부호만인 진짜 대사에 쓰이는 코드포인트
 const REAL_PUNCT_CODEPOINTS = new Set([0x2026, 0x3000, 0x300c, 0x300d, 0xff1f, 0xff01, 0xff0f, 0xff1a, 0xff08, 0xff09]);
 function isRealPunct(buf, off) {
   const code = decodeCp949(buf.subarray(off, off + 2));
@@ -98,9 +61,7 @@ function isRealPunct(buf, off) {
   return REAL_PUNCT_CODEPOINTS.has(code.codePointAt(0));
 }
 
-// Minimal CP949 decoder sufficient for this file's byte ranges. We only need this to
-// classify bytes and to produce human-readable text; we round-trip through it symmetrically
-// (decodeCp949 / encodeCp949) so re-encoding never depends on Node's absent native cp949.
+// 이 파일 범위만 다루는 CP949 디코더(인코더와 대칭)
 const iconv = require('iconv-lite');
 function decodeCp949(bytes) {
   try {
@@ -123,17 +84,7 @@ function encodeCp949(str) {
   return out;
 }
 
-// Walks the buffer one character (not byte) at a time — see gense-text.js's extract for
-// why this matters for Shift-JIS; CP949 trail bytes never equal 0x40 so this ambiguity
-// can't occur here, but the same walk shape is used for consistency between both sides.
-//
-// A segment with zero Hangul is normally noise (stray bytes that happen to decode as valid
-// CP949/ASCII — same class of false positive as JUMP_TABLE_RANGES above), EXCEPT genuine
-// untranslated English content, e.g. the staff-credits block's romanized names ("Kawachi
-// Yumedaiko", "& ALL COMPILE STAFF" — Compile kept these in Latin script even in the KR
-// build). Exhaustively scanning every zero-Hangul segment in .data found a clean split: the
-// 19 real credits entries all have >=3 letters, every noise segment (stray control bytes
-// that happen to look like "d"/"00"/"H"/etc.) has <=2 — so that's the threshold.
+// 글자 단위로 걷는다. 한글 0인 구간은 영문 3글자 이상(크레디트)만 대사로
 function extract(buf) {
   const entries = [];
   let i = DATA_RAW;
@@ -184,9 +135,7 @@ function extract(buf) {
   return entries;
 }
 
-// 포인터 테이블 구간의 "단위"로 묶는다 — tableStart(포인터가 직접 가리키는 줄)에서 시작해
-// 다음 tableStart 직전까지. 단위 안의 줄들은 포인터 없이 순차로 이어지므로 경계는 못 옮겨도
-// 안에서는 재배치할 수 있다. bake-tables.js 참고.
+// 포인터 테이블 단위: tableStart부터 다음 tableStart 전까지
 function tableUnits(entries) {
   const units = [];
   let cur = null;
@@ -198,36 +147,13 @@ function tableUnits(entries) {
   return units;
 }
 
-// 한 줄 표시 폭의 **어림 기준값** — 12자 상당(CP949 24바이트), 끝의 전각 공백(원본 슬롯
-// 패딩)은 빼고 잰다. 표시 폭(픽셀) 자체는 모르니(줄 높이·글자 폭은 `40 15`가
-// 정하고 창마다 다르며 정확한 값은 `40 0d` 핸들러 디스어셈블이 필요해 미착수) 정확한 창
-// 폭이 아니라 사람이 게임 화면에서 눈대중한 값이다.
-//
-// **build()는 이 값을 강제하지 않는다** — 원본(정식판) 텍스트조차 이 값을 넘는 줄이 흔하다
-// (예: table@945876의 194/1,434줄). 강제하면 아무도 손 안 댄 단위의 빌드까지 실패한다.
-// 그래서 이건 순전히 참고용 상수 + 계산 함수이고, 실제 경고 표시는 editor.html/editor.js
-// 쪽의 소관이다(저장은 막지 않고 다른 색으로만 알려준다) — 단위 합계(need) 일치만 build()가
-// 강제하는 물리 제약이다(다음 단위 포인터 침범 방지).
+// 한 줄 표시 폭 어림값(강제하지 않음)
 const LINE_CAP = 24;
 function capByteLen(str) {
   return encodeCp949(String(str).replace(/　+$/u, '')).length;
 }
 
-// Re-encode entries' `fixed` (falling back to `text`) into `buf`.
-//
-// 두 가지 규칙이 있다:
-//  1) 일반 대사 — 원본 슬롯에 **같은 바이트 길이로** 덮어쓴다. 장면 진입점에서 `@`를 세며
-//     순차로 읽히는 구조라, 한 줄을 늘리면 그 뒤 `.data`가 전부 밀려 relocation이 깨진다.
-//  2) 포인터 테이블 구간(`table` 플래그) — **단위 단위로 다시 채운다.** 단위 안에서는 줄
-//     사이 바이트를 재분배할 수 있다 — 강제하는 조건은 **단위 합계가 원본과 같아야 한다**
-//     (다음 단위 포인터 침범 방지) 하나뿐이다. 한 줄이 LINE_CAP(24B, 끝 공백 제외)을
-//     넘는지는 여기서 안 본다 — 원본 텍스트도 종종 넘어서 강제하면 안 된다(위 LINE_CAP
-//     주석 참고); 그 경고는 editor.html/editor.js가 저장을 막지 않는 선에서 보여준다.
-//     종결 4바이트(`40 XX 00 00`, XX는 계속/끝 제어코드)는 각 줄의 원본 것을 그대로
-//     따라 옮긴다.
-//
-// entries에는 **해당 단위의 모든 줄**이 들어와야 한다(수정 안 된 줄 포함) — 앞 줄이 길어지면
-// 뒤 줄도 함께 이동해야 하기 때문이다. build.js가 dialogue 전체를 넘긴다.
+// entries의 fixed(없으면 text)를 다시 인코딩 — 일반 대사는 같은 길이, 테이블 단위는 합계만
 function build(buf, entries) {
   const out = Buffer.from(buf);
   const sorted = entries.slice().sort((a, b) => a.offset - b.offset);

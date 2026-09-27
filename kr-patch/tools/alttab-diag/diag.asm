@@ -1,6 +1,4 @@
-; diag.asm — logging hooks for the Alt+Tab black-screen investigation.
-; Linked into a new .diag section at VA 0x5BE000 by build-diag.js; writes HWDIAG.TXT in the
-; current directory (the game folder). Starts with an address table the builder reads.
+; diag.asm — 알트탭 조사용 로깅 훅 (build-diag.js가 .diag 섹션으로 붙임)
 bits 32
 org 0x5be000
 

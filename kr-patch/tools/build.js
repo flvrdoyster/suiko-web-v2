@@ -1,18 +1,6 @@
 #!/usr/bin/env node
-// build.js — apply every reviewed (`fixed` non-empty) entry in translation.json to a
-// fresh copy of HWANSE.EXE.
-//
-// Usage:
-//   node kr-patch/tools/build.js [--kr-exe path] [--translation path] [--out path]
-// Defaults: original/kr/HWANSE.EXE, kr-patch/translation/translation.json,
-//   kr-patch/build/HWANSE.EXE (kr-patch/build/ is gitignored — see .gitignore).
-//
-// Both hwanse-text.js's and hwanse-names.js's build() already refuse (throw) on any
-// byte-length mismatch, so a bad edit stops the build instead of silently corrupting the
-// file — this script just reports which offsets were actually touched and lets those
-// errors surface. This does not touch docs/final-shared.img; injecting the patched EXE
-// into the shared disk image and re-testing in the emulator is a separate manual step
-// (inject.js).
+// build.js — translation.json의 수정분과 호환성 수정을 원본 HWANSE.EXE에 적용.
+// node kr-patch/tools/build.js [--kr-exe path] [--translation path] [--out path]
 'use strict';
 
 const fs = require('fs');
@@ -58,12 +46,10 @@ if (!fixedDialogue.length && !fixedLabels.length) {
 
 let out;
 try {
-  // dialogue는 **전량**을 넘긴다 — 포인터 테이블 구간은 단위 단위로 다시 까는데, 앞 줄이
-  // 길어지면 수정되지 않은 뒤 줄도 같이 이동해야 하므로 단위의 모든 줄이 필요하다
-  // (hwanse-text.js build() 주석 참고). 수정 없는 줄은 원본과 같은 바이트로 다시 쓰인다.
+  // dialogue는 전량을 넘긴다(포인터 테이블 구간은 단위 전체를 다시 깐다)
   out = DIALOGUE.build(buf, t.dialogue);
   out = NAMES.build(out, fixedLabels);
-  // 텍스트와 무관한 실행 파일 수정(기술 창 버그, NT 계열 윈도우 글꼴) — compat-patch.js 참고.
+  // 실행 코드 호환성 수정
   console.log('compat: skill fix ' + COMPAT.applySkillFix(out) + ', font fix ' + COMPAT.applyFontFix(out));
 } catch (e) {
   fail(e.message);

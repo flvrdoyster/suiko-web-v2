@@ -1,12 +1,5 @@
-// build-image.js — turn a raw KR/JP game disk image into the "intended" base image:
-//   * bakes the MIDI mapper default to "External MIDI Port" so the game's music routes
-//     to the MPU-401 path (→ our JS SC-55 synth) with no manual Control Panel step.
-//     Done via a .reg imported at every boot by regedit (the immutable base has no
-//     MIDIMap registry key otherwise).
-//   * the game auto-launches on boot (via a startup batch that runs regedit first).
-//
-// Usage: node tools/build-image.js <in.img> <out.img> <GAME_DIR> <GAME_EXE>
-//   e.g. node tools/build-image.js game.img intended-kr.img \GENSE HWANSE.EXE
+// build-image.js — MIDI 매퍼 기본값·게임 자동 실행을 구운 베이스 이미지 생성.
+// node tools/build-image.js <in> <out> <GAME_DIR> <GAME_EXE>
 'use strict';
 const fs = require('fs');
 const F = require('../src/fat16.js');
