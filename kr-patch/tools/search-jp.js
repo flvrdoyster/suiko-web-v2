@@ -2,8 +2,8 @@
 // search-jp.js — look up JP reference lines by keyword, with surrounding context, so a
 // reviewer can cross-check a KR line's meaning on demand without a full alignment.
 //
-// JP and KR text appear in different orders inside their respective .data sections (see
-// NOTES.md), so there is no index-to-index correspondence — this tool is a
+// JP and KR text appear in different orders inside their respective .data sections,
+// so there is no index-to-index correspondence — this tool is a
 // substitute for automatic alignment: search by name/keyword, read the surrounding lines
 // (same appearance order as the original script, just not synced to the KR file offsets),
 // and use human judgement.

@@ -3,7 +3,7 @@
 // (translation.json's `jp`/`jpOffset` fields), separate from the main editor.js/editor.html.
 //
 // Why separate: the anchor-cascade linking UI was removed from the main editor once jp/
-// jpOffset got baked once and treated as settled (see NOTES.md "KR↔JP 매칭"). But the
+// jpOffset got baked once and treated as settled. But the
 // cascade's linear interpolation between kr-jp-links.json anchors can still be wrong in
 // spots where the game reuses a generic scene at multiple points whose relative KR/JP
 // occurrence order differs (confirmed: 13 anchor pairs are non-monotonic in JP offset,

@@ -263,7 +263,7 @@ function writeFileInPlace(ctx, entry, data, times) {
 // Inject a set of {name, data} files into `dirPath`, matching by name against the
 // existing entries and overwriting in place. Returns a NEW Uint8Array (base is not
 // mutated). If a name has no existing entry (e.g. the base image ships with an empty
-// SAVEDATA folder — see NOTES.md), a fresh 8.3-only entry is created instead via
+// SAVEDATA folder), a fresh 8.3-only entry is created instead via
 // createFileInDir() rather than silently dropping it — a returning player's save must
 // always land back on disk, whether or not the shipped base image already had that slot.
 function injectDirFiles(bytes, dirPath, files) {

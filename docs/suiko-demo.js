@@ -1,7 +1,7 @@
 // suiko-demo.js — demo.html only. Boots straight into the scenario-warp menu that Compile
 // left in the retail KR build but wired to nothing: 시나리오１～９ + 데모 + 미니게임 + 기타,
 // with 시나리오９ labelled （체험판）. Backing out of it lands on the untouched title screen,
-// where 처음부터/이어서하기 work normally. See NOTES.md 3.4.
+// where 처음부터/이어서하기 work normally.
 //
 // Patching happens on the in-memory disk image right before Module.callMain(), the same way
 // suiko-lang.js rewrites WIN.INI — so kr.html/jp.html and the shipped final-shared.img stay

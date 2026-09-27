@@ -11,8 +11,7 @@
 //
 // Safety:
 //   - Refuses to write translation.json if the KR round-trip (dialogue build() + labels
-//     build(), applied unchanged, must reproduce the original file byte-for-byte) fails —
-//     see NOTES.md's round-trip-first policy.
+//     build(), applied unchanged, must reproduce the original file byte-for-byte) fails.
 //   - Re-running this is NOT allowed to silently discard review work: if translation.json
 //     already exists, any entry with a non-empty `fixed` is carried over by matching on
 //     offset+length. If an old fixed entry's offset/length no longer exists in the new

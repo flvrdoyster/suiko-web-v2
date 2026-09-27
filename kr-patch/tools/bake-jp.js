@@ -10,7 +10,7 @@
 //
 // Usage: node kr-patch/tools/bake-jp.js [--translation path] [--jp-ref path] [--links path]
 // Only bakes entries with a clean, unambiguous match (in range, not conflicting with
-// another anchor's cascade — see NOTES.md's anchor-cascade write-up). Anything else is left
+// another anchor's cascade). Anything else is left
 // with jp: "" so it's visible (searchable) as unresolved rather than silently wrong.
 'use strict';
 

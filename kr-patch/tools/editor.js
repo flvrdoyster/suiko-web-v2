@@ -6,9 +6,8 @@
 //
 // Serves the whole translation.json to the browser once; all browsing/filtering happens
 // client-side (editor.html). Edits are saved one entry at a time via POST /api/save,
-// which re-validates the byte-length constraint (NOTES.md's "길이 변경은
-// 안전하지 않다" policy) server-side before persisting, so a bad edit can't silently land
-// in translation.json even if the client-side check is bypassed.
+// which re-validates the byte-length constraint server-side before persisting, so a bad
+// edit can't silently land in translation.json even if the client-side check is bypassed.
 'use strict';
 
 const http = require('http');
@@ -289,8 +288,7 @@ const server = http.createServer(async (req, res) => {
 
     // Promote the test image (built by /api/build-inject) to the live deployed asset and
     // commit it, alongside translation.json (the source of the entries that produced it).
-    // Does NOT push — pushing stays a separate, explicit step (see NOTES.md's "커밋/푸시는
-    // 사용자가 명시적으로 요청할 때만 진행").
+    // Does NOT push — pushing stays a separate, explicit step.
     if (req.method === 'POST' && url.pathname === '/api/deploy') {
       if (!fs.existsSync(BUILD_IMG)) {
         return send(res, 200, { ok: false, message: '빌드 및 삽입을 먼저 실행하세요 (kr-patch/build/final-shared.img 없음)' });

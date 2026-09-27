@@ -260,7 +260,7 @@ let saveFailures = [];
 let saveFailureIdx = -1;
 // offset -> index in data.dialogue, for the context panel's "neighbors in original-file
 // order" lookup (see showContext()). translation.json's jp/jpOffset fields (baked once by
-// bake-jp.js, see NOTES.md) already carry the resolved KR<->JP correspondence — no
+// bake-jp.js) already carry the resolved KR<->JP correspondence — no
 // client-side anchor computation needed anymore.
 let dialogueIndexByOffset = new Map();
 // Multi-select (gensei-pc98 editor.py 이식): two-click range select on the OFF column.
@@ -283,7 +283,6 @@ let ctxAutoShow = localStorage.getItem('suikoCtxAuto') !== '0';
 
 // 1차 LLM 배치(review-findings.json, {offset, category, reason} 200건) 소비 코드는
 // 2026-08에 제거(3개 카테고리 전부 해결) — 소스 파일도 2026-09에 전량 해결 확인 후 삭제.
-// NOTES.md "2. 완료" 참고.
 
 function byteLen(s) {
   // rough CP949 estimate for live feedback; server re-validates exactly. ASCII=1, else=2.
@@ -690,7 +689,7 @@ function missingLeadFormat(fixed, e) {
 //          판정해야 해서 필터를 쓰는 의미가 없다 — 새 필터에는 note를 같이 붙인다.
 //
 // 필터의 역할은 "남은 일감 찾기"가 아니라 **같은 기계적 판단을 묶어 처리하기**다. 전수
-// 검토가 끝난 지금은(2026-08, NOTES.md "2. 완료" 참고) 미검토 0건 — 이 필터들은 앞으로
+// 검토가 끝난 지금은(2026-08) 미검토 0건 — 이 필터들은 앞으로
 // 새로 들어오는 미검토 줄에 반응한다. 전량 해결되어 0건이 된 조건들은 뺐다(아래 "연결 해제된
 // 판정기" 참고).
 //
@@ -1150,7 +1149,7 @@ function applyFill() {
 // hwanse-text.js의 LINE_CAP과 같은 값) — 끝의 전각 공백(원본 슬롯 패딩)은 빼고 잰다
 // (capByteLen()). 줄을 어디서 끊을지는 사람이 눈으로 맞추는 작업이라 상한은 "한 줄이
 // 터무니없이 길어지는 것"을 막는 가드레일이면 충분하다. 표시 폭(픽셀) 자체는 모르니
-// (NOTES.md 3.4) 정확한 창 폭이 아니라 어림값이다.
+// 정확한 창 폭이 아니라 어림값이다.
 const lineCap = 24;
 
 function tableUnitOf(e) {
@@ -1255,7 +1254,7 @@ function renderRow(e, idx) {
   };
   tdOrig.appendChild(origText);
 
-  // Baked KR<->JP correspondence (bake-jp.js, see NOTES.md) — dialogue only, since JP
+  // Baked KR<->JP correspondence (bake-jp.js) — dialogue only, since JP
   // correspondence is only meaningful for story text, not labels.
   if (curSection === 'dialogue' && e.jp) {
     const jpDiv = document.createElement('div');

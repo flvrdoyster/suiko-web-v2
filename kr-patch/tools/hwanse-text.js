@@ -1,6 +1,6 @@
 // hwanse-text.js — extract/rebuild the Korean dialogue text embedded in HWANSE.EXE.
 //
-// Findings this format is based on (see NOTES.md for the full trail):
+// Findings this format is based on:
 //   * Text lives as literal CP949 bytes inline in the PE .data section (not in GENSE.FLD,
 //     which contains no readable Korean at all — confirmed by anchor-word frequency scan).
 //   * Each line is terminated by a literal '@' (0x40) byte, not NUL. Lines use full-width
@@ -30,7 +30,7 @@ const DATA_END = DATA_RAW + DATA_SIZE;
 // — together they were leaking ~38 bogus single-syllable "dialogue lines" into extract()
 // (all with the tell: the byte right after their '@' was always 0x00, whereas every real
 // dialogue line — including genuine short ones like the day-of-week labels 일/월/화/…— is
-// followed by a documented control byte such as 0x02/0x06/0x0A/0x10). See NOTES.md.
+// followed by a documented control byte such as 0x02/0x06/0x0A/0x10).
 const JUMP_TABLE_RANGES = [[0x3e538, 0x3e8ac]];
 
 // Confirmed noise elsewhere in .data (stray control/pointer bytes coincidentally valid
@@ -38,7 +38,7 @@ const JUMP_TABLE_RANGES = [[0x3e538, 0x3e8ac]];
 // NOISE_RANGES for the JP-side equivalent). Found via the KR<->JP anchor-cascade audit:
 // each of these decodes to one of exactly 6 garbled strings ("죋l"/"쟡h"/"캾`"/"픜"/"륯"/
 // "쟡h4") and sits alone in a multi-KB gap with no other extracted text nearby — unlike
-// real dialogue, which is packed with minimal gaps (see NOTES.md's "라인 레코드 구조").
+// real dialogue, which is packed with minimal gaps.
 const NOISE_RANGES = [
   [0x44f45, 0x44f48], [0x57ee6, 0x57ee8], [0x69445, 0x69448], [0x94ef1, 0x94ef4],
   [0x94f11, 0x94f14], [0x94f2d, 0x94f30], [0xacefd, 0xacf00], [0xc0b29, 0xc0b2c],
@@ -199,7 +199,7 @@ function tableUnits(entries) {
 }
 
 // 한 줄 표시 폭의 **어림 기준값** — 12자 상당(CP949 24바이트), 끝의 전각 공백(원본 슬롯
-// 패딩)은 빼고 잰다. 표시 폭(픽셀) 자체는 모르니(NOTES.md 3.4: 줄 높이·글자 폭은 `40 15`가
+// 패딩)은 빼고 잰다. 표시 폭(픽셀) 자체는 모르니(줄 높이·글자 폭은 `40 15`가
 // 정하고 창마다 다르며 정확한 값은 `40 0d` 핸들러 디스어셈블이 필요해 미착수) 정확한 창
 // 폭이 아니라 사람이 게임 화면에서 눈대중한 값이다.
 //

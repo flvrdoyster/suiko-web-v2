@@ -13,7 +13,7 @@
 // the other four Hangul LOGFONTs right before it (0x52768 + n*0x3C, lfWeight=700, empty
 // face name): this struct is slot 4 of 5 (chapter titles), while dialogue/menus use slots
 // 0-3, which map by charset alone. That's why renaming this field alone had no visible
-// effect — see NOTES.md "3.5 호환성 패치".
+// effect.
 //
 // This is NOT the same shape as hwanse-names.js's labels: the face name is a C string in
 // a FIXED 32-byte buffer, NUL-terminated/padded (not full-width-space padded), and its

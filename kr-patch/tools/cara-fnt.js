@@ -1,8 +1,8 @@
 // cara-fnt.js — one-off tool to replace GENSE.FLD's cara_fnt.cns (KR character-name font
 // bitmap, 640x240x8bpp indexed) with an edited version and re-inject it into the disk image.
 //
-// GENSE.FLD structure (reverse-engineered from GENSE.FLD + cns110.exe disassembly, see
-// NOTES.md): 8-byte header "FLDF0100" + u32 entry count, then a flat table of fixed
+// GENSE.FLD structure (reverse-engineered from GENSE.FLD + cns110.exe disassembly):
+// 8-byte header "FLDF0100" + u32 entry count, then a flat table of fixed
 // 20-byte entries (12-byte NUL-padded name + u32 offset + u32 size), followed immediately
 // by all file payloads back-to-back with zero padding between them (verified: 0 gaps across
 // all 377 entries in the KR file).
@@ -11,7 +11,7 @@
 // are themselves [2 bytes unknown][u16 width][u16 height][u16 paletteCount-1][palette,
 // 4 bytes/color][pixel indices, width*height bytes, bottom-up row order matching BMP].
 //
-// Two hard constraints, both learned the painful way (see NOTES.md):
+// Two hard constraints, both learned the painful way:
 //  1. The replacement payload must be EXACTLY the original's stored size — growing the
 //     archive shifts every later file's offset and corrupts them.
 //  2. The stream must CONSUME exactly that many input bytes when decoded (terminator last).
@@ -50,7 +50,7 @@ const TARGET_NAME = 'cara_fnt.cns';
 //                 len=(al&0xF)+2 with dist=next byte (read after the literals).
 //                 (An earlier read of the disassembly missed the fall-through at 0x401893
 //                 and treated 0x90+ as literal-only — that desynced the whole stream parse
-//                 and led to a bogus "shared decode buffer" theory. See NOTES.md.)
+//                 and led to a bogus "shared decode buffer" theory.)
 
 function decompressCns(data, start) {
   const out = [];
@@ -118,7 +118,7 @@ function consumedBytes(data) {
 // the longest match in each cost class (near = dist<=255 cheaper, far = dist<=65535), then a
 // backward DP picks the minimum-total-byte tiling. This beats greedy comfortably — enough to
 // land the edited 640x240 image under the original 7024-byte budget so the archive doesn't
-// grow (see NOTES.md: growing GENSE.FLD shifts every later file's offset and corrupts the
+// grow (growing GENSE.FLD shifts every later file's offset and corrupts the
 // game, so we MUST stay <= the original size). maxChain trades build time for ratio; this is
 // a one-off asset build, not run per-request.
 function compressCns(data, maxChain) {

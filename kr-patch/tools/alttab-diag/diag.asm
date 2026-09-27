@@ -1,4 +1,4 @@
-; diag.asm — logging hooks for the Alt+Tab black-screen investigation (NOTES.md 3.6).
+; diag.asm — logging hooks for the Alt+Tab black-screen investigation.
 ; Linked into a new .diag section at VA 0x5BE000 by build-diag.js; writes HWDIAG.TXT in the
 ; current directory (the game folder). Starts with an address table the builder reads.
 bits 32

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// build-diag.js — builds a logging HWANSE.EXE for the Alt+Tab black-screen investigation
-// (NOTES.md 3.6). Not for distribution.
+// build-diag.js — builds a logging HWANSE.EXE for the Alt+Tab black-screen investigation.
+// Not for distribution.
 //
 // Usage: node kr-patch/tools/alttab-diag/build-diag.js [--in path] [--out path]
 // Defaults: kr-patch/build/HWANSE.EXE (build.js output) -> kr-patch/build/HWANSE-diag.EXE.

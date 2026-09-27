@@ -156,7 +156,7 @@ if (mode === 'direct') {
   // This sidesteps the whole title-menu-frame problem: window definition 42 has room for
   // exactly three rows with no bottom padding, so a third choice always sits flush against the
   // bottom border, and every other definition is either far too tall or full-width (see the
-  // `menu` branch below and NOTES.md 3.4). The scenario menu draws its own 14-row frame
+  // `menu` branch below). The scenario menu draws its own 14-row frame
   // correctly already.
   for (const site of entrySites) buf.writeUInt32LE(TARGET_VA, site);
   log.push(`  진입 CALL 재지정  0x${TITLE_BLOCK_VA.toString(16)} -> 0x${TARGET_VA.toString(16)} (${TARGET_LABEL})`);
@@ -350,8 +350,7 @@ if (emitPatch) {
       (mode === 'direct'
         ? `Boots HWANSE.EXE straight into the ${TARGET_LABEL} instead of the title menu.`
         : `Adds a third item to HWANSE.EXE's title menu, opening the ${TARGET_LABEL}.`) +
-      ' Applied to the in-memory disk image before boot by docs/suiko-demo.js;' +
-      ' see NOTES.md 3.4.',
+      ' Applied to the in-memory disk image before boot by docs/suiko-demo.js.',
     mode,
     target: 'HWANSE.EXE',
     dir: 'GENSE',

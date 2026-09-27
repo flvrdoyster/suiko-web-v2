@@ -2,7 +2,7 @@
 # midi2mp3.sh — render extracted game MIDI to MP3 with a soundfont, for by-ear QA.
 #
 # Not part of the build/deploy pipeline (the game's actual MIDI playback is the
-# browser-side bridge — see NOTES.md "3.1 사운드 구조"). This is a standalone listening
+# browser-side bridge). This is a standalone listening
 # tool: point it at a folder of *.mid pulled from the game data and it batch-renders
 # *.mp3 next to each one via fluidsynth + ffmpeg, so soundfont changes/conversions
 # (e.g. docs/SC-55.sf3 vs the original SC-55.sf2) can be A/B'd by ear without booting
