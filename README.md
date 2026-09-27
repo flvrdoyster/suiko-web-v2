@@ -12,7 +12,7 @@ suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이
 + **`docs/`** — 배포용 웹 에뮬레이터. GitHub Pages로 `https://suiko.atah.io`에 서빙됨. KR(`kr.html`)·JP(`jp.html`)가 하나의 공유 디스크 이미지(`final-shared.img`)를 사용.
 + **`src/`** / **`test/`** — FAT16 파일 단위 추출/주입 라이브러리(`fat16.js`)와 테스트. 세이브 데이터 저장, KR 텍스트 패치 주입에 공용으로 쓰임.
 + **`tools/`** — 베이스 디스크 이미지 빌드 도구(`strip-image.js`, `build-image.js`, `build-jp-image.js`, `bake-fonts.js`)와 사운드폰트 청감 확인용 `midi2mp3.sh`(빌드 파이프라인과 무관한 독립 도구).
-+ **`kr-patch/`** — 정식 KR 번역을 저본으로 한 전면 개정 파이프라인(추출·검수 에디터·재삽입).
++ **`kr-patch/`** — 정식 KR 번역을 저본으로 한 전면 개정 파이프라인(추출·검수 에디터·재삽입). 빌드된 `HWANSE.EXE`에는 호환성 패치(스테이터스 창 기술 튕김, 최신 윈도우 글자 크기·간격)가 함께 들어가, 같은 파일이 Windows 95/98과 XP~11에서 모두 돈다.
 + **`original/`** — 원본 게임 파일(저장소에는 없음, 로컬에 직접 준비 필요).
 
 그래픽 **추출**(`GENSE.FLD` 아카이브 · CNS 이미지)은 [compile-gfx](https://github.com/flvrdoyster/compile-gfx)로

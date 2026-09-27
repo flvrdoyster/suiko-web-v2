@@ -9,9 +9,11 @@
 // fixed-pitch variant of Gulim), then a 32-byte (LF_FACESIZE) NUL-padded face name field
 // at offset 0x52874 containing "굴림체" (GulimChe). A file-wide scan for the same
 // lfWeight=1000 marker found ~20 other LOGFONT-shaped structs, but all the rest have
-// lfCharSet=ANSI_CHARSET(0) — this is the only Hangul one, i.e. the one call plausibly
-// worth changing if the game's KR font ever needs to be swapped by name instead of by
-// charset substitution (see NOTES.md's still-unresolved GULIM.TTC issue).
+// lfCharSet=ANSI_CHARSET(0) — this is the only one with a face name. That scan missed
+// the other four Hangul LOGFONTs right before it (0x52768 + n*0x3C, lfWeight=700, empty
+// face name): this struct is slot 4 of 5 (chapter titles), while dialogue/menus use slots
+// 0-3, which map by charset alone. That's why renaming this field alone had no visible
+// effect — see NOTES.md "3.5 호환성 패치".
 //
 // This is NOT the same shape as hwanse-names.js's labels: the face name is a C string in
 // a FIXED 32-byte buffer, NUL-terminated/padded (not full-width-space padded), and its
