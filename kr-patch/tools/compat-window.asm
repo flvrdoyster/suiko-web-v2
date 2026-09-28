@@ -4,6 +4,7 @@ bits 32
 %endif
 org BASE+0x1BE000
 
+GetVersion       equ BASE+0x1A04BC
 GetModuleHandleA equ BASE+0x1A04C8
 GetProcAddress   equ BASE+0x1A0448
 GetDC            equ BASE+0x1A04EC
@@ -26,6 +27,11 @@ PAL1_NEXT        equ BASE+0x16672
 PAL2_NEXT        equ BASE+0x16731
 FILL_NEXT        equ BASE+0x17BE5
 COPY_NEXT        equ BASE+0x17CF1
+LAST_ERROR       equ BASE+0x676CC
+RESTORE_ALL      equ BASE+0x16013
+APPLY_PALETTE    equ BASE+0x16599
+REDRAW_ALL       equ BASE+0x11466
+DDERR_SURFACELOST equ 0x887601C2
 
 %ifdef DIAG
 %macro LOG 3
@@ -59,8 +65,13 @@ COPY_NEXT        equ BASE+0x17CF1
     jmp strict near pal_hook1
     jmp strict near pal_hook2
     jmp strict near fill_b
+    jmp strict near copy_result
 
 init:
+    call [GetVersion]
+    not eax
+    shr eax, 31
+    mov [is_nt], eax
     push s_user32
     call [GetModuleHandleA]
     mov esi, eax
@@ -110,7 +121,16 @@ create_surface:
     mov dword [n_pr], 0
 %endif
     cmp word [MODE], 1
-    jne .pass
+    je .windowed
+    cmp dword [is_nt], 0
+    je .pass
+    mov eax, [esp+8]
+    test dword [eax+0x68], 0x200
+    jnz .pass
+    and dword [eax+0x68], ~0x4000
+    or dword [eax+0x68], 0x800
+    jmp .pass
+.windowed:
     mov eax, [esp+8]
     test dword [eax+0x68], 0x200
     jz .offscreen
@@ -160,6 +180,20 @@ create_surface:
     mov eax, [esp+4]
     mov eax, [eax]
     jmp [eax+0x18]
+
+copy_result:
+    mov [ebp-4], eax
+    test eax, eax
+    jz .out
+    cmp dword [LAST_ERROR], DDERR_SURFACELOST
+    jne .out
+    call RESTORE_ALL
+    test eax, eax
+    jnz .out
+    call APPLY_PALETTE
+    call REDRAW_ALL
+.out:
+    jmp COPY_NEXT
 
 pal_attach:
 %ifdef DIAG
@@ -477,6 +511,7 @@ p_brush:    dd 0
 p_fillrect: dd 0
 p_devcaps:  dd 0
 h_xpal:     dd 0
+is_nt:      dd 0
 s_user32:   db 'USER32', 0
 s_gdi32:    db 'GDI32', 0
 s_fillrect: db 'FillRect', 0

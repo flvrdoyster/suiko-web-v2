@@ -9,7 +9,7 @@ const { execFileSync } = require('child_process');
 const ASM = path.join(__dirname, 'compat-window.asm');
 const JS = path.join(__dirname, 'compat-patch.js');
 const SHIFT = 0x100000;
-const ENTRIES = 7;
+const ENTRIES = 8;
 const MAX_CODE = 0xb00;
 
 function assemble(base) {
