@@ -87,5 +87,16 @@ check(restoredFiles.length === 1 && restoredFiles[0].name.toUpperCase() === file
   'the created entry has the right name');
 check(same(restoredFiles[0].data, files[0].data), 'the created entry has the right content');
 
+const [exe] = Fat16.extractDirFiles(shipped, 'GENSE').filter((f) => f.name.toUpperCase() === 'HWANSE.EXE');
+const grown = new Uint8Array(exe.data.length + 8192);
+grown.set(exe.data);
+const { image: withGrown, skipped: growSkipped } = Fat16.injectDirFiles(shipped, 'GENSE', [{ name: 'HWANSE.EXE', data: grown }]);
+check(growSkipped.length === 0, 'oversized HWANSE.EXE replacement is not skipped');
+const [grownBack] = Fat16.extractDirFiles(withGrown, 'GENSE').filter((f) => f.name.toUpperCase() === 'HWANSE.EXE');
+check(grownBack && same(grownBack.data, grown), 'oversized HWANSE.EXE reads back byte-identical after reallocation');
+const { image: shrunkBack } = Fat16.injectDirFiles(withGrown, 'GENSE', [{ name: 'HWANSE.EXE', data: exe.data }]);
+const [shrunkExe] = Fat16.extractDirFiles(shrunkBack, 'GENSE').filter((f) => f.name.toUpperCase() === 'HWANSE.EXE');
+check(shrunkExe && same(shrunkExe.data, exe.data), 'HWANSE.EXE fits back in place once it shrinks again');
+
 console.log(failures === 0 ? '\nALL PASS' : `\n${failures} FAILURE(S)`);
 process.exit(failures === 0 ? 0 : 1);

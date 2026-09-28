@@ -224,6 +224,13 @@ function injectDirFiles(bytes, dirPath, files) {
       catch (e) { skipped.push(f.name); }
       continue;
     }
+    const capacity = clusterChain(ctx, target.firstCluster).length * ctx.bytesPerCluster;
+    if (data.length > capacity) {
+      deleteEntry(ctx, target);
+      try { createFileInDir(ctx, cluster, f.name, data, times); }
+      catch (e) { skipped.push(f.name); }
+      continue;
+    }
     writeFileInPlace(ctx, target, data, times);
   }
   return { image: copy, skipped };

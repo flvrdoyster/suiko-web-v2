@@ -591,9 +591,13 @@ primary에 창의 화면 좌표를 더해 직접 쓰는 방식이라 최신 윈�
 켜기 — 늘 전체 화면으로 시작하고 Alt+Enter로 오간다(명령줄 `-w`로 창 모드 시작도 만들었다가 Alt+Enter로
 충분해 뺐다). 창 프로시저의 `WM_KEYDOWN` 비교 자리(`0x401D6C`, 18바이트)를 스텁(`.text` 끝 여유 `0x43A790` —
 VirtualSize `0x3978C` → `0x39800`, `.rdata`가 `0x43B000`부터라 안 겹침)으로 돌린다. `WM_KEYDOWN`은 원래
-처리로, `WM_SYSKEYDOWN` Enter(lParam 비트 29 = Alt, 비트 30 = 반복이면 무시)면 현재 모드(`0x416166`)를
-뒤집어 `0x401FBC`를 부르고 0을 반환, 뒤따르는 `WM_SYSCHAR` Enter는 0으로 삼켜 경고음을 막는다. Enter는
-게임의 결정 키라 DirectInput 쪽에서 결정으로도 읽힐 수 있다.
+처리로 보내고, `GetVersion()` 최상위 비트가 1(Win9x)이면 그대로 기본 처리(`0x401DE7`)로 — 창 모드 자체가
+Win9x에서 검증된 적이 없어 Alt+Enter를 아예 안 받는다(웹 에뮬레이터 포함, 원본과 동일). NT 계열에서
+`WM_SYSKEYDOWN` Enter(lParam 비트 29 = Alt, 비트 30 = 반복이면 무시)면 현재 모드(`0x416166`)를 뒤집어
+`0x401FBC`를 부르고 0을 반환, 뒤따르는 `WM_SYSCHAR` Enter는 0으로 삼켜 경고음을 막는다. Enter는 게임의
+결정 키라 DirectInput 쪽에서 결정으로도 읽힐 수 있다. 알트탭은 막지 않는다 — OS가 가로채는 창 전환
+단축키라 게임이 억제할 수 없고, 창 프로시저의 `WM_ACTIVATEAPP` 처리(DirectInput Acquire/Unacquire)는
+OS 구분 없이 원본 그대로다.
 
 창 모양
 - 디버그 메뉴 제거: `GSS_NML`에 메뉴 리소스 108(화상 읽기(C) — 그림 버퍼 이름들, 헬프(H) — 버전정보)이
@@ -715,10 +719,12 @@ create_surface, pal_attach, present_c, pal_hook1, pal_hook2, fill_b, copy_result
     mov [eax+0x18], ecx / mov [eax+0x1C], edx / mov [eax+0x20], ecx / mov [eax+0x24], edx
 .skip: jmp 0x401DE7
 
-; ③ 0x43A790 Alt+Enter 스텁 (76바이트, 절대 주소 없음)
+; ③ 0x43A790 Alt+Enter 스텁 (89바이트)   절대 주소 1개: +0x10 GetVersion (IAT)
 ; 0x401D6C의 cmp msg,WM_KEYDOWN / je 0x401C19 / jmp 0x401DE7 → jmp 0x43A790 + INT3
     mov eax, [ebp-0x48]                  ; msg
     cmp eax, 0x100 / je 0x401C19         ; WM_KEYDOWN: 원래 처리
+    call [0x5A04BC] / test eax, eax / js .def        ; GetVersion 최상위 비트 1 = Win9x: 원래 처리
+    mov eax, [ebp-0x48]
     or eax, 2 / cmp eax, 0x106 / jne .def            ; WM_SYSKEYDOWN(0x104) / WM_SYSCHAR(0x106)
     cmp dword [ebp+0x10], 0x0D / jne .def            ; Enter
     test byte [ebp+0x17], 0x20 / jz .def             ; Alt
@@ -989,8 +995,9 @@ UI(헤더, 불러오기/설정/로그인 버튼, ROM 목록, 드래그앤드롭,
 - `suiko-probe.js` — `probe.html`(gitignore) 전용 테스트 벤치(4.5).
 - `fat16.js` — `src/fat16.js`와 같은 파일이어야 한다(브라우저가 직접 로드). MBR+FAT16 이미지를
   읽고(디렉토리 순회, 긴 이름 복원, 파일 읽기) 쓴다: 기존 파일은 클러스터 체인을 재사용해 제자리에
-  덮고(더 커지면 예외), 없는 파일은 8.3 이름으로 새로 만들고, 삭제·빈 클러스터 0 채우기·디렉토리
-  생성도 한다. 디렉토리 엔트리 13~25바이트(생성·접근·수정 시각)를 `times`로 주고받아 세이브 시각을
+  덮고, 새 크기가 기존 체인 용량을 넘으면 엔트리를 지운 뒤 새 체인으로 다시 만든다(HWANSE.EXE가
+  `.patch` 섹션으로 커지면서 필요해짐 — `test/fat16.test.js`에 회귀 테스트 있음). 없는 파일은 8.3
+  이름으로 새로 만들고, 삭제·빈 클러스터 0 채우기·디렉토리 생성도 한다. 디렉토리 엔트리 13~25바이트(생성·접근·수정 시각)를 `times`로 주고받아 세이브 시각을
   보존한다. 긴 이름 엔트리는 VFAT 체크섬이 짧은 엔트리와 맞을 때만 이름으로 쓰고, 새 엔트리를
   만들 때는 바로 앞의 고아 LFN을 지운다(세이브 유실 사고 — 1절). 제자리 덮어쓰기는 파일 길이
   뒤 클러스터 여분을 건드리지 않아(실제 FAT와 같음) 같은 파일을 다시 넣으면 이미지가 바이트
