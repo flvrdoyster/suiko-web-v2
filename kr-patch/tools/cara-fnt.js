@@ -10,6 +10,7 @@ const FLD_PATH = path.join(ROOT, 'original', 'kr', 'GENSE.FLD');
 const BMP_PATH = path.join(ROOT, 'kr-patch', 'translation', 'cara_fnt.cns.bmp');
 const LIVE_IMG = path.join(ROOT, 'docs', 'final-shared.img');
 const OUT_IMG = path.join(ROOT, 'kr-patch', 'build', 'final-shared.img');
+const OUT_FLD = path.join(ROOT, 'kr-patch', 'build', 'GENSE.FLD');
 const TARGET_NAME = 'cara_fnt.cns';
 
 function decompressCns(data, start) {
@@ -309,6 +310,10 @@ function main() {
   const newFld = rebuildFld(fld, TARGET_NAME, payload);
   console.log(`new GENSE.FLD size: ${newFld.length} (was ${fld.length}, delta ${newFld.length - fld.length})`);
   if (newFld.length !== fld.length) throw new Error('FLD size changed despite exact-size payload — bug');
+
+  fs.mkdirSync(path.dirname(OUT_FLD), { recursive: true });
+  fs.writeFileSync(OUT_FLD, newFld);
+  console.log(`wrote ${path.relative(ROOT, OUT_FLD)} (${newFld.length} bytes)`);
 
   const liveRaw = fs.readFileSync(LIVE_IMG);
   const liveImg = liveRaw[0] === 0x1f && liveRaw[1] === 0x8b ? new Uint8Array(zlib.gunzipSync(liveRaw)) : new Uint8Array(liveRaw);

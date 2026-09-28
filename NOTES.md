@@ -118,7 +118,8 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
 **배포 (v1.1.5)**
 - `docs/version.js`를 `v1.1.5`로 올리고 같은 이름의 태그(5.1). 배포 이미지(`docs/final-shared.img`)는
   최신 빌드(번역 전수 검토 반영 + 호환성 패치 + 창 모드 포함)로 갱신함.
-- 최신 윈도우용 EXE 배포 — 파일은 `build.js` 산출물 `kr-patch/build/HWANSE.EXE` 그대로(4.5).
+- 최신 윈도우용 EXE 배포 — `kr-patch/build/HWANSE.EXE`(4.5)와 `kr-patch/build/GENSE.FLD`(4.2,
+  `cara-fnt.js` 산출물 — 캐릭터 이름 글꼴 교체가 여기 들어 있어 EXE만으론 부족함) 둘 다 필요.
   어디에 어떤 형태로 올릴지는 미정.
 - 윈도우용 배포 안내문 — Alt+Enter 창 모드 전환(4.5 ③), MIDI 음색 차이(윈도우 기본 신디사이저 — 4.5 말미).
 
@@ -895,7 +896,7 @@ Win11(배율 125%, 호환성 설정 없음)에서 전체 화면 알트탭 복귀
   y=280, 빈 행 없음)이 실기 확인된 조합. `--emit-patch`는 입력 EXE와의 바이트 차이를
   `docs/demo-patch.json`(`demo.html`이 적용)으로 쓴다. 이 패치는 `.data` 끝 패딩에 포인터를 쓰고
   `.reloc`에 올리지 않는다(기본 주소 로드 전제).
-- `cara-fnt.js` — `GENSE.FLD`의 `cara_fnt.cns`(캐릭터 이름 글꼴, 640×240 8bpp) 교체·재주입(4.2).
+- `cara-fnt.js` — `GENSE.FLD`의 `cara_fnt.cns`(캐릭터 이름 글꼴, 640×240 8bpp) 교체(4.2). `docs/final-shared.img`에 주입해 `kr-patch/build/final-shared.img`로 쓰고, 같은 패치가 적용된 `GENSE.FLD` 단독 파일도 `kr-patch/build/GENSE.FLD`에 쓴다 — 윈도우용 배포는 EXE만으론 부족하고 이 파일도 같이 줘야 함(HWANSE.EXE에는 이 그래픽이 없다).
 - `slim-image.js` — 1회성 이미지 경량화(2026-07): `WIN386.SWP`·`FONTS/KOFONT.TTF` 삭제,
   `MSDOS.SYS`에 `Logo=0`·`BootDelay=0`, 빈 클러스터 0으로 채우고 gzip. 결과를
   `kr-patch/build/`에 쓰고 확인 뒤 배포 이미지로 복사.
