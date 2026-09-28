@@ -14,8 +14,8 @@ const arg = (name, fallback) => {
 const inPath = arg('in', path.join(ROOT, 'kr-patch/build/HWANSE.EXE'));
 const outPath = arg('out', path.join(ROOT, 'kr-patch/build/HWANSE-diag.EXE'));
 
-const DIAG_VA = 0x5be000;
-const DIAG_RVA = 0x1be000;
+const DIAG_VA = 0x5bf000;
+const DIAG_RVA = 0x1bf000;
 const fo = (va) => va - 0x401000 + 0x400;
 const rel = (at, target) => {
   const b = Buffer.alloc(4);
@@ -36,26 +36,41 @@ const tmp = path.join(os.tmpdir(), `hwanse-diag-${process.pid}.bin`);
 execFileSync('nasm', ['-f', 'bin', '-o', tmp, path.join(__dirname, 'diag.asm')]);
 const code = fs.readFileSync(tmp);
 fs.unlinkSync(tmp);
-const [present, present2, act, restore] = [0, 4, 8, 12].map((o) => code.readUInt32LE(o));
+const [present, present2, act, restore, log] = [0, 4, 8, 12, 16].map((o) => code.readUInt32LE(o));
 
 let buf = fs.readFileSync(inPath);
 
-const stub = Buffer.alloc(0x4c, 0xcc);
-Buffer.from('e8ade9ffff85c0750ce82aefffffe8f29dffff31c0c3', 'hex').copy(stub);
-patch(buf, 0x417661, '558bec83ec045356570fbf05', stub);
-patch(buf, 0x41756f, 'e89feaffff', Buffer.from('e8ed000000', 'hex'));
+const winTmp = path.join(os.tmpdir(), `hwanse-diag-win-${process.pid}.bin`);
+execFileSync('nasm', ['-f', 'bin', '-DDIAG', `-DDIAG_LOG=0x${log.toString(16)}`, '-o', winTmp,
+  path.join(__dirname, '..', 'compat-window.asm')]);
+const winCode = fs.readFileSync(winTmp);
+if (winCode.length > 0xb00) throw new Error('diag .patch code overlaps its data at 0x5BEB00');
+fs.unlinkSync(winTmp);
+{
+  const e = buf.readUInt32LE(0x3c);
+  const table = e + 24 + buf.readUInt16LE(e + 20);
+  const n = buf.readUInt16LE(e + 6);
+  const hdr = table + (n - 1) * 40;
+  if (buf.toString('latin1', hdr, hdr + 8).replace(/\0+$/, '') !== '.patch') throw new Error('last section is not .patch');
+  const rawOff = buf.readUInt32LE(hdr + 20);
+  if (rawOff + buf.readUInt32LE(hdr + 16) !== buf.length) throw new Error('.patch is not at the end of the file');
+  const raw = Buffer.concat([winCode, Buffer.alloc((0x200 - (winCode.length % 0x200)) % 0x200)]);
+  buf = Buffer.concat([buf.subarray(0, rawOff), raw]);
+  buf.writeUInt32LE(raw.length, hdr + 16);
+}
+
+patch(buf, 0x41756f, 'e89feaffff', Buffer.concat([Buffer.from([0xe8]), rel(0x41756f, restore)]));
 
 patch(buf, 0x417be5, '837d80000f8412000000', Buffer.concat([Buffer.from([0xe8]), rel(0x417be5, present), Buffer.from('7415909090', 'hex')]));
 patch(buf, 0x417728, '837dfc000f8412000000', Buffer.concat([Buffer.from([0xe8]), rel(0x417728, present2), Buffer.from('7415909090', 'hex')]));
 patch(buf, 0x401b2c, Buffer.concat([Buffer.from([0xe8]), rel(0x401b2c, 0x42f460)]), Buffer.concat([Buffer.from([0xe8]), rel(0x401b2c, act)]));
-patch(buf, 0x417661, Buffer.concat([Buffer.from([0xe8]), rel(0x417661, 0x416013)]), Buffer.concat([Buffer.from([0xe8]), rel(0x417661, restore)]));
 
 const e = buf.readUInt32LE(0x3c);
 const opt = e + 24;
 const nsec = buf.readUInt16LE(e + 6);
 const table = opt + buf.readUInt16LE(e + 20);
 const slot = table + nsec * 40;
-if (nsec !== 6 || !buf.subarray(slot, slot + 40).equals(Buffer.alloc(40))) throw new Error('unexpected section table');
+if (nsec !== 7 || !buf.subarray(slot, slot + 40).equals(Buffer.alloc(40))) throw new Error('unexpected section table');
 if (buf.length % 0x200) throw new Error('file not aligned');
 if (buf.readUInt32LE(opt + 56) !== DIAG_RVA) throw new Error('unexpected SizeOfImage');
 const raw = Buffer.concat([code, Buffer.alloc((0x200 - (code.length % 0x200)) % 0x200)]);

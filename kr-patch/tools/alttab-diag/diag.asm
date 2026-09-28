@@ -1,7 +1,7 @@
 bits 32
-org 0x5be000
+org 0x5bf000
 
-    dd diag_present, diag_present2, diag_act, diag_restore
+    dd diag_present, diag_present2, diag_act, diag_restore, log
 CreateFileA      equ 0x5a03e8
 WriteFile        equ 0x5a0404
 FlushFileBuffers equ 0x5a0454
@@ -70,6 +70,12 @@ diag_restore:
     call log
     add esp, 12
     popad
+    test eax, eax
+    jnz .done
+    call 0x416599
+    call 0x411466
+    xor eax, eax
+.done:
     ret
 
 log:

@@ -128,7 +128,11 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   값·primary 픽셀을 로그로 남겨 그리기/팔레트/표시 중 어디서 끊기는지 가른다
   (`kr-patch/tools/alttab-diag/`).
 - 묘화 스킵 튕김(특히 3장) — 재현된 적 없음. 재현되면 이벤트 뷰어의 예외 코드·오류 오프셋부터.
-- (선택) 내장 창 모드 활용 — 알트탭 문제가 풀려야 의미가 있다. 창 크기 잘림 수정 방법은 4.6.
+- 창 모드(Alt+Enter, 4.5 ③) — Win11(배율 125%, 호환성 설정 없음)에서 창 모드 표시·창 이동·
+  창 모드 ↔ 전체 화면 왕복·페이드 깜빡임 없음까지 확인. 남은 확인: 정리(primary 팔레트 훅 제거) 뒤 빌드로
+  한 번 더, 창 모드에서의 알트탭, 알트탭 검은 화면 뒤 Alt+Enter 두 번으로 복구되는지, Win95(`probe.html`)
+  동작이 그대로인지. 끝나면 배포 이미지 갱신.
+- (선택) 창 모드 표면 팔레트 부착(4.5 ③ "표면 팔레트")이 정말 필요한지 빼고 비교 — 글자 색으로 판단.
 - (보류) JP `GENSE.EXE`에도 같은 기술 창 버그가 있다(버그 지점 파일 `0x3297C` 부근, 테이블
   `0x46F4C8`) — 이번엔 KR만 하기로 함.
 
@@ -413,7 +417,7 @@ KR 오프셋 하나 + JP 원문 검색만으로 충분해서 분리해뒀다.
 (LOGFONT lfFaceName 필드 위치 정보만 — 폰트 이름 교체 1차 시도가 효과 없어 보류돼 레이블
 추출에서 이 필드를 제외하는 용도로만 남음. 실패 원인은 4.5에서 밝혀졌다: 이 필드는 슬롯 4(챕터
 제목)의 것이고, 대사·메뉴 등 슬롯 0~3은 이름 없이 charset으로 매핑된다),
-`compat-patch.js`(실행 코드 호환성 수정 — 4.5), `fontprobe/`(글꼴 실측 도구 — 4.5), `alttab-diag/`(알트탭 조사용 로깅 빌드 — 4.6), `gense-text.js`·`gense-names.js`(JP 참고 전용),
+`compat-patch.js`·`compat-window.asm`(실행 코드 호환성 수정 — 4.5), `fontprobe/`(글꼴 실측 도구 — 4.5), `alttab-diag/`(알트탭 조사용 로깅 빌드 — 4.6), `gense-text.js`·`gense-names.js`(JP 참고 전용),
 `search-jp.js`(JP 키워드 검색), `find-punct-issues.js`(문장부호 결함 CLI 감지), `editor.js`+
 `editor.html`(로컬 웹 에디터), `relink.js`+`relink.html`(KR↔JP 스팟 재연결 전용 도구, 메인
 에디터와 분리), `pe-reloc.js`(PE 섹션 테이블/relocation 파서, 청크 접근 시도에서 만듦 — 자동
@@ -523,7 +527,7 @@ raw 꼬리의 정렬 패딩**(파일 236428~236543, VA `0x43A78C~`, 116바이트
 ### 4.5 호환성 패치 (HWANSE.EXE, `kr-patch/tools/compat-patch.js`)
 
 EXE 하나로 Win95/98(웹 에뮬레이터)과 NT 계열(XP~11) 양쪽에서 제대로 돌게 하는 실행 코드
-수정 2건. `build.js`가 텍스트 적용 뒤 자동으로 적용한다(번역 데이터 영역은 건드리지 않음).
+수정 3건. `build.js`가 텍스트 적용 뒤 자동으로 적용한다(번역 데이터 영역은 건드리지 않음).
 나무위키 '환세취호전' 문서에 도는 hex 패치("hwanse2.exe" — 2012년 재배포본의 사본으로 원본과
 바이트 단위 동일)를 분석해 대체한 것이다. Win95(`probe.html`)·Win11 실기 확인 완료, 배포
 이미지(`docs/final-shared.img`)에도 반영(2026-09 — 교체 전 이미지와의 차이는 EXE 안 1,721바이트뿐).
@@ -579,7 +583,85 @@ kernel32/user32/gdi32의 Win95 API만 쓴다. 빌드는 `build.sh`(mingw-w64, �
 위 조정을 적용한 뒤 만든다. Win9x는 원래 값 그대로라 웹 에뮬레이터 화면은 변하지 않는다. 위키
 패치는 비슷한 값을 OS 구분 없이 박아 넣는 방식이다(0·1번의 굵게까지 제거).
 
-두 수정 모두 절대 주소 위치가 바뀌므로 `.reloc`를 집합으로 편집해 통째로 다시 쓴다(무수정
+**③ 창 모드 (Alt+Enter 전환)** — 게임은 시작 시 창을 두 개 만든다: 전체 화면용 `WS_POPUP`
+(`[0x55A1B0]`, 클래스 `COMPILE_GAME`)과 창 모드용 `WS_OVERLAPPEDWINDOW`(`[0x55A1AC]`, 클래스 `GSS_NML`).
+두 창의 창 프로시저는 모두 `0x401AC0`. `0x401FBC(mode)`가 0=전체 화면/1=창 모드로 전환하고, 그 안의
+`0x41617C`가 표면을 전부 해제하고 DirectDraw를 다시 만든 뒤 그림을 다시 싣고 팔레트를 재적용하며, 끝에서
+`InvalidateRect`로 전체 재그리기(`WM_PAINT` → `0x411466`)를 부른다 — 게임 도중 전환을 전제로 만든 구조다.
+출시판은 WinMain `0x4018A6`의 `push 0`으로 전체 화면에 고정돼 있고, 원래의 창 모드는 256색 바탕화면에서
+primary에 창의 화면 좌표를 더해 직접 쓰는 방식이라 최신 윈도우에선 못 쓴다. Alt+Enter를 누르지 않으면
+원본과 같다(Win95 포함).
+
+켜기 — 늘 전체 화면으로 시작하고 Alt+Enter로 오간다(명령줄 `-w`로 창 모드 시작도 만들었다가 Alt+Enter로
+충분해 뺐다). 창 프로시저의 `WM_KEYDOWN` 비교 자리(`0x401D6C`, 18바이트)를 스텁(`.text` 끝 여유 `0x43A790` —
+VirtualSize `0x3978C` → `0x39800`, `.rdata`가 `0x43B000`부터라 안 겹침)으로 돌린다. `WM_KEYDOWN`은 원래
+처리로, `WM_SYSKEYDOWN` Enter(lParam 비트 29 = Alt, 비트 30 = 반복이면 무시)면 현재 모드(`0x416166`)를
+뒤집어 `0x401FBC`를 부르고 0을 반환, 뒤따르는 `WM_SYSCHAR` Enter는 0으로 삼켜 경고음을 막는다. Enter는
+게임의 결정 키라 DirectInput 쪽에서 결정으로도 읽힐 수 있다.
+
+창 모양
+- 디버그 메뉴 제거: `GSS_NML`에 메뉴 리소스 108(화상 읽기(C) — 그림 버퍼 이름들, 헬프(H) — 버전정보)이
+  붙어 있다. 항목과 F8(`WM_KEYDOWN` 0x77)은 `0x41A98C(n)`로 버퍼를 BMP로 저장하려 하지만 초기값 0이고 아무도
+  쓰지 않는 `[0x4676FC]`를 먼저 보고 끝나서 출시판에선 동작하지 않는다. `lpszMenuName`(`0x401E5E`, 0x6C → 0),
+  `AdjustWindowRectEx`의 `bMenu`(`0x401EF8`, 1 → 0).
+- 크기 고정: 스타일 `0xCF0000` → `0xCA0000`(크기 조절 테두리·최대화 제거 — 출력이 640×480 고정).
+  `0x401EFA`(`AdjustWindowRectEx`)와 `0x401F2B`(`CreateWindowExA`).
+- `WM_GETMINMAXINFO`(`0x401B9F`, 45바이트)가 창 **바깥** 크기를 640×480으로 묶어 제목 표시줄·테두리만큼
+  잘렸다. 제한을 "`[0x55A1AC]`≠0 이고 hwnd≠`[0x55A1AC]`"일 때만 건다(창 모드 창이 먼저 만들어지고 그동안
+  `[0x55A1AC]`는 0 — 전체 화면 창 동작은 원본과 같음).
+- 복귀 시 크기 복원: 전체 화면(해상도 640×480)에 다녀오면 숨겨 둔 창 모드 창이 새 화면에 맞춰 줄어든다.
+  창 모드 분기의 `ShowWindow(창, SW_SHOW)`(`0x4020A3`, 14바이트)를 스텁 호출로 바꿔 `AdjustWindowRectEx`로
+  바깥 크기를 다시 구해 `SetWindowPos(SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW)`. 스텁 자리는 메뉴가 없어져
+  죽은 `WM_COMMAND` 처리부(`0x401C4C`, 66바이트 — `WM_COMMAND`를 보내는 코드도 없음), 분기의
+  `je 0x401C4C`(`0x401D66`)는 기본 처리(`0x401DE7`)로.
+
+화면 출력 — 설계: **창 모드에선 DirectDraw를 8비트 메모리 표면을 만드는 데만 쓰고, 화면에는 GDI로 창
+DC에 창 안쪽 좌표로 그린다.** 창 위치·배율·바탕화면 색 깊이와 무관하고, 창 모드엔 화면 표면이 없다.
+- 표면: `CreateSurface` 호출 자리 셋(primary `0x41579B`, 뒷버퍼 `0x415A0D`, 일반 그림 표면 `0x41914B` —
+  `mov eax,[eax] / call [eax+0x18]` 5바이트)을 `create_surface`로 돌린다. 창 모드면 모든 요청을 8비트 팔레트
+  형식(`DDSD_PIXELFORMAT`, `DDPF_RGB|DDPF_PALETTEINDEXED8`) + `DDSCAPS_SYSTEMMEMORY`(비디오 메모리 대신)로
+  바꾸고, primary 요청은 640×480 `DDSCAPS_OFFSCREENPLAIN`으로 바꾼다. 이유: 바탕화면 형식을 따르면
+  트루컬러에서 32비트 표면이 되어 게임의 8비트 전제(직접 픽셀 쓰기)가 깨진다. 창 모드에서 primary를 실제로
+  만들면, 8비트 전체 화면을 한 번 쓴 프로세스라 윈도우가 그 primary를 화면 왼쪽 위 640×480에 흉내 내
+  두고 계속 다시 표시해 겹친 부분이 깜빡였다. primary의 창 모드 사용처는 클리퍼 붙이기(`0x415B0F`)뿐이라
+  일반 표면이어도 된다. 전체 화면이면 원래 호출 그대로.
+- 복사·채우기: 창 모드에서 primary에 쓰는 곳은 둘뿐이다(표면 메서드 호출·`0x4176AD` 호출부 전수 조사) —
+  뒷버퍼(`[0x4676D0]`번 표면) 영역 복사 `0x417C0D`와 한 색 채우기 `0x417A55`(색 = 팔레트 번호 `[ebp-0x24]`).
+  둘의 창 모드 분기(`0x417C86`, `0x417B95`)를 새 섹션으로 돌린다. 복사는 뒷버퍼를 `Lock`해 위아래 뒤집힌
+  8비트 DIB로 `SetDIBitsToDevice`, 채우기는 붓으로 `FillRect`. 표면이 8비트가 아니면 그리지 않는다.
+- 색 넘기기: 창 DC가 팔레트 장치인지(`GetDeviceCaps(RASTERCAPS) & RC_PALETTE`)로 가른다. 처음 창 모드는
+  보통 트루컬러라 게임 팔레트(`[0x4676E8]`, PALETTEENTRY 256개 → RGBQUAD)를 붙여 RGB로 넘긴다. 전체 화면
+  (8비트 모드)에 한 번 다녀오면, 또는 호환성 설정 "색 모드 줄이기 8비트"를 켜면 팔레트 장치가 된다(진단
+  기록으로 확인). 그때는 게임 팔레트 256색으로 논리 팔레트를 만들어 창 DC에 선택·실현하고(시스템 팔레트에
+  게임 색이 올라감) `DIB_PAL_COLORS` + 번호표 0~255로 그 논리 팔레트를 가리킨다. 채우기는 `PALETTEINDEX(n)`
+  붓. 논리 팔레트는 게임 팔레트가 바뀔 때만(`xpal`의 이전 값과 비교) 새로 만들고 그 외엔 유지한다 —
+  매번 만들고 지우면 시스템 팔레트가 흔들려 깜빡인다.
+- 팔레트 변화: 팔레트만 바꾸는 효과(페이드 등)도 보이도록 팔레트 적용 함수 두 개(`0x4165B8` 끝 `0x41666B`,
+  페이드가 쓰는 `0x416677` 끝 `0x41672A`)에서 창 모드면 화면 전체를 다시 그린다.
+- 표면 팔레트: 창 모드 표면에 게임 팔레트(`[0x4676C4]`)를 붙인다(`create_surface`에서, 그리고 팔레트가
+  표면보다 나중에 만들어지는 경우를 위해 팔레트 생성 함수 `0x4164F7` 끝 `0x416558`에서 표면 표 `0x55ABD8`
+  1~0xBF 전부). 글자를 표면 DC에 GDI로 찍을 때 RGB→번호 변환이 게임 팔레트 기준이 되게 하려는 것 —
+  창 모드엔 팔레트를 가진 진짜 primary가 없다. 빼고 비교해 본 적은 없다.
+
+새 섹션 `.patch`(VA `0x5BE000`, RWX 0x1000, 소스 `kr-patch/tools/compat-window.asm`) — `.reloc` 뒤 빈 섹션
+헤더 자리에 붙이고 SizeOfImage를 `0x1BF000`으로. 맨 앞은 진입점 점프표(5바이트 `jmp` 7개: init,
+create_surface, pal_attach, present_c, pal_hook1, pal_hook2, fill_b)라 `.text`의 훅은 이 표만 가리키고, 코드가
+바뀌거나 진단판(`-DDIAG`)으로 늘어나도 훅 주소는 그대로다. 데이터(`xpal`)는 `0x5BEB00`부터라 코드는
+0xB00바이트 안이어야 한다. `SetDIBitsToDevice`·`CreateSolidBrush`·`GetDeviceCaps`·`FillRect`는 임포트에
+없어서, WinMain 첫 명령(`0x401859`, `push 0 / push 0x440460`)을 init으로 돌려 `GetProcAddress`로 찾아 둔다
+(없으면 그리기를 건너뜀). `compat-patch.js`의 `PATCH_CODE`·`PATCH_RELOCS`(코드 안 절대 주소 56곳 — `.reloc`에
+올림)는 `compat-window-gen.js`가 만든다: asm의 모든 주소를 `BASE+RVA`로 적어 두고 BASE를 0x100000 옮겨 두 번
+조립해, 정확히 그만큼 달라지는 4바이트 자리를 절대 주소로 본다(capstone 역어셈블 결과와 일치 확인).
+
+버린 시도: primary 쓰기를 그대로 두고 `SetProcessDPIAware`(배율 125%의 잘림은 막았지만 창을 옮기거나 전체
+화면에 다녀오면 다시 잘렸고, 프로세스 전체에 걸려 전체 화면이 흐리다는 보고가 있었음) / IDirectDraw
+함수표를 복사해 vptr 바꿔치기(게임이 아예 실행되지 않음 — DirectDraw가 vptr을 검사하는 것으로 봄) / 팔레트
+장치에서 `PC_EXPLICIT`로 하드웨어 번호를 그대로 옮기기(창 모드엔 게임 팔레트가 시스템 팔레트에 없어 거의
+까맣게 나옴) / 창 모드에서 primary에 팔레트를 붙이지 않기(왼쪽 위 깜빡임과 무관했음).
+
+남은 한계: 알트탭 검은 화면(4.6)이 창 모드에서도 생기는지는 이 설계 뒤로 미확인.
+
+세 수정 모두 절대 주소 위치가 바뀌거나 늘어나므로 `.reloc`를 집합으로 편집해 통째로 다시 쓴다(무수정
 재직렬화가 원본과 바이트 단위로 동일함을 확인). 이 EXE는 기본 주소에 로드돼 실제로 재배치되진
 않지만 목록을 코드와 일치시켜 둔다. 직렬화는 링커와 같은 모양 — 페이지 블록 오름차순, 블록 안
 엔트리 정렬, 4바이트 경계는 ABSOLUTE(0) 엔트리로 패딩. `.reloc` 섹션 헤더의 VirtualSize(0x1A24A)는
@@ -587,7 +669,8 @@ kernel32/user32/gdi32의 Win95 API만 쓴다. 빌드는 `build.sh`(mingw-w64, �
 
 **패치 코드** — `compat-patch.js`에 16진수로 들어 있는 것의 nasm 소스. 입력 EXE 검증용으로 버그
 지점 `0x410ECB`의 원래 바이트(`8b04c588244d0033d28a5011`)와 `0x41B140`의 원래 호출
-(`50 ff15 c4035a00` = `push eax / call [CreateFontIndirectA]`)을 확인한 뒤에만 쓴다.
+(`50 ff15 c4035a00` = `push eax / call [CreateFontIndirectA]`), ③이 바꾸는 자리들의 원래 바이트를 확인한
+뒤에만 쓴다.
 
 ```nasm
 ; ① 0x410E40 기술 상태 함수 재작성 (122바이트, 원래 227바이트 — 나머지 INT3)
@@ -625,6 +708,35 @@ kernel32/user32/gdi32의 Win95 API만 쓴다. 빌드는 `build.sh`(mingw-w64, �
 .neg: inc dword [esp+4]
 .create: push esp / call [0x5A03C4]                       ; CreateFontIndirectA
     add esp, 60 / pop edi / pop esi / ret 4
+
+; ③ 0x401B9F WM_GETMINMAXINFO (45바이트 자리에 44 + INT3)   절대 주소 1개: +01
+    mov eax, [0x55A1AC] / test eax, eax / jz .skip   ; 창 모드 창 생성 중
+    cmp eax, [ebp+8] / je .skip                      ; 창 모드 창
+    mov eax, [ebp+0x14] / mov ecx, 640 / mov edx, 480
+    mov [eax+0x18], ecx / mov [eax+0x1C], edx / mov [eax+0x20], ecx / mov [eax+0x24], edx
+.skip: jmp 0x401DE7
+
+; ③ 0x43A790 Alt+Enter 스텁 (76바이트, 절대 주소 없음)
+; 0x401D6C의 cmp msg,WM_KEYDOWN / je 0x401C19 / jmp 0x401DE7 → jmp 0x43A790 + INT3
+    mov eax, [ebp-0x48]                  ; msg
+    cmp eax, 0x100 / je 0x401C19         ; WM_KEYDOWN: 원래 처리
+    or eax, 2 / cmp eax, 0x106 / jne .def            ; WM_SYSKEYDOWN(0x104) / WM_SYSCHAR(0x106)
+    cmp dword [ebp+0x10], 0x0D / jne .def            ; Enter
+    test byte [ebp+0x17], 0x20 / jz .def             ; Alt
+    cmp byte [ebp-0x48], 0x06 / je .ret0             ; WM_SYSCHAR: 삼킴
+    test byte [ebp+0x17], 0x40 / jnz .ret0           ; 자동 반복
+    call 0x416166 / cwde / xor eax, 1 / push eax / call 0x401FBC / pop ecx
+.ret0: xor eax, eax / jmp 0x401E02
+.def: jmp 0x401DE7
+
+; ③ .patch 섹션 (0x5BE000) — kr-patch/tools/compat-window.asm 참고
+; 0x401859 push 0 / push 0x440460 → jmp init + nop×2
+; 0x417C86 (0x417C0D 창 모드 분기) → jmp present_c + INT3×2
+; 0x417B95 (0x417A55 창 모드 분기) → jmp fill_b + INT3×4
+; 0x41666B (0x4165B8 끝의 xor eax,eax / jmp) → jmp pal_hook1 + INT3×2
+; 0x41672A (0x416677 끝의 xor eax,eax / jmp) → jmp pal_hook2 + INT3×2
+; 0x41579B, 0x415A0D, 0x41914B mov eax,[eax] / call [eax+0x18] → call create_surface
+; 0x416558 jmp 0x41655D → jmp pal_attach
 ```
 
 **`docs/probe.html`(gitignore)** — 로컬 테스트용 페이지. `kr.html`에 `suiko-probe.js`만 붙인
@@ -649,8 +761,9 @@ kernel32/user32/gdi32의 Win95 API만 쓴다. 빌드는 `build.sh`(mingw-w64, �
 - 창 메시지(`0x401AC0`): `WM_ACTIVATEAPP`은 DirectInput Acquire/Unacquire(`0x42F460`)만 한다 —
   그래픽 복구는 없다. `WM_QUERYNEWPALETTE`/`WM_PALETTECHANGED`는 팔레트 재적용(`0x416599`),
   `WM_PAINT`는 화면 전체 재그리기 표시(`0x411466` → 타일 전부 dirty).
-- 화면 출력은 Flip이 아니라 Blt다. Flip 래퍼 `0x417661`은 **어디서도 호출되지 않는 죽은 코드**(76바이트
-  — 코드 공간으로 재사용 가능). 스크롤 띠 Blt는 `0x417A55`, 범용 Blt 래퍼는 `0x4176AD`.
+- 화면 출력은 Flip이 아니라 Blt다. Flip 래퍼 `0x417661`은 어디서도 호출되지 않는 죽은 코드(76바이트
+  — 코드 공간으로 재사용 가능). primary에 쓰는 곳은 뒷버퍼 영역 복사 `0x417C0D`와 한 색 채우기 `0x417A55`이고, 범용 Blt
+  래퍼는 `0x4176AD`.
 - 표면 복구(`0x416013`: 전 표면 `Restore()` + 이미지 재로드)는 스프라이트 경로(`0x41747B`)가
   `DDERR_SURFACELOST`를 받았을 때만 호출된다(`0x41756F`). 팔레트는 재적용하지 않는다.
 - `SetWindowsHookExA(WH_KEYBOARD, 0x40217C, hMod=0, threadId=0)`는 NT에서 설치 자체가 거부된다
@@ -665,7 +778,7 @@ kernel32/user32/gdi32의 Win95 API만 쓴다. 빌드는 `build.sh`(mingw-w64, �
 | 복구 성공 직후 팔레트 재적용 + 전체 재그리기(`0x41756F`를 스텁 경유) | 로그상 실행됐으나 여전히 검은 화면 |
 | Win11 호환성 설정 "색 모드 줄이기 8비트" / "전체 화면 최적화 사용 안 함" | 검은 화면 그대로 |
 | cnc-ddraw(ddraw.dll 대체) 동봉 | 검은 화면은 안 생기지만 게임이 화면에 고정돼 백그라운드로 못 보냄(Win+D만 먹힘) — 탈락. 배포를 "EXE 하나"에서 DLL 묶음으로 바꾸는 것도 과함 |
-| 내장 창 모드(아래) | 색 모드 줄이기 8비트와 함께면 정상 표시되지만 알트탭 후 역시 검은 화면 |
+| 내장 창 모드(4.5 ③) | 색 모드 줄이기 8비트와 함께면 정상 표시되지만 알트탭 후 역시 검은 화면 |
 
 즉 게임은 "표면 복구 성공 + 출력 Blt 성공"이라고 보는데 화면에는 안 나온다. 다음 조사: 복귀 후
 ①디스플레이 모드(`IDirectDraw::GetDisplayMode`) ②창 상태(클라이언트 영역·최소화·전면 여부)
@@ -674,26 +787,19 @@ kernel32/user32/gdi32의 Win95 API만 쓴다. 빌드는 `build.sh`(mingw-w64, �
 
 **진단 도구**: `kr-patch/tools/alttab-diag/`(`build-diag.js` + `diag.asm`, nasm 필요) — `build.js`
 산출물(`--in`, 기본 `kr-patch/build/HWANSE.EXE`)로 `HWANSE-diag.EXE`(`--out`)를 만든다. 배포용 아님.
-- 복구 스텁: 죽은 Flip 래퍼 `0x417661` 자리에 `call 0x416013 / 성공이면 call 0x416599(팔레트),
-  call 0x411466(전체 재그리기)`(22바이트, 나머지 INT3)를 넣고 `0x41756F`의 복구 호출을 여기로 돌린다
-  (`e8 ade9ffff 85c0 750c e8 2aefffff e8 f29dffff 31c0 c3`).
-- 로깅: 파일 끝에 RWX 섹션 `.diag`(VA `0x5BE000`)를 붙이고 훅 4개 — `0x417BE5`(스크롤 띠 Blt
+- 복구 스텁: `0x41756F`의 복구 호출(`0x416013`)을 `.diag`의 `diag_restore`로 돌린다 — 복구 결과를
+  기록하고, 성공이면 `call 0x416599`(팔레트)·`call 0x411466`(전체 재그리기).
+- 로깅: 파일 끝(`.patch` 뒤)에 RWX 섹션 `.diag`(VA `0x5BF000`)를 붙이고 훅 4개 — `0x417BE5`(채우기 Blt
   HRESULT), `0x417728`(범용 Blt 래퍼 HRESULT, 둘 다 값이 바뀔 때만), `0x401B2C`(`WM_ACTIVATEAPP`
   wParam + primary `IsLost`), 복구 결과. 현재 폴더(게임 폴더)에 `HWDIAG.TXT`를 쓴다. `diag.asm` 맨
   앞 16바이트가 훅 진입점 주소표라 빌더가 그걸 읽어 호출을 건다. 새 코드는 `.reloc`에 올리지 않는다
   (기본 주소에만 로드되므로).
+- 창 모드 기록: `compat-window.asm`을 `-DDIAG -DDIAG_LOG=<.diag의 log 주소>`로 다시 조립해 `.patch` 섹션
+  내용을 바꿔 넣는다(`diag.asm` 주소표 다섯 번째가 `log`). 초기화 때 찾은 GDI 함수 주소, 창 모드 표면
+  생성 결과(HRESULT·caps), 출력의 잠금 결과·색 깊이·DC 종류·`SetDIBitsToDevice` 반환값, 채우기를 같은
+  `HWDIAG.TXT`에 남긴다(출력 관련은 처음 40회만). 처리되지 않은 예외도 코드·주소로 남긴다. 섹션 맨 앞의
+  진입점 점프표(5바이트씩 8개) 덕에 기록 코드가 들어가 함수 위치가 바뀌어도 `.text`의 훅 주소는 그대로다.
 
-**내장 창 모드**: 게임은 시작 시 창을 두 개 만든다 — 전체 화면용 `WS_POPUP`(`[0x55A1B0]`)과 창
-모드용 `WS_OVERLAPPEDWINDOW`(`[0x55A1AC]`). `0x401FBC(mode)`가 0=전체 화면/1=창 모드로 전환하고
-`0x41617C`가 표면을 모드에 맞게 다시 만든다(Blt도 창 모드면 `ClientToScreen` 오프셋 적용). 출시판은
-시작 코드 `0x4018A6`의 `push 0`으로 전체 화면에 고정돼 있다 — `push 1`로 바꾸면 창 모드로 뜬다.
-- 256색 바탕화면을 전제로 만든 것이라 트루컬러 바탕화면에서는 색이 깨지고 화면이 찌그러진다.
-  Win11 호환성 설정 "색 모드 줄이기 8비트"를 켜면 색·비율 정상.
-- 창 크기: `WM_GETMINMAXINFO`(`0x401B9F`)가 창 **바깥** 크기를 640×480으로 묶어서 제목 표시줄·테두리
-  만큼 오른쪽·아래가 잘린다. 고친다면 제한을 전체 화면 창에만 걸 것 — 조건 "`[0x55A1AC]`≠0 이고
-  hwnd≠`[0x55A1AC]`"(창 모드 창 생성 중에는 `[0x55A1AC]`가 아직 0)이면 전체 화면 창 동작은 원본과
-  동일하고, 기존 45바이트 자리에 들어간다.
-- 알트탭 문제는 창 모드에서도 똑같이 생겨서 지금은 쓰지 않는다.
 
 ### 4.7 도구와 스크립트
 
@@ -717,6 +823,8 @@ kernel32/user32/gdi32의 Win95 API만 쓴다. 빌드는 `build.sh`(mingw-w64, �
   `kr-patch/build/final-shared.img`로 쓴다. 배포 파일을 직접 덮지 않는다 — 에뮬레이터 확인 뒤
   `cp kr-patch/build/final-shared.img docs/final-shared.img`.
 - `compat-patch.js [--in] [--out]` — 4.5. `build.js`가 부르므로 단독 실행은 확인용.
+- `compat-window.asm` — `compat-patch.js`의 `.patch` 섹션 코드 소스(4.5 ③). 빌드는 조립된 바이트를 쓰므로 nasm 불필요. 데이터(`xpal`)는 `0x5BEB00`부터라 코드는 `-DDIAG` 판까지 그 앞에 들어가야 한다(`compat-window-gen.js`·`build-diag.js`가 검사).
+- `compat-window-gen.js` — asm을 고친 뒤 실행하면 `compat-patch.js`의 `PATCH_CODE`·`PATCH_RELOCS`를 다시 쓴다(nasm 필요).
 - `hwanse-text.js` — KR 대사(`@` 종결) 추출/빌드. `extract(buf)` → `[{offset, length, text}]`
   (length는 `@` 제외), `build(buf, entries)`는 같은 바이트 길이만 허용(포인터 테이블 단위는 합계만
   — 4.3). `JUMP_TABLE_RANGES`/`NOISE_RANGES`는 대사가 아닌데 CP949로 읽히는 구간 제외용.

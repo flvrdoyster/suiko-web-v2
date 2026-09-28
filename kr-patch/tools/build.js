@@ -46,7 +46,11 @@ let out;
 try {
   out = DIALOGUE.build(buf, t.dialogue);
   out = NAMES.build(out, fixedLabels);
-  console.log('compat: skill fix ' + COMPAT.applySkillFix(out) + ', font fix ' + COMPAT.applyFontFix(out));
+  const skill = COMPAT.applySkillFix(out);
+  const font = COMPAT.applyFontFix(out);
+  const win = COMPAT.applyWindowFix(out);
+  out = win.buf;
+  console.log(`compat: skill fix ${skill}, font fix ${font}, window fix ${win.status}`);
 } catch (e) {
   fail(e.message);
 }
