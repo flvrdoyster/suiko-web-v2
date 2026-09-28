@@ -35,7 +35,7 @@ npm install
 
 ## 기술 노트
 
-역공학 분석 및 구현 상세: [`NOTES.md`](NOTES.md)
+진행 상황, 남은 작업, 역공학·구현 상세: [`NOTES.md`](NOTES.md)
 
 ---
 
