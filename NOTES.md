@@ -1066,6 +1066,7 @@ UI를 바탕으로 만들어짐. 같은 사이트 계열(atah.io)에서 서빙�
   `kr.html`을 가리킨다. atah.io 메뉴·README·외부 링크가 모두 `kr.html`이라 그대로 맞췄다
 - `jp.html`은 제목·설명을 "일본어 원판"으로 분리해 색인한다. 페이지 UI가 한국어라 `lang`은 `ko`
 - `demo.html`은 `noindex`, 사이트맵에서도 뺐다
+- 네이버 서치어드바이저 소유 확인은 HTML 파일 방식이라 `docs/naver7c5eb5dc6386cb8ce95adc8be90a15ad.html`을 둔다. 사이트맵에는 넣지 않는다
 - 모든 공개 페이지에 절대 주소 canonical과 `og:site_name`(atah.io)을 둔다. GitHub Pages가
   `/kr`과 `/kr.html`을 둘 다 200으로 응답해, canonical이 없으면 같은 페이지가 두 주소로 잡힌다
 
