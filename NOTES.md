@@ -1057,7 +1057,19 @@ UI를 바탕으로 만들어짐. 같은 사이트 계열(atah.io)에서 서빙�
 - DOM id: `#canvasDiv` vs gensei-pc98 `#canvas-wrap`
 - 기능 적용 범위: 다중 디스크 여부, 버튼 유무 등 리포별 차이
 
-### 5.3 참고 자료
+### 5.3 검색 노출 (SEO)
+
+검색엔진은 서브도메인을 atah.io와 별개 사이트로 보므로 `docs/robots.txt`·`docs/sitemap.xml`을
+이 레포에 따로 둔다(사이트맵은 같은 호스트 주소만 담을 수 있고, 네이버는 서브도메인을 따로 등록한다).
+
+- 대표 주소는 `kr.html`. 루트 `index.html`은 `kr.html`로 넘기는 페이지로만 두고 canonical도
+  `kr.html`을 가리킨다. atah.io 메뉴·README·외부 링크가 모두 `kr.html`이라 그대로 맞췄다
+- `jp.html`은 제목·설명을 "일본어 원판"으로 분리해 색인한다. 페이지 UI가 한국어라 `lang`은 `ko`
+- `demo.html`은 `noindex`, 사이트맵에서도 뺐다
+- 모든 공개 페이지에 절대 주소 canonical과 `og:site_name`(atah.io)을 둔다. GitHub Pages가
+  `/kr`과 `/kr.html`을 둘 다 200으로 응답해, canonical이 없으면 같은 페이지가 두 주소로 잡힌다
+
+### 5.4 참고 자료
 
 - `.vendor-tmp/`(doswasmx 소스 클론, gitignored)는 재빌드 필요시 대비 로컬 보존 — 절차는
   "1. 완료"의 엔진 재빌드 항목 참고
