@@ -81,29 +81,54 @@ function editRelocs(buf, remove, add) {
   writeRelocs(buf, [...set]);
 }
 
-const SKILL_FN_VA = 0x410e40;
 const SKILL_FN_LEN = 0xe3;
-const SKILL_FN_NEW = Buffer.from(
+const SKILL_FN_TEMPLATE = Buffer.from(
   '5589e55356570fb6053ee359000fb698e97645008b349d88244d0069dbd80000000fb61541e35900' +
   '8d14528d9c53a67745008b7d0831c93a4d0c732d0fb6140b85d2741f8b14d60fb652118b04853' +
   '0db59000fb7400e39d00f9cc2420fb6053ee3590088140f41ebce83f90c7307c6040f0041ebf4' +
   '5f5e5b5dc3', 'hex');
 const SKILL_FN_NEW_RELOCS = [0x09, 0x10, 0x17, 0x24, 0x2e, 0x4e, 0x5f];
-const SKILL_BUG_VA = 0x410ecb;
-const SKILL_BUG_BYTES = Buffer.from('8b04c588244d0033d28a5011', 'hex');
+const SKILL_ADDR_ORDER = ['partySlot', 'charIds', 'skillTables', 'rowSelect', 'skillRows', 'partyMembers', 'partySlot'];
 
-function applySkillFix(buf) {
+const SKILL_PROFILES = {
+  kr: {
+    fnVa: 0x410e40,
+    bugVa: 0x410ecb,
+    bugBytes: Buffer.from('8b04c588244d0033d28a5011', 'hex'),
+    addr: { partySlot: 0x59e33e, charIds: 0x4576e9, skillTables: 0x4d2488, rowSelect: 0x59e341, skillRows: 0x4577a6, partyMembers: 0x59db30 },
+  },
+  jp: {
+    fnVa: 0x4334f1,
+    bugVa: 0x43357c,
+    bugBytes: Buffer.from('8b04c5c8f4460033d28a5011', 'hex'),
+    addr: { partySlot: 0x57707e, charIds: 0x4b5059, skillTables: 0x46f4c8, rowSelect: 0x577081, skillRows: 0x4b5116, partyMembers: 0x576870 },
+  },
+};
+
+function skillFnBytes(profile) {
+  const out = Buffer.from(SKILL_FN_TEMPLATE);
+  const kr = SKILL_PROFILES.kr.addr;
+  SKILL_FN_NEW_RELOCS.forEach((off, i) => {
+    const key = SKILL_ADDR_ORDER[i];
+    if (SKILL_FN_TEMPLATE.readUInt32LE(off) !== kr[key]) throw new Error(`skill fix: template address at +0x${off.toString(16)} is not ${key}`);
+    out.writeUInt32LE(profile.addr[key], off);
+  });
+  return out;
+}
+
+function applySkillFixProfile(buf, profile) {
   const pe = parsePE(buf);
   const va2fo = (va) => pe.rvaToFile(va - pe.imageBase);
-  const fnFo = va2fo(SKILL_FN_VA);
-  const bugFo = va2fo(SKILL_BUG_VA);
+  const fnNew = skillFnBytes(profile);
+  const fnFo = va2fo(profile.fnVa);
+  const bugFo = va2fo(profile.bugVa);
 
-  if (buf.subarray(fnFo, fnFo + SKILL_FN_NEW.length).equals(SKILL_FN_NEW)) return 'already applied';
-  if (!buf.subarray(bugFo, bugFo + SKILL_BUG_BYTES.length).equals(SKILL_BUG_BYTES)) {
-    throw new Error('skill fix: unexpected bytes at 0x410ECB (not the original HWANSE.EXE, or the wiki NOP patch is already applied)');
+  if (buf.subarray(fnFo, fnFo + fnNew.length).equals(fnNew)) return 'already applied';
+  if (!buf.subarray(bugFo, bugFo + profile.bugBytes.length).equals(profile.bugBytes)) {
+    throw new Error(`skill fix: unexpected bytes at 0x${profile.bugVa.toString(16).toUpperCase()} (not the original exe, or the wiki NOP patch is already applied)`);
   }
 
-  const fnRVA = SKILL_FN_VA - pe.imageBase;
+  const fnRVA = profile.fnVa - pe.imageBase;
   const old = readRelocs(buf).filter((r) => r >= fnRVA && r < fnRVA + SKILL_FN_LEN);
   if (old.length !== SKILL_FN_NEW_RELOCS.length) {
     throw new Error(`skill fix: expected ${SKILL_FN_NEW_RELOCS.length} relocs in function, found ${old.length}`);
@@ -111,9 +136,12 @@ function applySkillFix(buf) {
   editRelocs(buf, old, SKILL_FN_NEW_RELOCS.map((o) => fnRVA + o));
 
   buf.fill(0xcc, fnFo, fnFo + SKILL_FN_LEN);
-  SKILL_FN_NEW.copy(buf, fnFo);
+  fnNew.copy(buf, fnFo);
   return 'applied';
 }
+
+const applySkillFix = (buf) => applySkillFixProfile(buf, SKILL_PROFILES.kr);
+const applySkillFixJp = (buf) => applySkillFixProfile(buf, SKILL_PROFILES.jp);
 
 const FONT_STUB_VA = 0x410ec0;
 const FONT_STUB = Buffer.from(
@@ -294,7 +322,7 @@ function applyWindowFix(input) {
   return { buf, status: 'applied' };
 }
 
-module.exports = { applySkillFix, applyFontFix, applyWindowFix, readRelocs, serializeRelocs };
+module.exports = { applySkillFix, applySkillFixJp, applyFontFix, applyWindowFix, readRelocs, serializeRelocs };
 
 if (require.main === module) {
   const arg = (name, fallback) => {

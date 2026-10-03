@@ -30,6 +30,10 @@ let raw = fs.readFileSync(imagePath);
 if (raw[0] === 0x1f && raw[1] === 0x8b) raw = zlib.gunzipSync(raw);
 let img = new Uint8Array(raw);
 
+const withJp = process.argv.includes('--jp');
+const jpExePath = arg('jp-exe', path.join(ROOT, 'kr-patch/build/jp/GENSE.EXE'));
+const jpFontPath = arg('jp-font', path.join(ROOT, 'kr-patch/build/jp/JAFONT.TTF'));
+
 const patchedExe = new Uint8Array(fs.readFileSync(exePath));
 const res = F.injectDirFiles(img, 'GENSE', [{ name: 'HWANSE.EXE', data: patchedExe }]);
 if (res.skipped.length) fail(`HWANSE.EXE not found in image at GENSE/: ${res.skipped.join(',')}`);
@@ -40,6 +44,23 @@ const entry = F.listDir(v, F.resolveDir(v, 'GENSE')).find((e) => e.shortName.toU
 const readback = F.readFileEntry(v, entry);
 if (Buffer.compare(Buffer.from(readback), Buffer.from(patchedExe)) !== 0) {
   fail('readback after injection does not match the patched exe — aborting, image not written');
+}
+if (withJp) {
+  for (const p of [jpExePath, jpFontPath]) if (!fs.existsSync(p)) fail(`not found: ${p} (run build-jp.js / adapt-jafont.py first)`);
+  const jpExe = new Uint8Array(fs.readFileSync(jpExePath));
+  const jpFont = new Uint8Array(fs.readFileSync(jpFontPath));
+  const jpSteps = [['GENSEJP', 'GENSE.EXE', jpExe], ['WINDOWS/FONTS', 'JAFONT.TTF', jpFont]];
+  for (const [dir, name, data] of jpSteps) {
+    const r = F.injectDirFiles(img, dir, [{ name, data }]);
+    if (r.skipped.length) fail(`${dir}/${name} could not be written`);
+    img = r.image;
+    const view = F.openImage(img);
+    const ent = F.listDir(view, F.resolveDir(view, dir)).find((e) => e.shortName.toUpperCase() === name);
+    if (!ent || Buffer.compare(Buffer.from(F.readFileEntry(view, ent)), Buffer.from(data)) !== 0) {
+      fail(`readback mismatch for ${dir}/${name} — aborting, image not written`);
+    }
+    console.log(`injected ${dir}/${name} (${data.length} bytes)`);
+  }
 }
 const krSaves = F.extractDirFiles(img, 'GENSE/SAVEDATA');
 const jpSaves = F.extractDirFiles(img, 'GENSEJP/SAVEDATA');

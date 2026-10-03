@@ -718,6 +718,13 @@ Win11(배율 125%, 호환성 설정 없음)에서 전체 화면 알트탭 복귀
 - `inject.js [--exe] [--image] [--out]` — 빌드한 EXE를 `docs/final-shared.img` 사본에 넣어
   `kr-patch/build/final-shared.img`로 쓴다. 배포 파일을 직접 덮지 않는다 — 에뮬레이터 확인 뒤
   `cp kr-patch/build/final-shared.img docs/final-shared.img`.
+  `--jp`를 주면 `kr-patch/build/jp/GENSE.EXE`를 `GENSEJP/`에, `kr-patch/build/jp/JAFONT.TTF`를
+  `WINDOWS/FONTS/`에 함께 넣는다(`--jp-exe`, `--jp-font`로 경로 지정). 각 파일은 쓴 뒤 읽어 비교한다.
+- `build-jp.js [--src] [--dst] [--weight]` — 일본판 `original/jp/GENSE.EXE`에 기술 창 수정(4.5 ①의 JP
+  프로파일)을 적용하고 LOGFONT 5개의 `lfWeight`(오프셋 0xAC100+슬롯×0x3C+16)를 지정값(기본 500)으로
+  바꿔 `kr-patch/build/jp/GENSE.EXE`를 쓴다.
+- `tools/adapt-jafont.py <src.ttf> <dst.ttf> [--texts jp-reference.json] [--strip-hints]` — 글꼴을 Win95
+  GDI 기준으로 보정(4.10)하고 점검 결과를 JSON으로 출력한다. 문제가 있으면 종료 코드 1.
 - `compat-patch.js [--in] [--out]` — 4.5. `build.js`가 부르므로 단독 실행은 확인용.
 - `compat-window.asm` — `compat-patch.js`의 `.patch` 섹션 코드 소스(4.5 ③). 빌드는 조립된 바이트를 쓰므로 nasm 불필요. 데이터(`xpal`)는 `0x5BEB00`부터라 코드는 `-DDIAG` 판까지 그 앞에 들어가야 한다(`compat-window-gen.js`·`build-diag.js`가 검사).
 - `compat-window-gen.js` — asm을 고친 뒤 실행하면 `compat-patch.js`의 `PATCH_CODE`·`PATCH_RELOCS`를 다시 쓴다(nasm 필요).
@@ -1033,6 +1040,22 @@ UI(헤더, 불러오기/설정/로그인 버튼, ROM 목록, 드래그앤드롭,
   나눔; 이런 모양이 더 나오면 일반 규칙으로 올릴 것).
 - `build()`는 같은 바이트 길이만 허용한다. 끝 패딩이 길이에 포함되므로 짧게 고치면 전각 공백으로
   다시 채운다(에디터 서버가 자동으로).
+
+### 4.10 일본판 글꼴 교체 (`JAFONT.TTF`)
+
+- 대상은 웹 에뮬레이터의 Win95 이미지. `WINDOWS/FONTS/JAFONT.TTF`를 같은 이름으로 바꿔 넣으면
+  `SYSTEM.DAT`의 등록(파일명·"Ume Gothic")이 그대로 유효하다.
+- 게임은 TextOutA 뒤에 `LOGFONT.lfWidth`(생성 직후 `tmMaxCharWidth`로 덮어씀)×바이트 수/2만큼 커서를
+  옮긴다(JP: 텍스트 함수 0x41BA39, 글꼴 생성 0x41B804). Win95는 `tmMaxCharWidth`를 `head`의 바운딩박스
+  폭에서 구하는 것으로 보여, 폭이 em보다 훨씬 큰 글리프가 하나라도 있으면 글자 간격이 그만큼 벌어진다.
+- LOGFONT 슬롯(JP 파일 오프셋 0xAC100, 0x3C 간격): 0 h0 w0, 1 h16 w8, 2 h24 w−16, 3 h24 w−12,
+  4 h−48 w−24(제목, ＭＳ明朝). charset 128. 원래 weight는 700(슬롯 4는 1000).
+- `adapt-jafont.py`가 맞추는 값: 셀 높이(`usWinAscent+usWinDescent`)=em, `xAvgCharWidth`=em/2,
+  `hhea.advanceWidthMax`·`head`/`hhea` 바운딩박스 폭=em, 코드페이지 JIS 비트, `OS/2` v1, (3,1) cmap
+  형식 4만 유지, GPOS·GDEF 등 제거. 번역 텍스트 글자의 폰트 포함 여부도 검사한다.
+- 현재 글꼴은 ニーロ丸ゴシック M(SIL OFL 1.1). 저작권 표시와 OFL 전문이 글꼴 name 테이블(ID 0, 13)에 들어 있다.
+- 16px/24px는 안티앨리어싱 없는 흑백 렌더링이라 둥근 서체는 계단이 보인다. 비트맵 스트라이크(Shinonome 등)나
+  힌팅이 좋은 고딕(IPAGothic, VL Gothic)은 시험하지 않았다.
 
 ## 5. 기타
 

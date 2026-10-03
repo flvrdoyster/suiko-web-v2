@@ -21,7 +21,33 @@
     return t;
   }
 
+  function patchJp(baseName) {
+    return Promise.all([fetchOptional('probe/jp/GENSE.EXE'), fetchOptional('probe/jp/JAFONT.TTF')])
+      .then(function (got) {
+        var exe = got[0], font = got[1];
+        var path = imgPath(baseName);
+        var img = Module.FS.readFile(path);
+        var res;
+        if (exe) {
+          res = Fat16.injectDirFiles(img, 'GENSEJP', [{ name: 'GENSE.EXE', data: new Uint8Array(exe) }]);
+          if (res.skipped.length) throw new Error('GENSE.EXE not replaced: ' + res.skipped);
+          img = res.image;
+          console.log('[suiko-probe] GENSEJP/GENSE.EXE replaced with probe/jp/GENSE.EXE');
+        }
+        if (font) {
+          res = Fat16.injectDirFiles(img, 'WINDOWS/FONTS', [{ name: 'JAFONT.TTF', data: new Uint8Array(font) }]);
+          if (res.skipped.length) throw new Error('JAFONT.TTF not replaced: ' + res.skipped);
+          img = res.image;
+          console.log('[suiko-probe] JAFONT.TTF replaced with probe/jp/JAFONT.TTF');
+        }
+        Module.FS.writeFile(path, img);
+        if (!exe && !font) console.warn('[suiko-probe] docs/probe/jp/ is empty — plain jp.html boot');
+      })
+      .catch(function (e) { console.error('[suiko-probe]', e); alert('[suiko-probe] ' + e.message); });
+  }
+
   function patch(baseName) {
+    if (window.SUIKO_LANG === 'jp') return patchJp(baseName);
     var saveNames = [1, 2, 3, 4, 5, 6].map(function (n) { return 'SAVEDAT' + n + '.DAT'; });
     return Promise.all([fetchOptional('probe/FNTPROBE.EXE'), fetchOptional('probe/HWANSE.EXE')]
       .concat(saveNames.map(function (n) { return fetchOptional('probe/' + n); })))
