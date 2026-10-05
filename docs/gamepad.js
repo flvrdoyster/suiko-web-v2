@@ -117,7 +117,8 @@
     var collapseBtn = document.getElementById('btn-collapse');
     if (collapseBtn) {
       collapseBtn.addEventListener('click', function() {
-        document.body.classList.toggle('chrome-hidden');
+        var hidden = document.body.classList.toggle('chrome-hidden');
+        collapseBtn.setAttribute('aria-pressed', String(hidden));
         collapseBtn.blur();
       });
     }

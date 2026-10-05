@@ -20,8 +20,8 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   맞았다 — gensei-pc98은 IDB 키 하나 = 파일 하나지만, `suiko-save.js`는 키 하나(`savedata`)에
   SAVEDATA 폴더 전체가 배열로 들어있다. 그래서 행 하나 = 배열 안 슬롯 하나(`SAVEDAT1~6.DAT`
   고정 6개)로 바꾸고, 가져오기/내보내기/삭제 전부 그 배열을 읽고 이름으로 갈아끼워 다시 쓰는
-  식으로 구현. 상단바 왼쪽(`#topbar-left`, gensei-pc98과 같은 grid-column:1 자리)에 아이콘
-  버튼 하나. 스타일은 이 사이트 `style.css`가 gensei-pc98과 완전히 같은 파일이라
+  식으로 구현. 상단바 왼쪽 칸(`#topbar-left`, 패치 페이지 링크 아이콘이 있는 자리)에 아이콘
+  버튼을 덧붙인다. 스타일은 이 사이트 `style.css`가 gensei-pc98과 완전히 같은 파일이라
   `--font-sm`/`--font-md` 토큰과 전역 `button{}`을 그대로 재사용. 여러 파일 동시 임포트는 안
   만듦(1개씩으로 충분).
   `test/fixtures/SAVEDAT{1,2}.DAT`(실제 KR 세이브 슬롯 2개, 각 1,274B)를 이 패널의 가져오기
