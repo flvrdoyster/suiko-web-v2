@@ -1,11 +1,11 @@
 # 환세취호전 한국어판 개선 패치 (suiko-web-v2)
 
-**▶ 패치 다운로드: [oysterbay.tistory.com/133](https://oysterbay.tistory.com/133)**  
+**▶ 패치 적용: [suiko.atah.io/patch.html](https://suiko.atah.io/patch.html)**  
 **▶ 웹에서 바로 플레이: [suiko.atah.io](https://suiko.atah.io/kr.html)** (패치 적용본)
 
 ## 개요
 
-Compile의 환세취호전(幻世酔虎伝, 1997) 국내 정식 발매판을 저본으로 한 **번역 개선**·**호환성 패치**와 **웹 에뮬레이터** 프로젝트. 
+환세취호전(幻世酔虎伝, Compile, 1997)의 국내 정식으로 발매된 한국어판을 저본으로 한 **번역 개선**·**호환성 패치**와 **웹 에뮬레이터** 프로젝트. 
 suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이터 구조를 새로이 다시 설계했다.
 패치된 실행 파일은 Windows 95/98과 NT 계열(XP~11) 양쪽을 모두 대응한다.
 
@@ -22,15 +22,16 @@ suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이
 
 ### 호환성 패치
 
-- 스테이터스 창에서 기술을 볼 때 튕기는 문제(현행 OS) 수정 — 기술 MP 부족 표시도 바로잡음
-- 현행 OS에서 글자 크기·간격이 어긋나는 문제 수정
+- 스테이터스 창에서 기술을 볼 때 튕기는 문제(현행 Windows) 수정 — 기술 MP 부족 표시도 바로잡음
+- 현행 Windows에서 글자 크기·간격이 어긋나는 문제 수정
 - `Alt + Enter` 창 모드 추가
 - 전체 화면에서 `Alt + Tab` 후 돌아오면 화면이 검게 남는 문제 수정
 
 ## 패치 사용
 
-배포 파일과 적용 방법은 [블로그](https://oysterbay.tistory.com/133)를 참고.
-국내 정식판에 `HWANSE.EXE`와 `GENSE.FLD`를 덮어쓰는 방식.
+[패치 페이지](https://suiko.atah.io/patch.html)에 정식판의 실행 파일(`HWANSE.EXE` 또는 `HWANSE2.EXE`)과
+`GENSE.FLD`를 넣으면, 브라우저 안에서 패치를 입힌 두 파일을 내려받을 수 있다. 파일은 서버로 가지 않는다.
+받은 파일을 게임 폴더에 넣고 `HWANSE.EXE`로 실행한다.
 
 ## 저장소 구성
 
@@ -53,7 +54,7 @@ suiko-web(삭제)의 후속으로, 에뮬레이터 백엔드와 세이브 데이
 ```
 npm install
 node kr-patch/tools/build.js      # → kr-patch/build/HWANSE.EXE (번역 + 호환성 패치)
-node kr-patch/tools/cara-fnt.js   # → kr-patch/build/GENSE.FLD (캐릭터 이름 글꼴)
+node kr-patch/tools/cara-fnt.js   # → kr-patch/build/GENSE.FLD (대회 장면 글자 그래픽)
 ```
 
 `npm install`은 `iconv-lite`(CP949 인코딩) 하나를 받는다. 텍스트 파이프라인 전체가 이 모듈에
@@ -77,9 +78,9 @@ node kr-patch/tools/cara-fnt.js   # → kr-patch/build/GENSE.FLD (캐릭터 이�
 
 ## 소프트웨어 고지 / Software Notice
 
-본 저장소는 환세취호전 국내 발매판(한국어)의 번역 개선·호환성 패치와, 원본(일본어) 및
-한국어판을 브라우저 환경에서 실행하기 위한 도구를 포함합니다. 패치 사용에는 국내 발매판이
-필요합니다.
+본 저장소는 환세취호전의 국내 정식으로 발매된 한국어판을 대상으로 한 번역 개선·호환성 패치와,
+원본(일본어) 및 한국어판을 브라우저 환경에서 실행하기 위한 도구를 포함합니다. 패치 사용에는
+정식판이 필요합니다.
 
 원본 게임은 Compile이 개발하였으며, 게임 자산(그래픽, 음악 등)의 모든 권리는 원저작권자에게 있습니다.
 

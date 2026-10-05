@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>환세취호전 한국어판 개선 패치 : atah.io</title>
+    <link rel="icon" href="https://atah.io/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="환세취호전(Compile, 1997)의 국내 정식으로 발매된 한국어판을 대상으로 한 번역 개선·호환성 패치입니다. 브라우저에서 바로 적용합니다.">
+    <meta name="keywords" content="환세취호전, 幻世酔虎伝, Compile, 한글 패치, 번역 개선, 호환성 패치, HWANSE.EXE, Windows 11, suiko, gensei">
+    <link rel="canonical" href="https://suiko.atah.io/patch.html">
+    <meta property="og:title" content="환세취호전 한국어판 개선 패치 : atah.io">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://suiko.atah.io/patch.html">
+    <meta property="og:image" content="https://suiko.atah.io/img/thumbnail-suiko.png">
+    <meta property="og:description" content="환세취호전(Compile, 1997)의 국내 정식으로 발매된 한국어판을 대상으로 한 번역 개선·호환성 패치입니다. 브라우저에서 바로 적용합니다.">
+    <meta property="og:site_name" content="atah.io">
+    <meta property="og:locale" content="ko_KR">
+    <style>
+        body { -webkit-user-select: text; user-select: text; word-break: keep-all; }
+        .patch { width: 100%; max-width: 960px; display: flex; flex-direction: column; gap: 16px; }
+        .patch-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+        .patch-intro { display: flex; flex-direction: column; gap: 12px; padding: 0 4px; }
+        .patch-intro .logo { width: 200px; height: auto; }
+        .patch-intro h1 { margin: 0; font-size: var(--font-lg); color: rgba(238, 238, 238, 1); }
+        .patch-intro p { font-size: var(--font-md); line-height: 1.7; }
+        .patch-art { position: relative; display: block; aspect-ratio: 1000 / 630; border-radius: 10px; overflow: hidden; background: rgba(38, 38, 38, 1); }
+        .patch-art img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1); }
+        .patch-art span { position: absolute; left: 0; right: 0; bottom: 0; padding: 32px 20px 14px; font-size: var(--font-md); color: rgba(238, 238, 238, 1); background: linear-gradient(to bottom, rgba(15, 15, 15, 0), rgba(15, 15, 15, 0.85)); }
+        .patch-art:hover { text-decoration: none; }
+        .patch-art:hover img { transform: scale(1.03); }
+        .panel { padding: 20px 24px; border-radius: 8px; background: rgba(35, 35, 35, 1); }
+        .panel h2 { position: relative; margin-bottom: 12px; font-size: var(--font-md); color: rgba(238, 238, 238, 1); }
+        .panel h2::before { content: ''; position: absolute; left: -24px; top: 2px; bottom: 2px; width: 3px; border-radius: 2px; background: rgba(204, 204, 204, 1); }
+        .panel ul, .panel ol { font-size: var(--font-md); line-height: 1.7; padding-left: 1.2em; }
+        .panel li + li { margin-top: 4px; }
+        .panel li::marker { color: rgba(119, 119, 119, 1); }
+        .panel code { font-family: inherit; color: rgba(238, 238, 238, 1); }
+        .panel .lead { margin-bottom: 14px; font-size: var(--font-md); line-height: 1.7; }
+        .panel .items { list-style: none; padding-left: 0; }
+        .panel .items li { display: grid; grid-template-columns: 5.5em 1fr; column-gap: 12px; }
+        .panel .items li + li { margin-top: 10px; }
+        .panel .items strong { grid-row: span 3; color: rgba(238, 238, 238, 1); }
+        .panel .items .d, .panel .items .ex { grid-column: 2; }
+        .panel .items .ex { font-size: 0.85em; color: rgba(136, 136, 136, 1); }
+        .panel .items .ex + .ex { margin-top: 2px; }
+        .panel .items .ex code { color: rgba(170, 170, 170, 1); }
+        .key { white-space: nowrap; }
+        .panel .aside { margin-top: 14px; font-size: var(--font-sm); color: rgba(136, 136, 136, 1); }
+        .panel .more { margin-top: auto; padding-top: 12px; font-size: var(--font-sm); }
+        .panel-cols .panel { display: flex; flex-direction: column; }
+        .panel-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .drop { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 16px; padding: 28px 16px; border: 1px dashed rgba(85, 85, 85, 1); border-radius: 6px; background: rgba(26, 26, 26, 1); text-align: center; cursor: pointer; transition: border-color 0.15s, background-color 0.15s; }
+        .drop:hover, .drop:focus-within, .drop.over { border-color: rgba(204, 204, 204, 1); background: rgba(30, 30, 30, 1); }
+        .drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+        .drop strong { font-size: var(--font-md); font-weight: 400; color: rgba(238, 238, 238, 1); }
+        .drop span { font-size: var(--font-sm); color: rgba(119, 119, 119, 1); }
+        .panel .notes { margin-top: 10px; font-size: var(--font-sm); line-height: 1.6; color: rgba(136, 136, 136, 1); }
+        .panel .notes li + li { margin-top: 2px; }
+        .panel .notes code { color: rgba(170, 170, 170, 1); }
+        .panel .results { list-style: none; margin-top: 12px; padding: 0; }
+        .results:empty { display: none; }
+        .results li { padding: 12px 16px; border-radius: 6px; background: rgba(26, 26, 26, 1); font-size: var(--font-md); line-height: 1.6; }
+        .results li + li { margin-top: 8px; }
+        .results .name { color: rgba(238, 238, 238, 1); }
+        .results div:not(.name) { color: rgba(170, 170, 170, 1); }
+        .bad, .results div.bad { color: rgba(216, 102, 90, 1); }
+        .results a.save { display: inline-block; margin-top: 8px; padding: 6px 14px; border: 1px solid rgba(85, 85, 85, 1); border-radius: 4px; background: rgba(51, 51, 51, 1); color: rgba(238, 238, 238, 1); transition: background-color 0.15s; }
+        .results a.save:hover { background: rgba(68, 68, 68, 1); text-decoration: none; }
+        .hub-links { display: flex; justify-content: center; margin: 12px 0 8px; }
+        .hub-notice { width: 100%; max-width: 640px; font-size: 0.65em; line-height: 1.6; color: rgba(102, 102, 102, 1); text-align: center; }
+        .hub-notice p + p { margin-top: 4px; }
+        .hub-notice a:link, .hub-notice a:visited { color: rgba(119, 119, 119, 1); }
+        .hub-notice a:hover { color: rgba(170, 170, 170, 1); }
+        @media (prefers-reduced-motion: reduce) { .patch-art img { transition: none; } }
+        @media (max-width: 680px) {
+            .patch-hero, .panel-cols { grid-template-columns: 1fr; }
+            .patch-art { order: -1; }
+            .panel { padding: 16px 20px; }
+            .panel h2::before { left: -20px; }
+        }
+    </style>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PR4S897C');</script>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR4S897C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div class="spacer"></div>
+    <main class="patch">
+        <header class="patch-hero">
+            <div class="patch-intro">
+                <img class="logo" src="img/logo-suiko.png" alt="환세취호전">
+                <h1>한국어판 개선 패치</h1>
+                <p>환세취호전(幻世酔虎伝, Compile, 1997)의 국내 정식으로 발매된 한국어판을 고치는 패치입니다. 번역을 다듬고, 현행 Windows에서 생기는 문제를 해결했습니다.</p>
+                <p>이 페이지에서 정식판 파일에 바로 적용할 수 있습니다.</p>
+            </div>
+            <a class="patch-art" href="kr.html">
+                <img src="img/thumbnail-suiko.png" alt="">
+                <span>웹 에뮬레이터로 바로 플레이 ▶︎</span>
+            </a>
+        </header>
+
+        <section class="panel">
+            <h2>패치 적용</h2>
+            <ol>
+                <li>게임 폴더의 실행 파일(<code>HWANSE.EXE</code> 또는 <code>HWANSE2.EXE</code>)과 <code>GENSE.FLD</code>를 백업해 둡니다.</li>
+                <li>두 파일을 아래 칸에 놓거나, 칸을 눌러 고릅니다.</li>
+                <li>내려받은 두 파일을 게임 폴더에 넣고 <code>HWANSE.EXE</code>로 실행합니다.</li>
+            </ol>
+            <label class="drop" id="drop">
+                <input type="file" id="file" multiple accept=".exe,.fld">
+                <strong>파일을 여기에 놓거나 눌러서 선택</strong>
+                <span>HWANSE.EXE · GENSE.FLD</span>
+            </label>
+            <ul class="notes">
+                <li>파일은 브라우저 안에서만 처리되고, 어디에도 전송되지 않습니다.</li>
+                <li>실행 파일 이름이 달라도 괜찮습니다. 정식판인지는 내용으로 확인합니다.</li>
+                <li>내려받는 파일 이름은 항상 <code>HWANSE.EXE</code>·<code>GENSE.FLD</code>입니다. 원래 <code>HWANSE2.EXE</code>였다면 그 파일은 원본으로 남습니다.</li>
+                <li>바이트를 직접 고쳐 쓰던 실행 파일도 알려진 수정이면 원본으로 되돌린 뒤 패치합니다.</li>
+            </ul>
+            <noscript><p class="bad">패치를 적용하려면 자바스크립트를 켜야 합니다.</p></noscript>
+            <ul class="results" id="results" aria-live="polite"></ul>
+        </section>
+
+        <div class="panel-cols">
+            <section class="panel">
+                <h2>번역 개선</h2>
+                <p class="lead">정식판의 대사와 아이템·기술·장비 이름을 원문(일본어)과 한 줄씩 대조해 고쳤습니다. 정식판 번역을 다듬은 것이며, 새 번역은 아닙니다.</p>
+                <ul class="items">
+                    <li><strong>오역</strong><span class="d">뜻이 틀리거나 원문과 다른 말이 들어간 대사를 바로잡았습니다.</span><span class="ex">&quot;보스를 위해 목숨을 바치는 피래미 주제에&quot; → &quot;그래 봤자 보스의 돌려막기…&quot;</span><span class="ex">「檮杌」 &quot;두개골&quot; → &quot;도올&quot;, 획득 금액 &quot;5000Ｇ&quot; → &quot;500Ｇ&quot;</span></li>
+                    <li><strong>뉘앙스</strong><span class="d">원문에 없는 말을 얹거나, 원문의 핵심을 빠뜨린 번역을 원문 쪽으로 되돌렸습니다.</span><span class="ex">&quot;실용성은 왕따봉！&quot; → &quot;실용성은 대폭상승&quot;</span><span class="ex">「立派な患者じゃよ」 &quot;환자라구！！&quot; → &quot;어엿한 환자라구&quot;</span></li>
+                    <li><strong>표기</strong><span class="d">같은 대상을 장면마다 다르게 부르던 것을 통일하고, 외래어 표기와 오탈자를 고쳤습니다.</span></li>
+                    <li><strong>말투</strong><span class="d">인물마다 말투를 정리했습니다. 린샹은 상대에 따라 존대·반존대·반말을 씁니다.</span><span class="ex">스마슈가 아타호에게 존댓말을 쓰던 오류도 고쳤습니다.</span></li>
+                    <li><strong>그래픽</strong><span class="d">대회 장면의 &quot;결봉전&quot;을 &quot;차봉전&quot;(次鋒戦)으로 고쳤습니다.</span><span class="ex"><code>GENSE.FLD</code>에 들어 있는 글자입니다.</span></li>
+                </ul>
+                <p class="aside">대사 길이는 원본과 같습니다. 늘릴 자리가 없어 조사·어미로 맞췄습니다.</p>
+                <p class="more"><a href="https://github.com/flvrdoyster/suiko-web-v2/blob/main/kr-patch/translation/GUIDE.md" target="_blank" rel="noopener">번역 개정 지침 보기 →</a></p>
+            </section>
+            <section class="panel">
+                <h2>호환성 패치</h2>
+                <p class="lead">실행 파일 하나로 Windows 95/98과 XP~11을 모두 지원합니다. 기술 창 수정을 빼면 모두 XP~11에만 적용되고, 95/98에서는 원본과 똑같이 동작합니다.</p>
+                <ul class="items">
+                    <li><strong>기술 창</strong><span class="d">스테이터스 창에서 기술을 볼 때 튕기던 문제를 고쳤습니다.</span><span class="ex">기술의 MP 소비량을 엉뚱한 곳에서 읽던 버그입니다. 95/98에서는 같은 버그로 MP 부족 표시가 MP와 상관없이 나왔는데, 이것도 함께 바로잡혔습니다.</span></li>
+                    <li><strong>글자</strong><span class="d">글자 크기와 간격이 원래대로 나옵니다.</span><span class="ex">XP~11은 굵은 글꼴을 95/98과 다르게 처리해 글자 칸이 넓어졌습니다. XP~11에서만 글꼴 값을 조정해 95/98과 같은 칸으로 맞춥니다.</span></li>
+                    <li><strong>창 모드</strong><span class="d">원래 게임에 없던 창 모드를 새로 넣었습니다.</span><span class="ex"><span class="key">Alt + Enter</span>로 창 모드와 전체 화면을 오갑니다. 게임은 늘 전체 화면으로 시작합니다.</span></li>
+                    <li><strong class="key">Alt + Tab</strong><span class="d">전체 화면에서 나갔다 돌아와도 화면이 검게 남지 않습니다.</span><span class="ex">창을 전환하는 동안 게임이 그려 둔 화면 내용이 지워지던 문제입니다. 내용이 지워지지 않는 메모리에 두고, 돌아오면 화면 전체를 다시 그립니다.</span></li>
+                </ul>
+                <p class="more"><a href="https://github.com/flvrdoyster/suiko-web-v2/blob/main/NOTES.md" target="_blank" rel="noopener">원인과 수정 방법 자세히 보기 →</a></p>
+            </section>
+        </div>
+    </main>
+
+    <div class="hub-links">
+        <a class="btn-icon" href="https://atah.io/" target="_blank" rel="noopener" title="atah.io" aria-label="atah.io"><svg aria-hidden="true" viewBox="0 0 32 32" height="24" fill="currentColor" shape-rendering="crispEdges"><path d="M9 20h7v1h-7zM19 20h8v1h-8zM8 21h8v1h-8zM19 21h9v1h-9zM7 22h9v1h-9zM19 22h10v1h-10zM8 23h20v1h-20z"/><path fill-opacity="0.85" d="M19 10h1v1h-1zM18 11h3v1h-3zM19 12h1v1h-1zM19 13h1v1h-1zM19 14h1v1h-1zM17 15h4v1h-4zM18 16h1v1h-1zM18 17h1v1h-1zM18 26h1v1h-1zM18 27h1v1h-1zM17 28h2v1h-2zM17 29h2v1h-2z"/><path fill-opacity="0.75" d="M19 8h1v1h-1zM19 9h1v1h-1zM18 10h1v1h-1zM17 11h1v1h-1zM20 12h1v1h-1zM18 14h1v1h-1zM16 15h1v1h-1zM21 15h1v1h-1zM19 16h1v1h-1zM17 17h1v1h-1zM19 17h1v1h-1zM17 26h1v1h-1zM19 26h1v1h-1zM17 27h1v1h-1zM14 28h3v1h-3zM19 28h2v1h-2zM16 29h1v1h-1zM19 29h1v1h-1zM17 30h2v1h-2zM17 31h2v1h-2z"/><path fill-opacity="0.65" d="M23 0h9v1h-9zM18 1h7v1h-7zM29 1h3v1h-3zM12 2h15v1h-15zM31 2h1v1h-1zM5 3h24v1h-24zM6 4h24v1h-24zM10 5h21v1h-21zM14 6h18v1h-18zM12 7h8v1h-8zM21 7h11v1h-11zM8 8h11v1h-11zM21 8h11v1h-11zM4 9h15v1h-15zM21 9h11v1h-11zM4 10h14v1h-14zM21 10h8v1h-8zM3 11h14v1h-14zM22 11h5v1h-5zM11 12h7v1h-7zM21 12h5v1h-5zM9 13h9v1h-9zM21 13h4v1h-4zM0 14h1v1h-1zM7 14h5v1h-5zM16 14h2v1h-2zM21 14h1v1h-1zM31 14h1v1h-1zM0 15h1v1h-1zM2 15h7v1h-7zM22 15h1v1h-1zM28 15h4v1h-4zM0 16h1v1h-1zM2 16h15v1h-15zM21 16h11v1h-11zM0 17h1v1h-1zM2 17h7v1h-7zM21 17h11v1h-11zM0 18h1v1h-1zM2 18h7v1h-7zM27 18h5v1h-5zM0 19h1v1h-1zM2 19h6v1h-6zM29 19h3v1h-3zM0 20h6v1h-6zM30 20h2v1h-2zM0 21h6v1h-6zM31 21h1v1h-1zM0 22h5v1h-5zM31 22h1v1h-1zM0 23h6v1h-6zM0 24h7v1h-7zM30 24h2v1h-2zM0 25h9v1h-9zM28 25h4v1h-4zM0 26h16v1h-16zM21 26h11v1h-11zM0 27h16v1h-16zM20 27h12v1h-12zM0 28h14v1h-14zM22 28h9v1h-9zM0 29h14v1h-14zM21 29h9v1h-9zM0 30h16v1h-16zM20 30h9v1h-9zM0 31h16v1h-16zM20 31h8v1h-8z"/><path fill-opacity="0.43" d="M0 2h1v1h-1zM6 2h6v1h-6zM0 3h1v1h-1zM20 7h1v1h-1zM5 8h3v1h-3zM20 8h1v1h-1zM0 9h1v1h-1zM20 9h1v1h-1zM0 10h1v1h-1zM20 10h1v1h-1zM0 11h1v1h-1zM21 11h1v1h-1zM18 12h1v1h-1zM18 13h1v1h-1zM20 13h1v1h-1zM3 14h4v1h-4zM20 14h1v1h-1zM17 16h1v1h-1zM20 16h1v1h-1zM9 17h8v1h-8zM20 17h1v1h-1zM16 26h1v1h-1zM20 26h1v1h-1zM16 27h1v1h-1zM19 27h1v1h-1zM21 28h1v1h-1zM14 29h2v1h-2zM20 29h1v1h-1zM16 30h1v1h-1zM19 30h1v1h-1zM16 31h1v1h-1zM19 31h1v1h-1z"/><path fill-opacity="0.22" d="M20 0h3v1h-3zM0 1h1v1h-1zM13 1h5v1h-5zM25 1h4v1h-4zM5 2h1v1h-1zM27 2h4v1h-4zM29 3h3v1h-3zM0 4h1v1h-1zM5 4h1v1h-1zM30 4h2v1h-2zM8 5h2v1h-2zM31 5h1v1h-1zM13 6h1v1h-1zM11 7h1v1h-1zM0 8h1v1h-1zM4 8h1v1h-1zM3 10h1v1h-1zM29 10h1v1h-1zM27 11h1v1h-1zM0 12h1v1h-1zM10 12h1v1h-1zM26 12h1v1h-1zM8 13h1v1h-1zM25 13h1v1h-1zM2 14h1v1h-1zM12 14h1v1h-1zM15 14h1v1h-1zM22 14h1v1h-1zM30 14h1v1h-1zM9 15h2v1h-2zM23 15h1v1h-1zM27 15h1v1h-1zM1 18h1v1h-1zM9 18h1v1h-1zM26 18h1v1h-1zM1 19h1v1h-1zM8 19h1v1h-1zM28 19h1v1h-1zM6 20h1v1h-1zM5 22h1v1h-1zM6 23h1v1h-1zM30 23h2v1h-2zM7 24h1v1h-1zM28 24h2v1h-2zM9 25h19v1h-19zM31 28h1v1h-1zM30 29h1v1h-1zM29 30h1v1h-1zM28 31h1v1h-1z"/></svg></a>
+        <a class="btn-icon" href="https://oysterbay.tistory.com/133" target="_blank" rel="noopener" title="블로그" aria-label="블로그"><svg aria-hidden="true" viewBox="0 0 459 459" height="25"><path fill="currentColor" d="M229.5,0C102.75,0,0,102.75,0,229.5S102.75,459,229.5,459,459,356.25,459,229.5,356.25,0,229.5,0ZM130.21,191.45a39.57,39.57,0,1,1,39.56-39.57A39.58,39.58,0,0,1,130.21,191.45ZM229.5,390a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,390Zm0-99.29a39.56,39.56,0,1,1,39.56-39.56A39.56,39.56,0,0,1,229.5,290.74Zm0-99.29a39.57,39.57,0,1,1,39.56-39.57A39.57,39.57,0,0,1,229.5,191.45Zm99.29,0a39.57,39.57,0,1,1,39.57-39.57A39.57,39.57,0,0,1,328.79,191.45Z"/></svg></a>
+        <a class="btn-icon" href="https://github.com/flvrdoyster/suiko-web-v2" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg aria-hidden="true" viewBox="0 0 16 16" height="25"><path fill="currentColor" d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/></svg></a>
+    </div>
+    <div class="hub-notice">
+        <p>본 프로젝트는 비상업적 보존 목적으로만 운영되며, 원본 게임과 자산의 모든 권리는 원저작권자에게 있습니다.<br>저작권자로서 자료 삭제를 원하실 경우 <a href="https://github.com/flvrdoyster/suiko-web-v2/issues" target="_blank" rel="noopener">GitHub Issue</a>를 열어주시면 즉시 대응하겠습니다.</p>
+        <p lang="en">Non-commercial preservation project. Rights holders may request removal via a <a href="https://github.com/flvrdoyster/suiko-web-v2/issues" target="_blank" rel="noopener">GitHub issue</a>.</p>
+    </div>
+
+    <script src="patch-core.js"></script>
+    <script src="patch-data.js"></script>
+    <script src="patch.js"></script>
+    <script src="https://atah.io/footer.js"></script>
+</body>
+</html>

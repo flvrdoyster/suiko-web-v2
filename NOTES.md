@@ -63,8 +63,9 @@ JP(`jp.html`) 모두 서비스, 공유 디스크 이미지 하나(`docs/final-sh
   내 대응 죽은 코드(설정/로그인/클라우드 저장 클러스터 + 기타 트리거 없는 메서드, 총 36개
   메서드·421줄)도 제거 완료(2026-07) — `docs/main.js`가 이름으로 직접 호출하는 wasm 콜백은
   전부 보존 확인. `MyClass`/`myClass`도 `SuikoEmulator`/`emulator`로 개명.
-- **그래픽 에셋 교체(CNS)**: `GENSE.FLD` 안 `cara_fnt.cns`(KR 캐릭터 이름 폰트) 교체, 실기
-  확인 완료 — 포맷 역공학 상세는 "4.2 이미지 구조" 참고.
+- **그래픽 에셋 교체(CNS)**: `GENSE.FLD` 안 `cara_fnt.cns`(대회 장면의 기술명·대진 글자 그래픽) 교체,
+  실기 확인 완료. 바뀐 글자는 「次鋒戦」 하나로, 정식판의 "결봉전"(오역)을 "차봉전"으로 고쳤다.
+  포맷 역공학 상세는 "4.2 이미지 구조" 참고.
 - **JP 빌드**: 하나의 이미지에 `C:\GENSE`(KR)·`C:\GENSEJP`(JP) 공존, `docs/jp.html`은 언어
   플래그만 다름. 세이브는 언어 독립적 IndexedDB 키로 KR↔JP 호환. 일본어 폰트 베이킹 완료.
 - **KR↔JP 대사 매칭**: 두 언어의 전체 대사(KR 14,812줄/JP 14,812줄)를 1:1 대응시켜
@@ -412,7 +413,7 @@ EXE 하나로 Win95/98(웹 에뮬레이터)과 NT 계열(XP~11) 양쪽에서 제
 바이트 단위 동일)를 분석해 대체한 것이다. Win95(`probe.html`)·Win11 실기 확인 완료, 배포
 이미지(`docs/final-shared.img`)에도 반영(2026-09 — 교체 전 이미지와의 차이는 EXE 안 1,721바이트뿐).
 윈도우용 배포 파일은 `build.js` 산출물 `kr-patch/build/HWANSE.EXE`와 `cara-fnt.js` 산출물
-`kr-patch/build/GENSE.FLD`(캐릭터 이름 글꼴 — EXE에는 이 그래픽이 없다) 두 개다.
+`kr-patch/build/GENSE.FLD`(대회 장면 글자 그래픽 — EXE에는 이 그래픽이 없다) 두 개다.
 
 **① 스테이터스 창 기술 보기 튕김** — `0x410E40`은 기술 칸 6개의 상태(0 빈칸 / 1 사용 가능 /
 2 MP 부족 → 빨간색)를 채우는 함수인데, MP 소비량을 `[id*8 + 0x4D2488]`에서 읽는다.
@@ -780,7 +781,7 @@ Win11(배율 125%, 호환성 설정 없음)에서 전체 화면 알트탭 복귀
   y=280, 빈 행 없음)이 실기 확인된 조합. `--emit-patch`는 입력 EXE와의 바이트 차이를
   `docs/demo-patch.json`(`demo.html`이 적용)으로 쓴다. 이 패치는 `.data` 끝 패딩에 포인터를 쓰고
   `.reloc`에 올리지 않는다(기본 주소 로드 전제).
-- `cara-fnt.js` — `GENSE.FLD`의 `cara_fnt.cns`(캐릭터 이름 글꼴, 640×240 8bpp) 교체(4.2). `docs/final-shared.img`에 주입해 `kr-patch/build/final-shared.img`로 쓰고, 같은 패치가 적용된 `GENSE.FLD` 단독 파일도 `kr-patch/build/GENSE.FLD`에 쓴다 — 윈도우용 배포는 EXE만으론 부족하고 이 파일도 같이 줘야 함(HWANSE.EXE에는 이 그래픽이 없다).
+- `cara-fnt.js` — `GENSE.FLD`의 `cara_fnt.cns`(대회 장면 글자 그래픽, 640×240 8bpp) 교체(4.2). `docs/final-shared.img`에 주입해 `kr-patch/build/final-shared.img`로 쓰고, 같은 패치가 적용된 `GENSE.FLD` 단독 파일도 `kr-patch/build/GENSE.FLD`에 쓴다 — 윈도우용 배포는 EXE만으론 부족하고 이 파일도 같이 줘야 함(HWANSE.EXE에는 이 그래픽이 없다).
 - `slim-image.js` — 1회성 이미지 경량화(2026-07): `WIN386.SWP`·`FONTS/KOFONT.TTF` 삭제,
   `MSDOS.SYS`에 `Logo=0`·`BootDelay=0`, 빈 클러스터 0으로 채우고 gzip. 결과를
   `kr-patch/build/`에 쓰고 확인 뒤 배포 이미지로 복사.
@@ -1092,8 +1093,44 @@ UI를 바탕으로 만들어짐. 같은 사이트 계열(atah.io)에서 서빙�
 - 네이버 서치어드바이저 소유 확인은 HTML 파일 방식이라 `docs/naver7c5eb5dc6386cb8ce95adc8be90a15ad.html`을 둔다. 사이트맵에는 넣지 않는다
 - 모든 공개 페이지에 절대 주소 canonical과 `og:site_name`(atah.io)을 둔다. GitHub Pages가
   `/kr`과 `/kr.html`을 둘 다 200으로 응답해, canonical이 없으면 같은 페이지가 두 주소로 잡힌다
+- `patch.html`(아래 5.4)은 사이트맵에 넣어 색인한다. 게임 화면에는 소개 글을 넣지 않기로 해서,
+  이 호스트에서 글로 된 설명은 이 페이지가 맡는다. AI 어시스턴트·검색엔진이 읽을 본문이 게임
+  페이지엔 거의 없다(`kr.html` 본문은 조작 안내와 숨겨진 DosWasmX 영어 안내문뿐)
 
-### 5.4 참고 자료
+### 5.4 브라우저 패처 (`docs/patch.html`)
+
+패치된 `HWANSE.EXE`·`GENSE.FLD`를 직접 내려주지 않고, 사용자가 가진 국내 정식판 파일에
+브라우저 안에서 차이만 입혀 내려받게 한다. 파일은 서버로 가지 않는다.
+
+- 패치 데이터는 `node kr-patch/tools/make-patch.js`가 `original/kr/`(정식판)과
+  `kr-patch/build/`(빌드 결과)를 비교해 `docs/patch-data.js`로 쓴다. 생성 직후 원본에 적용해
+  빌드 결과와 바이트 단위로 같은지 확인하고, 다르면 쓰지 않고 멈춘다
+- **번역이나 호환성 패치를 다시 빌드하면 이 명령도 다시 돌려야 한다.** 안 돌리면 페이지가
+  옛 빌드를 계속 내준다. `node test/patch.test.js`가 `kr-patch/build/`와 바이트 단위로 대조한다
+- 형식(`docs/patch-core.js`, 생성기와 페이지가 같이 쓴다): 머리 24B(`SKP1`, 원본 크기·CRC32,
+  결과 크기·CRC32, 구간 수) 뒤에 구간마다 varint 간격·varint 길이·바이트. 8B 미만으로 떨어진
+  구간은 합친다. 구간 데이터를 gzip해 base64로 `patch-data.js`에 싣는다 — `fetch` 대신
+  `<script>`로 읽어 `file://`로 열어도 동작한다. 풀 때는 `DecompressionStream`
+- 원본 확인은 크기와 CRC32로 한다. 이미 패치된 파일(결과 CRC와 일치)은 따로 알려 준다.
+  정식판 `HWANSE.EXE` 1,523,200B `44685cad`, `GENSE.FLD` 2,855,635B `cbe3cd78`
+- 파일 이름은 판별에 쓰지 않는다. 실행 파일은 `HWANSE2.EXE` 등 다른 이름으로도 돌고, 같은 이름이라도
+  원본·수정본·패치본일 수 있다. 어느 파일인지는 크기로 고르고(원본·결과·수정본 크기 중 하나와 같으면
+  그 파일, 아니면 거부), 원본 여부는 CRC로 가린다. 내려받는 파일 이름은 판별된 이름(`HWANSE.EXE`·`GENSE.FLD`)
+- 알려진 수정본: `original/kr-variants/`(gitignore — 저장소에 올리지 않음)에 둔 파일 중 원본과 크기가 같고 256B 이하로 다른
+  것을 생성기가 수정본으로 싣는다(`variants`: 크기·CRC와 되돌릴 위치·원래 바이트). 페이지는 CRC가
+  맞으면 먼저 원본으로 되돌리고, 되돌린 결과가 원본 CRC와 같을 때만 패치한다. 생성기는 수정본에
+  적용한 결과도 빌드와 바이트 단위로 대조한다. 지금 실린 것은 `Hwanse.exe`(CRC `2c7539fa`) 하나 —
+  8곳 12B: `0x102D4` 3B NOP과 LOGFONT 7곳(슬롯 0 높이 16·폭 −1, 슬롯 0·1 굵게 제거, 슬롯 2~4 폭
+  −1). 4.5에 적은 나무위키 hex 패치와 같은 수정이다
+- 페이지 모양은 gensei-pc98 허브(`index.html`)를 따른다 — 공용 `style.css`(글꼴·바탕·푸터)에 허브의
+  선택 칸 색·왼쪽 막대, 아이콘 링크(`hub-links`), 고지(`hub-notice`), `atah.io/footer.js`. 이 저장소의
+  `style.css`에는 허브 규칙이 없어 페이지 전용 규칙은 `patch.html` 안에 둔다
+- 게임 페이지(`kr.html`·`jp.html`·`demo.html`) 상단바 왼쪽 칸의 패치 아이콘(`#btn-patch`)이 이
+  페이지로 연결된다. gensei-pc98 게임 페이지의 홈 버튼 자리다
+- 크기(2026-10 빌드 기준): `HWANSE.EXE` 7,504구간 258KB → gzip 124KB, `GENSE.FLD` 1구간 7KB → gzip 5KB.
+  `patch-data.js` 전체 172KB
+
+### 5.5 참고 자료
 
 - `.vendor-tmp/`(doswasmx 소스 클론, gitignored)는 재빌드 필요시 대비 로컬 보존 — 절차는
   "1. 완료"의 엔진 재빌드 항목 참고
