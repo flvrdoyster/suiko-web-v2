@@ -2,7 +2,7 @@
   "mode": "direct",
   "target": "HWANSE.EXE",
   "dir": "GENSE",
-  "size": 1523200,
+  "size": 1524736,
   "expect": [
     {
       "offset": 659100,
