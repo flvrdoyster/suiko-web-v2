@@ -1128,8 +1128,9 @@ UI를 바탕으로 만들어짐. 같은 사이트 계열(atah.io)에서 서빙�
 - 페이지 모양은 gensei-pc98 허브(`index.html`)를 따른다 — 공용 `style.css`(글꼴·바탕·푸터)에 허브의
   선택 칸 색·왼쪽 막대, 아이콘 링크(`hub-links`), 고지(`hub-notice`), `atah.io/footer.js`. 이 저장소의
   `style.css`에는 허브 규칙이 없어 페이지 전용 규칙은 `patch.html` 안에 둔다
-- 게임 페이지(`kr.html`·`jp.html`·`demo.html`) 상단바 왼쪽 칸의 패치 아이콘(`#btn-patch`)이 이
-  페이지로 연결된다. gensei-pc98 게임 페이지의 홈 버튼 자리다
+- 게임 페이지(`kr.html`·`demo.html`) 상단바 왼쪽 칸의 패치 아이콘(`#btn-patch`)이 이 페이지로
+  연결된다. gensei-pc98 게임 페이지의 홈 버튼 자리다. `jp.html`은 일본어 페이지라 아이콘을 두지
+  않는다(왼쪽 칸 `#topbar-left`는 디버그 버튼이 쓰므로 비워 둔 채 남긴다)
 - 크기(2026-10 빌드 기준): `HWANSE.EXE` 7,504구간 258KB → gzip 124KB, `GENSE.FLD` 1구간 7KB → gzip 5KB.
   `patch-data.js` 전체 172KB
 
