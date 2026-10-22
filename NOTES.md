@@ -1134,7 +1134,27 @@ UI를 바탕으로 만들어짐. 같은 사이트 계열(atah.io)에서 서빙�
 - 크기(2026-10 빌드 기준): `HWANSE.EXE` 7,504구간 258KB → gzip 124KB, `GENSE.FLD` 1구간 7KB → gzip 5KB.
   `patch-data.js` 전체 172KB
 
-### 5.5 참고 자료
+### 5.5 분석 이벤트
+
+GTM(`GTM-PR4S897C`)의 `dataLayer`로 이벤트를 보내고 GTM이 GA4로 넘긴다. gensei-pc98 게임 페이지와 같은
+이름·매개변수를 써서 GA4에서 한 보고서로 같이 본다. 모든 이벤트에 `game`이 붙는다 — `kr.html`은 `suiko`,
+`jp.html`은 `suiko-jp`, `demo.html`은 `suiko-demo`(`window.GAME`). 전에는 `window.GAME`이 없어
+`gamepad_activate`의 `game`이 비어 있었다.
+
+| 이벤트 | 시점 |
+|---|---|
+| `emulator_start` | 시작 버튼 (`suiko-boot.js`) |
+| `save_created` | 세이브 파일이 하나 이상 있는 상태로 바뀌어 저장된 순간, 페이지당 1회 (`suiko-save.js`) |
+| `save_restored` | 저장된 세이브를 디스크 이미지에 넣고 부팅 (`suiko-save.js`) |
+| `gamepad_activate` | 가상 게임패드를 켬 (`gamepad.js`) |
+| `play_milestone` | 실제 플레이 5·15·30·60·120분에 도달할 때마다 1회. 매개변수 `minutes` (`play-time.js`) |
+
+`save_created`는 세이브 파일 수가 0이면 보내지 않는다. 배포 이미지의 SAVEDATA가 비어 있어, 첫 폴링이
+빈 목록을 저장하는 걸 세이브로 세지 않기 위해서다. `play-time.js`는 gensei-pc98의 같은 파일과 똑같이
+유지한다 — 탭이 보이는 상태에서 키보드·터치·게임패드 입력이 있던 1분만 세고, 새로고침하면 0부터
+다시 센다. `demo.html`은 세이브를 안 쓰므로 세이브 이벤트가 없다.
+
+### 5.6 참고 자료
 
 - `.vendor-tmp/`(doswasmx 소스 클론, gitignored)는 재빌드 필요시 대비 로컬 보존 — 절차는
   "1. 완료"의 엔진 재빌드 항목 참고

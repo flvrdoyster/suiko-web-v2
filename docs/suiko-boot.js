@@ -85,6 +85,8 @@
       if (start.disabled) return;
       if (window.SuikoMidi && SuikoMidi.open) SuikoMidi.open();
       myApp.loadRom(true);
+      (window.dataLayer = window.dataLayer || []).push({ event: 'emulator_start', game: window.GAME });
+      if (window.PlayTime) PlayTime.start();
 
       if (!cover) {
         hideToast();

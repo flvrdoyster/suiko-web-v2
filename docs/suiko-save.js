@@ -63,10 +63,14 @@
       console.log('[suiko-save] restored', files.length - res.skipped.length, 'save files',
         res.skipped.length ? '(skipped: ' + res.skipped.join(',') + ')' : '');
       if (window.showToast) window.showToast('세이브 데이터를 복원했습니다.');
+      track('save_restored');
     }).catch(function (e) { console.warn('[suiko-save] inject failed', e); });
   }
 
   var lastChecksum = null;
+  var savedOnce = false;
+
+  function track(name) { (window.dataLayer = window.dataLayer || []).push({ event: name, game: window.GAME }); }
 
   function capture(baseName) {
     var files;
@@ -88,6 +92,7 @@
       .then(function () {
         console.log('[suiko-save] saved', files.length, 'files');
         if (window.showToast) window.showToast('세이브 데이터가 저장되었습니다.');
+        if (files.length && !savedOnce) { savedOnce = true; track('save_created'); }
       })
       .catch(function (e) { console.warn('[suiko-save] save failed', e); });
   }
